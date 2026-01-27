@@ -84,7 +84,7 @@
       -webkit-backdrop-filter: var(--glass-blur);
       border-right: 1px solid rgba(0,0,0,0.05);
       display: flex; flex-direction: column;
-      z-index: 50;
+      z-index: 2000; /* Z-index alto para ficar acima do conteúdo */
       transition: transform 0.3s ease;
     }
 
@@ -149,6 +149,40 @@
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px); }
     
     .copyright { font-size: 0.7rem; color: #ccc; text-align: center; }
+
+    /* --- Mobile Menu Styles (Novo) --- */
+    .mobile-menu-btn {
+      display: none; /* Escondido no Desktop */
+      background: none; border: none; font-size: 1.5rem; color: var(--text-primary); cursor: pointer;
+      z-index: 2002; /* Acima de tudo */
+      transition: transform 0.3s ease;
+      width: 44px; height: 44px;
+      align-items: center; justify-content: center;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      z-index: 1999; /* Logo abaixo do botão, acima da sidebar */
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    
+    .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+    
+    .mobile-nav-list { list-style: none; text-align: center; width: 100%; padding: 0; }
+    .mobile-nav-item { margin: 24px 0; transform: translateY(30px); opacity: 0; transition: all 0.5s ease; }
+    
+    .mobile-menu-overlay.active .mobile-nav-item { transform: translateY(0); opacity: 1; }
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-menu-overlay.active .mobile-nav-item:nth-child(3) { transition-delay: 0.3s; }
+
+    .mobile-nav-link {
+      font-size: 2.2rem; font-weight: 700; color: var(--text-primary); text-decoration: none;
+      letter-spacing: -0.03em; transition: color 0.2s;
+    }
+    .mobile-nav-link:active { color: var(--accent); opacity: 0.7; }
 
     /* --- Main Content --- */
     main {
@@ -301,7 +335,12 @@
       .profile-container { margin: 0; text-align: left; display: flex; align-items: center; gap: 12px; }
       .profile-pic-wrapper { width: 48px; height: 48px; margin: 0; }
       .profile-name { font-size: 1.1rem; margin: 0; }
-      .profile-role, nav, .sidebar-footer { display: none; } /* Simplifica header mobile */
+      
+      /* Esconde elementos desktop */
+      .profile-role, nav, .sidebar-footer { display: none; }
+      
+      /* Botão Mobile */
+      .mobile-menu-btn { display: flex; }
       
       main { margin-left: 0; padding: 40px 24px; }
       .grid { grid-template-columns: 1fr; }
@@ -318,6 +357,14 @@
 <body>
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <ul class="mobile-nav-list">
+      <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link" onclick="toggleMenu()">Projetos</a></li>
+      <li class="mobile-nav-item"><a href="sobre.html" class="mobile-nav-link" onclick="toggleMenu()">Sobre mim</a></li>
+      <li class="mobile-nav-item"><a href="contato.html" class="mobile-nav-link" onclick="toggleMenu()">Contato</a></li>
+    </ul>
+  </div>
+
   <aside>
     <div class="profile-container">
       <div class="profile-pic-wrapper">
@@ -326,6 +373,10 @@
       <h1 class="profile-name">Gabriel Silva</h1>
       <p class="profile-role">Designer & Produtor de Vídeo</p>
     </div>
+
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
     <nav>
       <div class="nav-group">
@@ -344,7 +395,7 @@
           <li><a href="um-minuto-para-refletir-em-Deus.html" class="nav-link">Um Minuto</a></li>
           <li><a href="valorada.html" class="nav-link">Valorada</a></li>
           <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
-          <li><a href="fabrica.html" class="nav-link">Fábrica de Cultura</a></li>
+          <li><a href="vídeos.html" class="nav-link">Produção Audiovisual</a></li>
         </ul>
       </div>
     </nav>
@@ -485,14 +536,14 @@
             <img src="Balé_2.png" alt="Capa Fábrica de Cultura" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Vídeo & Edição</span>
-              <h3 class="project-title">Fábrica de Cultura</h3>
+              <h3 class="project-title">Produção Audiovisual</h3>
             </div>
           </div>
           <div class="card-footer">
             <span>Projetos Audiovisuais</span>
             <i class="fa-solid fa-arrow-right"></i>
           </div>
-          <a href="fabrica.html" class="card-link" aria-label="Ver projeto Fábrica de Cultura"></a>
+          <a href="vídeos.html" class="card-link" aria-label="Ver projeto Produção Audiovisual"></a>
         </article>
 
       </section>
@@ -512,5 +563,36 @@
 
     </div>
   </main>
+
+  <script>
+    // Logic for Mobile Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const icon = menuBtn.querySelector('i');
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+      
+      if (isMenuOpen) {
+        mobileMenu.classList.add('active');
+        // Troca ícone para X
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+        // Trava o scroll da página
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileMenu.classList.remove('active');
+        // Troca ícone para Barras
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+        // Destrava scroll
+        document.body.style.overflow = '';
+      }
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+  </script>
+
 </body>
 </html>
