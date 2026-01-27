@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbfbfd">
+  <meta name="description" content="Case Study: Infraestrutura de servidor self-hosted com tunelamento, gestão de DNS Cloudflare e monitoramento via API REST.">
+  <title>Server Infra | Gabriel Silva</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------------- Design System Premium ---------------- */
+    :root {
+      --sidebar-width: 280px;
+      --max-width: 1000px;
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.75);
+      --bg-card: #FFFFFF;
+      --text-primary: #1D1D1F;
+      --text-secondary: #86868B;
+      --accent: #0044CC; /* Azul do Projeto */
+      --success: #22c55e;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --glass-blur: blur(20px) saturate(180%);
+      --radius-lg: 24px;
+      --radius-md: 12px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-body);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; } 
+
+    /* --- Sidebar Premium --- */
+    aside {
+      width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
+      padding: 40px 32px; /* Padding reduzido para caber mais */
+      background: var(--bg-sidebar);
+      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+      border-right: 1px solid rgba(0,0,0,0.05);
+      display: flex; flex-direction: column; z-index: 50;
+      overflow-y: auto; scrollbar-width: none;
+    }
+    aside::-webkit-scrollbar { display: none; }
+
+    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; }
+    .profile-link { display: block; }
+    .profile-pic-wrapper { width: 100px; height: 100px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-md); cursor: pointer; transition: transform 0.3s ease; }
+    .profile-pic-wrapper:hover { transform: scale(1.03); }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; color: #111; }
+    .profile-role { font-size: 0.75rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+    
+    nav { flex: 1; display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px; }
+    .nav-group h3 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 2px; }
+    .nav-link { display: block; padding: 8px 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
+    .nav-link:hover { color: var(--accent); background: rgba(0, 68, 204, 0.08); }
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 68, 204, 0.05); }
+    
+    /* Novo Botão Sidebar */
+    .sidebar-cta {
+        margin-top: auto; margin-bottom: 20px;
+        display: block; padding: 12px 20px;
+        background: var(--text-primary); color: white;
+        text-align: center; border-radius: 50px;
+        font-size: 0.9rem; font-weight: 600;
+        transition: 0.3s;
+    }
+    .sidebar-cta:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+    .sidebar-footer { padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
+    .social-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.04); color: var(--text-secondary); transition: all 0.3s; font-size: 0.9rem; }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+    .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
+
+    /* --- Mobile Menu (Compacto) --- */
+    .mobile-menu-btn { display: none; }
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); z-index: 1999; display: flex; flex-direction: column; align-items: center; padding-top: 60px; /* Reduzido */ opacity: 0; pointer-events: none; transition: 0.3s; overflow-y: auto; }
+    .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+    
+    .mobile-nav-container { 
+        width: 100%; max-width: 400px; text-align: center; 
+        display: flex; flex-direction: column; gap: 4px; /* Gap Reduzido */
+        padding: 0 24px 40px; 
+    }
+    .mobile-nav-main { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); padding: 6px 0; display: block; transition: 0.2s; }
+    .mobile-nav-main:active { color: var(--accent); }
+    .mobile-divider { height: 1px; background: rgba(0,0,0,0.08); border: none; margin: 16px auto; width: 30px; }
+    .mobile-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin-bottom: 6px; font-weight: 600; display: block; }
+    
+    /* Links compactos para mobile */
+    .mobile-nav-project { font-size: 1rem; font-weight: 500; color: #555; padding: 8px 0; display: block; transition: 0.2s; }
+    .mobile-nav-project:active { color: var(--accent); font-weight: 600; background: rgba(0,0,0,0.03); border-radius: 8px; }
+
+    /* --- Main Content --- */
+    main { margin-left: var(--sidebar-width); flex: 1; padding: 0; display: flex; flex-direction: column; align-items: center; }
+
+    .project-hero { width: 100%; padding: 80px 40px 40px; background-color: var(--bg-body); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    
+    .hero-image-container { 
+        width: 100%; max-width: 900px; border-radius: var(--radius-lg); 
+        overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 30px; 
+        background: linear-gradient(135deg, #0a1931 0%, #1a2a44 100%);
+        border: 1px solid rgba(0,0,0,0.05);
+        display: flex; align-items: center; justify-content: center;
+        aspect-ratio: 16/9;
+    }
+    .hero-image { width: auto; height: 70%; object-fit: contain; display: block; }
+
+    .hero-text-content { text-align: center; max-width: 700px; }
+    .project-title { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.03em; }
+    .project-subtitle { font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; }
+
+    .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); }
+
+    /* Meta Grid */
+    .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 60px; background: white; padding: 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+    .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+    
+    .status-pulse { width: 8px; height: 8px; border-radius: 50%; background: #ccc; box-shadow: 0 0 0 rgba(0,0,0,0); transition: 0.3s; display: inline-block; }
+    .status-pulse.online { background: var(--success); box-shadow: 0 0 10px var(--success); animation: pulse-green 2s infinite; }
+    .status-pulse.offline { background: var(--error); }
+    .status-pulse.warning { background: var(--warning); }
+    @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
+
+    .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 40px; }
+    .description-highlight { font-size: 1.05rem; color: #666; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 12px; margin-bottom: 60px; border-left: 3px solid var(--accent); }
+
+    /* API Widget Section */
+    .api-section { 
+        background: #0f172a; color: white; border-radius: var(--radius-lg); 
+        padding: 40px; margin-bottom: 60px; position: relative; overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .api-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
+    .api-title h3 { font-size: 1.4rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+    .api-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    .api-metric { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; text-align: center; }
+    .metric-label { font-size: 0.75rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+    .metric-value { font-size: 1.8rem; font-weight: 700; color: white; }
+    .metric-sub { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
+    .api-footer { display: flex; justify-content: flex-end; align-items: center; gap: 15px; font-size: 0.8rem; color: #64748b; margin-top: 10px; }
+    .btn-refresh { background: rgba(255,255,255,0.1); border: none; color: white; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
+    .btn-refresh:hover { background: rgba(255,255,255,0.2); }
+    .btn-refresh.spinning i { animation: spin 1s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    /* Flow Chart */
+    .architecture-section { background: white; border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); margin-bottom: 60px; }
+    .arch-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 40px; text-align: center; }
+    .flow-chart { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+    
+    .flow-step { 
+      flex: 1; min-width: 140px; background: #F5F5F7; padding: 24px 16px; 
+      border-radius: 16px; text-align: center; display: flex; flex-direction: column; 
+      align-items: center; gap: 12px; border: 1px solid transparent; 
+      transition: all 0.3s ease; cursor: pointer; position: relative;
+    }
+    .flow-step:hover { 
+      background: white; border-color: var(--accent); 
+      transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+    }
+    .flow-step:hover .step-icon { background: var(--accent); color: white; }
+    
+    .step-icon { 
+      width: 48px; height: 48px; background: white; border-radius: 50%; 
+      display: flex; align-items: center; justify-content: center; 
+      font-size: 1.2rem; color: var(--accent); 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;
+    }
+    .step-label { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); }
+    .flow-step::after { content: 'Ver detalhes'; position: absolute; bottom: 8px; font-size: 0.65rem; color: var(--accent); opacity: 0; transform: translateY(5px); transition: 0.3s; }
+    .flow-step:hover::after { opacity: 1; transform: translateY(0); }
+    .flow-arrow { color: #ccc; font-size: 1.2rem; }
+
+    /* Tech Stack */
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-top: 40px; }
+    .stack-item { background: white; padding: 16px; border-radius: 12px; text-align: center; font-size: 0.9rem; font-weight: 500; color: #555; display: flex; flex-direction: column; align-items: center; gap: 8px; border: 1px solid #eee; }
+    .stack-item i { font-size: 1.5rem; color: #333; }
+
+    /* Live Button */
+    .live-demo-container { text-align: center; margin-top: 40px; }
+    .btn-live { display: inline-flex; align-items: center; gap: 10px; background: var(--text-primary); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+    .btn-live:hover { background: var(--accent); transform: scale(1.05); }
+
+    /* Info Modal */
+    .info-modal { position: fixed; inset: 0; z-index: 3000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .info-modal.active { opacity: 1; pointer-events: auto; }
+    .modal-content { background: white; width: 90%; max-width: 500px; padding: 40px; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05); text-align: center; transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .info-modal.active .modal-content { transform: scale(1); }
+    .modal-icon { width: 60px; height: 60px; background: rgba(0, 68, 204, 0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 20px; }
+    .modal-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+    .modal-desc { font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 30px; }
+    .modal-close { background: var(--text-primary); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .modal-close:hover { background: var(--accent); }
+
+    /* Contact Banner */
+    .contact-banner { width: 100%; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin-bottom: 40px; }
+    .contact-text-group { flex: 1; padding-right: 20px; }
+    .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
+    .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
+    
+    .contact-social { display: flex; gap: 12px; }
+    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
+    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
+
+    .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: 0.3s; }
+    .btn-cta-dark:hover { transform: translateY(-2px); background: #f2f2f2; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: 0.2s; }
+    .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    /* Navigation - Com Animações */
+    .project-nav { width: 100%; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; padding-top: 40px; margin: 60px 0 80px 0; }
+    .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 500; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .nav-btn:hover { color: var(--accent); }
+    .nav-btn:active { transform: scale(0.96); } /* Click effect */
+    .nav-btn.next { text-align: right; flex-direction: row-reverse; }
+    
+    /* Arrow Animations */
+    .nav-btn i { transition: transform 0.3s ease; }
+    .nav-btn:hover .fa-arrow-right { transform: translateX(4px); }
+    .nav-btn:hover .fa-arrow-left { transform: translateX(-4px); }
+    .nav-btn:hover .fa-house { transform: scale(1.1); }
+
+    .nav-label { font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 4px; opacity: 0.6; }
+    .nav-project-name { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+
+    @media (max-width: 968px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
+      .profile-container { margin: 0; text-align: left; }
+      .profile-link { display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; }
+      .profile-name { font-size: 1rem; margin: 0; }
+      .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; }
+      
+      main { margin-left: 0; padding: 100px 20px 40px; }
+      .meta-grid { grid-template-columns: 1fr 1fr; }
+      .content-wrapper { padding: 40px 20px; }
+      .api-grid { grid-template-columns: 1fr; gap: 20px; }
+      .flow-chart { flex-direction: column; gap: 20px; }
+      .flow-arrow { transform: rotate(90deg); margin: 0; }
+      
+      .contact-banner { flex-direction: column; text-align: center; gap: 32px; padding: 32px; }
+      .contact-text-group { width: 100%; padding-right: 0; }
+      .contact-social { justify-content: center; margin-top: 15px; }
+      .contact-actions { width: 100%; justify-content: center; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <div class="mobile-nav-container">
+      <a href="sobre.html" class="mobile-nav-main" onclick="toggleMenu()">Sobre Mim</a>
+      <a href="index.html" class="mobile-nav-main" onclick="toggleMenu()">Projetos</a>
+      <hr class="mobile-divider">
+      <span class="mobile-label">Navegue por projeto</span>
+      <a href="infra.html" class="mobile-nav-project" onclick="toggleMenu()">Server Infra & Dashboard</a>
+      <a href="revista-utopia.html" class="mobile-nav-project" onclick="toggleMenu()">Revista Utopia</a>
+      <a href="neoletters.html" class="mobile-nav-project" onclick="toggleMenu()">Neo Letters</a>
+      <a href="lo.html" class="mobile-nav-project" onclick="toggleMenu()">Lô Publicidade</a>
+      <a href="ogabriels.html" class="mobile-nav-project" onclick="toggleMenu()">G | Gabriel</a>
+      <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-nav-project" onclick="toggleMenu()">Um Minuto</a>
+      <a href="valorada.html" class="mobile-nav-project" onclick="toggleMenu()">Valorada</a>
+      <a href="thumbnails.html" class="mobile-nav-project" onclick="toggleMenu()">Thumbnails</a>
+      <a href="vídeos.html" class="mobile-nav-project" onclick="toggleMenu()">Produção Audiovisual</a>
+      <hr class="mobile-divider">
+      <a href="contato.html" class="mobile-nav-main" onclick="toggleMenu()">Contato</a>
+    </div>
+  </div>
+
+  <aside>
+    <div class="profile-container">
+      <a href="index.html" class="profile-link">
+        <div class="profile-pic-wrapper">
+          <img src="Logo.png" alt="Gabriel Silva" class="profile-pic">
+        </div>
+        <div class="profile-text-group">
+          <h1 class="profile-name">Gabriel Silva</h1>
+          <p class="profile-role">Creative Technologist</p>
+        </div>
+      </a>
+    </div>
+
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav>
+      <div class="nav-group">
+        <ul class="nav-list">
+          <li><a href="sobre.html" class="nav-link">Sobre mim</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <h3>Portfólio</h3>
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">← Voltar para Projetos</a></li>
+          <li><a href="infra.html" class="nav-link active">Server Infra & Dashboard</a></li>
+          <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
+          <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
+          <li><a href="lo.html" class="nav-link">Lô</a></li>
+          <li><a href="ogabriels.html" class="nav-link">G | Gabriel</a></li>
+          <li><a href="um-minuto-para-refletir-em-Deus.html" class="nav-link">Um Minuto</a></li>
+          <li><a href="valorada.html" class="nav-link">Valorada</a></li>
+          <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
+          <li><a href="vídeos.html" class="nav-link">Produção Audiovisual</a></li>
+        </ul>
+      </div>
+
+      <a href="contato.html" class="sidebar-cta">
+        <i class="fa-regular fa-envelope"></i> Fale Comigo
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
+        <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p class="copyright">© 2026 Gabriel Silva</p>
+    </div>
+  </aside>
+
+  <main>
+    
+    <section class="project-hero">
+      <div class="hero-image-container">
+        <img src="logo-forcaaliada.JPG" alt="Server Dashboard" class="hero-image">
+      </div>
+      
+      <div class="hero-text-content">
+        <h1 class="project-title">Server Infra & Dashboard</h1>
+        <p class="project-subtitle">Gestão de Redes, DNS e Monitoramento em Tempo Real</p>
+      </div>
+    </section>
+
+    <div class="content-wrapper">
+      
+      <section class="meta-grid" role="status" aria-live="polite">
+        <div class="meta-item"><h4>Projeto</h4><p><i class="fa-solid fa-server"></i> Self-Hosting</p></div>
+        <div class="meta-item"><h4>Tecnologia</h4><p>API & Tunneling</p></div>
+        <div class="meta-item">
+            <h4>Status</h4>
+            <p id="live-status-text">
+                <span class="status-pulse warning" id="status-dot"></span> Verificando...
+            </p>
+        </div>
+        <div class="meta-item"><h4>Ativo Desde</h4><p>2021</p></div>
+      </section>
+
+      <section class="project-description">
+        <p>Este projeto nasceu para a comunidade <strong>Força Aliada</strong>, ativa desde 2021. O desafio era otimizar a experiência de conexão, eliminando a dependência de VPNs e configurações complexas para o usuário final, sem comprometer segurança ou estabilidade.</p>
+        
+        <p>Desenvolvi uma infraestrutura de <strong>self-hosting</strong> com tunelamento e proteção via Cloudflare, garantindo mitigação contra ataques DDoS, baixa latência e alta disponibilidade. Como complemento, criei um dashboard público que consome APIs em tempo real para exibir status, uptime e métricas da infraestrutura em produção.</p>
+        
+        <div class="description-highlight">
+            <strong>Em termos simples:</strong> uma infraestrutura local protegida por nível enterprise, exibindo métricas reais em tempo real para qualquer usuário.
+        </div>
+      </section>
+
+      <section class="api-section">
+        <div class="api-header">
+          <div class="api-title">
+            <h3><i class="fa-solid fa-terminal"></i> Live Server Monitor</h3>
+          </div>
+          <div class="api-badge" style="background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;">API v2</div>
+        </div>
+        
+        <div class="api-grid">
+          <div class="api-metric">
+            <span class="metric-label">Status</span>
+            <div class="metric-value" id="metric-status" style="color: #f59e0b;">...</div>
+            <div class="metric-sub">Endpoint Check</div>
+          </div>
+          <div class="api-metric">
+            <span class="metric-label">Players Online</span>
+            <div class="metric-value" id="metric-players">--</div>
+            <div class="metric-sub">Em tempo real</div>
+          </div>
+          <div class="api-metric">
+            <span class="metric-label">Uptime Global</span>
+            <div class="metric-value">4 Anos</div>
+            <div class="metric-sub">Desde 2021</div>
+          </div>
+        </div>
+
+        <div class="api-footer">
+            <span id="lastUpdated">Última atualização: --</span>
+            <button id="refreshBtn" class="btn-refresh" onclick="fetchServerStatus()">
+                <i class="fa-solid fa-rotate"></i> Atualizar
+            </button>
+        </div>
+      </section>
+
+      <section class="architecture-section">
+        <h3 class="arch-title">Arquitetura da Solução</h3>
+        
+        <div class="flow-chart">
+          
+          <div class="flow-step" onclick="openModal('user')">
+            <div class="step-icon"><i class="fa-solid fa-users"></i></div>
+            <span class="step-label">Usuários</span>
+          </div>
+
+          <i class="fa-solid fa-arrow-right flow-arrow"></i>
+
+          <div class="flow-step" onclick="openModal('cloudflare')">
+            <div class="step-icon"><i class="fa-brands fa-cloudflare" style="color: #F48120;"></i></div>
+            <span class="step-label">Cloudflare DNS</span>
+          </div>
+
+          <i class="fa-solid fa-arrow-right flow-arrow"></i>
+
+          <div class="flow-step" onclick="openModal('tunnel')">
+            <div class="step-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <span class="step-label">Tunnel (Playit.gg)</span>
+          </div>
+
+          <i class="fa-solid fa-arrow-right flow-arrow"></i>
+
+          <div class="flow-step" onclick="openModal('local')">
+            <div class="step-icon"><i class="fa-solid fa-server"></i></div>
+            <span class="step-label">Localhost (Java)</span>
+          </div>
+
+        </div>
+
+        <div class="live-demo-container">
+          <a href="https://forcaaliada.ogabriels.com" target="_blank" class="btn-live">
+            Ver Dashboard Completo <i class="fa-solid fa-external-link-alt"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="showcase-section">
+        <div class="section-header" style="text-align: center; border: none;">
+          <h2 class="section-title">Tech Stack</h2>
+          <p class="section-desc">Tecnologias utilizadas para viabilizar a infraestrutura.</p>
+        </div>
+
+        <div class="stack-grid">
+          <div class="stack-item"><i class="fa-brands fa-cloudflare"></i> Cloudflare</div>
+          <div class="stack-item"><i class="fa-brands fa-github"></i> GitHub Pages</div>
+          <div class="stack-item"><i class="fa-solid fa-code"></i> API REST</div>
+          <div class="stack-item"><i class="fa-solid fa-network-wired"></i> Tunneling</div>
+          <div class="stack-item"><i class="fa-brands fa-java"></i> Java Runtime</div>
+          <div class="stack-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+        </div>
+      </section>
+
+      <div class="project-nav">
+        <a href="index.html" class="nav-btn prev">
+          <i class="fa-solid fa-house"></i>
+          <div><span class="nav-label">Voltar</span><span class="nav-project-name">Home</span></div>
+        </a>
+        <a href="revista-utopia.html" class="nav-btn next">
+          <div><span class="nav-label">Próximo</span><span class="nav-project-name">Revista Utopia</span></div>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <section class="contact-banner" id="contato">
+        <div class="contact-text-group">
+          <div class="contact-text">
+            <h2>Vamos criar algo incrível?</h2>
+            <p>Se você tem uma ideia, eu tenho as ferramentas certas para realizá-la.</p>
+          </div>
+          <div class="contact-social">
+              <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://github.com/ogabriels2" target="_blank" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
+          <a href="https://wa.me/5511979686116" target="_blank" class="btn-secondary-dark">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <div class="info-modal" id="infoModal">
+    <div class="modal-content">
+      <div class="modal-icon" id="modalIcon"><i class="fa-solid fa-info"></i></div>
+      <h3 class="modal-title" id="modalTitle">Título</h3>
+      <p class="modal-desc" id="modalDesc">Descrição...</p>
+      <button class="modal-close" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    /* --- LÓGICA DE MONITORAMENTO (Retry + Backoff) --- */
+    const API_HOST = 'microsoft-deeper.gl.joinmc.link';
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('live-status-text');
+    const metricStatus = document.getElementById('metric-status');
+    const metricPlayers = document.getElementById('metric-players');
+    const lastUpdatedEl = document.getElementById('lastUpdated');
+    const refreshBtn = document.getElementById('refreshBtn');
+
+    let retryDelay = 5000;
+    let pollInterval = 30000; // 30s
+    let pollTimer = null;
+
+    async function fetchWithTimeout(url, timeout = 7000) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeout);
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(id);
+        return res;
+      } catch (e) {
+        clearTimeout(id);
+        throw e;
+      }
+    }
+
+    async function fetchServerStatus() {
+      if(refreshBtn) refreshBtn.classList.add('spinning');
+      if(statusDot) statusDot.className = 'status-pulse warning';
+      
+      try {
+        const response = await fetchWithTimeout(`https://api.mcstatus.io/v2/status/java/${API_HOST}`, 7000);
+        if (!response.ok) throw new Error('Bad response');
+        
+        const data = await response.json();
+        const now = new Date();
+        if(lastUpdatedEl) lastUpdatedEl.innerText = `Última atualização: ${now.toLocaleTimeString()}`;
+
+        if (data && data.online) {
+          statusDot.className = 'status-pulse online';
+          statusText.innerHTML = '<span class="status-pulse online"></span> Online';
+          metricStatus.innerText = "ONLINE";
+          metricStatus.style.color = "#22c55e";
+          metricPlayers.innerText = data.players.online;
+        } else {
+          throw new Error("Offline");
+        }
+        retryDelay = 5000;
+      } catch (err) {
+        const now = new Date();
+        if(lastUpdatedEl) lastUpdatedEl.innerText = `Falha às ${now.toLocaleTimeString()}`;
+        statusDot.className = 'status-pulse offline';
+        statusText.innerHTML = '<span class="status-pulse offline"></span> Offline';
+        metricStatus.innerText = "OFFLINE";
+        metricStatus.style.color = "#ef4444";
+        metricPlayers.innerText = "--";
+        retryDelay = Math.min(retryDelay * 1.5, 60000);
+      } finally {
+        if(refreshBtn) refreshBtn.classList.remove('spinning');
+        clearTimeout(pollTimer);
+        pollTimer = setTimeout(fetchServerStatus, pollInterval);
+      }
+    }
+
+    fetchServerStatus();
+
+    /* --- LÓGICA DO MODAL --- */
+    const modalData = {
+      'user': {
+        icon: '<i class="fa-solid fa-users"></i>',
+        title: 'Acesso do Usuário',
+        desc: 'Jogadores de PC (Java) e Celular/Console (Bedrock) conectam através de um único domínio, sem a necessidade de configurar VPNs ou IPs complexos.'
+      },
+      'cloudflare': {
+        icon: '<i class="fa-brands fa-cloudflare"></i>',
+        title: 'Gerenciamento DNS',
+        desc: 'O Cloudflare atua como a camada de entrada, mascarando o IP real do servidor (proxy) e oferecendo proteção contra ataques DDoS básicos.'
+      },
+      'tunnel': {
+        icon: '<i class="fa-solid fa-shield-halved"></i>',
+        title: 'Tunelamento Seguro',
+        desc: 'Utilizo o Playit.gg para criar um túnel UDP reverso. Isso permite expor o servidor local para a internet pública sem a necessidade de Port Forwarding no roteador, aumentando drasticamente a segurança da rede doméstica.'
+      },
+      'local': {
+        icon: '<i class="fa-solid fa-server"></i>',
+        title: 'Infraestrutura Local',
+        desc: 'O servidor roda em hardware próprio (Self-Hosted) com otimização de JVM e plugins de performance (PaperMC/Purpur) para garantir TPS estável mesmo com alta carga.'
+      }
+    };
+
+    function openModal(key) {
+      const data = modalData[key];
+      document.getElementById('modalIcon').innerHTML = data.icon;
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalDesc').innerText = data.desc;
+      document.getElementById('infoModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('infoModal').classList.remove('active');
+    }
+
+    document.getElementById('infoModal').addEventListener('click', (e) => {
+      if(e.target.id === 'infoModal') closeModal();
+    });
+
+    // Mobile Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const icon = menuBtn.querySelector('i');
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        mobileMenu.classList.add('active');
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileMenu.classList.remove('active');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+        document.body.style.overflow = '';
+      }
+    }
+    menuBtn.addEventListener('click', toggleMenu);
+  </script>
+
+</body>
+</html>

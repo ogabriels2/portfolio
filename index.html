@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbfbfd">
-  <meta name="description" content="Portfólio de Gabriel Silva - Designer e Produtor de Vídeo">
-  <title>Gabriel Silva | Designer & Video Producer</title>
+  <meta name="description" content="Portfólio de Gabriel Silva - Creative Technologist. Projetos de Design, Vídeo e Infraestrutura de TI.">
+  <title>Gabriel Silva | Creative Technologist</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,35 +15,27 @@
   <style>
     /* ---------------- Design Tokens (Apple System) ---------------- */
     :root {
-      /* Layout & Spacing */
       --sidebar-width: 280px;
       --max-width: 1100px;
       --card-radius: 18px;
-      --btn-radius: 12px;
       
       /* Colors */
-      --bg-body: #F5F5F7; /* Cinza Apple clássico */
-      --bg-sidebar: rgba(255, 255, 255, 0.75); /* Translucidez */
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.75);
       --bg-card: #FFFFFF;
       --text-primary: #1D1D1F;
       --text-secondary: #86868B;
-      --accent: #0071E3; /* Azul Apple */
+      --accent: #0071E3;
       --accent-hover: #0077ED;
-      
-      /* Dark Mode Tokens (Footer) */
-      --bg-dark: #1D1D1F;
-      --text-white: #FFFFFF;
-      --text-gray: #A1A1A6;
       
       /* Effects */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
       --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
       --glass-blur: blur(20px) saturate(180%);
-      --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); /* Curva suave iOS */
+      --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    /* Reset & Base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     html { scroll-behavior: smooth; }
@@ -57,340 +49,151 @@
       min-height: 100vh;
     }
 
-    /* Acessibilidade: Skip Link */
-    .skip-link {
-      position: fixed; top: -100px; left: 20px; z-index: 1000;
-      background: var(--accent); color: white; padding: 12px 20px;
-      border-radius: 8px; text-decoration: none; font-weight: 600;
-      transition: top 0.3s;
-    }
+    a { text-decoration: none; }
+
+    /* Skip Link */
+    .skip-link { position: fixed; top: -100px; left: 20px; z-index: 3000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s; }
     .skip-link:focus { top: 20px; }
 
-    /* Custom Scrollbar (Minimalista) */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; border: 2px solid var(--bg-body); }
     ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
 
-    /* --- Sidebar (Glassmorphism) --- */
+    /* --- Sidebar Premium --- */
     aside {
-      width: var(--sidebar-width);
-      height: 100vh;
-      position: fixed;
-      left: 0; top: 0;
-      padding: 60px 32px;
-      background: var(--bg-sidebar);
-      backdrop-filter: var(--glass-blur); /* O segredo do visual Apple */
-      -webkit-backdrop-filter: var(--glass-blur);
+      width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
+      padding: 40px 32px; background: var(--bg-sidebar);
+      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
       border-right: 1px solid rgba(0,0,0,0.05);
-      display: flex; flex-direction: column;
-      z-index: 2000; /* Z-index alto para ficar acima do conteúdo */
-      transition: transform 0.3s ease;
+      display: flex; flex-direction: column; z-index: 2000;
+      overflow-y: auto; scrollbar-width: none;
     }
+    aside::-webkit-scrollbar { display: none; }
 
-    .profile-container { text-align: center; margin-bottom: 40px; }
-    
-    /* MODIFICAÇÃO: Link de Perfil */
-    .profile-link { text-decoration: none; color: inherit; display: block; }
-
-    .profile-pic-wrapper {
-      width: 120px; height: 120px; margin: 0 auto 20px;
-      border-radius: 50%; overflow: hidden;
-      box-shadow: var(--shadow-md);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
+    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; }
+    .profile-link { display: block; }
+    .profile-pic-wrapper { width: 100px; height: 100px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-md); cursor: pointer; transition: transform 0.3s ease; }
     .profile-pic-wrapper:hover { transform: scale(1.03); }
-    
     .profile-pic { width: 100%; height: 100%; object-fit: cover; }
-    
-    .profile-name {
-      font-size: 1.5rem; font-weight: 700; 
-      letter-spacing: -0.02em; margin-bottom: 6px; color: #111;
-    }
-    
-    .profile-role {
-      font-size: 0.8rem; color: var(--text-secondary);
-      font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
-    }
+    .profile-name { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; color: #111; }
+    .profile-role { font-size: 0.75rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
 
-    /* Navegação */
-    nav { flex: 1; display: flex; flex-direction: column; gap: 24px; }
-    
-    .nav-group h3 {
-      font-size: 0.75rem; color: var(--text-secondary);
-      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;
-      opacity: 0.8;
-    }
-    
+    nav { flex: 1; display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px; }
+    .nav-group h3 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
     .nav-list { list-style: none; }
-    .nav-list li { margin-bottom: 4px; }
-    
-    .nav-link {
-      display: block; padding: 8px 12px;
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.95rem; font-weight: 500;
-      border-radius: 8px; transition: all 0.2s;
-    }
-    
+    .nav-list li { margin-bottom: 2px; }
+    .nav-link { display: block; padding: 8px 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); }
-    .nav-link.active { color: var(--accent); font-weight: 600; }
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 113, 227, 0.05); }
 
-    /* Footer Social */
-    .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
-    
-    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
-    
-    .social-icon {
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; background: rgba(0,0,0,0.04);
-      color: var(--text-secondary); text-decoration: none;
-      transition: all 0.3s;
+    /* Botão Sidebar */
+    .sidebar-cta {
+        margin-top: auto; margin-bottom: 20px; display: block; padding: 12px 20px;
+        background: var(--text-primary); color: white; text-align: center; border-radius: 50px;
+        font-size: 0.9rem; font-weight: 600; transition: 0.3s;
     }
-    
+    .sidebar-cta:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+    .sidebar-footer { padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
+    .social-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.04); color: var(--text-secondary); transition: all 0.3s; font-size: 0.9rem; }
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px); }
-    
-    .copyright { font-size: 0.7rem; color: #ccc; text-align: center; }
+    .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* --- Mobile Menu Styles (Novo) --- */
+    /* --- Mobile Menu --- */
     .mobile-menu-btn { display: none; }
-
-    .mobile-menu-overlay {
-      position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      z-index: 1999; /* Abaixo do aside, acima do main */
-      display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
-      padding-top: 100px; padding-bottom: 40px;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-      overflow-y: auto;
-    }
-    
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); z-index: 1999; display: flex; flex-direction: column; align-items: center; padding-top: 60px; opacity: 0; pointer-events: none; transition: 0.3s; overflow-y: auto; }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
-    
-    .mobile-nav-container {
-      width: 100%; max-width: 400px; text-align: center;
-      display: flex; flex-direction: column; gap: 8px;
-      padding: 0 24px 60px;
-    }
-
-    /* Links Principais (Grandes) */
-    .mobile-nav-main {
-      font-size: 1.6rem; font-weight: 700; color: var(--text-primary); 
-      text-decoration: none; padding: 12px 0; display: block;
-      letter-spacing: -0.02em; transition: color 0.2s;
-    }
+    .mobile-nav-container { width: 100%; max-width: 400px; text-align: center; display: flex; flex-direction: column; gap: 4px; padding: 0 24px 40px; }
+    .mobile-nav-main { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); padding: 6px 0; display: block; transition: 0.2s; }
     .mobile-nav-main:active { color: var(--accent); }
-
-    /* Divisor */
-    .mobile-divider {
-      height: 1px; background: rgba(0,0,0,0.08); border: none; 
-      margin: 20px auto; width: 40px;
-    }
-    
-    /* Label do Índice */
-    .mobile-label {
-      font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary);
-      letter-spacing: 0.1em; margin-bottom: 8px; display: block; font-weight: 600;
-    }
-
-    /* Links de Projetos (Menores - Lista) */
-    .mobile-nav-project {
-      font-size: 1.1rem; font-weight: 500; color: #555;
-      text-decoration: none; padding: 10px 0; display: block;
-      transition: all 0.2s;
-    }
-    .mobile-nav-project:active { color: var(--accent); font-weight: 600; }
+    .mobile-divider { height: 1px; background: rgba(0,0,0,0.08); border: none; margin: 16px auto; width: 30px; }
+    .mobile-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin-bottom: 6px; font-weight: 600; display: block; }
+    .mobile-nav-project { font-size: 1rem; font-weight: 500; color: #555; padding: 8px 0; display: block; transition: 0.2s; }
+    .mobile-nav-project:active { color: var(--accent); font-weight: 600; background: rgba(0,0,0,0.03); border-radius: 8px; }
 
     /* --- Main Content --- */
-    main {
-      margin-left: var(--sidebar-width);
-      flex: 1; padding: 80px 60px;
-      display: flex; flex-direction: column; align-items: center;
-    }
-
+    main { margin-left: var(--sidebar-width); flex: 1; padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
     .container { width: 100%; max-width: var(--max-width); }
 
     /* Header (Hero) */
-    .page-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 60px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-    
+    .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
     .header-content { max-width: 700px; }
     .header-content h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; line-height: 1.1; }
     .header-content p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.5; }
 
-    /* Botão CTA Principal */
-    .btn-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent); color: white;
-      padding: 12px 24px; border-radius: 99px;
-      text-decoration: none; font-weight: 600; font-size: 0.95rem;
-      transition: var(--transition);
-      box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
-    }
+    .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 99px; font-weight: 600; font-size: 0.95rem; transition: var(--transition); box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); }
     .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 113, 227, 0.4); background: var(--accent-hover); }
 
     /* --- Grid de Projetos --- */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 colunas como pedido */
-      gap: 32px;
-    }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
 
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--card-radius);
-      overflow: hidden;
-      position: relative;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      cursor: pointer;
-      isolation: isolate;
-      display: flex; flex-direction: column;
-    }
+    .card { background: var(--bg-card); border-radius: var(--card-radius); overflow: hidden; position: relative; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; isolation: isolate; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-lg); z-index: 2; }
 
-    .card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: var(--shadow-lg);
-      z-index: 2;
-    }
-
-    .card-image-wrapper {
-      width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative;
-    }
-    
-    .card-image-wrapper img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    
+    .card-image-wrapper { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; background: #fff; }
+    .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .card:hover .card-image-wrapper img { transform: scale(1.06); }
 
-    /* Overlay Moderno */
-    .card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%);
-      opacity: 0; transition: opacity 0.4s ease;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 24px;
+    /* Card Específico para Logo (Infra) */
+    .card-image-wrapper.logo-mode {
+        background: linear-gradient(135deg, #0a1931 0%, #1a2a44 100%);
+        display: flex; align-items: center; justify-content: center;
     }
-    
+    .card-image-wrapper.logo-mode img { width: auto; height: 60%; object-fit: contain; }
+
+    .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%); opacity: 0; transition: opacity 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
     .card:hover .card-overlay { opacity: 1; }
 
-    /* Texto do Projeto */
     .project-meta { color: rgba(255,255,255,0.8); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; transform: translateY(10px); transition: 0.4s; }
     .project-title { color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0; transform: translateY(10px); transition: 0.4s 0.1s; }
-    
-    .card:hover .project-meta,
-    .card:hover .project-title { transform: translateY(0); }
+    .card:hover .project-meta, .card:hover .project-title { transform: translateY(0); }
 
-    /* STRETCHED LINK */
-    .card-link::after {
-      content: ''; position: absolute; inset: 0; z-index: 10;
-    }
+    .card-link::after { content: ''; position: absolute; inset: 0; z-index: 10; }
 
-    /* Info Bar (Desktop only visual) */
-    .card-footer {
-      padding: 16px 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid rgba(0,0,0,0.03);
-      flex-grow: 1;
-    }
+    .card-footer { padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.03); flex-grow: 1; }
     .card-footer span { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
     .card-footer i { color: var(--accent); opacity: 0; transform: translateX(-10px); transition: all 0.3s; }
     .card:hover .card-footer i { opacity: 1; transform: translateX(0); }
 
-    /* --- Seção Contato Integrada (DARK MODE) --- */
-    .contact-banner {
-      margin-top: 80px;
-      background: var(--bg-dark); /* Preto */
-      border-radius: 24px;
-      padding: 50px;
-      display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      color: var(--text-white);
-    }
-
-    .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; color: white; }
-    .contact-text p { color: var(--text-gray); font-size: 1.1rem; }
-
-    .contact-actions { display: flex; gap: 16px; align-items: center; }
+    /* Contact Banner Premium */
+    .contact-banner { width: 100%; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin-top: 80px; }
+    .contact-text-group { flex: 1; padding-right: 20px; }
+    .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
+    .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
     
-    /* Botão Principal no Dark Mode (Branco) */
-    .btn-cta-dark {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: white; color: black;
-      padding: 14px 28px; border-radius: 99px;
-      text-decoration: none; font-weight: 600; font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255,255,255,0.1);
-    }
-    .btn-cta-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,255,255,0.2); background: #f2f2f2; }
+    .contact-social { display: flex; gap: 12px; }
+    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
+    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
 
-    /* Botão Secundário no Dark Mode (Outline) */
-    .btn-secondary-dark {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: white;
-      padding: 14px 28px; border-radius: 99px;
-      text-decoration: none; font-weight: 600; font-size: 1rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      transition: all 0.2s;
-    }
+    .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: 0.3s; }
+    .btn-cta-dark:hover { transform: translateY(-2px); background: #f2f2f2; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: 0.2s; }
     .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
-    /* --- Responsividade --- */
+    /* Responsividade */
     @media (max-width: 968px) {
       body { flex-direction: column; }
-      
-      /* Sidebar vira Header Fixo */
-      aside {
-        width: 100%; height: 70px; /* Altura fixa confortável */
-        position: fixed; top: 0; left: 0;
-        padding: 0 24px;
-        border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05);
-        flex-direction: row; justify-content: space-between; align-items: center;
-        z-index: 2001;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      }
-      
+      aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
       .profile-container { margin: 0; text-align: left; }
-      
-      /* Link de Perfil Flex para alinhar Foto e Texto */
-      .profile-link {
-        display: flex; align-items: center; gap: 12px;
-        text-decoration: none; color: inherit;
-      }
-      
-      .profile-pic-wrapper {
-        width: 36px; height: 36px; margin: 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      }
-      
+      .profile-link { display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; }
       .profile-name { font-size: 1rem; margin: 0; }
-      
-      /* Esconde elementos desktop */
-      .profile-role, nav, .sidebar-footer { display: none; }
-      
-      /* Botão Mobile Visível */
-      .mobile-menu-btn {
-        display: flex; align-items: center; justify-content: center;
-        width: 44px; height: 44px; background: transparent; border: none;
-        cursor: pointer; color: var(--text-primary); font-size: 1.4rem;
-        transition: transform 0.3s ease;
-      }
-      .mobile-menu-btn:active { transform: scale(0.9); }
+      .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; }
       
       main { margin-left: 0; padding: 100px 24px 40px; }
       .grid { grid-template-columns: 1fr; }
-      
       .page-header { flex-direction: column; align-items: flex-start; gap: 20px; }
       .header-content { width: 100%; }
       .btn-cta { display: none; }
       
       .contact-banner { flex-direction: column; text-align: center; gap: 32px; padding: 32px; }
+      .contact-text-group { width: 100%; padding-right: 0; }
+      .contact-social { justify-content: center; margin-top: 15px; }
       .contact-actions { width: 100%; justify-content: center; flex-wrap: wrap; }
     }
   </style>
@@ -400,15 +203,12 @@
 
   <div class="mobile-menu-overlay" id="mobileMenu">
     <div class="mobile-nav-container">
-      
       <a href="sobre.html" class="mobile-nav-main" onclick="toggleMenu()">Sobre Mim</a>
-      
       <a href="index.html" class="mobile-nav-main" onclick="toggleMenu()">Projetos</a>
       
       <hr class="mobile-divider">
-      
       <span class="mobile-label">Navegue por projeto</span>
-      
+      <a href="infra.html" class="mobile-nav-project" onclick="toggleMenu()">Server Infra & Dashboard</a>
       <a href="revista-utopia.html" class="mobile-nav-project" onclick="toggleMenu()">Revista Utopia</a>
       <a href="neoletters.html" class="mobile-nav-project" onclick="toggleMenu()">Neo Letters</a>
       <a href="lo.html" class="mobile-nav-project" onclick="toggleMenu()">Lô Publicidade</a>
@@ -419,9 +219,7 @@
       <a href="vídeos.html" class="mobile-nav-project" onclick="toggleMenu()">Produção Audiovisual</a>
       
       <hr class="mobile-divider">
-
       <a href="contato.html" class="mobile-nav-main" onclick="toggleMenu()">Contato</a>
-      
     </div>
   </div>
 
@@ -433,7 +231,7 @@
         </div>
         <div class="profile-text-group">
           <h1 class="profile-name">Gabriel Silva</h1>
-          <p class="profile-role">Designer & Produtor de Vídeo</p>
+          <p class="profile-role">Creative Technologist</p>
         </div>
       </a>
     </div>
@@ -452,6 +250,7 @@
       <div class="nav-group">
         <h3>Portfólio</h3>
         <ul class="nav-list">
+          <li><a href="infra.html" class="nav-link">Server Infra & Dashboard</a></li>
           <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
           <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
           <li><a href="lo.html" class="nav-link">Lô</a></li>
@@ -462,6 +261,10 @@
           <li><a href="vídeos.html" class="nav-link">Produção Audiovisual</a></li>
         </ul>
       </div>
+
+      <a href="contato.html" class="sidebar-cta">
+        <i class="fa-regular fa-envelope"></i> Fale Comigo
+      </a>
     </nav>
 
     <div class="sidebar-footer">
@@ -489,6 +292,21 @@
       </header>
 
       <section class="grid">
+
+        <article class="card">
+          <div class="card-image-wrapper logo-mode">
+            <img src="logo-forcaaliada.JPG" alt="Server Infrastructure" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Infraestrutura & Redes</span>
+              <h3 class="project-title">Server Dashboard</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Monitoramento & DNS</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="infra.html" class="card-link" aria-label="Ver projeto Infra"></a>
+        </article>
 
         <article class="card">
           <div class="card-image-wrapper">
@@ -613,9 +431,16 @@
       </section>
 
       <section class="contact-banner" id="contato">
-        <div class="contact-text">
-          <h2>Vamos criar algo incrível?</h2>
-          <p>Disponível para novos projetos de design, edição e tecnologia. Se você tem uma ideia, vamos conversar.</p>
+        <div class="contact-text-group">
+          <div class="contact-text">
+            <h2>Vamos criar algo incrível?</h2>
+            <p>Se você tem uma ideia, eu tenho as ferramentas certas para realizá-la.</p>
+          </div>
+          <div class="contact-social">
+              <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://github.com/ogabriels2" target="_blank" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
         </div>
         <div class="contact-actions">
           <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
@@ -629,7 +454,6 @@
   </main>
 
   <script>
-    // Logic for Mobile Menu
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const icon = menuBtn.querySelector('i');
@@ -637,7 +461,6 @@
 
     function toggleMenu() {
       isMenuOpen = !isMenuOpen;
-      
       if (isMenuOpen) {
         mobileMenu.classList.add('active');
         icon.classList.remove('fa-bars');
@@ -650,7 +473,6 @@
         document.body.style.overflow = '';
       }
     }
-
     menuBtn.addEventListener('click', toggleMenu);
   </script>
 
