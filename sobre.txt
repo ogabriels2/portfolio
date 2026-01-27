@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbfbfd">
+  <title>Sobre Mim | Gabriel Silva</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------------- Design System (Mesmo da Home) ---------------- */
+    :root {
+      --sidebar-width: 280px;
+      --max-width: 1000px; /* Levemente menor para leitura confortável */
+      
+      /* Colors */
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.75);
+      --bg-card: #FFFFFF;
+      --text-primary: #1D1D1F;
+      --text-secondary: #86868B;
+      --accent: #0071E3;
+      --accent-hover: #0077ED;
+      
+      /* Effects */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --glass-blur: blur(20px) saturate(180%);
+      --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Reset & Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-body);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- Sidebar (Idêntica à Home) --- */
+    aside {
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      left: 0; top: 0;
+      padding: 60px 32px;
+      background: var(--bg-sidebar);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-right: 1px solid rgba(0,0,0,0.05);
+      display: flex; flex-direction: column;
+      z-index: 50;
+    }
+
+    .profile-container { text-align: center; margin-bottom: 40px; }
+    .profile-pic-wrapper {
+      width: 120px; height: 120px; margin: 0 auto 20px;
+      border-radius: 50%; overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease;
+    }
+    .profile-pic-wrapper:hover { transform: scale(1.03); }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; color: #111; }
+    .profile-role { font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Nav */
+    nav { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .nav-group h3 { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; opacity: 0.8; }
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 4px; }
+    
+    .nav-link {
+      display: block; padding: 8px 12px;
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.95rem; font-weight: 500;
+      border-radius: 8px; transition: all 0.2s;
+    }
+    .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); }
+    
+    /* Active State Logic */
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 113, 227, 0.05); }
+
+    .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
+    .social-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.04); color: var(--text-secondary); text-decoration: none; transition: all 0.3s; }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+    .copyright { font-size: 0.7rem; color: #ccc; text-align: center; }
+
+    /* --- Main Content (Sobre Mim Style) --- */
+    main {
+      margin-left: var(--sidebar-width);
+      flex: 1; padding: 80px 60px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    .container { width: 100%; max-width: var(--max-width); }
+
+    /* Hero Section */
+    .hero-about { margin-bottom: 60px; animation: fadeInUp 0.8s ease forwards; }
+    .hero-label { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem; margin-bottom: 16px; display: block; }
+    .hero-title { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: #111; max-width: 800px; }
+    .hero-title span { color: var(--text-secondary); }
+
+    /* Bento Grid Layout */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 32px;
+      margin-bottom: 60px;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex; flex-direction: column;
+    }
+
+    .bento-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+
+    /* Bio Text Styling */
+    .bio-text p { font-size: 1.1rem; line-height: 1.6; color: #444; margin-bottom: 24px; }
+    .bio-text p:last-child { margin-bottom: 0; }
+    .highlight { color: var(--accent); font-weight: 600; }
+
+    /* Skills Styling */
+    .skills-header { font-size: 1.2rem; font-weight: 600; margin-bottom: 24px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; }
+    
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag {
+      padding: 8px 16px; background: #F5F5F7; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500; color: #333;
+      display: flex; align-items: center; gap: 8px;
+      transition: 0.2s;
+    }
+    .tag:hover { background: #E8E8ED; color: #000; }
+    .tag i { color: var(--accent); }
+
+    /* Timeline/Education Small */
+    .timeline-item { margin-bottom: 20px; padding-left: 16px; border-left: 2px solid var(--accent); }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .t-year { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+    .t-title { font-size: 1rem; font-weight: 600; margin: 4px 0 2px; }
+    .t-place { font-size: 0.9rem; color: #666; }
+
+    /* CTA Section */
+    .about-cta {
+      background: #111; color: white;
+      border-radius: 24px; padding: 60px;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    .cta-text h2 { font-size: 2rem; margin-bottom: 10px; }
+    .cta-text p { color: #aaa; font-size: 1.1rem; max-width: 500px; }
+    
+    .btn-primary {
+      background: var(--accent); color: white;
+      padding: 16px 32px; border-radius: 99px;
+      font-weight: 600; text-decoration: none; font-size: 1.1rem;
+      transition: 0.3s; display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 113, 227, 0.4); }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsividade */
+    @media (max-width: 968px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: relative; padding: 20px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); flex-direction: row; justify-content: space-between; align-items: center; }
+      .profile-container { margin: 0; text-align: left; display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 48px; height: 48px; margin: 0; }
+      .profile-name { font-size: 1.1rem; margin: 0; }
+      .profile-role, nav, .sidebar-footer { display: none; }
+      
+      main { margin-left: 0; padding: 40px 20px; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <div class="profile-container">
+      <div class="profile-pic-wrapper">
+        <img src="Logo.png" alt="Gabriel Silva" class="profile-pic">
+      </div>
+      <h1 class="profile-name">Gabriel Silva</h1>
+      <p class="profile-role">Designer & Produtor de Vídeo</p>
+    </div>
+
+    <nav>
+      <div class="nav-group">
+        <ul class="nav-list">
+          <li><a href="sobre.html" class="nav-link active">Sobre mim</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <h3>Portfólio</h3>
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home / Projetos</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
+        <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p class="copyright">© 2026 Gabriel Silva</p>
+    </div>
+  </aside>
+
+  <main>
+    <div class="container">
+      
+      <section class="hero-about">
+        <span class="hero-label">Minha História</span>
+        <h1 class="hero-title">
+          Unindo criatividade e tecnologia para criar <br>
+          <span>experiências visuais únicas.</span>
+        </h1>
+      </section>
+
+      <section class="bento-grid">
+        
+        <article class="bento-card bio-text">
+          <p>Olá! Me chamo <span class="highlight">Gabriel Silva</span>. Sou um profissional multidisciplinar, formado em Multimídia e atualmente cursando <strong>Tecnologia da Informação (TI)</strong> na UNIVESP.</p>
+          
+          <p>Minha trajetória é definida pela curiosidade. Comecei explorando o universo visual através do <strong>design gráfico e edição de vídeo</strong>, criando narrativas para web e marketing. Hoje, expando esses horizontes integrando lógica e código, buscando o equilíbrio perfeito entre estética e funcionalidade.</p>
+          
+          <p>Meu objetivo não é apenas "fazer design", mas sim colaborar em projetos que gerem impacto real, transformando ideias complexas em soluções que facilitam a vida das pessoas através de uma <strong>experiência de usuário (UX)</strong> impecável.</p>
+        </article>
+
+        <div style="display: flex; flex-direction: column; gap: 32px;">
+          
+          <article class="bento-card" style="padding: 30px;">
+            <div class="skills-header"><i class="fa-solid fa-palette"></i> Criativo</div>
+            <div class="skill-tags">
+              <div class="tag"><i class="fa-solid fa-film"></i> Premiere Pro</div>
+              <div class="tag"><i class="fa-solid fa-image"></i> Photoshop</div>
+              <div class="tag"><i class="fa-solid fa-pen-nib"></i> Illustrator</div>
+              <div class="tag"><i class="fa-solid fa-wand-magic-sparkles"></i> After Effects</div>
+            </div>
+          </article>
+
+          <article class="bento-card" style="padding: 30px;">
+            <div class="skills-header"><i class="fa-solid fa-code"></i> Tech & Dev</div>
+            <div class="skill-tags">
+              <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+              <div class="tag"><i class="fa-brands fa-html5"></i> HTML5/CSS</div>
+              <div class="tag"><i class="fa-solid fa-terminal"></i> C++</div>
+              <div class="tag"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO & Ads</div>
+            </div>
+          </article>
+
+           <article class="bento-card" style="padding: 30px;">
+            <div class="skills-header"><i class="fa-solid fa-graduation-cap"></i> Formação</div>
+            <div class="timeline-item">
+              <div class="t-year">Atualmente</div>
+              <div class="t-title">Tecnologia da Informação</div>
+              <div class="t-place">UNIVESP</div>
+            </div>
+            <div class="timeline-item">
+              <div class="t-year">Concluído</div>
+              <div class="t-title">Técnico em Multimídia</div>
+              <div class="t-place">Liceu de Artes e Ofícios</div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="about-cta">
+        <div class="cta-text">
+          <h2>Vamos criar algo incrível juntos?</h2>
+          <p>Estou sempre aberto a novos desafios e parcerias que valorizem o design e a tecnologia.</p>
+        </div>
+        <a href="mailto:contato@ogabriels.com" class="btn-primary">
+          Entrar em contato <i class="fa-regular fa-paper-plane"></i>
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

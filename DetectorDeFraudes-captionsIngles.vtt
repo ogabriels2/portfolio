@@ -1,0 +1,316 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:04.211 --> 00:00:05.224
+Integrated Project II
+
+00:00:05.224 --> 00:00:06.326
+Method for Protecting Financial Apps Against Fraud
+
+00:00:06.326 --> 00:00:07.225
+Course: Computer Engineering / IT
+
+00:00:07.505 --> 00:00:08.537
+Hello.
+
+00:00:08.537 --> 00:00:14.004
+This is our Integrated Project II for the
+Computer Engineering course at Univesp.
+
+00:00:14.004 --> 00:00:20.120
+Our project is called “Method for Protecting
+Financial Applications Against Fraud.”
+
+00:00:20.539 --> 00:00:28.040
+Our group is formed by Alessandra de Lima,
+Éder Cardoso, Gilson Souza, Michele Silva,
+
+00:00:28.040 --> 00:00:33.600
+Thaylla Oliveira, Yasmin Narciso,
+Diego, and myself, Gabriel Silva.
+
+00:00:34.200 --> 00:00:37.520
+We were also guided by
+Professor Ronaldo Fernandes.
+
+00:00:37.520 --> 00:00:41.200
+This semester, our goal was to mature the solution,
+
+00:00:41.200 --> 00:00:46.560
+validate the prototype, and deepen our
+research against a daily problem:
+
+00:00:46.560 --> 00:00:48.268
+digital scams.
+
+00:00:49.080 --> 00:00:55.040
+To solve this, we used a user-centered
+methodology: Design Thinking.
+
+00:00:55.040 --> 00:00:57.640
+And the first stage is Empathy.
+
+00:00:57.640 --> 00:01:01.760
+We needed to listen to the community
+and understand the real pain point.
+
+00:01:01.760 --> 00:01:04.800
+The data from our research was alarming.
+
+00:01:04.800 --> 00:01:11.269
+As we see in this graph, 86.67%
+of the elderly we interviewed
+
+00:01:11.269 --> 00:01:14.640
+admitted they had already fallen for some type of scam.
+
+00:01:14.640 --> 00:01:19.088
+In another survey, more than 63% of respondents
+
+00:01:19.088 --> 00:01:23.366
+had never even heard the term
+“Social Engineering.”
+
+00:01:23.861 --> 00:01:26.560
+This led us to the Definition stage.
+
+00:01:26.560 --> 00:01:32.191
+The problem wasn’t only technical —
+it was also the lack of digital literacy.
+
+00:01:32.191 --> 00:01:36.085
+So we defined clear goals
+based on the feedback.
+
+00:01:36.377 --> 00:01:41.840
+The solution needed a simple diagnosis,
+such as “Fraud” or “OK,”
+
+00:01:41.840 --> 00:01:46.000
+clear language, and a flow
+with the minimum data possible.
+
+00:01:46.000 --> 00:01:50.320
+In the Ideation stage, we brainstormed
+flows and messages,
+
+00:01:50.320 --> 00:01:52.576
+prioritizing non-technical language.
+
+00:01:52.880 --> 00:01:54.800
+And then we moved into Prototyping.
+
+00:01:54.800 --> 00:01:59.083
+This was where we directly applied what
+we learned in Univesp’s courses.
+
+00:01:59.311 --> 00:02:04.360
+We used IoT Communication Protocols
+to design the app’s API.
+
+00:02:04.360 --> 00:02:09.440
+Analytical Geometry and Linear Algebra
+were the basis of our AI model,
+
+00:02:09.440 --> 00:02:12.644
+helping us turn words into vectors.
+
+00:02:12.644 --> 00:02:17.326
+Digital Signal Processing gave us the method
+to filter messages,
+
+00:02:17.326 --> 00:02:19.040
+removing noise.
+
+00:02:19.040 --> 00:02:25.200
+And most importantly: Mobile App Development
+and HCI,
+
+00:02:25.200 --> 00:02:30.974
+which guided us to focus on usability
+with a simple interface, free of jargon.
+
+00:02:31.240 --> 00:02:35.524
+With this knowledge,
+we built a technical pipeline.
+
+00:02:35.524 --> 00:02:41.538
+The AI receives data, cleans the message,
+classifies the text, and as an extra layer,
+
+00:02:41.538 --> 00:02:45.941
+checks suspicious links using the VirusTotal API.
+
+00:02:46.435 --> 00:02:49.120
+Now Diego, one of our developers,
+
+00:02:49.120 --> 00:02:52.887
+will show how the tool
+actually works in practice.
+
+00:02:53.204 --> 00:02:59.430
+Hello everyone. My name is Diego, and I’m
+part of the PI Project team.
+
+00:02:59.886 --> 00:03:01.917
+I’ll start up the application.
+
+00:03:02.741 --> 00:03:08.701
+We use Docker Compose
+to create an abstracted environment.
+
+00:03:10.400 --> 00:03:14.120
+It’s running. The trained models
+are already inside.
+
+00:03:14.120 --> 00:03:16.019
+Now I just update the application.
+
+00:03:17.160 --> 00:03:19.446
+Great. Very simple interface.
+
+00:03:19.446 --> 00:03:25.320
+Here, in this larger box, the user
+enters the received messages.
+
+00:03:25.320 --> 00:03:30.579
+And here, in the smaller field, they enter the URLs.
+
+00:03:30.579 --> 00:03:36.464
+From there, we simply
+send the message to analyze.
+
+00:03:37.137 --> 00:03:37.680
+Very well.
+
+00:03:37.680 --> 00:03:44.261
+I will place the first message here
+in the main field — it has no link.
+
+00:03:44.261 --> 00:03:45.102
+I’ll analyze it.
+
+00:03:45.875 --> 00:03:50.044
+The system quickly —
+since the models are pre-trained —
+
+00:03:50.044 --> 00:03:52.336
+checked it and identified it as fraud.
+
+00:03:52.970 --> 00:04:00.712
+The user clicks once to go back
+and returns to the initial interface.
+
+00:04:01.257 --> 00:04:08.103
+Now I’ll select another message,
+send it again and do the same process.
+
+00:04:09.548 --> 00:04:14.675
+In this message, the system identified that
+it is not fraud. So it’s very simple,
+and even the color changes.
+
+00:04:15.574 --> 00:04:21.880
+We even thought about the color palette
+so the user wouldn’t be confused.
+
+00:04:22.720 --> 00:04:28.200
+Even if the user has difficulty reading,
+
+00:04:28.200 --> 00:04:33.632
+they will still be able to easily identify
+whether it is fraud or not.
+
+00:04:34.387 --> 00:04:38.102
+That is basically how
+our application works.
+
+00:04:39.000 --> 00:04:43.400
+As we saw, the tool is simple,
+but it wasn’t born ready.
+
+00:04:43.400 --> 00:04:47.160
+The final stage of Design Thinking
+is Testing and Iteration.
+
+00:04:47.160 --> 00:04:50.664
+When we tested the prototype,
+the feedback was straightforward.
+
+00:04:50.664 --> 00:04:54.920
+People told us that our
+language was still too technical.
+
+00:04:54.920 --> 00:04:58.520
+And our methodological report was clear.
+
+00:04:58.520 --> 00:05:01.840
+The feedback guided us
+to adjust the vocabulary
+
+00:05:01.840 --> 00:05:06.080
+and create more direct messages
+without technical jargon.
+
+00:05:06.080 --> 00:05:09.120
+And the impact of this change was immediate.
+
+00:05:09.120 --> 00:05:15.324
+The community’s response shifted from
+“confusing” to “great, very useful, essential.”
+
+00:05:15.324 --> 00:05:17.165
+So the solution was validated.
+
+00:05:18.000 --> 00:05:24.640
+In the end, our Integrated Project delivers
+much more than a simple application.
+
+00:05:24.640 --> 00:05:26.360
+It delivers autonomy.
+
+00:05:26.360 --> 00:05:30.800
+The Fraud Analyzer is a shield,
+but also a school.
+
+00:05:30.800 --> 00:05:35.773
+It protects the user in dangerous moments
+and teaches them to protect themselves in the future.
+
+00:05:36.217 --> 00:05:41.779
+It’s also important to highlight that the system
+only processes the message entered by the user,
+
+00:05:41.779 --> 00:05:46.753
+without storing personal data,
+ensuring safety and privacy.
+
+00:05:46.753 --> 00:05:52.120
+Our next step is to expand the database,
+implement accessibility features,
+
+00:05:52.120 --> 00:05:58.541
+such as font size adjustments and
+high-contrast mode to make the tool
+usable by everyone.
+
+00:05:59.200 --> 00:06:03.960
+Thank you very much for your attention,
+and I hope you enjoyed our project.
+
+00:06:05.094 --> 00:06:06.000
+Acknowledgments: To God, to Prof. Ronaldo Fernandes,
+
+00:06:06.000 --> 00:06:07.024
+to Univesp and to the UniCEU Jardim São Pedro campus,
+
+00:06:07.024 --> 00:06:07.985
+and to all colleagues and research participants
+
+00:06:07.985 --> 00:06:08.768
+who contributed to this project.
+
+00:06:09.646 --> 00:06:10.594
+Subtitled by Gabriel Silva
+

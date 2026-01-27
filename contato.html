@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbfbfd">
+  <title>Contato | Gabriel Silva</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------------- Design System Apple Premium ---------------- */
+    :root {
+      --sidebar-width: 280px;
+      --max-width: 1100px;
+      
+      /* Palette */
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.8);
+      --bg-card: #FFFFFF;
+      --text-primary: #1D1D1F;
+      --text-secondary: #86868B;
+      --accent: #0071E3; 
+      --accent-hover: #0077ED;
+      --success: #34C759;
+      --border-light: rgba(0,0,0,0.08);
+      
+      /* Metrics */
+      --radius-xl: 32px; /* Cantos mais arredondados */
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      
+      /* Depth */
+      --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.08);
+      
+      /* Animation */
+      --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-body);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* --- Sidebar (Glassmorphism) --- */
+    aside {
+      width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
+      padding: 60px 32px; background: var(--bg-sidebar);
+      backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-right: 1px solid rgba(0,0,0,0.05);
+      display: flex; flex-direction: column; z-index: 50;
+    }
+    .profile-container { text-align: center; margin-bottom: 40px; }
+    .profile-pic-wrapper { width: 120px; height: 120px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-soft); transition: transform 0.3s ease; }
+    .profile-pic-wrapper:hover { transform: scale(1.03); }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; color: #111; }
+    .profile-role { font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+    nav { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .nav-group h3 { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; opacity: 0.8; }
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 4px; }
+    .nav-link { display: block; padding: 8px 12px; color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
+    .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); }
+    .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
+    .social-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.04); color: var(--text-secondary); text-decoration: none; transition: all 0.3s; }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+    .copyright { font-size: 0.7rem; color: #ccc; text-align: center; }
+
+    /* --- Main Content --- */
+    main {
+      margin-left: var(--sidebar-width);
+      flex: 1; padding: 0;
+      display: flex; flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      /* Espaçamento superior generoso para o conteúdo não colar no topo */
+      padding-top: 140px; 
+      padding-bottom: 80px;
+      opacity: 0; animation: fadeIn 0.8s var(--ease-apple) forwards;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .container { width: 100%; max-width: var(--max-width); padding: 0 60px; }
+
+    /* Layout Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr; /* Proporção áurea aproximada */
+      gap: 80px; /* Gap grande para respiro */
+      align-items: start;
+    }
+
+    /* Left Column: Info */
+    .contact-info { position: sticky; top: 140px; } /* Texto acompanha o scroll se o form for longo */
+    
+    .page-kicker {
+      font-size: 0.9rem; font-weight: 600; text-transform: uppercase; 
+      letter-spacing: 0.05em; color: var(--accent); margin-bottom: 16px; display: block;
+    }
+
+    .page-title {
+      font-size: 3.5rem; font-weight: 700; letter-spacing: -0.04em; 
+      line-height: 1.1; margin-bottom: 24px; color: var(--text-primary);
+    }
+
+    .page-desc {
+      font-size: 1.25rem; color: var(--text-secondary); line-height: 1.6; 
+      margin-bottom: 48px; font-weight: 400; max-width: 400px;
+    }
+
+    /* Card E-mail Minimalista */
+    .email-card {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 12px 24px; background: white; border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.02);
+      transition: transform 0.3s var(--ease-apple), box-shadow 0.3s var(--ease-apple);
+    }
+    .email-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
+    .email-text { font-size: 1.1rem; font-weight: 500; color: var(--text-primary); text-decoration: none; }
+    
+    .copy-btn {
+      background: #F5F5F7; border: none; width: 36px; height: 36px; border-radius: 50%;
+      color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; position: relative; font-size: 1rem;
+    }
+    .copy-btn:hover { background: var(--text-primary); color: white; }
+    
+    /* Tooltip */
+    .copy-btn::after {
+      content: 'Copiado'; position: absolute; top: -40px; left: 50%; transform: translateX(-50%) translateY(10px);
+      background: var(--text-primary); color: white; padding: 6px 12px; border-radius: 8px; 
+      font-size: 0.8rem; font-weight: 600; opacity: 0; pointer-events: none; 
+      transition: all 0.3s var(--ease-apple); white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .copy-btn.copied::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Right Column: Form */
+    .form-wrapper {
+      background: white; padding: 48px; border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft); transition: box-shadow 0.3s;
+    }
+    .form-wrapper:focus-within { box-shadow: var(--shadow-hover); }
+
+    .form-group { margin-bottom: 28px; }
+    
+    .form-label {
+      display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 10px; 
+      color: var(--text-primary); margin-left: 4px;
+    }
+    
+    .form-input, .form-textarea {
+      width: 100%; padding: 16px 20px;
+      background: #F5F5F7; border: 1px solid transparent;
+      border-radius: var(--radius-lg); 
+      font-family: 'Inter', sans-serif; font-size: 1.05rem; /* 17px aprox para evitar zoom no iOS */
+      color: var(--text-primary); transition: all 0.3s var(--ease-apple);
+    }
+    
+    .form-input:focus, .form-textarea:focus {
+      background: white; border-color: var(--accent); outline: none;
+      box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+    }
+    
+    .form-textarea { height: 180px; resize: vertical; min-height: 120px; }
+
+    /* Submit Button Premium */
+    .submit-btn {
+      width: 100%; padding: 20px;
+      background: var(--accent); color: white;
+      border: none; border-radius: var(--radius-lg);
+      font-size: 1.1rem; font-weight: 600; cursor: pointer;
+      transition: all 0.3s var(--ease-apple); 
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      position: relative; overflow: hidden;
+    }
+    .submit-btn:hover { background: var(--accent-hover); transform: scale(1.01); box-shadow: 0 10px 20px rgba(0, 113, 227, 0.25); }
+    .submit-btn:active { transform: scale(0.98); }
+    
+    /* Loading/Success States */
+    .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .submit-btn.loading .btn-text, .submit-btn.loading i { display: none; }
+    .submit-btn.loading .spinner { display: block; }
+
+    .submit-btn.success { background: var(--success); pointer-events: none; }
+    .submit-btn.success .btn-text { display: none; }
+    .submit-btn.success::after { content: 'Mensagem Enviada'; }
+    .submit-btn.success i { display: none; }
+
+    /* Footer Nav Clean */
+    .footer-nav {
+      margin-top: 100px;
+      width: 100%; max-width: 400px;
+      display: flex; justify-content: center;
+    }
+    
+    .home-link {
+      color: var(--text-secondary); text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 8px; font-size: 0.95rem;
+      padding: 12px 24px; border-radius: 50px; transition: all 0.2s;
+    }
+    .home-link:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
+
+    @media (max-width: 968px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: relative; padding: 20px; border-right: none; flex-direction: row; justify-content: space-between; align-items: center; }
+      .profile-role, nav, .sidebar-footer { display: none; }
+      .profile-container { margin: 0; text-align: left; display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 48px; height: 48px; margin: 0; }
+      .profile-name { font-size: 1.1rem; margin: 0; }
+      
+      main { margin-left: 0; padding-top: 60px; padding-bottom: 60px; }
+      .container { padding: 0 24px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-info { position: static; text-align: center; display: flex; flex-direction: column; align-items: center; }
+      .page-title { font-size: 2.5rem; }
+      .form-wrapper { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <div class="profile-container">
+      <div class="profile-pic-wrapper">
+        <img src="Logo.png" alt="Gabriel Silva" class="profile-pic">
+      </div>
+      <h1 class="profile-name">Gabriel Silva</h1>
+      <p class="profile-role">Designer & Produtor de Vídeo</p>
+    </div>
+
+    <nav>
+      <div class="nav-group">
+        <ul class="nav-list">
+          <li><a href="sobre.html" class="nav-link">Sobre mim</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <h3>Portfólio</h3>
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">← Voltar para Projetos</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
+        <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p class="copyright">© 2026 Gabriel Silva</p>
+    </div>
+  </aside>
+
+  <main>
+    <div class="container">
+      <div class="contact-grid">
+        
+        <div class="contact-info">
+          <span class="page-kicker">Contato</span>
+          <h1 class="page-title">Vamos criar algo<br>incrível juntos?</h1>
+          <p class="page-desc">Estou disponível para novos projetos de design, edição e tecnologia. Se você tem uma ideia, eu tenho as ferramentas para realizá-la.</p>
+          
+          <div class="email-card">
+            <a href="mailto:contato@ogabriels.com" class="email-text">contato@ogabriels.com</a>
+            <button class="copy-btn" id="copyBtn" aria-label="Copiar e-mail">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-wrapper">
+          <form id="contactForm" action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
+            <div class="form-group">
+              <label for="name" class="form-label">Nome</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Como devo te chamar?" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Mensagem</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Conte um pouco sobre o seu projeto..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+              <span class="btn-text">Enviar Mensagem</span>
+              <i class="fa-solid fa-arrow-right"></i>
+              <div class="spinner"></div>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-nav">
+      <a href="index.html" class="home-link">
+        <i class="fa-solid fa-house"></i> Voltar ao Início
+      </a>
+    </div>
+  </main>
+
+  <script>
+    // --- Lógica de Copiar E-mail ---
+    const copyBtn = document.getElementById('copyBtn');
+    const emailText = "contato@ogabriels.com";
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(emailText).then(() => {
+        copyBtn.classList.add('copied');
+        const icon = copyBtn.querySelector('i');
+        icon.classList.replace('fa-copy', 'fa-check');
+        
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          icon.classList.replace('fa-check', 'fa-copy');
+        }, 2000);
+      });
+    });
+
+    // --- Simulação UX de Envio ---
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', (e) => {
+      // Se não tiver backend real configurado, previne o envio para demo
+      // Se configurar o Formspree, pode remover o e.preventDefault() ou usar AJAX
+      e.preventDefault(); 
+
+      submitBtn.classList.add('loading');
+      
+      // Simula delay de rede
+      setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        submitBtn.classList.add('success');
+        form.reset();
+
+        setTimeout(() => {
+          submitBtn.classList.remove('success');
+        }, 4000);
+      }, 1500);
+    });
+  </script>
+
+</body>
+</html>

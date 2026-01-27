@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbfbfd">
+  <title>G | Gabriel - Personal Branding</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------------- Design System (Consistente) ---------------- */
+    :root {
+      --sidebar-width: 280px;
+      --max-width: 1000px;
+      
+      /* Cores */
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.75);
+      --bg-card: #FFFFFF;
+      --text-primary: #1D1D1F;
+      --text-secondary: #86868B;
+      --accent: #C44444; /* Vermelho Oficial da Marca Pessoal */
+      
+      /* Cores dos Cards de Logo */
+      --card-white: #FFFFFF;
+      --card-black: #101010;
+      --card-red: #C44444;
+
+      /* Efeitos */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.1);
+      --glass-blur: blur(20px) saturate(180%);
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-body);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- Sidebar --- */
+    aside {
+      width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
+      padding: 60px 32px; background: var(--bg-sidebar);
+      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+      border-right: 1px solid rgba(0,0,0,0.05);
+      display: flex; flex-direction: column; z-index: 50;
+    }
+
+    .profile-container { text-align: center; margin-bottom: 40px; }
+    .profile-pic-wrapper { width: 120px; height: 120px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease; }
+    .profile-pic-wrapper:hover { transform: scale(1.03); }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; color: #111; }
+    .profile-role { font-size: 0.8rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    nav { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .nav-group h3 { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; opacity: 0.8; }
+    .nav-list { list-style: none; }
+    .nav-list li { margin-bottom: 4px; }
+    .nav-link { display: block; padding: 8px 12px; color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
+    .nav-link:hover { color: var(--accent); background: rgba(196, 68, 68, 0.08); }
+    
+    .sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
+    .social-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.04); color: var(--text-secondary); text-decoration: none; transition: all 0.3s; }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+    .copyright { font-size: 0.7rem; color: #ccc; text-align: center; }
+
+    /* --- Project Content --- */
+    main {
+      margin-left: var(--sidebar-width);
+      flex: 1; padding: 0;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* Hero Section (Novo Padrão) */
+    .project-hero {
+      width: 100%; 
+      padding: 80px 40px 40px;
+      background-color: var(--bg-body);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+
+    .hero-image-container {
+      width: 100%; max-width: 800px; 
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 30px;
+      background: #fff;
+    }
+
+    .hero-image {
+      width: 100%; height: auto; display: block;
+      transition: transform 0.5s ease;
+      cursor: zoom-in;
+    }
+    .hero-image:hover { transform: scale(1.02); }
+
+    .hero-text-content { text-align: center; max-width: 600px; }
+    .project-title { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.03em; }
+    .project-subtitle { font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; }
+
+    /* Content Wrapper */
+    .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); }
+
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-bottom: 60px;
+      background: white; padding: 24px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    .meta-item h4 { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .meta-item p { font-size: 1rem; font-weight: 600; color: var(--text-primary); }
+
+    .project-description { font-size: 1.1rem; line-height: 1.7; color: #444; margin-bottom: 80px; }
+    .project-description strong { color: var(--accent); font-weight: 600; }
+
+    /* Seções de Showcase */
+    .showcase-section { margin-bottom: 80px; }
+    
+    .section-header { 
+      margin-bottom: 30px; border-left: 4px solid var(--accent); padding-left: 16px;
+    }
+    .section-title { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .section-desc { font-size: 1rem; color: var(--text-secondary); }
+
+    /* Grid de Logos */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .logo-card {
+      aspect-ratio: 1/1;
+      border-radius: var(--radius-lg);
+      padding: 60px;
+      transition: var(--transition);
+      cursor: zoom-in;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .logo-card:hover { 
+      transform: translateY(-8px); 
+      box-shadow: var(--shadow-hover); 
+      z-index: 2; 
+    }
+    
+    /* Cores de Fundo dos Cards */
+    .bg-white { background-color: var(--card-white); }
+    .bg-black { background-color: var(--card-black); }
+    .bg-red   { background-color: var(--card-red); }
+
+    .logo-card img { 
+      width: 100%; height: auto; display: block;
+      transition: transform 0.5s ease;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    }
+    .logo-card:hover img { transform: scale(1.08); }
+
+    /* Navegação */
+    .project-nav {
+      width: 100%; max-width: var(--max-width); 
+      padding: 40px 40px 60px; margin: 0 auto; 
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-btn {
+      text-decoration: none; display: flex; align-items: center; gap: 12px;
+      color: var(--text-secondary); font-weight: 500; transition: 0.3s;
+    }
+    .nav-btn:hover { color: var(--accent); }
+    .nav-btn.next { text-align: right; flex-direction: row-reverse; }
+    .nav-label { font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 4px; opacity: 0.6; }
+    .nav-project-name { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.98); /* Fundo branco para logos fica melhor */
+      display: flex; justify-content: center; align-items: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .lightbox.active { opacity: 1; pointer-events: auto; }
+    .lb-image { max-width: 80vw; max-height: 80vh; border-radius: 12px; box-shadow: 0 40px 80px rgba(0,0,0,0.15); }
+    
+    .lb-control {
+      position: absolute; background: transparent; color: #333;
+      width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; cursor: pointer; transition: 0.2s; z-index: 10;
+    }
+    .lb-control:hover { background: #000; color: white; border-color: #000; }
+    .lb-close { top: 40px; right: 40px; }
+    .lb-prev { left: 40px; }
+    .lb-next { right: 40px; }
+
+    @media (max-width: 968px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: relative; padding: 20px; border-right: none; flex-direction: row; justify-content: space-between; align-items: center; }
+      .profile-role, nav, .sidebar-footer { display: none; }
+      .profile-container { margin: 0; text-align: left; display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 48px; height: 48px; margin: 0; }
+      .profile-name { font-size: 1.1rem; margin: 0; }
+      main { margin-left: 0; }
+      .project-hero { padding: 40px 20px; }
+      .meta-grid { grid-template-columns: 1fr; gap: 16px; }
+      .content-wrapper { padding: 40px 20px; }
+      .logo-grid { grid-template-columns: 1fr; }
+      .logo-card { padding: 40px; }
+      .project-nav { padding: 30px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <div class="profile-container">
+      <div class="profile-pic-wrapper">
+        <img src="Logo.png" alt="Gabriel Silva" class="profile-pic">
+      </div>
+      <h1 class="profile-name">Gabriel Silva</h1>
+      <p class="profile-role">Designer & Produtor de Vídeo</p>
+    </div>
+
+    <nav>
+      <div class="nav-group">
+        <ul class="nav-list">
+          <li><a href="sobre.html" class="nav-link">Sobre mim</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <h3>Portfólio</h3>
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active">← Voltar para Projetos</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
+        <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p class="copyright">© 2026 Gabriel Silva</p>
+    </div>
+  </aside>
+
+  <main>
+    
+    <section class="project-hero">
+      <div class="hero-image-container">
+        <img src="Gorpos - capa.png" alt="G | Gabriel Branding" class="hero-image lightbox-trigger">
+      </div>
+      
+      <div class="hero-text-content">
+        <h1 class="project-title">G | Gabriel</h1>
+        <p class="project-subtitle">Personal Branding & Identidade Visual</p>
+      </div>
+    </section>
+
+    <div class="content-wrapper">
+      
+      <section class="meta-grid">
+        <div class="meta-item"><h4>Projeto</h4><p>Marca Pessoal</p></div>
+        <div class="meta-item"><h4>Ano</h4><p>2025</p></div>
+        <div class="meta-item"><h4>Conceito</h4><p>Minimalismo & Conexão</p></div>
+      </section>
+
+      <section class="project-description">
+        <p>A construção de uma marca pessoal exige a destilação de uma identidade complexa em um símbolo singular. O projeto <strong>G | Gabriel</strong> surgiu da busca por um ícone que fosse, ao mesmo tempo, memorável e funcional.</p>
+        
+        <p>O "G" representa minha inicial e serve como âncora da marca. Ele é integrado a uma forma curva sutil na base, remetendo a um <strong>sorriso estilizado</strong>. Essa escolha de design não é acidental: ela traz o equilíbrio necessário entre o profissionalismo corporativo e a acessibilidade humana.</p>
+
+        <p>Essa marca é a assinatura visual da minha abordagem ao design: <strong>direta, funcional e visualmente impactante.</strong></p>
+      </section>
+
+      <section class="showcase-section">
+        <div class="section-header">
+          <h2 class="section-title">Variações & Aplicação</h2>
+          <p class="section-desc">O sistema visual foi testado em diversos contrastes para garantir legibilidade máxima.</p>
+        </div>
+
+        <div class="logo-grid">
+          
+          <div class="logo-card bg-white">
+            <img src="Logotipo G (ogabriels) vermelho.png" alt="Logo Vermelho" class="lightbox-trigger">
+          </div>
+
+          <div class="logo-card bg-black">
+            <img src="Logotipo G (ogabriels) monocromático negativo.png" alt="Logo Negativo" class="lightbox-trigger">
+          </div>
+
+          <div class="logo-card bg-white">
+            <img src="Logotipo G (ogabriels) monocromático.png" alt="Logo Preto" class="lightbox-trigger">
+          </div>
+
+          <div class="logo-card bg-red">
+            <img src="Logotipo G (ogabriels) vermelho negativo.png" alt="Logo Branco" class="lightbox-trigger">
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <div class="project-nav">
+      <a href="lo.html" class="nav-btn prev">
+        <i class="fa-solid fa-arrow-left"></i>
+        <div><span class="nav-label">Anterior</span><span class="nav-project-name">Lô Publicidade</span></div>
+      </a>
+      
+      <a href="um-minuto-para-refletir-em-Deus.html" class="nav-btn next">
+        <div><span class="nav-label">Próximo</span><span class="nav-project-name">Um Minuto para Refletir</span></div>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+  </main>
+
+  <div id="lightbox" class="lightbox">
+    <button id="lb-close" class="lb-control lb-close"><i class="fa-solid fa-xmark"></i></button>
+    <button id="lb-prev" class="lb-control lb-prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button id="lb-next" class="lb-control lb-next"><i class="fa-solid fa-chevron-right"></i></button>
+    
+    <div class="lb-image-container">
+      <img src="" alt="Zoom" id="lb-image" class="lb-image">
+    </div>
+  </div>
+
+  <script>
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lb-image');
+    const lbClose = document.getElementById('lb-close');
+    const lbPrev = document.getElementById('lb-prev');
+    const lbNext = document.getElementById('lb-next');
+
+    let currentIndex = 0;
+    const imagesList = Array.from(triggers).map(img => img.src);
+
+    function openLightbox(index) {
+      currentIndex = index;
+      lbImage.src = imagesList[currentIndex];
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { lbImage.src = ''; }, 300);
+    }
+
+    function changeImage(direction) {
+      currentIndex = (currentIndex + direction + imagesList.length) % imagesList.length;
+      lbImage.style.opacity = '0.5';
+      setTimeout(() => {
+          lbImage.src = imagesList[currentIndex];
+          lbImage.style.opacity = '1';
+      }, 150);
+    }
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox(index);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', (e) => { e.stopPropagation(); changeImage(-1); });
+    lbNext.addEventListener('click', (e) => { e.stopPropagation(); changeImage(1); });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target.classList.contains('lb-image-container')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+    });
+  </script>
+
+</body>
+</html>
