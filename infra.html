@@ -60,7 +60,6 @@
     }
     aside::-webkit-scrollbar { display: none; }
 
-    /* Perfil */
     .profile-container { text-align: center; margin-bottom: 40px; flex-shrink: 0; }
     .profile-link { display: block; text-decoration: none; transition: transform 0.2s; }
     .profile-link:active { transform: scale(0.98); } 
@@ -139,29 +138,54 @@
     .social-icon:active { transform: scale(0.9); transition-duration: 0.1s; }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* ---------------- MOBILE MENU PREMIUM (FIXED SCROLL) ---------------- */
+    /* ---------------- MOBILE MENU PREMIUM (FIXED BUTTON + SCROLL CONTENT) ---------------- */
     .mobile-menu-btn { display: none; }
     
+    /* O Overlay é FIXO e NÃO ROLA. Ele segura o botão X no lugar. */
     .mobile-menu-overlay { 
       position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); 
       backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
       z-index: 3000; 
-      overflow-y: auto; /* Permite rolagem */
-      -webkit-overflow-scrolling: touch;
-      display: flex; flex-direction: column; 
       opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
+      /* Overflow hidden aqui para impedir rolagem no body do overlay, rolagem vai no wrapper */
+      overflow: hidden;
     }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+
+    /* Wrapper separado para a rolagem do conteúdo */
+    .mobile-scroll-wrapper {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        overflow-y: auto; /* A rolagem acontece aqui */
+        -webkit-overflow-scrolling: touch;
+        padding-top: 80px; /* Espaço para o botão X não cobrir conteúdo */
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+    }
     
     .mobile-nav-container { 
       width: 100%; max-width: 320px; 
-      /* TRUQUE DO MARGIN AUTO: Centraliza se couber, Rola se passar */
+      /* Margin auto no eixo vertical (dentro do flex) centraliza se sobrar espaço */
       margin: auto; 
       display: flex; flex-direction: column; 
       align-items: center; 
       gap: 20px; 
-      padding: 80px 24px 40px; /* Topo maior para o X */
+      padding: 0 24px;
     }
+    
+    /* Botão Fechar FIXO (Visualmente) */
+    /* Ele está fora do wrapper de rolagem, então fica parado */
+    .mobile-close-btn {
+      position: absolute; /* Absolute em relação ao Overlay Fixo */
+      top: 24px; right: 24px; 
+      width: 44px; height: 44px; 
+      background: rgba(0,0,0,0.05); backdrop-filter: blur(10px);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+      font-size: 1.2rem; color: var(--text-primary); 
+      cursor: pointer; border: none; z-index: 3005; 
+      transition: background 0.2s; 
+    }
+    .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
     
     .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
 
@@ -177,7 +201,6 @@
       font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; 
       letter-spacing: -0.03em; display: block; text-decoration: none;
     }
-    .mobile-link-main:visited { color: var(--text-primary); }
     .mobile-link-main:active { color: var(--accent) !important; transform: scale(0.95); }
 
     .mobile-projects-wrapper { width: 100%; text-align: center; }
@@ -209,17 +232,6 @@
     }
     .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
 
-    /* Botão Fechar FIXED (Sempre visível ao rolar) */
-    .mobile-close-btn {
-      position: fixed; top: 24px; right: 24px; 
-      width: 44px; height: 44px; 
-      background: rgba(0,0,0,0.05); backdrop-filter: blur(10px);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-      font-size: 1.2rem; color: var(--text-primary); 
-      cursor: pointer; border: none; z-index: 3005; 
-      transition: background 0.2s; 
-    }
-    .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
 
     /* ---------------- MAIN CONTENT ---------------- */
     main { margin-left: var(--sidebar-width); flex: 1; padding: 0; display: flex; flex-direction: column; align-items: center; }
@@ -253,7 +265,7 @@
     .status-pulse.warning { background: var(--warning); }
     @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 
-    /* Texto: Retorna ao padrão (1.15rem) para leitura confortável em retrato/desktop */
+    /* Texto Padrão (Desktop/Mobile Retrato) - Mantido confortável */
     .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 40px; }
     
     .description-highlight { font-size: 1.05rem; color: #666; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 12px; margin-bottom: 60px; border-left: 3px solid var(--accent); }
@@ -402,13 +414,13 @@
       .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
     }
 
-    /* --- Paisagem Mobile --- */
+    /* --- Paisagem Mobile (Ajustes Específicos) --- */
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; }
       
-      /* Redução apenas no Paisagem */
-      .project-description { font-size: 1rem; line-height: 1.5; }
+      /* Redução Agressiva do Texto APENAS no Paisagem */
+      .project-description { font-size: 0.9rem; line-height: 1.45; }
 
       .meta-grid { grid-template-columns: repeat(4, 1fr); } 
       .api-grid { grid-template-columns: 1fr 1fr 1fr; }
@@ -424,38 +436,40 @@
   <div class="mobile-menu-overlay" id="mobileMenu">
     <button class="mobile-close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
     
-    <div class="mobile-nav-container">
-      <div class="mobile-nav-group">
-        <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
-        <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
-      </div>
-      
-      <div class="mobile-projects-wrapper">
-        <div class="mobile-divider"></div>
-        <span class="mobile-label">Cases de Sucesso</span>
-        <div class="mobile-projects-list">
-            <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
-            <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
-            <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
-            <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
-            <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
-            <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
-            <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
-            <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
-            <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
-        </div>
-      </div>
+    <div class="mobile-scroll-wrapper">
+        <div class="mobile-nav-container">
+            <div class="mobile-nav-group">
+                <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
+                <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
+            </div>
+            
+            <div class="mobile-projects-wrapper">
+                <div class="mobile-divider"></div>
+                <span class="mobile-label">Cases de Sucesso</span>
+                <div class="mobile-projects-list">
+                    <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
+                    <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
+                    <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
+                    <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
+                    <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
+                    <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
+                    <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
+                    <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
+                    <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
+                </div>
+            </div>
 
-      <div class="mobile-footer-group">
-        <div class="mobile-socials">
-            <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/ogabriels2" class="mobile-social-btn"><i class="fab fa-github"></i></a>
+            <div class="mobile-footer-group">
+                <div class="mobile-socials">
+                    <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/ogabriels2" class="mobile-social-btn"><i class="fab fa-github"></i></a>
+                </div>
+                <a href="contato.html" class="mobile-cta" onclick="toggleMenu()">
+                    <i class="fa-regular fa-comment-dots"></i> Fale Comigo
+                </a>
+            </div>
         </div>
-        <a href="contato.html" class="mobile-cta" onclick="toggleMenu()">
-            <i class="fa-regular fa-comment-dots"></i> Fale Comigo
-        </a>
-      </div>
     </div>
   </div>
 
