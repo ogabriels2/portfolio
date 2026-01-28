@@ -564,6 +564,7 @@
       .section-title { font-size: 1.2rem; margin-bottom: 2px; }
       .contact-text h2 { font-size: 1.2rem; }
 
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
       .contact-banner { padding: 40px; }
       
       .nav-btn { flex-direction: row; text-align: left; }
@@ -575,26 +576,39 @@
 <body>
 
   <div class="mobile-menu-overlay" id="mobileMenu">
-    <div class="mobile-nav-container">
-      
-      <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
-      <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
-      
-      <hr class="mobile-divider">
-      <span class="mobile-label">Navegue por projeto</span>
-      
-      <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
-      <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
-      <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
-      <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
-      <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
-      <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
-      <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
-      <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Produção Audiovisual</a>
-      
-      <hr class="mobile-divider">
-      <a href="contato.html" class="mobile-link-main" onclick="toggleMenu()">Contato</a>
-      
+    <button class="mobile-close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <div class="mobile-scroll-wrapper">
+        <div class="mobile-nav-container">
+            <div class="mobile-nav-group">
+                <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
+                <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
+            </div>
+            <div class="mobile-projects-wrapper">
+                <div class="mobile-divider"></div>
+                <span class="mobile-label">Cases de Sucesso</span>
+                <div class="mobile-projects-list">
+                    <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
+                    <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
+                    <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
+                    <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
+                    <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
+                    <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
+                    <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
+                    <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
+                    <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
+                </div>
+            </div>
+            <div class="mobile-footer-group">
+                <div class="mobile-socials">
+                    <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/ogabriels2" class="mobile-social-btn"><i class="fab fa-github"></i></a>
+                </div>
+                <a href="contato.html" class="mobile-cta" onclick="toggleMenu()">
+                    <i class="fa-regular fa-comment-dots"></i> Fale Comigo
+                </a>
+            </div>
+        </div>
     </div>
   </div>
 
@@ -896,7 +910,6 @@
       let isScrubbing = false;
       let hideControlsTimeout;
 
-      // START TRACKS DISABLED
       function initTracks() {
         for (let i = 0; i < video.textTracks.length; i++) {
           video.textTracks[i].mode = 'disabled';
@@ -926,15 +939,10 @@
         video.currentTime += seconds;
         const icon = btn.querySelector('i');
         const popup = btn.querySelector('.skip-text-popup');
-        
-        // Reset classes
         icon.classList.remove('rotate-360-right', 'rotate-360-left');
         popup.classList.remove('animate-forward', 'animate-backward');
-        
-        // Trigger reflow to restart animation
         void icon.offsetWidth;
         void popup.offsetWidth;
-
         icon.classList.add(seconds > 0 ? 'rotate-360-right' : 'rotate-360-left');
         popup.classList.add(seconds > 0 ? 'animate-forward' : 'animate-backward');
       }
@@ -946,7 +954,6 @@
 
       if(mainPlayBtn) mainPlayBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
       if(playBtn) playBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
-      
       skipBtns.forEach(btn => {
         btn.addEventListener('click', (e) => { e.stopPropagation(); skip(parseFloat(btn.dataset.skip), btn); });
       });
