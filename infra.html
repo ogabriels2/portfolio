@@ -51,25 +51,15 @@
 
     /* ---------------- SIDEBAR (Desktop) ---------------- */
     aside {
-      width: var(--sidebar-width);
-      height: 100vh;
-      position: fixed;
-      left: 0;
-      top: 0;
-      padding: 50px 32px;
-      background: var(--bg-sidebar);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
+      width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
+      padding: 50px 32px; background: var(--bg-sidebar);
+      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
       border-right: 1px solid rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      z-index: 2000;
-      overflow-y: auto; 
-      scrollbar-width: none;
+      display: flex; flex-direction: column; z-index: 2000;
+      overflow-y: auto; scrollbar-width: none;
     }
     aside::-webkit-scrollbar { display: none; }
 
-    /* Perfil */
     .profile-container { text-align: center; margin-bottom: 40px; flex-shrink: 0; }
     .profile-link { display: block; text-decoration: none; transition: transform 0.2s; }
     .profile-link:active { transform: scale(0.98); } 
@@ -103,17 +93,17 @@
       color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
       border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    /* Padrão: Desliza para a direita */
     .nav-link:hover { color: var(--accent); background: rgba(0, 68, 204, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 68, 204, 0.12); transition-duration: 0.1s; }
     .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 68, 204, 0.05); }
 
-    /* Animação "Voltar" (Texto vai pra direita, Seta puxa pra esquerda) */
+    /* Animação "Voltar" */
+    .nav-link.back-link:hover { background: rgba(0, 68, 204, 0.08); transform: translateX(4px); }
     .nav-link.back-link i { transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .nav-link.back-link:hover i { transform: translateX(-6px); } /* Seta resiste */
-    /* O container .nav-link já herda o translateX(4px) do padrão acima */
+    .nav-link.back-link:hover i { transform: translateX(-6px); } /* Seta vai contra o movimento do texto */
+    .nav-link.back-link:active { transform: scale(0.98) translateX(4px); }
 
-    /* Animação "Sobre Mim" (Head Bob) */
+    /* Animação "Sobre Mim" */
     @keyframes head-bob {
       0%, 100% { transform: translateY(0) rotate(0); }
       30% { transform: translateY(-2px) rotate(-3deg); }
@@ -121,7 +111,7 @@
     }
     .nav-link.about-link:hover i { animation: head-bob 0.6s ease infinite; color: var(--accent); }
 
-    /* CTA Sidebar (Typing Pulse) */
+    /* CTA Sidebar */
     @keyframes typing-pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.15); opacity: 0.8; }
@@ -137,7 +127,6 @@
     .sidebar-cta:hover i { animation: typing-pulse 1.2s infinite ease-in-out; }
     .sidebar-cta:active { transform: scale(0.95); transition-duration: 0.1s; }
 
-    /* Footer Sidebar */
     .sidebar-footer { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; margin-top: auto; }
     .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
     .social-icon {
@@ -149,30 +138,38 @@
     .social-icon:active { transform: scale(0.9); transition-duration: 0.1s; }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* ---------------- MOBILE MENU PREMIUM (Ajustado) ---------------- */
+    /* ---------------- MOBILE MENU PREMIUM (SCROLLABLE & CENTERED) ---------------- */
     .mobile-menu-btn { display: none; }
     
     .mobile-menu-overlay { 
       position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); 
       backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
       z-index: 3000; 
+      
+      /* Permite rolagem se a tela for pequena */
+      overflow-y: auto; 
+      -webkit-overflow-scrolling: touch;
+      
       display: flex; flex-direction: column; 
-      align-items: center; justify-content: center; 
       opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
-      padding: 40px 24px;
     }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
     
     .mobile-nav-container { 
-      width: 100%; max-width: 320px; text-align: center; 
-      display: flex; flex-direction: column; align-items: center; gap: 20px; 
+      width: 100%; max-width: 320px; 
+      /* Altura mínima de 100% garante centralização quando cabe, e scroll quando não cabe */
+      min-height: 100%;
+      margin: 0 auto;
+      
+      display: flex; flex-direction: column; 
+      justify-content: center; /* Centraliza verticalmente se houver espaço */
+      align-items: center; 
+      gap: 20px; 
+      padding: 80px 24px 40px; /* Padding Top maior para não bater no X */
     }
     
-    /* Grupo de Links Principais (Mais espaçado) */
-    .mobile-nav-group {
-        display: flex; flex-direction: column; gap: 16px; /* Separado um pouco mais */
-        width: 100%;
-    }
+    /* Grupo de Links Principais */
+    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
 
     /* Animação Staggered */
     .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { 
@@ -188,8 +185,7 @@
     }
     .mobile-link-main:active { color: var(--accent); transform: scale(0.95); }
 
-    /* Lista de Projetos */
-    .mobile-projects-wrapper { width: 100%; }
+    .mobile-projects-wrapper { width: 100%; text-align: center; }
     .mobile-projects-list { 
       display: flex; flex-direction: column; gap: 12px; margin: 15px 0; 
       width: 100%; align-items: center;
@@ -211,18 +207,23 @@
 
     /* CTA Mobile (Pílula Elegante) */
     .mobile-cta {
-      width: auto; /* Largura automática */
-      min-width: 200px; /* Largura mínima confortável */
-      padding: 14px 32px; 
-      background: var(--text-primary); color: white; 
-      border-radius: 50px; /* Pílula */
+      width: auto; min-width: 200px; padding: 14px 32px; 
+      background: var(--text-primary); color: white; border-radius: 50px; 
       font-weight: 600; font-size: 1rem; 
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
 
-    .mobile-close-btn { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-primary); cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; }
+    /* Botão Fechar FIXED (Sempre visível ao rolar) */
+    .mobile-close-btn {
+      position: fixed; /* FIXED garante que não rola */
+      top: 24px; right: 24px; width: 44px; height: 44px; 
+      background: rgba(0,0,0,0.05); backdrop-filter: blur(10px);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+      font-size: 1.2rem; color: var(--text-primary); 
+      cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; 
+    }
     .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
 
     /* ---------------- MAIN CONTENT ---------------- */
@@ -260,7 +261,7 @@
     .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 40px; }
     .description-highlight { font-size: 1.05rem; color: #666; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 12px; margin-bottom: 60px; border-left: 3px solid var(--accent); }
 
-    /* API Widget Section */
+    /* API Widget */
     .api-section { 
         background: #0f172a; color: white; border-radius: var(--radius-lg); 
         padding: 40px; margin-bottom: 60px; position: relative; overflow: hidden;
@@ -296,31 +297,23 @@
       align-items: center; gap: 12px; border: 1px solid transparent; 
       transition: all 0.3s ease; cursor: pointer; position: relative;
     }
-    .flow-step:hover { 
-      background: white; border-color: var(--accent); 
-      transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-    }
+    .flow-step:hover { background: white; border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
     .flow-step:hover .step-icon { background: var(--accent); color: white; }
     .flow-step:active { transform: scale(0.98); }
     
-    .step-icon { 
-      width: 48px; height: 48px; background: white; border-radius: 50%; 
-      display: flex; align-items: center; justify-content: center; 
-      font-size: 1.2rem; color: var(--accent); 
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;
-    }
+    .step-icon { width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent); box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s; }
     .step-label { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); }
     .flow-step::after { content: 'Ver detalhes'; position: absolute; bottom: 8px; font-size: 0.65rem; color: var(--accent); opacity: 0; transform: translateY(5px); transition: 0.3s; }
     .flow-step:hover::after { opacity: 1; transform: translateY(0); }
     .flow-arrow { color: #ccc; font-size: 1.2rem; }
 
-    /* Tech Stack & Tooltips */
+    /* Tech Stack */
     .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-top: 40px; }
     .stack-item { 
-      background: white; padding: 16px; border-radius: 12px; 
-      text-align: center; font-size: 0.9rem; font-weight: 500; color: #555; 
-      display: flex; flex-direction: column; align-items: center; gap: 8px; 
-      border: 1px solid #eee; position: relative; cursor: help; transition: all 0.3s ease;
+      background: white; padding: 16px; border-radius: 12px; text-align: center; 
+      font-size: 0.9rem; font-weight: 500; color: #555; display: flex; flex-direction: column; 
+      align-items: center; gap: 8px; border: 1px solid #eee; position: relative; cursor: help; 
+      transition: all 0.3s ease;
     }
     .stack-item:hover { transform: translateY(-4px) scale(1.02); border-color: var(--accent); color: var(--text-primary); box-shadow: var(--shadow-sm); }
     .stack-item i { font-size: 1.5rem; color: #333; transition: transform 0.3s; }
@@ -328,24 +321,16 @@
 
     /* Tooltip */
     .stack-item::before {
-      content: attr(data-tooltip);
-      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-      background: #1D1D1F; color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 10;
+      content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: #1D1D1F; color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 10;
     }
     .stack-item::after {
-      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-      border: 6px solid transparent; border-top-color: #1D1D1F; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); margin-bottom: -12px; z-index: 10;
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px); border: 6px solid transparent; border-top-color: #1D1D1F; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); margin-bottom: -12px; z-index: 10;
     }
     .stack-item:hover::before, .stack-item:hover::after { opacity: 1; transform: translateX(-50%) translateY(-8px); }
 
     /* Live Button */
     .live-demo-container { text-align: center; margin-top: 40px; }
-    .btn-live { 
-      display: inline-flex; align-items: center; gap: 10px; 
-      background: var(--text-primary); color: white; 
-      padding: 14px 28px; border-radius: 50px; text-decoration: none; 
-      font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
+    .btn-live { display: inline-flex; align-items: center; gap: 10px; background: var(--text-primary); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .btn-live:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
     .btn-live:active { transform: scale(0.96); transition-duration: 0.1s; }
 
@@ -394,8 +379,12 @@
     /* ---------------- RESPONSIVIDADE ---------------- */
     @media (max-width: 968px) {
       body { flex-direction: column; }
+      
+      /* Ajuste Título Mobile */
+      .project-title { font-size: 2rem; }
+
       aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
-      .profile-container { margin: 0; text-align: left; margin-bottom: 0; }
+      .profile-container { margin: 0; text-align: left; }
       .profile-link { display: flex; align-items: center; gap: 12px; }
       .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
       .profile-name { font-size: 1rem; margin: 0; }
@@ -421,6 +410,10 @@
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; }
+      
+      /* Ajuste Texto Paisagem */
+      .project-description { font-size: 1rem; line-height: 1.5; }
+
       .meta-grid { grid-template-columns: repeat(4, 1fr); } 
       .api-grid { grid-template-columns: 1fr 1fr 1fr; }
       .flow-chart { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; justify-content: space-between; padding-bottom: 10px; } 
@@ -437,8 +430,8 @@
     
     <div class="mobile-nav-container">
       <div class="mobile-nav-group">
-        <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
-        <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
+        <a href="sobre.html" class="mobile-nav-main" style="transition-delay: 0.05s" onclick="toggleMenu()">Sobre Mim</a>
+        <a href="index.html" class="mobile-nav-main" style="transition-delay: 0.1s" onclick="toggleMenu()">Projetos</a>
       </div>
       
       <div class="mobile-projects-wrapper">
