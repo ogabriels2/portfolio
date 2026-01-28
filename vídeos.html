@@ -254,8 +254,7 @@
         border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); 
         text-align: left;
     }
-    /* Flex vertical para alinhar título sobre texto e alinhar à esquerda */
-    .meta-item { display: flex; flex-direction: column; align-items: flex-start; } 
+    .meta-item { display: block; } 
 
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
@@ -302,15 +301,39 @@
         width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(12px);
         display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; 
         border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: auto;
+        position: relative;
     }
     .center-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
     .center-btn:active { transform: scale(0.95); }
     .center-btn.main-play { width: 90px; height: 90px; font-size: 2.2rem; }
+    
+    /* Animações de Skip */
     .rotate-360-left { animation: spinLeft 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
     .rotate-360-right { animation: spinRight 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
     @keyframes spinLeft { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
     @keyframes spinRight { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    
     .video-container:not(.has-played) .center-btn.skip-btn { display: none; }
+
+    /* Skip Text Indicator (+10/-10) */
+    .skip-text-popup {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-size: 1.2rem; font-weight: 700; color: white; opacity: 0; pointer-events: none;
+    }
+
+    @keyframes skipForward {
+      0% { opacity: 0; transform: translate(0%, -50%) scale(0.8); }
+      20% { opacity: 1; transform: translate(40%, -50%) scale(1.1); }
+      100% { opacity: 0; transform: translate(100%, -50%) scale(1); }
+    }
+    @keyframes skipBackward {
+      0% { opacity: 0; transform: translate(-100%, -50%) scale(0.8); }
+      20% { opacity: 1; transform: translate(-140%, -50%) scale(1.1); }
+      100% { opacity: 0; transform: translate(-200%, -50%) scale(1); }
+    }
+
+    .animate-forward { animation: skipForward 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+    .animate-backward { animation: skipBackward 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 
     .controls-wrapper {
         position: absolute; bottom: 0; left: 0; right: 0;
@@ -345,11 +368,19 @@
     .controls-left, .controls-right { display: flex; align-items: center; gap: 18px; }
     .control-btn {
         background: none; border: none; color: rgba(255,255,255,0.9); cursor: pointer; padding: 0; font-size: 1.1rem;
-        transition: transform 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        transition: transform 0.2s, color 0.2s, background 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        border-radius: 6px;
     }
     .control-btn:hover { opacity: 1; transform: scale(1.15); color: #fff; }
     .control-btn:active { transform: scale(0.95); }
-    .control-btn.captions-btn.active { color: #fff; opacity: 1; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+    
+    /* Botão de Legenda Ativo (Invertido) */
+    .control-btn.captions-btn.active { 
+      background-color: white; 
+      color: black; 
+      opacity: 1;
+      text-shadow: none;
+    }
 
     .captions-container { position: relative; }
     .captions-menu {
@@ -387,10 +418,9 @@
     .time-display { font-size: 0.85rem; font-weight: 500; font-variant-numeric: tabular-nums; opacity: 0.9; cursor: default; user-select: none; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
 
 
-    /* NAVEGAÇÃO INFERIOR */
+    /* NAVEGAÇÃO INFERIOR - Alinhamento 880px */
     .project-nav { 
         width: 100%; max-width: var(--max-width); margin: 0 auto; 
-        /* CORREÇÃO: Padding 60px lateral para alinhar botões com o banner de 880px */
         padding: 60px 60px 80px; 
         border-top: 1px solid rgba(0,0,0,0.1); 
         display: flex; justify-content: space-between; align-items: center; 
@@ -418,7 +448,7 @@
     .nav-home-btn:hover { background: rgba(0, 113, 227, 0.08); color: var(--accent); transform: scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .nav-home-btn:active { transform: scale(0.96); }
 
-    /* Contact Banner (Desktop: 880px para alinhar com texto interno) */
+    /* Contact Banner */
     .contact-banner { 
         width: 100%; max-width: 880px; 
         background: #1D1D1F; border-radius: 24px; padding: 50px; 
@@ -545,39 +575,26 @@
 <body>
 
   <div class="mobile-menu-overlay" id="mobileMenu">
-    <button class="mobile-close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
-    <div class="mobile-scroll-wrapper">
-        <div class="mobile-nav-container">
-            <div class="mobile-nav-group">
-                <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
-                <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
-            </div>
-            <div class="mobile-projects-wrapper">
-                <div class="mobile-divider"></div>
-                <span class="mobile-label">Cases de Sucesso</span>
-                <div class="mobile-projects-list">
-                    <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
-                    <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
-                    <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
-                    <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
-                    <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
-                    <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
-                    <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
-                    <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
-                    <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
-                </div>
-            </div>
-            <div class="mobile-footer-group">
-                <div class="mobile-socials">
-                    <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/ogabriels2" class="mobile-social-btn"><i class="fab fa-github"></i></a>
-                </div>
-                <a href="contato.html" class="mobile-cta" onclick="toggleMenu()">
-                    <i class="fa-regular fa-comment-dots"></i> Fale Comigo
-                </a>
-            </div>
-        </div>
+    <div class="mobile-nav-container">
+      
+      <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
+      <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
+      
+      <hr class="mobile-divider">
+      <span class="mobile-label">Navegue por projeto</span>
+      
+      <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
+      <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
+      <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
+      <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
+      <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
+      <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
+      <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
+      <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Produção Audiovisual</a>
+      
+      <hr class="mobile-divider">
+      <a href="contato.html" class="mobile-link-main" onclick="toggleMenu()">Contato</a>
+      
     </div>
   </div>
 
@@ -682,9 +699,15 @@
           </video>
           
           <div class="center-controls">
-            <div class="center-btn skip-btn" data-skip="-10"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="center-btn skip-btn" data-skip="-10">
+              <i class="fa-solid fa-rotate-left"></i>
+              <div class="skip-text-popup">-10</div>
+            </div>
             <div class="center-btn main-play"><i class="fa-solid fa-play"></i></div>
-            <div class="center-btn skip-btn" data-skip="10"><i class="fa-solid fa-rotate-right"></i></div>
+            <div class="center-btn skip-btn" data-skip="10">
+              <i class="fa-solid fa-rotate-right"></i>
+              <div class="skip-text-popup">+10</div>
+            </div>
           </div>
           
           <div class="controls-wrapper">
@@ -752,9 +775,15 @@
           </video>
           
           <div class="center-controls">
-            <div class="center-btn skip-btn" data-skip="-10"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="center-btn skip-btn" data-skip="-10">
+              <i class="fa-solid fa-rotate-left"></i>
+              <div class="skip-text-popup">-10</div>
+            </div>
             <div class="center-btn main-play"><i class="fa-solid fa-play"></i></div>
-            <div class="center-btn skip-btn" data-skip="10"><i class="fa-solid fa-rotate-right"></i></div>
+            <div class="center-btn skip-btn" data-skip="10">
+              <i class="fa-solid fa-rotate-right"></i>
+              <div class="skip-text-popup">+10</div>
+            </div>
           </div>
           
           <div class="controls-wrapper">
@@ -808,9 +837,9 @@
         <i class="fa-solid fa-house"></i>
       </a>
 
-      <a href="infra.html" class="nav-btn next">
-        <div><span class="nav-label">Próximo</span><span class="nav-project-name">Server Infra</span></div>
-        <i class="fa-solid fa-arrow-right"></i>
+      <a href="contato.html" class="nav-btn next">
+        <div><span class="nav-label">Finalizar</span><span class="nav-project-name">Vamos Conversar?</span></div>
+        <i class="fa-regular fa-comment-dots"></i>
       </a>
     </div>
 
@@ -859,22 +888,18 @@
       const tooltip = container.querySelector('.time-tooltip');
       const timeDisplay = container.querySelector('.time-display');
       const muteBtn = container.querySelector('.mute-btn');
-      const volumeContainer = container.querySelector('.volume-container');
-      const volumeSlider = container.querySelector('.volume-slider-container');
-      const volumeFill = container.querySelector('.volume-fill');
       const fullscreenBtn = container.querySelector('.fullscreen-btn');
       const captionBtn = container.querySelector('.captions-btn');
       const captionMenu = container.querySelector('.captions-menu');
       const captionOptions = container.querySelectorAll('.caption-option');
 
       let isScrubbing = false;
-      let isVolumeDragging = false;
       let hideControlsTimeout;
 
       // START TRACKS DISABLED
       function initTracks() {
         for (let i = 0; i < video.textTracks.length; i++) {
-          video.textTracks[i].mode = 'disabled'; // Force disabled on start
+          video.textTracks[i].mode = 'disabled';
         }
       }
       
@@ -887,32 +912,31 @@
           container.classList.remove('paused');
           container.classList.add('playing', 'has-played');
           if(icon) icon.classList.replace('fa-play', 'fa-pause');
-          if(mainPlayBtn) {
-            mainPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-            mainPlayBtn.querySelector('i').style.transform = 'scale(0.8)';
-            setTimeout(() => mainPlayBtn.querySelector('i').style.transform = 'scale(1)', 150);
-          }
+          if(mainPlayBtn) mainPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         } else {
           video.pause();
           container.classList.add('paused');
           container.classList.remove('playing');
           if(icon) icon.classList.replace('fa-pause', 'fa-play');
-          if(mainPlayBtn) {
-            mainPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-            mainPlayBtn.querySelector('i').style.transform = 'scale(0.8)';
-            setTimeout(() => mainPlayBtn.querySelector('i').style.transform = 'scale(1)', 150);
-          }
+          if(mainPlayBtn) mainPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
       }
 
-      function skip(seconds) {
+      function skip(seconds, btn) {
         video.currentTime += seconds;
-        const btn = seconds > 0 ? centerControls.querySelector('[data-skip="10"]') : centerControls.querySelector('[data-skip="-10"]');
-        if(btn) {
-          const icon = btn.querySelector('i');
-          icon.classList.add(seconds > 0 ? 'rotate-360-right' : 'rotate-360-left');
-          setTimeout(() => icon.classList.remove('rotate-360-right', 'rotate-360-left'), 600);
-        }
+        const icon = btn.querySelector('i');
+        const popup = btn.querySelector('.skip-text-popup');
+        
+        // Reset classes
+        icon.classList.remove('rotate-360-right', 'rotate-360-left');
+        popup.classList.remove('animate-forward', 'animate-backward');
+        
+        // Trigger reflow to restart animation
+        void icon.offsetWidth;
+        void popup.offsetWidth;
+
+        icon.classList.add(seconds > 0 ? 'rotate-360-right' : 'rotate-360-left');
+        popup.classList.add(seconds > 0 ? 'animate-forward' : 'animate-backward');
       }
 
       container.addEventListener('click', (e) => {
@@ -924,7 +948,7 @@
       if(playBtn) playBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
       
       skipBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => { e.stopPropagation(); skip(parseFloat(btn.dataset.skip)); });
+        btn.addEventListener('click', (e) => { e.stopPropagation(); skip(parseFloat(btn.dataset.skip), btn); });
       });
 
       function showControls() { container.classList.remove('user-inactive'); clearTimeout(hideControlsTimeout); }
@@ -942,7 +966,6 @@
 
       if (captionBtn) {
         captionBtn.addEventListener('click', (e) => { e.stopPropagation(); captionMenu.classList.toggle('show'); });
-        
         captionOptions.forEach(opt => {
           opt.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -950,10 +973,8 @@
             captionOptions.forEach(o => o.classList.remove('active'));
             opt.classList.add('active');
             captionMenu.classList.remove('show');
-            
             if (lang === 'off') captionBtn.classList.remove('active');
             else captionBtn.classList.add('active');
-
             for (let i = 0; i < video.textTracks.length; i++) {
               video.textTracks[i].mode = 'disabled';
             }
@@ -964,9 +985,6 @@
             }
           });
         });
-        document.addEventListener('click', (e) => {
-          if (!captionMenu.contains(e.target) && e.target !== captionBtn) captionMenu.classList.remove('show');
-        });
       }
 
       function toggleFullscreen() {
@@ -974,7 +992,6 @@
         else container.requestFullscreen();
       }
       if(fullscreenBtn) fullscreenBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleFullscreen(); });
-      container.addEventListener('dblclick', (e) => { e.preventDefault(); toggleFullscreen(); });
 
       function formatTime(seconds) {
         if (isNaN(seconds)) return "0:00";
@@ -983,22 +1000,17 @@
         return `${m}:${s < 10 ? '0' : ''}${s}`;
       }
       
-      // Volume/Timeline drag logic omitted for brevity, assumed working from base code...
       function handleTimelineUpdate(e) {
         const rect = timelineContainer.getBoundingClientRect();
         const percent = Math.min(Math.max(0, e.clientX - rect.left), rect.width) / rect.width;
         progressBar.style.width = `${percent * 100}%`;
-        if (isScrubbing) {
-          video.currentTime = percent * video.duration;
-          timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
-        }
+        if (isScrubbing) video.currentTime = percent * video.duration;
       }
       timelineContainer.addEventListener('mousedown', (e) => { isScrubbing = true; container.classList.add('scrubbing'); handleTimelineUpdate(e); });
       document.addEventListener('mousemove', (e) => { if (isScrubbing) handleTimelineUpdate(e); });
-      document.addEventListener('mouseup', (e) => { if (isScrubbing) { isScrubbing = false; container.classList.remove('scrubbing'); } });
+      document.addEventListener('mouseup', () => { if (isScrubbing) { isScrubbing = false; container.classList.remove('scrubbing'); } });
     });
 
-    // Lightbox & Mobile Menu Logic
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const menuIcon = menuBtn.querySelector('i');
@@ -1026,12 +1038,11 @@
     const lbClose = document.getElementById('lb-close');
 
     function openLightbox(src) { lbImage.src = src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; setTimeout(()=>{ lbImage.src=''; },300); }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
 
     triggers.forEach(img => img.addEventListener('click', ()=>openLightbox(img.src)));
     if (lbClose) lbClose.addEventListener('click', closeLightbox);
     if (lightbox) lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLightbox(); });
   </script>
 
 </body>
