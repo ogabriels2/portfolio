@@ -133,7 +133,7 @@
     .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
     .sidebar-footer { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; margin-top: auto; }
-    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
     .social-icon {
       width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.04);
       display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
@@ -142,7 +142,7 @@
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* ---------------- MOBILE MENU PREMIUM (Unificado) ---------------- */
+    /* ---------------- MOBILE MENU PREMIUM (Unificado do Código Exemplo) ---------------- */
     .mobile-menu-btn { display: none; }
     
     .mobile-menu-overlay { 
@@ -173,13 +173,27 @@
       cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; 
     }
 
+    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
     .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
+    .mobile-link-main:active { color: var(--accent) !important; transform: scale(0.95); }
+
+    .mobile-projects-wrapper { width: 100%; text-align: center; }
     .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
     .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
     .mobile-projects-list { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; width: 100%; align-items: center; }
     .mobile-link-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; transition: 0.2s; text-decoration: none; }
-    .mobile-socials { display: flex; gap: 24px; justify-content: center; margin-top: 20px; }
+    .mobile-link-sub:active { color: var(--accent); transform: scale(0.98); }
+
+    .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .mobile-socials { display: flex; gap: 24px; justify-content: center; }
     .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
+    .mobile-social-btn:active { color: var(--accent) !important; transform: scale(0.9); }
+
+    .mobile-cta {
+      width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; 
+      font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
 
 
     /* ---------------- MAIN CONTENT ---------------- */
@@ -213,7 +227,7 @@
     .contact-methods { display: flex; flex-direction: column; gap: 16px; }
     .contact-card {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 24px; background: white; border-radius: var(--radius-lg); /* Padronizado */
+      padding: 18px 24px; background: white; border-radius: var(--radius-lg); 
       box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02);
       transition: all 0.3s var(--ease-apple);
       text-decoration: none; color: inherit; cursor: pointer;
@@ -226,7 +240,6 @@
     .card-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); font-weight: 600; letter-spacing: 0.05em; }
     .card-value { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-top: 2px; }
     
-    /* Sublinhado no e-mail */
     .card-value.email-value { text-decoration: underline; }
 
     .contact-card.whatsapp .card-icon { color: var(--whatsapp); font-size: 1.6rem; }
@@ -264,7 +277,7 @@
     }
     .form-group { margin-bottom: 24px; }
     .form-label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); margin-left: 4px; }
-    .form-input, .form-textarea { width: 100%; padding: 16px 20px; background: #F5F5F7; border: 1px solid transparent; border-radius: var(--radius-lg); /* Padronizado */ font-family: inherit; font-size: 1rem; color: var(--text-primary); transition: all 0.3s var(--ease-apple); }
+    .form-input, .form-textarea { width: 100%; padding: 16px 20px; background: #F5F5F7; border: 1px solid transparent; border-radius: var(--radius-lg); font-family: inherit; font-size: 1rem; color: var(--text-primary); transition: 0.3s var(--ease-apple); }
     .form-input:focus, .form-textarea:focus { background: white; border-color: var(--accent); outline: none; box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15); }
     .form-textarea { height: 140px; resize: vertical; min-height: 120px; }
 
@@ -290,16 +303,23 @@
     /* Responsivo */
     @media (max-width: 968px) {
       aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
-      .profile-container { margin: 0; }
-      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; }
-      .profile-name, .profile-role, nav, .sidebar-footer { display: none; }
+      .profile-container { margin: 0; text-align: left; }
+      .profile-link { display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+      .profile-name { font-size: 1rem; margin: 0; font-weight: 600; color: var(--text-primary); }
+      .profile-role, nav, .sidebar-footer { display: none; }
       .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.3s ease; }
       .mobile-menu-btn:active { transform: scale(0.9); }
+      
       main { margin-left: 0; padding-top: 100px; padding-bottom: 60px; }
       .container { padding: 0 24px; }
       .contact-grid { grid-template-columns: 1fr; gap: 60px; display: flex; flex-direction: column; align-items: stretch; }
-      .contact-info { position: static; text-align: left; gap: 0; }
-      .info-group { gap: 32px; }
+      
+      /* CENTRALIZAÇÃO MOBILE SOLICITADA */
+      .contact-info { position: static; text-align: center; } 
+      .social-area { align-items: center; } 
+      .social-big-list { justify-content: center; } 
+      
       .page-title { font-size: 2.8rem; }
       .contact-divider { margin: 32px 0; }
       .form-wrapper { padding: 32px; }
@@ -336,9 +356,10 @@
                     <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn"><i class="fab fa-instagram"></i></a>
                     <a href="https://github.com/ogabriels2" class="mobile-social-btn"><i class="fab fa-github"></i></a>
-                    <a href="https://wa.me/5511979686116" class="mobile-social-btn"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:contato@ogabriels.com" class="mobile-social-btn"><i class="fa-regular fa-envelope"></i></a>
                 </div>
+                <a href="contato.html" class="mobile-cta" onclick="toggleMenu()">
+                    <i class="fa-regular fa-comment-dots"></i> Fale Comigo
+                </a>
             </div>
         </div>
     </div>
@@ -410,7 +431,6 @@
   <main>
     <div class="container">
       <div class="contact-grid">
-        
         <div class="contact-info">
           <div class="info-group">
             <div>
@@ -462,7 +482,6 @@
               </a>
             </div>
           </div>
-
         </div>
 
         <div class="form-wrapper">
@@ -471,22 +490,18 @@
               <label for="name" class="form-label">Nome*</label>
               <input type="text" id="name" name="name" class="form-input" placeholder="Como devo te chamar?" required>
             </div>
-
             <div class="form-group">
               <label for="email" class="form-label">E-mail*</label>
               <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required>
             </div>
-
             <div class="form-group">
               <label for="phone" class="form-label">Telefone</label>
               <input type="tel" id="phone" name="phone" class="form-input" placeholder="(11) 99999-9999">
             </div>
-
             <div class="form-group">
               <label for="message" class="form-label">Mensagem*</label>
               <textarea id="message" name="message" class="form-textarea" placeholder="Conte um pouco sobre o seu projeto..." required></textarea>
             </div>
-
             <button type="submit" class="submit-btn" id="submitBtn">
               <span class="btn-text">Enviar Mensagem</span>
               <i class="fa-solid fa-arrow-right"></i>
@@ -494,7 +509,6 @@
             </button>
           </form>
         </div>
-
       </div>
     </div>
 
