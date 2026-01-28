@@ -44,75 +44,188 @@
       -webkit-font-smoothing: antialiased;
       display: flex;
       min-height: 100vh;
+      margin: 0;
     }
 
-    a { text-decoration: none; } 
+    a { text-decoration: none; -webkit-tap-highlight-color: transparent; }
 
-    /* --- Sidebar Premium --- */
+    /* ---------------- SIDEBAR (Desktop) ---------------- */
     aside {
-      width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
-      padding: 40px 32px; /* Padding reduzido para caber mais */
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding: 50px 32px;
       background: var(--bg-sidebar);
-      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border-right: 1px solid rgba(0,0,0,0.05);
-      display: flex; flex-direction: column; z-index: 50;
-      overflow-y: auto; scrollbar-width: none;
+      display: flex;
+      flex-direction: column;
+      z-index: 2000;
+      overflow-y: auto; 
+      scrollbar-width: none;
     }
     aside::-webkit-scrollbar { display: none; }
 
-    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; }
-    .profile-link { display: block; }
-    .profile-pic-wrapper { width: 100px; height: 100px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-md); cursor: pointer; transition: transform 0.3s ease; }
-    .profile-pic-wrapper:hover { transform: scale(1.03); }
-    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
-    .profile-name { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; color: #111; }
-    .profile-role { font-size: 0.75rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
-    
-    nav { flex: 1; display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px; }
-    .nav-group h3 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
-    .nav-list { list-style: none; }
-    .nav-list li { margin-bottom: 2px; }
-    .nav-link { display: block; padding: 8px 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
-    .nav-link:hover { color: var(--accent); background: rgba(0, 68, 204, 0.08); }
-    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 68, 204, 0.05); }
-    
-    /* Novo Botão Sidebar */
-    .sidebar-cta {
-        margin-top: auto; margin-bottom: 20px;
-        display: block; padding: 12px 20px;
-        background: var(--text-primary); color: white;
-        text-align: center; border-radius: 50px;
-        font-size: 0.9rem; font-weight: 600;
-        transition: 0.3s;
-    }
-    .sidebar-cta:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    /* Perfil */
+    .profile-container { text-align: center; margin-bottom: 40px; flex-shrink: 0; }
+    .profile-link { display: block; text-decoration: none; transition: transform 0.2s; }
+    .profile-link:active { transform: scale(0.98); } 
 
-    .sidebar-footer { padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; }
+    .profile-pic-wrapper { 
+      width: 110px; height: 110px; margin: 0 auto 16px; 
+      border-radius: 50%; overflow: hidden; 
+      box-shadow: var(--shadow-md); 
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); } 
+    
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    
+    .profile-name { 
+      font-size: 1.4rem; font-weight: 700; color: #111; 
+      margin-bottom: 6px; transition: color 0.3s; 
+    }
+    .profile-link:hover .profile-name { color: var(--accent); }
+    
+    .profile-role { font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* Navegação */
+    nav { display: flex; flex-direction: column; }
+    .nav-group h3 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .nav-list { list-style: none; padding: 0; margin-bottom: 20px; }
+    .nav-list li { margin-bottom: 2px; }
+
+    .nav-link {
+      display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+      color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
+      border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    /* Padrão: Desliza para a direita */
+    .nav-link:hover { color: var(--accent); background: rgba(0, 68, 204, 0.08); transform: translateX(4px); }
+    .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 68, 204, 0.12); transition-duration: 0.1s; }
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 68, 204, 0.05); }
+
+    /* Animação "Voltar" (Texto vai pra direita, Seta puxa pra esquerda) */
+    .nav-link.back-link i { transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .nav-link.back-link:hover i { transform: translateX(-6px); } /* Seta resiste */
+    /* O container .nav-link já herda o translateX(4px) do padrão acima */
+
+    /* Animação "Sobre Mim" (Head Bob) */
+    @keyframes head-bob {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      30% { transform: translateY(-2px) rotate(-3deg); }
+      60% { transform: translateY(-1px) rotate(3deg); }
+    }
+    .nav-link.about-link:hover i { animation: head-bob 0.6s ease infinite; color: var(--accent); }
+
+    /* CTA Sidebar (Typing Pulse) */
+    @keyframes typing-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.8; }
+    }
+    .sidebar-cta {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 12px 20px; background: var(--text-primary); color: white;
+      text-align: center; border-radius: 50px; font-size: 0.9rem; font-weight: 600; 
+      margin-top: 30px; margin-bottom: 30px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .sidebar-cta:hover i { animation: typing-pulse 1.2s infinite ease-in-out; }
+    .sidebar-cta:active { transform: scale(0.95); transition-duration: 0.1s; }
+
+    /* Footer Sidebar */
+    .sidebar-footer { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; margin-top: auto; }
     .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
-    .social-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.04); color: var(--text-secondary); transition: all 0.3s; font-size: 0.9rem; }
-    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+    .social-icon {
+      width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.04);
+      display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
+    .social-icon:active { transform: scale(0.9); transition-duration: 0.1s; }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* --- Mobile Menu (Compacto) --- */
+    /* ---------------- MOBILE MENU PREMIUM (Ajustado) ---------------- */
     .mobile-menu-btn { display: none; }
-    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); z-index: 1999; display: flex; flex-direction: column; align-items: center; padding-top: 60px; /* Reduzido */ opacity: 0; pointer-events: none; transition: 0.3s; overflow-y: auto; }
+    
+    .mobile-menu-overlay { 
+      position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); 
+      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+      z-index: 3000; 
+      display: flex; flex-direction: column; 
+      align-items: center; justify-content: center; 
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
+      padding: 40px 24px;
+    }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
     
     .mobile-nav-container { 
-        width: 100%; max-width: 400px; text-align: center; 
-        display: flex; flex-direction: column; gap: 4px; /* Gap Reduzido */
-        padding: 0 24px 40px; 
+      width: 100%; max-width: 320px; text-align: center; 
+      display: flex; flex-direction: column; align-items: center; gap: 20px; 
     }
-    .mobile-nav-main { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); padding: 6px 0; display: block; transition: 0.2s; }
-    .mobile-nav-main:active { color: var(--accent); }
-    .mobile-divider { height: 1px; background: rgba(0,0,0,0.08); border: none; margin: 16px auto; width: 30px; }
-    .mobile-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin-bottom: 6px; font-weight: 600; display: block; }
     
-    /* Links compactos para mobile */
-    .mobile-nav-project { font-size: 1rem; font-weight: 500; color: #555; padding: 8px 0; display: block; transition: 0.2s; }
-    .mobile-nav-project:active { color: var(--accent); font-weight: 600; background: rgba(0,0,0,0.03); border-radius: 8px; }
+    /* Grupo de Links Principais (Mais espaçado) */
+    .mobile-nav-group {
+        display: flex; flex-direction: column; gap: 16px; /* Separado um pouco mais */
+        width: 100%;
+    }
 
-    /* --- Main Content --- */
+    /* Animação Staggered */
+    .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { 
+      opacity: 0; transform: translateY(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); 
+    }
+    .mobile-menu-overlay.active .mobile-nav-group { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+
+    .mobile-link-main { 
+      font-size: 2rem; font-weight: 700; color: var(--text-primary); 
+      letter-spacing: -0.03em; display: block; 
+    }
+    .mobile-link-main:active { color: var(--accent); transform: scale(0.95); }
+
+    /* Lista de Projetos */
+    .mobile-projects-wrapper { width: 100%; }
+    .mobile-projects-list { 
+      display: flex; flex-direction: column; gap: 12px; margin: 15px 0; 
+      width: 100%; align-items: center;
+    }
+    .mobile-link-sub { 
+      font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; 
+      transition: 0.2s; 
+    }
+    .mobile-link-sub:active { color: var(--accent); transform: scale(0.98); }
+
+    .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
+    .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
+
+    /* Rodapé Mobile */
+    .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .mobile-socials { display: flex; gap: 24px; justify-content: center; }
+    .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); }
+    .mobile-social-btn:active { color: var(--accent); transform: scale(0.9); }
+
+    /* CTA Mobile (Pílula Elegante) */
+    .mobile-cta {
+      width: auto; /* Largura automática */
+      min-width: 200px; /* Largura mínima confortável */
+      padding: 14px 32px; 
+      background: var(--text-primary); color: white; 
+      border-radius: 50px; /* Pílula */
+      font-weight: 600; font-size: 1rem; 
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
+
+    .mobile-close-btn { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-primary); cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; }
+    .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
+
+    /* ---------------- MAIN CONTENT ---------------- */
     main { margin-left: var(--sidebar-width); flex: 1; padding: 0; display: flex; flex-direction: column; align-items: center; }
 
     .project-hero { width: 100%; padding: 80px 40px 40px; background-color: var(--bg-body); display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -161,8 +274,14 @@
     .metric-value { font-size: 1.8rem; font-weight: 700; color: white; }
     .metric-sub { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
     .api-footer { display: flex; justify-content: flex-end; align-items: center; gap: 15px; font-size: 0.8rem; color: #64748b; margin-top: 10px; }
-    .btn-refresh { background: rgba(255,255,255,0.1); border: none; color: white; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: 0.2s; display: flex; align-items: center; gap: 6px; }
-    .btn-refresh:hover { background: rgba(255,255,255,0.2); }
+    
+    .btn-refresh { 
+      background: rgba(255,255,255,0.1); border: none; color: white; 
+      padding: 6px 12px; border-radius: 6px; cursor: pointer; 
+      font-size: 0.8rem; transition: 0.2s; display: flex; align-items: center; gap: 6px; 
+    }
+    .btn-refresh:hover { background: rgba(255,255,255,0.2); transform: translateY(-4px) scale(1.02); }
+    .btn-refresh:active { transform: scale(0.95); }
     .btn-refresh.spinning i { animation: spin 1s linear infinite; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
@@ -182,6 +301,7 @@
       transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
     }
     .flow-step:hover .step-icon { background: var(--accent); color: white; }
+    .flow-step:active { transform: scale(0.98); }
     
     .step-icon { 
       width: 48px; height: 48px; background: white; border-radius: 50%; 
@@ -194,15 +314,40 @@
     .flow-step:hover::after { opacity: 1; transform: translateY(0); }
     .flow-arrow { color: #ccc; font-size: 1.2rem; }
 
-    /* Tech Stack */
+    /* Tech Stack & Tooltips */
     .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-top: 40px; }
-    .stack-item { background: white; padding: 16px; border-radius: 12px; text-align: center; font-size: 0.9rem; font-weight: 500; color: #555; display: flex; flex-direction: column; align-items: center; gap: 8px; border: 1px solid #eee; }
-    .stack-item i { font-size: 1.5rem; color: #333; }
+    .stack-item { 
+      background: white; padding: 16px; border-radius: 12px; 
+      text-align: center; font-size: 0.9rem; font-weight: 500; color: #555; 
+      display: flex; flex-direction: column; align-items: center; gap: 8px; 
+      border: 1px solid #eee; position: relative; cursor: help; transition: all 0.3s ease;
+    }
+    .stack-item:hover { transform: translateY(-4px) scale(1.02); border-color: var(--accent); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+    .stack-item i { font-size: 1.5rem; color: #333; transition: transform 0.3s; }
+    .stack-item:hover i { transform: scale(1.1) rotate(5deg); color: var(--accent); }
+
+    /* Tooltip */
+    .stack-item::before {
+      content: attr(data-tooltip);
+      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+      background: #1D1D1F; color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 10;
+    }
+    .stack-item::after {
+      content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+      border: 6px solid transparent; border-top-color: #1D1D1F; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); margin-bottom: -12px; z-index: 10;
+    }
+    .stack-item:hover::before, .stack-item:hover::after { opacity: 1; transform: translateX(-50%) translateY(-8px); }
 
     /* Live Button */
     .live-demo-container { text-align: center; margin-top: 40px; }
-    .btn-live { display: inline-flex; align-items: center; gap: 10px; background: var(--text-primary); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-    .btn-live:hover { background: var(--accent); transform: scale(1.05); }
+    .btn-live { 
+      display: inline-flex; align-items: center; gap: 10px; 
+      background: var(--text-primary); color: white; 
+      padding: 14px 28px; border-radius: 50px; text-decoration: none; 
+      font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .btn-live:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .btn-live:active { transform: scale(0.96); transition-duration: 0.1s; }
 
     /* Info Modal */
     .info-modal { position: fixed; inset: 0; z-index: 3000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
@@ -213,49 +358,50 @@
     .modal-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
     .modal-desc { font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 30px; }
     .modal-close { background: var(--text-primary); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-    .modal-close:hover { background: var(--accent); }
+    .modal-close:hover { background: var(--accent); transform: translateY(-2px); }
+    .modal-close:active { transform: scale(0.95); }
 
     /* Contact Banner */
     .contact-banner { width: 100%; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin-bottom: 40px; }
     .contact-text-group { flex: 1; padding-right: 20px; }
     .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
     .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
-    
     .contact-social { display: flex; gap: 12px; }
-    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: 0.3s; font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
-    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
-
+    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
+    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px) scale(1.1); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
+    .btn-social-mini:active { transform: scale(0.9); }
     .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
-    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: 0.3s; }
-    .btn-cta-dark:hover { transform: translateY(-2px); background: #f2f2f2; }
-    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: 0.2s; }
-    .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .btn-cta-dark:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 25px rgba(255,255,255,0.25); background: #f2f2f2; }
+    .btn-cta-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
+    .btn-secondary-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
 
-    /* Navigation - Com Animações */
+    /* Navigation Inferior */
     .project-nav { width: 100%; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; padding-top: 40px; margin: 60px 0 80px 0; }
-    .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 500; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .nav-btn:hover { color: var(--accent); }
-    .nav-btn:active { transform: scale(0.96); } /* Click effect */
+    .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); }
+    .nav-btn:hover { color: var(--accent); background: rgba(0, 68, 204, 0.08); transform: translateX(4px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .nav-btn.prev:hover { transform: translateX(4px); } 
+    .nav-btn:active { transform: scale(0.96); transition-duration: 0.1s; }
     .nav-btn.next { text-align: right; flex-direction: row-reverse; }
-    
-    /* Arrow Animations */
     .nav-btn i { transition: transform 0.3s ease; }
-    .nav-btn:hover .fa-arrow-right { transform: translateX(4px); }
-    .nav-btn:hover .fa-arrow-left { transform: translateX(-4px); }
-    .nav-btn:hover .fa-house { transform: scale(1.1); }
+    .nav-btn.prev:hover i { transform: translateX(-8px); } 
+    .nav-btn.next:hover i { transform: translateX(4px); }
+    .nav-label { font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: 0.6; font-weight: 500; }
+    .nav-project-name { font-size: 1rem; color: var(--text-primary); }
 
-    .nav-label { font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 4px; opacity: 0.6; }
-    .nav-project-name { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
-
+    /* ---------------- RESPONSIVIDADE ---------------- */
     @media (max-width: 968px) {
       body { flex-direction: column; }
       aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
-      .profile-container { margin: 0; text-align: left; }
+      .profile-container { margin: 0; text-align: left; margin-bottom: 0; }
       .profile-link { display: flex; align-items: center; gap: 12px; }
-      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; }
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
       .profile-name { font-size: 1rem; margin: 0; }
       .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
-      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.2s; }
+      .mobile-menu-btn:active { transform: scale(0.9); }
       
       main { margin-left: 0; padding: 100px 20px 40px; }
       .meta-grid { grid-template-columns: 1fr 1fr; }
@@ -264,32 +410,63 @@
       .flow-chart { flex-direction: column; gap: 20px; }
       .flow-arrow { transform: rotate(90deg); margin: 0; }
       
-      .contact-banner { flex-direction: column; text-align: center; gap: 32px; padding: 32px; }
+      .contact-banner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 24px; }
       .contact-text-group { width: 100%; padding-right: 0; }
       .contact-social { justify-content: center; margin-top: 15px; }
-      .contact-actions { width: 100%; justify-content: center; flex-wrap: wrap; }
+      .contact-actions { width: 100%; flex-direction: column; gap: 10px; }
+      .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
+    }
+
+    /* --- Paisagem Mobile --- */
+    @media (max-width: 968px) and (orientation: landscape) {
+      aside { height: 60px; padding: 0 20px; } 
+      main { padding: 90px 40px 40px; }
+      .meta-grid { grid-template-columns: repeat(4, 1fr); } 
+      .api-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .flow-chart { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; justify-content: space-between; padding-bottom: 10px; } 
+      .flow-arrow { transform: rotate(0deg); margin: 0 10px; }
+      .flow-step { min-width: 120px; }
+      .contact-banner { padding: 40px; }
     }
   </style>
 </head>
 <body>
 
   <div class="mobile-menu-overlay" id="mobileMenu">
+    <button class="mobile-close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
+    
     <div class="mobile-nav-container">
-      <a href="sobre.html" class="mobile-nav-main" onclick="toggleMenu()">Sobre Mim</a>
-      <a href="index.html" class="mobile-nav-main" onclick="toggleMenu()">Projetos</a>
-      <hr class="mobile-divider">
-      <span class="mobile-label">Navegue por projeto</span>
-      <a href="infra.html" class="mobile-nav-project" onclick="toggleMenu()">Server Infra & Dashboard</a>
-      <a href="revista-utopia.html" class="mobile-nav-project" onclick="toggleMenu()">Revista Utopia</a>
-      <a href="neoletters.html" class="mobile-nav-project" onclick="toggleMenu()">Neo Letters</a>
-      <a href="lo.html" class="mobile-nav-project" onclick="toggleMenu()">Lô Publicidade</a>
-      <a href="ogabriels.html" class="mobile-nav-project" onclick="toggleMenu()">G | Gabriel</a>
-      <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-nav-project" onclick="toggleMenu()">Um Minuto</a>
-      <a href="valorada.html" class="mobile-nav-project" onclick="toggleMenu()">Valorada</a>
-      <a href="thumbnails.html" class="mobile-nav-project" onclick="toggleMenu()">Thumbnails</a>
-      <a href="vídeos.html" class="mobile-nav-project" onclick="toggleMenu()">Produção Audiovisual</a>
-      <hr class="mobile-divider">
-      <a href="contato.html" class="mobile-nav-main" onclick="toggleMenu()">Contato</a>
+      <div class="mobile-nav-group">
+        <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
+        <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
+      </div>
+      
+      <div class="mobile-projects-wrapper">
+        <div class="mobile-divider"></div>
+        <span class="mobile-label">Cases de Sucesso</span>
+        <div class="mobile-projects-list">
+            <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
+            <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
+            <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
+            <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
+            <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
+            <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
+            <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
+            <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
+            <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
+        </div>
+      </div>
+
+      <div class="mobile-footer-group">
+        <div class="mobile-socials">
+            <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/ogabriels2" class="mobile-social-btn"><i class="fab fa-github"></i></a>
+        </div>
+        <a href="contato.html" class="mobile-cta" onclick="toggleMenu()">
+            <i class="fa-regular fa-comment-dots"></i> Fale Comigo
+        </a>
+      </div>
     </div>
   </div>
 
@@ -313,14 +490,22 @@
     <nav>
       <div class="nav-group">
         <ul class="nav-list">
-          <li><a href="sobre.html" class="nav-link">Sobre mim</a></li>
+          <li>
+            <a href="index.html" class="nav-link back-link">
+              <i class="fa-solid fa-arrow-left"></i> Voltar para Projetos
+            </a>
+          </li>
+          <li>
+            <a href="sobre.html" class="nav-link about-link">
+              <i class="fa-regular fa-user"></i> Sobre mim
+            </a>
+          </li>
         </ul>
       </div>
 
       <div class="nav-group">
         <h3>Portfólio</h3>
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">← Voltar para Projetos</a></li>
           <li><a href="infra.html" class="nav-link active">Server Infra & Dashboard</a></li>
           <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
           <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
@@ -334,7 +519,7 @@
       </div>
 
       <a href="contato.html" class="sidebar-cta">
-        <i class="fa-regular fa-envelope"></i> Fale Comigo
+        <i class="fa-regular fa-comment-dots"></i> Fale Comigo
       </a>
     </nav>
 
@@ -467,18 +652,30 @@
         </div>
 
         <div class="stack-grid">
-          <div class="stack-item"><i class="fa-brands fa-cloudflare"></i> Cloudflare</div>
-          <div class="stack-item"><i class="fa-brands fa-github"></i> GitHub Pages</div>
-          <div class="stack-item"><i class="fa-solid fa-code"></i> API REST</div>
-          <div class="stack-item"><i class="fa-solid fa-network-wired"></i> Tunneling</div>
-          <div class="stack-item"><i class="fa-brands fa-java"></i> Java Runtime</div>
-          <div class="stack-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+          <div class="stack-item" data-tooltip="Proxy e proteção DDoS">
+            <i class="fa-brands fa-cloudflare"></i> Cloudflare
+          </div>
+          <div class="stack-item" data-tooltip="Hospedagem estática">
+            <i class="fa-brands fa-github"></i> GitHub Pages
+          </div>
+          <div class="stack-item" data-tooltip="Comunicação Front-Back">
+            <i class="fa-solid fa-code"></i> API REST
+          </div>
+          <div class="stack-item" data-tooltip="Exposição segura s/ Port Fwd">
+            <i class="fa-solid fa-network-wired"></i> Tunneling
+          </div>
+          <div class="stack-item" data-tooltip="Runtime do Servidor (PaperMC)">
+            <i class="fa-brands fa-java"></i> Java Runtime
+          </div>
+          <div class="stack-item" data-tooltip="Lógica do Dashboard">
+            <i class="fa-brands fa-js"></i> JavaScript
+          </div>
         </div>
       </section>
 
       <div class="project-nav">
         <a href="index.html" class="nav-btn prev">
-          <i class="fa-solid fa-house"></i>
+          <i class="fa-solid fa-arrow-left"></i>
           <div><span class="nav-label">Voltar</span><span class="nav-project-name">Home</span></div>
         </a>
         <a href="revista-utopia.html" class="nav-btn next">
@@ -531,7 +728,7 @@
     const refreshBtn = document.getElementById('refreshBtn');
 
     let retryDelay = 5000;
-    let pollInterval = 30000; // 30s
+    let pollInterval = 30000; 
     let pollTimer = null;
 
     async function fetchWithTimeout(url, timeout = 7000) {
