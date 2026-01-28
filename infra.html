@@ -138,19 +138,18 @@
     .social-icon:active { transform: scale(0.9); transition-duration: 0.1s; }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* ---------------- MOBILE MENU PREMIUM (FIXED SCROLL) ---------------- */
+    /* ---------------- MOBILE MENU PREMIUM ---------------- */
     .mobile-menu-btn { display: none; }
     
     .mobile-menu-overlay { 
       position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); 
       backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
       z-index: 3000; 
-      overflow: hidden; /* Fixo aqui para segurar o X */
+      overflow: hidden; /* Fixo */
       opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
     }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
 
-    /* Wrapper de rolagem independente */
     .mobile-scroll-wrapper {
         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         overflow-y: auto; -webkit-overflow-scrolling: touch;
@@ -159,18 +158,20 @@
     }
     
     .mobile-nav-container { 
-      width: 100%; max-width: 320px; min-height: 100%; margin: auto; 
-      display: flex; flex-direction: column; align-items: center; gap: 20px; 
+      width: 100%; max-width: 320px; 
+      min-height: 100%; margin: auto; 
+      display: flex; flex-direction: column; 
+      align-items: center; gap: 20px; 
       padding: 0 24px;
     }
     
-    /* Botão Fechar FIXED (Sempre visível) */
     .mobile-close-btn {
       position: fixed; top: 24px; right: 24px; width: 44px; height: 44px; 
       background: rgba(0,0,0,0.05); backdrop-filter: blur(10px);
       border-radius: 50%; display: flex; align-items: center; justify-content: center; 
       font-size: 1.2rem; color: var(--text-primary); 
-      cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; 
+      cursor: pointer; border: none; z-index: 3005; 
+      transition: background 0.2s; 
     }
     .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
     
@@ -180,10 +181,7 @@
     .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
 
-    .mobile-link-main { 
-      font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; 
-      letter-spacing: -0.03em; display: block; text-decoration: none;
-    }
+    .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
     .mobile-link-main:active { color: var(--accent) !important; transform: scale(0.95); }
 
     .mobile-projects-wrapper { width: 100%; text-align: center; }
@@ -200,14 +198,11 @@
     .mobile-social-btn:active { color: var(--accent); transform: scale(0.9); }
 
     .mobile-cta {
-      width: auto; min-width: 200px; padding: 14px 32px; 
-      background: var(--text-primary); color: white; border-radius: 50px; 
-      font-weight: 600; font-size: 1rem; text-decoration: none;
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; 
+      font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
-
 
     /* ---------------- MAIN CONTENT ---------------- */
     main { margin-left: var(--sidebar-width); flex: 1; padding: 0; display: flex; flex-direction: column; align-items: center; }
@@ -241,10 +236,9 @@
     .status-pulse.warning { background: var(--warning); }
     @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 
-    /* Texto Descritivo (Padrão 1.1rem para Leitura Confortável) */
-    .project-description { font-size: 1.1rem; line-height: 1.7; color: #444; margin-bottom: 40px; }
-    /* Texto Destaque (Igualado ao padrão) */
-    .description-highlight { font-size: 1.1rem; color: #666; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 12px; margin-bottom: 60px; border-left: 3px solid var(--accent); }
+    /* Texto Descritivo */
+    .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 40px; }
+    .description-highlight { font-size: 1.15rem; color: #666; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 12px; margin-bottom: 60px; border-left: 3px solid var(--accent); }
 
     /* API Widget */
     .api-section { 
@@ -292,7 +286,7 @@
     .flow-step:hover::after { opacity: 1; transform: translateY(0); }
     .flow-arrow { color: #ccc; font-size: 1.2rem; }
 
-    /* Tech Stack */
+    /* Tech Stack & Tooltips */
     .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-top: 40px; }
     .stack-item { 
       background: white; padding: 16px; border-radius: 12px; 
@@ -300,17 +294,30 @@
       display: flex; flex-direction: column; align-items: center; gap: 8px; 
       border: 1px solid #eee; position: relative; cursor: help; transition: all 0.3s ease;
     }
-    .stack-item:hover { transform: translateY(-4px) scale(1.02); border-color: var(--accent); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+    
+    /* Estado Ativo (Mobile) ou Hover (Desktop) */
+    .stack-item:hover, .stack-item.active { 
+        transform: translateY(-4px) scale(1.02); 
+        border-color: var(--accent); 
+        color: var(--text-primary); 
+        box-shadow: var(--shadow-sm); 
+    }
     .stack-item i { font-size: 1.5rem; color: #333; transition: transform 0.3s; }
-    .stack-item:hover i { transform: scale(1.1) rotate(5deg); color: var(--accent); }
+    .stack-item:hover i, .stack-item.active i { transform: scale(1.1) rotate(5deg); color: var(--accent); }
 
+    /* Tooltip */
     .stack-item::before {
       content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: #1D1D1F; color: white; padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 10;
     }
     .stack-item::after {
       content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(10px); border: 6px solid transparent; border-top-color: #1D1D1F; opacity: 0; pointer-events: none; transition: 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); margin-bottom: -12px; z-index: 10;
     }
-    .stack-item:hover::before, .stack-item:hover::after { opacity: 1; transform: translateX(-50%) translateY(-8px); }
+    
+    /* Mostrar Tooltip no Hover ou na classe Active (Mobile) */
+    .stack-item:hover::before, .stack-item:hover::after,
+    .stack-item.active::before, .stack-item.active::after { 
+        opacity: 1; transform: translateX(-50%) translateY(-8px); 
+    }
 
     /* Live Button */
     .live-demo-container { text-align: center; margin-top: 40px; }
@@ -390,13 +397,13 @@
       .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
     }
 
-    /* --- Paisagem Mobile (Ajustes Específicos) --- */
+    /* --- Paisagem Mobile --- */
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; }
       
-      /* Redução Agressiva do Texto APENAS no Paisagem (0.9rem) */
-      .project-description, .description-highlight { font-size: 0.9rem; line-height: 1.5; }
+      /* Redução Agressiva do Texto APENAS no Paisagem */
+      .project-description, .description-highlight { font-size: 0.85rem; line-height: 1.45; }
 
       .meta-grid { grid-template-columns: repeat(4, 1fr); } 
       .api-grid { grid-template-columns: 1fr 1fr 1fr; }
@@ -801,6 +808,31 @@
 
     document.getElementById('infoModal').addEventListener('click', (e) => {
       if(e.target.id === 'infoModal') closeModal();
+    });
+
+    /* --- TECH STACK MOBILE TAP LOGIC --- */
+    // Permite que o toque no mobile funcione como o hover no desktop
+    document.querySelectorAll('.stack-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Se for dispositivo móvel (ou tela pequena), ativa o toggle
+            if (window.innerWidth <= 968) {
+                // Remove active de todos os outros
+                document.querySelectorAll('.stack-item').forEach(el => {
+                    if (el !== this) el.classList.remove('active');
+                });
+                // Toggle no atual
+                this.classList.toggle('active');
+                // Impede que o clique propague (opcional, bom para evitar fechar imediatamente)
+                e.stopPropagation();
+            }
+        });
+    });
+
+    // Fechar tooltips ao clicar fora
+    document.addEventListener('click', function() {
+        document.querySelectorAll('.stack-item.active').forEach(el => {
+            el.classList.remove('active');
+        });
     });
 
     // Mobile Menu
