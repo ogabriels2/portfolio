@@ -150,16 +150,27 @@
     }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
 
+    /* Wrapper de rolagem com Respiro Automático */
     .mobile-scroll-wrapper {
         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         overflow-y: auto; -webkit-overflow-scrolling: touch;
-        padding-top: 80px; padding-bottom: 100px;
+        padding-top: 80px; 
+        
+        /* RESPIRO PARA ROLAGEM: Garante que o botão não cole no fundo */
+        padding-bottom: 120px; 
+        
         display: flex; flex-direction: column;
     }
     
     .mobile-nav-container { 
-      width: 100%; max-width: 320px; min-height: 100%; margin: auto; 
-      display: flex; flex-direction: column; align-items: center; gap: 20px; 
+      width: 100%; max-width: 320px; 
+      
+      /* CENTRALIZAÇÃO VERTICAL QUANDO TEM ESPAÇO */
+      min-height: 100%; 
+      margin: auto; 
+      
+      display: flex; flex-direction: column; 
+      align-items: center; gap: 20px; 
       padding: 0 24px;
     }
     
@@ -209,20 +220,33 @@
     .project-hero { width: 100%; padding: 80px 40px 40px; background-color: var(--bg-body); display: flex; flex-direction: column; align-items: center; justify-content: center; }
     
     .hero-image-container { 
-        width: 100%; max-width: 900px; border-radius: var(--radius-lg); 
-        overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 30px; 
+        width: 100%; 
+        max-width: var(--max-width); /* 1000px Alinhado com o texto */
+        padding: 0 60px; /* Mesma margem do texto */
+        margin-bottom: 30px; 
+        box-sizing: border-box; /* Garante que o padding não estoure a largura */
+    }
+    
+    .hero-image-wrapper-inner {
+        width: 100%;
+        border-radius: var(--radius-lg); 
+        overflow: hidden; 
+        box-shadow: var(--shadow-md); 
         background: linear-gradient(135deg, #0a1931 0%, #1a2a44 100%);
         border: 1px solid rgba(0,0,0,0.05);
         display: flex; align-items: center; justify-content: center;
         aspect-ratio: 16/9;
-        
-        /* Ajuste Fino de Alinhamento: Margem automática para centrar */
-        margin-left: auto;
-        margin-right: auto;
     }
+
     .hero-image { width: auto; height: 70%; object-fit: contain; display: block; }
 
-    .hero-text-content { text-align: center; max-width: 700px; }
+    .hero-text-content { 
+        text-align: center; 
+        width: 100%; max-width: var(--max-width);
+        padding: 0 60px; /* Alinhamento perfeito com a imagem e conteúdo */
+        box-sizing: border-box;
+    }
+    
     .project-title { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.03em; }
     .project-subtitle { font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; }
 
@@ -375,11 +399,10 @@
       
       main { margin-left: 0; padding: 100px 20px 40px; }
       
-      /* Ajuste Hero Mobile */
+      /* Ajuste Hero Mobile: Padding unificado com o conteúdo */
       .project-hero { padding: 40px 0 20px; }
       .hero-image-container { 
           padding: 0 24px; 
-          /* Garante que a imagem não fique colada nas bordas no mobile */
           width: 100%;
           max-width: 100%;
           box-sizing: border-box;
@@ -387,7 +410,7 @@
       .hero-text-content { padding: 0 24px; }
 
       .meta-grid { grid-template-columns: 1fr 1fr; }
-      .content-wrapper { padding: 40px 20px; }
+      .content-wrapper { padding: 40px 24px; /* Padding unificado (24px) */ }
       .api-grid { grid-template-columns: 1fr; gap: 20px; }
       .flow-chart { flex-direction: column; gap: 20px; }
       .flow-arrow { transform: rotate(90deg); margin: 0; }
@@ -399,17 +422,13 @@
       .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
     }
 
-    /* --- Paisagem Mobile --- */
+    /* --- Paisagem Mobile (Ajustes Específicos) --- */
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; }
       
-      /* Redução Agressiva do Texto APENAS no Paisagem (0.85rem) e largura maior */
-      .project-description, .description-highlight { font-size: 0.85rem; line-height: 1.45; }
-      .content-wrapper { 
-          padding: 20px 20px; /* Reduzi o padding lateral para 20px */
-          max-width: 90%; /* Permite ocupar mais largura da tela */
-      }
+      /* Texto Compacto no Paisagem (0.8rem) */
+      .project-description, .description-highlight { font-size: 0.8rem; line-height: 1.4; }
 
       .meta-grid { grid-template-columns: repeat(4, 1fr); } 
       .api-grid { grid-template-columns: 1fr 1fr 1fr; }
@@ -530,7 +549,9 @@
     
     <section class="project-hero">
       <div class="hero-image-container">
-        <img src="logo-forcaaliada.JPG" alt="Server Dashboard" class="hero-image">
+        <div class="hero-image-wrapper-inner">
+            <img src="logo-forcaaliada.JPG" alt="Server Dashboard" class="hero-image">
+        </div>
       </div>
       
       <div class="hero-text-content">
