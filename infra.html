@@ -60,6 +60,7 @@
     }
     aside::-webkit-scrollbar { display: none; }
 
+    /* Perfil */
     .profile-container { text-align: center; margin-bottom: 40px; flex-shrink: 0; }
     .profile-link { display: block; text-decoration: none; transition: transform 0.2s; }
     .profile-link:active { transform: scale(0.98); } 
@@ -138,7 +139,7 @@
     .social-icon:active { transform: scale(0.9); transition-duration: 0.1s; }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* ---------------- MOBILE MENU PREMIUM (FIXED) ---------------- */
+    /* ---------------- MOBILE MENU PREMIUM (FIXED SCROLL) ---------------- */
     .mobile-menu-btn { display: none; }
     
     .mobile-menu-overlay { 
@@ -154,13 +155,12 @@
     
     .mobile-nav-container { 
       width: 100%; max-width: 320px; 
-      min-height: 100%; /* Garante que o container tenha altura para centralizar */
-      margin: 0 auto;
+      /* TRUQUE DO MARGIN AUTO: Centraliza se couber, Rola se passar */
+      margin: auto; 
       display: flex; flex-direction: column; 
-      justify-content: center; /* Centraliza se couber */
       align-items: center; 
       gap: 20px; 
-      padding: 80px 24px 40px; /* Topo maior para o botão X fixo */
+      padding: 80px 24px 40px; /* Topo maior para o X */
     }
     
     .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
@@ -173,7 +173,6 @@
     .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
 
-    /* CORREÇÃO: Cor preta forçada e tamanho grande */
     .mobile-link-main { 
       font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; 
       letter-spacing: -0.03em; display: block; text-decoration: none;
@@ -210,7 +209,7 @@
     }
     .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
 
-    /* CORREÇÃO: X Fixo na tela, não rola */
+    /* Botão Fechar FIXED (Sempre visível ao rolar) */
     .mobile-close-btn {
       position: fixed; top: 24px; right: 24px; 
       width: 44px; height: 44px; 
@@ -254,12 +253,12 @@
     .status-pulse.warning { background: var(--warning); }
     @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 
-    /* AJUSTE: Texto reduzido para Mobile/Retrato também */
-    .project-description { font-size: 1.05rem; line-height: 1.6; color: #444; margin-bottom: 40px; }
+    /* Texto: Retorna ao padrão (1.15rem) para leitura confortável em retrato/desktop */
+    .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 40px; }
     
     .description-highlight { font-size: 1.05rem; color: #666; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 12px; margin-bottom: 60px; border-left: 3px solid var(--accent); }
 
-    /* API Widget Section */
+    /* API Widget */
     .api-section { 
         background: #0f172a; color: white; border-radius: var(--radius-lg); 
         padding: 40px; margin-bottom: 60px; position: relative; overflow: hidden;
@@ -408,8 +407,8 @@
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; }
       
-      /* Ajuste Texto Paisagem (Igualado) */
-      .project-description { font-size: 1.05rem; line-height: 1.6; }
+      /* Redução apenas no Paisagem */
+      .project-description { font-size: 1rem; line-height: 1.5; }
 
       .meta-grid { grid-template-columns: repeat(4, 1fr); } 
       .api-grid { grid-template-columns: 1fr 1fr 1fr; }
