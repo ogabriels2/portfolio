@@ -19,6 +19,9 @@
   <meta name="robots" content="index, follow">
   <meta name="author" content="Gabriel Silva">
   <link rel="canonical" href="https://ogabriels.com/vídeos.html">
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="Logo.png">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ogabriels.com/vídeos.html">
@@ -275,17 +278,25 @@
     /* CONTENT WRAPPER */
     .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); box-sizing: border-box; }
 
-    /* Meta Grid (Desktop: 3 colunas, alinhamento esquerdo) */
+    /* Meta Grid - Refinada (Padrão Unificado) */
     .meta-grid { 
         display: grid; 
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 24px; margin-bottom: 40px; 
-        background: white; padding: 24px; 
-        border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); 
-        text-align: left;
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-areas: "role year tools"; 
+        gap: 24px; 
+        margin-bottom: 40px; 
+        background: white; 
+        padding: 20px 30px; /* Bordas compactas */
+        border-radius: var(--radius-lg); 
+        box-shadow: var(--shadow-sm); 
     }
-    .meta-item { display: flex; flex-direction: column; align-items: flex-start; } 
 
+    /* Alinhamento para centralizar o "Foco" */
+    .role { grid-area: role; text-align: left; align-items: flex-start; }
+    .year { grid-area: year; text-align: center; align-items: center; } 
+    .tools { grid-area: tools; text-align: right; align-items: flex-end; } 
+
+    .meta-item { display: flex; flex-direction: column; }
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
 
@@ -312,7 +323,53 @@
         user-select: none;
     }
     
-    video::cue { background-color: rgba(0, 0, 0, 0.75) !important; color: white; font-family: 'Inter', sans-serif; font-weight: 500; font-size: clamp(14px, 1.5vw, 24px); line-height: 1.4; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    /* Legendas: Centralizadas, Texto à Direita e Elevação */
+    video::cue { 
+      background-color: rgba(0, 0, 0, 0.7) !important; 
+      color: white; 
+      font-family: 'Inter', sans-serif; 
+      font-weight: 500; 
+      font-size: clamp(14px, 1.6vw, 20px); 
+      line-height: 1.05; /* Espaçamento mínimo */
+      /* Bordas arredondadas e alinhamento à direita dentro do cue */
+      border-radius: 8px;
+    }
+
+    /* Elevação do Container de Legenda (Webkit) */
+    .video-container video::-webkit-media-text-track-display {
+      transform: translateY(-10px);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Força o alinhamento interno do bloco à direita conforme solicitado */
+      text-align: right !important;
+    }
+
+    /* Levanta a legenda para não ser cortada pela barra de progresso */
+    .video-container:not(.user-inactive) video::-webkit-media-text-track-display,
+    .video-container.paused video::-webkit-media-text-track-display {
+      transform: translateY(-70px); 
+    }
+
+    /* Animação Fluida para Menus (Velocidade e Legenda) */
+    .captions-menu, .speed-menu {
+        position: absolute; bottom: 50px; right: -10px;
+        background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(20px);
+        border-radius: 12px; padding: 6px; min-width: 130px;
+        display: flex; flex-direction: column; gap: 2px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
+        z-index: 100;
+        /* Estado inicial para animação fade-in-up */
+        opacity: 0; pointer-events: none; transform: translateY(15px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .captions-menu.show, .speed-menu.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* Estilo Premium para Botão Ativo (Sem quadrado branco) */
+    .control-btn.active { 
+      background-color: transparent !important; /* Remove o fundo branco */
+      color: #FFFFFF !important; 
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)); /* Brilho no ícone */
+      transform: scale(1.15);
+    }
     
     .video-container.user-inactive { cursor: none; }
     .video-container.user-inactive .controls-wrapper,
@@ -412,29 +469,66 @@
       text-shadow: none;
     }
 
-    .captions-container { position: relative; }
-    .captions-menu {
-        position: absolute; bottom: 50px; right: -20px;
-        background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(16px);
-        border-radius: 12px; padding: 6px; min-width: 160px;
-        display: none; flex-direction: column; gap: 2px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
-        animation: menuFadeIn 0.2s ease forwards;
+/* Containers relativos para que os menus saibam onde se apoiar */
+    .captions-container, .speed-container { 
+      position: relative; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    @keyframes menuFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .captions-menu.show { display: flex; }
+
+    /* Menus Premium: Alinhados ao botão e com animação fade-in-up */
+    .captions-menu, .speed-menu {
+        position: absolute; 
+        bottom: 45px; /* Altura ideal acima da barra */
+        right: 0;     /* Alinha o menu pela direita do botão */
+        background: rgba(28, 28, 30, 0.95); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 12px; 
+        padding: 6px; 
+        min-width: 140px;
+        display: flex; 
+        flex-direction: column; 
+        gap: 2px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5); 
+        border: 1px solid rgba(255,255,255,0.1);
+        z-index: 100;
+        /* Estado inicial da animação */
+        opacity: 0; 
+        pointer-events: none; 
+        transform: translateY(10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Exibição Fluida */
+    .captions-menu.show, .speed-menu.show { 
+        opacity: 1; 
+        pointer-events: auto; 
+        transform: translateY(0); 
+    }
+
+    /* Botão Ativo: Estilo Premium (Apenas ícone brilha) */
+    .control-btn.active { 
+      background-color: transparent !important;
+      color: #FFFFFF !important;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+      transform: scale(1.1);
+    }
+    
     .caption-option {
-        background: none; border: none; color: #ccc; text-align: left; padding: 10px 16px;
-        font-size: 0.9rem; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif;
+        background: none; border: none; color: #ccc; text-align: left; padding: 10px 14px;
+        font-size: 0.85rem; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif;
         border-radius: 8px; display: flex; justify-content: space-between; align-items: center;
     }
     .caption-option:hover { background: rgba(255,255,255,0.1); color: white; }
     .caption-option.active { background: rgba(0, 113, 227, 0.2); color: var(--accent); font-weight: 600; }
 
+    /* Volume e Timeline */
     .volume-container { display: flex; align-items: center; gap: 10px; }
     .volume-slider-container {
         width: 0; overflow: hidden; height: 24px; display: flex; align-items: center;
-        transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1); position: relative; cursor: pointer;
+        transition: width 0.3s ease; position: relative; cursor: pointer;
     }
     .volume-container:hover .volume-slider-container, .volume-container.dragging .volume-slider-container { width: 80px; }
     .volume-bg { width: 100%; height: 4px; background: var(--ui-track); border-radius: 2px; position: relative; }
@@ -534,14 +628,26 @@
       .hero-text-content { padding: 0 24px; }
       .content-wrapper { padding: 40px 24px; }
       
-      /* Grid 2x2 Mobile */
+      /* Grid em linha única para Mobile com respiro lateral corrigido */
       .meta-grid { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        grid-template-areas: 
-          "role tools" 
-          "year ."; 
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-areas: "role year tools"; 
+        gap: 10px; 
+        padding: 18px 18px; 
       }
+      
+      /* Ajustes de texto apenas para Mobile */
+      .meta-item h4 { font-size: 0.6rem; }
+      .meta-item p { 
+        font-size: 0.72rem; 
+        line-height: 1.2; 
+        word-break: break-word;
+      }
+
+      /* Alinhamentos mobile preservando o centro */
+      .role { text-align: left; align-items: flex-start; }
+      .year { text-align: center; align-items: center; }
+      .tools { text-align: right; align-items: flex-end; }
       .center-btn { width: 40px; height: 40px; font-size: 0.9rem; }
       .center-btn.main-play { width: 60px; height: 60px; font-size: 1.5rem; }
 
@@ -778,6 +884,18 @@
                 <div class="time-display">0:00 / 0:00</div>
               </div>
               <div class="controls-right">
+                <div class="speed-container">
+                  <button class="control-btn speed-btn" title="Velocidade"><i class="fa-solid fa-gauge-high"></i></button>
+                  <div class="speed-menu">
+                    <button class="caption-option" data-speed="0.5">0.5x</button>
+                    <button class="caption-option" data-speed="0.75">0.75x</button>
+                    <button class="caption-option active" data-speed="1">Normal</button>
+                    <button class="caption-option" data-speed="1.25">1.25x</button>
+                    <button class="caption-option" data-speed="1.5">1.5x</button>
+                    <button class="caption-option" data-speed="2">2x</button>
+                  </div>
+                </div>
+
                 <div class="captions-container">
                   <button class="control-btn captions-btn"><i class="fa-regular fa-closed-captioning"></i></button>
                   <div class="captions-menu">
@@ -917,35 +1035,39 @@
   </div>
 
   <script>
-    /* --- ULTIMATE VIDEO PLAYER LOGIC --- */
+/* --- ULTIMATE VIDEO PLAYER LOGIC --- */
     document.querySelectorAll('.video-container').forEach(container => {
       const video = container.querySelector('video');
       const centerControls = container.querySelector('.center-controls');
-      const mainPlayBtn = centerControls ? centerControls.querySelector('.main-play') : null;
-      const skipBtns = centerControls ? centerControls.querySelectorAll('.skip-btn') : [];
+      const mainPlayBtn = centerControls?.querySelector('.main-play');
+      const skipBtns = centerControls?.querySelectorAll('.skip-btn');
       const playBtn = container.querySelector('.play-pause-btn');
-      const icon = playBtn ? playBtn.querySelector('i') : null;
+      const icon = playBtn?.querySelector('i');
       const timelineContainer = container.querySelector('.timeline-container');
       const progressBar = container.querySelector('.progress-bar');
-      const bufferBar = container.querySelector('.buffer-bar');
-      const hoverBar = container.querySelector('.hover-bar');
-      const tooltip = container.querySelector('.time-tooltip');
       const timeDisplay = container.querySelector('.time-display');
       const muteBtn = container.querySelector('.mute-btn');
+      const volumeSlider = container.querySelector('.volume-slider-container');
+      const volumeFill = container.querySelector('.volume-fill');
       const fullscreenBtn = container.querySelector('.fullscreen-btn');
       const captionBtn = container.querySelector('.captions-btn');
       const captionMenu = container.querySelector('.captions-menu');
-      const captionOptions = container.querySelectorAll('.caption-option');
+      const captionOptions = container.querySelectorAll('.captions-menu .caption-option');
+      const speedBtn = container.querySelector('.speed-btn');
+      const speedMenu = container.querySelector('.speed-menu');
+      const speedOptions = container.querySelectorAll('.speed-menu .caption-option');
 
       let isScrubbing = false;
+      let isDraggingVolume = false;
+      let wasPausedBeforeScrubbing = true;
       let hideControlsTimeout;
 
+      // Iniciar legendas desativadas
       function initTracks() {
         for (let i = 0; i < video.textTracks.length; i++) {
           video.textTracks[i].mode = 'disabled';
         }
       }
-      
       if (video.readyState >= 1) initTracks();
       else video.addEventListener('loadedmetadata', initTracks);
 
@@ -954,55 +1076,83 @@
           video.play();
           container.classList.remove('paused');
           container.classList.add('playing', 'has-played');
-          if(icon) icon.classList.replace('fa-play', 'fa-pause');
+          if(icon) icon.className = 'fa-solid fa-pause';
           if(mainPlayBtn) mainPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         } else {
           video.pause();
           container.classList.add('paused');
           container.classList.remove('playing');
-          if(icon) icon.classList.replace('fa-pause', 'fa-play');
+          if(icon) icon.className = 'fa-solid fa-play';
           if(mainPlayBtn) mainPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
       }
 
-      function skip(seconds, btn) {
-        video.currentTime += seconds;
-        const icon = btn.querySelector('i');
-        const popup = btn.querySelector('.skip-text-popup');
-        icon.classList.remove('rotate-360-right', 'rotate-360-left');
-        popup.classList.remove('animate-forward', 'animate-backward');
-        void icon.offsetWidth;
-        void popup.offsetWidth;
-        icon.classList.add(seconds > 0 ? 'rotate-360-right' : 'rotate-360-left');
-        popup.classList.add(seconds > 0 ? 'animate-forward' : 'animate-backward');
+      // Timeline / Scrubbing
+      function handleTimelineUpdate(e) {
+        const rect = timelineContainer.getBoundingClientRect();
+        const percent = Math.min(Math.max(0, e.clientX - rect.left), rect.width) / rect.width;
+        progressBar.style.width = `${percent * 100}%`;
+        video.currentTime = percent * video.duration;
       }
 
-      container.addEventListener('click', (e) => {
-        if (e.target.closest('.controls-wrapper') || e.target.closest('.center-btn')) return;
-        togglePlay();
+      timelineContainer.addEventListener('mousedown', (e) => {
+        isScrubbing = true;
+        wasPausedBeforeScrubbing = video.paused;
+        video.pause();
+        container.classList.add('scrubbing');
+        handleTimelineUpdate(e);
       });
 
-      if(mainPlayBtn) mainPlayBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
-      if(playBtn) playBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
-      skipBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => { e.stopPropagation(); skip(parseFloat(btn.dataset.skip), btn); });
+      // Volume (Clique e Arraste)
+      function updateVolume(e) {
+        const rect = volumeSlider.getBoundingClientRect();
+        const percent = Math.min(Math.max(0, e.clientX - rect.left), rect.width) / rect.width;
+        video.volume = percent;
+        video.muted = percent === 0;
+        volumeFill.style.width = `${percent * 100}%`;
+        const vIcon = muteBtn.querySelector('i');
+        vIcon.className = video.muted ? 'fa-solid fa-volume-xmark' : (percent < 0.5 ? 'fa-solid fa-volume-low' : 'fa-solid fa-volume-high');
+      }
+
+      volumeSlider.addEventListener('mousedown', (e) => {
+        isDraggingVolume = true;
+        container.querySelector('.volume-container').classList.add('dragging');
+        updateVolume(e);
       });
 
-      function showControls() { container.classList.remove('user-inactive'); clearTimeout(hideControlsTimeout); }
-      function hideControls() { if (!video.paused) hideControlsTimeout = setTimeout(() => { container.classList.add('user-inactive'); }, 3000); }
-      container.addEventListener('mousemove', () => { showControls(); hideControls(); });
-      container.addEventListener('mouseleave', () => { if(!video.paused) container.classList.add('user-inactive'); });
+      // Mousemove Global
+      document.addEventListener('mousemove', (e) => {
+        if (isScrubbing) handleTimelineUpdate(e);
+        if (isDraggingVolume) updateVolume(e);
+      });
 
-      video.addEventListener('timeupdate', () => {
-        if (!isScrubbing) {
-          const percent = (video.currentTime / video.duration) * 100;
-          progressBar.style.width = `${percent}%`;
-          timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+      document.addEventListener('mouseup', () => {
+        if (isScrubbing) {
+          isScrubbing = false;
+          container.classList.remove('scrubbing');
+          if (!wasPausedBeforeScrubbing) video.play();
+        }
+        if (isDraggingVolume) {
+          isDraggingVolume = false;
+          container.querySelector('.volume-container').classList.remove('dragging');
         }
       });
 
+      // Mute Toggle
+      muteBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        volumeFill.style.width = video.muted ? '0%' : `${video.volume * 100}%`;
+        muteBtn.querySelector('i').className = video.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+      });
+
+      // Menus (Velocidade e Legenda)
       if (captionBtn) {
-        captionBtn.addEventListener('click', (e) => { e.stopPropagation(); captionMenu.classList.toggle('show'); });
+        captionBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          speedMenu?.classList.remove('show');
+          captionMenu.classList.toggle('show');
+        });
         captionOptions.forEach(opt => {
           opt.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -1010,11 +1160,8 @@
             captionOptions.forEach(o => o.classList.remove('active'));
             opt.classList.add('active');
             captionMenu.classList.remove('show');
-            if (lang === 'off') captionBtn.classList.remove('active');
-            else captionBtn.classList.add('active');
-            for (let i = 0; i < video.textTracks.length; i++) {
-              video.textTracks[i].mode = 'disabled';
-            }
+            captionBtn.classList.toggle('active', lang !== 'off');
+            for (let i = 0; i < video.textTracks.length; i++) video.textTracks[i].mode = 'disabled';
             if (lang !== 'off') {
               for (let i = 0; i < video.textTracks.length; i++) {
                 if (video.textTracks[i].language === lang) video.textTracks[i].mode = 'showing';
@@ -1024,62 +1171,93 @@
         });
       }
 
-      function toggleFullscreen() {
+      if (speedBtn) {
+        speedOptions.forEach(opt => { if(opt.dataset.speed === "1") opt.classList.add('active'); });
+        speedBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          captionMenu?.classList.remove('show');
+          speedMenu.classList.toggle('show');
+        });
+        speedOptions.forEach(opt => {
+          opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            video.playbackRate = parseFloat(opt.dataset.speed);
+            speedOptions.forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+            speedMenu.classList.remove('show');
+            speedBtn.classList.toggle('active', opt.dataset.speed !== "1");
+          });
+        });
+      }
+
+      // Eventos Base
+      video.addEventListener('timeupdate', () => {
+        if (!isScrubbing) {
+          const percent = (video.currentTime / video.duration) * 100;
+          progressBar.style.width = `${percent}%`;
+          timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+        }
+      });
+
+      container.addEventListener('click', (e) => {
+        if (e.target.closest('.controls-wrapper') || e.target.closest('.center-btn')) return;
+        togglePlay();
+      });
+
+      if(mainPlayBtn) mainPlayBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+      if(playBtn) playBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+      
+      skipBtns?.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          video.currentTime += parseFloat(btn.dataset.skip);
+        });
+      });
+
+      if(fullscreenBtn) fullscreenBtn.addEventListener('click', () => {
         if (document.fullscreenElement) document.exitFullscreen();
         else container.requestFullscreen();
-      }
-      if(fullscreenBtn) fullscreenBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleFullscreen(); });
+      });
 
-      function formatTime(seconds) {
-        if (isNaN(seconds)) return "0:00";
-        const m = Math.floor(seconds / 60);
-        const s = Math.floor(seconds % 60);
-        return `${m}:${s < 10 ? '0' : ''}${s}`;
+      document.addEventListener('click', () => {
+        speedMenu?.classList.remove('show');
+        captionMenu?.classList.remove('show');
+      });
+
+      function formatTime(s) {
+        if (isNaN(s)) return "0:00";
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return `${m}:${sec < 10 ? '0' : ''}${sec}`;
       }
-      
-      function handleTimelineUpdate(e) {
-        const rect = timelineContainer.getBoundingClientRect();
-        const percent = Math.min(Math.max(0, e.clientX - rect.left), rect.width) / rect.width;
-        progressBar.style.width = `${percent * 100}%`;
-        if (isScrubbing) video.currentTime = percent * video.duration;
-      }
-      timelineContainer.addEventListener('mousedown', (e) => { isScrubbing = true; container.classList.add('scrubbing'); handleTimelineUpdate(e); });
-      document.addEventListener('mousemove', (e) => { if (isScrubbing) handleTimelineUpdate(e); });
-      document.addEventListener('mouseup', () => { if (isScrubbing) { isScrubbing = false; container.classList.remove('scrubbing'); } });
     });
 
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = menuBtn.querySelector('i');
-    let isMenuOpen = false;
-
+    // Menu Mobile e Lightbox (Geral)
     function toggleMenu() {
-      isMenuOpen = !isMenuOpen;
-      if (isMenuOpen) {
-        mobileMenu.classList.add('active');
-        menuIcon.classList.remove('fa-bars');
-        menuIcon.classList.add('fa-xmark');
-        document.body.style.overflow = 'hidden';
-      } else {
-        mobileMenu.classList.remove('active');
-        menuIcon.classList.remove('fa-xmark');
-        menuIcon.classList.add('fa-bars');
-        document.body.style.overflow = '';
-      }
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuIcon = document.getElementById('menuBtn').querySelector('i');
+      mobileMenu.classList.toggle('active');
+      const isOpen = mobileMenu.classList.contains('active');
+      menuIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     }
-    menuBtn.addEventListener('click', toggleMenu);
+    document.getElementById('menuBtn').addEventListener('click', toggleMenu);
 
-    const triggers = document.querySelectorAll('.lightbox-trigger');
     const lightbox = document.getElementById('lightbox');
     const lbImage = document.getElementById('lb-image');
-    const lbClose = document.getElementById('lb-close');
-
-    function openLightbox(src) { lbImage.src = src; lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-
-    triggers.forEach(img => img.addEventListener('click', ()=>openLightbox(img.src)));
-    if (lbClose) lbClose.addEventListener('click', closeLightbox);
-    if (lightbox) lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
+    document.querySelectorAll('.lightbox-trigger').forEach(img => {
+      img.addEventListener('click', () => {
+        lbImage.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lightbox.addEventListener('click', (e) => {
+      if(e.target === lightbox || e.target.id === 'lb-close') {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
   </script>
 
 <script type="application/ld+json">
