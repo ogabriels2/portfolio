@@ -397,12 +397,21 @@
       .content-wrapper { padding: 40px 24px; }
       
       /* Grid 2x2 Mobile sem o bug do ponto */
-      /* Grid em linha única para Mobile */
+      /* Grid em linha única para Mobile com mais respiro lateral */
       .meta-grid { 
-        grid-template-columns: 1fr 1fr 1fr; /* Força 3 colunas iguais */
-        grid-template-areas: "role year tools"; /* Coloca todos lado a lado */
-        gap: 8px; /* Reduzi o espaço entre eles para caber melhor */
-        padding: 15px 10px; /* Bordas ainda menores para ganhar espaço lateral */
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-areas: "role year tools"; 
+        /* Mantive o gap reduzido para não espremer o texto */
+        gap: 10px; 
+        /* Aumentei de 10px para 18px nas laterais */
+        padding: 18px 18px; 
+      }
+      
+      /* Ajuste fino da fonte para compensar o respiro lateral */
+      .meta-item p { 
+        font-size: 0.72rem; 
+        line-height: 1.2; 
+        word-break: break-word;
       }
       
       /* Redução de fonte apenas para Mobile */
