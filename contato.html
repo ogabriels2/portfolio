@@ -214,7 +214,7 @@
     .page-kicker { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); display: block; margin-bottom: 8px; }
     .page-title { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; color: var(--text-primary); }
     
-    /* DESKTOP SUBTITLE RESTAURADO */
+    /* DESKTOP SUBTITLE */
     .page-desc { 
         font-size: 1.2rem; 
         color: var(--text-secondary); 
@@ -233,13 +233,18 @@
     .card-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); font-weight: 600; letter-spacing: 0.05em; }
     .card-value { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-top: 2px; }
     .card-value.email-value { text-decoration: underline; }
+    
+    /* WhatsApp: Remoção de href para segurança */
     .contact-card.whatsapp .card-icon { color: var(--whatsapp); font-size: 1.6rem; }
     .contact-card.whatsapp:hover { border-color: rgba(37, 211, 102, 0.2); }
+    
     .copy-btn { background: #F5F5F7; border: none; width: 40px; height: 40px; border-radius: 50%; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; position: relative; font-size: 1rem; }
     .copy-btn:hover { background: var(--text-primary); color: white; }
     .copy-btn::after { content: 'Copiado'; position: absolute; top: -40px; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--text-primary); color: white; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; opacity: 0; pointer-events: none; transition: 0.3s var(--ease-apple); white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     .copy-btn.copied::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+    
     .contact-divider { height: 1px; border: none; background: linear-gradient(to right, rgba(0,0,0,0.02), rgba(0,0,0,0.08), rgba(0,0,0,0.02)); margin: 40px 0; width: 100%; }
+    
     .social-area { display: flex; flex-direction: column; gap: 16px; }
     .social-label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 16px; display: block; text-transform: uppercase; letter-spacing: 0.05em; }
     .social-big-list { display: flex; gap: 16px; }
@@ -249,7 +254,6 @@
     /* ---------------- FORMULÁRIO ---------------- */
     .form-wrapper { 
         background: white; 
-        /* Padding inferior reduzido para compensar visualmente o texto de rodapé */
         padding: 48px 48px 24px 48px; 
         border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); transition: box-shadow 0.3s;
         opacity: 0; animation: slideUpFade 0.8s var(--ease-apple) 0.1s forwards;
@@ -318,13 +322,12 @@
       width: 0; z-index: 2;
     }
     
-    /* Nota de Rodapé */
     .form-footer-text {
         text-align: center;
         font-size: 0.75rem;
         color: var(--text-secondary);
         margin-top: 16px;
-        margin-bottom: 0; /* Garante que não crie espaço extra abaixo */
+        margin-bottom: 0; 
         opacity: 0.8;
         font-weight: 500;
         display: flex;
@@ -368,6 +371,8 @@
       
       /* --- MOBILE PORTRAIT (Celular em pé) --- */
       .contact-grid { grid-template-columns: 1fr; gap: 32px; display: flex; flex-direction: column; align-items: stretch; }
+      
+      /* Centralização Vertical no Mobile */
       .contact-info { position: static; text-align: center; align-items: center; } 
       .info-group { align-items: center; text-align: center; width: 100%; } 
       
@@ -380,29 +385,32 @@
 
       /* Descrição App-like */
       .page-desc { 
-        font-size: 1rem; /* Tamanho Mobile */
+        font-size: 1rem; 
         text-align: center; 
         margin: 8px auto 0; 
         max-width: 300px; 
       }
       
+      /* Reduz gap do divider e dos itens */
+      .contact-divider { margin: 24px 0; }
+      .info-group { gap: 24px; }
+      
       .social-area { align-items: center; text-align: center; width: 100%; } 
       .social-big-list { justify-content: center; } 
       
-      /* Padding reduzido no mobile também */
       .form-wrapper { padding: 24px 24px 20px; }
     }
 
     /* --- MOBILE LANDSCAPE (Split View Estilo Dashboard) --- */
     @media (max-width: 968px) and (orientation: landscape) {
         .contact-grid {
-            display: grid; /* Força grid */
+            display: grid; 
             grid-template-columns: 1fr 1fr; /* Split View */
-            align-items: center; /* Centraliza verticalmente */
+            align-items: center; 
             gap: 40px;
         }
         main {
-            padding: 40px; /* Padding reduzido verticalmente */
+            padding: 40px; 
             justify-content: center; 
             min-height: 100vh;
         }
@@ -417,9 +425,9 @@
             text-align: left;
             width: 100%;
         }
-        .page-title { font-size: 1.8rem; } /* Título menor para caber */
+        .page-title { font-size: 1.8rem; } 
         
-        /* Aumentado um pouco para equilíbrio no split view */
+        /* Aumentado para equilíbrio no split view */
         .page-desc {
             font-size: 1.05rem; 
             text-align: left;
@@ -430,9 +438,7 @@
         /* Botões de Contato */
         .contact-methods { width: 100%; }
         
-        .social-area { display: none; } /* Oculta social no landscape para economizar espaço vertical */
-        /* Se preferir mostrar: .social-area { align-items: flex-start; display: flex; margin-top: 20px; } */
-        
+        /* Ajuste do Header Mobile no Landscape */
         aside { height: 50px; padding: 0 20px; }
         main { padding-top: 80px; } 
     }
@@ -542,12 +548,13 @@
                 </div>
                 <button class="copy-btn" id="copyBtn" aria-label="Copiar e-mail"><i class="fa-regular fa-copy"></i></button>
               </div>
-              <a href="https://wa.me/5511979686116" target="_blank" class="contact-card whatsapp">
+              
+              <a id="wa-link" href="#" target="_blank" class="contact-card whatsapp">
                 <div class="card-left">
                   <i class="fa-brands fa-whatsapp card-icon"></i>
                   <div class="card-text">
                     <span class="card-label">WhatsApp</span>
-                    <span class="card-value">+55 11 97968-6116</span>
+                    <span id="wa-text" class="card-value">Carregando...</span>
                   </div>
                 </div>
                 <i class="fa-solid fa-arrow-up-right-from-square" style="color: #ccc; font-size: 0.9rem;"></i>
@@ -633,6 +640,21 @@
         }
     }
     window.onload = function() { window.scrollTo(0,0); }
+
+    // --- PROTEÇÃO ANTI-SPAM WHATSAPP ---
+    // O número nunca aparece no código fonte, montado apenas aqui
+    const w_cc = "55";
+    const w_ac = "11";
+    const w_num = "979686116";
+    const waLink = document.getElementById('wa-link');
+    const waText = document.getElementById('wa-text');
+
+    // Monta o link e o visual
+    if(waLink && waText) {
+        waLink.href = `https://wa.me/${w_cc}${w_ac}${w_num}`;
+        // Formata visualmente: +55 11 97968-6116
+        waText.innerText = `+${w_cc} ${w_ac} ${w_num.substring(0,5)}-${w_num.substring(5)}`;
+    }
 
     // --- 1. DADOS DE PAÍSES ---
     const countries = [
