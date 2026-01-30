@@ -216,7 +216,7 @@
     
     /* DESKTOP SUBTITLE RESTAURADO */
     .page-desc { 
-        font-size: 1.2rem; /* Restaurado para Desktop */
+        font-size: 1.2rem; 
         color: var(--text-secondary); 
         line-height: 1.6;
         font-weight: 400; 
@@ -248,7 +248,10 @@
 
     /* ---------------- FORMULÁRIO ---------------- */
     .form-wrapper { 
-        background: white; padding: 48px; border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); transition: box-shadow 0.3s;
+        background: white; 
+        /* Padding inferior reduzido para compensar visualmente o texto de rodapé */
+        padding: 48px 48px 24px 48px; 
+        border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); transition: box-shadow 0.3s;
         opacity: 0; animation: slideUpFade 0.8s var(--ease-apple) 0.1s forwards;
     }
     .form-label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); margin-left: 4px; }
@@ -306,7 +309,7 @@
     .submit-btn i { transition: transform 0.3s var(--ease-apple); }
     .submit-btn:hover i { transform: translateX(4px); }
     
-    /* Barra de Tempo: Branca com borda Verde Sucesso */
+    /* Barra de Tempo */
     .progress-bar {
       position: absolute; bottom: 0; left: 0; 
       height: 6px; 
@@ -320,7 +323,8 @@
         text-align: center;
         font-size: 0.75rem;
         color: var(--text-secondary);
-        margin-top: 16px; /* Margem negativa não é mais necessária pois o container cresce naturalmente */
+        margin-top: 16px;
+        margin-bottom: 0; /* Garante que não crie espaço extra abaixo */
         opacity: 0.8;
         font-weight: 500;
         display: flex;
@@ -385,10 +389,11 @@
       .social-area { align-items: center; text-align: center; width: 100%; } 
       .social-big-list { justify-content: center; } 
       
-      .form-wrapper { padding: 24px 24px 32px; }
+      /* Padding reduzido no mobile também */
+      .form-wrapper { padding: 24px 24px 20px; }
     }
 
-    /* --- MOBILE LANDSCAPE (Celular deitado) --- */
+    /* --- MOBILE LANDSCAPE (Split View Estilo Dashboard) --- */
     @media (max-width: 968px) and (orientation: landscape) {
         .contact-grid {
             display: grid; /* Força grid */
@@ -414,8 +419,9 @@
         }
         .page-title { font-size: 1.8rem; } /* Título menor para caber */
         
+        /* Aumentado um pouco para equilíbrio no split view */
         .page-desc {
-            font-size: 1.05rem; /* Fonte ligeiramente maior para equilíbrio */
+            font-size: 1.05rem; 
             text-align: left;
             margin: 8px 0 0 0;
             max-width: 100%;
@@ -424,9 +430,8 @@
         /* Botões de Contato */
         .contact-methods { width: 100%; }
         
-        .social-area { display: none; } /* Oculta social no landscape para economizar espaço vertical se necessário, ou mantém */
-        .social-area { align-items: flex-start; display: flex; margin-top: 20px; }
-        .social-big-list { justify-content: flex-start; }
+        .social-area { display: none; } /* Oculta social no landscape para economizar espaço vertical */
+        /* Se preferir mostrar: .social-area { align-items: flex-start; display: flex; margin-top: 20px; } */
         
         aside { height: 50px; padding: 0 20px; }
         main { padding-top: 80px; } 
