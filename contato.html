@@ -1084,13 +1084,29 @@
       "@type": "Person",
       "@id": "https://ogabriels.com/",
       "name": "Gabriel Silva",
-      "alternateName": [
-        "Gabriel Silva Dias Moreira",
-        "Gabriel Moreira"
-      ],
+      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
       "url": "https://ogabriels.com/",
       "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": "https://ogabriels.com/Minha%20foto%201.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg"
+      },
+      "alumniOf": [
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "Liceu de Artes e Ofícios de São Paulo",
+          "url": "https://www.liceuescola.com.br",
+          "sameAs": ["https://www.liceuescola.com.br", "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"]
+        },
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "UNIVESP",
+          "url": "https://univesp.br/",
+          "sameAs": ["https://univesp.br/", "https://pt.wikipedia.org/wiki/Universidade_Virtual_do_Estado_de_S%C3%A3o_Paulo", "https://www.sp.gov.br/sp/institucional/estrutura/fundacoes/univesp"]
+        }
+      ],
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
         "https://github.com/ogabriels2/",
@@ -1104,15 +1120,22 @@
           "@type": "ContactPoint",
           "contactType": "customer support",
           "email": "contato@ogabriels.com",
-          "availableLanguage": ["Portuguese"]
+          "availableLanguage": ["Portuguese", "English"]
         },
         {
           "@type": "ContactPoint",
           "contactType": "sales",
-          "telephone": "+5511979686116",
-          "description": "Orçamentos para Desenvolvimento Web, Design e Audiovisual",
+          "telephone": "+55 11 97968-6116",
+          "areaServed": "BR",
           "availableLanguage": ["Portuguese"],
-          "areaServed": "BR"
+          "hoursAvailable": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "17:00"
+            }
+          ]
         }
       ]
     },
@@ -1120,14 +1143,13 @@
       "@type": "ContactPage",
       "@id": "https://ogabriels.com/contato.html",
       "url": "https://ogabriels.com/contato.html",
-      "name": "Fale Comigo | Orçamento e Projetos - Gabriel Silva",
-      "description": "Entre em contato com Gabriel Silva para projetos de tecnologia, design ou audiovisual.",
+      "name": "Fale Comigo | Orçamentos e Projetos - Gabriel Silva",
+      "description": "Entre em contato com Gabriel Silva para consultoria em tecnologia, desenvolvimento web e produção audiovisual.",
+      "publisher": { "@id": "https://ogabriels.com/" },
+      "isPartOf": { "@id": "https://ogabriels.com/#website" },
       "about": { "@id": "https://ogabriels.com/" },
       "mainEntity": { "@id": "https://ogabriels.com/" },
-      "isPartOf": {
-        "@type": "WebSite",
-        "@id": "https://ogabriels.com/#website"
-      },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
       "inLanguage": "pt-BR"
     }
   ]
