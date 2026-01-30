@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <script src="https://www.google.com/recaptcha/api.js?render=6LchyFosAAAAAIDGxPkgkiS9YIGzOlkXTDN_wr5X"></script>
+
   <style>
     /* ---------------- Design System Apple Premium ---------------- */
     :root {
@@ -54,6 +56,9 @@
     }
 
     a { text-decoration: none; -webkit-tap-highlight-color: transparent; color: inherit; }
+
+    /* Remove o emblema flutuante do reCAPTCHA (permitido se você mencionar no rodapé) */
+    .grecaptcha-badge { visibility: hidden; }
 
     /* --- Animações --- */
     @keyframes slideUpFade {
@@ -169,7 +174,7 @@
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* ---------------- MOBILE MENU (Intocado) ---------------- */
+    /* ---------------- MOBILE MENU ---------------- */
     .mobile-menu-btn { display: none; }
     .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
@@ -214,7 +219,6 @@
     .page-kicker { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); display: block; margin-bottom: 8px; }
     .page-title { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; color: var(--text-primary); }
     
-    /* DESKTOP SUBTITLE */
     .page-desc { 
         font-size: 1.2rem; 
         color: var(--text-secondary); 
@@ -234,7 +238,6 @@
     .card-value { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); margin-top: 2px; }
     .card-value.email-value { text-decoration: underline; }
     
-    /* WhatsApp: Remoção de href para segurança */
     .contact-card.whatsapp .card-icon { color: var(--whatsapp); font-size: 1.6rem; }
     .contact-card.whatsapp:hover { border-color: rgba(37, 211, 102, 0.2); }
     
@@ -313,7 +316,7 @@
     .submit-btn i { transition: transform 0.3s var(--ease-apple); }
     .submit-btn:hover i { transform: translateX(4px); }
     
-    /* Barra de Tempo */
+    /* Barra de Tempo: Branca com borda Verde Sucesso */
     .progress-bar {
       position: absolute; bottom: 0; left: 0; 
       height: 6px; 
@@ -371,8 +374,6 @@
       
       /* --- MOBILE PORTRAIT (Celular em pé) --- */
       .contact-grid { grid-template-columns: 1fr; gap: 32px; display: flex; flex-direction: column; align-items: stretch; }
-      
-      /* Centralização Vertical no Mobile */
       .contact-info { position: static; text-align: center; align-items: center; } 
       .info-group { align-items: center; text-align: center; width: 100%; } 
       
@@ -391,12 +392,10 @@
         max-width: 300px; 
       }
       
-      /* Reduz gap do divider e dos itens */
+      /* Redução de espaçamentos mobile */
       .contact-divider { margin: 24px 0; }
-      .info-group { gap: 24px; }
-      
       .social-area { align-items: center; text-align: center; width: 100%; } 
-      .social-big-list { justify-content: center; } 
+      .social-big-list { justify-content: center; gap: 12px; /* Reduzi gap */ } 
       
       .form-wrapper { padding: 24px 24px 20px; }
     }
@@ -417,7 +416,7 @@
         
         .contact-info { 
             text-align: left; 
-            align-items: flex-start; /* Alinha à esquerda */
+            align-items: flex-start; 
             margin-bottom: 0;
         }
         .info-group {
@@ -427,7 +426,6 @@
         }
         .page-title { font-size: 1.8rem; } 
         
-        /* Aumentado para equilíbrio no split view */
         .page-desc {
             font-size: 1.05rem; 
             text-align: left;
@@ -631,6 +629,8 @@
   </main>
 
   <script>
+    const SITE_KEY = "6LchyFosAAAAAIDGxPkgkiS9YIGzOlkXTDN_wr5X"; // Substitua pela Site Key do Google
+
     // --- 0. SCROLL TO TOP FORÇADO ---
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
@@ -642,17 +642,14 @@
     window.onload = function() { window.scrollTo(0,0); }
 
     // --- PROTEÇÃO ANTI-SPAM WHATSAPP ---
-    // O número nunca aparece no código fonte, montado apenas aqui
     const w_cc = "55";
     const w_ac = "11";
     const w_num = "979686116";
     const waLink = document.getElementById('wa-link');
     const waText = document.getElementById('wa-text');
 
-    // Monta o link e o visual
     if(waLink && waText) {
         waLink.href = `https://wa.me/${w_cc}${w_ac}${w_num}`;
-        // Formata visualmente: +55 11 97968-6116
         waText.innerText = `+${w_cc} ${w_ac} ${w_num.substring(0,5)}-${w_num.substring(5)}`;
     }
 
@@ -940,7 +937,7 @@
     });
     phoneEl.addEventListener('input', () => phoneEl.closest('.form-group').classList.remove('has-error'));
 
-    // --- 7. ENVIO AJAX E BARRA DE PROGRESSO ---
+    // --- 7. ENVIO AJAX COM RECAPTCHA E BARRA DE PROGRESSO ---
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const progressBar = document.querySelector('.progress-bar');
@@ -967,39 +964,47 @@
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        });
+      // Executa reCAPTCHA e depois o envio
+      grecaptcha.ready(function() {
+          grecaptcha.execute(SITE_KEY, {action: 'submit'}).then(async function(token) {
+              const formData = new FormData(form);
+              formData.append('g-recaptcha-response', token);
 
-        if (response.ok) {
-          submitBtn.classList.remove('loading');
-          submitBtn.classList.add('success');
-          submitBtn.querySelector('.btn-text').style.display = 'none';
-          form.reset();
-          phoneInput.value = "+55 "; 
-          selectCountry(countries.find(c => c.iso === 'br')); 
-          
-          progressBar.style.width = '100%';
-          void progressBar.offsetWidth; 
-          progressBar.style.transition = 'width 6000ms linear';
-          progressBar.style.width = '0%';
-          
-          setTimeout(() => {
-            submitBtn.classList.remove('success');
-            submitBtn.querySelector('.btn-text').style.display = 'inline';
-            submitBtn.disabled = false;
-            progressBar.style.transition = 'none';
-            progressBar.style.width = '0';
-          }, 6000);
-        } else { throw new Error(); }
-      } catch (error) {
-        alert("Erro no envio. Tente novamente.");
-        submitBtn.classList.remove('loading');
-        submitBtn.disabled = false;
-      }
+              try {
+                const response = await fetch(form.action, {
+                  method: 'POST',
+                  body: formData,
+                  headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                  submitBtn.classList.remove('loading');
+                  submitBtn.classList.add('success');
+                  submitBtn.querySelector('.btn-text').style.display = 'none';
+                  form.reset();
+                  phoneInput.value = "+55 "; 
+                  selectCountry(countries.find(c => c.iso === 'br')); 
+                  
+                  progressBar.style.width = '100%';
+                  void progressBar.offsetWidth; 
+                  progressBar.style.transition = 'width 6000ms linear';
+                  progressBar.style.width = '0%';
+                  
+                  setTimeout(() => {
+                    submitBtn.classList.remove('success');
+                    submitBtn.querySelector('.btn-text').style.display = 'inline';
+                    submitBtn.disabled = false;
+                    progressBar.style.transition = 'none';
+                    progressBar.style.width = '0';
+                  }, 6000);
+                } else { throw new Error(); }
+              } catch (error) {
+                alert("Erro no envio. Tente novamente.");
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+              }
+          });
+      });
     });
 
     const menuBtn = document.getElementById('menuBtn');
