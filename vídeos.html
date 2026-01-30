@@ -323,30 +323,36 @@
         user-select: none;
     }
     
-    /* Legendas: Centralizadas, Texto à Direita e Elevação */
+    /* Legendas: Centralizadas e com escala correta em Fullscreen */
     video::cue { 
       background-color: rgba(0, 0, 0, 0.7) !important; 
       color: white; 
       font-family: 'Inter', sans-serif; 
       font-weight: 500; 
-      font-size: clamp(14px, 1.6vw, 20px); 
-      line-height: 1.05; /* Espaçamento mínimo */
-      /* Bordas arredondadas e alinhamento à direita dentro do cue */
-      border-radius: 8px;
+      font-size: 1.2rem; /* Tamanho fixo base */
+      line-height: 1.2;
     }
 
-    /* Elevação do Container de Legenda (Webkit) */
+    /* Elevação e Centralização do bloco */
     .video-container video::-webkit-media-text-track-display {
       transform: translateY(-10px);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      /* Força o alinhamento interno do bloco à direita conforme solicitado */
-      text-align: right !important;
+      transition: transform 0.3s ease;
+      text-align: center !important; /* Força centralização */
     }
 
-    /* Levanta a legenda para não ser cortada pela barra de progresso */
     .video-container:not(.user-inactive) video::-webkit-media-text-track-display,
     .video-container.paused video::-webkit-media-text-track-display {
-      transform: translateY(-70px); 
+      transform: translateY(-75px); 
+    }
+
+    /* Ajuste para Tela Cheia (Aumenta a legenda) */
+    .video-container:fullscreen video::cue {
+      font-size: 2.5rem; /* Aumenta consideravelmente no Fullscreen */
+    }
+    
+    /* Corrige o espaçamento que o Chrome impõe em Fullscreen */
+    .video-container:fullscreen video::-webkit-media-text-track-display {
+      bottom: 10% !important;
     }
 
     /* Animação Fluida para Menus (Velocidade e Legenda) */
