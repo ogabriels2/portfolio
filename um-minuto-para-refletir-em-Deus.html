@@ -789,36 +789,110 @@
   </script>
 
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "PodcastSeries",
-    "name": "Um Minuto para Refletir em Deus",
-    "description": "Reflexões diárias de fé com mensagens profundas e formato dinâmico.",
-    "url": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html",
-    "image": "https://ogabriels.com/1%20Minuto%20para%20Refletir%20em%20Deus%20-%20capa.png",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "Gabriel Silva",
-        "jobTitle": "Editor & Designer",
-        "url": "https://ogabriels.com/sobre.html",
-        "sameAs": [
-          "https://www.linkedin.com/in/ogabriels/",
-          "https://www.instagram.com/ogabriels0/",
-          "https://github.com/ogabriels2"
-        ]
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/",
+      "name": "Gabriel Silva",
+      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist & Full Stack Developer",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "caption": "Gabriel Silva"
       },
-      {
-        "@type": "Person",
-        "name": "Janilson Dias",
-        "jobTitle": "Host",
-        "sameAs": [
-          "https://www.instagram.com/janilson.son/",
-          "https://www.linkedin.com/in/janilson-dias-moreira-80b94428/"
-        ]
-      }
-    ]
-  }
-  </script>
+      "alumniOf": [
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "Liceu de Artes e Ofícios de São Paulo",
+          "url": "https://www.liceuescola.com.br",
+          "sameAs": [
+            "https://www.liceuescola.com.br",
+            "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"
+          ]
+        },
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "UNIVESP - Universidade Virtual do State de São Paulo",
+          "url": "https://univesp.br/",
+          "sameAs": [
+            "https://univesp.br/",
+            "https://pt.wikipedia.org/wiki/Universidade_Virtual_do_Estado_de_S%C3%A3o_Paulo",
+            "https://www.sp.gov.br/sp/institucional/estrutura/fundacoes/univesp"
+          ]
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/ogabriels/",
+        "https://github.com/ogabriels2/",
+        "https://www.behance.net/ogabriels0",
+        "https://x.com/ogabriels0",
+        "https://www.instagram.com/ogabriels0/",
+        "https://www.youtube.com/@Gabalarca"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#personJanilson",
+      "name": "Janilson Dias Moreira",
+      "alternateName": ["Janilson Dias", "Janilson Moreira"],
+      "jobTitle": "Host & Palestrante",
+      "sameAs": [
+        "https://www.instagram.com/janilson.son/",
+        "https://www.linkedin.com/in/janilson-dias-moreira-80b94428/"
+      ]
+    },
+    {
+      "@type": "CreativeWorkSeries",
+      "@id": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html#series",
+      "name": "Um Minuto para Refletir em Deus",
+      "headline": "Um Minuto para Refletir em Deus: Série de Reflexões e Fé",
+      "description": "Projeto audiovisual e podcast de reflexões diárias de fé, com foco em mensagens curtas e impacto profundo.",
+      "image": "https://ogabriels.com/1%20Minuto%20para%20Refletir%20em%20Deus%20-%20capa.png",
+      "dateCreated": "2023",
+      "inLanguage": "pt-BR",
+      "author": { "@id": "https://ogabriels.com/#personJanilson" },
+      "creator": { "@id": "https://ogabriels.com/" },
+      "editor": { "@id": "https://ogabriels.com/" },
+      "genre": ["Religioso", "Podcast", "Audiovisual"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html",
+      "url": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html",
+      "name": "Case Study: Um Minuto para Refletir em Deus | Produção e Design",
+      "isPartOf": { "@id": "https://ogabriels.com/#website" },
+      "breadcrumb": { "@id": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html#breadcrumb" },
+      "about": { "@id": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html#series" },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ogabriels.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Um Minuto para Refletir em Deus",
+          "item": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </body>
 </html>
