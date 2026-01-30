@@ -57,6 +57,10 @@
 
     a { text-decoration: none; -webkit-tap-highlight-color: transparent; color: inherit; }
 
+    /* Lógica Híbrida do reCAPTCHA */
+    .grecaptcha-badge { visibility: visible !important; z-index: 9999; }
+    .recaptcha-legal-text { display: none; }
+
     /* --- Animações --- */
     @keyframes slideUpFade {
       from { opacity: 0; transform: translateY(20px); }
@@ -254,7 +258,8 @@
     /* ---------------- FORMULÁRIO ---------------- */
     .form-wrapper { 
         background: white; 
-        padding: 48px 48px 24px 48px; 
+        /* Padding Inferior Reduzido para 18px (Equilíbrio Visual) */
+        padding: 48px 48px 18px 48px; 
         border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); transition: box-shadow 0.3s;
         opacity: 0; animation: slideUpFade 0.8s var(--ease-apple) 0.1s forwards;
     }
@@ -322,20 +327,31 @@
       width: 0; z-index: 2;
     }
     
-    .form-footer-text {
+    .form-footer-wrapper {
         text-align: center;
+        margin-top: 16px;
+    }
+    
+    .form-footer-text {
         font-size: 0.75rem;
         color: var(--text-secondary);
-        margin-top: 16px;
-        margin-bottom: 0; 
         opacity: 0.8;
         font-weight: 500;
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
         gap: 6px;
+        margin-bottom: 4px;
     }
     .form-footer-text i { font-size: 0.85rem; }
+
+    /* Texto Legal do Google (APENAS PARA MOBILE) */
+    .legal-text {
+        font-size: 0.65rem;
+        color: #ccc;
+        display: none; /* Escondido por padrão (Desktop) */
+        margin-top: 2px;
+    }
+    .legal-text a { color: #ccc; text-decoration: underline; }
 
     .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; opacity: 0; transition: opacity 0.3s; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -369,8 +385,14 @@
       main { margin-left: 0; padding-top: 100px; padding-bottom: 60px; overflow-y: auto; }
       .container { padding: 0 24px; }
       
+      /* --- 2. LÓGICA HÍBRIDA MOBILE (Oculta Selo, Mostra Texto) --- */
+      .grecaptcha-badge { visibility: hidden !important; } 
+      .legal-text { display: block; } 
+      
       /* --- MOBILE PORTRAIT (Celular em pé) --- */
       .contact-grid { grid-template-columns: 1fr; gap: 32px; display: flex; flex-direction: column; align-items: stretch; }
+      
+      /* Centralização Vertical no Mobile */
       .contact-info { position: static; text-align: center; align-items: center; } 
       .info-group { align-items: center; text-align: center; width: 100%; } 
       
@@ -392,7 +414,7 @@
       /* Redução de espaçamentos mobile */
       .contact-divider { margin: 24px 0; }
       .social-area { align-items: center; text-align: center; width: 100%; } 
-      .social-big-list { justify-content: center; gap: 12px; /* Reduzi gap */ } 
+      .social-big-list { justify-content: center; gap: 12px; } 
       
       .form-wrapper { padding: 24px 24px 20px; }
     }
@@ -615,7 +637,14 @@
               <div class="spinner"></div>
               <div class="progress-bar"></div>
             </button>
-            <p class="form-footer-text"><i class="fa-regular fa-envelope"></i> O retorno será enviado para o e-mail informado.</p>
+            <div class="form-footer-wrapper">
+                <p class="form-footer-text"><i class="fa-regular fa-envelope"></i> O retorno será enviado para o e-mail informado.</p>
+                <span class="legal-text">
+                    Protegido por reCAPTCHA: 
+                    <a href="https://policies.google.com/privacy" target="_blank">Privacidade</a> - 
+                    <a href="https://policies.google.com/terms" target="_blank">Termos</a>
+                </span>
+            </div>
           </form>
         </div>
       </div>
@@ -626,7 +655,7 @@
   </main>
 
   <script>
-    const SITE_KEY = "6LchyFosAAAAAIDGxPkgkiS9YIGzOlkXTDN_wr5X"; // Substitua pela Site Key do Google
+    const SITE_KEY = "6LchyFosAAAAAIDGxPkgkiS9YIGzOlkXTDN_wr5X"; // Site Key Google
 
     // --- 0. SCROLL TO TOP FORÇADO ---
     if (history.scrollRestoration) {
@@ -961,7 +990,6 @@
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
 
-      // Executa reCAPTCHA e depois o envio
       grecaptcha.ready(function() {
           grecaptcha.execute(SITE_KEY, {action: 'submit'}).then(async function(token) {
               const formData = new FormData(form);
