@@ -397,16 +397,26 @@
       .content-wrapper { padding: 40px 24px; }
       
       /* Grid 2x2 Mobile sem o bug do ponto */
+      /* Grid em linha única para Mobile */
       .meta-grid { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        grid-template-areas: 
-          "role tools" 
-          "year year"; 
+        grid-template-columns: 1fr 1fr 1fr; /* Força 3 colunas iguais */
+        grid-template-areas: "role year tools"; /* Coloca todos lado a lado */
+        gap: 8px; /* Reduzi o espaço entre eles para caber melhor */
+        padding: 15px 10px; /* Bordas ainda menores para ganhar espaço lateral */
       }
       
-      /* Reset de alinhamento para mobile */
-      .role, .year, .tools { text-align: center; }
+      /* Redução de fonte apenas para Mobile */
+      .meta-item h4 { font-size: 0.6rem; }
+      .meta-item p { 
+        font-size: 0.75rem; 
+        line-height: 1.2; 
+        word-break: break-word; /* Permite quebrar a palavra se for muito grande */
+      }
+
+      /* Alinhamentos específicos para manter o equilíbrio */
+      .role { text-align: left; }
+      .year { text-align: center; }
+      .tools { text-align: right; }
       .gallery-grid { grid-template-columns: 1fr; }
       
       /* Navegação Mobile: Padding 0 para esticar */
