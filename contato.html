@@ -66,7 +66,7 @@
     }
 
     /* --- Formulário e Erros --- */
-    .form-group { margin-bottom: 20px; position: relative; } /* Espaçamento reduzido */
+    .form-group { margin-bottom: 20px; position: relative; }
 
     .form-group.has-error .form-input, 
     .form-group.has-error .form-textarea {
@@ -84,7 +84,7 @@
     .error-msg {
         display: none;
         color: var(--error);
-        font-size: 0.75rem; /* Fonte menor para erro */
+        font-size: 0.75rem;
         margin-top: 4px;
         font-weight: 600;
         margin-left: 4px;
@@ -195,7 +195,7 @@
     /* ---------------- MAIN CONTENT ---------------- */
     main {
       margin-left: var(--sidebar-width);
-      flex: 1; padding: 80px 0; /* Padding ajustado */
+      flex: 1; padding: 100px 0 80px;
       display: flex; flex-direction: column;
       align-items: center;
       min-height: 100vh;
@@ -209,23 +209,22 @@
         opacity: 0; animation: slideUpFade 0.8s var(--ease-apple) forwards;
     }
     
-    /* Espaçamentos mais apertados para parecer App */
-    .info-group { display: flex; flex-direction: column; gap: 24px; } /* Gap reduzido de 32 para 24 */
+    .info-group { display: flex; flex-direction: column; gap: 24px; }
     
-    .page-kicker { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); display: block; margin-bottom: 6px; }
+    .page-kicker { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); display: block; margin-bottom: 8px; }
     .page-title { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; color: var(--text-primary); }
     
-    /* Descrição refinada estilo App */
+    /* DESKTOP SUBTITLE RESTAURADO */
     .page-desc { 
-        font-size: 0.95rem; /* Reduzido de 1.2rem */
+        font-size: 1.2rem; /* Restaurado para Desktop */
         color: var(--text-secondary); 
-        line-height: 1.45; /* Leading mais apertado */
+        line-height: 1.6;
         font-weight: 400; 
-        max-width: 380px; 
-        margin-top: 12px; 
+        max-width: 400px; 
+        margin-top: 16px; 
     }
     
-    .contact-methods { display: flex; flex-direction: column; gap: 14px; }
+    .contact-methods { display: flex; flex-direction: column; gap: 16px; }
     .contact-card { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; background: white; border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); transition: all 0.3s var(--ease-apple); text-decoration: none; color: inherit; cursor: pointer; }
     .contact-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
     .card-left { display: flex; align-items: center; gap: 16px; }
@@ -307,17 +306,33 @@
     .submit-btn i { transition: transform 0.3s var(--ease-apple); }
     .submit-btn:hover i { transform: translateX(4px); }
     
-    /* Barra de Tempo: Verde Sólido para Contraste com Verde do Botão (Branco era pouco visível) ou Branco com sombra? O pedido anterior era branco com borda. Vou usar branco puro com opacidade para blend. */
+    /* Barra de Tempo: Branca com borda Verde Sucesso */
     .progress-bar {
       position: absolute; bottom: 0; left: 0; 
       height: 6px; 
       background: #FFFFFF; 
-      border-bottom: 2px solid var(--success); /* Borda Verde no Branco */
+      border-bottom: 2px solid var(--success);
       width: 0; z-index: 2;
     }
+    
+    /* Nota de Rodapé */
+    .form-footer-text {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        margin-top: 16px; /* Margem negativa não é mais necessária pois o container cresce naturalmente */
+        opacity: 0.8;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+    .form-footer-text i { font-size: 0.85rem; }
 
     .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; opacity: 0; transition: opacity 0.3s; }
     @keyframes spin { to { transform: rotate(360deg); } }
+    
     .submit-btn.loading .btn-text, .submit-btn.loading i { display: none; }
     .submit-btn.loading .spinner { display: block; opacity: 1; }
     
@@ -347,19 +362,24 @@
       main { margin-left: 0; padding-top: 100px; padding-bottom: 60px; overflow-y: auto; }
       .container { padding: 0 24px; }
       
-      /* Mobile Portrait: Centralização Total */
+      /* --- MOBILE PORTRAIT (Celular em pé) --- */
       .contact-grid { grid-template-columns: 1fr; gap: 32px; display: flex; flex-direction: column; align-items: stretch; }
-      .contact-info { position: static; text-align: center; align-items: center; } /* Centraliza container */
-      .info-group { align-items: center; text-align: center; } /* Centraliza filhos */
+      .contact-info { position: static; text-align: center; align-items: center; } 
+      .info-group { align-items: center; text-align: center; width: 100%; } 
       
       .page-kicker { margin-bottom: 4px; }
       .page-title { font-size: 2.2rem; }
       
-      /* Centraliza e estiliza a descrição no mobile */
+      /* Botões Full Width no Mobile Portrait */
+      .contact-methods { width: 100%; }
+      .contact-card { width: 100%; }
+
+      /* Descrição App-like */
       .page-desc { 
+        font-size: 1rem; /* Tamanho Mobile */
         text-align: center; 
         margin: 8px auto 0; 
-        max-width: 300px; /* Limite de leitura */
+        max-width: 300px; 
       }
       
       .social-area { align-items: center; text-align: center; width: 100%; } 
@@ -368,42 +388,48 @@
       .form-wrapper { padding: 24px 24px 32px; }
     }
 
-    /* --- MOBILE LANDSCAPE (Split View Estilo Dashboard) --- */
+    /* --- MOBILE LANDSCAPE (Celular deitado) --- */
     @media (max-width: 968px) and (orientation: landscape) {
         .contact-grid {
-            grid-template-columns: 1fr 1fr; /* Lado a lado */
-            align-items: center;
+            display: grid; /* Força grid */
+            grid-template-columns: 1fr 1fr; /* Split View */
+            align-items: center; /* Centraliza verticalmente */
             gap: 40px;
         }
         main {
-            padding: 20px 40px 20px 40px; /* Padding reduzido para caber */
+            padding: 40px; /* Padding reduzido verticalmente */
+            justify-content: center; 
             min-height: 100vh;
-            justify-content: center; /* Centraliza verticalmente */
         }
         
         .contact-info { 
             text-align: left; 
-            align-items: flex-start; 
+            align-items: flex-start; /* Alinha à esquerda */
+            margin-bottom: 0;
         }
         .info-group {
             align-items: flex-start; 
             text-align: left;
+            width: 100%;
         }
+        .page-title { font-size: 1.8rem; } /* Título menor para caber */
+        
         .page-desc {
+            font-size: 1.05rem; /* Fonte ligeiramente maior para equilíbrio */
             text-align: left;
             margin: 8px 0 0 0;
             max-width: 100%;
         }
-        .social-area {
-            align-items: flex-start;
-        }
-        .social-big-list {
-            justify-content: flex-start;
-        }
         
-        /* Ajuste do Header Mobile no Landscape */
+        /* Botões de Contato */
+        .contact-methods { width: 100%; }
+        
+        .social-area { display: none; } /* Oculta social no landscape para economizar espaço vertical se necessário, ou mantém */
+        .social-area { align-items: flex-start; display: flex; margin-top: 20px; }
+        .social-big-list { justify-content: flex-start; }
+        
         aside { height: 50px; padding: 0 20px; }
-        main { padding-top: 70px; } /* Compensa header menor */
+        main { padding-top: 80px; } 
     }
   </style>
 </head>
@@ -582,6 +608,7 @@
               <div class="spinner"></div>
               <div class="progress-bar"></div>
             </button>
+            <p class="form-footer-text"><i class="fa-regular fa-envelope"></i> O retorno será enviado para o e-mail informado.</p>
           </form>
         </div>
       </div>
@@ -628,7 +655,7 @@
 
     let currentIso = "br"; 
 
-    // --- 2. GERAÇÃO DA LISTA DINÂMICA ---
+    // --- 2. GERAÇÃO DA LISTA DINÂMICA COM ANIMAÇÃO CASCATA ---
     const listScroll = document.getElementById('countryListScroll');
     const phoneInput = document.getElementById('phone');
     const currentFlag = document.getElementById('currentFlag');
@@ -718,7 +745,6 @@
             renderCountryList();
             countrySearch.value = ''; 
             listScroll.scrollTop = 0; 
-            // IMPORTANTE: NÃO focamos o input automaticamente em mobile para evitar o teclado
         }
     });
 
