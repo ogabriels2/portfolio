@@ -668,19 +668,26 @@
       "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
       "url": "https://ogabriels.com/",
       "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": "https://ogabriels.com/Minha%20foto%201.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "caption": "Gabriel Silva"
+      },
       "description": "Creative Technologist especializado na intersecção entre design, engenharia de software e infraestrutura de servidores.",
-      "knowsAbout": [
-        "Full Stack Development",
-        "Infraestrutura de TI",
-        "Branding",
-        "Design Editorial",
-        "Cloudflare & Networking",
-        "Automação com IA"
-      ],
+      "knowsAbout": ["Full Stack Development", "Branding", "Infraestrutura de TI", "Design Editorial", "Cloudflare & Networking"],
       "alumniOf": [
-        { "@type": "EducationalOrganization", "name": "Liceu de Artes e Ofícios de São Paulo" },
-        { "@type": "EducationalOrganization", "name": "UNIVESP - Universidade Virtual do Estado de São Paulo" }
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "Liceu de Artes e Ofícios de São Paulo",
+          "sameAs": "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"
+        },
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "UNIVESP - Universidade Virtual do Estado de São Paulo",
+          "sameAs": "https://univesp.br/"
+        }
       ],
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
@@ -691,9 +698,9 @@
         "https://www.youtube.com/@Gabalarca"
       ],
       "subjectOf": [
-        { "@id": "https://ogabriels.com/infra.html#case" },
-        { "@id": "https://ogabriels.com/neoletters.html#case" },
-        { "@id": "https://ogabriels.com/revista-utopia.html#case" }
+        { "@type": "CreativeWork", "@id": "https://ogabriels.com/infra.html#case" },
+        { "@type": "CreativeWork", "@id": "https://ogabriels.com/neoletters.html#case" },
+        { "@type": "CreativeWork", "@id": "https://ogabriels.com/revista-utopia.html#case" }
       ]
     },
     {
@@ -714,11 +721,7 @@
       "about": { "@id": "https://ogabriels.com/" },
       "mainEntity": { "@id": "https://ogabriels.com/" },
       "breadcrumb": { "@id": "https://ogabriels.com/#breadcrumb" },
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "@id": "https://ogabriels.com/Logo.png",
-        "url": "https://ogabriels.com/Logo.png"
-      },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
       "inLanguage": "pt-BR"
     },
     {
