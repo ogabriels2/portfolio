@@ -657,22 +657,62 @@
 
     menuBtn.addEventListener('click', toggleMenu);
   </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Gabriel Silva",
-    "url": "https://ogabriels.com",
-    "jobTitle": "Creative Technologist",
-    "alumniOf": "Univesp",
-    "sameAs": [
-      "https://www.linkedin.com/in/ogabriels/",
-      "https://www.instagram.com/ogabriels0/",
-      "https://github.com/ogabriels2"
-    ]
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/",
+      "name": "Gabriel Silva",
+      "alternateName": [
+        "Gabriel Silva Dias Moreira",
+        "Gabriel Moreira"
+      ],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist & Full Stack Developer",
+      "image": "https://ogabriels.com/Logo.png",
+      "mainEntityOfPage": { "@id": "https://ogabriels.com/#homepage" },
+      "sameAs": [
+        "https://www.linkedin.com/in/ogabriels/",
+        "https://github.com/ogabriels2/",
+        "https://www.behance.net/ogabriels0",
+        "https://x.com/ogabriels0",
+        "https://www.instagram.com/ogabriels0/",
+        "https://www.youtube.com/@Gabalarca"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ogabriels.com/#website",
+      "url": "https://ogabriels.com/",
+      "name": "Gabriel Silva — Portfólio",
+      "publisher": {
+        "@id": "https://ogabriels.com/"
+      },
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ogabriels.com/#homepage",
+      "url": "https://ogabriels.com/",
+      "name": "Gabriel Silva | Creative Technologist & Full Stack Developer",
+      "description": "Portfólio de Gabriel Silva, Creative Technologist e Desenvolvedor Full Stack focado em soluções inovadoras em tecnologia e design.",
+      "isPartOf": {
+        "@id": "https://ogabriels.com/#website"
+      },
+      "about": {
+        "@id": "https://ogabriels.com/"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ogabriels.com/Logo.png"
+      },
+      "inLanguage": "pt-BR"
+    }
+  ]
+}
+</script>
 
 </body>
 </html>
