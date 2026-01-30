@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbfbfd">
-  <title>Produção Audiovisual | Gabriel Silva</title>
+  
+  <title>Produção Audiovisual e Edição de Vídeo - Gabriel Silva</title>
+  <meta name="description" content="Portfólio de produção audiovisual. Documentários, motion graphics e edição de vídeo. Projetos para Fábrica de Cultura e Univesp.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  <link rel="canonical" href="https://ogabriels.com/vídeos.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ogabriels.com/vídeos.html">
+  <meta property="og:title" content="Gabriel Silva | Produção Audiovisual">
+  <meta property="og:description" content="Edição, narrativa e motion graphics. Confira meus projetos recentes.">
+  <meta property="og:image" content="https://ogabriels.com/Balé_2.png">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ogabriels.com/vídeos.html">
+  <meta property="twitter:title" content="Gabriel Silva | Produção Audiovisual">
+  <meta property="twitter:description" content="Edição, narrativa e motion graphics. Confira meus projetos recentes.">
+  <meta property="twitter:image" content="https://ogabriels.com/Balé_2.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +81,10 @@
     }
 
     a { text-decoration: none; -webkit-tap-highlight-color: transparent; color: inherit; }
+
+    /* Estilo para links no texto */
+    .text-link { color: var(--accent); font-weight: 600; transition: 0.2s; }
+    .text-link:hover { text-decoration: underline; color: var(--accent-hover); }
 
     /* Acessibilidade */
     .skip-link {
@@ -245,16 +275,16 @@
     /* CONTENT WRAPPER */
     .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); box-sizing: border-box; }
 
-    /* Meta Grid CORRIGIDO (Desktop: 3 Colunas, Esquerda) */
+    /* Meta Grid (Desktop: 3 colunas, alinhamento esquerdo) */
     .meta-grid { 
         display: grid; 
         grid-template-columns: repeat(3, 1fr); 
-        gap: 24px; margin-bottom: 60px; 
+        gap: 24px; margin-bottom: 40px; 
         background: white; padding: 24px; 
         border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); 
         text-align: left;
     }
-    .meta-item { display: block; } 
+    .meta-item { display: flex; flex-direction: column; align-items: flex-start; } 
 
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
@@ -557,6 +587,7 @@
       /* Fontes Reduzidas */
       .project-title { font-size: 1.5rem; margin-bottom: 4px; }
       .project-subtitle { font-size: 0.9rem; }
+      
       .project-description { font-size: 0.8rem; line-height: 1.4; }
       .contact-text p { font-size: 0.8rem; }
       
@@ -564,7 +595,6 @@
       .section-title { font-size: 1.2rem; margin-bottom: 2px; }
       .contact-text h2 { font-size: 1.2rem; }
 
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
       .contact-banner { padding: 40px; }
       
       .nav-btn { flex-direction: row; text-align: left; }
@@ -703,7 +733,7 @@
         </div>
 
         <div class="project-description">
-          <p>Na Fábrica de Cultura, meu foco principal foi a <strong>pós-produção e edição</strong>. Em projetos como o documentário sobre ballet e o registro do grupo de violão, o desafio não era apenas juntar cortes, mas construir uma <strong>narrativa fluida</strong> que respeitasse o tempo da música e a delicadeza dos movimentos.</p>
+          <p>Na <a href="https://www.fabricasdecultura.org.br/jacana/" target="_blank" class="text-link">Fábrica de Cultura do Jaçanã</a>, meu foco principal foi a <strong>pós-produção e edição</strong>. Em projetos como o documentário sobre ballet e o registro do grupo de violão, o desafio não era apenas juntar cortes, mas construir uma <strong>narrativa fluida</strong> que respeitasse o tempo da música e a delicadeza dos movimentos.</p>
           <p>Trabalhei o ritmo da edição para criar uma conexão emocional com o espectador, alternando entre planos abertos para mostrar a grandiosidade da performance e detalhes sutis que capturam a expressão dos artistas.</p>
         </div>
 
@@ -778,7 +808,7 @@
         </ul>
 
         <div class="project-description">
-          <p>Para o Projeto Integrador da UNIVESP, o desafio da edição foi a <strong>acessibilidade da informação</strong>. O vídeo precisava traduzir conceitos complexos de Inteligência Artificial para um público leigo. O tom da edição é intencionalmente didático, limpo e direto.</p>
+          <p>Para o Projeto Integrador da <a href="https://univesp.br/" target="_blank" class="text-link">UNIVESP</a>, o desafio da edição foi a <strong>acessibilidade da informação</strong>. O vídeo precisava traduzir conceitos complexos de Inteligência Artificial para um público leigo. O tom da edição é intencionalmente didático, limpo e direto.</p>
           <p>A montagem foca em destacar as etapas do <strong>Design Thinking</strong>, transformando um relatório técnico em uma história visual sobre solução de problemas reais, com cortes precisos e suporte visual para o texto narrado.</p>
         </div>
 
@@ -1050,6 +1080,27 @@
     triggers.forEach(img => img.addEventListener('click', ()=>openLightbox(img.src)));
     if (lbClose) lbClose.addEventListener('click', closeLightbox);
     if (lightbox) lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Produção Audiovisual e Edição",
+    "description": "Portfólio de edição de vídeo incluindo documentário para Fábrica de Cultura e projeto para Univesp.",
+    "thumbnailUrl": "https://ogabriels.com/Balé_2.png",
+    "uploadDate": "2024-01-01",
+    "author": {
+      "@type": "Person",
+      "name": "Gabriel Silva",
+      "url": "https://ogabriels.com/sobre.html",
+      "sameAs": [
+        "https://www.linkedin.com/in/ogabriels/",
+        "https://www.instagram.com/ogabriels0/",
+        "https://github.com/ogabriels2"
+      ]
+    }
+  }
   </script>
 
 </body>
