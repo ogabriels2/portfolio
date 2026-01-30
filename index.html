@@ -665,14 +665,23 @@
       "@type": "Person",
       "@id": "https://ogabriels.com/",
       "name": "Gabriel Silva",
-      "alternateName": [
-        "Gabriel Silva Dias Moreira",
-        "Gabriel Moreira"
-      ],
+      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
       "url": "https://ogabriels.com/",
       "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": "https://ogabriels.com/Logo.png",
-      "mainEntityOfPage": { "@id": "https://ogabriels.com/#homepage" },
+      "image": "https://ogabriels.com/Minha%20foto%201.jpg",
+      "description": "Creative Technologist especializado na intersecção entre design, engenharia de software e infraestrutura de servidores.",
+      "knowsAbout": [
+        "Full Stack Development",
+        "Infraestrutura de TI",
+        "Branding",
+        "Design Editorial",
+        "Cloudflare & Networking",
+        "Automação com IA"
+      ],
+      "alumniOf": [
+        { "@type": "EducationalOrganization", "name": "Liceu de Artes e Ofícios de São Paulo" },
+        { "@type": "EducationalOrganization", "name": "UNIVESP - Universidade Virtual do Estado de São Paulo" }
+      ],
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
         "https://github.com/ogabriels2/",
@@ -680,6 +689,11 @@
         "https://x.com/ogabriels0",
         "https://www.instagram.com/ogabriels0/",
         "https://www.youtube.com/@Gabalarca"
+      ],
+      "subjectOf": [
+        { "@id": "https://ogabriels.com/infra.html#case" },
+        { "@id": "https://ogabriels.com/neoletters.html#case" },
+        { "@id": "https://ogabriels.com/revista-utopia.html#case" }
       ]
     },
     {
@@ -687,9 +701,7 @@
       "@id": "https://ogabriels.com/#website",
       "url": "https://ogabriels.com/",
       "name": "Gabriel Silva — Portfólio",
-      "publisher": {
-        "@id": "https://ogabriels.com/"
-      },
+      "publisher": { "@id": "https://ogabriels.com/" },
       "inLanguage": "pt-BR"
     },
     {
@@ -697,18 +709,29 @@
       "@id": "https://ogabriels.com/#homepage",
       "url": "https://ogabriels.com/",
       "name": "Gabriel Silva | Creative Technologist & Full Stack Developer",
-      "description": "Portfólio de Gabriel Silva, Creative Technologist e Desenvolvedor Full Stack focado em soluções inovadoras em tecnologia e design.",
-      "isPartOf": {
-        "@id": "https://ogabriels.com/#website"
-      },
-      "about": {
-        "@id": "https://ogabriels.com/"
-      },
+      "description": "Portfólio profissional de Gabriel Silva. Explore cases de sucesso em infraestrutura de TI, branding e desenvolvimento web full stack.",
+      "isPartOf": { "@id": "https://ogabriels.com/#website" },
+      "about": { "@id": "https://ogabriels.com/" },
+      "mainEntity": { "@id": "https://ogabriels.com/" },
+      "breadcrumb": { "@id": "https://ogabriels.com/#breadcrumb" },
       "primaryImageOfPage": {
         "@type": "ImageObject",
+        "@id": "https://ogabriels.com/Logo.png",
         "url": "https://ogabriels.com/Logo.png"
       },
       "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ogabriels.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://ogabriels.com/"
+        }
+      ]
     }
   ]
 }
