@@ -746,12 +746,31 @@
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://ogabriels.com/", 
+      "@id": "https://ogabriels.com/",
       "name": "Gabriel Silva",
       "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
       "url": "https://ogabriels.com/",
       "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": "https://ogabriels.com/Minha%20foto%201.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "caption": "Gabriel Silva"
+      },
+      "knowsAbout": ["Design Editorial", "Diagramação", "Redação", "Web Design", "Branding"],
+      "alumniOf": [
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "Liceu de Artes e Ofícios de São Paulo",
+          "sameAs": "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"
+        },
+        { 
+          "@type": "EducationalOrganization", 
+          "name": "UNIVESP",
+          "sameAs": "https://univesp.br/"
+        }
+      ],
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
         "https://github.com/ogabriels2/",
@@ -762,35 +781,30 @@
       ]
     },
     {
-      "@type": "CreativeWork",
+      "@type": "Article",
       "@id": "https://ogabriels.com/revista-utopia.html#case",
-      "name": "Revista Utopia",
-      "headline": "Revista Utopia - Projeto de Design Editorial",
-      "description": "Projeto de design editorial desenvolvido no Liceu de Artes e Ofícios de São Paulo, envolvendo diagramação, redação e identidade visual.",
-      "image": "https://ogabriels.com/Revista%20Utopia%20-%20capa.png",
-      "dateCreated": "2020",
+      "headline": "Revista Utopia: Projeto de Design Editorial e Diagramação",
+      "description": "Estudo de caso do projeto editorial desenvolvido no Liceu de Artes e Ofícios de São Paulo, integrando design gráfico, redação estratégica e desenvolvimento web.",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://ogabriels.com/Revista%20Utopia%20-%20capa.png"
+      },
+      "datePublished": "2020-11-01T08:00:00-03:00",
       "author": { "@id": "https://ogabriels.com/" },
-      "creator": { "@id": "https://ogabriels.com/" },
+      "publisher": { "@id": "https://ogabriels.com/" },
+      "mainEntityOfPage": { "@id": "https://ogabriels.com/revista-utopia.html" },
       "educationalLevel": "Ensino Técnico",
-      "about": [
-        { "@type": "Thing", "name": "Design Editorial" },
-        { "@type": "Thing", "name": "Web Design" },
-        { "@type": "Thing", "name": "Identidade Visual" }
-      ]
+      "keywords": "Design Editorial, Diagramação, Liceu de Artes e Ofícios, Redação, Web Design, Revista Utopia"
     },
     {
       "@type": "WebPage",
       "@id": "https://ogabriels.com/revista-utopia.html",
       "url": "https://ogabriels.com/revista-utopia.html",
       "name": "Revista Utopia | Design Editorial e Diagramação",
-      "description": "Estudo de caso do projeto editorial Revista Utopia, desenvolvido por Gabriel Silva.",
-      "breadcrumb": { "@id": "https://ogabriels.com/revista-utopia.html#breadcrumb" },
       "isPartOf": { "@id": "https://ogabriels.com/#website" },
+      "breadcrumb": { "@id": "https://ogabriels.com/revista-utopia.html#breadcrumb" },
       "about": { "@id": "https://ogabriels.com/revista-utopia.html#case" },
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://ogabriels.com/Revista%20Utopia%20-%20capa.png"
-      },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
       "inLanguage": "pt-BR"
     },
     {
@@ -800,7 +814,7 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Início",
+          "name": "Home",
           "item": "https://ogabriels.com/"
         },
         {
