@@ -65,8 +65,8 @@
         to { opacity: 1; transform: translateX(0); }
     }
 
-    /* --- Estilos de Formulário --- */
-    .form-group { margin-bottom: 24px; position: relative; }
+    /* --- Formulário e Erros --- */
+    .form-group { margin-bottom: 20px; position: relative; } /* Espaçamento reduzido */
 
     .form-group.has-error .form-input, 
     .form-group.has-error .form-textarea {
@@ -84,8 +84,8 @@
     .error-msg {
         display: none;
         color: var(--error);
-        font-size: 0.8rem;
-        margin-top: 6px;
+        font-size: 0.75rem; /* Fonte menor para erro */
+        margin-top: 4px;
         font-weight: 600;
         margin-left: 4px;
         opacity: 0;
@@ -97,7 +97,7 @@
     @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 
-    /* ---------------- SIDEBAR (PC) ---------------- */
+    /* ---------------- SIDEBAR (Desktop) ---------------- */
     aside {
       width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
       padding: 50px 32px; background: var(--bg-sidebar);
@@ -150,13 +150,6 @@
     }
     .nav-link.about-link:hover i { animation: head-bob 0.6s ease infinite; color: var(--accent); }
 
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(0); }
-      25% { transform: rotate(-8deg); }
-      75% { transform: rotate(8deg); }
-    }
-    .sidebar-cta:hover i { animation: wiggle 0.4s ease infinite; }
-
     .sidebar-cta {
       display: flex; align-items: center; justify-content: center; gap: 12px;
       padding: 12px 20px; background: var(--text-primary); color: white;
@@ -176,71 +169,33 @@
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
-    /* ---------------- MOBILE MENU PREMIUM (Novo) ---------------- */
+    /* ---------------- MOBILE MENU (Intocado) ---------------- */
     .mobile-menu-btn { display: none; }
-    
-    .mobile-menu-overlay { 
-      position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); 
-      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-      z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
-    }
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
-
-    .mobile-scroll-wrapper {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        overflow-y: auto; -webkit-overflow-scrolling: touch;
-        padding-top: 80px; padding-bottom: 100px;
-        display: flex; flex-direction: column;
-    }
-    
-    .mobile-nav-container { 
-      width: 100%; max-width: 320px; min-height: 100%; margin: auto; 
-      display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px;
-    }
-    
-    .mobile-close-btn {
-      position: fixed; top: 24px; right: 24px; width: 44px; height: 44px;
-      background: rgba(0,0,0,0.05); backdrop-filter: blur(10px);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; color: var(--text-primary); 
-      cursor: pointer; border: none; z-index: 3005; transition: background 0.2s;
-    }
-    .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
-
-    /* Animação Staggered do Menu */
+    .mobile-scroll-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto; padding-top: 80px; padding-bottom: 120px; display: flex; flex-direction: column; }
+    .mobile-nav-container { width: 100%; max-width: 320px; min-height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px; }
+    .mobile-close-btn { position: fixed; top: 24px; right: 24px; width: 44px; height: 44px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-primary); cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; }
     .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { opacity: 0; transform: translateY(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .mobile-menu-overlay.active .mobile-nav-group { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-
     .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
     .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
-    .mobile-link-main:active { color: var(--accent) !important; transform: scale(0.95); }
-
     .mobile-projects-wrapper { width: 100%; text-align: center; }
     .mobile-projects-list { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; width: 100%; align-items: center; }
     .mobile-link-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; transition: 0.2s; text-decoration: none; }
-    .mobile-link-sub:active { color: var(--accent); transform: scale(0.98); }
-
     .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
     .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
-
     .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .mobile-socials { display: flex; gap: 24px; justify-content: center; }
     .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
-    .mobile-social-btn:active { color: var(--accent); transform: scale(0.9); }
-
-    .mobile-cta {
-      width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; 
-      font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
+    .mobile-cta { width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
     /* ---------------- MAIN CONTENT ---------------- */
     main {
       margin-left: var(--sidebar-width);
-      flex: 1; padding: 100px 0 80px;
+      flex: 1; padding: 80px 0; /* Padding ajustado */
       display: flex; flex-direction: column;
       align-items: center;
       min-height: 100vh;
@@ -254,11 +209,23 @@
         opacity: 0; animation: slideUpFade 0.8s var(--ease-apple) forwards;
     }
     
-    .info-group { display: flex; flex-direction: column; gap: 32px; }
-    .page-kicker { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); display: block; margin-bottom: 8px; }
+    /* Espaçamentos mais apertados para parecer App */
+    .info-group { display: flex; flex-direction: column; gap: 24px; } /* Gap reduzido de 32 para 24 */
+    
+    .page-kicker { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); display: block; margin-bottom: 6px; }
     .page-title { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; color: var(--text-primary); }
-    .page-desc { font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6; font-weight: 400; max-width: 400px; margin-top: 16px; }
-    .contact-methods { display: flex; flex-direction: column; gap: 16px; }
+    
+    /* Descrição refinada estilo App */
+    .page-desc { 
+        font-size: 0.95rem; /* Reduzido de 1.2rem */
+        color: var(--text-secondary); 
+        line-height: 1.45; /* Leading mais apertado */
+        font-weight: 400; 
+        max-width: 380px; 
+        margin-top: 12px; 
+    }
+    
+    .contact-methods { display: flex; flex-direction: column; gap: 14px; }
     .contact-card { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; background: white; border-radius: var(--radius-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); transition: all 0.3s var(--ease-apple); text-decoration: none; color: inherit; cursor: pointer; }
     .contact-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
     .card-left { display: flex; align-items: center; gap: 16px; }
@@ -313,17 +280,10 @@
     }
     .country-dropdown.active { display: block; opacity: 1; transform: scale(1) translateY(0); }
     
-    /* Campo de Busca com Lupa Elegante */
+    /* LUPA PREMIUM */
     .country-search-wrapper { position: relative; width: 100%; margin-bottom: 12px; }
-    .country-search { 
-        width: 100%; padding: 10px 34px 10px 10px; /* Padding direito para a lupa */
-        background: #f5f5f7; border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; 
-        font-size: 0.9rem; outline: none; 
-    }
-    .search-icon {
-        position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-        color: #86868b; font-size: 0.8rem; pointer-events: none;
-    }
+    .country-search { width: 100%; padding: 10px 34px 10px 10px; background: #f5f5f7; border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; font-size: 0.9rem; outline: none; }
+    .search-icon { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #86868b; font-size: 0.8rem; pointer-events: none; }
 
     .country-list-scroll { max-height: 220px; overflow-y: auto; scrollbar-width: thin; }
     .country-option { 
@@ -344,22 +304,20 @@
     .submit-btn:hover { background: var(--accent-hover); transform: scale(1.02); box-shadow: 0 15px 30px rgba(0, 113, 227, 0.25); }
     .submit-btn:active { transform: scale(0.98); }
 
-    /* Animação Setinha */
     .submit-btn i { transition: transform 0.3s var(--ease-apple); }
     .submit-btn:hover i { transform: translateX(4px); }
     
-    /* Barra de Tempo: Branca com borda inferior Verde Sucesso */
+    /* Barra de Tempo: Verde Sólido para Contraste com Verde do Botão (Branco era pouco visível) ou Branco com sombra? O pedido anterior era branco com borda. Vou usar branco puro com opacidade para blend. */
     .progress-bar {
       position: absolute; bottom: 0; left: 0; 
       height: 6px; 
       background: #FFFFFF; 
-      border-bottom: 2px solid rgba(0, 50, 0, 0.3);
+      border-bottom: 2px solid var(--success); /* Borda Verde no Branco */
       width: 0; z-index: 2;
     }
 
     .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; opacity: 0; transition: opacity 0.3s; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    
     .submit-btn.loading .btn-text, .submit-btn.loading i { display: none; }
     .submit-btn.loading .spinner { display: block; opacity: 1; }
     
@@ -374,7 +332,7 @@
     .home-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 12px 24px; border-radius: 50px; transition: all 0.2s; }
     .home-link:hover { background: rgba(0,0,0,0.05); color: var(--text-primary); }
 
-    /* --- RESPONSIVIDADE (Ajustes App-like) --- */
+    /* --- RESPONSIVIDADE ULTRA PREMIUM --- */
     @media (max-width: 968px) {
       aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
       
@@ -386,17 +344,66 @@
       
       .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.3s ease; }
       
-      main { margin-left: 0; padding-top: 100px; padding-bottom: 60px; overflow-y: auto; /* Permite scroll natural */ }
+      main { margin-left: 0; padding-top: 100px; padding-bottom: 60px; overflow-y: auto; }
       .container { padding: 0 24px; }
       
-      .contact-grid { grid-template-columns: 1fr; gap: 40px; display: flex; flex-direction: column; align-items: stretch; }
-      .contact-info { position: static; text-align: center; } 
+      /* Mobile Portrait: Centralização Total */
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; display: flex; flex-direction: column; align-items: stretch; }
+      .contact-info { position: static; text-align: center; align-items: center; } /* Centraliza container */
+      .info-group { align-items: center; text-align: center; } /* Centraliza filhos */
       
-      /* Elementos Menores para Mobile */
-      .page-title { font-size: 2.2rem; } 
-      .form-wrapper { padding: 24px 24px 32px; }
-      .social-area { align-items: center; text-align: center; } 
+      .page-kicker { margin-bottom: 4px; }
+      .page-title { font-size: 2.2rem; }
+      
+      /* Centraliza e estiliza a descrição no mobile */
+      .page-desc { 
+        text-align: center; 
+        margin: 8px auto 0; 
+        max-width: 300px; /* Limite de leitura */
+      }
+      
+      .social-area { align-items: center; text-align: center; width: 100%; } 
       .social-big-list { justify-content: center; } 
+      
+      .form-wrapper { padding: 24px 24px 32px; }
+    }
+
+    /* --- MOBILE LANDSCAPE (Split View Estilo Dashboard) --- */
+    @media (max-width: 968px) and (orientation: landscape) {
+        .contact-grid {
+            grid-template-columns: 1fr 1fr; /* Lado a lado */
+            align-items: center;
+            gap: 40px;
+        }
+        main {
+            padding: 20px 40px 20px 40px; /* Padding reduzido para caber */
+            min-height: 100vh;
+            justify-content: center; /* Centraliza verticalmente */
+        }
+        
+        .contact-info { 
+            text-align: left; 
+            align-items: flex-start; 
+        }
+        .info-group {
+            align-items: flex-start; 
+            text-align: left;
+        }
+        .page-desc {
+            text-align: left;
+            margin: 8px 0 0 0;
+            max-width: 100%;
+        }
+        .social-area {
+            align-items: flex-start;
+        }
+        .social-big-list {
+            justify-content: flex-start;
+        }
+        
+        /* Ajuste do Header Mobile no Landscape */
+        aside { height: 50px; padding: 0 20px; }
+        main { padding-top: 70px; } /* Compensa header menor */
     }
   </style>
 </head>
@@ -712,8 +719,6 @@
             countrySearch.value = ''; 
             listScroll.scrollTop = 0; 
             // IMPORTANTE: NÃO focamos o input automaticamente em mobile para evitar o teclado
-            // Apenas se não for touch device (detectamos via userAgent ou apenas não focamos)
-            // Para simplicidade e atender o pedido: não focamos. O usuário clica se quiser buscar.
         }
     });
 
