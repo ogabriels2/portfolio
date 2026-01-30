@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbfbfd">
-  <meta name="description" content="Um Minuto para Refletir - Podcast Cristão. Identidade Visual e Edição por Gabriel Silva.">
-  <title>Um Minuto para Refletir | Gabriel Silva</title>
+  
+  <title>Um Minuto para Refletir | Podcast Cristão - Gabriel Silva & Janilson Dias</title>
+  <meta name="description" content="Podcast cristão 'Um Minuto para Refletir em Deus'. Produção, edição e identidade visual por Gabriel Silva. Apresentação de Janilson Dias.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  <link rel="canonical" href="https://ogabriels.com/um-minuto-para-refletir-em-Deus.html">
+
+  <meta property="og:type" content="music.radio_station">
+  <meta property="og:url" content="https://ogabriels.com/um-minuto-para-refletir-em-Deus.html">
+  <meta property="og:title" content="Um Minuto para Refletir | Podcast">
+  <meta property="og:description" content="Podcast de reflexões diárias. Identidade visual e produção completa.">
+  <meta property="og:image" content="https://ogabriels.com/1%20Minuto%20para%20Refletir%20em%20Deus%20-%20capa.png">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ogabriels.com/um-minuto-para-refletir-em-Deus.html">
+  <meta property="twitter:title" content="Um Minuto para Refletir | Podcast">
+  <meta property="twitter:description" content="Podcast de reflexões diárias. Identidade visual e produção completa.">
+  <meta property="twitter:image" content="https://ogabriels.com/1%20Minuto%20para%20Refletir%20em%20Deus%20-%20capa.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -246,6 +271,10 @@
 
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+
+    /* Estilo para link do Host */
+    .host-link { color: var(--text-primary); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.1); transition: 0.2s; }
+    .host-link:hover { color: var(--brand-color); border-bottom-color: var(--brand-color); }
 
     /* Mobile 2x2 Grid Layout Config */
     .meta-item:nth-child(1) { grid-area: role; }
@@ -578,7 +607,7 @@
 
       <section class="project-description">
         <p><strong>"Um Minuto para Refletir em Deus"</strong> é um podcast cristão que une mensagens profundas a um formato dinâmico. Neste projeto, atuei de ponta a ponta: fui responsável pela criação da identidade visual e logotipo, garantindo que a imagem transmitisse a serenidade e a seriedade do conteúdo.</p>
-        <p>Além do design, cuidei da parte técnica: <strong>gravação, edição, tratamento de áudio e publicação no Spotify</strong>. Apresentado por Janilson Dias, o programa leva reflexões diárias de fé com uma qualidade audiovisual profissional.</p>
+        <p>Além do design, cuidei da parte técnica: <strong>gravação, edição, tratamento de áudio e publicação no Spotify</strong>. Apresentado por <a href="https://www.instagram.com/janilson.son/" target="_blank" class="host-link">Janilson Dias</a>, o programa leva reflexões diárias de fé com uma qualidade audiovisual profissional.</p>
       </section>
 
       <section class="podcast-card">
@@ -757,6 +786,34 @@
         if (touchEndX > touchStartX + 50) changeImage(-1); 
       });
     });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "PodcastSeries",
+    "name": "Um Minuto para Refletir em Deus",
+    "description": "Reflexões diárias de fé com mensagens profundas e formato dinâmico.",
+    "url": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html",
+    "image": "https://ogabriels.com/1%20Minuto%20para%20Refletir%20em%20Deus%20-%20capa.png",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Gabriel Silva",
+        "jobTitle": "Editor & Designer",
+        "url": "https://ogabriels.com/sobre.html"
+      },
+      {
+        "@type": "Person",
+        "name": "Janilson Dias",
+        "jobTitle": "Host",
+        "sameAs": [
+          "https://www.instagram.com/janilson.son/",
+          "https://www.linkedin.com/in/janilson-dias-moreira-80b94428/"
+        ]
+      }
+    ]
+  }
   </script>
 
 </body>
