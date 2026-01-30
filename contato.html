@@ -57,40 +57,13 @@
 
     a { text-decoration: none; -webkit-tap-highlight-color: transparent; color: inherit; }
 
-    /* --- LÓGICA HÍBRIDA DO RECAPTCHA (CORRIGIDA) --- */
+    /* --- LÓGICA HÍBRIDA DO RECAPTCHA --- */
     /* Padrão (PC): Selo Visível, Texto Oculto */
     .grecaptcha-badge { 
         visibility: visible; 
         z-index: 9999;
     }
     
-/* Ajuste para passar no teste do Google (Mais legível, ainda discreto) */
-    
-    .form-footer-text {
-        text-align: center;
-        font-size: 0.75rem;
-        color: #6E6E73; /* Cinza "Apple" mais escuro */
-        margin-top: 16px;
-        margin-bottom: 0; 
-        opacity: 1; /* Removi a opacidade para garantir o contraste real */
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-    }
-
-    /* Texto Legal do Google (APENAS PARA MOBILE) */
-/* Texto Legal do Google (APENAS PARA MOBILE) */
-    .legal-text {
-        font-size: 0.7rem; 
-        color: #86868B;    
-        display: none; 
-        margin-top: 4px;
-        line-height: 1.3;
-    }
-    .legal-text a { color: #86868B; text-decoration: underline; }
-
     /* --- Animações --- */
     @keyframes slideUpFade {
       from { opacity: 0; transform: translateY(20px); }
@@ -288,6 +261,7 @@
     /* ---------------- FORMULÁRIO ---------------- */
     .form-wrapper { 
         background: white; 
+        /* Padding inferior reduzido para 18px (compensando visualmente o texto de rodapé) */
         padding: 48px 48px 18px 48px; 
         border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); transition: box-shadow 0.3s;
         opacity: 0; animation: slideUpFade 0.8s var(--ease-apple) 0.1s forwards;
@@ -347,7 +321,7 @@
     .submit-btn i { transition: transform 0.3s var(--ease-apple); }
     .submit-btn:hover i { transform: translateX(4px); }
     
-    /* Barra de Tempo: Branca com borda Verde Sucesso */
+    /* Barra de Tempo */
     .progress-bar {
       position: absolute; bottom: 0; left: 0; 
       height: 6px; 
@@ -356,6 +330,7 @@
       width: 0; z-index: 2;
     }
     
+    /* Nota de Rodapé */
     .form-footer-wrapper {
         text-align: center;
         margin-top: 16px;
@@ -363,8 +338,7 @@
     
     .form-footer-text {
         font-size: 0.75rem;
-        color: var(--text-secondary);
-        opacity: 0.8;
+        color: #86868B;
         font-weight: 500;
         display: inline-flex;
         align-items: center;
@@ -372,6 +346,15 @@
         margin-bottom: 4px;
     }
     .form-footer-text i { font-size: 0.85rem; }
+
+    /* Texto Legal do Google (APENAS PARA MOBILE) - ESTILOS GERAIS */
+    .legal-text {
+        font-size: 0.65rem;
+        color: #ccc;
+        display: none; /* Escondido por padrão (Desktop) */
+        margin-top: 2px;
+    }
+    .legal-text a { color: #ccc; text-decoration: underline; }
 
     .spinner { width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: none; opacity: 0; transition: opacity 0.3s; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -394,7 +377,15 @@
     @media (max-width: 968px) {
       /* ESCONDE SELO E MOSTRA TEXTO NO MOBILE */
       .grecaptcha-badge { visibility: hidden !important; }
-      .legal-text { display: block !important; }
+      
+      /* Ajuste no Texto Legal Mobile (Tamanho e Cor Seguros) */
+      .legal-text { 
+        display: block !important; 
+        font-size: 0.7rem; /* Aumentado para 11.2px (Aprovado pelo Google) */
+        color: #86868B;    /* Cor segura */
+        line-height: 1.4;
+      }
+      .legal-text a { color: #86868B; }
 
       aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
       
@@ -652,8 +643,8 @@
                 <p class="form-footer-text"><i class="fa-regular fa-envelope"></i> O retorno será enviado para o e-mail informado.</p>
                 <span class="legal-text">
                     Protegido por reCAPTCHA: 
-                    <a href="https://www.google.com/intl/pt-BR/policies/privacy/" target="_blank">Privacidade</a> - 
-                    <a href="https://www.google.com/intl/pt-BR/policies/terms/" target="_blank">Termos</a>
+                    <a href="https://policies.google.com/privacy" target="_blank">Privacidade</a> - 
+                    <a href="https://policies.google.com/terms" target="_blank">Termos</a>
                 </span>
             </div>
           </form>
@@ -1059,4 +1050,4 @@
     menuBtn.addEventListener('click', toggleMenu);
   </script>
 </body>
-</html>
+</html>"
