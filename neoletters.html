@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbfbfd">
-  <meta name="description" content="Neo Letters - Branding e Identidade Visual para Letreiros Neon. Um projeto de Gabriel Silva.">
-  <title>Neo Letters | Gabriel Silva</title>
+  
+  <title>Neo Letters | Branding e Identidade Visual para Neon - Gabriel Silva</title>
+  <meta name="description" content="Case de Branding completo para Neo Letters, empresa de letreiros neon. Criação de logotipo, naming e estratégia visual para redes sociais por Gabriel Silva.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  <link rel="canonical" href="https://ogabriels.com/neoletters.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ogabriels.com/neoletters.html">
+  <meta property="og:title" content="Neo Letters | Branding Neon">
+  <meta property="og:description" content="Identidade visual completa para marca de letreiros luminosos.">
+  <meta property="og:image" content="https://ogabriels.com/NeoLetters%20-%20capa.png">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ogabriels.com/neoletters.html">
+  <meta property="twitter:title" content="Neo Letters | Branding Neon">
+  <meta property="twitter:description" content="Identidade visual completa para marca de letreiros luminosos.">
+  <meta property="twitter:image" content="https://ogabriels.com/NeoLetters%20-%20capa.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -241,6 +266,10 @@
 
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+    
+    /* LINK PARA INSTAGRAM DA NEO LETTERS */
+    .client-link { text-decoration: none; color: var(--text-primary); border-bottom: 1px solid transparent; transition: 0.2s; }
+    .client-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
     /* Mobile 2x2 Grid Layout Config */
     .meta-item:nth-child(1) { grid-area: role; }
@@ -547,7 +576,10 @@
       
       <section class="meta-grid">
         <div class="meta-item role"><h4>Serviço</h4><p>Identidade Visual</p></div>
-        <div class="meta-item year"><h4>Cliente</h4><p>Neo Letters</p></div>
+        <div class="meta-item year">
+            <h4>Cliente</h4>
+            <p><a href="https://www.instagram.com/neo_letters/" target="_blank" class="client-link" title="Ver Instagram">Neo Letters <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7em;"></i></a></p>
+        </div>
         <div class="meta-item tools"><h4>Ano</h4><p>2023</p></div>
       </section>
 
@@ -745,6 +777,41 @@
         if (touchEndX > touchStartX + 50) changeImage(-1); 
       });
     });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "headline": "Neo Letters - Branding e Identidade Visual",
+    "description": "Projeto completo de branding para empresa familiar de letreiros neon.",
+    "genre": "Branding",
+    "image": "https://ogabriels.com/NeoLetters%20-%20capa.png",
+    "dateCreated": "2023",
+    "about": {
+      "@type": "Organization",
+      "name": "Neo Letters",
+      "sameAs": "https://www.instagram.com/neo_letters/"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Gabriel Silva",
+      "url": "https://ogabriels.com/sobre.html",
+      "sameAs": [
+        "https://www.linkedin.com/in/ogabriels/",
+        "https://www.instagram.com/ogabriels0/",
+        "https://github.com/ogabriels2"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Gabriel Silva Portfolio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ogabriels.com/Logo.png"
+      }
+    }
+  }
   </script>
 
 </body>
