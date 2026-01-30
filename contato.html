@@ -1076,31 +1076,63 @@
     menuBtn.addEventListener('click', toggleMenu);
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "mainEntity": {
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Person",
+      "@id": "https://ogabriels.com/",
       "name": "Gabriel Silva",
-      "url": "https://ogabriels.com",
+      "alternateName": [
+        "Gabriel Silva Dias Moreira",
+        "Gabriel Moreira"
+      ],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist & Full Stack Developer",
+      "image": "https://ogabriels.com/Minha%20foto%201.jpg",
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
+        "https://github.com/ogabriels2/",
+        "https://www.behance.net/ogabriels0",
+        "https://x.com/ogabriels0",
         "https://www.instagram.com/ogabriels0/",
-        "https://github.com/ogabriels2"
+        "https://www.youtube.com/@Gabalarca"
       ],
-      "email": "contato@ogabriels.com",
-      "telephone": "+5511979686116",
       "contactPoint": [
         {
           "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "contato@ogabriels.com",
+          "availableLanguage": ["Portuguese"]
+        },
+        {
+          "@type": "ContactPoint",
           "contactType": "sales",
-          "email": "contato@ogabriels.com"
+          "telephone": "+5511979686116",
+          "description": "Orçamentos para Desenvolvimento Web, Design e Audiovisual",
+          "availableLanguage": ["Portuguese"],
+          "areaServed": "BR"
         }
       ]
+    },
+    {
+      "@type": "ContactPage",
+      "@id": "https://ogabriels.com/contato.html",
+      "url": "https://ogabriels.com/contato.html",
+      "name": "Fale Comigo | Orçamento e Projetos - Gabriel Silva",
+      "description": "Entre em contato com Gabriel Silva para projetos de tecnologia, design ou audiovisual.",
+      "about": { "@id": "https://ogabriels.com/" },
+      "mainEntity": { "@id": "https://ogabriels.com/" },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://ogabriels.com/#website"
+      },
+      "inLanguage": "pt-BR"
     }
-  }
-  </script>
+  ]
+}
+</script>
 
 </body>
 </html>
