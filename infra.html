@@ -20,6 +20,9 @@
   <meta name="author" content="Gabriel Silva">
   <link rel="canonical" href="https://ogabriels.com/infra.html">
 
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="Logo.png">
+
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ogabriels.com/infra.html">
   <meta property="og:title" content="Server Infra & Dashboard | Gabriel Silva">
@@ -915,7 +918,13 @@
       "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
       "url": "https://ogabriels.com/",
       "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": "https://ogabriels.com/Minha%20foto%201.jpg",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "caption": "Gabriel Silva"
+      },
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
         "https://github.com/ogabriels2/",
@@ -926,14 +935,27 @@
       ]
     },
     {
+      "@type": "TechArticle",
+      "@id": "https://ogabriels.com/infra.html#case",
+      "headline": "Server Infra & Homelab: Case Study de Infraestrutura",
+      "description": "Estudo de caso sobre a implementação da infraestrutura self-hosted do servidor Força Aliada, utilizando Cloudflare Tunnel e monitoramento via API.",
+      "image": "https://ogabriels.com/logo-forcaaliada.JPG",
+      "datePublished": "2025-01-01T08:00:00-03:00",
+      "inLanguage": "pt-BR",
+      "author": { "@id": "https://ogabriels.com/" },
+      "publisher": { "@id": "https://ogabriels.com/" },
+      "keywords": "Server Infrastructure, Força Aliada, Cloudflare Tunnel, Self Hosting, Minecraft Server, API Dashboard",
+      "mainEntity": { "@id": "https://ogabriels.com/infra.html#application" }
+    },
+    {
       "@type": "WebPage",
-      "@id": "https://ogabriels.com/infra.html#webpage",
+      "@id": "https://ogabriels.com/infra.html",
       "url": "https://ogabriels.com/infra.html",
       "name": "Server Infra & Homelab | Case Study técnico",
-      "description": "Implementação de servidor self-hosted com tunelamento Cloudflare e monitoramento via API.",
+      "isPartOf": { "@id": "https://ogabriels.com/#website" },
       "breadcrumb": { "@id": "https://ogabriels.com/infra.html#breadcrumb" },
       "about": { "@id": "https://ogabriels.com/infra.html#case" },
-      "isPartOf": { "@id": "https://ogabriels.com/#website" },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
       "inLanguage": "pt-BR"
     },
     {
@@ -943,7 +965,7 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Início",
+          "name": "Home",
           "item": "https://ogabriels.com/"
         },
         {
@@ -955,34 +977,15 @@
       ]
     },
     {
-      "@type": "CreativeWork",
-      "@id": "https://ogabriels.com/infra.html#case",
-      "headline": "Server Infra & Homelab – Case Study de Infraestrutura",
-      "description": "Estudo de caso técnico sobre a implementação de um servidor self-hosted com Cloudflare Tunnel, DNS gerenciado e monitoramento via API.",
-      "url": "https://ogabriels.com/infra.html",
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://ogabriels.com/logo-forcaaliada.JPG"
-      },
-      "author": { "@id": "https://ogabriels.com/" },
-      "creator": { "@id": "https://ogabriels.com/" },
-      "datePublished": "2025-01-01",
-      "keywords": "Server Infrastructure, Homelab, Cloudflare Tunnel, Self Hosting, Network Monitoring, API Dashboard",
-      "mainEntity": { "@id": "https://ogabriels.com/infra.html#application" }
-    },
-    {
       "@type": "SoftwareApplication",
       "@id": "https://ogabriels.com/infra.html#application",
       "name": "Força Aliada – Server Monitoring Dashboard",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Linux",
-      "description": "Dashboard de monitoramento de status de servidores via API REST utilizado no projeto Força Aliada.",
-      "author": { "@id": "https://ogabriels.com/" },
-      "maintainer": { "@id": "https://ogabriels.com/" },
-      "url": "https://ogabriels.com/infra.html",
+      "description": "Dashboard de monitoramento de status de servidores via API REST utilizado no ecossistema Força Aliada.",
       "offers": {
         "@type": "Offer",
-        "price": "0",
+        "price": "0.00",
         "priceCurrency": "BRL"
       }
     }
