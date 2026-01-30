@@ -19,6 +19,9 @@
   <meta name="robots" content="index, follow">
   <meta name="author" content="Gabriel Silva">
   <link rel="canonical" href="https://ogabriels.com/um-minuto-para-refletir-em-Deus.html">
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="Logo.png">
 
   <meta property="og:type" content="music.radio_station">
   <meta property="og:url" content="https://ogabriels.com/um-minuto-para-refletir-em-Deus.html">
@@ -258,16 +261,23 @@
     /* CONTENT WRAPPER */
     .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); box-sizing: border-box; }
 
-    /* Meta Grid CORRIGIDO (Desktop: 3 Colunas, Esquerda) */
+    /* Meta Grid - Refinada (Padrão Unificado) */
     .meta-grid { 
         display: grid; 
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 24px; margin-bottom: 60px; 
-        background: white; padding: 24px; 
-        border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); 
-        text-align: left;
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-areas: "role year tools"; 
+        gap: 24px; 
+        margin-bottom: 60px; 
+        background: white; 
+        padding: 20px 30px; /* Bordas reduzidas */
+        border-radius: var(--radius-lg); 
+        box-shadow: var(--shadow-sm); 
     }
-    .meta-item { display: block; } 
+
+    /* Posicionamento dos itens para centralizar a Função */
+    .role { grid-area: role; text-align: left; }
+    .year { grid-area: year; text-align: center; } 
+    .tools { grid-area: tools; text-align: right; } 
 
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
@@ -408,14 +418,26 @@
       .hero-text-content { padding: 0 24px; }
       .content-wrapper { padding: 40px 24px; }
       
-      /* Grid 2x2 Mobile */
+      /* Grid em linha única para Mobile com respiro lateral corrigido */
       .meta-grid { 
-        grid-template-columns: 1fr 1fr; 
-        gap: 16px;
-        grid-template-areas: 
-          "role tools" 
-          "year ."; 
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-areas: "role year tools"; 
+        gap: 10px; 
+        padding: 18px 18px; 
       }
+      
+      /* Redução de fonte e quebra de linha apenas para Mobile */
+      .meta-item h4 { font-size: 0.6rem; }
+      .meta-item p { 
+        font-size: 0.72rem; 
+        line-height: 1.2; 
+        word-break: break-word;
+      }
+
+      /* Alinhamentos mobile */
+      .role { text-align: left; }
+      .year { text-align: center; }
+      .tools { text-align: right; }
       
       /* Podcast Card Mobile */
       .podcast-card { flex-direction: column; text-align: center; gap: 24px; padding: 30px; }
