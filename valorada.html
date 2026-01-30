@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbfbfd">
-  <title>Valorada | Gabriel Silva</title>
+  
+  <title>Valorada | Identidade Visual para Canal de Games - Gabriel Silva</title>
+  <meta name="description" content="Projeto de identidade visual completa para o canal de YouTube Valorada. Logotipo, banners e thumbnails para conteúdo de Valorant. Co-criação com Caio Leal.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  <link rel="canonical" href="https://ogabriels.com/valorada.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ogabriels.com/valorada.html">
+  <meta property="og:title" content="Valorada | Design para YouTube">
+  <meta property="og:description" content="Identidade visual gamer: Logotipo, banners e thumbnails de alto impacto.">
+  <meta property="og:image" content="https://ogabriels.com/Capa%20do%20canal%20Valorada%20no%20YouTube%2C%20mostrando%20personagens%20de%20Valorant%20e%20elementos%20gr%C3%A1ficos%20em%20vermelho%20e%20preto%20e%20branco.jpg">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://ogabriels.com/valorada.html">
+  <meta property="twitter:title" content="Valorada | Design para YouTube">
+  <meta property="twitter:description" content="Identidade visual gamer: Logotipo, banners e thumbnails de alto impacto.">
+  <meta property="twitter:image" content="https://ogabriels.com/Capa%20do%20canal%20Valorada%20no%20YouTube%2C%20mostrando%20personagens%20de%20Valorant%20e%20elementos%20gr%C3%A1ficos%20em%20vermelho%20e%20preto%20e%20branco.jpg">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -257,6 +283,10 @@
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
 
+    /* LINK PARA O PERFIL DO CAIO */
+    .meta-link { text-decoration: none; color: var(--text-primary); border-bottom: 1px solid transparent; transition: 0.2s; }
+    .meta-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
     /* Mobile 2x2 Grid Layout Config */
     .meta-item:nth-child(1) { grid-area: role; }
     .meta-item:nth-child(2) { grid-area: year; } 
@@ -405,9 +435,9 @@
       .contact-banner { 
         flex-direction: column; text-align: center; gap: 32px; 
         padding: 32px 24px; 
-        margin: 0 24px 40px; /* Margem exata 24px */
+        margin: 0 24px 40px; /* Margem exata 24px para alinhar */
         width: auto; 
-        max-width: 100%; 
+        max-width: 100%; /* Reseta max-width do desktop */
       }
       .contact-text-group { width: 100%; padding-right: 0; }
       .contact-social { justify-content: center; margin-top: 15px; }
@@ -562,12 +592,17 @@
       
       <section class="meta-grid">
         <div class="meta-item role"><h4>Projeto</h4><p>Canal de YouTube</p></div>
-        <div class="meta-item year"><h4>Co-Criador</h4><p>Caio Leal</p></div>
+        <div class="meta-item year">
+            <h4>Co-Criador</h4>
+            <p>
+                <a href="https://www.instagram.com/caiolealbit/" target="_blank" class="meta-link" title="Instagram Caio Leal">Caio Leal <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7em;"></i></a>
+            </p>
+        </div>
         <div class="meta-item tools"><h4>Ano</h4><p>2024</p></div>
       </section>
 
       <section class="project-description">
-        <p><strong>Valorada</strong> é um canal do YouTube focado em gameplays de Valorant, criado por mim e meu amigo Caio Leal. Fui responsável por desenvolver a <strong>identidade visual</strong> completa, desde a concepção do logotipo até o design das capas e thumbnails, garantindo uma estética coesa e impactante.</p>
+        <p><strong><a href="https://www.youtube.com/@Valorada" target="_blank" style="color: var(--accent); text-decoration: none;">Valorada</a></strong> é um canal do YouTube focado em gameplays de Valorant, criado por mim e meu amigo Caio Leal. Fui responsável por desenvolver a <strong>identidade visual</strong> completa, desde a concepção do logotipo até o design das capas e thumbnails, garantindo uma estética coesa e impactante.</p>
         <p>A identidade combina os elementos visuais característicos do jogo com uma paleta de <strong>cores vibrantes</strong> e um layout dinâmico. O objetivo foi criar uma marca forte que se conectasse instantaneamente com o público-alvo e transmitisse a energia das partidas.</p>
       </section>
 
@@ -743,5 +778,32 @@
     });
   </script>
 
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "headline": "Valorada - Identidade Visual YouTube",
+    "description": "Design completo para canal de games no YouTube: Logo, Banners e Thumbnails.",
+    "genre": "YouTube Channel Design",
+    "image": "https://ogabriels.com/Capa%20do%20canal%20Valorada%20no%20YouTube%2C%20mostrando%20personagens%20de%20Valorant%20e%20elementos%20gr%C3%A1ficos%20em%20vermelho%20e%20preto%20e%20branco.jpg",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Gabriel Silva",
+        "url": "https://ogabriels.com/sobre.html",
+        "sameAs": [
+          "https://www.linkedin.com/in/ogabriels/",
+          "https://www.instagram.com/ogabriels0/",
+          "https://github.com/ogabriels2"
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "Caio Leal",
+        "sameAs": "https://www.instagram.com/caiolealbit/"
+      }
+    ]
+  }
+  </script>
 </body>
 </html>
