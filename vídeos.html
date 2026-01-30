@@ -1082,26 +1082,108 @@
     if (lightbox) lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLightbox(); });
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Produção Audiovisual e Edição",
-    "description": "Portfólio de edição de vídeo incluindo documentário para Fábrica de Cultura e projeto para Univesp.",
-    "thumbnailUrl": "https://ogabriels.com/Balé_2.png",
-    "uploadDate": "2024-01-01",
-    "author": {
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
       "@type": "Person",
+      "@id": "https://ogabriels.com/",
       "name": "Gabriel Silva",
-      "url": "https://ogabriels.com/sobre.html",
+      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist & Full Stack Developer",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg"
+      },
+      "knowsAbout": [
+        "Docker", 
+        "Linux Server", 
+        "Desenvolvimento Mobile", 
+        "Inteligência Artificial", 
+        "Cybersecurity & Proteção contra Fraudes", 
+        "Edição de Vídeo", 
+        "Motion Graphics"
+      ],
+      "alumniOf": [
+        { "@id": "https://www.liceuescola.com.br" },
+        { "@id": "https://univesp.br/" }
+      ],
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
+        "https://github.com/ogabriels2/",
+        "https://www.behance.net/ogabriels0",
+        "https://x.com/ogabriels0",
         "https://www.instagram.com/ogabriels0/",
-        "https://github.com/ogabriels2"
+        "https://www.youtube.com/@Gabalarca"
+      ]
+    },
+    {
+      "@type": "CreativeWorkSeries",
+      "@id": "https://ogabriels.com/vídeos.html#portfolio",
+      "name": "Portfólio Audiovisual & Tech Showcases",
+      "description": "Exibição de projetos que unem engenharia de software (Docker, Linux, IA) e produção audiovisual de alto impacto.",
+      "creator": { "@id": "https://ogabriels.com/" },
+      "publisher": { "@id": "https://ogabriels.com/" },
+      "mainEntityOfPage": { "@id": "https://ogabriels.com/vídeos.html" },
+      "keywords": "Docker, Linux, Inteligência Artificial, Proteção contra Fraudes, Aplicativos Mobile, Edição de Vídeo, Fábrica de Cultura, UNIVESP",
+      "hasPart": [
+        {
+          "@type": "VideoObject",
+          "name": "Documentário Ballet: Mostra de Processos",
+          "description": "Documentário realizado na Fábrica de Cultura Jaçanã, focado em narrativa e edição sensível.",
+          "thumbnailUrl": "https://ogabriels.com/Balé_2.png",
+          "uploadDate": "2023-11-01T08:00:00-03:00",
+          "duration": "PT16M28S",
+          "contentUrl": "https://ogabriels.com/Ballet%20mostra%20de%20processos%20multimeios.mp4",
+          "producer": {
+            "@type": "Organization",
+            "name": "Fábrica de Cultura Jaçanã",
+            "url": "https://www.fabricasdecultura.org.br/jacana/"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Analisador de Fraudes com IA - Projeto Integrador UNIVESP",
+          "description": "Documentação de sistema de detecção de fraudes utilizando IA, treinado em ambiente Linux e containerizado com Docker.",
+          "thumbnailUrl": "https://ogabriels.com/Detector%20de%20Fraudes%20com%20IA%20-%20Projeto%20Integrador%20II%20–%20UNIVESP%20(escuro).jpg",
+          "uploadDate": "2024-06-15T08:00:00-03:00",
+          "duration": "PT6M13S",
+          "contentUrl": "https://ogabriels.com/Detector%20de%20Fraudes%20com%20IA%20-%20Projeto%20Integrador%20II%20–%20UNIVESP.mp4",
+          "mentions": [
+            { "@type": "Thing", "name": "Docker" },
+            { "@type": "Thing", "name": "Linux" },
+            { "@type": "Thing", "name": "Artificial Intelligence" },
+            { "@type": "Thing", "name": "Mobile Application Development" }
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ogabriels.com/vídeos.html",
+      "url": "https://ogabriels.com/vídeos.html",
+      "name": "Produção Audiovisual e Edição de Vídeo | Gabriel Silva",
+      "isPartOf": { "@type": "WebSite", "@id": "https://ogabriels.com/#website" },
+      "breadcrumb": { "@id": "https://ogabriels.com/vídeos.html#breadcrumb" },
+      "mainEntity": { "@id": "https://ogabriels.com/vídeos.html#portfolio" },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ogabriels.com/vídeos.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Audiovisual", "item": "https://ogabriels.com/vídeos.html" }
       ]
     }
-  }
-  </script>
+  ]
+}
+</script>
 
 </body>
 </html>
