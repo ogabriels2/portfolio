@@ -1,91 +1,96 @@
-# 🌐 ogabriels – Portfólio Profissional
+> [🇧🇷 Leia em Português](README.pt-br.md)
+
+# 🌐 ogabriels – Professional Portfolio
 
 ![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fogabriels.com&label=Status&style=flat-square)
 ![Maintained](https://img.shields.io/badge/Maintained-Yes-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-> **"Transformando ideias complexas em experiências digitais funcionais."**
+> **"Transforming complex ideas into functional digital experiences."**
 
-Este repositório hospeda o código-fonte do meu portfólio pessoal e profissional, acessível em **[ogabriels.com](https://ogabriels.com)**.  
-O projeto funciona como um **repositório central dos meus trabalhos** em **Desenvolvimento Web**, **Design Gráfico**, **Audiovisual** e **Infraestrutura de TI**.
+This repository hosts the source code for my personal and professional portfolio, available at **[ogabriels.com](https://ogabriels.com)**.
+The project serves as a **central hub for my work** in **Web Development**, **Graphic Design**, **Audiovisual Production**, and **IT Infrastructure**.
 
-Este repositório é público para fins de **portfólio, estudo e referência técnica**.  
-Não se trata de um template genérico nem de um projeto pensado para execução local por terceiros, embora seja possível visualizá-lo.
-
----
-
-## 🎯 Objetivos do Projeto
-
-- Demonstrar domínio de **HTML semântico**, **CSS moderno** e **JavaScript puro**
-- Aplicar **SEO técnico avançado** (Schema.org, Open Graph, Sitemap XML)
-- Implementar **Internacionalização (i18n)** com estrutura de subdiretórios
-- Priorizar **performance**, simplicidade e baixo custo operacional (Hospedagem Estática)
+This repository is public for **portfolio, study, and technical reference purposes**.
+It is not a generic template nor a project designed for local execution by third parties, although it is viewable locally.
 
 ---
 
-## 🚀 Tecnologias e Ferramentas
+## 🎯 Project Goals
 
-O projeto foi construído sem dependência de frameworks pesados, garantindo carregamento rápido e previsível.
+- Demonstrate mastery of **Semantic HTML**, **Modern CSS**, and **Vanilla JavaScript**
+- Apply **Advanced Technical SEO** (Schema.org, Open Graph, XML Sitemap)
+- Implement **Internationalization (i18n)** with subdirectory structure
+- Prioritize **performance**, simplicity, and low operational cost (Static Hosting)
 
-| Categoria | Tecnologias |
+---
+
+## 🚀 Tech Stack & Tools
+
+The project was built without heavy frameworks to ensure instant loading and predictability.
+
+| Category | Technologies |
 | :--- | :--- |
-| **Front-end** | HTML5 Semântico, CSS3 (Responsivo / Flexbox / Grid), JavaScript (ES6+) |
-| **SEO & Dados** | JSON-LD (Schema.org), Open Graph Protocol, Meta Tags Avançadas |
-| **Multimídia** | Otimização de Imagens (WebP/JPG), Vídeo HTML5 com Legendas (VTT) |
-| **Infraestrutura** | Hospedagem Estática, DNS Management, Versionamento Git |
+| **Front-end** | Semantic HTML5, CSS3 (Responsive / Flexbox / Grid), JavaScript (ES6+) |
+| **SEO & Data** | JSON-LD (Schema.org), Open Graph Protocol, Advanced Meta Tags |
+| **Multimedia** | Image Optimization (WebP/JPG), HTML5 Video with Captions (VTT) |
+| **Infrastructure** | Static Hosting, DNS Management, Git Versioning |
 
 ---
 
-## 📂 Arquitetura do Projeto
+## 📂 Project Architecture
 
-O repositório passou por uma refatoração completa em **Janeiro de 2026**, visando melhor organização de assets, suporte à internacionalização e URLs amigáveis para SEO.
+The repository underwent a complete refactoring in **January 2026**, aiming for better asset organization, internationalization support, and SEO-friendly URLs.
 
 ```text
 ogabriels/
-├── assets/                 # Centralização de recursos estáticos
-│   ├── img/                # Imagens otimizadas (prefixadas por projeto)
-│   └── video/              # Arquivos de vídeo e legendas (.vtt)
-├── en/                     # Versão internacional (English - EN-US)
-├── index.html              # Home (Português - PT-BR)
-├── lo-publicidade.html     # Case Study: Branding & Identidade
-├── personal-branding.html  # Case Study: Marca Pessoal
-├── videos.html             # Portfólio Audiovisual
-├── sitemap.xml             # Mapa do site para indexação
-└── robots.txt              # Diretrizes para crawlers
-````
+├── assets/                 # Centralized static resources
+│   ├── img/                # Optimized images (project-prefixed)
+│   └── video/              # Video files and captions (.vtt)
+├── en/                     # International version (English - EN-US)
+├── index.html              # Home (Portuguese - PT-BR)
+├── lo-publicidade.html     # Case Study: Branding & Identity
+├── personal-branding.html  # Case Study: Personal Branding
+├── videos.html             # Audiovisual Portfolio
+├── sitemap.xml             # Sitemap for indexing
+└── robots.txt              # Guidelines for crawlers
 
----
-
-## 🛠️ Como visualizar
-
-Como se trata de um site estático (Vanilla HTML/CSS/JS), não é necessária instalação de pacotes (NPM/Yarn).
-
-1. **Clone o repositório:**
-
-```bash
-git clone https://github.com/ogabriels2/ogabriels.git
 ```
 
-2. **Abra o projeto:**
-   Basta abrir o arquivo `index.html` em qualquer navegador moderno.
+---
+
+## 🛠️ How to View
+
+Since this is a static website (Vanilla HTML/CSS/JS), no package installation (NPM/Yarn) is required.
+
+1. **Clone the repository:**
+
+```bash
+git clone [https://github.com/ogabriels2/portfolio.git](https://github.com/ogabriels2/portfolio.git)
+
+```
+
+2. **Open the project:**
+Simply open the `index.html` file in any modern browser.
 
 ---
 
-## 📬 Contato
+## 📬 Contact
 
-Gostou da organização do código ou do design? Vamos conversar.
+Liked the code organization or the design? Let's talk.
 
-* **Website:** [https://ogabriels.com](https://ogabriels.com)
-* **LinkedIn:** [https://www.linkedin.com/in/ogabriels/](https://www.linkedin.com/in/ogabriels/)
-* **GitHub:** [https://github.com/ogabriels2](https://github.com/ogabriels2)
-
----
-
-## 📄 Licença
-
-O código-fonte está licenciado sob a **MIT License**.
-Os **conteúdos autorais**, incluindo textos, imagens, vídeos e identidade visual, **não devem ser reutilizados** sem autorização prévia.
+* **Website:** [ogabriels.com](https://ogabriels.com)
+* **LinkedIn:** [Gabriel Silva](https://www.linkedin.com/in/ogabriels/)
+* **GitHub:** [@ogabriels2](https://github.com/ogabriels2)
+* **Email:** [contato@ogabriels.com](mailto:contato@ogabriels.com)
 
 ---
 
-*Desenvolvido por Gabriel Silva.*
+## 📄 License
+
+The source code is licensed under the **MIT License**.
+The **proprietary content**, including texts, images, videos, and visual identity, **must not be reused** without prior authorization.
+
+---
+
+*Developed by Gabriel Silva.*
