@@ -89,9 +89,3 @@ Os **conteúdos autorais**, incluindo textos, imagens, vídeos e identidade visu
 ---
 
 *Desenvolvido por Gabriel Silva.*
-
-```
-- ou revisar o README pensando **só em recrutador gringo**
-
-Você manda 👍
-```
