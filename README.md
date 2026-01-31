@@ -12,7 +12,7 @@ This repository hosts the source code for my personal and professional portfolio
 The project serves as a **central hub for my work** in **Web Development**, **Graphic Design**, **Audiovisual Production**, and **IT Infrastructure**.
 
 This repository is public for **portfolio, study, and technical reference purposes**.
-It is not a generic template nor a project designed for local execution by third parties, although it is viewable locally.
+It is not a generic template nor intended for third-party deployment, although it can be viewed locally.
 
 ---
 
@@ -66,7 +66,7 @@ Since this is a static website (Vanilla HTML/CSS/JS), no package installation (N
 1. **Clone the repository:**
 
 ```bash
-git clone [https://github.com/ogabriels2/portfolio.git](https://github.com/ogabriels2/portfolio.git)
+git clone https://github.com/ogabriels2/portfolio.git
 
 ```
 
