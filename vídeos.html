@@ -185,6 +185,7 @@
     .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
 
     /* ---------------- MOBILE MENU PREMIUM ---------------- */
+    /* Garante que o botão só apareça no mobile */
     .mobile-menu-btn { display: none; }
     
     .mobile-menu-overlay { 
@@ -213,7 +214,9 @@
       border-radius: 50%; display: flex; align-items: center; justify-content: center; 
       font-size: 1.2rem; color: var(--text-primary); 
       cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; 
+      opacity: 0; pointer-events: none;
     }
+    .mobile-menu-overlay.active .mobile-close-btn { opacity: 1; pointer-events: auto; }
     .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
     
     .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
@@ -316,70 +319,94 @@
     
     .divider { height: 1px; background: rgba(0,0,0,0.08); margin: 80px 0; border: none; }
 
-    /* --- PREMIUM VIDEO PLAYER --- */
+    /* --- PREMIUM VIDEO PLAYER v3.0 (Final Polish) --- */
     .video-container {
         width: 100%; max-width: 100%; position: relative; border-radius: var(--radius-lg);
         overflow: hidden; background-color: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.25); aspect-ratio: 16/9;
-        user-select: none;
+        user-select: none; outline: none;
     }
     
-    /* Legendas: Centralizadas e com escala correta em Fullscreen */
+    /* --- LEGENDAS (Estilo Base) --- */
     video::cue { 
-      background-color: rgba(0, 0, 0, 0.7) !important; 
+      background-color: rgba(0, 0, 0, 0.75) !important; 
       color: white; 
       font-family: 'Inter', sans-serif; 
       font-weight: 500; 
-      font-size: 1.2rem; /* Tamanho fixo base */
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
       line-height: 1.2;
     }
 
-    /* Elevação e Centralização do bloco */
+    /* Manipulação da área da legenda (Webkit/Chrome) */
     .video-container video::-webkit-media-text-track-display {
-      transform: translateY(-10px);
+      transform: translateY(-20px); 
       transition: transform 0.3s ease;
-      text-align: center !important; /* Força centralização */
+      text-align: center !important;
     }
 
+    /* Quando os controles aparecem, sobe a legenda suavemente */
     .video-container:not(.user-inactive) video::-webkit-media-text-track-display,
     .video-container.paused video::-webkit-media-text-track-display {
-      transform: translateY(-75px); 
+      transform: translateY(-80px); 
     }
 
-    /* Ajuste para Tela Cheia (Aumenta a legenda) */
+    /* --- TELA CHEIA (Ajustes Específicos) --- */
     .video-container:fullscreen video::cue {
-      font-size: 2.5rem; /* Aumenta consideravelmente no Fullscreen */
+      font-size: 1.8rem; 
+      line-height: 1.05;
+    }
+
+    /* Garante que em Fullscreen a legenda fique embaixo */
+    .video-container:fullscreen video::-webkit-media-text-track-display {
+      transform: translateY(0); 
+      bottom: 70px !important;  
+      margin-bottom: 10px;
     }
     
-    /* Corrige o espaçamento que o Chrome impõe em Fullscreen */
-    .video-container:fullscreen video::-webkit-media-text-track-display {
-      bottom: 10% !important;
+    /* Se os controles sumirem em Fullscreen, a legenda desce um pouco */
+    .video-container.user-inactive:fullscreen video::-webkit-media-text-track-display {
+       bottom: 30px !important;
     }
 
-    /* Animação Fluida para Menus (Velocidade e Legenda) */
+    /* Menus Flutuantes (Liquid Glass + Transparência + Sombra no Texto) */
     .captions-menu, .speed-menu {
-        position: absolute; bottom: 50px; right: -10px;
-        background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(20px);
+        position: absolute; bottom: 60px; right: 24px;
+        background: rgba(28, 28, 30, 0.65); /* Mais transparente */
+        backdrop-filter: blur(16px); /* Blur de vidro */
+        -webkit-backdrop-filter: blur(16px);
         border-radius: 12px; padding: 6px; min-width: 130px;
         display: flex; flex-direction: column; gap: 2px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);
-        z-index: 100;
-        /* Estado inicial para animação fade-in-up */
-        opacity: 0; pointer-events: none; transform: translateY(15px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+        z-index: 100; opacity: 0; pointer-events: none; transform: translateY(15px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .captions-menu.show, .speed-menu.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
-    /* Estilo Premium para Botão Ativo (Sem quadrado branco) */
+    .caption-option {
+        background: none; border: none; color: #ccc; text-align: left; padding: 10px 14px;
+        font-size: 0.85rem; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif;
+        border-radius: 8px; display: flex; justify-content: space-between; align-items: center;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    .caption-option:hover { background: rgba(255,255,255,0.1); color: white; }
+    .caption-option.active { background: rgba(0, 113, 227, 0.2); color: var(--accent); font-weight: 600; }
+
     .control-btn.active { 
-      background-color: transparent !important; /* Remove o fundo branco */
+      background-color: transparent !important; 
       color: #FFFFFF !important; 
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)); /* Brilho no ícone */
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)); 
       transform: scale(1.15);
     }
     
+    /* Estado Inativo (Mouse parado) */
     .video-container.user-inactive { cursor: none; }
     .video-container.user-inactive .controls-wrapper,
-    .video-container.user-inactive .center-controls { opacity: 0 !important; pointer-events: none !important; transition: opacity 0.5s ease; }
+    .video-container.user-inactive .center-controls { 
+        opacity: 0 !important; pointer-events: none !important; 
+    }
+
+    .video-container.show-controls-briefly .controls-wrapper {
+        opacity: 1 !important; pointer-events: auto !important;
+    }
 
     video { width: 100%; height: 100%; display: block; }
     
@@ -388,45 +415,67 @@
         display: flex; align-items: center; justify-content: center; gap: 40px; z-index: 10;
         opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
     }
-    .video-container.paused .center-controls, .video-container:hover:not(.user-inactive) .center-controls { opacity: 1; }
+    .video-container.paused .center-controls, 
+    .video-container:hover:not(.user-inactive) .center-controls { opacity: 1; }
     
+    /* LIQUID GLASS CENTER BUTTONS */
     .center-btn {
-        width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(12px);
-        display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; 
-        border: 1px solid rgba(255,255,255,0.15); transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: auto;
+        width: 60px; height: 60px; border-radius: 50%; 
+        background: rgba(255, 255, 255, 0.15); 
+        backdrop-filter: blur(8px); 
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 1px 3px rgba(0,0,0,0.3);
+        display: flex; align-items: center; justify-content: center; 
+        color: white; font-size: 1.2rem; cursor: pointer; 
+        transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: auto;
         position: relative;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
-    .center-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+    .center-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.1); box-shadow: 0 8px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.4); }
     .center-btn:active { transform: scale(0.95); }
     .center-btn.main-play { width: 90px; height: 90px; font-size: 2.2rem; }
     
-    /* Animações de Skip */
-    .rotate-360-left { animation: spinLeft 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-    .rotate-360-right { animation: spinRight 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-    @keyframes spinLeft { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-    @keyframes spinRight { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    
     .video-container:not(.has-played) .center-btn.skip-btn { display: none; }
 
-    /* Skip Text Indicator (+10/-10) */
+    /* Volume Feedback Indicator - AGORA IGUAL AOS BOTÕES CENTRAIS */
+    .volume-feedback {
+        position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+        font-size: 1.5rem; font-weight: 700; color: white;
+        /* Estilo Liquid Glass Premium (Cópia dos .center-btn) */
+        background: rgba(255, 255, 255, 0.15); 
+        backdrop-filter: blur(8px); 
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 1px 3px rgba(0,0,0,0.3);
+        text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+        padding: 12px 24px; border-radius: 50px;
+        opacity: 0; pointer-events: none; transition: opacity 0.3s; z-index: 20;
+    }
+    .video-container.changing-volume .volume-feedback { opacity: 1; }
+
+    /* Skip Text Indicator */
     .skip-text-popup {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       font-size: 1.2rem; font-weight: 700; color: white; opacity: 0; pointer-events: none;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
+    /* Animações de Skip */
+    @keyframes spinRight { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes spinLeft { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    .anim-rotate-right i { animation: spinRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .anim-rotate-left i { animation: spinLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
     @keyframes skipForward {
       0% { opacity: 0; transform: translate(0%, -50%) scale(0.8); }
-      20% { opacity: 1; transform: translate(40%, -50%) scale(1.1); }
-      100% { opacity: 0; transform: translate(100%, -50%) scale(1); }
+      20% { opacity: 1; transform: translate(60%, -50%) scale(1.1); }
+      100% { opacity: 0; transform: translate(120%, -50%) scale(1); }
     }
     @keyframes skipBackward {
       0% { opacity: 0; transform: translate(-100%, -50%) scale(0.8); }
-      20% { opacity: 1; transform: translate(-140%, -50%) scale(1.1); }
-      100% { opacity: 0; transform: translate(-200%, -50%) scale(1); }
+      20% { opacity: 1; transform: translate(-160%, -50%) scale(1.1); }
+      100% { opacity: 0; transform: translate(-220%, -50%) scale(1); }
     }
-
-    .animate-forward { animation: skipForward 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-    .animate-backward { animation: skipBackward 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+    .animate-forward { animation: skipForward 0.6s ease-out forwards; }
+    .animate-backward { animation: skipBackward 0.6s ease-out forwards; }
 
     .controls-wrapper {
         position: absolute; bottom: 0; left: 0; right: 0;
@@ -434,8 +483,11 @@
         padding: 0 24px 20px; opacity: 0; transition: opacity 0.3s ease;
         display: flex; flex-direction: column; gap: 10px; z-index: 20; pointer-events: none;
     }
-    .video-container:hover:not(.user-inactive) .controls-wrapper, .video-container.paused .controls-wrapper, .video-container.scrubbing .controls-wrapper { opacity: 1; pointer-events: auto; }
+    .video-container:hover:not(.user-inactive) .controls-wrapper, 
+    .video-container.paused .controls-wrapper, 
+    .video-container.scrubbing .controls-wrapper { opacity: 1; pointer-events: auto; }
 
+    /* Timeline & Scrubber */
     .timeline-container { height: 16px; display: flex; align-items: flex-end; cursor: pointer; position: relative; }
     .timeline { width: 100%; height: 4px; background: var(--ui-track); border-radius: 4px; position: relative; transition: height 0.2s ease; }
     .timeline-container:hover .timeline, .video-container.scrubbing .timeline { height: 6px; }
@@ -444,16 +496,19 @@
     .hover-bar { background: var(--ui-hover); width: 0%; opacity: 0; transition: opacity 0.1s; }
     .timeline-container:hover .hover-bar { opacity: 1; }
     .progress-bar { background: var(--accent); width: 0%; }
+    
     .scrubber-knob {
-        position: absolute; right: -6px; top: 50%; transform: translateY(-50%) scale(0);
+        position: absolute; right: -6px; top: 50%; transform: translateY(-50%); 
         width: 14px; height: 14px; background: white; border-radius: 50%;
         box-shadow: 0 2px 6px rgba(0,0,0,0.4); transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .timeline-container:hover .scrubber-knob, .video-container.scrubbing .scrubber-knob { transform: translateY(-50%) scale(1); }
-    .time-tooltip {
+    .timeline-container:hover .scrubber-knob, .video-container.scrubbing .scrubber-knob { transform: translateY(-50%) scale(1.3); }
+    
+    .time-tooltip, .volume-tooltip {
         position: absolute; top: -35px; background: rgba(20,20,20,0.9); color: white;
         padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
         pointer-events: none; opacity: 0; transform: translateX(-50%); transition: opacity 0.2s; white-space: nowrap; border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .timeline-container:hover .time-tooltip, .video-container.scrubbing .time-tooltip { opacity: 1; }
 
@@ -467,88 +522,37 @@
     .control-btn:hover { opacity: 1; transform: scale(1.15); color: #fff; }
     .control-btn:active { transform: scale(0.95); }
     
-    /* Botão de Legenda Ativo (Invertido) */
-    .control-btn.captions-btn.active { 
-      background-color: white; 
-      color: black; 
-      opacity: 1;
-      text-shadow: none;
-    }
+    .captions-container, .speed-container { position: relative; display: flex; align-items: center; justify-content: center; }
 
-/* Containers relativos para que os menus saibam onde se apoiar */
-    .captions-container, .speed-container { 
-      position: relative; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Menus Premium: Alinhados ao botão e com animação fade-in-up */
-    .captions-menu, .speed-menu {
-        position: absolute; 
-        bottom: 45px; /* Altura ideal acima da barra */
-        right: 0;     /* Alinha o menu pela direita do botão */
-        background: rgba(28, 28, 30, 0.95); 
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 12px; 
-        padding: 6px; 
-        min-width: 140px;
-        display: flex; 
-        flex-direction: column; 
-        gap: 2px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5); 
-        border: 1px solid rgba(255,255,255,0.1);
-        z-index: 100;
-        /* Estado inicial da animação */
-        opacity: 0; 
-        pointer-events: none; 
-        transform: translateY(10px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Exibição Fluida */
-    .captions-menu.show, .speed-menu.show { 
-        opacity: 1; 
-        pointer-events: auto; 
-        transform: translateY(0); 
-    }
-
-    /* Botão Ativo: Estilo Premium (Apenas ícone brilha) */
-    .control-btn.active { 
-      background-color: transparent !important;
-      color: #FFFFFF !important;
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
-      transform: scale(1.1);
-    }
-    
-    .caption-option {
-        background: none; border: none; color: #ccc; text-align: left; padding: 10px 14px;
-        font-size: 0.85rem; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif;
-        border-radius: 8px; display: flex; justify-content: space-between; align-items: center;
-    }
-    .caption-option:hover { background: rgba(255,255,255,0.1); color: white; }
-    .caption-option.active { background: rgba(0, 113, 227, 0.2); color: var(--accent); font-weight: 600; }
-
-    /* Volume e Timeline */
+    /* VOLUME FIX: Overflow visible */
     .volume-container { display: flex; align-items: center; gap: 10px; }
     .volume-slider-container {
-        width: 0; overflow: hidden; height: 24px; display: flex; align-items: center;
+        width: 0; overflow: visible; height: 24px; display: flex; align-items: center;
         transition: width 0.3s ease; position: relative; cursor: pointer;
     }
     .volume-container:hover .volume-slider-container, .volume-container.dragging .volume-slider-container { width: 80px; }
     .volume-bg { width: 100%; height: 4px; background: var(--ui-track); border-radius: 2px; position: relative; }
     .volume-fill { height: 100%; background: white; width: 100%; border-radius: 2px; position: absolute; top: 0; left: 0; pointer-events: none; }
     .volume-knob {
-        position: absolute; right: -5px; top: 50%; transform: translateY(-50%) scale(0);
+        position: absolute; right: 0; top: 50%; transform: translate(50%, -50%) scale(0);
         width: 12px; height: 12px; background: white; border-radius: 50%;
         box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.1s ease;
     }
-    .volume-slider-container:hover .volume-knob, .volume-container.dragging .volume-knob { transform: translateY(-50%) scale(1); }
-    .time-display { font-size: 0.85rem; font-weight: 500; font-variant-numeric: tabular-nums; opacity: 0.9; cursor: default; user-select: none; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+    /* Knob SEMPRE aparece quando interage com a área de volume */
+    .volume-container:hover .volume-knob, .volume-container.dragging .volume-knob { transform: translate(50%, -50%) scale(1); }
+    
+    .volume-tooltip { opacity: 0; top: -30px; }
+    .volume-slider-container:hover .volume-tooltip, .volume-container.dragging .volume-tooltip { opacity: 1; }
 
-
-    /* NAVEGAÇÃO INFERIOR - Alinhamento 880px */
+    /* Time Display Clicável */
+    .time-display { 
+        font-size: 0.85rem; font-weight: 500; font-variant-numeric: tabular-nums; 
+        opacity: 0.9; cursor: pointer; user-select: none; text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+        transition: opacity 0.2s;
+    }
+    .time-display:hover { opacity: 1; text-decoration: underline; }
+    
+    /* NAVEGAÇÃO INFERIOR */
     .project-nav { 
         width: 100%; max-width: var(--max-width); margin: 0 auto; 
         padding: 60px 60px 80px; 
@@ -556,20 +560,17 @@
         display: flex; justify-content: space-between; align-items: center; 
         box-sizing: border-box;
     }
-    
     .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); text-decoration: none; }
     .nav-btn:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .nav-btn.prev:hover { transform: translateX(-4px); } 
     .nav-btn.next:hover { transform: translateX(4px); }
     .nav-btn:active { transform: scale(0.96); transition-duration: 0.1s; }
-    
     .nav-btn.next { text-align: right; flex-direction: row-reverse; }
     .nav-btn i { transition: transform 0.3s ease; }
     .nav-btn.prev:hover i { transform: translateX(-4px); } 
     .nav-btn.next:hover i { transform: translateX(4px); }
     .nav-label { font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: 0.6; }
     .nav-project-name { font-size: 1rem; color: var(--text-primary); }
-
     .nav-home-btn {
       width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-size: 1.2rem; color: var(--text-secondary); background: rgba(0,0,0,0.02);
@@ -582,22 +583,22 @@
     .contact-banner { 
         width: 100%; max-width: 880px; 
         background: #1D1D1F; border-radius: 24px; padding: 50px; 
-        display: flex; justify-content: space-between; align-items: center; 
+        display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; 
         box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; 
         margin: 0 auto 40px; box-sizing: border-box;
     }
-    .contact-text-group { flex: 1; padding-right: 20px; }
+    .contact-text-group { flex: 1 1 300px; padding-right: 20px; margin-bottom: 20px; }
     .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
     .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
     .contact-social { display: flex; gap: 12px; }
     .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); text-decoration: none; }
     .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px) scale(1.1); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
     .btn-social-mini:active { transform: scale(0.9); }
-    .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
-    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
+    .contact-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; white-space: nowrap; }
     .btn-cta-dark:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 25px rgba(255,255,255,0.25); background: #f2f2f2; }
     .btn-cta-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
-    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; white-space: nowrap; }
     .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
     .btn-secondary-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
 
@@ -608,15 +609,13 @@
     .lb-image { max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .lb-control { position: absolute; background: rgba(255, 255, 255, 0.1); color: white; border: none; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: 0.2s; z-index: 10; }
     .lb-control:hover { background: rgba(255, 255, 255, 0.25); transform: scale(1.1); }
-    .lb-close { top: 20px; right: 20px; position: absolute; }
-    .lb-prev { left: 20px; position: fixed; }
-    .lb-next { right: 20px; position: fixed; }
-
-    /* --- RESPONSIVIDADE --- */
+    .lb-close { top: 20px; right: 20px; position: absolute; opacity: 0; pointer-events: none; }
+    .lightbox.active .lb-close { opacity: 1; pointer-events: auto; }
+    
+    /* Mobile Override */
     @media (max-width: 968px) {
       body { flex-direction: column; }
       .project-title { font-size: 2rem; }
-
       aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
       .profile-container { margin: 0; text-align: left; }
       .profile-link { display: flex; align-items: center; gap: 12px; }
@@ -625,67 +624,29 @@
       .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
       .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.2s; }
       .mobile-menu-btn:active { transform: scale(0.9); }
-      
       main { margin-left: 0; padding: 100px 0 40px; }
-      
-      /* Mobile Padding 24px */
       .project-hero { padding: 40px 0 20px; }
       .hero-image-container { padding: 0 24px; width: 100%; max-width: 100%; box-sizing: border-box; }
       .hero-text-content { padding: 0 24px; }
       .content-wrapper { padding: 40px 24px; }
-      
-      /* Grid em linha única para Mobile com respiro lateral corrigido */
-      .meta-grid { 
-        grid-template-columns: 1fr 1fr 1fr; 
-        grid-template-areas: "role year tools"; 
-        gap: 10px; 
-        padding: 18px 18px; 
-      }
-      
-      /* Ajustes de texto apenas para Mobile */
+      .meta-grid { grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "role year tools"; gap: 10px; padding: 18px 18px; }
       .meta-item h4 { font-size: 0.6rem; }
-      .meta-item p { 
-        font-size: 0.72rem; 
-        line-height: 1.2; 
-        word-break: break-word;
-      }
-
-      /* Alinhamentos mobile preservando o centro */
+      .meta-item p { font-size: 0.72rem; line-height: 1.2; word-break: break-word; }
       .role { text-align: left; align-items: flex-start; }
       .year { text-align: center; align-items: center; }
       .tools { text-align: right; align-items: flex-end; }
-      .center-btn { width: 40px; height: 40px; font-size: 0.9rem; }
-      .center-btn.main-play { width: 60px; height: 60px; font-size: 1.5rem; }
-
-      /* Navegação Mobile: Padding 30px 16px (16+8=24px régua) */
-      .project-nav { 
-        flex-direction: row; 
-        gap: 8px; 
-        padding: 30px 16px;
-        width: 100%; 
-        justify-content: space-between;
-      }
-      
-      .nav-btn { 
-        width: auto; padding: 10px 8px; flex: 1; 
-        justify-content: center; font-size: 0.8rem;
-        flex-direction: column; gap: 6px; text-align: center;
-      }
+      .video-container:fullscreen video::cue { font-size: 1.2rem; }
+      .captions-menu, .speed-menu { bottom: 50px; right: 10px; }
+      .controls-right { gap: 12px; }
+      .project-nav { flex-direction: row; gap: 8px; padding: 30px 16px; width: 100%; justify-content: space-between; }
+      .nav-btn { width: auto; padding: 10px 8px; flex: 1; justify-content: center; font-size: 0.8rem; flex-direction: column; gap: 6px; text-align: center; }
       .nav-btn.next { flex-direction: column; text-align: center; } 
       .nav-btn i { font-size: 1.1rem; }
       .nav-project-name { display: block; font-size: 0.65rem; line-height: 1.1; white-space: normal; max-width: 80px; }
       .nav-label { font-size: 0.6rem; margin-bottom: 0; }
       .nav-home-btn { order: 0; flex-shrink: 0; width: 40px; height: 40px; margin: 0 4px; }
-
-      /* Banner Mobile: Padding 24px */
-      .contact-banner { 
-        flex-direction: column; text-align: center; gap: 32px; 
-        padding: 32px 24px; 
-        margin: 0 24px 40px; /* Margem exata 24px para alinhar */
-        width: auto; 
-        max-width: 100%; /* Reseta max-width do desktop */
-      }
-      .contact-text-group { width: 100%; padding-right: 0; }
+      .contact-banner { flex-direction: column; text-align: center; gap: 32px; padding: 32px 24px; margin: 0 24px 40px; width: auto; max-width: 100%; }
+      .contact-text-group { width: 100%; padding-right: 0; text-align: center; }
       .contact-social { justify-content: center; margin-top: 15px; }
       .contact-actions { width: 100%; flex-direction: column; gap: 10px; }
       .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
@@ -695,20 +656,13 @@
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; }
-      
-      /* Fontes Reduzidas */
       .project-title { font-size: 1.5rem; margin-bottom: 4px; }
       .project-subtitle { font-size: 0.9rem; }
-      
       .project-description { font-size: 0.8rem; line-height: 1.4; }
       .contact-text p { font-size: 0.8rem; }
-      
-      /* Títulos Maiores */
       .section-title { font-size: 1.2rem; margin-bottom: 2px; }
       .contact-text h2 { font-size: 1.2rem; }
-
       .contact-banner { padding: 40px; }
-      
       .nav-btn { flex-direction: row; text-align: left; }
       .nav-btn.next { flex-direction: row-reverse; text-align: right; }
       .nav-project-name { max-width: none; }
@@ -866,6 +820,8 @@
             </div>
           </div>
           
+          <div class="volume-feedback">50%</div>
+
           <div class="controls-wrapper">
             <div class="timeline-container">
               <div class="time-tooltip">00:00</div>
@@ -882,6 +838,7 @@
                 <div class="volume-container">
                   <button class="control-btn mute-btn"><i class="fa-solid fa-volume-high"></i></button>
                   <div class="volume-slider-container">
+                    <div class="volume-tooltip">100</div>
                     <div class="volume-bg">
                       <div class="volume-fill"><div class="volume-knob"></div></div>
                     </div>
@@ -954,6 +911,8 @@
             </div>
           </div>
           
+          <div class="volume-feedback">50%</div>
+
           <div class="controls-wrapper">
             <div class="timeline-container">
               <div class="time-tooltip">00:00</div>
@@ -970,6 +929,7 @@
                 <div class="volume-container">
                   <button class="control-btn mute-btn"><i class="fa-solid fa-volume-high"></i></button>
                   <div class="volume-slider-container">
+                    <div class="volume-tooltip">100</div>
                     <div class="volume-bg">
                       <div class="volume-fill"><div class="volume-knob"></div></div>
                     </div>
@@ -1053,7 +1013,10 @@
   </div>
 
   <script>
-/* --- ULTIMATE VIDEO PLAYER LOGIC --- */
+    /* --- ULTIMATE VIDEO PLAYER LOGIC v4.0 (Final + Time Toggle) --- */
+    
+    let activePlayerContainer = null;
+
     document.querySelectorAll('.video-container').forEach(container => {
       const video = container.querySelector('video');
       const centerControls = container.querySelector('.center-controls');
@@ -1063,10 +1026,13 @@
       const icon = playBtn?.querySelector('i');
       const timelineContainer = container.querySelector('.timeline-container');
       const progressBar = container.querySelector('.progress-bar');
+      const timeTooltip = container.querySelector('.time-tooltip');
       const timeDisplay = container.querySelector('.time-display');
       const muteBtn = container.querySelector('.mute-btn');
       const volumeSlider = container.querySelector('.volume-slider-container');
       const volumeFill = container.querySelector('.volume-fill');
+      const volumeTooltip = container.querySelector('.volume-tooltip');
+      const volumeFeedback = container.querySelector('.volume-feedback');
       const fullscreenBtn = container.querySelector('.fullscreen-btn');
       const captionBtn = container.querySelector('.captions-btn');
       const captionMenu = container.querySelector('.captions-menu');
@@ -1078,9 +1044,51 @@
       let isScrubbing = false;
       let isDraggingVolume = false;
       let wasPausedBeforeScrubbing = true;
-      let hideControlsTimeout;
+      let inactivityTimeout;
+      let briefControlsTimeout;
+      let volumeFeedbackTimeout;
+      let timeDisplayMode = 0; // 0: Cur/Tot, 1: Rem/Tot, 2: Cur/Rem
 
-      // Iniciar legendas desativadas
+      // Ativar container atual
+      container.addEventListener('mouseenter', () => activePlayerContainer = container);
+      container.addEventListener('click', () => activePlayerContainer = container);
+
+      // FULLSCREEN DOUBLE CLICK
+      container.addEventListener('dblclick', (e) => {
+          if (e.target.closest('.controls-wrapper') || e.target.closest('.center-btn')) return;
+          toggleFS();
+      });
+
+      /* --- INACTIVITY (AUTO-HIDE) SYSTEM --- */
+      function resetInactivityTimer() {
+        if (container.classList.contains('show-controls-briefly')) return; 
+        container.classList.remove('user-inactive');
+        clearTimeout(inactivityTimeout);
+        
+        if (!video.paused) {
+            inactivityTimeout = setTimeout(() => {
+                if (!container.matches(':hover') || !container.querySelector('.controls-wrapper:hover')) {
+                    container.classList.add('user-inactive');
+                }
+            }, 2500);
+        }
+      }
+      
+      container.addEventListener('mousemove', resetInactivityTimer);
+      container.addEventListener('mousedown', resetInactivityTimer);
+      container.addEventListener('touchstart', resetInactivityTimer);
+
+      function showControlsBriefly() {
+          clearTimeout(inactivityTimeout);
+          clearTimeout(briefControlsTimeout);
+          container.classList.remove('user-inactive');
+          container.classList.add('show-controls-briefly');
+          briefControlsTimeout = setTimeout(() => {
+              container.classList.remove('show-controls-briefly');
+              resetInactivityTimer();
+          }, 2000); 
+      }
+
       function initTracks() {
         for (let i = 0; i < video.textTracks.length; i++) {
           video.textTracks[i].mode = 'disabled';
@@ -1091,26 +1099,43 @@
 
       function togglePlay() {
         if (video.paused) {
+          document.querySelectorAll('video').forEach(v => { if(v !== video) v.pause() });
           video.play();
           container.classList.remove('paused');
           container.classList.add('playing', 'has-played');
           if(icon) icon.className = 'fa-solid fa-pause';
           if(mainPlayBtn) mainPlayBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+          resetInactivityTimer();
         } else {
           video.pause();
           container.classList.add('paused');
           container.classList.remove('playing');
+          container.classList.remove('user-inactive');
           if(icon) icon.className = 'fa-solid fa-play';
           if(mainPlayBtn) mainPlayBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+          clearTimeout(inactivityTimeout);
         }
       }
 
-      // Timeline / Scrubbing
+      // --- TIMELINE LOGIC ---
       function handleTimelineUpdate(e) {
         const rect = timelineContainer.getBoundingClientRect();
         const percent = Math.min(Math.max(0, e.clientX - rect.left), rect.width) / rect.width;
-        progressBar.style.width = `${percent * 100}%`;
-        video.currentTime = percent * video.duration;
+        const hoverTime = percent * video.duration;
+
+        if (isScrubbing) {
+            e.preventDefault(); 
+            progressBar.style.width = `${percent * 100}%`;
+            video.currentTime = hoverTime;
+        }
+
+        const hoverBar = container.querySelector('.hover-bar');
+        if(hoverBar) hoverBar.style.width = `${percent * 100}%`;
+        
+        if (timeTooltip) {
+            timeTooltip.style.left = `${percent * 100}%`;
+            timeTooltip.textContent = formatTime(hoverTime);
+        }
       }
 
       timelineContainer.addEventListener('mousedown', (e) => {
@@ -1121,24 +1146,48 @@
         handleTimelineUpdate(e);
       });
 
-      // Volume (Clique e Arraste)
+      timelineContainer.addEventListener('mousemove', handleTimelineUpdate);
+
+      // --- VOLUME LOGIC ---
       function updateVolume(e) {
         const rect = volumeSlider.getBoundingClientRect();
         const percent = Math.min(Math.max(0, e.clientX - rect.left), rect.width) / rect.width;
-        video.volume = percent;
-        video.muted = percent === 0;
-        volumeFill.style.width = `${percent * 100}%`;
+        
+        if (isDraggingVolume) {
+            video.volume = percent;
+            video.muted = percent === 0;
+        }
+        
+        const displayVol = isDraggingVolume ? percent : video.volume;
+        volumeFill.style.width = `${displayVol * 100}%`;
+        
+        if (volumeTooltip) {
+            volumeTooltip.textContent = Math.round(displayVol * 100);
+            volumeTooltip.style.left = `${displayVol * 100}%`;
+        }
+
         const vIcon = muteBtn.querySelector('i');
-        vIcon.className = video.muted ? 'fa-solid fa-volume-xmark' : (percent < 0.5 ? 'fa-solid fa-volume-low' : 'fa-solid fa-volume-high');
+        vIcon.className = video.muted || displayVol === 0 ? 'fa-solid fa-volume-xmark' : (displayVol < 0.5 ? 'fa-solid fa-volume-low' : 'fa-solid fa-volume-high');
       }
+
+      volumeSlider.addEventListener('mousemove', (e) => {
+          if (!isDraggingVolume) {
+             const rect = volumeSlider.getBoundingClientRect();
+             const percent = Math.min(Math.max(0, e.clientX - rect.left), rect.width) / rect.width;
+             if (volumeTooltip) {
+                volumeTooltip.textContent = Math.round(percent * 100);
+                volumeTooltip.style.left = `${percent * 100}%`;
+             }
+          }
+      });
 
       volumeSlider.addEventListener('mousedown', (e) => {
         isDraggingVolume = true;
         container.querySelector('.volume-container').classList.add('dragging');
-        updateVolume(e);
+        updateVolume(e); 
+        triggerVolumeVisualFeedback();
       });
 
-      // Mousemove Global
       document.addEventListener('mousemove', (e) => {
         if (isScrubbing) handleTimelineUpdate(e);
         if (isDraggingVolume) updateVolume(e);
@@ -1148,7 +1197,7 @@
         if (isScrubbing) {
           isScrubbing = false;
           container.classList.remove('scrubbing');
-          if (!wasPausedBeforeScrubbing) video.play();
+          if (!wasPausedBeforeScrubbing) togglePlay();
         }
         if (isDraggingVolume) {
           isDraggingVolume = false;
@@ -1156,15 +1205,27 @@
         }
       });
 
-      // Mute Toggle
       muteBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         video.muted = !video.muted;
-        volumeFill.style.width = video.muted ? '0%' : `${video.volume * 100}%`;
+        const currentVol = video.muted ? 0 : video.volume;
+        volumeFill.style.width = `${currentVol * 100}%`;
         muteBtn.querySelector('i').className = video.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+        triggerVolumeVisualFeedback();
       });
 
-      // Menus (Velocidade e Legenda)
+      function triggerVolumeVisualFeedback() {
+          if (!volumeFeedback) return;
+          const volPercent = video.muted ? 0 : Math.round(video.volume * 100);
+          volumeFeedback.textContent = `${volPercent}%`;
+          container.classList.add('changing-volume');
+          clearTimeout(volumeFeedbackTimeout);
+          volumeFeedbackTimeout = setTimeout(() => {
+              container.classList.remove('changing-volume');
+          }, 1000);
+      }
+
+      // Menus Logic
       if (captionBtn) {
         captionBtn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -1208,13 +1269,36 @@
         });
       }
 
-      // Eventos Base
+      /* --- TIME DISPLAY TOGGLE --- */
+      function updateTimeDisplay() {
+          if (isNaN(video.duration)) return;
+          const cur = video.currentTime;
+          const tot = video.duration;
+          const rem = tot - cur;
+          
+          let text = '';
+          if (timeDisplayMode === 0) { // Current / Total
+              text = `${formatTime(cur)} / ${formatTime(tot)}`;
+          } else if (timeDisplayMode === 1) { // Remaining / Total
+              text = `-${formatTime(rem)} / ${formatTime(tot)}`;
+          } else { // Current / Remaining
+              text = `${formatTime(cur)} / -${formatTime(rem)}`;
+          }
+          timeDisplay.textContent = text;
+      }
+
       video.addEventListener('timeupdate', () => {
         if (!isScrubbing) {
           const percent = (video.currentTime / video.duration) * 100;
           progressBar.style.width = `${percent}%`;
-          timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+          updateTimeDisplay();
         }
+      });
+
+      timeDisplay.addEventListener('click', (e) => {
+          e.stopPropagation();
+          timeDisplayMode = (timeDisplayMode + 1) % 3;
+          updateTimeDisplay();
       });
 
       container.addEventListener('click', (e) => {
@@ -1228,13 +1312,48 @@
       skipBtns?.forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          video.currentTime += parseFloat(btn.dataset.skip);
+          const amount = parseFloat(btn.dataset.skip);
+          skip(amount);
+          triggerSkipVisuals(btn, amount > 0);
         });
       });
 
-      if(fullscreenBtn) fullscreenBtn.addEventListener('click', () => {
+      function skip(amount) {
+          video.currentTime += amount;
+          resetInactivityTimer();
+      }
+
+      function triggerSkipVisuals(btnElement, isForward) {
+          if(!btnElement) return;
+          const textPopup = btnElement.querySelector('.skip-text-popup');
+          const animClass = isForward ? 'animate-forward' : 'animate-backward';
+          textPopup.classList.remove('animate-forward', 'animate-backward');
+          void textPopup.offsetWidth;
+          textPopup.classList.add(animClass);
+          const rotClass = isForward ? 'anim-rotate-right' : 'anim-rotate-left';
+          btnElement.classList.remove('anim-rotate-right', 'anim-rotate-left');
+          void btnElement.offsetWidth;
+          btnElement.classList.add(rotClass);
+      }
+
+      if(fullscreenBtn) fullscreenBtn.addEventListener('click', toggleFS);
+
+      function toggleFS() {
         if (document.fullscreenElement) document.exitFullscreen();
         else container.requestFullscreen();
+      }
+
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement === container || document.fullscreenElement === null) {
+            const activeLang = Array.from(video.textTracks).find(t => t.mode === 'showing')?.language;
+            if (activeLang) {
+                for(let t of video.textTracks) t.mode = 'disabled';
+                setTimeout(() => {
+                    const track = Array.from(video.textTracks).find(t => t.language === activeLang);
+                    if(track) track.mode = 'showing';
+                }, 50);
+            }
+        }
       });
 
       document.addEventListener('click', () => {
@@ -1243,14 +1362,91 @@
       });
 
       function formatTime(s) {
-        if (isNaN(s)) return "0:00";
+        if (isNaN(s) || !isFinite(s)) return "0:00";
         const m = Math.floor(s / 60);
         const sec = Math.floor(s % 60);
         return `${m}:${sec < 10 ? '0' : ''}${sec}`;
       }
+      
+      // Expor funções para atalhos
+      container.togglePlay = togglePlay;
+      container.skip = (amount) => {
+          skip(amount);
+          const btn = amount > 0 
+            ? container.querySelector('.skip-btn[data-skip="10"]') 
+            : container.querySelector('.skip-btn[data-skip="-10"]');
+          triggerSkipVisuals(btn, amount > 0);
+      };
+      container.jumpTo = (percent) => {
+          video.currentTime = video.duration * (percent / 100);
+          showControlsBriefly();
+      };
+      container.toggleMute = () => muteBtn.click();
+      container.toggleFS = toggleFS;
+      container.changeVolume = (delta) => {
+          let newVol = video.volume + delta;
+          if (newVol > 1) newVol = 1;
+          if (newVol < 0) newVol = 0;
+          video.volume = newVol;
+          video.muted = false; 
+          volumeFill.style.width = `${newVol * 100}%`; 
+          triggerVolumeVisualFeedback();
+          showControlsBriefly();
+      };
     });
 
-    // Menu Mobile e Lightbox (Geral)
+    /* --- GLOBAL KEYBOARD SHORTCUTS --- */
+    document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (!activePlayerContainer) {
+            activePlayerContainer = document.querySelector('.video-container');
+        }
+        if (!activePlayerContainer) return;
+
+        const key = e.key.toLowerCase();
+        
+        if (key >= '1' && key <= '9') {
+            activePlayerContainer.jumpTo(parseInt(key) * 10);
+            return;
+        }
+
+        switch(key) {
+            case ' ':
+            case 'k':
+                e.preventDefault();
+                activePlayerContainer.togglePlay();
+                break;
+            case 'f':
+                e.preventDefault();
+                activePlayerContainer.toggleFS();
+                break;
+            case 'm':
+                e.preventDefault();
+                activePlayerContainer.toggleMute();
+                break;
+            case 'arrowright':
+            case 'l':
+                e.preventDefault();
+                activePlayerContainer.skip(10);
+                break;
+            case 'arrowleft':
+            case 'j':
+                e.preventDefault();
+                activePlayerContainer.skip(-10);
+                break;
+            case 'arrowup':
+                e.preventDefault();
+                activePlayerContainer.changeVolume(0.1);
+                break;
+            case 'arrowdown':
+                e.preventDefault();
+                activePlayerContainer.changeVolume(-0.1);
+                break;
+        }
+    });
+
+    // Menu Mobile e Lightbox
     function toggleMenu() {
       const mobileMenu = document.getElementById('mobileMenu');
       const menuIcon = document.getElementById('menuBtn').querySelector('i');
