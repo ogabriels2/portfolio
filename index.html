@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V21 - ELEGANT JELLY) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V22 - UNIFIED PHYSICS CORE) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -235,7 +235,7 @@
         z-index: 1; 
         transform-origin: center center;
         will-change: transform, left;
-        /* Estado de REPOUSO = Scale(1.05) - Um pouco maior e mais elegante */
+        /* Estado de REPOUSO = Scale(1.05) */
         transform: scale(1.05);
         /* Transição padrão para o hover */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
@@ -816,7 +816,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V21 - ELEGANT JELLY) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V22 - UNIFIED PHYSICS CORE) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -827,6 +827,7 @@
             
             // Variáveis de Estado
             let isDragging = false;
+            let isAutoScrolling = false; // NOVA VARIÁVEL
             let currentSelection = 'pt'; 
             let animationFrameId = null;
 
@@ -846,7 +847,7 @@
             const DRAG_FACTOR = 0.92; 
             const SMOOTH_FACTOR = 0.15; 
             const EDGE_BUFFER = 5; 
-            const REST_SCALE = 1.05; // ESCALA BASE AUMENTADA E ELEGANTE
+            const REST_SCALE = 1.05; 
             const HELD_SCALE = 1.32; 
             
             let startTouchX = 0;
@@ -867,11 +868,13 @@
                 `;
                 pill.style.border = '1px solid rgba(255,255,255,0.5)';
                 
-                // Scale Texto (Lupa)
+                // Scale Texto (Lupa) - Limitado a NUNCA ser menor que 1.0
                 const distPT = Math.abs(progress - 0); 
                 const distEN = Math.abs(progress - 1); 
-                const scalePT = 1.25 - (distPT * 0.35); 
-                const scaleEN = 1.25 - (distEN * 0.35); 
+                
+                // Fórmula ajustada: min 1.0, max 1.25
+                const scalePT = Math.max(1.0, 1.25 - (distPT * 0.25)); 
+                const scaleEN = Math.max(1.0, 1.25 - (distEN * 0.25)); 
 
                 if(progress < 0.5) {
                     ptItem.classList.add('active');
@@ -885,14 +888,38 @@
                 enItem.style.transform = `scale(${scaleEN})`;
             }
 
-            // LOOP DE FÍSICA
+            // LOOP DE FÍSICA CENTRAL
             function physicsLoop() {
-                if (!isDragging) return;
+                if (!isDragging && !isAutoScrolling) return;
 
-                physics.currentX += (physics.targetX - physics.currentX) * SMOOTH_FACTOR;
-                physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * SMOOTH_FACTOR;
-                physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * SMOOTH_FACTOR;
-                physics.currentSkew += (physics.targetSkew - physics.currentSkew) * SMOOTH_FACTOR;
+                // Auto-Cálculo de Velocidade para o Skew durante o clique
+                if(isAutoScrolling) {
+                    const prevX = physics.currentX;
+                    // LERP padrão
+                    physics.currentX += (physics.targetX - physics.currentX) * SMOOTH_FACTOR;
+                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * SMOOTH_FACTOR;
+                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * SMOOTH_FACTOR;
+                    
+                    // Velocidade sintética baseada no movimento do LERP
+                    velocity = (physics.currentX - prevX); 
+                    
+                    // Skew baseado nessa velocidade
+                    physics.targetSkew = Math.max(-20, Math.min(20, velocity * -1.5));
+                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * SMOOTH_FACTOR;
+
+                    // Checa se chegou no destino (Snap final)
+                    if(Math.abs(physics.currentX - physics.targetX) < 0.5) {
+                        isAutoScrolling = false;
+                        finishInteraction();
+                        return;
+                    }
+                } else {
+                    // Modo Arrasto Manual
+                    physics.currentX += (physics.targetX - physics.currentX) * SMOOTH_FACTOR;
+                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * SMOOTH_FACTOR;
+                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * SMOOTH_FACTOR;
+                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * SMOOTH_FACTOR;
+                }
 
                 pill.style.transform = `translateX(${physics.currentX}px) scale(${physics.currentScaleX}, ${physics.currentScaleY}) skewX(${physics.currentSkew}deg)`;
                 
@@ -900,6 +927,7 @@
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8;
                 const percentage = (physics.currentX / maxTranslate);
+                // Clamp do progresso para efeitos visuais
                 const progress = Math.max(0, Math.min(1, percentage));
                 
                 updateVisuals(progress);
@@ -907,14 +935,33 @@
                 animationFrameId = requestAnimationFrame(physicsLoop);
             }
 
+            // Função Auxiliar para finalizar movimento (Bounce)
+            function finishInteraction() {
+                cancelAnimationFrame(animationFrameId);
+
+                const finalX = currentSelection === 'en' ? 100 : 0;
+                pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
+                
+                // Transição suave CSS para o "pouso"
+                pill.style.transition = 'transform 0.5s cubic-bezier(0.35, 1.75, 0.5, 0.85), background-color 0.3s ease'; 
+                pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
+                
+                // Atualiza visual final
+                updateVisuals(currentSelection === 'en' ? 1 : 0);
+
+                if (currentSelection === 'en') {
+                   localStorage.setItem('preferredLang', 'en');
+                   setTimeout(() => { window.location.href = 'en/index.html'; }, 850); 
+                }
+            }
+
             // TOUCH START
             langContainer.addEventListener('touchstart', function(e) {
-                if(pill.classList.contains('animating-click')) return;
+                if(isAutoScrolling) return; // Bloqueia toque durante animação automática
                 isDragging = true;
                 
                 pill.style.transition = 'none'; 
                 pill.classList.remove('settling');
-                pill.classList.remove('is-held');
                 
                 const touch = e.touches[0];
                 const containerRect = langContainer.getBoundingClientRect();
@@ -926,6 +973,7 @@
 
                 startPillX = pillRect.left - containerRect.left; 
 
+                // Sync JS com CSS atual
                 const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform);
                 physics.currentX = currentMatrix.m41; 
                 physics.targetX = physics.currentX;
@@ -979,7 +1027,7 @@
 
                 physics.targetX = clampedTargetX;
 
-                // --- DEFORMAÇÃO COM BASE NO TAMANHO INFLADO ---
+                // --- DEFORMAÇÃO ---
                 const absVel = Math.abs(velocity);
                 const baseScale = HELD_SCALE; 
                 
@@ -1013,43 +1061,12 @@
             langContainer.addEventListener('touchend', function(e) {
                 if(!isDragging) return;
                 isDragging = false;
-                
-                cancelAnimationFrame(animationFrameId);
-
-                pill.style.boxShadow = ''; 
-                pill.style.border = '';
-                pill.style.backdropFilter = '';
-                pill.style.webkitBackdropFilter = '';
-                pill.style.backgroundColor = '';
-                
-                ptItem.style.transform = '';
-                enItem.style.transform = '';
-                
-                const finalX = currentSelection === 'en' ? 100 : 0;
-                pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
-                
-                // MÁGICA DA CONTINUIDADE COM BOUNCE MAIS INTENSO (1.75):
-                pill.style.transition = 'transform 0.5s cubic-bezier(0.35, 1.75, 0.5, 0.85), background-color 0.3s ease'; 
-                
-                pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
-                
-                if(currentSelection === 'en') {
-                    enItem.classList.add('active');
-                    ptItem.classList.remove('active');
-                } else {
-                    ptItem.classList.add('active');
-                    enItem.classList.remove('active');
-                }
-
-                if (currentSelection === 'en') {
-                   localStorage.setItem('preferredLang', 'en');
-                   setTimeout(() => { window.location.href = 'en/index.html'; }, 850); 
-                }
+                finishInteraction();
             });
 
-            // --- CLICK CINEMÁTICO ---
+            // --- CLICK (AGORA USA A FÍSICA REAL DO ARRASTO) ---
             langContainer.addEventListener('click', function(e) {
-                if(isDragging) return; 
+                if(isDragging || isAutoScrolling) return; 
                 
                 const containerRect = langContainer.getBoundingClientRect();
                 const clickX = e.clientX - containerRect.left;
@@ -1058,53 +1075,31 @@
 
                 if(targetLang === currentSelection) return;
                 
-                pill.classList.add('animating-click');
-                pill.classList.remove('settling');
-
-                const computedStyle = window.getComputedStyle(pill);
-                const currentMatrix = computedStyle.transform;
-                
-                pill.style.transition = 'none';
-                pill.style.transform = currentMatrix;
-                
-                void pill.offsetWidth; 
-
-                pill.classList.add('is-held'); 
-                
+                // 1. Configura Estado de "Arrasto Automático"
+                isAutoScrolling = true;
                 currentSelection = targetLang;
-
-                requestAnimationFrame(() => {
-                      const targetPos = targetLang === 'en' ? 100 : 0;
-                      const skewDir = targetLang === 'en' ? -20 : 20; 
-
-                      pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-                      pill.style.transform = `translateX(${targetPos}%) scale(${HELD_SCALE}, 0.9) skewX(${skewDir}deg)`;
-                });
-
-                setTimeout(() => {
-                    pill.classList.remove('is-held');
-                    pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
-                    
-                    pill.style.transition = 'transform 0.5s cubic-bezier(0.35, 1.75, 0.5, 0.85)';
-                    pill.style.transform = `translateX(${targetLang === 'en' ? 100 : 0}%) scale(${REST_SCALE}) skewX(0deg)`;
-
-                    setTimeout(() => {
-                         pill.classList.remove('animating-click');
-                    }, 100);
-                    
-                    if(targetLang === 'en') {
-                        enItem.classList.add('active');
-                        ptItem.classList.remove('active');
-                    } else {
-                        ptItem.classList.add('active');
-                        enItem.classList.remove('active');
-                    }
-                    
-                    if (currentSelection === 'en') {
-                       localStorage.setItem('preferredLang', 'en');
-                       setTimeout(() => { window.location.href = 'en/index.html'; }, 850); 
-                    }
-                }, 400); 
+                
+                // 2. Prepara Posições
+                const pillWidth = (containerRect.width / 2) - 4;
+                const maxTranslate = containerRect.width - pillWidth - 8;
+                
+                // Sync inicial
+                const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform);
+                physics.currentX = currentMatrix.m41; 
+                
+                // Define Destino
+                physics.targetX = targetLang === 'en' ? maxTranslate : 0;
+                
+                // 3. Simula o "Toque" (Infla a pílula)
+                physics.targetScaleX = HELD_SCALE;
+                physics.targetScaleY = HELD_SCALE;
+                
+                // 4. Remove transições CSS para o JS assumir
+                pill.style.transition = 'none';
+                
+                // 5. Inicia o Loop
+                cancelAnimationFrame(animationFrameId);
+                physicsLoop();
             });
         }
     });
