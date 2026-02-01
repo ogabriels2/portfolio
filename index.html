@@ -77,9 +77,7 @@
       /* Physics Animations */
       --apple-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275); 
       --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
-      --organic-pop: cubic-bezier(0.34, 1.56, 0.64, 1); 
-      --fast-ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --heavy-jelly: cubic-bezier(0.3, 1.3, 0.4, 1); 
+      --heavy-jelly: cubic-bezier(0.3, 1.3, 0.4, 1); /* Curva pesada para o rebote */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -202,7 +200,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PREMIUM - FINAL) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V7 - SMOOTH) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -223,7 +221,7 @@
         cursor: pointer;
         flex-shrink: 0; 
         transition: margin 0.2s;
-        /* Área de toque maior */
+        /* Aumenta a área de toque */
         padding-right: 6px; 
     }
     .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
@@ -234,12 +232,13 @@
         width: calc(50% - 4px); 
         background: #FFFFFF;
         
+        /* BORDAS PÍLULA PERFEITA */
         border-radius: 9999px; 
         
         box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
         z-index: 1; 
         
-        /* Transições */
+        /* IMPORTANTE: Transições suaves padrão */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; 
         
         pointer-events: none;
@@ -247,12 +246,12 @@
         will-change: transform;
     }
     
-    /* REBOTE DE GELATINA (Slow & Heavy Impact) */
+    /* REBOTE DE GELATINA PESADA (Slow & Heavy) */
     @keyframes jelly-impact {
-        0% { transform: var(--final-transform) scale(1.35, 0.85); } /* Impacto: Achatamento */
-        35% { transform: var(--final-transform) scale(0.9, 1.15); } /* Rebote: Esticamento */
-        60% { transform: var(--final-transform) scale(1.05, 0.95); } /* Vibração */
-        85% { transform: var(--final-transform) scale(0.98, 1.02); } 
+        0% { transform: var(--final-transform) scale(1.35, 0.85); } /* Esmaga no impacto */
+        30% { transform: var(--final-transform) scale(0.9, 1.15); } /* Estica alto */
+        55% { transform: var(--final-transform) scale(1.08, 0.95); } /* Achata um pouco */
+        80% { transform: var(--final-transform) scale(0.98, 1.02); } /* Estica pouco */
         100% { transform: var(--final-transform) scale(1, 1); } /* Estabiliza */
     }
     
@@ -278,14 +277,11 @@
         font-size: 0.8rem; font-weight: 600; 
         color: var(--text-secondary); text-decoration: none; 
         width: 75px;
-        
-        /* SMOOTH COLOR TRANSITION: A chave para a troca suave */
-        transition: transform 0.2s linear, color 0.3s ease;
+        /* TRANSITION ATIVADA PARA A COR */
+        transition: color 0.3s ease, transform 0.3s var(--smooth-glide);
         will-change: transform, color;
-        pointer-events: none !important; 
+        pointer-events: none !important; /* Mantém eventos no container */
     }
-    
-    /* Cores ativas padrões (para desktop/estado inicial) */
     .lang-item.active { color: var(--text-primary); cursor: default; }
     
     .lang-flag { 
@@ -834,7 +830,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V7 - CINEMATIC) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V7 - REFINED) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -853,6 +849,7 @@
 
             // Visual: Vidro Líquido + Sincronia de Escala (Bolha)
             function updateVisuals(progress, skewAmount) {
+                // Efeitos visuais na pílula
                 pill.style.backdropFilter = 'blur(8px)'; 
                 pill.style.webkitBackdropFilter = 'blur(8px)';
                 pill.style.backgroundColor = 'rgba(255, 255, 255, 0.25)'; 
@@ -864,13 +861,14 @@
                 `;
                 pill.style.border = '1px solid rgba(255,255,255,0.4)';
                 
+                // --- LÓGICA DE BOLHA (LUPA) ---
                 const distPT = Math.abs(progress - 0); 
                 const distEN = Math.abs(progress - 1); 
                 
                 const scalePT = 1.25 - (distPT * 0.35); 
                 const scaleEN = 1.25 - (distEN * 0.35); 
                 
-                // MUDANÇA DE COR VIA CLASS (CSS Transition)
+                // Cores gerenciadas por Classes CSS agora, mas podemos reforçar
                 if(progress < 0.5) {
                     ptItem.classList.add('active');
                     enItem.classList.remove('active');
@@ -887,8 +885,8 @@
             langContainer.addEventListener('touchstart', function(e) {
                 isDragging = true;
                 
-                // Transição EXPLÍCITA de escala no touchstart (Progressive Grow)
-                pill.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; 
+                // Pop inicial suave progressivo
+                pill.style.transition = 'transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)'; 
                 pill.classList.remove('jelly-animate'); 
 
                 const touch = e.touches[0];
@@ -907,8 +905,8 @@
                 
                 const currentXPercent = currentSelection === 'en' ? 100 : 0;
                 
-                // Infla a bolha
-                pill.style.transform = `translateX(${currentXPercent}%) scale(1.55)`; 
+                // ESCALA UNIFORME MAIS SUAVE (Progressiva)
+                pill.style.transform = `translateX(${currentXPercent}%) scale(1.15)`; 
 
             }, {passive: true});
 
@@ -936,13 +934,13 @@
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8; 
                 
-                // HARD RUBBER BAND (Resistência Pesada)
+                // Resistência
                 const limitPadding = 0; 
-                const maxOvershoot = 8; 
+                const maxOvershoot = 8;
 
                 if (pillX < limitPadding) {
                     const dist = Math.abs(pillX - limitPadding);
-                    const resistance = maxOvershoot * (1 - Math.exp(-dist / 15)); 
+                    const resistance = maxOvershoot * (1 - Math.exp(-dist / 15));
                     pillX = limitPadding - resistance;
                 } else if (pillX > maxTranslate) {
                     const dist = pillX - maxTranslate;
@@ -953,9 +951,11 @@
                 const percentage = (pillX / maxTranslate) * 100;
                 const progress = Math.max(0, Math.min(1, percentage / 100)); 
                 
+                // Skew Reactivo
                 const skew = velocity * -15; 
 
-                pill.style.transform = `translateX(${percentage}%) scale(1.55) skewX(${skew}deg)`;
+                // Aumenta escala durante o movimento rápido
+                pill.style.transform = `translateX(${percentage}%) scale(1.35) skewX(${skew}deg)`;
                 
                 updateVisuals(progress, skew);
                 
@@ -974,6 +974,7 @@
                 pill.style.webkitBackdropFilter = '';
                 pill.style.backgroundColor = '';
                 
+                // Reset de escala dos textos para o repouso
                 ptItem.style.transform = '';
                 enItem.style.transform = '';
                 
@@ -985,7 +986,7 @@
                 void pill.offsetWidth; 
                 pill.classList.add('jelly-animate');
                 
-                // Garante estado de cores final
+                // Sincroniza cor final via classe
                 if(currentSelection === 'en') {
                     enItem.classList.add('active');
                     ptItem.classList.remove('active');
@@ -1000,59 +1001,79 @@
                 }
             });
 
-            // CLIQUE (TAP) - CINEMATIC SEQUENCE
-            const items = langContainer.querySelectorAll('.lang-item');
-            items.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault(); 
-                    
-                    const targetLang = this.getAttribute('data-lang');
-                    if(targetLang === currentSelection) return; 
-                    
-                    // 1. CARREGAR (Shrink & Prepare)
-                    pill.style.transition = 'transform 0.1s ease-out';
-                    // Recua um pouco antes de ir (Antecipação)
-                    const startX = targetLang === 'en' ? -5 : 105; 
-                    pill.style.transform = `translateX(${startX}%) scale(1.4)`;
-                    
-                    // Configura visual "ativo" imediatamente para o movimento
-                    updateVisuals(targetLang === 'en' ? 1 : 0, 0);
-                    
-                    currentSelection = targetLang;
+            // --- CLICK INTELIGENTE (CINEMATIC CLICK) ---
+            // Agora o click é no container inteiro, já que os itens têm pointer-events: none
+            langContainer.addEventListener('click', function(e) {
+                if(isDragging) return; // Evita conflito se foi um arrasto
 
-                    // 2. DISPARO (Supersonic Slide)
-                    setTimeout(() => {
-                        pill.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)';
-                        const targetX = targetLang === 'en' ? 100 : 0;
-                        // Skew agressivo para frente
-                        const skewDir = targetLang === 'en' ? -20 : 20;
-                        
-                        pill.style.transform = `translateX(${targetX}%) scale(1.6) skewX(${skewDir}deg)`;
-                        
-                    }, 50);
+                const containerRect = langContainer.getBoundingClientRect();
+                const clickX = e.clientX - containerRect.left;
+                const isRightSide = clickX > (containerRect.width / 2);
+                const targetLang = isRightSide ? 'en' : 'pt';
 
-                    // 3. IMPACTO & REBOTE
-                    setTimeout(() => {
-                        pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
-                        pill.classList.remove('jelly-animate');
-                        void pill.offsetWidth; 
-                        pill.classList.add('jelly-animate');
-                        
-                        // Limpa
-                        pill.style.boxShadow = ''; 
-                        pill.style.backgroundColor = '';
-                        pill.style.border = '';
-                        pill.style.backdropFilter = '';
-                        
-                        ptItem.style.transform = '';
-                        enItem.style.transform = '';
-                        
-                        if (currentSelection === 'en') {
-                           localStorage.setItem('preferredLang', 'en');
-                           setTimeout(() => { window.location.href = 'en/index.html'; }, 800); 
-                        }
-                    }, 300); 
-                });
+                if(targetLang === currentSelection) return; 
+                
+                // Force Reflow
+                void pill.offsetWidth;
+
+                // 1. Preparar Salto (Load) - RECUO
+                const startProgress = targetLang === 'en' ? 0 : 1;
+                const skewDir = targetLang === 'en' ? 20 : -20; 
+                
+                updateVisuals(startProgress, 0); 
+                
+                // Transição de recuo muito rápida
+                pill.style.transition = 'transform 0.15s ease-out';
+                const startX = targetLang === 'en' ? 0 : 100;
+                
+                // Recua e ganha escala suavemente
+                pill.style.transform = `translateX(${startX}%) scale(1.1) skewX(${skewDir}deg)`;
+                
+                currentSelection = targetLang;
+
+                // 2. Disparo (Shoot)
+                setTimeout(() => {
+                    pill.style.transition = 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)'; // Curva suave
+                    const targetX = targetLang === 'en' ? 100 : 0;
+                    const forwardSkew = targetLang === 'en' ? -25 : 25; 
+                    
+                    // Vai longe e estica
+                    pill.style.transform = `translateX(${targetX}%) scale(1.25) skewX(${forwardSkew}deg)`;
+                    
+                    // Atualiza visuais no meio (Classes CSS cuidam da suavidade da cor)
+                    updateVisuals(0.5, 0);
+                    
+                }, 100); 
+
+                // 3. Impacto e Rebote
+                setTimeout(() => {
+                    pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
+                    pill.classList.remove('jelly-animate');
+                    void pill.offsetWidth; 
+                    pill.classList.add('jelly-animate');
+                    
+                    pill.style.boxShadow = ''; 
+                    pill.style.backgroundColor = '';
+                    pill.style.border = '';
+                    pill.style.backdropFilter = '';
+                    
+                    ptItem.style.transform = '';
+                    enItem.style.transform = '';
+                    
+                    // Consolida classes finais
+                    if(targetLang === 'en') {
+                        enItem.classList.add('active');
+                        ptItem.classList.remove('active');
+                    } else {
+                        ptItem.classList.add('active');
+                        enItem.classList.remove('active');
+                    }
+                    
+                    if (currentSelection === 'en') {
+                       localStorage.setItem('preferredLang', 'en');
+                       setTimeout(() => { window.location.href = 'en/index.html'; }, 800); 
+                    }
+                }, 350); 
             });
         }
     });
