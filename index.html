@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V16 - PRECISION BUFFER) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V17 - FINAL POLISH) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -827,7 +827,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V16 - PRECISION BUFFER) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V17 - FINAL POLISH) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -854,9 +854,9 @@
             };
 
             // Configuração
-            const DRAG_FACTOR = 0.92; // 1:1 Response (Very High Fidelity)
-            const SMOOTH_FACTOR = 0.15; // Creamy movement
-            const EDGE_BUFFER = 12; // Pixels de "Respiro" antes de tocar o texto
+            const DRAG_FACTOR = 0.92; 
+            const SMOOTH_FACTOR = 0.15; 
+            const EDGE_BUFFER = 5; // PAREDE MAIS DISTANTE (Era 12)
             
             let startTouchX = 0;
             let startPillX = 0;
@@ -993,21 +993,23 @@
 
                 physics.targetX = clampedTargetX;
 
-                // --- CÁLCULO DE DEFORMAÇÃO ---
+                // --- CÁLCULO DE DEFORMAÇÃO (RIGIDEZ AUMENTADA) ---
                 const absVel = Math.abs(velocity);
-                const baseScale = 1.15; // Levemente menor durante o movimento para garantir não sobreposição
+                const baseScale = 1.15; 
                 
                 if (wallPenetration > 1) { 
-                    const impactFactor = Math.min(absVel * 0.4, 0.4); 
+                    // Esmagamento na parede (Horizontal reduzido)
+                    const impactFactor = Math.min(absVel * 0.25, 0.25); 
                     const pressureFactor = Math.min(wallPenetration * 0.01, 0.15); 
                     const totalSquash = impactFactor + pressureFactor;
 
-                    physics.targetScaleX = baseScale - totalSquash; 
+                    physics.targetScaleX = baseScale - (totalSquash * 0.7); // Menos deformação X
                     physics.targetScaleY = baseScale + (totalSquash * 0.8); 
                 } 
                 else {
+                    // Esticamento no movimento (Horizontal reduzido)
                     if (absVel > 0.1) {
-                         const stretchFactor = Math.min(absVel * 0.15, 0.35); 
+                         const stretchFactor = Math.min(absVel * 0.08, 0.2); 
                          physics.targetScaleX = baseScale + stretchFactor; 
                          physics.targetScaleY = baseScale - (stretchFactor * 0.6); 
                     } else {
