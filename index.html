@@ -76,7 +76,7 @@
       
       /* Physics Animations */
       --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
-      --soft-bounce: cubic-bezier(0.3, 1.4, 0.5, 1); /* Rebote suave para o Hold */
+      --elastic-snap: cubic-bezier(0.25, 1.5, 0.5, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V13 - LIQUID VELOCITY) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V14 - SILK TOUCH) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -235,27 +235,26 @@
         z-index: 1; 
         transform-origin: center center;
         will-change: transform, left;
-        /* Transição padrão */
+        /* Transição padrão para repouso e hover */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
     }
 
-    /* Estado "Held" - Controla a suavidade da entrada do clique */
+    /* Estado "Held" - Apenas para a transição suave de entrada no clique */
     .gliding-pill.is-held {
-        /* Transição de entrada suave para o scale */
-        transition: transform 0.4s var(--soft-bounce), background-color 0.3s ease !important;
+        transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.3s ease;
     }
 
     /* ANIMAÇÃO DE ESTABILIZAÇÃO (WOBBLE LÍQUIDO) */
     @keyframes liquid-settle {
-        0% { transform: var(--final-transform) scale(1.15, 0.9); } 
-        25% { transform: var(--final-transform) scale(0.95, 1.08); } 
-        50% { transform: var(--final-transform) scale(1.05, 0.98); } 
-        75% { transform: var(--final-transform) scale(0.99, 1.01); } 
-        100% { transform: var(--final-transform) scale(1, 1); } 
+        0% { transform: var(--final-transform) scale(1.3, 0.75); } /* Impacto esmagado */
+        25% { transform: var(--final-transform) scale(0.9, 1.25); } /* Rebote vertical */
+        50% { transform: var(--final-transform) scale(1.15, 0.95); } /* Oscilação */
+        75% { transform: var(--final-transform) scale(0.98, 1.02); } 
+        100% { transform: var(--final-transform) scale(1, 1); } /* Parado */
     }
 
     .gliding-pill.settling {
-        animation: liquid-settle 0.7s cubic-bezier(0.2, 1.2, 0.5, 1) forwards;
+        animation: liquid-settle 0.8s cubic-bezier(0.25, 1.2, 0.5, 1) forwards;
     }
 
     /* Hover apenas em Desktop */
@@ -828,7 +827,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V13 - LIQUID WALL & CINEMATIC CLICK) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V14 - SILK TOUCH & ZERO-LATENCY) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -840,7 +839,7 @@
             let isDragging = false;
             let currentSelection = 'pt'; 
             let dragOffset = 0; 
-            let isAnimating = false; // Bloqueio para evitar conflito Click vs Drag
+            let isAnimating = false; 
             
             let lastX = 0;
             let velocity = 0;
@@ -878,16 +877,15 @@
                 enItem.style.transform = `scale(${scaleEN})`;
             }
 
-            // TOUCH START (Ganho Suave de Escala + Preparar Arrasto)
+            // TOUCH START (Ganho Suave de Escala)
             langContainer.addEventListener('touchstart', function(e) {
                 if(isAnimating) return;
                 isDragging = true;
                 
-                // Remove animações anteriores
                 pill.style.transition = 'none'; 
                 pill.classList.remove('settling');
                 
-                // Adiciona classe para Scale Up Suave via CSS
+                // Adiciona classe para "pop" inicial suave via CSS
                 requestAnimationFrame(() => {
                     pill.classList.add('is-held');
                 });
@@ -909,7 +907,7 @@
 
             }, {passive: true});
 
-            // TOUCH MOVE (Física Líquida Dinâmica)
+            // TOUCH MOVE (Zero Latency Tracking)
             langContainer.addEventListener('touchmove', function(e) {
                 if (!isDragging) return;
                 
@@ -919,9 +917,14 @@
                 const now = Date.now();
                 const dt = now - lastTime;
                 
+                // Força bruta: Remove qualquer transição para evitar lag
+                pill.style.transition = 'none !important';
+                // Remove classe held que tem transição no transform
+                pill.classList.remove('is-held'); 
+
                 if(dt > 0) {
                     const newVel = (touch.clientX - lastX) / dt;
-                    velocity = (velocity * 0.7) + (newVel * 0.3); // Média móvel suave
+                    velocity = (velocity * 0.7) + (newVel * 0.3); // Smooth velocity
                 }
                 lastX = touch.clientX;
                 lastTime = now;
@@ -933,14 +936,12 @@
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8; 
                 
-                // --- LÓGICA DE BORDA (WALL IMPULSE) ---
+                // Lógica de Borda
                 let clampedPillX = rawPillX;
                 let wallPenetration = 0; 
 
-                // Calcula quanto "entrou" na parede
                 if (rawPillX < 0) {
                     wallPenetration = Math.abs(rawPillX);
-                    // Resistência Rubber Band suave
                     const resistance = 25 * (1 - Math.pow(2.718, -wallPenetration / 40)); 
                     clampedPillX = -resistance;
                 } else if (rawPillX > maxTranslate) {
@@ -949,42 +950,35 @@
                     clampedPillX = maxTranslate + resistance;
                 }
 
-                // Cálculo de progresso (visual texto)
                 const percentage = (clampedPillX / maxTranslate) * 100;
                 const progress = Math.max(0, Math.min(1, percentage / 100)); 
                 
-                // --- FÍSICA DE DEFORMAÇÃO (LIQUID WALL - VELOCITY BASED) ---
+                // --- FÍSICA DE DEFORMAÇÃO ---
                 const absVel = Math.abs(velocity);
-                const baseScale = 1.25; // Escala base "agarrada" (Grande)
+                const baseScale = 1.25; 
                 
                 let targetScaleX = baseScale;
                 let targetScaleY = baseScale;
 
-                // Se houver penetração na parede (Colisão)
                 if (wallPenetration > 1) { 
-                    // A deformação depende da VELOCIDADE de impacto e não só da posição
-                    // Se parar o dedo na parede, velocity -> 0, deformação -> 0 (Volta ao normal)
-                    
-                    const impactFactor = Math.min(absVel * 0.4, 0.5); // Limita o esmagamento
-                    const pressureFactor = Math.min(wallPenetration * 0.005, 0.1); // Mínima deformação por posição
-
+                    const impactFactor = Math.min(absVel * 0.4, 0.5); 
+                    const pressureFactor = Math.min(wallPenetration * 0.005, 0.1); 
                     const totalSquash = impactFactor + pressureFactor;
 
-                    targetScaleX = baseScale - totalSquash; // Esmaga X
-                    targetScaleY = baseScale + (totalSquash * 0.8); // Estufa Y
+                    targetScaleX = baseScale - totalSquash; 
+                    targetScaleY = baseScale + (totalSquash * 0.8); 
                 } 
                 else {
-                    // MODO MOVIMENTO LIVRE (STRETCH)
                     if (absVel > 0.1) {
                          const stretchFactor = Math.min(absVel * 0.15, 0.35); 
-                         targetScaleX = baseScale + stretchFactor; // Estica X
-                         targetScaleY = baseScale - (stretchFactor * 0.6); // Afina Y
+                         targetScaleX = baseScale + stretchFactor; 
+                         targetScaleY = baseScale - (stretchFactor * 0.6); 
                     }
                 }
                 
                 const skew = Math.max(-25, Math.min(25, velocity * -15)); 
 
-                // Aplica transformações dinâmicas
+                // Aplica transform direta
                 pill.style.transform = `translateX(${percentage}%) scale(${targetScaleX}, ${targetScaleY}) skewX(${skew}deg)`;
                 
                 updateVisuals(progress);
@@ -994,12 +988,11 @@
 
             }, {passive: false});
 
-            // TOUCH END (Release Suave + Rebote)
+            // TOUCH END
             langContainer.addEventListener('touchend', function(e) {
                 if(!isDragging) return;
                 isDragging = false;
                 
-                // Remove estado "Agarrado" para iniciar redução suave
                 pill.classList.remove('is-held'); 
 
                 pill.style.boxShadow = ''; 
@@ -1014,17 +1007,14 @@
                 const finalX = currentSelection === 'en' ? 100 : 0;
                 pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
                 
-                // Transição suave para a posição final
+                // Reativa a transição para o movimento final
                 pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease'; 
-                // Volta para scale(1)
                 pill.style.transform = `translateX(${finalX}%) scale(1) skewX(0deg)`;
                 
-                // Trigger Wobble
                 setTimeout(() => {
                     pill.classList.add('settling');
                 }, 100);
                 
-                // Update final colors
                 if(currentSelection === 'en') {
                     enItem.classList.add('active');
                     ptItem.classList.remove('active');
@@ -1039,55 +1029,59 @@
                 }
             });
 
-            // --- CLICK CINEMÁTICO (SEQUENCER) ---
+            // --- CLICK CINEMÁTICO (CORRIGIDO: FLIP METHOD) ---
             langContainer.addEventListener('click', function(e) {
-                // Se estava arrastando, ignora o clique (já tratado no touchend)
                 if(isDragging) return; 
-                
-                // Bloqueia interações múltiplas
                 if(isAnimating) return;
-                isAnimating = true;
-
+                
                 const containerRect = langContainer.getBoundingClientRect();
                 const clickX = e.clientX - containerRect.left;
                 const isRightSide = clickX > (containerRect.width / 2);
                 const targetLang = isRightSide ? 'en' : 'pt';
 
-                if(targetLang === currentSelection) {
-                    isAnimating = false;
-                    return; 
-                }
+                if(targetLang === currentSelection) return;
                 
+                isAnimating = true;
                 pill.classList.remove('settling');
 
-                // 1. STATE: Scale Up (Sem mover ainda)
-                pill.classList.add('is-held'); // Ativa transition suave do CSS
+                // 1. FREEZE CURRENT POSITION (Prevenir Teleporte)
+                // Pega a posição computada atual exata
+                const computedStyle = window.getComputedStyle(pill);
+                const currentMatrix = computedStyle.transform;
+                
+                // Aplica explicitamente para travar visualmente
+                pill.style.transition = 'none';
+                pill.style.transform = currentMatrix;
+                
+                // Força Reflow (Obriga o browser a pintar este frame parado)
+                void pill.offsetWidth; 
+
+                // Adiciona classe de scale suave
+                pill.classList.add('is-held'); 
                 
                 currentSelection = targetLang;
 
-                // 2. STATE: Slide (Após breve delay do scale up)
-                setTimeout(() => {
+                // 2. DISPARO (Agora com transição)
+                // Usamos requestAnimationFrame para garantir que a transição comece no próximo frame
+                requestAnimationFrame(() => {
                      const targetPos = targetLang === 'en' ? 100 : 0;
                      const skewDir = targetLang === 'en' ? -20 : 20; 
 
-                     // Transição de movimento "Slide Rápido"
                      pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-                     // Estica um pouco para o movimento
                      pill.style.transform = `translateX(${targetPos}%) scale(1.35, 0.9) skewX(${skewDir}deg)`;
-                }, 60);
+                });
 
-                // 3. STATE: Settle (Chegada)
+                // 3. SETTLE
                 setTimeout(() => {
-                    pill.classList.remove('is-held'); // Scale Down suave
+                    pill.classList.remove('is-held');
                     pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
                     
-                    // Ajusta transição para o wobble
                     pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
                     pill.style.transform = `translateX(${targetLang === 'en' ? 100 : 0}%) scale(1) skewX(0deg)`;
 
                     setTimeout(() => {
                          pill.classList.add('settling'); 
-                         isAnimating = false; // Libera trava
+                         isAnimating = false; 
                     }, 100);
                     
                     if(targetLang === 'en') {
