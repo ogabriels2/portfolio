@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <script>
+    var userLang = navigator.language || navigator.userLanguage; 
+    if (userLang.startsWith('en') && !window.location.pathname.includes('/en/') && !localStorage.getItem('preferredLang')) {
+        // window.location.href = '/en/index.html'; 
+    }
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -11,29 +18,33 @@
   </script>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#fbfbfd">
   
   <title>Gabriel Silva | Creative Technologist & Full Stack Developer</title>
   <meta name="description" content="Portfólio de Gabriel Silva. Projetos de Design, Infraestrutura de TI, Edição de Vídeo e Desenvolvimento Web. Transformando ideias em tecnologia.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Gabriel Silva">
+  
   <link rel="canonical" href="https://ogabriels.com/index.html">
+  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/index.html" />
+  <link rel="alternate" hreflang="en-us" href="https://ogabriels.com/en/index.html" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/index.html" />
 
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="Logo.png">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.png">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ogabriels.com/index.html">
   <meta property="og:title" content="Gabriel Silva | Creative Technologist">
   <meta property="og:description" content="Design, Tecnologia e Infraestrutura. Confira meu portfólio completo.">
-  <meta property="og:image" content="https://ogabriels.com/Logo.png">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/ogabriels-logo.png">
 
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://ogabriels.com/index.html">
   <meta property="twitter:title" content="Gabriel Silva | Creative Technologist">
   <meta property="twitter:description" content="Design, Tecnologia e Infraestrutura. Confira meu portfólio completo.">
-  <meta property="twitter:image" content="https://ogabriels.com/Logo.png">
+  <meta property="twitter:image" content="https://ogabriels.com/assets/img/ogabriels-logo.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +55,7 @@
     /* ---------------- Design Tokens ---------------- */
     :root {
       --sidebar-width: 280px;
-      --max-width: 1100px; /* RESTAURADO PARA 1100px (Cards Maiores) */
+      --max-width: 1100px;
       --card-radius: 18px;
       
       /* Colors */
@@ -62,6 +73,10 @@
       --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
       --glass-blur: blur(20px) saturate(180%);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      
+      /* Physics Animations */
+      --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --elastic-snap: cubic-bezier(0.25, 1.5, 0.5, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -84,25 +99,41 @@
     .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s; }
     .skip-link:focus { top: 20px; }
 
-    /* Custom Scrollbar */
+    /* Custom Scrollbar Global */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; border: 2px solid var(--bg-body); }
     ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
 
-    /* --- Sidebar Premium (Sincronizada) --- */
+    /* --- Sidebar Premium --- */
     aside {
       width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
-      padding: 50px 32px;
       background: var(--bg-sidebar);
       backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
       border-right: 1px solid rgba(0,0,0,0.05);
-      display: flex; flex-direction: column; z-index: 2000;
-      overflow-y: auto; scrollbar-width: none;
+      display: block; 
+      z-index: 2000;
+      overflow: hidden; 
     }
     aside::-webkit-scrollbar { display: none; }
 
-    .profile-container { text-align: center; margin-bottom: 40px; flex-shrink: 0; }
+    /* --- SCALER ROBUSTO + FLEXBOX --- */
+    .sidebar-scaler {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 40px 32px 30px;
+      transform-origin: top left;
+      will-change: transform, width, height;
+      box-sizing: border-box;
+      transition: padding 0.1s ease;
+    }
+
+    .sidebar-scaler.compact-mode { padding-top: 25px; padding-bottom: 5px; }
+
+    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; transition: margin 0.3s ease; }
+    .sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
+
     .profile-link { display: block; transition: transform 0.2s; }
     .profile-link:active { transform: scale(0.98); } 
 
@@ -110,7 +141,7 @@
       width: 110px; height: 110px; margin: 0 auto 16px; 
       border-radius: 50%; overflow: hidden; 
       box-shadow: var(--shadow-md); 
-      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); } 
     
@@ -118,7 +149,6 @@
     
     .profile-name { 
       font-size: 1.4rem; font-weight: 700; 
-      /* CORREÇÃO: Removido letter-spacing negativo para aumentar o espaçamento */
       margin-bottom: 6px; color: #111; 
       transition: color 0.3s ease; 
     }
@@ -131,10 +161,32 @@
     }
 
     /* NAVEGAÇÃO */
-    nav { flex: 1; display: flex; flex-direction: column; }
+    nav { 
+        flex: 1; 
+        display: flex; flex-direction: column; 
+        min-height: 0; 
+        margin-bottom: 10px;
+    }
+    .sidebar-scaler.compact-mode nav { margin-bottom: 0px; }
+    
+    .nav-group { margin-bottom: 20px; flex-shrink: 0; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
+
     .nav-group h3 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
-    .nav-list { list-style: none; padding: 0; margin-bottom: 20px; }
+    
+    .nav-list { list-style: none; padding: 0; }
     .nav-list li { margin-bottom: 2px; }
+    
+    /* --- SCROLLBAR INTERNO --- */
+    .project-scroll-container {
+        overflow-y: auto; 
+        padding-right: 5px; 
+        margin-right: -5px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0,0,0,0.15) transparent;
+    }
+    .project-scroll-container::-webkit-scrollbar { width: 4px; }
+    .project-scroll-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.15); border-radius: 4px; }
     
     .nav-link { 
       display: flex; align-items: center; gap: 10px;
@@ -142,11 +194,102 @@
       color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; 
       border-radius: 8px; 
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      white-space: nowrap;
     }
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
+
+    /* ---- LANGUAGE SELECTOR (PHYSICS V14 - SILK TOUCH) ---- */
     
-    /* Animação "Sobre Mim" */
+    .lang-switcher-container, .lang-item, .lang-flag {
+        -webkit-tap-highlight-color: transparent; 
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: none; 
+    }
+
+    .lang-switcher-container {
+        position: relative;
+        display: flex;
+        margin: 0 0 20px; 
+        background: rgba(118, 118, 128, 0.12);
+        border-radius: 9999px; 
+        padding: 4px;
+        width: fit-content;
+        border: 1px solid rgba(0,0,0,0.02);
+        cursor: pointer;
+        flex-shrink: 0; 
+        transition: margin 0.2s;
+        padding-right: 6px;
+        overflow: visible; 
+    }
+    .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
+
+    .gliding-pill {
+        position: absolute;
+        top: 4px; bottom: 4px; left: 4px;
+        width: calc(50% - 4px); 
+        background: #FFFFFF;
+        border-radius: 9999px; 
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
+        z-index: 1; 
+        transform-origin: center center;
+        will-change: transform, left;
+        /* Transição padrão para repouso e hover */
+        transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
+    }
+
+    /* Estado "Held" - Apenas para a transição suave de entrada no clique */
+    .gliding-pill.is-held {
+        transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.3s ease;
+    }
+
+    /* ANIMAÇÃO DE ESTABILIZAÇÃO (WOBBLE LÍQUIDO) */
+    @keyframes liquid-settle {
+        0% { transform: var(--final-transform) scale(1.3, 0.75); } /* Impacto esmagado */
+        25% { transform: var(--final-transform) scale(0.9, 1.25); } /* Rebote vertical */
+        50% { transform: var(--final-transform) scale(1.15, 0.95); } /* Oscilação */
+        75% { transform: var(--final-transform) scale(0.98, 1.02); } 
+        100% { transform: var(--final-transform) scale(1, 1); } /* Parado */
+    }
+
+    .gliding-pill.settling {
+        animation: liquid-settle 0.8s cubic-bezier(0.25, 1.2, 0.5, 1) forwards;
+    }
+
+    /* Hover apenas em Desktop */
+    @media (hover: hover) {
+        .lang-switcher-container:hover .gliding-pill { transform: scale(1.12); }
+        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.12); }
+        .lang-switcher-container:has(.lang-item:nth-child(2):hover) .lang-item:nth-child(2),
+        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .lang-item:nth-child(3) { transform: scale(1.1); }
+        .lang-item:not(.active):hover { color: var(--text-primary); }
+    }
+
+    .lang-item {
+        position: relative; 
+        z-index: 5; 
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 6px 14px;
+        border-radius: 99px;
+        font-size: 0.8rem; font-weight: 600; 
+        color: var(--text-secondary); text-decoration: none; 
+        width: 75px;
+        transition: color 0.3s ease, transform 0.3s var(--smooth-glide);
+        will-change: transform, color;
+        pointer-events: none !important; 
+    }
+    .lang-item.active { color: var(--text-primary); cursor: default; }
+    
+    .lang-flag { 
+        width: 20px; height: 15px; border-radius: 3px; object-fit: cover; 
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.08); 
+        filter: none !important;
+        transform: translateZ(0); 
+        pointer-events: none !important;
+    }
+
+    /* Animação Sobre Mim */
     @keyframes head-bob {
       0%, 100% { transform: translateY(0) rotate(0); }
       30% { transform: translateY(-2px) rotate(-3deg); }
@@ -154,201 +297,147 @@
     }
     .nav-link:hover i.fa-user { animation: head-bob 0.6s ease infinite; color: var(--accent); }
 
-    /* CTA Sidebar (Typing Pulse) */
-    @keyframes typing-pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.15); opacity: 0.8; }
-    }
     .sidebar-cta {
         display: flex; align-items: center; justify-content: center; gap: 12px;
         padding: 12px 20px;
         background: var(--text-primary); color: white; text-align: center; border-radius: 50px;
         font-size: 0.9rem; font-weight: 600; 
-        margin-top: 30px; margin-bottom: 30px; 
-        transition: 0.3s;
+        margin-top: auto; 
+        margin-bottom: 20px; 
+        transition: all 0.3s;
+        flex-shrink: 0;
     }
+    .sidebar-scaler.compact-mode .sidebar-cta { margin-bottom: 10px; margin-top: 5px; }
     .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-    .sidebar-cta:hover i { animation: typing-pulse 1.2s infinite ease-in-out; }
-    .sidebar-cta:active { transform: scale(0.95); transition-duration: 0.1s; }
 
-    .sidebar-footer { padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); margin-top: auto; flex-shrink: 0; }
-    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
+    /* Footer */
+    .sidebar-footer { 
+        padding-top: 20px; 
+        border-top: 1px solid rgba(0,0,0,0.05); 
+        flex-shrink: 0;
+        transition: padding 0.2s;
+    }
+    .sidebar-scaler.compact-mode .sidebar-footer { padding-top: 10px; }
+
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .social-icons { margin-bottom: 4px; }
+
     .social-icon { 
       width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.04);
       display: flex; align-items: center; justify-content: center; color: var(--text-secondary); 
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
-    .social-icon:active { transform: scale(0.9); transition-duration: 0.1s; }
-    .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
+    .copyright { font-size: 0.65rem; color: #555; text-align: center; font-weight: 500; }
 
-    /* --- Mobile Menu Premium (Fixed X + Scroll Content) --- */
+    /* --- MOBILE & RESPONSIVIDADE --- */
     .mobile-menu-btn { display: none; }
-    
-    .mobile-menu-overlay { 
-      position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); 
-      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-      z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
-    }
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
-
-    .mobile-scroll-wrapper {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        overflow-y: auto; -webkit-overflow-scrolling: touch;
-        padding-top: 80px; padding-bottom: 100px;
-        display: flex; flex-direction: column;
-    }
-    
-    .mobile-nav-container { 
-      width: 100%; max-width: 320px; min-height: 100%; margin: auto; 
-      display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px;
-    }
-    
-    /* Botão Fechar FIXED */
-    .mobile-close-btn {
-      position: fixed; top: 24px; right: 24px; width: 44px; height: 44px;
-      background: rgba(0,0,0,0.05); backdrop-filter: blur(10px);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; color: var(--text-primary); 
-      cursor: pointer; border: none; z-index: 3005; transition: background 0.2s;
-    }
-    .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
-
-    /* Animação Staggered */
+    .mobile-scroll-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: 80px; padding-bottom: 100px; display: flex; flex-direction: column; }
+    .mobile-nav-container { width: 100%; max-width: 320px; min-height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px; }
+    .mobile-close-btn { position: fixed; top: 24px; right: 24px; width: 44px; height: 44px; background: rgba(0,0,0,0.05); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-primary); cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; }
     .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { opacity: 0; transform: translateY(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .mobile-menu-overlay.active .mobile-nav-group { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-
-    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
+    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; align-items: center; }
     .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
-    .mobile-link-main:active { color: var(--accent) !important; transform: scale(0.95); }
-
     .mobile-projects-wrapper { width: 100%; text-align: center; }
     .mobile-projects-list { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; width: 100%; align-items: center; }
     .mobile-link-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; transition: 0.2s; text-decoration: none; }
-    .mobile-link-sub:active { color: var(--accent); transform: scale(0.98); }
-
     .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
     .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
-
     .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .mobile-socials { display: flex; gap: 24px; justify-content: center; }
     .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
-    .mobile-social-btn:active { color: var(--accent); transform: scale(0.9); }
-
-    .mobile-cta {
-      width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; 
-      font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
+    .mobile-cta { width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
     /* --- Main Content --- */
     main { margin-left: var(--sidebar-width); flex: 1; padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
-    
-    .container { 
-        width: 100%; 
-        max-width: var(--max-width); /* 1100px */
-    }
+    .container { width: 100%; max-width: var(--max-width); }
 
-    /* Header (Hero) */
-    .page-header { 
-        display: flex; justify-content: space-between; align-items: flex-end; 
-        margin-bottom: 60px; padding-bottom: 20px; 
-        border-bottom: 1px solid rgba(0,0,0,0.06); 
-    }
+    .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
     .header-content { max-width: 700px; }
     .header-content h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; line-height: 1.1; }
     .header-content p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.5; }
-
-    /* BOTÃO CTA */
-    .btn-cta { 
-      display: inline-flex; align-items: center; gap: 8px; 
-      background: var(--accent); color: white; 
-      padding: 12px 24px; border-radius: 99px; 
-      font-weight: 600; font-size: 0.95rem; 
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
-      box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); 
-    }
-    .btn-cta i { transition: transform 0.3s ease; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 99px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); }
     .btn-cta:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0, 113, 227, 0.4); background: var(--accent-hover); }
-    .btn-cta:hover i { transform: translateX(4px); } 
-    .btn-cta:active { transform: scale(0.96); box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2); transition-duration: 0.1s; }
 
-    /* --- Grid de Projetos --- */
     .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-
-    .card { 
-      background: var(--bg-card); border-radius: var(--card-radius); 
-      overflow: hidden; position: relative; box-shadow: var(--shadow-sm); 
-      transition: var(--transition); cursor: pointer; isolation: isolate; 
-      display: flex; flex-direction: column; 
-    }
+    .card { background: var(--bg-card); border-radius: var(--card-radius); overflow: hidden; position: relative; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; isolation: isolate; display: flex; flex-direction: column; }
     .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-lg); z-index: 2; }
-    .card:active { transform: scale(0.98) translateY(-4px); box-shadow: var(--shadow-md); transition-duration: 0.1s; }
-
     .card-image-wrapper { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; background: #fff; }
     .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .card:hover .card-image-wrapper img { transform: scale(1.06); }
-
     .card-image-wrapper.logo-mode { background: linear-gradient(135deg, #0a1931 0%, #1a2a44 100%); display: flex; align-items: center; justify-content: center; }
     .card-image-wrapper.logo-mode img { width: auto; height: 60%; object-fit: contain; }
-
     .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%); opacity: 0; transition: opacity 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
     .card:hover .card-overlay { opacity: 1; }
-
     .project-meta { color: rgba(255,255,255,0.8); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; transform: translateY(10px); transition: 0.4s; }
     .project-title { color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0; transform: translateY(10px); transition: 0.4s 0.1s; }
     .card:hover .project-meta, .card:hover .project-title { transform: translateY(0); }
-
     .card-link::after { content: ''; position: absolute; inset: 0; z-index: 10; }
-
     .card-footer { padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.03); flex-grow: 1; }
     .card-footer span { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
     .card-footer i { color: var(--accent); opacity: 0; transform: translateX(-10px); transition: all 0.3s; }
     .card:hover .card-footer i { opacity: 1; transform: translateX(0); }
 
-    /* Contact Banner Premium */
     .contact-banner { width: 100%; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin-top: 80px; }
     .contact-text-group { flex: 1; padding-right: 20px; }
-    .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
+    .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; }
     .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
     .contact-social { display: flex; gap: 12px; }
-    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
-    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px) scale(1.1); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
-    .btn-social-mini:active { transform: scale(0.9); }
+    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s; font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
+    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px) scale(1.1); }
     .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
-    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .btn-cta-dark:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 25px rgba(255,255,255,0.25); background: #f2f2f2; }
-    .btn-cta-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
-    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
-    .btn-secondary-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s; }
+    .btn-cta-dark:hover { transform: translateY(-4px) scale(1.02); background: #f2f2f2; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s; }
+    .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); }
 
-    /* --- Responsividade --- */
     @media (max-width: 968px) {
       body { flex-direction: column; }
-      
-      /* Ajuste Título Mobile (2rem) */
       .header-content h1 { font-size: 2rem; }
+      
+      aside { 
+          width: 100%; height: 70px; 
+          position: fixed; top: 0; left: 0; 
+          padding: 0 24px; 
+          border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); 
+          display: flex; 
+          flex-direction: row; justify-content: space-between; align-items: center; 
+          z-index: 2001; 
+          background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); 
+          overflow-y: hidden; 
+      }
 
-      aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
+      /* ANULAR O SCALER NO MOBILE */
+      .sidebar-scaler {
+        width: auto; height: auto !important; 
+        min-height: auto;
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        transform: none !important; 
+      }
+      .sidebar-scaler.compact-mode { padding: 0; }
+
       .profile-container { margin: 0; text-align: left; }
       .profile-link { display: flex; align-items: center; gap: 12px; }
-      .profile-link:hover .profile-pic-wrapper { transform: none; }
       .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
       .profile-name { font-size: 1rem; margin: 0; }
-      .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
-      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.2s; }
-      .mobile-menu-btn:active { transform: scale(0.9); }
       
+      .sidebar-scaler nav, 
+      .sidebar-scaler .sidebar-footer, 
+      .profile-role { display: none; }
+
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; }
       main { margin-left: 0; padding: 100px 24px 40px; }
       .grid { grid-template-columns: 1fr; }
       .page-header { flex-direction: column; align-items: flex-start; gap: 20px; }
       .header-content { width: 100%; }
       .btn-cta { display: none; }
-      
       .contact-banner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 24px; }
       .contact-text-group { width: 100%; padding-right: 0; }
       .contact-social { justify-content: center; margin-top: 15px; }
@@ -356,15 +445,12 @@
       .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
     }
 
-    /* --- Paisagem Mobile --- */
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; } 
       .grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } 
       .card-image-wrapper { aspect-ratio: 16/9; } 
       .contact-banner { padding: 40px; } 
-      
-      /* Texto Compacto no Paisagem */
       .header-content p { font-size: 0.85rem; line-height: 1.45; }
     }
   </style>
@@ -376,6 +462,18 @@
     <button class="mobile-close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
     <div class="mobile-scroll-wrapper">
         <div class="mobile-nav-container">
+            <div class="lang-switcher-container" id="mobileLangSwitcher" style="margin-bottom: 20px; background: rgba(0,0,0,0.05);">
+                <div class="gliding-pill"></div>
+                <span class="lang-item active" data-lang="pt">
+                    <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#009c3b" d="M0 0h640v480H0z"/><path fill="#ffdf00" d="M320 80l245.4 160L320 400 74.6 240z"/><circle cx="320" cy="240" r="94.2" fill="#002776"/><path fill="#fff" d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg>
+                    PT
+                </span>
+                <span class="lang-item" data-lang="en">
+                    <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0z"/><path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path fill="#192f5d" d="M0 0h256v258H0z"/><path fill="#fff" d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" opacity=".8"/></svg>
+                    EN
+                </span>
+            </div>
+
             <div class="mobile-nav-group">
                 <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
                 <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
@@ -387,12 +485,12 @@
                     <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
                     <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
                     <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
-                    <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
-                    <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
-                    <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
+                    <a href="lo-publicidade.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
+                    <a href="personal-branding.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
+                    <a href="podcast-um-minuto.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
                     <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
                     <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
-                    <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
+                    <a href="videos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
                 </div>
             </div>
             <div class="mobile-footer-group">
@@ -410,62 +508,74 @@
   </div>
 
   <aside>
-    <div class="profile-container">
-      <a href="index.html" class="profile-link">
-        <div class="profile-pic-wrapper">
-          <img src="Logo.png" alt="Gabriel Silva" class="profile-pic">
+    <div class="sidebar-scaler">
+        <div class="profile-container">
+          <a href="index.html" class="profile-link">
+            <div class="profile-pic-wrapper">
+              <img src="assets/img/ogabriels-logo.png" alt="Gabriel Silva" class="profile-pic">
+            </div>
+            <div class="profile-text-group">
+              <h1 class="profile-name">Gabriel Silva</h1>
+              <p class="profile-role">Creative Technologist</p>
+            </div>
+          </a>
         </div>
-        <div class="profile-text-group">
-          <h1 class="profile-name">Gabriel Silva</h1>
-          <p class="profile-role">Creative Technologist</p>
-        </div>
-      </a>
-    </div>
 
-    <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir Menu">
+        <nav>
+          <div class="nav-group">
+            <ul class="nav-list">
+              <li>
+                <a href="sobre.html" class="nav-link">
+                    <i class="fa-regular fa-user"></i> Sobre mim
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-group" style="flex: 1; min-height: 0; display: flex; flex-direction: column;">
+            <h3>Portfólio</h3>
+            
+            <ul class="nav-list project-scroll-container">
+              <li><a href="infra.html" class="nav-link">Server Infra & Dashboard</a></li>
+              <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
+              <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
+              <li><a href="lo-publicidade.html" class="nav-link">Lô</a></li>
+              <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
+              <li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li>
+              <li><a href="valorada.html" class="nav-link">Valorada</a></li>
+              <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
+              <li><a href="videos.html" class="nav-link">Produção Audiovisual</a></li>
+            </ul>
+          </div>
+          
+          <div class="lang-switcher-container">
+              <div class="gliding-pill"></div> <span class="lang-item active">
+                  <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#009c3b" d="M0 0h640v480H0z"/><path fill="#ffdf00" d="M320 80l245.4 160L320 400 74.6 240z"/><circle cx="320" cy="240" r="94.2" fill="#002776"/><path fill="#fff" d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg>
+                  PT
+              </span>
+              <a href="en/index.html" class="lang-item" onclick="localStorage.setItem('preferredLang', 'en')">
+                  <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0z"/><path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path fill="#192f5d" d="M0 0h256v258H0z"/><path fill="#fff" d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" opacity=".8"/></svg>
+                  EN
+              </a>
+          </div>
+
+          <a href="contato.html" class="sidebar-cta">
+            <i class="fa-regular fa-comment-dots"></i> Fale Comigo
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
+            <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          <p class="copyright">© 2026 Gabriel Silva</p>
+        </div>
+    </div> <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir Menu">
       <i class="fa-solid fa-bars"></i>
     </button>
-
-    <nav>
-      <div class="nav-group">
-        <ul class="nav-list">
-          <li>
-            <a href="sobre.html" class="nav-link">
-                <i class="fa-regular fa-user"></i> Sobre mim
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="nav-group">
-        <h3>Portfólio</h3>
-        <ul class="nav-list">
-          <li><a href="infra.html" class="nav-link">Server Infra & Dashboard</a></li>
-          <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
-          <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
-          <li><a href="lo.html" class="nav-link">Lô</a></li>
-          <li><a href="ogabriels.html" class="nav-link">G | Gabriel</a></li>
-          <li><a href="um-minuto-para-refletir-em-Deus.html" class="nav-link">Um Minuto</a></li>
-          <li><a href="valorada.html" class="nav-link">Valorada</a></li>
-          <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
-          <li><a href="vídeos.html" class="nav-link">Produção Audiovisual</a></li>
-        </ul>
-      </div>
-
-      <a href="contato.html" class="sidebar-cta">
-        <i class="fa-regular fa-comment-dots"></i> Fale Comigo
-      </a>
-    </nav>
-
-    <div class="sidebar-footer">
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
-        <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <p class="copyright">© 2026 Gabriel Silva</p>
-    </div>
   </aside>
 
   <main id="main-content">
@@ -485,7 +595,7 @@
 
         <article class="card">
           <div class="card-image-wrapper logo-mode">
-            <img src="logo-forcaaliada.JPG" alt="Server Infrastructure" loading="lazy">
+            <img src="assets/img/forca-aliada-logo.JPG" alt="Server Infrastructure" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Infraestrutura & Redes</span>
               <h3 class="project-title">Server Dashboard</h3>
@@ -500,7 +610,7 @@
 
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="Revista Utopia - capa.png" alt="Capa Revista Utopia" loading="lazy">
+            <img src="assets/img/revista-utopia-capa.png" alt="Capa Revista Utopia" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Editorial</span>
               <h3 class="project-title">Revista Utopia</h3>
@@ -515,7 +625,7 @@
 
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="NeoLetters - capa.png" alt="Capa Neo Letters" loading="lazy">
+            <img src="assets/img/neoletters-capa.png" alt="Capa Neo Letters" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Branding</span>
               <h3 class="project-title">Neo Letters</h3>
@@ -530,7 +640,7 @@
 
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="Lô Publi - capa.png" alt="Capa Lô" loading="lazy">
+            <img src="assets/img/lo-publi-capa.png" alt="Capa Lô" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Identidade Visual</span>
               <h3 class="project-title">Lô Publicidade</h3>
@@ -540,12 +650,12 @@
             <span>Rebranding completo</span>
             <i class="fa-solid fa-arrow-right"></i>
           </div>
-          <a href="lo.html" class="card-link" aria-label="Ver projeto Lô"></a>
+          <a href="lo-publicidade.html" class="card-link" aria-label="Ver projeto Lô"></a>
         </article>
 
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="Gorpos - capa.png" alt="Capa G Gabriel" loading="lazy">
+            <img src="assets/img/ogabriels-capa.png" alt="Capa G Gabriel" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Personal Branding</span>
               <h3 class="project-title">G | Gabriel</h3>
@@ -555,12 +665,12 @@
             <span>Identidade Minimalista</span>
             <i class="fa-solid fa-arrow-right"></i>
           </div>
-          <a href="ogabriels.html" class="card-link" aria-label="Ver projeto G Gabriel"></a>
+          <a href="personal-branding.html" class="card-link" aria-label="Ver projeto G Gabriel"></a>
         </article>
 
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="1 Minuto para Refletir em Deus - capa.png" alt="Capa Um Minuto" loading="lazy">
+            <img src="assets/img/um-minuto-refletir-capa.png" alt="Capa Um Minuto" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Podcast</span>
               <h3 class="project-title">Um Minuto para Refletir</h3>
@@ -570,12 +680,12 @@
             <span>Capa e Identidade</span>
             <i class="fa-solid fa-arrow-right"></i>
           </div>
-          <a href="um-minuto-para-refletir-em-Deus.html" class="card-link" aria-label="Ver projeto Um Minuto"></a>
+          <a href="podcast-um-minuto.html" class="card-link" aria-label="Ver projeto Um Minuto"></a>
         </article>
 
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="Capa do canal Valorada no YouTube, mostrando personagens de Valorant e elementos gráficos em vermelho e preto e branco.jpg" alt="Capa Valorada" loading="lazy">
+            <img src="assets/img/valorada-capa.png" alt="Capa Valorada" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">YouTube Gaming</span>
               <h3 class="project-title">Valorada</h3>
@@ -590,7 +700,7 @@
         
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="Detector de Fraudes com IA - Projeto Integrador II – UNIVESP (escuro).jpg" alt="Capa Thumbnails" loading="lazy">
+            <img src="assets/img/thumbnails-capa.png" alt="Capa Thumbnails" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Social Media</span>
               <h3 class="project-title">Thumbnails</h3>
@@ -605,7 +715,7 @@
 
         <article class="card">
           <div class="card-image-wrapper">
-            <img src="Balé_2.png" alt="Capa Produção Audiovisual" loading="lazy">
+            <img src="assets/img/videos-capa.png" alt="Capa Produção Audiovisual" loading="lazy">
             <div class="card-overlay">
               <span class="project-meta">Vídeo & Edição</span>
               <h3 class="project-title">Produção Audiovisual</h3>
@@ -615,7 +725,7 @@
             <span>Projetos Audiovisuais</span>
             <i class="fa-solid fa-arrow-right"></i>
           </div>
-          <a href="vídeos.html" class="card-link" aria-label="Ver projeto Produção Audiovisual"></a>
+          <a href="videos.html" class="card-link" aria-label="Ver projeto Produção Audiovisual"></a>
         </article>
 
       </section>
@@ -659,7 +769,339 @@
     }
 
     menuBtn.addEventListener('click', toggleMenu);
+
+    // --- SCRIPT DE ESCALA HÍBRIDA (ESTABILIZADO) ---
+    let lastWidth = 0;
+    let lastHeight = 0;
+
+    function fitSidebarToScreen() {
+      if (window.innerWidth <= 968) {
+        const scaler = document.querySelector('.sidebar-scaler');
+        if (scaler) {
+            scaler.style.transform = 'none';
+            scaler.style.width = 'auto';
+            scaler.style.height = 'auto';
+            scaler.classList.remove('compact-mode');
+        }
+        return;
+      }
+      
+      if (window.innerWidth === lastWidth && window.innerHeight === lastHeight) {
+          return; 
+      }
+      lastWidth = window.innerWidth;
+      lastHeight = window.innerHeight;
+
+      const scaler = document.querySelector('.sidebar-scaler');
+      if (!scaler) return;
+
+      scaler.style.transform = 'scale(1)';
+      scaler.style.width = '100%'; 
+      scaler.style.height = 'auto';
+      scaler.classList.remove('compact-mode'); 
+      
+      const windowHeight = window.innerHeight;
+      const contentHeight = scaler.scrollHeight; 
+
+      let scale = 1;
+      if (contentHeight > windowHeight) {
+        scale = windowHeight / contentHeight;
+      }
+
+      const MIN_SCALE = 0.85; 
+      if (scale < MIN_SCALE) {
+         scaler.classList.add('compact-mode');
+         scale = MIN_SCALE; 
+         scaler.style.height = (windowHeight / scale) + 'px';
+      } else if (scale < 0.98) {
+         scaler.style.height = (windowHeight / scale) + 'px';
+      } else {
+         scaler.style.height = (windowHeight / scale) + 'px';
+      }
+
+      scaler.style.transform = `scale(${scale})`;
+      scaler.style.width = (100 / scale) + '%';
+    }
+
+    window.addEventListener('load', fitSidebarToScreen);
+    window.addEventListener('resize', fitSidebarToScreen);
+    setTimeout(fitSidebarToScreen, 500);
+
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V14 - SILK TOUCH & ZERO-LATENCY) ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const langContainer = document.getElementById('mobileLangSwitcher');
+        
+        if (langContainer) {
+            const pill = langContainer.querySelector('.gliding-pill');
+            const ptItem = langContainer.querySelector('.lang-item:nth-child(2)'); 
+            const enItem = langContainer.querySelector('.lang-item:nth-child(3)'); 
+            
+            let isDragging = false;
+            let currentSelection = 'pt'; 
+            let dragOffset = 0; 
+            let isAnimating = false; 
+            
+            let lastX = 0;
+            let velocity = 0;
+            let lastTime = 0;
+
+            function updateVisuals(progress) {
+                // Glassmorphism
+                pill.style.backdropFilter = 'blur(10px)'; 
+                pill.style.webkitBackdropFilter = 'blur(10px)';
+                pill.style.backgroundColor = 'rgba(255, 255, 255, 0.35)'; 
+                
+                pill.style.boxShadow = `
+                    inset 0 0 10px rgba(255,255,255,0.7),
+                    0 10px 25px rgba(0,0,0,0.1),
+                    0 4px 6px rgba(0,0,0,0.05)
+                `;
+                pill.style.border = '1px solid rgba(255,255,255,0.5)';
+                
+                // Scale Texto (Lupa)
+                const distPT = Math.abs(progress - 0); 
+                const distEN = Math.abs(progress - 1); 
+                const scalePT = 1.25 - (distPT * 0.35); 
+                const scaleEN = 1.25 - (distEN * 0.35); 
+
+                // Cor
+                if(progress < 0.5) {
+                    ptItem.classList.add('active');
+                    enItem.classList.remove('active');
+                } else {
+                    enItem.classList.add('active');
+                    ptItem.classList.remove('active');
+                }
+
+                ptItem.style.transform = `scale(${scalePT})`;
+                enItem.style.transform = `scale(${scaleEN})`;
+            }
+
+            // TOUCH START (Ganho Suave de Escala)
+            langContainer.addEventListener('touchstart', function(e) {
+                if(isAnimating) return;
+                isDragging = true;
+                
+                pill.style.transition = 'none'; 
+                pill.classList.remove('settling');
+                
+                // Adiciona classe para "pop" inicial suave via CSS
+                requestAnimationFrame(() => {
+                    pill.classList.add('is-held');
+                });
+
+                const touch = e.touches[0];
+                const containerRect = langContainer.getBoundingClientRect();
+                const pillRect = pill.getBoundingClientRect();
+                
+                lastX = touch.clientX;
+                lastTime = Date.now();
+
+                const currentPillLeft = pillRect.left - containerRect.left;
+                const touchInsideContainer = touch.clientX - containerRect.left;
+                
+                dragOffset = touchInsideContainer - currentPillLeft;
+
+                const startProgress = currentSelection === 'en' ? 1 : 0;
+                updateVisuals(startProgress);
+
+            }, {passive: true});
+
+            // TOUCH MOVE (Zero Latency Tracking)
+            langContainer.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+                
+                const touch = e.touches[0];
+                const containerRect = langContainer.getBoundingClientRect();
+                
+                const now = Date.now();
+                const dt = now - lastTime;
+                
+                // Força bruta: Remove qualquer transição para evitar lag
+                pill.style.transition = 'none !important';
+                // Remove classe held que tem transição no transform
+                pill.classList.remove('is-held'); 
+
+                if(dt > 0) {
+                    const newVel = (touch.clientX - lastX) / dt;
+                    velocity = (velocity * 0.7) + (newVel * 0.3); // Smooth velocity
+                }
+                lastX = touch.clientX;
+                lastTime = now;
+                
+                // Posição bruta
+                let x = touch.clientX - containerRect.left;
+                let rawPillX = x - dragOffset;
+                
+                const pillWidth = (containerRect.width / 2) - 4;
+                const maxTranslate = containerRect.width - pillWidth - 8; 
+                
+                // Lógica de Borda
+                let clampedPillX = rawPillX;
+                let wallPenetration = 0; 
+
+                if (rawPillX < 0) {
+                    wallPenetration = Math.abs(rawPillX);
+                    const resistance = 25 * (1 - Math.pow(2.718, -wallPenetration / 40)); 
+                    clampedPillX = -resistance;
+                } else if (rawPillX > maxTranslate) {
+                    wallPenetration = rawPillX - maxTranslate;
+                    const resistance = 25 * (1 - Math.pow(2.718, -wallPenetration / 40));
+                    clampedPillX = maxTranslate + resistance;
+                }
+
+                const percentage = (clampedPillX / maxTranslate) * 100;
+                const progress = Math.max(0, Math.min(1, percentage / 100)); 
+                
+                // --- FÍSICA DE DEFORMAÇÃO ---
+                const absVel = Math.abs(velocity);
+                const baseScale = 1.25; 
+                
+                let targetScaleX = baseScale;
+                let targetScaleY = baseScale;
+
+                if (wallPenetration > 1) { 
+                    const impactFactor = Math.min(absVel * 0.4, 0.5); 
+                    const pressureFactor = Math.min(wallPenetration * 0.005, 0.1); 
+                    const totalSquash = impactFactor + pressureFactor;
+
+                    targetScaleX = baseScale - totalSquash; 
+                    targetScaleY = baseScale + (totalSquash * 0.8); 
+                } 
+                else {
+                    if (absVel > 0.1) {
+                         const stretchFactor = Math.min(absVel * 0.15, 0.35); 
+                         targetScaleX = baseScale + stretchFactor; 
+                         targetScaleY = baseScale - (stretchFactor * 0.6); 
+                    }
+                }
+                
+                const skew = Math.max(-25, Math.min(25, velocity * -15)); 
+
+                // Aplica transform direta
+                pill.style.transform = `translateX(${percentage}%) scale(${targetScaleX}, ${targetScaleY}) skewX(${skew}deg)`;
+                
+                updateVisuals(progress);
+                
+                const visualCenter = clampedPillX + (pillWidth/2);
+                currentSelection = visualCenter > (containerRect.width / 2) ? 'en' : 'pt';
+
+            }, {passive: false});
+
+            // TOUCH END
+            langContainer.addEventListener('touchend', function(e) {
+                if(!isDragging) return;
+                isDragging = false;
+                
+                pill.classList.remove('is-held'); 
+
+                pill.style.boxShadow = ''; 
+                pill.style.border = '';
+                pill.style.backdropFilter = '';
+                pill.style.webkitBackdropFilter = '';
+                pill.style.backgroundColor = '';
+                
+                ptItem.style.transform = '';
+                enItem.style.transform = '';
+                
+                const finalX = currentSelection === 'en' ? 100 : 0;
+                pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
+                
+                // Reativa a transição para o movimento final
+                pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease'; 
+                pill.style.transform = `translateX(${finalX}%) scale(1) skewX(0deg)`;
+                
+                setTimeout(() => {
+                    pill.classList.add('settling');
+                }, 100);
+                
+                if(currentSelection === 'en') {
+                    enItem.classList.add('active');
+                    ptItem.classList.remove('active');
+                } else {
+                    ptItem.classList.add('active');
+                    enItem.classList.remove('active');
+                }
+
+                if (currentSelection === 'en') {
+                   localStorage.setItem('preferredLang', 'en');
+                   setTimeout(() => { window.location.href = 'en/index.html'; }, 850); 
+                }
+            });
+
+            // --- CLICK CINEMÁTICO (CORRIGIDO: FLIP METHOD) ---
+            langContainer.addEventListener('click', function(e) {
+                if(isDragging) return; 
+                if(isAnimating) return;
+                
+                const containerRect = langContainer.getBoundingClientRect();
+                const clickX = e.clientX - containerRect.left;
+                const isRightSide = clickX > (containerRect.width / 2);
+                const targetLang = isRightSide ? 'en' : 'pt';
+
+                if(targetLang === currentSelection) return;
+                
+                isAnimating = true;
+                pill.classList.remove('settling');
+
+                // 1. FREEZE CURRENT POSITION (Prevenir Teleporte)
+                // Pega a posição computada atual exata
+                const computedStyle = window.getComputedStyle(pill);
+                const currentMatrix = computedStyle.transform;
+                
+                // Aplica explicitamente para travar visualmente
+                pill.style.transition = 'none';
+                pill.style.transform = currentMatrix;
+                
+                // Força Reflow (Obriga o browser a pintar este frame parado)
+                void pill.offsetWidth; 
+
+                // Adiciona classe de scale suave
+                pill.classList.add('is-held'); 
+                
+                currentSelection = targetLang;
+
+                // 2. DISPARO (Agora com transição)
+                // Usamos requestAnimationFrame para garantir que a transição comece no próximo frame
+                requestAnimationFrame(() => {
+                     const targetPos = targetLang === 'en' ? 100 : 0;
+                     const skewDir = targetLang === 'en' ? -20 : 20; 
+
+                     pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                     pill.style.transform = `translateX(${targetPos}%) scale(1.35, 0.9) skewX(${skewDir}deg)`;
+                });
+
+                // 3. SETTLE
+                setTimeout(() => {
+                    pill.classList.remove('is-held');
+                    pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
+                    
+                    pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+                    pill.style.transform = `translateX(${targetLang === 'en' ? 100 : 0}%) scale(1) skewX(0deg)`;
+
+                    setTimeout(() => {
+                         pill.classList.add('settling'); 
+                         isAnimating = false; 
+                    }, 100);
+                    
+                    if(targetLang === 'en') {
+                        enItem.classList.add('active');
+                        ptItem.classList.remove('active');
+                    } else {
+                        ptItem.classList.add('active');
+                        enItem.classList.remove('active');
+                    }
+                    
+                    if (currentSelection === 'en') {
+                       localStorage.setItem('preferredLang', 'en');
+                       setTimeout(() => { window.location.href = 'en/index.html'; }, 850); 
+                    }
+                }, 400); 
+            });
+        }
+    });
   </script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -674,8 +1116,8 @@
       "image": {
         "@type": "ImageObject",
         "@id": "https://ogabriels.com/#personImage",
-        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
-        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg",
+        "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
+        "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
         "caption": "Gabriel Silva"
       },
       "description": "Creative Technologist especializado na intersecção entre design, engenharia de software e infraestrutura de servidores.",
@@ -716,9 +1158,9 @@
         { "@type": "CreativeWork", "@id": "https://ogabriels.com/infra.html#case" },
         { "@type": "CreativeWork", "@id": "https://ogabriels.com/neoletters.html#case" },
         { "@type": "CreativeWork", "@id": "https://ogabriels.com/revista-utopia.html#case" },
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/um-minuto-para-refletir-em-Deus.html#series" },
+        { "@type": "CreativeWork", "@id": "https://ogabriels.com/podcast-um-minuto.html#series" },
         { "@type": "CreativeWork", "@id": "https://ogabriels.com/valorada.html#case" },
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/vídeos.html#portfolio" }
+        { "@type": "CreativeWork", "@id": "https://ogabriels.com/videos.html#portfolio" }
       ]
     },
     {
@@ -729,7 +1171,7 @@
       "publisher": { "@id": "https://ogabriels.com/" },
       "inLanguage": "pt-BR",
       "datePublished": "2025-08-14T08:00:00-03:00",
-      "dateModified": "2026-01-30T10:00:00-03:00"
+      "dateModified": "2026-01-31T20:00:00-03:00"
     },
     {
       "@type": "WebPage",
