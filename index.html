@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V10 - ULTIMATE LIQUID) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V11 - DRAG FIXED) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -221,7 +221,7 @@
         flex-shrink: 0; 
         transition: margin 0.2s;
         padding-right: 6px;
-        /* Permite que a pílula "vaze" para fora do container */
+        /* IMPORTANTE: Permite que a pílula "vaze" para fora do container ao crescer */
         overflow: visible; 
     }
     .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
@@ -240,26 +240,25 @@
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
     }
 
-    /* Estado "Segurando" - Ganho de Escala Suave */
+    /* Estado "Segurando" - Visual apenas, o movimento é via JS */
     .gliding-pill.is-held {
-        transition: transform 0.4s var(--elastic-snap) !important;
-        /* Escala maior para passar do container */
-        transform: scale(1.25) !important; 
+        /* A transição aqui ajuda na cor e sombra, mas o transform é JS */
+        transition: background-color 0.3s ease;
     }
 
     /* ANIMAÇÃO DE ESTABILIZAÇÃO (OSCILAÇÃO LÍQUIDA INTENSA) */
     @keyframes liquid-settle {
-        0% { transform: var(--final-transform) scale(1.25, 0.8); } /* Impacto: Muito achatado */
-        20% { transform: var(--final-transform) scale(0.9, 1.2); } /* Rebote alto */
-        40% { transform: var(--final-transform) scale(1.1, 0.95); } /* Oscilação */
-        60% { transform: var(--final-transform) scale(0.98, 1.05); } 
-        80% { transform: var(--final-transform) scale(1.02, 0.99); }
+        0% { transform: var(--final-transform) scale(1.3, 0.8); } /* Impacto: Muito achatado */
+        20% { transform: var(--final-transform) scale(0.9, 1.25); } /* Rebote alto */
+        40% { transform: var(--final-transform) scale(1.15, 0.9); } /* Oscilação */
+        60% { transform: var(--final-transform) scale(0.95, 1.05); } 
+        80% { transform: var(--final-transform) scale(1.02, 0.98); }
         100% { transform: var(--final-transform) scale(1, 1); } /* Parado */
     }
 
     .gliding-pill.settling {
         /* Duração maior para mais "geleia" */
-        animation: liquid-settle 0.85s cubic-bezier(0.2, 1.2, 0.5, 1) forwards;
+        animation: liquid-settle 0.9s cubic-bezier(0.2, 1.2, 0.5, 1) forwards;
     }
 
     /* Hover apenas em Desktop */
@@ -833,7 +832,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V10 - ULTIMATE LIQUID) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V11 - DRAG FIXED) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -882,19 +881,22 @@
                 enItem.style.transform = `scale(${scaleEN})`;
             }
 
-            // TOUCH START (Ganho Suave de Escala)
+            // TOUCH START (Ganho Suave de Escala + Preparar Arrasto)
             langContainer.addEventListener('touchstart', function(e) {
                 isDragging = true;
                 
-                // Prepara para o movimento RAW
+                // 1. Prepara para o movimento RAW (remove transições de posição)
                 pill.style.transition = 'none'; 
                 pill.classList.remove('settling');
 
-                // Adiciona classe que aplica a escala suavemente via CSS
-                // Usamos um pequeno timeout para garantir que a remoção de 'settling' processou
-                requestAnimationFrame(() => {
-                    pill.classList.add('is-held');
-                });
+                // 2. Aplica estado visual "held" via JS para garantir que o transform inline do move funcione depois
+                // Calculamos a posição atual para "congelar" visualmente antes de mover
+                const currentPos = currentSelection === 'en' ? 100 : 0;
+                
+                // Aplica escala inicial "Pop" instantaneamente
+                // Importante: No touchstart já aplicamos o scale(1.25) inline para garantir feedback visual
+                // E definimos a posição inicial correta para não "pular"
+                pill.style.transform = `translateX(${currentPos}%) scale(1.25)`;
 
                 const touch = e.touches[0];
                 const containerRect = langContainer.getBoundingClientRect();
@@ -942,7 +944,6 @@
 
                 if (pillX < limitPadding) {
                     const dist = Math.abs(pillX - limitPadding);
-                    // Curva exponencial mais acentuada para resistência forte
                     const resistance = maxOvershoot * (1 - Math.pow(2.718, -dist / 30)); 
                     pillX = limitPadding - resistance;
                 } else if (pillX > maxTranslate) {
@@ -955,29 +956,25 @@
                 const progress = Math.max(0, Math.min(1, percentage / 100)); 
                 
                 // --- DINÂMICA AERODINÂMICA VS. ESTÁTICA ---
-                // Se move rápido: Achata vertical, estica horizontal.
-                // Se move devagar/parado (mas segurando): Infla vertical e horizontal.
-                
                 const absVel = Math.abs(velocity);
-                const isMovingFast = absVel > 0.5; // Limiar de velocidade
+                const isMovingFast = absVel > 0.5; 
 
                 let targetScaleX, targetScaleY;
 
                 if (isMovingFast) {
                     // Modo Aerodinâmico (Rápido)
-                    const velFactor = Math.min(absVel * 0.15, 0.4); // Cap no fator de velocidade
-                    targetScaleX = 1.25 + velFactor; // Estica muito horizontal
-                    targetScaleY = 1.25 - (velFactor * 0.8); // Achata vertical
+                    const velFactor = Math.min(absVel * 0.15, 0.4); 
+                    targetScaleX = 1.25 + velFactor; 
+                    targetScaleY = 1.25 - (velFactor * 0.8); 
                 } else {
                     // Modo "Inflado" (Lento/Parado na borda)
-                    targetScaleX = 1.35; // Bem gordinho
+                    targetScaleX = 1.35; 
                     targetScaleY = 1.35;
                 }
                 
-                // Skew
                 const skew = Math.max(-30, Math.min(30, velocity * -15)); 
 
-                // Aplica as transformações dinâmicas (sobrescreve o .is-held durante o move)
+                // Aplica as transformações dinâmicas
                 pill.style.transform = `translateX(${percentage}%) scale(${targetScaleX}, ${targetScaleY}) skewX(${skew}deg)`;
                 
                 updateVisuals(progress);
@@ -990,9 +987,6 @@
             // TOUCH END (Release Suave + Rebote)
             langContainer.addEventListener('touchend', function(e) {
                 isDragging = false;
-
-                // Remove a classe de "segurando" para iniciar a transição de perda de escala suave
-                pill.classList.remove('is-held');
 
                 pill.style.boxShadow = ''; 
                 pill.style.border = '';
@@ -1010,7 +1004,7 @@
                 pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease'; 
                 pill.style.transform = `translateX(${finalX}%) scale(1) skewX(0deg)`;
                 
-                // Inicia a oscilação APÓS um breve momento para a escala diminuir um pouco
+                // Inicia a oscilação APÓS um breve momento
                 setTimeout(() => {
                     pill.classList.add('settling');
                 }, 100);
@@ -1029,7 +1023,7 @@
                 }
             });
 
-            // --- CLICK INTELIGENTE (Simula a nova física completa) ---
+            // --- CLICK INTELIGENTE ---
             langContainer.addEventListener('click', function(e) {
                 if(isDragging) return; 
 
@@ -1045,32 +1039,29 @@
                 // 1. HARD RESET & GANHO SUAVE
                 const currentPos = currentSelection === 'en' ? 100 : 0;
                 pill.style.transition = 'none';
-                pill.style.transform = `translateX(${currentPos}%) scale(1)`;
+                pill.style.transform = `translateX(${currentPos}%) scale(1.25)`; // Já nasce grande
                 void pill.offsetWidth;
-                pill.classList.add('is-held'); // Ganha escala suave
 
                 currentSelection = targetLang;
 
-                // 2. DISPARO (Aerodinâmico) após breve delay do ganho
+                // 2. DISPARO
                 setTimeout(() => {
                      const targetPos = targetLang === 'en' ? 100 : 0;
                      const skewDir = targetLang === 'en' ? -25 : 25; 
 
                      pill.style.transition = 'transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1)';
-                     // Estica horizontalmente, achata verticalmente durante o voo
                      pill.style.transform = `translateX(${targetPos}%) scale(1.4, 0.85) skewX(${skewDir}deg)`;
                 }, 50);
 
-                // 3. SETTLE (Perda Suave e Rebote)
+                // 3. SETTLE
                 setTimeout(() => {
-                    pill.classList.remove('is-held'); // Inicia perda suave
                     pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
                     
                     pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
                     pill.style.transform = `translateX(${targetLang === 'en' ? 100 : 0}%) scale(1) skewX(0deg)`;
 
                     setTimeout(() => {
-                         pill.classList.add('settling'); // Entra no loop de oscilação
+                         pill.classList.add('settling'); 
                     }, 100);
                     
                     if(targetLang === 'en') {
