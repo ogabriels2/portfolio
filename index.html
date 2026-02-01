@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V20 - FLUID UNITY) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V21 - ELEGANT JELLY) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -235,8 +235,8 @@
         z-index: 1; 
         transform-origin: center center;
         will-change: transform, left;
-        /* Estado de REPOUSO = Scale(1.0) */
-        transform: scale(1.0);
+        /* Estado de REPOUSO = Scale(1.05) - Um pouco maior e mais elegante */
+        transform: scale(1.05);
         /* Transição padrão para o hover */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
     }
@@ -248,8 +248,8 @@
 
     /* Hover apenas em Desktop */
     @media (hover: hover) {
-        .lang-switcher-container:hover .gliding-pill { transform: scale(1.1); }
-        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.1); }
+        .lang-switcher-container:hover .gliding-pill { transform: scale(1.15); }
+        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.15); }
         .lang-switcher-container:has(.lang-item:nth-child(2):hover) .lang-item:nth-child(2),
         .lang-switcher-container:has(.lang-item:nth-child(3):hover) .lang-item:nth-child(3) { transform: scale(1.1); }
         .lang-item:not(.active):hover { color: var(--text-primary); }
@@ -816,7 +816,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V20 - FLUID UNITY) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V21 - ELEGANT JELLY) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -846,8 +846,8 @@
             const DRAG_FACTOR = 0.92; 
             const SMOOTH_FACTOR = 0.15; 
             const EDGE_BUFFER = 5; 
-            const REST_SCALE = 1.0; 
-            const HELD_SCALE = 1.32; // GIGANTE AO SEGURAR
+            const REST_SCALE = 1.05; // ESCALA BASE AUMENTADA E ELEGANTE
+            const HELD_SCALE = 1.32; 
             
             let startTouchX = 0;
             let startPillX = 0;
@@ -981,7 +981,7 @@
 
                 // --- DEFORMAÇÃO COM BASE NO TAMANHO INFLADO ---
                 const absVel = Math.abs(velocity);
-                const baseScale = HELD_SCALE; // Usa o tamanho inflado como base
+                const baseScale = HELD_SCALE; 
                 
                 if (wallPenetration > 1) { 
                     const impactFactor = Math.min(absVel * 0.25, 0.25); 
@@ -1028,15 +1028,10 @@
                 const finalX = currentSelection === 'en' ? 100 : 0;
                 pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
                 
-                // MÁGICA DA CONTINUIDADE:
-                // Usamos uma curva de Bezier elástica para fazer TODO o trabalho:
-                // Ir para a posição final E reduzir o tamanho de HELD_SCALE para REST_SCALE
-                // em um único movimento fluido.
-                pill.style.transition = 'transform 0.5s cubic-bezier(0.4, 1.6, 0.5, 0.9), background-color 0.3s ease'; 
+                // MÁGICA DA CONTINUIDADE COM BOUNCE MAIS INTENSO (1.75):
+                pill.style.transition = 'transform 0.5s cubic-bezier(0.35, 1.75, 0.5, 0.85), background-color 0.3s ease'; 
                 
                 pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
-                
-                // Removemos o setTimeout de animação extra pois a transição já faz o efeito "jelly"
                 
                 if(currentSelection === 'en') {
                     enItem.classList.add('active');
@@ -1090,7 +1085,7 @@
                     pill.classList.remove('is-held');
                     pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
                     
-                    pill.style.transition = 'transform 0.5s cubic-bezier(0.4, 1.6, 0.5, 0.9)';
+                    pill.style.transition = 'transform 0.5s cubic-bezier(0.35, 1.75, 0.5, 0.85)';
                     pill.style.transform = `translateX(${targetLang === 'en' ? 100 : 0}%) scale(${REST_SCALE}) skewX(0deg)`;
 
                     setTimeout(() => {
