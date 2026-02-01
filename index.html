@@ -76,7 +76,6 @@
       
       /* Physics Animations */
       --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
-      --elastic-snap: cubic-bezier(0.25, 1.5, 0.5, 1); /* Rebote elástico forte */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -199,7 +198,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V11 - DRAG FIXED) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V12 - LIQUID WALL) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -221,7 +220,6 @@
         flex-shrink: 0; 
         transition: margin 0.2s;
         padding-right: 6px;
-        /* IMPORTANTE: Permite que a pílula "vaze" para fora do container ao crescer */
         overflow: visible; 
     }
     .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
@@ -236,36 +234,32 @@
         z-index: 1; 
         transform-origin: center center;
         will-change: transform, left;
-        /* Transição base suave para efeitos que não são de arrasto */
+        /* Transição padrão para hover e estados de repouso */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
     }
 
-    /* Estado "Segurando" - Visual apenas, o movimento é via JS */
+    /* Estado "Held" via Classe - Apenas para transição suave da sombra/cor, escala é JS */
     .gliding-pill.is-held {
-        /* A transição aqui ajuda na cor e sombra, mas o transform é JS */
         transition: background-color 0.3s ease;
     }
 
-    /* ANIMAÇÃO DE ESTABILIZAÇÃO (OSCILAÇÃO LÍQUIDA INTENSA) */
+    /* ANIMAÇÃO DE ESTABILIZAÇÃO (REBOTE LÍQUIDO) */
     @keyframes liquid-settle {
-        0% { transform: var(--final-transform) scale(1.3, 0.8); } /* Impacto: Muito achatado */
-        20% { transform: var(--final-transform) scale(0.9, 1.25); } /* Rebote alto */
-        40% { transform: var(--final-transform) scale(1.15, 0.9); } /* Oscilação */
-        60% { transform: var(--final-transform) scale(0.95, 1.05); } 
-        80% { transform: var(--final-transform) scale(1.02, 0.98); }
-        100% { transform: var(--final-transform) scale(1, 1); } /* Parado */
+        0% { transform: var(--final-transform) scale(1.35, 0.75); } /* Esmagado */
+        25% { transform: var(--final-transform) scale(0.9, 1.25); } /* Esticado Vertical */
+        50% { transform: var(--final-transform) scale(1.1, 0.95); } /* Oscila */
+        75% { transform: var(--final-transform) scale(0.98, 1.02); } 
+        100% { transform: var(--final-transform) scale(1, 1); } /* Repouso */
     }
 
     .gliding-pill.settling {
-        /* Duração maior para mais "geleia" */
-        animation: liquid-settle 0.9s cubic-bezier(0.2, 1.2, 0.5, 1) forwards;
+        animation: liquid-settle 0.8s cubic-bezier(0.2, 1.2, 0.5, 1) forwards;
     }
 
     /* Hover apenas em Desktop */
     @media (hover: hover) {
         .lang-switcher-container:hover .gliding-pill { transform: scale(1.12); }
         .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.12); }
-        
         .lang-switcher-container:has(.lang-item:nth-child(2):hover) .lang-item:nth-child(2),
         .lang-switcher-container:has(.lang-item:nth-child(3):hover) .lang-item:nth-child(3) { transform: scale(1.1); }
         .lang-item:not(.active):hover { color: var(--text-primary); }
@@ -832,7 +826,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V11 - DRAG FIXED) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V12 - LIQUID WALL & FIXED CLICK) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -888,14 +882,14 @@
                 // 1. Prepara para o movimento RAW (remove transições de posição)
                 pill.style.transition = 'none'; 
                 pill.classList.remove('settling');
-
-                // 2. Aplica estado visual "held" via JS para garantir que o transform inline do move funcione depois
-                // Calculamos a posição atual para "congelar" visualmente antes de mover
-                const currentPos = currentSelection === 'en' ? 100 : 0;
                 
-                // Aplica escala inicial "Pop" instantaneamente
-                // Importante: No touchstart já aplicamos o scale(1.25) inline para garantir feedback visual
-                // E definimos a posição inicial correta para não "pular"
+                // 2. Aplica classe de estado visual
+                requestAnimationFrame(() => {
+                    pill.classList.add('is-held');
+                });
+
+                // 3. Define posição inicial correta para não "pular" e aplica escala base
+                const currentPos = currentSelection === 'en' ? 100 : 0;
                 pill.style.transform = `translateX(${currentPos}%) scale(1.25)`;
 
                 const touch = e.touches[0];
@@ -932,54 +926,70 @@
                 lastX = touch.clientX;
                 lastTime = now;
                 
+                // Posição bruta
                 let x = touch.clientX - containerRect.left;
-                let pillX = x - dragOffset;
+                let rawPillX = x - dragOffset;
                 
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8; 
                 
-                // Resistência Exponencial na Borda (Rubber Band Intenso)
-                const limitPadding = 0; 
-                const maxOvershoot = 25; // Permite esticar MUITO na borda
+                // Lógica de "Clamping" (Borda)
+                let clampedPillX = rawPillX;
+                let wallPressure = 0; // Quanto estamos empurrando a parede?
 
-                if (pillX < limitPadding) {
-                    const dist = Math.abs(pillX - limitPadding);
-                    const resistance = maxOvershoot * (1 - Math.pow(2.718, -dist / 30)); 
-                    pillX = limitPadding - resistance;
-                } else if (pillX > maxTranslate) {
-                    const dist = pillX - maxTranslate;
-                    const resistance = maxOvershoot * (1 - Math.pow(2.718, -dist / 30));
-                    pillX = maxTranslate + resistance;
+                if (rawPillX < 0) {
+                    wallPressure = Math.abs(rawPillX); // Força contra a parede esquerda
+                    // Resistência Rubber Band
+                    const resistance = 25 * (1 - Math.pow(2.718, -wallPressure / 30)); 
+                    clampedPillX = -resistance;
+                } else if (rawPillX > maxTranslate) {
+                    wallPressure = rawPillX - maxTranslate; // Força contra a parede direita
+                    const resistance = 25 * (1 - Math.pow(2.718, -wallPressure / 30));
+                    clampedPillX = maxTranslate + resistance;
                 }
-                
-                const percentage = (pillX / maxTranslate) * 100;
+
+                // Cálculo de progresso (visual texto)
+                const percentage = (clampedPillX / maxTranslate) * 100;
                 const progress = Math.max(0, Math.min(1, percentage / 100)); 
                 
-                // --- DINÂMICA AERODINÂMICA VS. ESTÁTICA ---
+                // --- FÍSICA DE DEFORMAÇÃO (LIQUID WALL) ---
                 const absVel = Math.abs(velocity);
-                const isMovingFast = absVel > 0.5; 
+                const baseScale = 1.25; // Escala base "agarrada"
+                
+                let targetScaleX = baseScale;
+                let targetScaleY = baseScale;
 
-                let targetScaleX, targetScaleY;
+                // Detecta se estamos empurrando a parede (Colisão)
+                if (wallPressure > 2) { 
+                    // MODO COLISÃO (SQUASH)
+                    // Se move rápido contra a parede -> Esmaga muito
+                    // Se move devagar contra a parede -> Esmaga pouco
+                    
+                    // Fator de pressão + velocidade de impacto
+                    const pressureFactor = Math.min(wallPressure * 0.02, 0.4); 
+                    const impactVelFactor = Math.min(absVel * 0.2, 0.3); // Velocidade intensifica o esmagamento
 
-                if (isMovingFast) {
-                    // Modo Aerodinâmico (Rápido)
-                    const velFactor = Math.min(absVel * 0.15, 0.4); 
-                    targetScaleX = 1.25 + velFactor; 
-                    targetScaleY = 1.25 - (velFactor * 0.8); 
-                } else {
-                    // Modo "Inflado" (Lento/Parado na borda)
-                    targetScaleX = 1.35; 
-                    targetScaleY = 1.35;
+                    const totalDeformation = pressureFactor + impactVelFactor;
+
+                    targetScaleX = baseScale - totalDeformation; // Esmaga X (Horizontal)
+                    targetScaleY = baseScale + (totalDeformation * 0.8); // Estufa Y (Vertical)
+                } 
+                else {
+                    // MODO MOVIMENTO LIVRE (STRETCH / AERODINÂMICO)
+                    if (absVel > 0.1) {
+                         const velFactor = Math.min(absVel * 0.15, 0.45); 
+                         targetScaleX = baseScale + velFactor; // Estica X
+                         targetScaleY = baseScale - (velFactor * 0.6); // Afina Y
+                    }
                 }
                 
                 const skew = Math.max(-30, Math.min(30, velocity * -15)); 
 
-                // Aplica as transformações dinâmicas
                 pill.style.transform = `translateX(${percentage}%) scale(${targetScaleX}, ${targetScaleY}) skewX(${skew}deg)`;
                 
                 updateVisuals(progress);
                 
-                const visualCenter = pillX + (pillWidth/2);
+                const visualCenter = clampedPillX + (pillWidth/2);
                 currentSelection = visualCenter > (containerRect.width / 2) ? 'en' : 'pt';
 
             }, {passive: false});
@@ -987,6 +997,7 @@
             // TOUCH END (Release Suave + Rebote)
             langContainer.addEventListener('touchend', function(e) {
                 isDragging = false;
+                pill.classList.remove('is-held'); // Perda de escala suave
 
                 pill.style.boxShadow = ''; 
                 pill.style.border = '';
@@ -1000,11 +1011,10 @@
                 const finalX = currentSelection === 'en' ? 100 : 0;
                 pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
                 
-                // Transição suave para a posição final E perda de escala (voltando a 1)
+                // Transição suave para a posição final
                 pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease'; 
                 pill.style.transform = `translateX(${finalX}%) scale(1) skewX(0deg)`;
                 
-                // Inicia a oscilação APÓS um breve momento
                 setTimeout(() => {
                     pill.classList.add('settling');
                 }, 100);
@@ -1023,7 +1033,7 @@
                 }
             });
 
-            // --- CLICK INTELIGENTE ---
+            // --- CLICK INTELIGENTE (SEM TELEPORTE - APENAS SUAVIZADO) ---
             langContainer.addEventListener('click', function(e) {
                 if(isDragging) return; 
 
@@ -1036,33 +1046,32 @@
                 
                 pill.classList.remove('settling');
 
-                // 1. HARD RESET & GANHO SUAVE
-                const currentPos = currentSelection === 'en' ? 100 : 0;
-                pill.style.transition = 'none';
-                pill.style.transform = `translateX(${currentPos}%) scale(1.25)`; // Já nasce grande
-                void pill.offsetWidth;
+                // Aqui removemos o "Hard Reset" que causava o teleporte visual.
+                // Simplesmente aplicamos a transição para a nova posição.
+                // O browser interpolará da posição atual para a nova suavemente.
+                
+                const targetPos = targetLang === 'en' ? 100 : 0;
+                const skewDir = targetLang === 'en' ? -20 : 20; 
+
+                // Curva de Bezier para simular arremesso rápido
+                pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                
+                // Vai para o destino com leve stretch (simulando slide rápido)
+                pill.style.transform = `translateX(${targetPos}%) scale(1.15, 0.9) skewX(${skewDir}deg)`;
 
                 currentSelection = targetLang;
 
-                // 2. DISPARO
-                setTimeout(() => {
-                     const targetPos = targetLang === 'en' ? 100 : 0;
-                     const skewDir = targetLang === 'en' ? -25 : 25; 
-
-                     pill.style.transition = 'transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1)';
-                     pill.style.transform = `translateX(${targetPos}%) scale(1.4, 0.85) skewX(${skewDir}deg)`;
-                }, 50);
-
-                // 3. SETTLE
+                // SETTLE (Acomodação Final)
                 setTimeout(() => {
                     pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
                     
-                    pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+                    // Transição para o estado final de repouso (Scale 1)
+                    pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
                     pill.style.transform = `translateX(${targetLang === 'en' ? 100 : 0}%) scale(1) skewX(0deg)`;
 
                     setTimeout(() => {
                          pill.classList.add('settling'); 
-                    }, 100);
+                    }, 50);
                     
                     if(targetLang === 'en') {
                         enItem.classList.add('active');
@@ -1076,7 +1085,7 @@
                        localStorage.setItem('preferredLang', 'en');
                        setTimeout(() => { window.location.href = 'en/index.html'; }, 850); 
                     }
-                }, 400); 
+                }, 350); 
             });
         }
     });
