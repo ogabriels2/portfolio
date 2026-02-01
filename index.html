@@ -856,8 +856,8 @@
             };
 
             // Configuração
-            const DRAG_FACTOR = 0.28; // "Sem dó": Move muito pouco em relação ao dedo
-            const SMOOTH_FACTOR = 0.15; // A suavidade da transição (0.1 = muito suave, 0.9 = seco)
+            const DRAG_FACTOR = 0.42; // Aumentado (era 0.28) para responder melhor ao dedo
+            const SMOOTH_FACTOR = 0.15; // Suavidade da animação
             
             let startTouchX = 0;
             let startPillX = 0;
@@ -979,24 +979,25 @@
                 // --- CÁLCULO DE POSIÇÃO (ALVO) ---
                 const movementDelta = touch.clientX - startTouchX;
                 
-                // AQUI ESTÁ O "SEM DÓ": Fator 0.28 limita drasticamente o alcance
+                // DRAG FACTOR MAIOR (0.42) = Resposta melhor ao dedo
                 let rawTargetX = startPillX + (movementDelta * DRAG_FACTOR);
                 
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8; 
                 
-                // Lógica de Borda (Clamp Suave)
+                // Lógica de Borda (Clamp Suave mas Firme)
                 let clampedTargetX = rawTargetX;
                 let wallPenetration = 0; 
 
-                // Limites rígidos com resistência elástica
+                // Limites rígidos com resistência elástica (PAREDE MAIS DURA AGORA)
                 if (rawTargetX < 0) {
                     wallPenetration = Math.abs(rawTargetX);
-                    // Resistência exponencial para impedir saída
-                    clampedTargetX = -15 * (1 - Math.pow(2.718, -wallPenetration / 20)); 
+                    // -8 define o limite máximo visual de "esticada" para fora
+                    // Divisor 12 torna a parede "dura" mais rápido
+                    clampedTargetX = -8 * (1 - Math.pow(2.718, -wallPenetration / 12)); 
                 } else if (rawTargetX > maxTranslate) {
                     wallPenetration = rawTargetX - maxTranslate;
-                    clampedTargetX = maxTranslate + (15 * (1 - Math.pow(2.718, -wallPenetration / 20)));
+                    clampedTargetX = maxTranslate + (8 * (1 - Math.pow(2.718, -wallPenetration / 12)));
                 }
 
                 physics.targetX = clampedTargetX;
