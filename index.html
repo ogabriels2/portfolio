@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V22 - UNIFIED PHYSICS CORE) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V23 - HYPER-RESPONSIVE) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -816,7 +816,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V22 - UNIFIED PHYSICS CORE) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V23 - HYPER-RESPONSIVE) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -827,7 +827,7 @@
             
             // Variáveis de Estado
             let isDragging = false;
-            let isAutoScrolling = false; // NOVA VARIÁVEL
+            let isAutoScrolling = false; 
             let currentSelection = 'pt'; 
             let animationFrameId = null;
 
@@ -868,7 +868,7 @@
                 `;
                 pill.style.border = '1px solid rgba(255,255,255,0.5)';
                 
-                // Scale Texto (Lupa) - Limitado a NUNCA ser menor que 1.0
+                // Scale Texto (Lupa)
                 const distPT = Math.abs(progress - 0); 
                 const distEN = Math.abs(progress - 1); 
                 
@@ -895,20 +895,18 @@
                 // Auto-Cálculo de Velocidade para o Skew durante o clique
                 if(isAutoScrolling) {
                     const prevX = physics.currentX;
-                    // LERP padrão
-                    physics.currentX += (physics.targetX - physics.currentX) * SMOOTH_FACTOR;
-                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * SMOOTH_FACTOR;
-                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * SMOOTH_FACTOR;
+                    // LERP ACELERADO (0.20)
+                    physics.currentX += (physics.targetX - physics.currentX) * 0.20;
+                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * 0.20;
+                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * 0.20;
                     
-                    // Velocidade sintética baseada no movimento do LERP
                     velocity = (physics.currentX - prevX); 
                     
-                    // Skew baseado nessa velocidade
                     physics.targetSkew = Math.max(-20, Math.min(20, velocity * -1.5));
-                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * SMOOTH_FACTOR;
+                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * 0.20;
 
-                    // Checa se chegou no destino (Snap final)
-                    if(Math.abs(physics.currentX - physics.targetX) < 0.5) {
+                    // CHEGADA RÁPIDA: SNAP A 4PX
+                    if(Math.abs(physics.currentX - physics.targetX) < 4) {
                         isAutoScrolling = false;
                         finishInteraction();
                         return;
@@ -927,7 +925,6 @@
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8;
                 const percentage = (physics.currentX / maxTranslate);
-                // Clamp do progresso para efeitos visuais
                 const progress = Math.max(0, Math.min(1, percentage));
                 
                 updateVisuals(progress);
@@ -946,7 +943,6 @@
                 pill.style.transition = 'transform 0.5s cubic-bezier(0.35, 1.75, 0.5, 0.85), background-color 0.3s ease'; 
                 pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
                 
-                // Atualiza visual final
                 updateVisuals(currentSelection === 'en' ? 1 : 0);
 
                 if (currentSelection === 'en') {
@@ -955,9 +951,9 @@
                 }
             }
 
-            // TOUCH START
+            // TOUCH START (AGORA PERFEITO)
             langContainer.addEventListener('touchstart', function(e) {
-                if(isAutoScrolling) return; // Bloqueia toque durante animação automática
+                if(isAutoScrolling) return; 
                 isDragging = true;
                 
                 pill.style.transition = 'none'; 
@@ -973,16 +969,19 @@
 
                 startPillX = pillRect.left - containerRect.left; 
 
-                // Sync JS com CSS atual
+                // CAPTURA ESTADO FÍSICO ATUAL (MESMO EM MOVIMENTO)
                 const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform);
                 physics.currentX = currentMatrix.m41; 
-                physics.targetX = physics.currentX;
-                
-                // Infla para o tamanho de "Segurando"
-                physics.currentScaleX = HELD_SCALE;
-                physics.currentScaleY = HELD_SCALE;
+                // APROXIMAÇÃO DE ESCALA BASEADA NA MATRIZ
+                physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b);
+                physics.currentScaleY = Math.sqrt(currentMatrix.c * currentMatrix.c + currentMatrix.d * currentMatrix.d);
                 physics.currentSkew = 0;
 
+                // INFLA PARTINDO DE ONDE ESTIVER
+                physics.targetX = physics.currentX; 
+                physics.targetScaleX = HELD_SCALE;
+                physics.targetScaleY = HELD_SCALE;
+                
                 cancelAnimationFrame(animationFrameId);
                 physicsLoop();
 
@@ -1086,6 +1085,8 @@
                 // Sync inicial
                 const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform);
                 physics.currentX = currentMatrix.m41; 
+                physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b);
+                physics.currentScaleY = Math.sqrt(currentMatrix.c * currentMatrix.c + currentMatrix.d * currentMatrix.d);
                 
                 // Define Destino
                 physics.targetX = targetLang === 'en' ? maxTranslate : 0;
