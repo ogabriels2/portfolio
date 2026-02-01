@@ -77,7 +77,7 @@
       /* Physics Animations */
       --apple-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275); 
       --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
-      --organic-land: cubic-bezier(0.34, 1.56, 0.64, 1); /* Efeito de aterrissagem suave */
+      --organic-land: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -201,8 +201,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR ---- */
-    /* Remove o highlight azul no mobile */
+    /* ---- LANGUAGE SELECTOR (PREMIUM) ---- */
     .lang-switcher-container, .lang-item {
         -webkit-tap-highlight-color: transparent; 
     }
@@ -233,11 +232,19 @@
         z-index: 1;
         transition: transform 0.3s var(--smooth-glide), width 0.3s ease;
         pointer-events: none;
-        
-        /* Prepara para a animação de escala */
         transform-origin: center center;
     }
     
+    /* Animação de Elasticidade ao soltar */
+    @keyframes pill-release {
+        0% { transform: scale(1.6); }
+        50% { transform: scale(0.9); } /* Contrai um pouco */
+        100% { transform: scale(1); }  /* Volta ao normal */
+    }
+    .gliding-pill.animate-release {
+        animation: pill-release 0.4s var(--organic-land) forwards;
+    }
+
     /* Hover apenas em Desktop */
     @media (hover: hover) {
         .lang-switcher-container:hover .gliding-pill { transform: scale(1.12); }
@@ -259,11 +266,10 @@
     }
     .lang-item.active { color: var(--text-primary); cursor: default; }
     
-    /* Estado ativo (clique) em desktop */
+    /* Estado ativo em desktop */
     .lang-switcher-container:active .gliding-pill { transform: scale(0.92); transition-duration: 0.1s; }
     .lang-switcher-container:active .lang-item.active,
     .lang-switcher-container:has(.lang-item:active) .lang-item:active { transform: scale(0.92); transition-duration: 0.1s; }
-    .lang-switcher-container:has(.lang-item:nth-child(3):active) .gliding-pill { transform: translateX(100%) scale(0.92); }
     
     .lang-flag { width: 20px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); }
 
@@ -813,8 +819,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PARA O SELETOR DE IDIOMAS) ---
-    // Implementa o efeito "Liquid Glass" com arraste físico
+    // --- MOBILE TOUCH DRAG LOGIC (LIQUID GLASS PHYSICS) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -826,19 +831,27 @@
             let isDragging = false;
             let currentSelection = 'pt'; // padrão
 
-            // Função para aplicar o visual "Pop & Lift"
-            function applyDragVisuals(xPos, isEn) {
-                // xPos: Posição X da pílula (em px ou %)
-                // isEn: Se estamos na zona EN ou PT
+            // Função para aplicar o visual "Liquid Glass"
+            function applyLiquidVisuals(xPos, isEn) {
+                // EFEITO "LIQUID GLASS" (Limpo e Premium)
+                // Usamos backdrop-filter para borrar o fundo (densidade)
+                // Sombras complexas para volume (Highlights)
+                // Border radius mantido, border fina para tensão superficial
                 
-                // Escala bem maior (1.35x) para sair do container
-                // Sombra difusa e borda fina (Liquid Glass)
-                const liquidShadow = '0 15px 35px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)';
+                pill.style.backdropFilter = 'blur(6px)'; 
+                pill.style.webkitBackdropFilter = 'blur(6px)';
+                pill.style.backgroundColor = 'rgba(255, 255, 255, 0.92)'; // Leve transparência
                 
-                pill.style.boxShadow = liquidShadow;
-                pill.style.zIndex = '10'; // Garante que flutue acima de tudo
-                
-                // Texto escala um pouco também para acompanhar a energia
+                // Sombra interna (brilho) + Sombra externa (profundidade)
+                pill.style.boxShadow = `
+                    inset 0 0 10px rgba(255,255,255,0.8),
+                    0 15px 35px rgba(0,0,0,0.15),
+                    0 5px 15px rgba(0,0,0,0.1)
+                `;
+                pill.style.border = '1px solid rgba(255,255,255,0.6)'; // Borda de vidro
+                pill.style.zIndex = '10'; 
+
+                // Feedback no texto
                 if(isEn) {
                    enItem.style.transform = 'scale(1.15)';
                    ptItem.style.transform = 'scale(1)';
@@ -855,71 +868,96 @@
             // Início do Toque
             langContainer.addEventListener('touchstart', function(e) {
                 isDragging = true;
-                // Remove transição para seguir o dedo instantaneamente
-                pill.style.transition = 'none'; 
                 
-                // Efeito imediato de "pegar" a pílula (Pop)
-                applyDragVisuals(0, currentSelection === 'en');
-                // Mantém a escala 1.35 enquanto arrasta
-                const initialX = currentSelection === 'en' ? '100%' : '0%';
-                pill.style.transform = `translateX(${initialX}) scale(1.35)`;
+                // Remove animação para seguir o dedo 1:1
+                pill.style.transition = 'none'; 
+                pill.classList.remove('animate-release'); // Reseta animação se houver
+
+                // Define posição inicial baseada no estado atual
+                // Precisamos saber onde começar visualmente
+                const containerRect = langContainer.getBoundingClientRect();
+                const pillRect = pill.getBoundingClientRect();
+                
+                // Se já estiver no EN, começa da direita. Se PT, da esquerda.
+                // Mas o transform visual precisa ser calculado.
+                // Vamos deixar o touchmove controlar a posição exata.
+                
+                applyLiquidVisuals(0, currentSelection === 'en');
+                
+                // Escala Vertical Agressiva (1.6x) para "estourar" o container
+                pill.style.transform = `translateX(${currentSelection === 'en' ? '100%' : '0%'}) scale(1.6)`;
 
             }, {passive: true});
 
-            // Movimento do Dedo
+            // Movimento do Dedo (Física 1:1)
             langContainer.addEventListener('touchmove', function(e) {
                 if (!isDragging) return;
                 
                 const touch = e.touches[0];
-                const rect = langContainer.getBoundingClientRect();
+                const containerRect = langContainer.getBoundingClientRect();
                 
-                // Onde o dedo está dentro do container (0 a width)
-                let x = touch.clientX - rect.left;
+                // Posição X do dedo relativa ao container
+                let x = touch.clientX - containerRect.left;
                 
-                // Clamp para não sair muito para fora (opcional, mas bom pra UX)
+                // Largura total de movimento disponível (Container - LarguraPílula)
+                // A pílula tem ~50% de largura (-4px padding)
+                const pillWidth = containerRect.width / 2; 
+                const maxTranslate = containerRect.width - pillWidth - 8; // 8px de padding total approx
+                
+                // Clamp para não sair do container horizontalmente
                 if (x < 0) x = 0;
-                if (x > rect.width) x = rect.width;
+                if (x > maxTranslate) x = maxTranslate;
+                
+                // Calcular porcentagem de deslocamento real (0% a 100%)
+                // Isso faz a pílula seguir o dedo EXATAMENTE onde ele está
+                // Em vez de usar %, usamos pixels diretos para precisão
+                // Mas como o CSS usa translate relativo ao elemento, precisamos ajustar.
+                // A pílula começa na esquerda.
+                
+                // A lógica simples: transformar X em porcentagem do deslocamento total (100%)
+                const percentage = (x / maxTranslate) * 100;
+                // Clamp visual
+                const safePercentage = Math.min(Math.max(percentage, 0), 100);
 
-                // Lógica de "Snap": Se passou da metade, considera que o usuário quer mudar
-                const isRightSide = x > rect.width / 2;
+                pill.style.transform = `translateX(${safePercentage}%) scale(1.6)`;
                 
-                // Move a pílula para o lado correspondente (Snap visual instantâneo durante o drag)
-                // Usamos Snap em vez de 1:1 pixel follow para ser mais robusto
-                const targetX = isRightSide ? '100%' : '0%';
-                
-                pill.style.transform = `translateX(${targetX}) scale(1.35)`;
-                applyDragVisuals(0, isRightSide);
-                
+                // Decisão visual do texto (snap visual apenas no texto)
+                const isRightSide = x > containerRect.width / 2;
+                applyLiquidVisuals(0, isRightSide);
                 currentSelection = isRightSide ? 'en' : 'pt';
 
             }, {passive: false});
 
-            // Soltar o Dedo
+            // Soltar o Dedo (Bounce Back)
             langContainer.addEventListener('touchend', function(e) {
                 isDragging = false;
                 
-                // Restaura a transição suave para a "aterrissagem"
-                // Usa uma curva de Bezier orgânica para o efeito de "gelatina" ao parar
-                pill.style.transition = 'transform 0.4s var(--organic-land), box-shadow 0.3s ease';
-                
-                // Remove a sombra de levitação e volta ao tamanho normal (scale 1)
-                pill.style.boxShadow = ''; // Volta ao CSS original
+                // Limpeza visual
+                pill.style.boxShadow = ''; 
+                pill.style.border = '';
+                pill.style.backdropFilter = '';
+                pill.style.backgroundColor = '';
                 pill.style.zIndex = '';
                 
-                // Volta texto ao normal
                 ptItem.style.transform = '';
                 enItem.style.transform = '';
                 
-                // Define posição final
+                // Define posição final (Snap)
                 const finalX = currentSelection === 'en' ? '100%' : '0%';
-                pill.style.transform = `translateX(${finalX}) scale(1)`; // Ou scale(1.12) se quiser manter o estado 'hover' visual
                 
-                // Ação
+                // Reaplica transição suave para o movimento lateral
+                pill.style.transition = 'transform 0.4s var(--organic-land)';
+                pill.style.transform = `translateX(${finalX}) scale(1)`; 
+                
+                // Adiciona a classe de animação "Bounce" para a escala
+                pill.classList.remove('animate-release');
+                void pill.offsetWidth; // Trigger reflow para reiniciar animação
+                pill.classList.add('animate-release');
+
+                // Ação de Navegação
                 if (currentSelection === 'en') {
                    localStorage.setItem('preferredLang', 'en');
-                   setTimeout(() => { window.location.href = 'en/index.html'; }, 200); // Pequeno delay pra ver a animação
-                } else {
-                   // Já estamos em PT
+                   setTimeout(() => { window.location.href = 'en/index.html'; }, 300); 
                 }
             });
         }
