@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V19 - BIG PILL & SOFT WALLS) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V20 - FLUID UNITY) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -235,10 +235,10 @@
         z-index: 1; 
         transform-origin: center center;
         will-change: transform, left;
-        /* Transição padrão para repouso e hover */
+        /* Estado de REPOUSO = Scale(1.0) */
+        transform: scale(1.0);
+        /* Transição padrão para o hover */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
-        /* ESCALA BASE AUMENTADA */
-        transform: scale(1.18); 
     }
 
     /* Estado "Held" - Apenas para a transição suave de entrada no clique */
@@ -246,22 +246,10 @@
         transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.3s ease;
     }
 
-    /* ANIMAÇÃO DE ESTABILIZAÇÃO (WOBBLE LÍQUIDO - SUAVIZADO EM TORNO DE 1.18) */
-    @keyframes liquid-settle {
-        0% { transform: var(--final-transform) scale(1.22, 1.05); } /* Impacto */
-        30% { transform: var(--final-transform) scale(1.12, 1.20); } /* Rebote */
-        60% { transform: var(--final-transform) scale(1.19, 1.16); } /* Oscilação */
-        100% { transform: var(--final-transform) scale(1.18, 1.18); } /* Parado no tamanho grande */
-    }
-
-    .gliding-pill.settling {
-        animation: liquid-settle 0.8s cubic-bezier(0.25, 1.2, 0.5, 1) forwards;
-    }
-
     /* Hover apenas em Desktop */
     @media (hover: hover) {
-        .lang-switcher-container:hover .gliding-pill { transform: scale(1.22); }
-        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.22); }
+        .lang-switcher-container:hover .gliding-pill { transform: scale(1.1); }
+        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.1); }
         .lang-switcher-container:has(.lang-item:nth-child(2):hover) .lang-item:nth-child(2),
         .lang-switcher-container:has(.lang-item:nth-child(3):hover) .lang-item:nth-child(3) { transform: scale(1.1); }
         .lang-item:not(.active):hover { color: var(--text-primary); }
@@ -828,7 +816,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V19 - BIG PILL & SOFT WALLS) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V20 - FLUID UNITY) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -858,7 +846,8 @@
             const DRAG_FACTOR = 0.92; 
             const SMOOTH_FACTOR = 0.15; 
             const EDGE_BUFFER = 5; 
-            const REST_SCALE = 1.18; // ESCALA GIGANTE
+            const REST_SCALE = 1.0; 
+            const HELD_SCALE = 1.32; // GIGANTE AO SEGURAR
             
             let startTouchX = 0;
             let startPillX = 0;
@@ -941,9 +930,9 @@
                 physics.currentX = currentMatrix.m41; 
                 physics.targetX = physics.currentX;
                 
-                // Inicia com a escala de repouso
-                physics.currentScaleX = REST_SCALE;
-                physics.currentScaleY = REST_SCALE;
+                // Infla para o tamanho de "Segurando"
+                physics.currentScaleX = HELD_SCALE;
+                physics.currentScaleY = HELD_SCALE;
                 physics.currentSkew = 0;
 
                 cancelAnimationFrame(animationFrameId);
@@ -968,7 +957,6 @@
                 lastTouchX = touch.clientX;
                 lastTime = now;
                 
-                // --- CÁLCULO DE POSIÇÃO ---
                 const movementDelta = touch.clientX - startTouchX;
                 let rawTargetX = startPillX + (movementDelta * DRAG_FACTOR);
                 
@@ -981,10 +969,8 @@
                 let clampedTargetX = rawTargetX;
                 let wallPenetration = 0; 
 
-                // --- PAREDES MAIS MACIAS (DIVISOR AUMENTADO PARA 25) ---
                 if (rawTargetX < effectiveMin) {
                     wallPenetration = effectiveMin - rawTargetX;
-                    // Divisor 25 = Mola mais suave, permite entrar mais
                     clampedTargetX = effectiveMin - (12 * (1 - Math.pow(2.718, -wallPenetration / 25))); 
                 } else if (rawTargetX > effectiveMax) {
                     wallPenetration = rawTargetX - effectiveMax;
@@ -993,9 +979,9 @@
 
                 physics.targetX = clampedTargetX;
 
-                // --- CÁLCULO DE DEFORMAÇÃO ---
+                // --- DEFORMAÇÃO COM BASE NO TAMANHO INFLADO ---
                 const absVel = Math.abs(velocity);
-                const baseScale = 1.15; 
+                const baseScale = HELD_SCALE; // Usa o tamanho inflado como base
                 
                 if (wallPenetration > 1) { 
                     const impactFactor = Math.min(absVel * 0.25, 0.25); 
@@ -1011,8 +997,8 @@
                          physics.targetScaleX = baseScale + stretchFactor; 
                          physics.targetScaleY = baseScale - (stretchFactor * 0.6); 
                     } else {
-                         physics.targetScaleX = REST_SCALE;
-                         physics.targetScaleY = REST_SCALE;
+                         physics.targetScaleX = baseScale;
+                         physics.targetScaleY = baseScale;
                     }
                 }
                 
@@ -1042,14 +1028,15 @@
                 const finalX = currentSelection === 'en' ? 100 : 0;
                 pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
                 
-                pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease'; 
+                // MÁGICA DA CONTINUIDADE:
+                // Usamos uma curva de Bezier elástica para fazer TODO o trabalho:
+                // Ir para a posição final E reduzir o tamanho de HELD_SCALE para REST_SCALE
+                // em um único movimento fluido.
+                pill.style.transition = 'transform 0.5s cubic-bezier(0.4, 1.6, 0.5, 0.9), background-color 0.3s ease'; 
                 
-                // Finaliza na escala GIGANTE (REST_SCALE), garantindo transição suave
                 pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
                 
-                setTimeout(() => {
-                    pill.classList.add('settling');
-                }, 50);
+                // Removemos o setTimeout de animação extra pois a transição já faz o efeito "jelly"
                 
                 if(currentSelection === 'en') {
                     enItem.classList.add('active');
@@ -1065,7 +1052,7 @@
                 }
             });
 
-            // --- CLICK CINEMÁTICO (CORRIGIDO: FLIP METHOD) ---
+            // --- CLICK CINEMÁTICO ---
             langContainer.addEventListener('click', function(e) {
                 if(isDragging) return; 
                 
@@ -1096,19 +1083,17 @@
                       const skewDir = targetLang === 'en' ? -20 : 20; 
 
                       pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-                      pill.style.transform = `translateX(${targetPos}%) scale(1.35, 0.9) skewX(${skewDir}deg)`;
+                      pill.style.transform = `translateX(${targetPos}%) scale(${HELD_SCALE}, 0.9) skewX(${skewDir}deg)`;
                 });
 
                 setTimeout(() => {
                     pill.classList.remove('is-held');
                     pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
                     
-                    pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
-                    // Finaliza na escala de repouso
+                    pill.style.transition = 'transform 0.5s cubic-bezier(0.4, 1.6, 0.5, 0.9)';
                     pill.style.transform = `translateX(${targetLang === 'en' ? 100 : 0}%) scale(${REST_SCALE}) skewX(0deg)`;
 
                     setTimeout(() => {
-                         pill.classList.add('settling'); 
                          pill.classList.remove('animating-click');
                     }, 100);
                     
@@ -1129,106 +1114,3 @@
         }
     });
   </script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://ogabriels.com/",
-      "name": "Gabriel Silva",
-      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
-      "url": "https://ogabriels.com/",
-      "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": {
-        "@type": "ImageObject",
-        "@id": "https://ogabriels.com/#personImage",
-        "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
-        "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
-        "caption": "Gabriel Silva"
-      },
-      "description": "Creative Technologist especializado na intersecção entre design, engenharia de software e infraestrutura de servidores.",
-      "knowsAbout": [
-        "Full Stack Development", 
-        "Branding", 
-        "Infraestrutura de TI", 
-        "Cloudflare & Networking", 
-        "Docker", 
-        "Linux Server", 
-        "Inteligência Artificial", 
-        "Produção Audiovisual",
-        "Cybersecurity"
-      ],
-      "alumniOf": [
-        { 
-          "@type": "EducationalOrganization", 
-          "name": "Liceu de Artes e Ofícios de São Paulo",
-          "url": "https://www.liceuescola.com.br",
-          "sameAs": ["https://www.liceuescola.com.br", "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"]
-        },
-        { 
-          "@type": "EducationalOrganization", 
-          "name": "UNIVESP",
-          "url": "https://univesp.br/",
-          "sameAs": ["https://univesp.br/", "https://pt.wikipedia.org/wiki/Universidade_Virtual_do_Estado_de_S%C3%A3o_Paulo", "https://www.sp.gov.br/sp/institucional/estrutura/fundacoes/univesp"]
-        }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/ogabriels/",
-        "https://github.com/ogabriels2/",
-        "https://www.behance.net/ogabriels0",
-        "https://x.com/ogabriels0",
-        "https://www.instagram.com/ogabriels0/",
-        "https://www.youtube.com/@Gabalarca"
-      ],
-      "subjectOf": [
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/infra.html#case" },
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/neoletters.html#case" },
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/revista-utopia.html#case" },
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/podcast-um-minuto.html#series" },
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/valorada.html#case" },
-        { "@type": "CreativeWork", "@id": "https://ogabriels.com/videos.html#portfolio" }
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://ogabriels.com/#website",
-      "url": "https://ogabriels.com/",
-      "name": "Gabriel Silva — Portfólio",
-      "publisher": { "@id": "https://ogabriels.com/" },
-      "inLanguage": "pt-BR",
-      "datePublished": "2025-08-14T08:00:00-03:00",
-      "dateModified": "2026-01-31T20:00:00-03:00"
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://ogabriels.com/#homepage",
-      "url": "https://ogabriels.com/",
-      "name": "Gabriel Silva | Creative Technologist & Full Stack Developer",
-      "description": "Portfólio profissional de Gabriel Silva. Explore cases de sucesso em infraestrutura de TI, branding e desenvolvimento web full stack.",
-      "isPartOf": { "@id": "https://ogabriels.com/#website" },
-      "about": { "@id": "https://ogabriels.com/" },
-      "mainEntity": { "@id": "https://ogabriels.com/" },
-      "breadcrumb": { "@id": "https://ogabriels.com/#breadcrumb" },
-      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
-      "inLanguage": "pt-BR"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Início",
-          "item": "https://ogabriels.com/"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
-</body>
-</html>
