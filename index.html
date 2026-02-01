@@ -207,7 +207,7 @@
         -webkit-tap-highlight-color: transparent; 
         user-select: none;
         -webkit-user-select: none;
-        touch-action: none; /* Importante: Remove delay de toque e scroll nativo */
+        touch-action: none; 
     }
 
     .lang-switcher-container {
@@ -215,7 +215,8 @@
         display: flex;
         margin: 0 0 20px; 
         background: rgba(118, 118, 128, 0.12);
-        border-radius: 99px;
+        /* BORDAS PERFEITAS */
+        border-radius: 9999px;
         padding: 4px;
         width: fit-content;
         border: 1px solid rgba(0,0,0,0.02);
@@ -230,10 +231,11 @@
         top: 4px; bottom: 4px; left: 4px;
         width: calc(50% - 4px); 
         background: #FFFFFF;
-        border-radius: 99px;
+        /* BORDAS PERFEITAS */
+        border-radius: 9999px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
         
-        z-index: 1; /* Atrás do texto */
+        z-index: 1; 
         
         /* TRANSITION PADRÃO (Desktop) */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; 
@@ -254,15 +256,18 @@
 
     .lang-item {
         position: relative; 
-        z-index: 5; /* Texto na frente */
+        z-index: 5; 
         
         display: flex; align-items: center; justify-content: center; gap: 8px;
         padding: 6px 14px;
-        border-radius: 99px;
+        /* BORDAS PERFEITAS */
+        border-radius: 9999px;
         font-size: 0.8rem; font-weight: 600; 
         color: var(--text-secondary); text-decoration: none; 
         width: 75px;
+        /* Transição removida no JS durante o drag para fluidez */
         transition: transform 0.3s var(--apple-spring), color 0.2s ease;
+        will-change: transform;
     }
     .lang-item.active { color: var(--text-primary); cursor: default; }
     
@@ -275,7 +280,7 @@
         width: 20px; height: 15px; border-radius: 3px; object-fit: cover; 
         box-shadow: 0 0 0 1px rgba(0,0,0,0.08); 
         filter: none !important;
-        transform: translateZ(0); /* Hardware accel para evitar blur */
+        transform: translateZ(0); 
     }
 
     /* Animação Sobre Mim */
@@ -816,7 +821,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V2) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V3 - FLUID INTERPOLATION) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -828,15 +833,15 @@
             // Estado Global
             let isDragging = false;
             let currentSelection = 'pt'; 
-            let dragOffset = 0; // Distância do dedo ao centro da pílula
+            let dragOffset = 0; 
             
             // Variáveis de Física
             let lastX = 0;
             let velocity = 0;
             let lastTime = 0;
 
-            // Visual: Vidro Líquido
-            function applyLiquidVisuals(isEn, skewAmount) {
+            // Visual: Vidro Líquido (Apenas a pílula, sem texto)
+            function applyLiquidVisuals() {
                 pill.style.backdropFilter = 'blur(8px)'; 
                 pill.style.webkitBackdropFilter = 'blur(8px)';
                 pill.style.backgroundColor = 'rgba(255, 255, 255, 0.25)'; 
@@ -847,23 +852,43 @@
                     0 5px 15px rgba(0,0,0,0.1)
                 `;
                 pill.style.border = '1px solid rgba(255,255,255,0.4)';
+            }
+            
+            // INTERPOLAÇÃO DE TEXTO (O segredo da fluidez)
+            function interpolateTextScale(percentage, velocity) {
+                // Normaliza a posição de 0 a 1
+                const normalizedPos = percentage / 100;
                 
-                if(isEn) {
-                   enItem.style.transform = 'scale(1.15)';
-                   ptItem.style.transform = 'scale(1)';
-                   enItem.style.color = 'var(--text-primary)';
-                   ptItem.style.color = 'var(--text-secondary)';
-                } else {
-                   ptItem.style.transform = 'scale(1.15)';
-                   enItem.style.transform = 'scale(1)';
+                // Escala Base: Interpola linearmente entre 1.0 e 1.15
+                // Se pos = 0 (PT), scalePT = 1.15, scaleEN = 1.0
+                // Se pos = 1 (EN), scalePT = 1.0, scaleEN = 1.15
+                const baseScalePT = 1.15 - (normalizedPos * 0.15);
+                const baseScaleEN = 1.0 + (normalizedPos * 0.15);
+
+                // Fator de Velocidade (Bolha Óptica)
+                // Mais rápido = mais distorção = maior escala momentânea
+                const velocityBonus = Math.min(Math.abs(velocity) * 0.05, 0.12); // Cap no bonus
+                
+                ptItem.style.transform = `scale(${baseScalePT + velocityBonus})`;
+                enItem.style.transform = `scale(${baseScaleEN + velocityBonus})`;
+
+                // Cores (Interpolação simples)
+                if (normalizedPos < 0.5) {
                    ptItem.style.color = 'var(--text-primary)';
                    enItem.style.color = 'var(--text-secondary)';
+                } else {
+                   ptItem.style.color = 'var(--text-secondary)';
+                   enItem.style.color = 'var(--text-primary)';
                 }
             }
+
 
             // TOUCH START: Pegar a pílula
             langContainer.addEventListener('touchstart', function(e) {
                 isDragging = true;
+                // Remove transições de texto para controle manual fluido
+                ptItem.style.transition = 'none';
+                enItem.style.transition = 'none';
                 pill.style.transition = 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; 
                 
                 const touch = e.touches[0];
@@ -873,19 +898,21 @@
                 lastX = touch.clientX;
                 lastTime = Date.now();
 
-                // CALCULAR OFFSET: A diferença entre onde toquei e onde a pílula ESTÁ
-                // Isso garante que ela não pule para centralizar no dedo
+                // CALCULAR OFFSET
                 const currentPillLeft = pillRect.left - containerRect.left;
                 const touchInsideContainer = touch.clientX - containerRect.left;
                 dragOffset = touchInsideContainer - currentPillLeft;
 
-                applyLiquidVisuals(currentSelection === 'en', 0);
+                applyLiquidVisuals();
                 
-                // Determina onde estamos visualmente (0 ou 100%)
+                // Posição inicial
                 const currentXPercent = currentSelection === 'en' ? 100 : 0;
                 
-                // ESCALA BASE: 1.05 (Largo) x 1.6 (Alto) = Pílula Gordinha e Alta
+                // ESCALA BASE GORDINHA: 1.05 (Largo) x 1.6 (Alto)
                 pill.style.transform = `translateX(${currentXPercent}%) scale(1.05, 1.6)`; 
+                
+                // Aplica escala de texto inicial
+                interpolateTextScale(currentXPercent, 0);
 
             }, {passive: true});
 
@@ -907,18 +934,15 @@
 
                 pill.style.transition = 'none'; // Física direta
                 
-                // 2. Posição Crua
+                // 2. Posição Crua e Offset
                 let x = touch.clientX - containerRect.left;
-                
-                // 3. Aplicar Offset (Arrastar pelo ponto de pega)
                 let pillX = x - dragOffset;
                 
-                // 4. Limites
+                // 3. Limites
                 const pillWidth = containerRect.width / 2 - 4; 
                 const maxTranslate = containerRect.width - pillWidth - 8; 
                 
-                // 5. Paredes de Borracha (Rubber Banding Forte)
-                // Usamos fator 0.1 para frear muito quando sai do limite
+                // 4. Paredes de Borracha (Rubber Banding Forte)
                 const limitPadding = 0; 
                 if (pillX < limitPadding) {
                     pillX = limitPadding + (pillX - limitPadding) * 0.1; 
@@ -927,27 +951,26 @@
                     pillX = maxTranslate + (excess * 0.1);
                 }
                 
-                // 6. Converter para %
+                // 5. Converter para %
                 const percentage = (pillX / maxTranslate) * 100;
                 
-                // 7. SQUASH & STRETCH (Gelatina)
-                // Quanto mais rápido, mais estreita (squash X) e mais alta (stretch Y)
-                // Base: 1.05 (largura), 1.6 (altura)
-                const velocityFactor = Math.min(Math.abs(velocity), 3); // Cap na distorção
-                const squashX = 1.05 - (velocityFactor * 0.1); // Comprime largura
-                const stretchY = 1.6 + (velocityFactor * 0.1); // Estica altura
-                
-                // Skew para inclinação
+                // 6. SQUASH & STRETCH (Conservação de Volume)
+                const velocityFactor = Math.min(Math.abs(velocity), 3);
+                // Base gordinha (1.05) que comprime com velocidade
+                const squashX = 1.05 - (velocityFactor * 0.1); 
+                const stretchY = 1.6 + (velocityFactor * 0.1); 
                 const skew = velocity * -10; 
 
                 pill.style.transform = `translateX(${percentage}%) scale(${squashX}, ${stretchY}) skewX(${skew}deg)`;
                 
-                // Decisão Visual
-                const visualCenter = pillX + (pillWidth/2);
-                const isRightSide = visualCenter > (containerRect.width / 2);
+                // 7. INTERPOLAÇÃO FLUIDA DE TEXTO
+                // Passamos a porcentagem real (que pode ser <0 ou >100 no rubberbanding)
+                // Mas clampamos para a interpolação de texto
+                const clampedPercentage = Math.min(Math.max(percentage, 0), 100);
+                interpolateTextScale(clampedPercentage, velocity);
                 
-                applyLiquidVisuals(isRightSide, skew);
-                currentSelection = isRightSide ? 'en' : 'pt';
+                // Decisão Final
+                currentSelection = clampedPercentage > 50 ? 'en' : 'pt';
 
             }, {passive: false});
 
@@ -955,16 +978,16 @@
             langContainer.addEventListener('touchend', function(e) {
                 isDragging = false;
                 
+                // Restaura transições para o snap suave
+                ptItem.style.transition = '';
+                enItem.style.transition = '';
+
                 // Limpeza visual
                 pill.style.boxShadow = ''; 
                 pill.style.border = '';
                 pill.style.backdropFilter = '';
                 pill.style.webkitBackdropFilter = '';
                 pill.style.backgroundColor = '';
-                pill.style.background = '';
-                
-                ptItem.style.transform = '';
-                enItem.style.transform = '';
                 
                 const finalX = currentSelection === 'en' ? '100%' : '0%';
                 
@@ -972,6 +995,9 @@
                 pill.style.transition = 'transform 0.5s var(--organic-pop)';
                 pill.style.transform = `translateX(${finalX}) scale(1)`; 
                 
+                // Garante escala final correta do texto
+                interpolateTextScale(finalX, 0);
+
                 // Navegação
                 if (currentSelection === 'en') {
                    localStorage.setItem('preferredLang', 'en');
@@ -990,22 +1016,33 @@
                     
                     // CORREÇÃO DA PISCADA: Forçar Reflow
                     void pill.offsetWidth;
+                    
+                    // Remove transição de texto para controle manual
+                    ptItem.style.transition = 'none';
+                    enItem.style.transition = 'none';
 
                     // 1. Configura Visual Líquido
-                    applyLiquidVisuals(targetLang === 'en', 0);
+                    applyLiquidVisuals();
                     
                     // 2. Animação Rápida e Fluida (0.25s)
                     pill.style.transition = 'transform 0.25s var(--fast-ease)';
                     
                     const targetX = targetLang === 'en' ? '100%' : '0%';
                     
-                    // Movimento "Supersônico": Estica muito no meio do caminho
+                    // Movimento "Supersônico"
                     pill.style.transform = `translateX(${targetX}) scale(0.9, 1.6)`;
                     
+                    // Aplica escala de texto final instantaneamente no clique
+                    interpolateTextScale(targetLang === 'en' ? 100 : 0, 5); // Velocity alta fake
+
                     currentSelection = targetLang;
 
                     // 3. Aterrissagem
                     setTimeout(() => {
+                        // Restaura transições
+                        ptItem.style.transition = '';
+                        enItem.style.transition = '';
+
                         pill.style.transition = 'transform 0.3s var(--organic-pop)';
                         pill.style.transform = `translateX(${targetX}) scale(1)`;
                         
@@ -1015,9 +1052,9 @@
                         pill.style.border = '';
                         pill.style.backdropFilter = '';
                         
-                        ptItem.style.transform = '';
-                        enItem.style.transform = '';
-                        
+                        // Escala final limpa
+                        interpolateTextScale(targetX, 0);
+
                         if (currentSelection === 'en') {
                            localStorage.setItem('preferredLang', 'en');
                            setTimeout(() => { window.location.href = 'en/index.html'; }, 200); 
