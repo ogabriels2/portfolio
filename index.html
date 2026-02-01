@@ -77,7 +77,9 @@
       /* Physics Animations */
       --apple-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275); 
       --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
-      --heavy-jelly: cubic-bezier(0.3, 1.3, 0.4, 1); /* Curva pesada para o rebote */
+      --organic-pop: cubic-bezier(0.34, 1.56, 0.64, 1); 
+      --fast-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --heavy-jelly: cubic-bezier(0.3, 1.3, 0.4, 1); 
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -200,7 +202,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V6) ---- */
+    /* ---- LANGUAGE SELECTOR (PREMIUM - FINAL) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -221,7 +223,7 @@
         cursor: pointer;
         flex-shrink: 0; 
         transition: margin 0.2s;
-        /* Aumenta a área de toque */
+        /* Área de toque maior */
         padding-right: 6px; 
     }
     .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
@@ -232,12 +234,12 @@
         width: calc(50% - 4px); 
         background: #FFFFFF;
         
-        /* BORDAS PÍLULA PERFEITA */
         border-radius: 9999px; 
         
         box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
         z-index: 1; 
         
+        /* Transições */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; 
         
         pointer-events: none;
@@ -245,12 +247,12 @@
         will-change: transform;
     }
     
-    /* REBOTE DE GELATINA PESADA (Slow & Heavy) */
+    /* REBOTE DE GELATINA (Slow & Heavy Impact) */
     @keyframes jelly-impact {
-        0% { transform: var(--final-transform) scale(1.35, 0.85); } /* Esmaga no impacto */
-        30% { transform: var(--final-transform) scale(0.9, 1.15); } /* Estica alto */
-        55% { transform: var(--final-transform) scale(1.08, 0.95); } /* Achata um pouco */
-        80% { transform: var(--final-transform) scale(0.98, 1.02); } /* Estica pouco */
+        0% { transform: var(--final-transform) scale(1.35, 0.85); } /* Impacto: Achatamento */
+        35% { transform: var(--final-transform) scale(0.9, 1.15); } /* Rebote: Esticamento */
+        60% { transform: var(--final-transform) scale(1.05, 0.95); } /* Vibração */
+        85% { transform: var(--final-transform) scale(0.98, 1.02); } 
         100% { transform: var(--final-transform) scale(1, 1); } /* Estabiliza */
     }
     
@@ -276,11 +278,14 @@
         font-size: 0.8rem; font-weight: 600; 
         color: var(--text-secondary); text-decoration: none; 
         width: 75px;
-        /* IMPORTANTE: Transições desativadas aqui porque o JS controla frame a frame */
-        transition: none; 
+        
+        /* SMOOTH COLOR TRANSITION: A chave para a troca suave */
+        transition: transform 0.2s linear, color 0.3s ease;
         will-change: transform, color;
-        pointer-events: none !important; /* Garante que o toque passe para o container */
+        pointer-events: none !important; 
     }
+    
+    /* Cores ativas padrões (para desktop/estado inicial) */
     .lang-item.active { color: var(--text-primary); cursor: default; }
     
     .lang-flag { 
@@ -829,7 +834,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V6 - LIQUID UNITY) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V7 - CINEMATIC) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -848,9 +853,6 @@
 
             // Visual: Vidro Líquido + Sincronia de Escala (Bolha)
             function updateVisuals(progress, skewAmount) {
-                // progress: 0 (PT) a 1 (EN)
-                // Se progress = 0.5, estamos no meio (ambas bandeiras médias)
-                
                 pill.style.backdropFilter = 'blur(8px)'; 
                 pill.style.webkitBackdropFilter = 'blur(8px)';
                 pill.style.backgroundColor = 'rgba(255, 255, 255, 0.25)'; 
@@ -862,29 +864,19 @@
                 `;
                 pill.style.border = '1px solid rgba(255,255,255,0.4)';
                 
-                // --- LÓGICA DE BOLHA (LUPA) ---
-                // Quanto mais perto a pílula está de um lado, maior o item fica
-                // Base: 1.0. Ativo: 1.25.
-                // Usamos Math.abs para criar um pico de escala quando o progress está próximo
-                
-                // Distância do PT (0)
                 const distPT = Math.abs(progress - 0); 
-                // Distância do EN (1)
                 const distEN = Math.abs(progress - 1); 
                 
-                // Fórmula de escala inversa à distância (0.9 -> 1.25)
-                // Se dist = 0 (em cima), scale = 1.25
-                // Se dist = 1 (longe), scale = 0.9
                 const scalePT = 1.25 - (distPT * 0.35); 
                 const scaleEN = 1.25 - (distEN * 0.35); 
                 
-                // Cores via Opacidade/Troca (Sincronizado)
+                // MUDANÇA DE COR VIA CLASS (CSS Transition)
                 if(progress < 0.5) {
-                    ptItem.style.color = 'var(--text-primary)';
-                    enItem.style.color = 'var(--text-secondary)';
+                    ptItem.classList.add('active');
+                    enItem.classList.remove('active');
                 } else {
-                    enItem.style.color = 'var(--text-primary)';
-                    ptItem.style.color = 'var(--text-secondary)';
+                    enItem.classList.add('active');
+                    ptItem.classList.remove('active');
                 }
 
                 ptItem.style.transform = `scale(${scalePT})`;
@@ -895,8 +887,8 @@
             langContainer.addEventListener('touchstart', function(e) {
                 isDragging = true;
                 
-                // Pop inicial suave
-                pill.style.transition = 'transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; 
+                // Transição EXPLÍCITA de escala no touchstart (Progressive Grow)
+                pill.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; 
                 pill.classList.remove('jelly-animate'); 
 
                 const touch = e.touches[0];
@@ -915,7 +907,7 @@
                 
                 const currentXPercent = currentSelection === 'en' ? 100 : 0;
                 
-                // ESCALA UNIFORME: Pílula Perfeita Grande (1.55x)
+                // Infla a bolha
                 pill.style.transform = `translateX(${currentXPercent}%) scale(1.55)`; 
 
             }, {passive: true});
@@ -930,7 +922,6 @@
                 const now = Date.now();
                 const dt = now - lastTime;
                 if(dt > 0) {
-                    // Smooth velocity (média móvel simples) para evitar jitter
                     const newVel = (touch.clientX - lastX) / dt;
                     velocity = (velocity * 0.7) + (newVel * 0.3);
                 }
@@ -947,11 +938,11 @@
                 
                 // HARD RUBBER BAND (Resistência Pesada)
                 const limitPadding = 0; 
-                const maxOvershoot = 8; // Apenas 8px de sobra
+                const maxOvershoot = 8; 
 
                 if (pillX < limitPadding) {
                     const dist = Math.abs(pillX - limitPadding);
-                    const resistance = maxOvershoot * (1 - Math.exp(-dist / 15)); // Exponencial rápida
+                    const resistance = maxOvershoot * (1 - Math.exp(-dist / 15)); 
                     pillX = limitPadding - resistance;
                 } else if (pillX > maxTranslate) {
                     const dist = pillX - maxTranslate;
@@ -959,16 +950,11 @@
                     pillX = maxTranslate + resistance;
                 }
                 
-                // Converter para % e normalizar para 0-1 (progress)
                 const percentage = (pillX / maxTranslate) * 100;
-                // Clamp progress for visuals (0-1) mas permite visual physics passar um pouco
                 const progress = Math.max(0, Math.min(1, percentage / 100)); 
                 
-                // Skew (Inclinação Reactiva - Jelly Ativo)
-                // Balança mesmo parado se mudar direção rápido
                 const skew = velocity * -15; 
 
-                // ESCALA UNIFORME COM SKEW
                 pill.style.transform = `translateX(${percentage}%) scale(1.55) skewX(${skew}deg)`;
                 
                 updateVisuals(progress, skew);
@@ -988,7 +974,6 @@
                 pill.style.webkitBackdropFilter = '';
                 pill.style.backgroundColor = '';
                 
-                // Reset de escala dos textos para o repouso
                 ptItem.style.transform = '';
                 enItem.style.transform = '';
                 
@@ -1000,22 +985,22 @@
                 void pill.offsetWidth; 
                 pill.classList.add('jelly-animate');
                 
-                // Sincroniza cor final
+                // Garante estado de cores final
                 if(currentSelection === 'en') {
-                    enItem.style.color = 'var(--text-primary)';
-                    ptItem.style.color = 'var(--text-secondary)';
+                    enItem.classList.add('active');
+                    ptItem.classList.remove('active');
                 } else {
-                    ptItem.style.color = 'var(--text-primary)';
-                    enItem.style.color = 'var(--text-secondary)';
+                    ptItem.classList.add('active');
+                    enItem.classList.remove('active');
                 }
 
                 if (currentSelection === 'en') {
                    localStorage.setItem('preferredLang', 'en');
-                   setTimeout(() => { window.location.href = 'en/index.html'; }, 800); // Espera o rebote
+                   setTimeout(() => { window.location.href = 'en/index.html'; }, 800); 
                 }
             });
 
-            // CLIQUE (TAP) - SIMULA ARRASTO RÁPIDO (CINEMATIC CLICK)
+            // CLIQUE (TAP) - CINEMATIC SEQUENCE
             const items = langContainer.querySelectorAll('.lang-item');
             items.forEach(item => {
                 item.addEventListener('click', function(e) {
@@ -1024,43 +1009,36 @@
                     const targetLang = this.getAttribute('data-lang');
                     if(targetLang === currentSelection) return; 
                     
-                    // Force Reflow
-                    void pill.offsetWidth;
-
-                    // 1. Preparar Salto (Load)
-                    // Escala sobe, Skew para trás (recuo)
-                    const startProgress = targetLang === 'en' ? 0 : 1;
-                    const skewDir = targetLang === 'en' ? 20 : -20; // Recuo inverso
-                    
-                    updateVisuals(startProgress, 0); // Visual no start
-                    
-                    // Transição de carregamento muito rápida
+                    // 1. CARREGAR (Shrink & Prepare)
                     pill.style.transition = 'transform 0.1s ease-out';
-                    const startX = targetLang === 'en' ? 0 : 100;
-                    pill.style.transform = `translateX(${startX}%) scale(1.6) skewX(${skewDir}deg)`;
+                    // Recua um pouco antes de ir (Antecipação)
+                    const startX = targetLang === 'en' ? -5 : 105; 
+                    pill.style.transform = `translateX(${startX}%) scale(1.4)`;
+                    
+                    // Configura visual "ativo" imediatamente para o movimento
+                    updateVisuals(targetLang === 'en' ? 1 : 0, 0);
                     
                     currentSelection = targetLang;
 
-                    // 2. Disparo (Shoot)
+                    // 2. DISPARO (Supersonic Slide)
                     setTimeout(() => {
                         pill.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)';
                         const targetX = targetLang === 'en' ? 100 : 0;
-                        const forwardSkew = targetLang === 'en' ? -25 : 25; // Inclinação agressiva p/ frente
+                        // Skew agressivo para frente
+                        const skewDir = targetLang === 'en' ? -20 : 20;
                         
-                        pill.style.transform = `translateX(${targetX}%) scale(1.55) skewX(${forwardSkew}deg)`;
+                        pill.style.transform = `translateX(${targetX}%) scale(1.6) skewX(${skewDir}deg)`;
                         
-                        // Atualiza visuais no meio do caminho (simulado)
-                        updateVisuals(0.5, 0);
-                        
-                    }, 80); // Pequeno delay para o "Load" ser visto
+                    }, 50);
 
-                    // 3. Impacto e Rebote
+                    // 3. IMPACTO & REBOTE
                     setTimeout(() => {
                         pill.style.setProperty('--final-transform', `translateX(${targetLang === 'en' ? 100 : 0}%)`);
                         pill.classList.remove('jelly-animate');
                         void pill.offsetWidth; 
                         pill.classList.add('jelly-animate');
                         
+                        // Limpa
                         pill.style.boxShadow = ''; 
                         pill.style.backgroundColor = '';
                         pill.style.border = '';
@@ -1069,19 +1047,11 @@
                         ptItem.style.transform = '';
                         enItem.style.transform = '';
                         
-                        if(targetLang === 'en') {
-                            enItem.style.color = 'var(--text-primary)';
-                            ptItem.style.color = 'var(--text-secondary)';
-                        } else {
-                            ptItem.style.color = 'var(--text-primary)';
-                            enItem.style.color = 'var(--text-secondary)';
-                        }
-                        
                         if (currentSelection === 'en') {
                            localStorage.setItem('preferredLang', 'en');
                            setTimeout(() => { window.location.href = 'en/index.html'; }, 800); 
                         }
-                    }, 330); // Tempo do voo (80+250)
+                    }, 300); 
                 });
             });
         }
