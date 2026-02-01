@@ -841,6 +841,10 @@
             let dragOffset = 0; 
             let isAnimating = false; 
             
+            // NOVAS VARIÁVEIS PARA AMORTECIMENTO
+            let startTouchX = 0;
+            let startPillX = 0;
+            
             let lastX = 0;
             let velocity = 0;
             let lastTime = 0;
@@ -897,6 +901,10 @@
                 lastX = touch.clientX;
                 lastTime = Date.now();
 
+                // Captura posições iniciais
+                startTouchX = touch.clientX;
+                startPillX = pillRect.left - containerRect.left;
+
                 const currentPillLeft = pillRect.left - containerRect.left;
                 const touchInsideContainer = touch.clientX - containerRect.left;
                 
@@ -919,7 +927,6 @@
                 
                 // Força bruta: Remove qualquer transição para evitar lag
                 pill.style.transition = 'none !important';
-                // Remove classe held que tem transição no transform
                 pill.classList.remove('is-held'); 
 
                 if(dt > 0) {
@@ -929,9 +936,10 @@
                 lastX = touch.clientX;
                 lastTime = now;
                 
-                // Posição bruta
-                let x = touch.clientX - containerRect.left;
-                let rawPillX = x - dragOffset;
+                // --- CÁLCULO DE MOVIMENTO AMORTECIDO ---
+                const movementDelta = touch.clientX - startTouchX;
+                // Aplica fator 0.55 para a pílula andar apenas 55% da distância arrastada
+                let rawPillX = startPillX + (movementDelta * 0.55);
                 
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8; 
@@ -1045,30 +1053,25 @@
                 pill.classList.remove('settling');
 
                 // 1. FREEZE CURRENT POSITION (Prevenir Teleporte)
-                // Pega a posição computada atual exata
                 const computedStyle = window.getComputedStyle(pill);
                 const currentMatrix = computedStyle.transform;
                 
-                // Aplica explicitamente para travar visualmente
                 pill.style.transition = 'none';
                 pill.style.transform = currentMatrix;
                 
-                // Força Reflow (Obriga o browser a pintar este frame parado)
                 void pill.offsetWidth; 
 
-                // Adiciona classe de scale suave
                 pill.classList.add('is-held'); 
                 
                 currentSelection = targetLang;
 
-                // 2. DISPARO (Agora com transição)
-                // Usamos requestAnimationFrame para garantir que a transição comece no próximo frame
+                // 2. DISPARO
                 requestAnimationFrame(() => {
-                     const targetPos = targetLang === 'en' ? 100 : 0;
-                     const skewDir = targetLang === 'en' ? -20 : 20; 
+                      const targetPos = targetLang === 'en' ? 100 : 0;
+                      const skewDir = targetLang === 'en' ? -20 : 20; 
 
-                     pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-                     pill.style.transform = `translateX(${targetPos}%) scale(1.35, 0.9) skewX(${skewDir}deg)`;
+                      pill.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                      pill.style.transform = `translateX(${targetPos}%) scale(1.35, 0.9) skewX(${skewDir}deg)`;
                 });
 
                 // 3. SETTLE
