@@ -199,7 +199,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V18 - FINAL POLISH - BIGGER & SUBTLER) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V19 - BIG PILL & SOFT WALLS) ---- */
     
     .lang-switcher-container, .lang-item, .lang-flag {
         -webkit-tap-highlight-color: transparent; 
@@ -235,9 +235,10 @@
         z-index: 1; 
         transform-origin: center center;
         will-change: transform, left;
-        /* Transição padrão para repouso e hover, agora com escala base maior */
+        /* Transição padrão para repouso e hover */
         transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
-        transform: scale(1.08); /* Escala base aumentada */
+        /* ESCALA BASE AUMENTADA */
+        transform: scale(1.18); 
     }
 
     /* Estado "Held" - Apenas para a transição suave de entrada no clique */
@@ -245,13 +246,12 @@
         transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.3s ease;
     }
 
-    /* ANIMAÇÃO DE ESTABILIZAÇÃO (WOBBLE LÍQUIDO - SUAVIZADO) */
-    /* Oscilação muito mais sutil em torno da nova escala base de 1.08 */
+    /* ANIMAÇÃO DE ESTABILIZAÇÃO (WOBBLE LÍQUIDO - SUAVIZADO EM TORNO DE 1.18) */
     @keyframes liquid-settle {
-        0% { transform: var(--final-transform) scale(1.15, 0.95); } /* Menor impacto inicial */
-        30% { transform: var(--final-transform) scale(1.02, 1.12); } /* Menor rebote */
-        60% { transform: var(--final-transform) scale(1.10, 1.06); } /* Pequena oscilação */
-        100% { transform: var(--final-transform) scale(1.08, 1.08); } /* Parado no novo tamanho maior */
+        0% { transform: var(--final-transform) scale(1.22, 1.05); } /* Impacto */
+        30% { transform: var(--final-transform) scale(1.12, 1.20); } /* Rebote */
+        60% { transform: var(--final-transform) scale(1.19, 1.16); } /* Oscilação */
+        100% { transform: var(--final-transform) scale(1.18, 1.18); } /* Parado no tamanho grande */
     }
 
     .gliding-pill.settling {
@@ -260,9 +260,8 @@
 
     /* Hover apenas em Desktop */
     @media (hover: hover) {
-        /* Ajustado para o novo tamanho base */
-        .lang-switcher-container:hover .gliding-pill { transform: scale(1.15); }
-        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.15); }
+        .lang-switcher-container:hover .gliding-pill { transform: scale(1.22); }
+        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.22); }
         .lang-switcher-container:has(.lang-item:nth-child(2):hover) .lang-item:nth-child(2),
         .lang-switcher-container:has(.lang-item:nth-child(3):hover) .lang-item:nth-child(3) { transform: scale(1.1); }
         .lang-item:not(.active):hover { color: var(--text-primary); }
@@ -829,7 +828,7 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V18 - FINAL POLISH - BIGGER & SUBTLER) ---
+    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V19 - BIG PILL & SOFT WALLS) ---
     document.addEventListener('DOMContentLoaded', function() {
         const langContainer = document.getElementById('mobileLangSwitcher');
         
@@ -859,7 +858,7 @@
             const DRAG_FACTOR = 0.92; 
             const SMOOTH_FACTOR = 0.15; 
             const EDGE_BUFFER = 5; 
-            const REST_SCALE = 1.08; // NOVA ESCALA BASE MAIOR
+            const REST_SCALE = 1.18; // ESCALA GIGANTE
             
             let startTouchX = 0;
             let startPillX = 0;
@@ -969,7 +968,7 @@
                 lastTouchX = touch.clientX;
                 lastTime = now;
                 
-                // --- CÁLCULO DE POSIÇÃO COM RESPIRO ---
+                // --- CÁLCULO DE POSIÇÃO ---
                 const movementDelta = touch.clientX - startTouchX;
                 let rawTargetX = startPillX + (movementDelta * DRAG_FACTOR);
                 
@@ -982,17 +981,19 @@
                 let clampedTargetX = rawTargetX;
                 let wallPenetration = 0; 
 
+                // --- PAREDES MAIS MACIAS (DIVISOR AUMENTADO PARA 25) ---
                 if (rawTargetX < effectiveMin) {
                     wallPenetration = effectiveMin - rawTargetX;
-                    clampedTargetX = effectiveMin - (8 * (1 - Math.pow(2.718, -wallPenetration / 15))); 
+                    // Divisor 25 = Mola mais suave, permite entrar mais
+                    clampedTargetX = effectiveMin - (12 * (1 - Math.pow(2.718, -wallPenetration / 25))); 
                 } else if (rawTargetX > effectiveMax) {
                     wallPenetration = rawTargetX - effectiveMax;
-                    clampedTargetX = effectiveMax + (8 * (1 - Math.pow(2.718, -wallPenetration / 15)));
+                    clampedTargetX = effectiveMax + (12 * (1 - Math.pow(2.718, -wallPenetration / 25)));
                 }
 
                 physics.targetX = clampedTargetX;
 
-                // --- CÁLCULO DE DEFORMAÇÃO (RIGIDEZ AUMENTADA) ---
+                // --- CÁLCULO DE DEFORMAÇÃO ---
                 const absVel = Math.abs(velocity);
                 const baseScale = 1.15; 
                 
@@ -1010,7 +1011,6 @@
                          physics.targetScaleX = baseScale + stretchFactor; 
                          physics.targetScaleY = baseScale - (stretchFactor * 0.6); 
                     } else {
-                         // Se movendo devagar, volta para a escala de repouso
                          physics.targetScaleX = REST_SCALE;
                          physics.targetScaleY = REST_SCALE;
                     }
@@ -1043,7 +1043,8 @@
                 pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
                 
                 pill.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease'; 
-                // Finaliza na escala de repouso
+                
+                // Finaliza na escala GIGANTE (REST_SCALE), garantindo transição suave
                 pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
                 
                 setTimeout(() => {
