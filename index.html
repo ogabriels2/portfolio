@@ -199,15 +199,8 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
-    /* ---- LANGUAGE SELECTOR (PHYSICS V23 - HYPER-RESPONSIVE) ---- */
+    /* ---- LANGUAGE SELECTOR (PHYSICS V30 - GOLD MASTER) ---- */
     
-    .lang-switcher-container, .lang-item, .lang-flag {
-        -webkit-tap-highlight-color: transparent; 
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: none; 
-    }
-
     .lang-switcher-container {
         position: relative;
         display: flex;
@@ -217,12 +210,15 @@
         padding: 4px;
         width: fit-content;
         border: 1px solid rgba(0,0,0,0.02);
-        cursor: pointer;
+        cursor: pointer; 
         flex-shrink: 0; 
         transition: margin 0.2s;
         padding-right: 6px;
         overflow: visible; 
+        -webkit-user-select: none;
+        user-select: none;
     }
+
     .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
 
     .gliding-pill {
@@ -231,28 +227,37 @@
         width: calc(50% - 4px); 
         background: #FFFFFF;
         border-radius: 9999px; 
+        cursor: grab;
+        
+        /* Borda Escurecida para efeito Líquido/Vidro (0.12) */
+        border: 1px solid rgba(0,0,0,0.12); 
+        
+        /* Sombra Inicial */
         box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
         z-index: 1; 
+        
+        --pill-x: 0%; 
         transform-origin: center center;
-        will-change: transform, left;
-        /* Estado de REPOUSO = Scale(1.05) */
-        transform: scale(1.05);
-        /* Transição padrão para o hover */
-        transition: transform 0.3s var(--smooth-glide), background-color 0.3s ease;
+        transform: translateX(var(--pill-x)) scale(1.05);
+        
+        /* Transição Suave */
+        transition: 
+            transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2), 
+            background-color 0.3s ease,
+            box-shadow 0.3s ease,
+            backdrop-filter 0.3s ease;
     }
+    
+    .gliding-pill:active { cursor: grabbing; }
 
-    /* Estado "Held" - Apenas para a transição suave de entrada no clique */
-    .gliding-pill.is-held {
-        transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1), background-color 0.3s ease;
-    }
-
-    /* Hover apenas em Desktop */
+    /* HOVER SYNC: AJUSTADO - Pílula grande, texto sutil */
     @media (hover: hover) {
-        .lang-switcher-container:hover .gliding-pill { transform: scale(1.15); }
-        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .gliding-pill { transform: translateX(100%) scale(1.15); }
-        .lang-switcher-container:has(.lang-item:nth-child(2):hover) .lang-item:nth-child(2),
-        .lang-switcher-container:has(.lang-item:nth-child(3):hover) .lang-item:nth-child(3) { transform: scale(1.1); }
-        .lang-item:not(.active):hover { color: var(--text-primary); }
+        .lang-switcher-container:hover .gliding-pill { 
+            transform: translateX(var(--pill-x)) scale(1.15); /* Pílula mantém o "aumento na bolha" */
+        }
+        .lang-switcher-container:hover .lang-item.active {
+            transform: scale(1.05); /* Texto reduzido de 1.15 para 1.05 para ser menos exagerado */
+        }
     }
 
     .lang-item {
@@ -264,6 +269,8 @@
         font-size: 0.8rem; font-weight: 600; 
         color: var(--text-secondary); text-decoration: none; 
         width: 75px;
+        
+        /* Transição Suave de Cor e Transform */
         transition: color 0.3s ease, transform 0.3s var(--smooth-glide);
         will-change: transform, color;
         pointer-events: none !important; 
@@ -538,14 +545,15 @@
           </div>
           
           <div class="lang-switcher-container">
-              <div class="gliding-pill"></div> <span class="lang-item active">
+              <div class="gliding-pill"></div>
+              <span class="lang-item active" data-lang="pt">
                   <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#009c3b" d="M0 0h640v480H0z"/><path fill="#ffdf00" d="M320 80l245.4 160L320 400 74.6 240z"/><circle cx="320" cy="240" r="94.2" fill="#002776"/><path fill="#fff" d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg>
                   PT
               </span>
-              <a href="en/index.html" class="lang-item" onclick="localStorage.setItem('preferredLang', 'en')">
+              <span class="lang-item" data-lang="en">
                   <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0z"/><path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path fill="#192f5d" d="M0 0h256v258H0z"/><path fill="#fff" d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" opacity=".8"/></svg>
                   EN
-              </a>
+              </span>
           </div>
 
           <a href="contato.html" class="sidebar-cta">
@@ -816,31 +824,33 @@
     window.addEventListener('resize', fitSidebarToScreen);
     setTimeout(fitSidebarToScreen, 500);
 
-    // --- MOBILE TOUCH DRAG LOGIC (PHYSICS ENGINE V23 - HYPER-RESPONSIVE) ---
+    // --- HYPER-RESPONSIVE PHYSICS ENGINE (V30 - GOLD MASTER) ---
     document.addEventListener('DOMContentLoaded', function() {
-        const langContainer = document.getElementById('mobileLangSwitcher');
         
-        if (langContainer) {
-            const pill = langContainer.querySelector('.gliding-pill');
-            const ptItem = langContainer.querySelector('.lang-item:nth-child(2)'); 
-            const enItem = langContainer.querySelector('.lang-item:nth-child(3)'); 
+        function initPhysicsSwitcher(container) {
+            if (!container) return;
+
+            const pill = container.querySelector('.gliding-pill');
+            const ptItem = container.querySelector('.lang-item:nth-child(2)'); 
+            const enItem = container.querySelector('.lang-item:nth-child(3)'); 
             
-            // Variáveis de Estado
+            // Estado
             let isDragging = false;
             let isAutoScrolling = false; 
             let currentSelection = 'pt'; 
             let animationFrameId = null;
+            let startX = 0; 
+            let startPillX = 0;
+            let lastTime = 0;
+            let velocity = 0;
+            let lastX = 0;
 
-            // Variáveis de Física (LERP)
+            // Física (LERP)
             let physics = {
-                targetX: 0,
-                currentX: 0,
-                targetScaleX: 1,
-                currentScaleX: 1,
-                targetScaleY: 1,
-                currentScaleY: 1,
-                targetSkew: 0,
-                currentSkew: 0
+                targetX: 0, currentX: 0,
+                targetScaleX: 1, currentScaleX: 1,
+                targetScaleY: 1, currentScaleY: 1,
+                targetSkew: 0, currentSkew: 0
             };
 
             // Configuração
@@ -849,32 +859,40 @@
             const EDGE_BUFFER = 5; 
             const REST_SCALE = 1.05; 
             const HELD_SCALE = 1.32; 
-            
-            let startTouchX = 0;
-            let startPillX = 0;
-            let lastTime = 0;
-            let velocity = 0;
-            let lastTouchX = 0;
 
-            function updateVisuals(progress) {
-                pill.style.backdropFilter = 'blur(10px)'; 
-                pill.style.webkitBackdropFilter = 'blur(10px)';
-                pill.style.backgroundColor = 'rgba(255, 255, 255, 0.35)'; 
-                
-                pill.style.boxShadow = `
-                    inset 0 0 10px rgba(255,255,255,0.7),
-                    0 10px 25px rgba(0,0,0,0.1),
-                    0 4px 6px rgba(0,0,0,0.05)
-                `;
-                pill.style.border = '1px solid rgba(255,255,255,0.5)';
-                
-                // Scale Texto (Lupa)
+            const getX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
+
+            // --- FUNÇÃO VISUAL CRÍTICA ---
+            function updateVisuals(progress, isHeld, currentScale) {
+                // 1. Efeito Vidro / Líquido e Sombra
+                if (isHeld) {
+                    pill.style.backdropFilter = 'blur(10px)'; 
+                    pill.style.webkitBackdropFilter = 'blur(10px)';
+                    pill.style.backgroundColor = 'rgba(255, 255, 255, 0.6)'; 
+                    
+                    // Sombra Líquida Difusa Externa (Preta e profunda)
+                    // spread radius negativo ajuda a "descolar" visualmente.
+                    // Adicionado sombra 0 0 20px sem offset para aparecer em cima
+                    pill.style.boxShadow = '0 18px 40px -5px rgba(0,0,0,0.3), 0 0 20px -5px rgba(0,0,0,0.15)'; 
+                }
+
+                // 2. Scale Texto/Bandeira (SINCRONIA DE LENTE)
                 const distPT = Math.abs(progress - 0); 
                 const distEN = Math.abs(progress - 1); 
                 
-                // Fórmula ajustada: min 1.0, max 1.25
-                const scalePT = Math.max(1.0, 1.25 - (distPT * 0.25)); 
-                const scaleEN = Math.max(1.0, 1.25 - (distEN * 0.25)); 
+                // Cálculo de Multiplicador de Escala Baseado na Bolha
+                // Se a bolha está em 1.05 (repouso) ou 1.15 (hover), fator é 0.
+                // Se a bolha está em 1.32 (held), fator é 1.
+                // Usamos o valor visual atual da bolha para garantir que o texto infle junto com ela.
+                let scaleMultiplier = 0;
+                if (currentScale) {
+                    const safeScale = Math.max(1, currentScale); 
+                    scaleMultiplier = (safeScale - 1.0) * 0.8; 
+                }
+
+                // Aplica o multiplicador ao item ativo
+                const scalePT = 1.0 + (Math.max(0, 1.0 - distPT) * scaleMultiplier);
+                const scaleEN = 1.0 + (Math.max(0, 1.0 - distEN) * scaleMultiplier);
 
                 if(progress < 0.5) {
                     ptItem.classList.add('active');
@@ -888,31 +906,46 @@
                 enItem.style.transform = `scale(${scaleEN})`;
             }
 
-            // LOOP DE FÍSICA CENTRAL
+            // Função Reset Limpo (Handoff para CSS)
+            function resetStyles(finalXValue) {
+                // Atualiza a variável CSS para manter a posição correta
+                // mas libera o 'transform' inline para o hover funcionar
+                pill.style.setProperty('--pill-x', finalXValue + '%');
+                
+                // Remove estilos inline bloqueantes da Pílula
+                pill.style.transform = ''; 
+                pill.style.backdropFilter = '';
+                pill.style.webkitBackdropFilter = '';
+                pill.style.backgroundColor = ''; 
+                pill.style.boxShadow = ''; 
+                pill.style.transition = ''; // Limpa transição JS para voltar ao CSS padrão
+
+                // Remove estilos inline bloqueantes dos Itens (para o hover/scale funcionar depois)
+                ptItem.style.transform = '';
+                enItem.style.transform = '';
+                ptItem.style.transition = '';
+                enItem.style.transition = '';
+            }
+
             function physicsLoop() {
                 if (!isDragging && !isAutoScrolling) return;
 
-                // Auto-Cálculo de Velocidade para o Skew durante o clique
                 if(isAutoScrolling) {
                     const prevX = physics.currentX;
-                    // LERP ACELERADO (0.20)
                     physics.currentX += (physics.targetX - physics.currentX) * 0.20;
                     physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * 0.20;
                     physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * 0.20;
                     
                     velocity = (physics.currentX - prevX); 
-                    
                     physics.targetSkew = Math.max(-20, Math.min(20, velocity * -1.5));
                     physics.currentSkew += (physics.targetSkew - physics.currentSkew) * 0.20;
 
-                    // CHEGADA RÁPIDA: SNAP A 4PX
-                    if(Math.abs(physics.currentX - physics.targetX) < 4) {
+                    if(Math.abs(physics.currentX - physics.targetX) < 1) { 
                         isAutoScrolling = false;
                         finishInteraction();
                         return;
                     }
                 } else {
-                    // Modo Arrasto Manual
                     physics.currentX += (physics.targetX - physics.currentX) * SMOOTH_FACTOR;
                     physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * SMOOTH_FACTOR;
                     physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * SMOOTH_FACTOR;
@@ -921,90 +954,127 @@
 
                 pill.style.transform = `translateX(${physics.currentX}px) scale(${physics.currentScaleX}, ${physics.currentScaleY}) skewX(${physics.currentSkew}deg)`;
                 
-                const containerRect = langContainer.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8;
+                
                 const percentage = (physics.currentX / maxTranslate);
                 const progress = Math.max(0, Math.min(1, percentage));
                 
-                updateVisuals(progress);
-
+                updateVisuals(progress, true, physics.currentScaleX);
+                
                 animationFrameId = requestAnimationFrame(physicsLoop);
             }
 
-            // Função Auxiliar para finalizar movimento (Bounce)
             function finishInteraction() {
                 cancelAnimationFrame(animationFrameId);
 
+                const containerRect = container.getBoundingClientRect();
+                const pillWidth = (containerRect.width / 2) - 4;
+                const maxTranslate = containerRect.width - pillWidth - 8;
+                const midPoint = maxTranslate / 2;
+
+                const finalChoice = physics.currentX > midPoint ? 'en' : 'pt';
+                currentSelection = finalChoice;
+
                 const finalX = currentSelection === 'en' ? 100 : 0;
-                pill.style.setProperty('--final-transform', `translateX(${finalX}%)`);
                 
-                // Transição suave CSS para o "pouso"
-                pill.style.transition = 'transform 0.5s cubic-bezier(0.35, 1.75, 0.5, 0.85), background-color 0.3s ease'; 
+                // --- FASE 1: ANIMAÇÃO SINCRONIZADA E ELÁSTICA ---
+                // Ajustado Cubic Bezier para mais "Bounce" (1.6)
+                const syncTransition = 'transform 0.6s cubic-bezier(0.5, 1.6, 0.4, 1.1)';
+                
+                // 1. Aplica na Pílula (Movimento e Reset de Escala)
+                pill.style.transition = syncTransition + ', background-color 0.4s ease, box-shadow 0.4s ease'; 
                 pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
                 
-                updateVisuals(currentSelection === 'en' ? 1 : 0);
+                // 2. Aplica nos Itens (Reset de Escala SIMULTÂNEO)
+                ptItem.style.transition = syncTransition;
+                enItem.style.transition = syncTransition;
+                
+                // Forçamos a escala final (1.0) para que animem junto com a pílula encolhendo
+                ptItem.style.transform = 'scale(1)';
+                enItem.style.transform = 'scale(1)';
 
-                if (currentSelection === 'en') {
+                // Remove efeitos visuais de "segurar" imediatamente
+                pill.style.backdropFilter = '';
+                pill.style.boxShadow = '';
+                pill.style.backgroundColor = '';
+
+                // --- FASE 2: LIMPEZA PÓS-ANIMAÇÃO ---
+                setTimeout(() => {
+                    resetStyles(finalX);
+                }, 600); // Sincronizado com 0.6s da transição
+
+                const isEnPage = window.location.pathname.includes('/en/');
+                
+                if (currentSelection === 'en' && !isEnPage) {
                    localStorage.setItem('preferredLang', 'en');
-                   setTimeout(() => { window.location.href = 'en/index.html'; }, 850); 
+                   setTimeout(() => { window.location.href = 'en/index.html'; }, 650); 
+                } else if (currentSelection === 'pt' && isEnPage) {
+                   localStorage.setItem('preferredLang', 'pt');
+                   setTimeout(() => { window.location.href = '../index.html'; }, 650); 
                 }
             }
 
-            // TOUCH START (AGORA PERFEITO)
-            langContainer.addEventListener('touchstart', function(e) {
+            // --- INPUT HANDLERS ---
+            const startHandler = (e) => {
                 if(isAutoScrolling) return; 
                 isDragging = true;
                 
+                // Limpa transições para assumir controle manual JS
                 pill.style.transition = 'none'; 
-                pill.classList.remove('settling');
+                ptItem.style.transition = 'none';
+                enItem.style.transition = 'none';
                 
-                const touch = e.touches[0];
-                const containerRect = langContainer.getBoundingClientRect();
+                if(e.type === 'mousedown') e.preventDefault();
+
+                const clientX = getX(e);
+                const containerRect = container.getBoundingClientRect();
                 const pillRect = pill.getBoundingClientRect();
                 
-                startTouchX = touch.clientX;
-                lastTouchX = touch.clientX;
+                startX = clientX;
+                lastX = clientX;
                 lastTime = Date.now();
-
                 startPillX = pillRect.left - containerRect.left; 
 
-                // CAPTURA ESTADO FÍSICO ATUAL (MESMO EM MOVIMENTO)
+                // Captura estado físico atual (inclusive se estava em hover escala 1.15)
                 const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform);
                 physics.currentX = currentMatrix.m41; 
-                // APROXIMAÇÃO DE ESCALA BASEADA NA MATRIZ
+                
+                // Começa a escala exatamente de onde estava visualmente
+                // Isso elimina o "salto seco" ao clicar
                 physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b);
-                physics.currentScaleY = Math.sqrt(currentMatrix.c * currentMatrix.c + currentMatrix.d * currentMatrix.d);
-                physics.currentSkew = 0;
+                physics.currentScaleY = physics.currentScaleX;
 
-                // INFLA PARTINDO DE ONDE ESTIVER
                 physics.targetX = physics.currentX; 
-                physics.targetScaleX = HELD_SCALE;
-                physics.targetScaleY = HELD_SCALE;
+                physics.targetScaleX = HELD_SCALE; // Alvo é inflar
+                physics.targetScaleY = HELD_SCALE; 
                 
                 cancelAnimationFrame(animationFrameId);
                 physicsLoop();
+            };
 
-            }, {passive: true});
-
-            // TOUCH MOVE
-            langContainer.addEventListener('touchmove', function(e) {
+            const moveHandler = (e) => {
                 if (!isDragging) return;
                 
-                const touch = e.touches[0];
-                const containerRect = langContainer.getBoundingClientRect();
-                
+                if (e.type === 'mousemove' && e.buttons === 0) {
+                    endHandler(e);
+                    return;
+                }
+
+                const clientX = getX(e);
+                const containerRect = container.getBoundingClientRect();
                 const now = Date.now();
                 const dt = now - lastTime;
                 
                 if(dt > 0) {
-                    const newVel = (touch.clientX - lastTouchX) / dt;
+                    const newVel = (clientX - lastX) / dt;
                     velocity = (velocity * 0.7) + (newVel * 0.3); 
                 }
-                lastTouchX = touch.clientX;
+                lastX = clientX;
                 lastTime = now;
                 
-                const movementDelta = touch.clientX - startTouchX;
+                const movementDelta = clientX - startX;
                 let rawTargetX = startPillX + (movementDelta * DRAG_FACTOR);
                 
                 const pillWidth = (containerRect.width / 2) - 4;
@@ -1026,19 +1096,14 @@
 
                 physics.targetX = clampedTargetX;
 
-                // --- DEFORMAÇÃO ---
                 const absVel = Math.abs(velocity);
                 const baseScale = HELD_SCALE; 
                 
                 if (wallPenetration > 1) { 
-                    const impactFactor = Math.min(absVel * 0.25, 0.25); 
-                    const pressureFactor = Math.min(wallPenetration * 0.01, 0.15); 
-                    const totalSquash = impactFactor + pressureFactor;
-
+                    const totalSquash = Math.min(absVel * 0.25, 0.25) + Math.min(wallPenetration * 0.01, 0.15);
                     physics.targetScaleX = baseScale - (totalSquash * 0.7); 
                     physics.targetScaleY = baseScale + (totalSquash * 0.8); 
-                } 
-                else {
+                } else {
                     if (absVel > 0.1) {
                          const stretchFactor = Math.min(absVel * 0.08, 0.2); 
                          physics.targetScaleX = baseScale + stretchFactor; 
@@ -1050,58 +1115,81 @@
                 }
                 
                 physics.targetSkew = Math.max(-20, Math.min(20, velocity * -12)); 
+            };
 
-                const visualCenter = clampedTargetX + (pillWidth/2);
-                currentSelection = visualCenter > (containerRect.width / 2) ? 'en' : 'pt';
-
-            }, {passive: false});
-
-            // TOUCH END
-            langContainer.addEventListener('touchend', function(e) {
+            const endHandler = (e) => {
                 if(!isDragging) return;
                 isDragging = false;
-                finishInteraction();
+                
+                // CORREÇÃO DO "BOUNCE BACK" AO CLICAR:
+                // Se o movimento for muito pequeno (< 5px), consideramos um clique.
+                // Nesse caso, NÃO chamamos finishInteraction aqui, para evitar que a pílula
+                // volte para o início antes do evento de 'click' assumir.
+                if (Math.abs(lastX - startX) > 5) {
+                    finishInteraction();
+                }
+            };
+
+            // Event Listeners
+            container.addEventListener('touchstart', startHandler, {passive: false});
+            window.addEventListener('touchmove', moveHandler, {passive: false});
+            window.addEventListener('touchend', endHandler);
+
+            container.addEventListener('mousedown', startHandler);
+            window.addEventListener('mousemove', moveHandler);
+            window.addEventListener('mouseup', endHandler);
+            
+            container.addEventListener('mouseleave', function() { 
+                if(!isDragging && !isAutoScrolling) {
+                    const finalX = currentSelection === 'en' ? 100 : 0;
+                    resetStyles(finalX);
+                }
             });
 
-            // --- CLICK (AGORA USA A FÍSICA REAL DO ARRASTO) ---
-            langContainer.addEventListener('click', function(e) {
-                if(isDragging || isAutoScrolling) return; 
+            container.addEventListener('click', function(e) {
+                // Se foi um clique rápido (pouco movimento), assumimos que é um CLICK
+                const movementTotal = Math.abs(lastX - startX);
+                if (isDragging || movementTotal > 5) return; 
+                if(isAutoScrolling) return; 
                 
-                const containerRect = langContainer.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
                 const clickX = e.clientX - containerRect.left;
                 const isRightSide = clickX > (containerRect.width / 2);
                 const targetLang = isRightSide ? 'en' : 'pt';
 
                 if(targetLang === currentSelection) return;
                 
-                // 1. Configura Estado de "Arrasto Automático"
                 isAutoScrolling = true;
                 currentSelection = targetLang;
                 
-                // 2. Prepara Posições
                 const pillWidth = (containerRect.width / 2) - 4;
                 const maxTranslate = containerRect.width - pillWidth - 8;
                 
-                // Sync inicial
+                // Pega estado atual
                 const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform);
                 physics.currentX = currentMatrix.m41; 
+                
+                // Mantém a escala fluida (se estava 1.15 no hover, continua de 1.15)
                 physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b);
-                physics.currentScaleY = Math.sqrt(currentMatrix.c * currentMatrix.c + currentMatrix.d * currentMatrix.d);
-                
-                // Define Destino
+                physics.currentScaleY = physics.currentScaleX;
+
+                // Define alvo direto
                 physics.targetX = targetLang === 'en' ? maxTranslate : 0;
-                
-                // 3. Simula o "Toque" (Infla a pílula)
                 physics.targetScaleX = HELD_SCALE;
                 physics.targetScaleY = HELD_SCALE;
                 
-                // 4. Remove transições CSS para o JS assumir
                 pill.style.transition = 'none';
-                
-                // 5. Inicia o Loop
+                ptItem.style.transition = 'none';
+                enItem.style.transition = 'none';
+
                 cancelAnimationFrame(animationFrameId);
                 physicsLoop();
             });
         }
+
+        const allSwitchers = document.querySelectorAll('.lang-switcher-container');
+        allSwitchers.forEach(el => initPhysicsSwitcher(el));
     });
   </script>
+</body>
+</html>
