@@ -6,34 +6,45 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-L8XF4TVBSL');
   </script>
 
+  <script>
+    var userLang = navigator.language || navigator.userLanguage; 
+    if (userLang.startsWith('en') && !window.location.pathname.includes('/en/') && !localStorage.getItem('preferredLang')) {
+        // window.location.href = '/en/thumbnails-youtube.html'; 
+    }
+  </script>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#fbfbfd">
   
   <title>Thumbnails para YouTube | Design Estratégico para Alto CTR - Gabriel Silva</title>
   <meta name="description" content="Portfólio de Thumbnails para YouTube focadas em aumentar o CTR (Taxa de Clique). Design estratégico, manipulação de imagem e tipografia para criadores de conteúdo.">
+  <meta name="keywords" content="Thumbnails YouTube, Design de Miniaturas, CTR, Identidade Visual YouTube, Capas de Vídeo, Gabriel Silva">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Gabriel Silva">
-  <link rel="canonical" href="https://ogabriels.com/thumbnails.html">
   
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="Logo.png">
+  <link rel="canonical" href="https://ogabriels.com/thumbnails.html">
+  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/thumbnails.html" />
+  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/thumbnails-youtube.html" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/thumbnails-youtube.html" />
+
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.png">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ogabriels.com/thumbnails.html">
   <meta property="og:title" content="Thumbnails de Alto Impacto | Gabriel Silva">
   <meta property="og:description" content="Aumente as visualizações do seu canal com design estratégico focado em cliques.">
-  <meta property="og:image" content="https://ogabriels.com/Detector%20de%20Fraudes%20com%20IA%20-%20Projeto%20Integrador%20II%20–%20UNIVESP%20(escuro).jpg">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/thumbnails-capa.png">
 
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://ogabriels.com/thumbnails.html">
   <meta property="twitter:title" content="Thumbnails de Alto Impacto | Gabriel Silva">
   <meta property="twitter:description" content="Aumente as visualizações do seu canal com design estratégico focado em cliques.">
-  <meta property="twitter:image" content="https://ogabriels.com/Detector%20de%20Fraudes%20com%20IA%20-%20Projeto%20Integrador%20II%20–%20UNIVESP%20(escuro).jpg">
+  <meta property="twitter:image" content="https://ogabriels.com/assets/img/thumbnails-capa.png">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,32 +52,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------------- Design System Premium ---------------- */
+    /* ---------------- Design Tokens ---------------- */
     :root {
       --sidebar-width: 280px;
       --max-width: 1000px;
+      
+      /* Colors */
       --bg-body: #F5F5F7;
       --bg-sidebar: rgba(255, 255, 255, 0.75);
       --bg-card: #FFFFFF;
       --text-primary: #1D1D1F;
       --text-secondary: #86868B;
+      
+      /* Accent (Padrão Azul) */
       --accent: #0071E3; 
       --accent-hover: #0077ED;
       
-      --bg-dark: #1D1D1F;
-      --text-white: #FFFFFF;
-      --text-gray: #A1A1A6;
-      
+      /* Effects */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
       --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
       --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.1);
       --glass-blur: blur(20px) saturate(180%);
+      
+      /* Radius */
       --radius-lg: 24px;
       --radius-md: 12px;
+      
+      /* Animations */
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
     
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -76,31 +95,40 @@
       display: flex;
       min-height: 100vh;
       margin: 0;
+      overflow-x: hidden;
     }
 
     a { text-decoration: none; -webkit-tap-highlight-color: transparent; color: inherit; }
 
-    /* Acessibilidade */
-    .skip-link {
-      position: fixed; top: -100px; left: 20px; z-index: 1000;
-      background: var(--accent); color: white; padding: 12px 20px;
-      border-radius: 8px; text-decoration: none; font-weight: 600;
-      transition: top 0.3s;
-    }
+    /* Skip Link */
+    .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s; }
     .skip-link:focus { top: 20px; }
 
-    /* ---------------- SIDEBAR (Desktop - Atualizado) ---------------- */
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; border: 2px solid var(--bg-body); }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+
+    /* --- SIDEBAR & MENU (GOLD MASTER) --- */
     aside {
       width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
-      padding: 50px 32px; background: var(--bg-sidebar);
+      background: var(--bg-sidebar);
       backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
       border-right: 1px solid rgba(0,0,0,0.05);
-      display: flex; flex-direction: column; z-index: 2000;
-      overflow-y: auto; scrollbar-width: none;
+      display: block; z-index: 2000; overflow: hidden; 
     }
     aside::-webkit-scrollbar { display: none; }
 
-    .profile-container { text-align: center; margin-bottom: 40px; flex-shrink: 0; }
+    .sidebar-scaler {
+      width: 100%; display: flex; flex-direction: column;
+      padding: 40px 32px 30px; transform-origin: top left;
+      will-change: transform, width, height; box-sizing: border-box; transition: padding 0.1s ease;
+    }
+    .sidebar-scaler.compact-mode { padding-top: 25px; padding-bottom: 5px; }
+
+    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; transition: margin 0.3s ease; }
+    .sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
     .profile-link { display: block; transition: transform 0.2s; }
     .profile-link:active { transform: scale(0.98); } 
 
@@ -108,158 +136,142 @@
       width: 110px; height: 110px; margin: 0 auto 16px; 
       border-radius: 50%; overflow: hidden; 
       box-shadow: var(--shadow-md); 
-      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      flex-shrink: 0;
     }
     .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); } 
-    
     .profile-pic { width: 100%; height: 100%; object-fit: cover; }
-    
-    .profile-name { 
-      font-size: 1.4rem; font-weight: 700; color: #111; 
-      margin-bottom: 6px; transition: color 0.3s; 
-    }
+    .profile-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: #111; transition: color 0.3s ease; }
     .profile-link:hover .profile-name { color: var(--accent); }
-    
     .profile-role { font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
 
-    /* Navegação */
-    nav { display: flex; flex-direction: column; }
-    .nav-group h3 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
-    .nav-list { list-style: none; padding: 0; margin-bottom: 20px; }
+    nav { flex: 1; display: flex; flex-direction: column; min-height: 0; margin-bottom: 10px; }
+    .sidebar-scaler.compact-mode nav { margin-bottom: 0px; }
+    
+    .nav-group { margin-bottom: 20px; flex-shrink: 0; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
+    .nav-group h3 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
+    
+    .nav-list { list-style: none; padding: 0; }
     .nav-list li { margin-bottom: 2px; }
-
-    .nav-link {
-      display: flex; align-items: center; gap: 10px; padding: 8px 12px;
-      color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
-      border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    .project-scroll-container {
+        overflow-y: auto; padding-right: 5px; margin-right: -5px;
+        scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;
+    }
+    .project-scroll-container::-webkit-scrollbar { width: 4px; }
+    .project-scroll-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.15); border-radius: 4px; }
+    
+    .nav-link { 
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 12px; 
+      color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; 
+      border-radius: 8px; 
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      white-space: nowrap;
     }
     .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
+    
+    .nav-link.back-link i { transition: transform 0.3s; }
+    .nav-link.back-link:hover i { transform: translateX(-6px); } 
     .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 113, 227, 0.05); }
 
-    .nav-link.back-link:hover { transform: translateX(4px); background: rgba(0, 113, 227, 0.08); }
-    .nav-link.back-link i { transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-    .nav-link.back-link:hover i { transform: translateX(-6px); } 
-    .nav-link.back-link:active { transform: scale(0.98) translateX(4px); }
-
+    /* ANIMAÇÃO BONEQUINHO */
     @keyframes head-bob {
       0%, 100% { transform: translateY(0) rotate(0); }
       30% { transform: translateY(-2px) rotate(-3deg); }
       60% { transform: translateY(-1px) rotate(3deg); }
     }
-    .nav-link.about-link:hover i { animation: head-bob 0.6s ease infinite; color: var(--accent); }
+    .nav-link:hover i.fa-user { animation: head-bob 0.6s ease infinite; color: var(--accent); }
 
-    @keyframes typing-pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.15); opacity: 0.8; }
+    /* Lang Switcher */
+    .lang-switcher-container {
+        position: relative; display: flex; margin: 0 0 20px; 
+        background: rgba(118, 118, 128, 0.12); border-radius: 9999px; padding: 4px;
+        width: fit-content; border: 1px solid rgba(0,0,0,0.02); cursor: pointer; 
+        flex-shrink: 0; transition: margin 0.2s; padding-right: 6px; overflow: visible; 
+        -webkit-user-select: none; user-select: none;
     }
+    .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
+    .gliding-pill {
+        position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); 
+        background: #FFFFFF; border-radius: 9999px; cursor: grab;
+        border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
+        z-index: 1; --pill-x: 0%; transform-origin: center center;
+        transform: translateX(var(--pill-x)) scale(1.05);
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2), background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    .gliding-pill:active { cursor: grabbing; }
+    @media (hover: hover) {
+        .lang-switcher-container:hover .gliding-pill { transform: translateX(var(--pill-x)) scale(1.15); }
+        .lang-switcher-container:hover .lang-item.active { transform: scale(1.05); }
+    }
+    .lang-item {
+        position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 6px 14px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; 
+        color: var(--text-secondary); text-decoration: none; width: 75px;
+        transition: color 0.3s ease, transform 0.3s var(--smooth-glide); will-change: transform, color; pointer-events: none !important; 
+    }
+    .lang-item.active { color: var(--text-primary); cursor: default; }
+    .lang-flag { width: 20px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); filter: none !important; transform: translateZ(0); pointer-events: none !important; }
+
     .sidebar-cta {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      padding: 12px 20px; background: var(--text-primary); color: white;
-      text-align: center; border-radius: 50px; font-size: 0.9rem; font-weight: 600; 
-      margin-top: 30px; margin-bottom: 30px;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        display: flex; align-items: center; justify-content: center; gap: 12px;
+        padding: 12px 20px; background: var(--text-primary); color: white; text-align: center; border-radius: 50px;
+        font-size: 0.9rem; font-weight: 600; margin-top: auto; margin-bottom: 20px; transition: all 0.3s; flex-shrink: 0;
     }
+    .sidebar-scaler.compact-mode .sidebar-cta { margin-bottom: 10px; margin-top: 5px; }
     .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-    .sidebar-cta:hover i { animation: typing-pulse 1.2s infinite ease-in-out; }
-    .sidebar-cta:active { transform: scale(0.95); transition-duration: 0.1s; }
 
-    .sidebar-footer { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; margin-top: auto; }
-    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
-    .social-icon {
-      width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.04);
-      display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
+    .sidebar-footer { padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; transition: padding 0.2s; }
+    .sidebar-scaler.compact-mode .sidebar-footer { padding-top: 10px; }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .social-icons { margin-bottom: 4px; }
+    .social-icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.04); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
-    .social-icon:active { transform: scale(0.9); transition-duration: 0.1s; }
-    .copyright { font-size: 0.65rem; color: #ccc; text-align: center; }
+    .copyright { font-size: 0.65rem; color: #555; text-align: center; font-weight: 500; }
 
-    /* ---------------- MOBILE MENU PREMIUM (Atualizado) ---------------- */
+    /* --- MOBILE MENU PREMIUM --- */
     .mobile-menu-btn { display: none; }
-    
-    .mobile-menu-overlay { 
-      position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); 
-      backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-      z-index: 3000; overflow: hidden; 
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; 
-    }
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
-
-    .mobile-scroll-wrapper {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        overflow-y: auto; -webkit-overflow-scrolling: touch;
-        padding-top: 80px; padding-bottom: 120px;
-        display: flex; flex-direction: column;
-    }
+    .mobile-scroll-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: 80px; padding-bottom: 100px; display: flex; flex-direction: column; }
+    .mobile-nav-container { width: 100%; max-width: 320px; min-height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px; }
+    .mobile-close-btn { position: fixed; top: 24px; right: 24px; width: 44px; height: 44px; background: rgba(0,0,0,0.05); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-primary); cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; }
     
-    .mobile-nav-container { 
-      width: 100%; max-width: 320px; min-height: 100%; margin: auto; 
-      display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px;
-    }
-    
-    .mobile-close-btn {
-      position: fixed; top: 24px; right: 24px; width: 44px; height: 44px; 
-      background: rgba(0,0,0,0.05); backdrop-filter: blur(10px);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-      font-size: 1.2rem; color: var(--text-primary); 
-      cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; 
-    }
-    .mobile-close-btn:active { background: rgba(0,0,0,0.1); transform: scale(0.95); }
-    
-    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
     .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { opacity: 0; transform: translateY(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .mobile-menu-overlay.active .mobile-nav-group { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
     .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-
+    
+    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; align-items: center; }
     .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
-    .mobile-link-main:active { color: var(--accent) !important; transform: scale(0.95); }
-
     .mobile-projects-wrapper { width: 100%; text-align: center; }
     .mobile-projects-list { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; width: 100%; align-items: center; }
     .mobile-link-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; transition: 0.2s; text-decoration: none; }
-    .mobile-link-sub:active { color: var(--accent); transform: scale(0.98); }
-
     .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
     .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
-
+    
     .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .mobile-socials { display: flex; gap: 24px; justify-content: center; }
-    
-    .mobile-social-btn { 
-      font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; 
-      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; 
-      border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; 
-    }
-    .mobile-social-btn:active { color: var(--accent) !important; transform: scale(0.9); }
+    .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
+    .mobile-cta { width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
-    .mobile-cta {
-      width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; 
-      font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .mobile-cta:active { transform: scale(0.95); background: var(--accent); }
-
-
-    /* ---------------- MAIN CONTENT ---------------- */
+    /* --- PAGE CONTENT (Project Specific) --- */
     main { margin-left: var(--sidebar-width); flex: 1; padding: 0; display: flex; flex-direction: column; align-items: center; }
 
     .project-hero { width: 100%; padding: 80px 0 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     
     .hero-image-container { 
-        width: 100%; max-width: var(--max-width); 
-        padding: 0 60px; /* Alinhamento Desktop */
-        margin-bottom: 30px; box-sizing: border-box;
+        width: 100%; max-width: var(--max-width); padding: 0 60px; margin-bottom: 30px; box-sizing: border-box; 
     }
     
     .hero-image-wrapper-inner {
-        width: 100%; border-radius: var(--radius-lg); overflow: hidden; 
-        box-shadow: var(--shadow-md); background: #000; 
+        width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: #eee; 
         border: 1px solid rgba(0,0,0,0.05); display: block;
     }
-
-    .hero-image { width: 100%; height: auto; display: block; transition: transform 0.5s ease; cursor: zoom-in; opacity: 0.95; }
+    .hero-image { width: 100%; height: auto; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
     .hero-image:hover { transform: scale(1.02); }
 
     .hero-text-content { text-align: center; width: 100%; max-width: var(--max-width); padding: 0 60px; box-sizing: border-box; }
@@ -269,33 +281,18 @@
     /* CONTENT WRAPPER */
     .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); box-sizing: border-box; }
 
-    /* Meta Grid - Refinada (Padrão Unificado) */
+    /* Meta Grid */
     .meta-grid { 
-        display: grid; 
-        grid-template-columns: 1fr 1fr 1fr; 
-        grid-template-areas: "role year tools"; 
-        gap: 24px; 
-        margin-bottom: 40px; 
-        background: white; 
-        padding: 20px 30px; /* Bordas reduzidas */
-        border-radius: var(--radius-lg); 
-        box-shadow: var(--shadow-sm); 
+        display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "role year tools"; 
+        gap: 24px; margin-bottom: 40px; background: white; padding: 20px 30px; 
+        border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); 
     }
-
-    /* Posicionamento dos itens para centralizar o Foco (CTR) */
-    .role { grid-area: role; text-align: left; align-items: flex-start; }
-    .year { grid-area: year; text-align: center; align-items: center; } 
-    .tools { grid-area: tools; text-align: right; align-items: flex-end; } 
-
-    .meta-item { display: flex; flex-direction: column; }
+    .role { grid-area: role; text-align: left; }
+    .year { grid-area: year; text-align: center; } 
+    .tools { grid-area: tools; text-align: right; } 
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
-
-    /* Mobile 2x2 Grid Layout Config */
-    .meta-item:nth-child(1) { grid-area: role; }
-    .meta-item:nth-child(2) { grid-area: year; } 
-    .meta-item:nth-child(3) { grid-area: tools; } 
-
+    
     .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 80px; }
     .project-description strong { color: var(--accent); font-weight: 600; }
 
@@ -315,44 +312,35 @@
     .thumb-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
     .thumb-card:hover .thumb-img { transform: scale(1.05); }
 
-    /* NAVEGAÇÃO INFERIOR */
+    /* Navigation - ALINHAMENTO CORRIGIDO (880px) */
     .project-nav { 
-        width: 100%; max-width: var(--max-width); margin: 0 auto; 
-        /* CORREÇÃO: Padding 60px lateral para alinhar com o conteúdo de 880px */
-        padding: 60px 60px 80px; 
+        width: 100%; max-width: 880px; margin: 0 auto; 
+        padding: 60px 0 80px; /* Padding zero nas laterais */
         border-top: 1px solid rgba(0,0,0,0.1); 
-        display: flex; justify-content: space-between; align-items: center; 
-        box-sizing: border-box;
+        display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; 
     }
-    
     .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); text-decoration: none; }
     .nav-btn:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .nav-btn.prev:hover { transform: translateX(-4px); } 
     .nav-btn.next:hover { transform: translateX(4px); }
     .nav-btn:active { transform: scale(0.96); transition-duration: 0.1s; }
-    
     .nav-btn.next { text-align: right; flex-direction: row-reverse; }
     .nav-btn i { transition: transform 0.3s ease; }
     .nav-btn.prev:hover i { transform: translateX(-4px); } 
     .nav-btn.next:hover i { transform: translateX(4px); }
     .nav-label { font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: 0.6; }
     .nav-project-name { font-size: 1rem; color: var(--text-primary); }
-
-    .nav-home-btn {
-      width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; color: var(--text-secondary); background: rgba(0,0,0,0.02);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none;
-    }
+    .nav-home-btn { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-secondary); background: rgba(0,0,0,0.02); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
     .nav-home-btn:hover { background: rgba(0, 113, 227, 0.08); color: var(--accent); transform: scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .nav-home-btn:active { transform: scale(0.96); }
 
-    /* Contact Banner (Desktop: 880px para alinhar com texto interno) */
+    /* Contact Banner - ALINHAMENTO CORRIGIDO (880px) */
     .contact-banner { 
         width: 100%; max-width: 880px; 
         background: #1D1D1F; border-radius: 24px; padding: 50px; 
         display: flex; justify-content: space-between; align-items: center; 
         box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; 
-        margin: 0 auto 40px; box-sizing: border-box;
+        margin: 0 auto 40px; box-sizing: border-box; 
     }
     .contact-text-group { flex: 1; padding-right: 20px; }
     .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
@@ -380,103 +368,72 @@
     .lb-prev { left: 20px; position: fixed; }
     .lb-next { right: 20px; position: fixed; }
 
-    /* --- RESPONSIVIDADE --- */
+    /* --- RESPONSIVIDADE (FIXED FOR GOLD MASTER) --- */
     @media (max-width: 968px) {
       body { flex-direction: column; }
       .project-title { font-size: 2rem; }
 
-      aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
+      /* HEADER MOBILE EXATO */
+      aside { 
+          width: 100%; height: 70px; 
+          position: fixed; top: 0; left: 0; 
+          padding: 0 24px; 
+          border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); 
+          display: flex; flex-direction: row; justify-content: space-between; align-items: center; 
+          z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); 
+          overflow-y: hidden; 
+      }
+      
+      .sidebar-scaler { width: auto; height: auto !important; min-height: auto; padding: 0; flex-direction: row; align-items: center; transform: none !important; }
+      .sidebar-scaler.compact-mode { padding: 0; }
       .profile-container { margin: 0; text-align: left; }
       .profile-link { display: flex; align-items: center; gap: 12px; }
-      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+      
+      /* FOTO 36px FIXA */
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-shrink: 0; }
+      
       .profile-name { font-size: 1rem; margin: 0; }
       .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
       .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.2s; }
       .mobile-menu-btn:active { transform: scale(0.9); }
       
-      main { margin-left: 0; padding: 100px 0 40px; }
-      
-      /* Mobile Padding 24px */
+      main { margin-left: 0; padding: 100px 24px 40px; }
       .project-hero { padding: 40px 0 20px; }
-      .hero-image-container { padding: 0 24px; width: 100%; max-width: 100%; box-sizing: border-box; }
-      .hero-text-content { padding: 0 24px; }
-      .content-wrapper { padding: 40px 24px; }
+      .hero-image-container { padding: 0; width: 100%; max-width: 100%; box-sizing: border-box; }
+      .hero-text-content { padding: 0; }
+      .content-wrapper { padding: 40px 0; }
       
-      /* Grid em linha única para Mobile com respiro lateral corrigido */
-      .meta-grid { 
-        grid-template-columns: 1fr 1fr 1fr; 
-        grid-template-areas: "role year tools"; 
-        gap: 10px; 
-        padding: 18px 18px; 
-      }
-      
-      /* Redução de fonte e quebra de linha apenas para Mobile */
+      .meta-grid { grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "role year tools"; gap: 10px; padding: 18px 18px; }
+      .meta-item p { font-size: 0.72rem; line-height: 1.2; word-break: break-word; }
       .meta-item h4 { font-size: 0.6rem; }
-      .meta-item p { 
-        font-size: 0.72rem; 
-        line-height: 1.2; 
-        word-break: break-word;
-      }
-
-      /* Alinhamentos mobile preservando a hierarquia */
-      .role { text-align: left; align-items: flex-start; }
-      .year { text-align: center; align-items: center; }
-      .tools { text-align: right; align-items: flex-end; }
+      .role { text-align: left; }
+      .year { text-align: center; }
+      .tools { text-align: right; }
       .thumb-grid { grid-template-columns: 1fr; }
-
-      /* Navegação Mobile: Padding 30px 16px (16+8=24px régua) */
-      .project-nav { 
-        flex-direction: row; 
-        gap: 8px; 
-        padding: 30px 16px;
-        width: 100%; 
-        justify-content: space-between;
-      }
       
-      .nav-btn { 
-        width: auto; padding: 10px 8px; flex: 1; 
-        justify-content: center; font-size: 0.8rem;
-        flex-direction: column; gap: 6px; text-align: center;
-      }
+      /* Navigation Mobile */
+      .project-nav { flex-direction: row; gap: 8px; padding: 30px 0; width: 100%; justify-content: space-between; max-width: 100%; }
+      .nav-btn { width: auto; padding: 10px 8px; flex: 1; justify-content: center; font-size: 0.8rem; flex-direction: column; gap: 6px; text-align: center; }
       .nav-btn.next { flex-direction: column; text-align: center; } 
       .nav-btn i { font-size: 1.1rem; }
       .nav-project-name { display: block; font-size: 0.65rem; line-height: 1.1; white-space: normal; max-width: 80px; }
       .nav-label { font-size: 0.6rem; margin-bottom: 0; }
       .nav-home-btn { order: 0; flex-shrink: 0; width: 40px; height: 40px; margin: 0 4px; }
 
-      /* Banner Mobile: Padding 24px */
-      .contact-banner { 
-        flex-direction: column; text-align: center; gap: 32px; 
-        padding: 32px 24px; 
-        margin: 0 24px 40px; /* Margem exata 24px para alinhar */
-        width: auto; 
-        max-width: 100%; /* Reseta max-width do desktop */
-      }
+      /* Contact Banner Mobile */
+      .contact-banner { flex-direction: column; text-align: center; gap: 32px; padding: 32px 24px; margin: 0 0 40px; width: 100%; max-width: 100%; }
       .contact-text-group { width: 100%; padding-right: 0; }
       .contact-social { justify-content: center; margin-top: 15px; }
       .contact-actions { width: 100%; flex-direction: column; gap: 10px; }
       .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
     }
 
-    /* --- Paisagem Mobile (Fontes Ajustadas) --- */
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; } 
       main { padding: 90px 40px 40px; }
-      
-      /* Fontes Reduzidas */
-      .project-title { font-size: 1.5rem; margin-bottom: 4px; }
-      .project-subtitle { font-size: 0.9rem; }
-      
-      .project-description { font-size: 0.8rem; line-height: 1.4; }
-      .contact-text p { font-size: 0.8rem; }
-      
-      /* Títulos Maiores */
-      .section-title { font-size: 1.2rem; margin-bottom: 2px; }
-      .contact-text h2 { font-size: 1.2rem; }
-
+      .project-description { font-size: 0.85rem; line-height: 1.45; }
       .thumb-grid { grid-template-columns: 1fr 1fr; }
       .contact-banner { padding: 40px; }
-      
       .nav-btn { flex-direction: row; text-align: left; }
       .nav-btn.next { flex-direction: row-reverse; text-align: right; }
       .nav-project-name { max-width: none; }
@@ -489,6 +446,18 @@
     <button class="mobile-close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
     <div class="mobile-scroll-wrapper">
         <div class="mobile-nav-container">
+            <div class="lang-switcher-container" id="mobileLangSwitcher" style="margin-bottom: 20px; background: rgba(0,0,0,0.05);">
+                <div class="gliding-pill"></div>
+                <span class="lang-item active" data-lang="pt">
+                    <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#009c3b" d="M0 0h640v480H0z"/><path fill="#ffdf00" d="M320 80l245.4 160L320 400 74.6 240z"/><circle cx="320" cy="240" r="94.2" fill="#002776"/><path fill="#fff" d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg>
+                    PT
+                </span>
+                <span class="lang-item" data-lang="en">
+                    <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0z"/><path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path fill="#192f5d" d="M0 0h256v258H0z"/><path fill="#fff" d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" opacity=".8"/></svg>
+                    EN
+                </span>
+            </div>
+
             <div class="mobile-nav-group">
                 <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
                 <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
@@ -500,12 +469,12 @@
                     <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
                     <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
                     <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
-                    <a href="lo.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
-                    <a href="ogabriels.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
-                    <a href="um-minuto-para-refletir-em-Deus.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
+                    <a href="lo-publicidade.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
+                    <a href="personal-branding.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
+                    <a href="podcast-um-minuto.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
                     <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
                     <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
-                    <a href="vídeos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
+                    <a href="videos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
                 </div>
             </div>
             <div class="mobile-footer-group">
@@ -523,75 +492,78 @@
   </div>
 
   <aside>
-    <div class="profile-container">
-      <a href="index.html" class="profile-link">
-        <div class="profile-pic-wrapper">
-          <img src="Logo.png" alt="Gabriel Silva" class="profile-pic">
+    <div class="sidebar-scaler">
+        <div class="profile-container">
+          <a href="index.html" class="profile-link">
+            <div class="profile-pic-wrapper">
+              <img src="assets/img/ogabriels-logo.png" alt="Gabriel Silva" class="profile-pic">
+            </div>
+            <div class="profile-text-group">
+              <h1 class="profile-name">Gabriel Silva</h1>
+              <p class="profile-role">Creative Technologist</p>
+            </div>
+          </a>
         </div>
-        <div class="profile-text-group">
-          <h1 class="profile-name">Gabriel Silva</h1>
-          <p class="profile-role">Creative Technologist</p>
-        </div>
-      </a>
-    </div>
 
-    <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir Menu">
+        <nav>
+          <div class="nav-group">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link back-link"><i class="fa-solid fa-arrow-left"></i> Voltar para Projetos</a></li>
+              <li><a href="sobre.html" class="nav-link about-link"><i class="fa-regular fa-user"></i> Sobre mim</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-group" style="flex: 1; min-height: 0; display: flex; flex-direction: column;">
+            <h3>Portfólio</h3>
+            <ul class="nav-list project-scroll-container">
+              <li><a href="infra.html" class="nav-link">Server Infra & Dashboard</a></li>
+              <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
+              <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
+              <li><a href="lo-publicidade.html" class="nav-link">Lô</a></li>
+              <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
+              <li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li>
+              <li><a href="valorada.html" class="nav-link">Valorada</a></li>
+              <li><a href="thumbnails.html" class="nav-link active">Thumbnails</a></li>
+              <li><a href="videos.html" class="nav-link">Produção Audiovisual</a></li>
+            </ul>
+          </div>
+          
+          <div class="lang-switcher-container">
+              <div class="gliding-pill"></div>
+              <span class="lang-item active" data-lang="pt">
+                  <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#009c3b" d="M0 0h640v480H0z"/><path fill="#ffdf00" d="M320 80l245.4 160L320 400 74.6 240z"/><circle cx="320" cy="240" r="94.2" fill="#002776"/><path fill="#fff" d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg>
+                  PT
+              </span>
+              <span class="lang-item" data-lang="en">
+                  <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0z"/><path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path fill="#192f5d" d="M0 0h256v258H0z"/><path fill="#fff" d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" opacity=".8"/></svg>
+                  EN
+              </span>
+          </div>
+
+          <a href="contato.html" class="sidebar-cta">
+            <i class="fa-regular fa-comment-dots"></i> Fale Comigo
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
+            <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          <p class="copyright">© 2026 Gabriel Silva</p>
+        </div>
+    </div> <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir Menu">
       <i class="fa-solid fa-bars"></i>
     </button>
-
-    <nav>
-      <div class="nav-group">
-        <ul class="nav-list">
-          <li>
-            <a href="index.html" class="nav-link back-link">
-              <i class="fa-solid fa-arrow-left"></i> Voltar para Projetos
-            </a>
-          </li>
-          <li>
-            <a href="sobre.html" class="nav-link about-link">
-                <i class="fa-regular fa-user"></i> Sobre mim
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="nav-group">
-        <h3>Portfólio</h3>
-        <ul class="nav-list">
-          <li><a href="infra.html" class="nav-link">Server Infra & Dashboard</a></li>
-          <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
-          <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
-          <li><a href="lo.html" class="nav-link">Lô</a></li>
-          <li><a href="ogabriels.html" class="nav-link">G | Gabriel</a></li>
-          <li><a href="um-minuto-para-refletir-em-Deus.html" class="nav-link">Um Minuto</a></li>
-          <li><a href="valorada.html" class="nav-link">Valorada</a></li>
-          <li><a href="thumbnails.html" class="nav-link active">Thumbnails</a></li>
-          <li><a href="vídeos.html" class="nav-link">Produção Audiovisual</a></li>
-        </ul>
-      </div>
-
-      <a href="contato.html" class="sidebar-cta">
-        <i class="fa-regular fa-comment-dots"></i> Fale Comigo
-      </a>
-    </nav>
-
-    <div class="sidebar-footer">
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-        <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
-        <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <p class="copyright">© 2026 Gabriel Silva</p>
-    </div>
   </aside>
 
   <main>
-    
     <section class="project-hero">
       <div class="hero-image-container">
         <div class="hero-image-wrapper-inner">
-            <img src="Detector de Fraudes com IA - Projeto Integrador II – UNIVESP (escuro).jpg" alt="Thumbnail Anti-Fraude Destaque" class="hero-image lightbox-trigger">
+            <img src="assets/img/thumbnails-capa.png" alt="Thumbnails Capa" class="hero-image lightbox-trigger">
         </div>
       </div>
       
@@ -602,7 +574,6 @@
     </section>
 
     <div class="content-wrapper">
-      
       <section class="meta-grid">
         <div class="meta-item role"><h4>Serviço</h4><p>Design para YouTube</p></div>
         <div class="meta-item year"><h4>Foco</h4><p>Click-Through Rate</p></div>
@@ -622,19 +593,19 @@
         <div class="thumb-grid">
           
           <div class="thumb-card">
-            <img src="Detector de Fraudes com IA - Projeto Integrador II – UNIVESP (claro).jpg" alt="Thumbnail Anti-Fraude Claro" class="thumb-img lightbox-trigger">
+            <img src="assets/img/detector-fraudes-ia-claro.jpg" alt="Thumbnail Anti-Fraude Claro" class="thumb-img lightbox-trigger">
           </div>
 
           <div class="thumb-card">
-            <img src="Exemplo de thumbnail para YouTube, com personagens de Valorant e textos chamativos, mostrando estilo de design para série de gameplay.jpg" alt="Thumbnail Valorant Gameplay" class="thumb-img lightbox-trigger">
+            <img src="assets/img/thumbnail-valorant-gameplay.jpg" alt="Thumbnail Valorant Gameplay" class="thumb-img lightbox-trigger">
           </div>
 
           <div class="thumb-card">
-            <img src="Exemplo de thumbnail para YouTube, com personagens de Valorant e textos chamativos, mostrando estilo de design para vídeo de curiosidade.png" alt="Thumbnail Valorant Curiosidade" class="thumb-img lightbox-trigger">
+            <img src="assets/img/thumbnail-valorant-curiosidade.png" alt="Thumbnail Valorant Curiosidade" class="thumb-img lightbox-trigger">
           </div>
 
           <div class="thumb-card">
-            <img src="Detector de Fraudes com IA - Projeto Integrador II – UNIVESP (escuro).jpg" alt="Thumbnail Anti-Fraude Escuro" class="thumb-img lightbox-trigger">
+            <img src="assets/img/detector-fraudes-ia-escuro.jpg" alt="Thumbnail Anti-Fraude Escuro" class="thumb-img lightbox-trigger">
           </div>
 
         </div>
@@ -652,7 +623,7 @@
         <i class="fa-solid fa-house"></i>
       </a>
 
-      <a href="vídeos.html" class="nav-btn next">
+      <a href="videos.html" class="nav-btn next">
         <div><span class="nav-label">Próximo</span><span class="nav-project-name">Produção Audiovisual</span></div>
         <i class="fa-solid fa-arrow-right"></i>
       </a>
@@ -672,9 +643,7 @@
         </div>
         <div class="contact-actions">
           <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
-          <a href="https://wa.me/5511979686116" target="_blank" class="btn-secondary-dark">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-          </a>
+          <a href="https://wa.me/5511979686116" target="_blank" class="btn-secondary-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </div>
     </section>
 
@@ -684,35 +653,152 @@
     <button id="lb-close" class="lb-control lb-close"><i class="fa-solid fa-xmark"></i></button>
     <button id="lb-prev" class="lb-control lb-prev"><i class="fa-solid fa-chevron-left"></i></button>
     <button id="lb-next" class="lb-control lb-next"><i class="fa-solid fa-chevron-right"></i></button>
-    
     <div class="lb-image-container">
       <img src="" alt="Zoom" id="lb-image" class="lb-image">
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const icon = menuBtn.querySelector('i');
-      let isMenuOpen = false;
+    // --- SIDEBAR & MENU LOGIC (GOLD MASTER) ---
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function toggleMenu() {
+        const isOpen = mobileMenu.classList.contains('active');
+        if (!isOpen) { mobileMenu.classList.add('active'); document.body.style.overflow = 'hidden'; } 
+        else { mobileMenu.classList.remove('active'); document.body.style.overflow = ''; }
+    }
+    menuBtn.addEventListener('click', toggleMenu);
 
-      window.toggleMenu = function() {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-          mobileMenu.classList.add('active');
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-xmark');
-          document.body.style.overflow = 'hidden';
-        } else {
-          mobileMenu.classList.remove('active');
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-          document.body.style.overflow = '';
-        }
+    // --- SIDEBAR SCALER ---
+    let lastWidth = 0; let lastHeight = 0;
+    function fitSidebarToScreen() {
+      if (window.innerWidth <= 968) {
+        const scaler = document.querySelector('.sidebar-scaler');
+        if (scaler) { scaler.style.transform = 'none'; scaler.style.width = 'auto'; scaler.style.height = 'auto'; scaler.classList.remove('compact-mode'); }
+        return;
       }
-      menuBtn.addEventListener('click', toggleMenu);
+      if (window.innerWidth === lastWidth && window.innerHeight === lastHeight) return; 
+      lastWidth = window.innerWidth; lastHeight = window.innerHeight;
+      const scaler = document.querySelector('.sidebar-scaler'); if (!scaler) return;
+      scaler.style.transform = 'scale(1)'; scaler.style.width = '100%'; scaler.style.height = 'auto'; scaler.classList.remove('compact-mode'); 
+      const windowHeight = window.innerHeight; const contentHeight = scaler.scrollHeight; 
+      let scale = 1; if (contentHeight > windowHeight) { scale = windowHeight / contentHeight; }
+      const MIN_SCALE = 0.85; 
+      if (scale < MIN_SCALE) { scaler.classList.add('compact-mode'); scale = MIN_SCALE; scaler.style.height = (windowHeight / scale) + 'px'; } else if (scale < 0.98) { scaler.style.height = (windowHeight / scale) + 'px'; } else { scaler.style.height = (windowHeight / scale) + 'px'; }
+      scaler.style.transform = `scale(${scale})`; scaler.style.width = (100 / scale) + '%';
+    }
+    window.addEventListener('load', fitSidebarToScreen); window.addEventListener('resize', fitSidebarToScreen); setTimeout(fitSidebarToScreen, 500);
 
+    // --- PHYSICS ENGINE (LANG SWITCHER) ---
+    document.addEventListener('DOMContentLoaded', function() {
+        function initPhysicsSwitcher(container) {
+            if (!container) return;
+            const pill = container.querySelector('.gliding-pill');
+            const ptItem = container.querySelector('.lang-item:nth-child(2)'); 
+            const enItem = container.querySelector('.lang-item:nth-child(3)'); 
+            let isDragging = false; let isAutoScrolling = false; let currentSelection = 'pt'; let animationFrameId = null;
+            let startX = 0; let startPillX = 0; let lastTime = 0; let velocity = 0; let lastX = 0;
+            let physics = { targetX: 0, currentX: 0, targetScaleX: 1, currentScaleX: 1, targetScaleY: 1, currentScaleY: 1, targetSkew: 0, currentSkew: 0 };
+            const DRAG_FACTOR = 0.92; const SMOOTH_FACTOR = 0.15; const EDGE_BUFFER = 5; const REST_SCALE = 1.05; const HELD_SCALE = 1.32; 
+            const getX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
+
+            function updateVisuals(progress, isHeld, currentScale) {
+                if (isHeld) { pill.style.backdropFilter = 'blur(10px)'; pill.style.webkitBackdropFilter = 'blur(10px)'; pill.style.backgroundColor = 'rgba(255, 255, 255, 0.6)'; pill.style.boxShadow = '0 18px 40px -5px rgba(0,0,0,0.3), 0 0 20px -5px rgba(0,0,0,0.15)'; }
+                const distPT = Math.abs(progress - 0); const distEN = Math.abs(progress - 1); 
+                let scaleMultiplier = 0; if (currentScale) { const safeScale = Math.max(1, currentScale); scaleMultiplier = (safeScale - 1.0) * 0.8; }
+                const scalePT = 1.0 + (Math.max(0, 1.0 - distPT) * scaleMultiplier); const scaleEN = 1.0 + (Math.max(0, 1.0 - distEN) * scaleMultiplier);
+                if(progress < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); } else { enItem.classList.add('active'); ptItem.classList.remove('active'); }
+                ptItem.style.transform = `scale(${scalePT})`; enItem.style.transform = `scale(${scaleEN})`;
+            }
+            function resetStyles(finalXValue) {
+                pill.style.setProperty('--pill-x', finalXValue + '%'); pill.style.transform = ''; pill.style.backdropFilter = ''; pill.style.webkitBackdropFilter = ''; pill.style.backgroundColor = ''; pill.style.boxShadow = ''; pill.style.transition = '';
+                ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
+            }
+            function physicsLoop() {
+                if (!isDragging && !isAutoScrolling) return;
+                if(isAutoScrolling) {
+                    const prevX = physics.currentX;
+                    physics.currentX += (physics.targetX - physics.currentX) * 0.20;
+                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * 0.20;
+                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * 0.20;
+                    velocity = (physics.currentX - prevX); 
+                    physics.targetSkew = Math.max(-20, Math.min(20, velocity * -1.5));
+                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * 0.20;
+                    if(Math.abs(physics.currentX - physics.targetX) < 1) { isAutoScrolling = false; finishInteraction(); return; }
+                } else {
+                    physics.currentX += (physics.targetX - physics.currentX) * SMOOTH_FACTOR;
+                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * SMOOTH_FACTOR;
+                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * SMOOTH_FACTOR;
+                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * SMOOTH_FACTOR;
+                }
+                pill.style.transform = `translateX(${physics.currentX}px) scale(${physics.currentScaleX}, ${physics.currentScaleY}) skewX(${physics.currentSkew}deg)`;
+                const containerRect = container.getBoundingClientRect(); const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8;
+                const percentage = (physics.currentX / maxTranslate); const progress = Math.max(0, Math.min(1, percentage));
+                updateVisuals(progress, true, physics.currentScaleX);
+                animationFrameId = requestAnimationFrame(physicsLoop);
+            }
+            function finishInteraction() {
+                cancelAnimationFrame(animationFrameId);
+                const containerRect = container.getBoundingClientRect(); const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8; const midPoint = maxTranslate / 2;
+                const finalChoice = physics.currentX > midPoint ? 'en' : 'pt'; currentSelection = finalChoice;
+                const finalX = currentSelection === 'en' ? 100 : 0;
+                const syncTransition = 'transform 0.6s cubic-bezier(0.5, 1.6, 0.4, 1.1)';
+                pill.style.transition = syncTransition + ', background-color 0.4s ease, box-shadow 0.4s ease'; pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
+                ptItem.style.transition = syncTransition; enItem.style.transition = syncTransition; ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
+                pill.style.backdropFilter = ''; pill.style.boxShadow = ''; pill.style.backgroundColor = '';
+                setTimeout(() => { resetStyles(finalX); }, 600);
+                
+                const isEnPage = window.location.pathname.includes('/en/');
+                if (currentSelection === 'en' && !isEnPage) { localStorage.setItem('preferredLang', 'en'); setTimeout(() => { window.location.href = 'en/thumbnails-youtube.html'; }, 650); } 
+                else if (currentSelection === 'pt' && isEnPage) { localStorage.setItem('preferredLang', 'pt'); setTimeout(() => { window.location.href = '../thumbnails.html'; }, 650); }
+            }
+            const startHandler = (e) => {
+                if(isAutoScrolling) return; isDragging = true;
+                pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+                if(e.type === 'mousedown') e.preventDefault();
+                const clientX = getX(e); const containerRect = container.getBoundingClientRect(); const pillRect = pill.getBoundingClientRect();
+                startX = clientX; lastX = clientX; lastTime = Date.now(); startPillX = pillRect.left - containerRect.left; 
+                const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform); physics.currentX = currentMatrix.m41; 
+                physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b); physics.currentScaleY = physics.currentScaleX;
+                physics.targetX = physics.currentX; physics.targetScaleX = HELD_SCALE; physics.targetScaleY = HELD_SCALE; 
+                cancelAnimationFrame(animationFrameId); physicsLoop();
+            };
+            const moveHandler = (e) => {
+                if (!isDragging) return; if (e.type === 'mousemove' && e.buttons === 0) { endHandler(e); return; }
+                const clientX = getX(e); const now = Date.now(); const dt = now - lastTime;
+                if(dt > 0) { const newVel = (clientX - lastX) / dt; velocity = (velocity * 0.7) + (newVel * 0.3); } lastX = clientX; lastTime = now;
+                const movementDelta = clientX - startX; let rawTargetX = startPillX + (movementDelta * DRAG_FACTOR);
+                const containerRect = container.getBoundingClientRect(); const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8; 
+                const effectiveMin = EDGE_BUFFER; const effectiveMax = maxTranslate - EDGE_BUFFER; let clampedTargetX = rawTargetX; let wallPenetration = 0; 
+                if (rawTargetX < effectiveMin) { wallPenetration = effectiveMin - rawTargetX; clampedTargetX = effectiveMin - (12 * (1 - Math.pow(2.718, -wallPenetration / 25))); } 
+                else if (rawTargetX > effectiveMax) { wallPenetration = rawTargetX - effectiveMax; clampedTargetX = effectiveMax + (12 * (1 - Math.pow(2.718, -wallPenetration / 25))); }
+                physics.targetX = clampedTargetX; const absVel = Math.abs(velocity); const baseScale = HELD_SCALE; 
+                if (wallPenetration > 1) { const totalSquash = Math.min(absVel * 0.25, 0.25) + Math.min(wallPenetration * 0.01, 0.15); physics.targetScaleX = baseScale - (totalSquash * 0.7); physics.targetScaleY = baseScale + (totalSquash * 0.8); } 
+                else { if (absVel > 0.1) { const stretchFactor = Math.min(absVel * 0.08, 0.2); physics.targetScaleX = baseScale + stretchFactor; physics.targetScaleY = baseScale - (stretchFactor * 0.6); } else { physics.targetScaleX = baseScale; physics.targetScaleY = baseScale; } }
+                physics.targetSkew = Math.max(-20, Math.min(20, velocity * -12)); 
+            };
+            const endHandler = (e) => { if(!isDragging) return; isDragging = false; if (Math.abs(lastX - startX) > 5) { finishInteraction(); } };
+            container.addEventListener('touchstart', startHandler, {passive: false}); window.addEventListener('touchmove', moveHandler, {passive: false}); window.addEventListener('touchend', endHandler);
+            container.addEventListener('mousedown', startHandler); window.addEventListener('mousemove', moveHandler); window.addEventListener('mouseup', endHandler);
+            container.addEventListener('mouseleave', function() { if(!isDragging && !isAutoScrolling) { const finalX = currentSelection === 'en' ? 100 : 0; resetStyles(finalX); } });
+            container.addEventListener('click', function(e) {
+                const movementTotal = Math.abs(lastX - startX); if (isDragging || movementTotal > 5) return; if(isAutoScrolling) return; 
+                const containerRect = container.getBoundingClientRect(); const clickX = e.clientX - containerRect.left;
+                const isRightSide = clickX > (containerRect.width / 2); const targetLang = isRightSide ? 'en' : 'pt';
+                if(targetLang === currentSelection) return; isAutoScrolling = true; currentSelection = targetLang;
+                const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8;
+                const currentMatrix = new WebKitCSSMatrix(window.getComputedStyle(pill).transform); physics.currentX = currentMatrix.m41; 
+                physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b); physics.currentScaleY = physics.currentScaleX;
+                physics.targetX = targetLang === 'en' ? maxTranslate : 0; physics.targetScaleX = HELD_SCALE; physics.targetScaleY = HELD_SCALE; 
+                pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none'; cancelAnimationFrame(animationFrameId); physicsLoop();
+            });
+        }
+        const allSwitchers = document.querySelectorAll('.lang-switcher-container');
+        allSwitchers.forEach(el => initPhysicsSwitcher(el));
+    });
+
+    // --- LIGHTBOX SCRIPT ---
+    document.addEventListener('DOMContentLoaded', () => {
       const triggers = document.querySelectorAll('.lightbox-trigger');
       const lightbox = document.getElementById('lightbox');
       const lbImage = document.getElementById('lb-image');
@@ -742,50 +828,33 @@
       function changeImage(direction) {
         if (isAnimating) return; 
         isAnimating = true;
-
         lbImage.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         lbImage.style.transform = direction > 0 ? 'translateX(-120%)' : 'translateX(120%)';
-
         setTimeout(() => {
             currentIndex = (currentIndex + direction + imagesList.length) % imagesList.length;
             lbImage.src = imagesList[currentIndex];
-            
             lbImage.style.transition = 'none';
             lbImage.style.transform = direction > 0 ? 'translateX(120%)' : 'translateX(-120%)';
-            
             void lbImage.offsetWidth;
-
             lbImage.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
             lbImage.style.transform = 'translateX(0)';
-            
             setTimeout(() => { isAnimating = false; }, 300);
         }, 300);
       }
 
-      triggers.forEach((trigger, index) => {
-        trigger.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(index); });
-      });
-
+      triggers.forEach((trigger, index) => { trigger.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(index); }); });
       lbClose.addEventListener('click', closeLightbox);
       lbPrev.addEventListener('click', (e) => { e.stopPropagation(); changeImage(-1); });
       lbNext.addEventListener('click', (e) => { e.stopPropagation(); changeImage(1); });
-
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.classList.contains('lb-image-container')) closeLightbox();
-      });
-
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.classList.contains('lb-image-container')) closeLightbox(); });
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') closeLightbox();
         if (e.key === 'ArrowLeft') changeImage(-1);
         if (e.key === 'ArrowRight') changeImage(1);
       });
-
-      let touchStartX = 0;
-      let touchEndX = 0;
-      lightbox.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-      });
+      let touchStartX = 0; let touchEndX = 0;
+      lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
       lightbox.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
         if (touchEndX < touchStartX - 50) changeImage(1); 
@@ -794,87 +863,65 @@
     });
   </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://ogabriels.com/",
-      "name": "Gabriel Silva",
-      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
-      "url": "https://ogabriels.com/",
-      "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": {
-        "@type": "ImageObject",
-        "@id": "https://ogabriels.com/#personImage",
-        "url": "https://ogabriels.com/Minha%20foto%201.jpg",
-        "contentUrl": "https://ogabriels.com/Minha%20foto%201.jpg",
-        "caption": "Gabriel Silva"
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://ogabriels.com/",
+        "name": "Gabriel Silva",
+        "jobTitle": "Creative Technologist & Full Stack Developer",
+        "url": "https://ogabriels.com/",
+        "image": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
+        "knowsAbout": ["Thumbnails YouTube", "Design Gráfico", "CTR Strategy", "Photoshop", "Identidade Visual"],
+        "alumniOf": [
+          { "@type": "EducationalOrganization", "name": "Liceu de Artes e Ofícios de São Paulo" },
+          { "@type": "EducationalOrganization", "name": "UNIVESP" }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/ogabriels/",
+          "https://github.com/ogabriels2/",
+          "https://www.behance.net/ogabriels0",
+          "https://x.com/ogabriels0",
+          "https://www.instagram.com/ogabriels0/",
+          "https://www.youtube.com/@Gabalarca"
+        ]
       },
-      "alumniOf": [
-        { 
-          "@type": "EducationalOrganization", 
-          "name": "Liceu de Artes e Ofícios de São Paulo",
-          "url": "https://www.liceuescola.com.br",
-          "sameAs": ["https://www.liceuescola.com.br", "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"]
-        },
-        { 
-          "@type": "EducationalOrganization", 
-          "name": "UNIVESP",
-          "url": "https://univesp.br/",
-          "sameAs": ["https://univesp.br/", "https://pt.wikipedia.org/wiki/Universidade_Virtual_do_Estado_de_S%C3%A3o_Paulo", "https://www.sp.gov.br/sp/institucional/estrutura/fundacoes/univesp"]
-        }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/ogabriels/",
-        "https://github.com/ogabriels2/",
-        "https://www.behance.net/ogabriels0",
-        "https://x.com/ogabriels0",
-        "https://www.instagram.com/ogabriels0/",
-        "https://www.youtube.com/@Gabalarca"
-      ]
-    },
-    {
-      "@type": "ImageGallery",
-      "@id": "https://ogabriels.com/thumbnails.html#gallery",
-      "headline": "Thumbnails para YouTube de Alto CTR",
-      "description": "Galeria de design estratégico para YouTube focado em conversão.",
-      "creator": { "@id": "https://ogabriels.com/" },
-      "publisher": { "@id": "https://ogabriels.com/" },
-      "datePublished": "2024-05-10T08:00:00-03:00",
-      "dateModified": "2026-01-30T10:00:00-03:00",
-      "mainEntityOfPage": { "@id": "https://ogabriels.com/thumbnails.html" },
-      "associatedMedia": [
-        {
-          "@type": "ImageObject",
-          "name": "Thumbnail Detector de Fraudes IA (Dark Mode)",
-          "contentUrl": "https://ogabriels.com/Detector%20de%20Fraudes%20com%20IA%20-%20Projeto%20Integrador%20II%20–%20UNIVESP%20(escuro).jpg",
-          "description": "Design de thumbnail estratégica para projeto de IA da UNIVESP."
-        }
-      ]
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://ogabriels.com/thumbnails.html",
-      "url": "https://ogabriels.com/thumbnails.html",
-      "name": "Thumbnails para YouTube | Design Estratégico para Alto CTR",
-      "isPartOf": { "@type": "WebSite", "@id": "https://ogabriels.com/#website" },
-      "breadcrumb": { "@id": "https://ogabriels.com/thumbnails.html#breadcrumb" },
-      "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
-      "inLanguage": "pt-BR"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/thumbnails.html#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Thumbnails", "item": "https://ogabriels.com/thumbnails.html" }
-      ]
-    }
-  ]
-}
-</script>
+      {
+        "@type": "ImageGallery",
+        "@id": "https://ogabriels.com/thumbnails.html#gallery",
+        "headline": "Thumbnails de Alto Impacto para YouTube",
+        "description": "Galeria de design estratégico focado em aumentar o CTR (Click-Through Rate) de vídeos no YouTube.",
+        "image": "https://ogabriels.com/assets/img/thumbnails-capa.png",
+        "datePublished": "2024-01-15T08:00:00-03:00",
+        "author": { "@id": "https://ogabriels.com/" },
+        "publisher": { "@id": "https://ogabriels.com/" },
+        "mainEntityOfPage": { "@id": "https://ogabriels.com/thumbnails.html" },
+        "keywords": "Thumbnails, YouTube Design, CTR, Capas de Vídeo, Gabriel Silva"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ogabriels.com/thumbnails.html",
+        "url": "https://ogabriels.com/thumbnails.html",
+        "name": "Thumbnails para YouTube | Design Estratégico",
+        "isPartOf": { "@id": "https://ogabriels.com/#website" },
+        "breadcrumb": { "@id": "https://ogabriels.com/thumbnails.html#breadcrumb" },
+        "about": { "@id": "https://ogabriels.com/thumbnails.html#gallery" },
+        "primaryImageOfPage": { "@id": "https://ogabriels.com/assets/img/thumbnails-capa.png" },
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ogabriels.com/thumbnails.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Thumbnails", "item": "https://ogabriels.com/thumbnails.html" }
+        ]
+      }
+    ]
+  }
+  </script>
 
 </body>
 </html>
