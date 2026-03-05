@@ -23,10 +23,23 @@
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza tudo horizontalmente dentro do container */
         }
+        
+        /* Estilização da Logo */
+        .logo {
+            max-height: 100px; /* Ajuste a altura máxima conforme desejar */
+            width: auto; /* Mantém a proporção */
+            margin-bottom: 30px; /* Espaço entre a logo e o título */
+            display: block;
+        }
+
         h1 {
             font-size: 2rem;
             margin-bottom: 5px;
+            margin-top: 0; /* Remove margem superior padrão */
             color: #111827;
         }
         .role {
@@ -48,12 +61,14 @@
             line-height: 1.6;
             color: #6b7280;
             margin-bottom: 30px;
+            width: 100%; /* Garante que o parágrafo ocupe o espaço correto */
         }
         .links {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
+            width: 100%;
         }
         .links a {
             text-decoration: none;
@@ -73,11 +88,14 @@
             font-weight: 600;
             color: #111827;
             font-size: 1.2rem;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="ogabriels-logo.webp" alt="Ogabriels Logo" class="logo">
+        
         <h1>Site em Reforma 🚧</h1>
         <div class="role">Creative Technologist</div>
         <p class="slogan">"Transformando ideias complexas em experiências digitais funcionais."</p>
