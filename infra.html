@@ -286,19 +286,22 @@
     .modal-desc { font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 30px; }
     .modal-close { background: var(--text-primary); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.2s; }
     .modal-close:hover { background: var(--accent); transform: translateY(-2px); }
-    .contact-banner { width: 100%; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin-bottom: 40px; }
+    .contact-banner { width: 100%; max-width: 880px; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin: 0 auto 40px; box-sizing: border-box; }
     .contact-text-group { flex: 1; padding-right: 20px; }
     .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
     .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
     .contact-social { display: flex; gap: 12px; }
-    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
+    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); text-decoration: none; }
     .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px) scale(1.1); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
+    .btn-social-mini:active { transform: scale(0.9); }
     .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
-    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
     .btn-cta-dark:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 25px rgba(255,255,255,0.25); background: #f2f2f2; }
-    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .btn-cta-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
     .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
-    .project-nav { width: 100%; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; padding-top: 40px; margin: 60px 0 80px 0; }
+    .btn-secondary-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
+    .project-nav { width: 100%; max-width: 880px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; padding-top: 40px; margin: 60px auto 80px; box-sizing: border-box; }
     .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); text-decoration: none; }
     .nav-btn:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .nav-btn.prev:hover { transform: translateX(-4px); }
@@ -676,7 +679,6 @@
           <div><span class="nav-label">Próximo</span><span class="nav-project-name">Revista Utopia</span></div>
           <i class="fa-solid fa-arrow-right"></i>
         </a>
-      </div>
       </div>
 
       <section class="contact-banner" id="contato">

@@ -364,7 +364,7 @@
     .nav-home-btn:hover { background: rgba(0, 113, 227, 0.08); color: var(--accent); transform: scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .nav-home-btn:active { transform: scale(0.96); }
 
-    .contact-banner { width: 100%; max-width: 880px; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin: 0 auto 40px; box-sizing: border-box; }
+    .contact-banner { width: 100%; max-width: 880px; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin: 0 auto 40px; box-sizing: border-box; }
     .contact-text-group { flex: 1 1 300px; padding-right: 20px; margin-bottom: 20px; }
     .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
     .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
@@ -825,23 +825,22 @@
           </div>
         </div>
       </section>
-    </div>
 
-    <div class="project-nav">
-      <a href="thumbnails.html" class="nav-btn prev">
-        <i class="fa-solid fa-arrow-left"></i>
-        <div><span class="nav-label">Anterior</span><span class="nav-project-name">Thumbnails</span></div>
-      </a>
-      <a href="index.html" class="nav-home-btn" aria-label="Home">
-        <i class="fa-solid fa-house"></i>
-      </a>
-      <a href="contato.html" class="nav-btn next">
-        <div><span class="nav-label">Finalizar</span><span class="nav-project-name">Vamos Conversar?</span></div>
-        <i class="fa-regular fa-comment-dots"></i>
-      </a>
-    </div>
+      <div class="project-nav">
+        <a href="thumbnails.html" class="nav-btn prev">
+          <i class="fa-solid fa-arrow-left"></i>
+          <div><span class="nav-label">Anterior</span><span class="nav-project-name">Thumbnails</span></div>
+        </a>
+        <a href="index.html" class="nav-home-btn" aria-label="Home">
+          <i class="fa-solid fa-house"></i>
+        </a>
+        <a href="contato.html" class="nav-btn next">
+          <div><span class="nav-label">Finalizar</span><span class="nav-project-name">Vamos Conversar?</span></div>
+          <i class="fa-regular fa-comment-dots"></i>
+        </a>
+      </div>
 
-    <section class="contact-banner" id="contato">
+      <section class="contact-banner" id="contato">
         <div class="contact-text-group">
           <div class="contact-text">
             <h2>Vamos criar algo incrível?</h2>
@@ -857,7 +856,8 @@
           <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
           <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <script>
