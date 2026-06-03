@@ -557,6 +557,55 @@
     /* ── v14: Skip Link ── */
     .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s ease; }
     .skip-link:focus { top: 20px; }
+
+    /* ── Custom Project Thumbnails ─────────────────────────── */
+    @keyframes fa-grid-drift { from { background-position: 0 0 } to { background-position: 40px 40px } }
+    @keyframes infra-pulse { 0%,100%{opacity:1;box-shadow:0 0 6px rgba(16,185,129,.9)} 50%{opacity:.35;box-shadow:none} }
+
+    /* Força Aliada — gold ecosystem thumb */
+    .thumb-fa { position:absolute;inset:0;background:#050810;overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1) }
+    .card:hover .thumb-fa { transform:scale(1.05) }
+    .thumb-fa-grid { position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:40px 40px;animation:fa-grid-drift 22s linear infinite }
+    .thumb-fa-orb { position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px) }
+    .thumb-fa-orb.o1 { width:220px;height:220px;background:rgba(201,168,76,.07);top:-90px;right:-50px }
+    .thumb-fa-orb.o2 { width:160px;height:160px;background:rgba(201,168,76,.06);bottom:-70px;left:-30px }
+    .thumb-fa-corner { position:absolute;width:16px;height:16px }
+    .thumb-fa-corner.tl { top:11px;left:11px;border-top:1.5px solid rgba(201,168,76,.45);border-left:1.5px solid rgba(201,168,76,.45) }
+    .thumb-fa-corner.tr { top:11px;right:11px;border-top:1.5px solid rgba(201,168,76,.45);border-right:1.5px solid rgba(201,168,76,.45) }
+    .thumb-fa-corner.bl { bottom:11px;left:11px;border-bottom:1.5px solid rgba(201,168,76,.45);border-left:1.5px solid rgba(201,168,76,.45) }
+    .thumb-fa-corner.br { bottom:11px;right:11px;border-bottom:1.5px solid rgba(201,168,76,.45);border-right:1.5px solid rgba(201,168,76,.45) }
+    .thumb-fa-center { position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);width:72px;height:72px;display:flex;align-items:center;justify-content:center }
+    .thumb-fa-glow { position:absolute;inset:-36px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.18) 0%,transparent 68%) }
+    .thumb-fa-logo { width:62px;height:62px;object-fit:contain;position:relative;z-index:1 }
+    .thumb-fa-chip { position:absolute;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.18);border-radius:5px;padding:4px 9px;font-size:.58rem;font-weight:500;color:rgba(201,168,76,.8);font-family:'DM Mono',monospace;letter-spacing:.04em;display:flex;align-items:center;gap:5px;white-space:nowrap }
+    .thumb-fa-chip i { font-size:.52rem }
+    .thumb-fa-chip.c1 { top:19%;left:6% }
+    .thumb-fa-chip.c2 { top:19%;right:6% }
+    .thumb-fa-chip.c3 { bottom:20%;left:6% }
+    .thumb-fa-chip.c4 { bottom:20%;right:6% }
+    .thumb-fa-tag { position:absolute;bottom:9px;left:50%;transform:translateX(-50%);font-size:.5rem;color:rgba(201,168,76,.3);font-family:'DM Mono',monospace;letter-spacing:.12em;white-space:nowrap }
+
+    /* Server Infra — terminal green thumb */
+    .thumb-infra { position:absolute;inset:0;background:#020d08;overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1) }
+    .card:hover .thumb-infra { transform:scale(1.05) }
+    .thumb-infra::after { content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(16,185,129,.01) 3px,rgba(16,185,129,.01) 4px);pointer-events:none;z-index:5 }
+    .thumb-infra-header { position:absolute;top:0;left:0;right:0;padding:8px 12px;display:flex;align-items:center;gap:7px;border-bottom:1px solid rgba(16,185,129,.1);z-index:2;background:rgba(16,185,129,.03) }
+    .thumb-infra-dot { width:5px;height:5px;border-radius:50%;background:#10b981;box-shadow:0 0 5px rgba(16,185,129,.9);animation:infra-pulse 2.8s infinite;flex-shrink:0 }
+    .thumb-infra-title { font-family:'DM Mono',monospace;font-size:.55rem;font-weight:500;color:rgba(16,185,129,.65);letter-spacing:.1em;text-transform:uppercase }
+    .thumb-infra-uptime { margin-left:auto;font-family:'DM Mono',monospace;font-size:.52rem;color:rgba(16,185,129,.38) }
+    .thumb-infra-body { position:absolute;top:28px;left:10px;right:10px;bottom:10px;display:flex;flex-direction:column;gap:5px;z-index:2 }
+    .thumb-infra-metric { background:rgba(16,185,129,.04);border:1px solid rgba(16,185,129,.09);border-radius:4px;padding:5px 9px }
+    .thumb-infra-mrow { display:flex;justify-content:space-between;align-items:center;margin-bottom:4px }
+    .thumb-infra-mname { font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(16,185,129,.48);letter-spacing:.07em;text-transform:uppercase }
+    .thumb-infra-mval { font-family:'DM Mono',monospace;font-size:.52rem;color:rgba(16,185,129,.92);font-weight:600 }
+    .thumb-infra-bar { height:3px;background:rgba(16,185,129,.1);border-radius:2px;overflow:hidden }
+    .thumb-infra-bar-fill { height:100%;border-radius:2px;background:linear-gradient(90deg,#10b981,rgba(16,185,129,.45)) }
+    .thumb-infra-divider { height:1px;background:rgba(16,185,129,.07);flex-shrink:0 }
+    .thumb-infra-dns { display:flex;flex-direction:column;gap:3px;padding-top:1px }
+    .thumb-infra-drow { display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(16,185,129,.38) }
+    .thumb-infra-drow .ok { color:rgba(16,185,129,.85) }
+    .thumb-infra-drow .addr { color:rgba(16,185,129,.58) }
+    .thumb-infra-drow .badge { padding:1px 5px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:3px;font-size:.46rem;color:rgba(16,185,129,.65);margin-left:auto }
   </style>
 </head>
 <body>
@@ -680,8 +729,25 @@
       <section class="grid">
 
         <article class="card">
-          <div class="card-image-wrapper logo-mode">
-            <img src="assets/img/forca-aliada-logo.webp" alt="Força Aliada - Ecossistema Full Stack" loading="lazy">
+          <div class="card-image-wrapper" style="background:#050810">
+            <div class="thumb-fa">
+              <div class="thumb-fa-orb o1"></div>
+              <div class="thumb-fa-orb o2"></div>
+              <div class="thumb-fa-grid"></div>
+              <div class="thumb-fa-corner tl"></div>
+              <div class="thumb-fa-corner tr"></div>
+              <div class="thumb-fa-corner bl"></div>
+              <div class="thumb-fa-corner br"></div>
+              <div class="thumb-fa-chip c1"><i class="fa-solid fa-globe"></i>Site Web</div>
+              <div class="thumb-fa-chip c2"><i class="fa-solid fa-server"></i>API REST</div>
+              <div class="thumb-fa-chip c3"><i class="fa-brands fa-windows"></i>App Desktop</div>
+              <div class="thumb-fa-chip c4"><i class="fa-solid fa-users"></i>Rede Social</div>
+              <div class="thumb-fa-center">
+                <div class="thumb-fa-glow"></div>
+                <img src="assets/img/forca-aliada-logo.webp" class="thumb-fa-logo" alt="" loading="lazy">
+              </div>
+              <div class="thumb-fa-tag">4 PRODUTOS · 5 ANOS EM PRODUÇÃO</div>
+            </div>
             <div class="card-overlay">
               <span class="project-meta">Full Stack</span>
               <h3 class="project-title">Força Aliada</h3>
@@ -695,8 +761,50 @@
         </article>
 
         <article class="card">
-          <div class="card-image-wrapper logo-mode">
-            <img src="assets/img/forca-aliada-logo.webp" alt="Server Infrastructure Dashboard - Projeto de Redes" loading="lazy">
+          <div class="card-image-wrapper" style="background:#020d08">
+            <div class="thumb-infra">
+              <div class="thumb-infra-header">
+                <div class="thumb-infra-dot"></div>
+                <span class="thumb-infra-title">Server Infrastructure</span>
+                <span class="thumb-infra-uptime">uptime 99.8%</span>
+              </div>
+              <div class="thumb-infra-body">
+                <div class="thumb-infra-metric">
+                  <div class="thumb-infra-mrow">
+                    <span class="thumb-infra-mname">CPU</span>
+                    <span class="thumb-infra-mval">43%</span>
+                  </div>
+                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:43%"></div></div>
+                </div>
+                <div class="thumb-infra-metric">
+                  <div class="thumb-infra-mrow">
+                    <span class="thumb-infra-mname">Memória</span>
+                    <span class="thumb-infra-mval">61%</span>
+                  </div>
+                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:61%"></div></div>
+                </div>
+                <div class="thumb-infra-metric">
+                  <div class="thumb-infra-mrow">
+                    <span class="thumb-infra-mname">API Latency</span>
+                    <span class="thumb-infra-mval">127ms</span>
+                  </div>
+                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:34%"></div></div>
+                </div>
+                <div class="thumb-infra-divider"></div>
+                <div class="thumb-infra-dns">
+                  <div class="thumb-infra-drow">
+                    <span class="ok">●</span>
+                    <span class="addr">ns1.ogabriels.com</span>
+                    <span class="badge">A</span>
+                  </div>
+                  <div class="thumb-infra-drow">
+                    <span class="ok">●</span>
+                    <span class="addr">forca-aliada-site.onrender.com</span>
+                    <span class="badge">CNAME</span>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="card-overlay">
               <span class="project-meta">Infraestrutura & Redes</span>
               <h3 class="project-title">Server Dashboard</h3>
