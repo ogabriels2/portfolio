@@ -237,6 +237,7 @@
     }
     .sidebar-scaler.compact-mode .sidebar-cta { margin-bottom: 10px; margin-top: 5px; }
     .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .sidebar-cta:active { transform: translateY(1px) scale(0.97); box-shadow: none; background: #333; transition-duration: 0.08s; }
     
     /* CTA Ativo na Sidebar */
     .sidebar-cta.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); pointer-events: none; }
@@ -251,6 +252,7 @@
       transition: background-color 0.3s, color 0.3s, transform 0.3s var(--ease-out);
     }
     .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
+    .social-icon:active { transform: translateY(1px) scale(0.92); transition-duration: 0.08s; }
     .copyright { font-size: 0.65rem; color: #555; text-align: center; font-weight: 500; }
 
     /* --- MOBILE MENU (Shared) --- */
@@ -310,6 +312,7 @@
         transition: all 0.3s var(--ease-apple); text-decoration: none; color: inherit; cursor: pointer; 
     }
     .contact-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .contact-card:active { transform: translateY(1px) scale(0.99); box-shadow: none; transition-duration: 0.1s; }
     .card-left { display: flex; align-items: center; gap: 16px; }
     .card-icon { font-size: 1.4rem; color: var(--text-secondary); width: 24px; text-align: center; }
     .card-text { display: flex; flex-direction: column; }
@@ -367,7 +370,7 @@
     /* Botão Enviar */
     .submit-btn { width: 100%; padding: 20px; margin-top: 10px; background: var(--accent); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; position: relative; overflow: hidden; z-index: 1; transition: all 0.3s var(--ease-apple); }
     .submit-btn:hover { background: var(--accent-hover); transform: scale(1.02); box-shadow: 0 15px 30px rgba(0, 113, 227, 0.25); }
-    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:active { transform: translateY(1px) scale(0.97); transition-duration: 0.08s; }
     .submit-btn i { transition: transform 0.3s var(--ease-apple); }
     .submit-btn:hover i { transform: translateX(4px); }
     
