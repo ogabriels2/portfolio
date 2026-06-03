@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
+  <script>
+    var userLang = navigator.language || navigator.userLanguage; 
+    if (userLang.startsWith('en') && !window.location.pathname.includes('/en/') && !localStorage.getItem('preferredLang')) {
+        // window.location.href = '/en/neo-letters-branding.html'; 
+    }
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbfbfd">
+  
+  <title>Neo Letters | Branding e Identidade Visual para Neon - Gabriel Silva</title>
+  <meta name="description" content="Case Study: Criação de identidade visual, naming e estratégia de marca para a Neo Letters. Um projeto de design que une artesanato neon e estética digital moderna.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  
+  <link rel="canonical" href="https://ogabriels.com/neoletters">
+  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/neoletters" />
+  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/neo-letters-branding" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/neo-letters-branding" />
+
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
+
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Gabriel Silva — Portfólio">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ogabriels.com/neoletters">
+  <meta property="og:title" content="Neo Letters | Branding Neon">
+  <meta property="og:description" content="Identidade visual completa para marca de letreiros luminosos.">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/neoletters-capa.png">
+  <meta property="og:image:alt" content="Neo Letters — Branding e Identidade Visual por Gabriel Silva">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ogabriels.com/neoletters">
+  <meta name="twitter:title" content="Neo Letters | Branding Neon">
+  <meta name="twitter:description" content="Identidade visual completa para marca de letreiros luminosos.">
+  <meta name="twitter:image" content="https://ogabriels.com/assets/img/neoletters-capa.png">
+  <meta name="twitter:image:alt" content="Neo Letters — Branding e Identidade Visual por Gabriel Silva">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------------- Design Tokens ---------------- */
+    :root {
+      --sidebar-width: 280px;
+      --max-width: 1000px;
+      
+      /* Colors */
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.75);
+      --bg-card: #FFFFFF;
+      --text-primary: #1D1D1F;
+      --text-secondary: #86868B;
+      --accent: #0071E3;
+      --accent-hover: #0077ED;
+      
+      /* Effects */
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --glass-blur: blur(20px) saturate(180%);
+      
+      /* Page Specific Radius (Do Original) */
+      --radius-lg: 24px;
+      --radius-md: 12px;
+      
+      /* Animations */
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
+      --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      background-color: var(--bg-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; -webkit-tap-highlight-color: transparent; color: inherit; }
+
+    /* Skip Link */
+    .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s; }
+    .skip-link:focus { top: 20px; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; border: 2px solid var(--bg-body); }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+
+    /* --- SIDEBAR & MENU (GOLD MASTER - NOVO) --- */
+    aside {
+      width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0;
+      background: var(--bg-sidebar);
+      backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+      border-right: 1px solid rgba(0,0,0,0.05);
+      display: block; z-index: 2000; overflow: visible;
+      transform: translateZ(0);
+      contain: layout style;
+    }
+    @supports not (backdrop-filter: blur(20px)) {
+      aside { background: rgba(255,255,255,0.95); }
+    }
+    aside::-webkit-scrollbar { display: none; }
+    .sidebar-scaler {
+      width: 100%; display: flex; flex-direction: column;
+      padding: 40px 32px 30px; transform-origin: top left;
+      box-sizing: border-box; transition: padding 0.1s ease;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      backface-visibility: hidden;
+    }
+    .sidebar-scaler.compact-mode { padding-top: 25px; padding-bottom: 5px; }
+
+    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; transition: margin 0.3s ease; }
+    .sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
+    .profile-link { display: block; transition: transform 0.2s; }
+    .profile-link:active { transform: scale(0.98); } 
+
+    .profile-pic-wrapper {
+      width: 110px; height: 110px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.4s var(--ease-out); flex-shrink: 0;
+      transform: translateZ(0);
+    }
+    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); } 
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: #111; transition: color 0.3s ease; }
+    .profile-link:hover .profile-name { color: var(--accent); }
+    .profile-role { font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    nav { flex: 1; display: flex; flex-direction: column; min-height: 0; margin-bottom: 10px; }
+    .sidebar-scaler.compact-mode nav { margin-bottom: 0px; }
+    
+    .nav-group { margin-bottom: 20px; flex-shrink: 0; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
+    .nav-group h2 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
+    
+    .nav-list { list-style: none; padding: 0; }
+    .nav-list li { margin-bottom: 2px; }
+    
+    .project-scroll-container {
+        overflow-y: auto; padding-right: 5px; margin-right: -5px;
+        scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;
+    }
+    .project-scroll-container::-webkit-scrollbar { width: 4px; }
+    .project-scroll-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.15); border-radius: 4px; }
+    
+    .nav-link { 
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 12px; 
+      color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; 
+      border-radius: 8px; 
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
+    .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
+    
+    .nav-link.back-link i { transition: transform 0.3s; }
+    .nav-link.back-link:hover i { transform: translateX(-6px); } 
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 113, 227, 0.05); }
+
+    /* ANIMAÇÃO BONEQUINHO */
+    @keyframes head-bob {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      30% { transform: translateY(-2px) rotate(-3deg); }
+      60% { transform: translateY(-1px) rotate(3deg); }
+    }
+    .nav-link:hover i.fa-user { animation: head-bob 0.6s ease infinite; color: var(--accent); }
+
+    /* Lang Switcher */
+    .lang-switcher-container {
+      touch-action: none;
+      position: relative; display: flex; margin: 0 0 20px;
+      background: rgba(118,118,128,0.12); border-radius: 9999px; padding: 4px;
+      width: fit-content; border: 1px solid rgba(0,0,0,0.02); cursor: pointer;
+      flex-shrink: 0; transition: margin 0.2s; padding-right: 6px; overflow: visible;
+      -webkit-user-select: none; user-select: none;
+      contain: layout; transform: translateZ(0);
+    }
+    .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
+    .gliding-pill {
+        position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); 
+        background: #FFFFFF; border-radius: 9999px; cursor: grab;
+        border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
+        z-index: 1; --pill-x: 0%; transform-origin: center center;
+        transform: translateX(var(--pill-x)) scale(1.05);
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2), background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    .gliding-pill:active { cursor: grabbing; }
+    @media (hover: hover) {
+        .lang-switcher-container:hover .gliding-pill { transform: translateX(var(--pill-x)) scale(1.15); }
+        .lang-switcher-container:hover .lang-item.active { transform: scale(1.05); }
+    }
+    .lang-item {
+        position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 6px 14px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; 
+        color: var(--text-secondary); text-decoration: none; width: 75px;
+        transition: color 0.3s ease, transform 0.3s var(--smooth-glide); will-change: transform, color; pointer-events: none !important; 
+    }
+    .lang-item.active { color: var(--text-primary); cursor: default; }
+    .lang-flag { width: 20px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); filter: none !important; transform: translateZ(0); pointer-events: none !important; }
+
+    .sidebar-cta {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 12px 20px; background: var(--text-primary); color: white; text-align: center;
+      border-radius: 16px; font-size: 0.9rem; font-weight: 600; margin-top: auto; margin-bottom: 20px;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; flex-shrink: 0;
+    }
+    .sidebar-scaler.compact-mode .sidebar-cta { margin-bottom: 10px; margin-top: 5px; }
+    .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+
+    .sidebar-footer { padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; transition: padding 0.2s; }
+    .sidebar-scaler.compact-mode .sidebar-footer { padding-top: 10px; }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .social-icons { margin-bottom: 4px; }
+    .social-icon {
+      width: 32px; height: 32px; border-radius: 12px; background: rgba(0,0,0,0.04);
+      display: flex; align-items: center; justify-content: center; color: var(--text-secondary);
+      transition: background-color 0.3s, color 0.3s, transform 0.3s var(--ease-out);
+    }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
+    .copyright { font-size: 0.65rem; color: #555; text-align: center; font-weight: 500; }
+
+    /* --- MOBILE MENU PREMIUM --- */
+    .mobile-menu-btn { display: none; }
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+    .mobile-scroll-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: 80px; padding-bottom: 100px; display: flex; flex-direction: column; }
+    .mobile-nav-container { width: 100%; max-width: 320px; min-height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px; }
+    .mobile-close-btn { position: fixed; top: 24px; right: 24px; width: 44px; height: 44px; background: rgba(0,0,0,0.05); backdrop-filter: blur(10px); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-primary); cursor: pointer; border: none; z-index: 3005; transition: background 0.2s; }
+    
+    .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { opacity: 0; transform: translateY(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .mobile-menu-overlay.active .mobile-nav-group { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+    
+    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; align-items: center; }
+    .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
+    .mobile-projects-wrapper { width: 100%; text-align: center; }
+    .mobile-projects-list { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; width: 100%; align-items: center; }
+    .mobile-link-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; transition: 0.2s; text-decoration: none; }
+    .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
+    .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
+    
+    .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .mobile-socials { display: flex; gap: 24px; justify-content: center; }
+    .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
+    .mobile-cta { width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+    /* --- PAGE CONTENT --- */
+    main { margin-left: var(--sidebar-width); flex: 1; padding: 0; display: flex; flex-direction: column; align-items: center; }
+
+    .project-hero { width: 100%; padding: 80px 0 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .hero-image-container { width: 100%; max-width: var(--max-width); padding: 0 60px; margin-bottom: 30px; box-sizing: border-box; }
+    .hero-image-wrapper-inner { width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: #fff; border: 1px solid rgba(0,0,0,0.05); display: block; }
+    .hero-image { width: 100%; height: auto; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
+    .hero-image:hover { transform: scale(1.02); }
+    
+    .hero-text-content { text-align: center; width: 100%; max-width: var(--max-width); padding: 0 60px; box-sizing: border-box; }
+    .project-title { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.03em; }
+    .project-subtitle { font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; }
+
+    .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); box-sizing: border-box; }
+
+    /* Meta Grid */
+    .meta-grid { 
+        display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "role year tools"; 
+        gap: 24px; margin-bottom: 60px; background: white; padding: 20px 30px; 
+        border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); 
+    }
+    .role { grid-area: role; text-align: left; }
+    .year { grid-area: year; text-align: center; } 
+    .tools { grid-area: tools; text-align: right; } 
+    .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+    
+    .client-link { text-decoration: none; color: var(--text-primary); border-bottom: 1px solid transparent; transition: 0.2s; }
+    .client-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 80px; }
+    .project-description strong { color: var(--accent); font-weight: 600; }
+
+    /* Showcase */
+    .showcase-section { margin-bottom: 80px; }
+    .section-header { margin-bottom: 30px; border-left: 4px solid var(--accent); padding-left: 16px; }
+    .section-title { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .section-desc { font-size: 1rem; color: var(--text-secondary); }
+
+    /* LOGO SHOWCASE */
+    .logo-showcase-wrapper { 
+        display: flex; justify-content: center; width: 100%; 
+        background: #050505; /* Fundo Preto */
+        padding: 40px; border-radius: var(--radius-lg); 
+        box-shadow: var(--shadow-sm); margin-bottom: 24px; box-sizing: border-box; 
+    }
+    .logo-showcase-img { max-width: 100%; height: auto; width: 500px; object-fit: contain; cursor: zoom-in; transition: transform 0.3s ease; }
+    .logo-showcase-img:hover { transform: scale(1.05); }
+
+    .showcase-img { width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: transform 0.3s ease; cursor: zoom-in; display: block; margin-bottom: 24px; }
+    .showcase-img:hover { transform: scale(1.035); box-shadow: var(--shadow-md); }
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    /* Navigation */
+    .project-nav { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 60px 60px 80px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+    .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); text-decoration: none; }
+    .nav-btn:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .nav-btn.prev:hover { transform: translateX(-4px); } 
+    .nav-btn.next:hover { transform: translateX(4px); }
+    .nav-btn:active { transform: scale(0.96); transition-duration: 0.1s; }
+    .nav-btn.next { text-align: right; flex-direction: row-reverse; }
+    .nav-btn i { transition: transform 0.3s ease; }
+    .nav-btn.prev:hover i { transform: translateX(-4px); } 
+    .nav-btn.next:hover i { transform: translateX(4px); }
+    .nav-label { font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: 0.6; }
+    .nav-project-name { font-size: 1rem; color: var(--text-primary); }
+    .nav-home-btn { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-secondary); background: rgba(0,0,0,0.02); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
+    .nav-home-btn:hover { background: rgba(0, 113, 227, 0.08); color: var(--accent); transform: scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .nav-home-btn:active { transform: scale(0.96); }
+
+    /* Contact Banner */
+    .contact-banner { width: 100%; max-width: 880px; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin: 0 auto 40px; box-sizing: border-box; }
+    .contact-text-group { flex: 1; padding-right: 20px; }
+    .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
+    .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
+    .contact-social { display: flex; gap: 12px; }
+    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); text-decoration: none; }
+    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px) scale(1.1); box-shadow: 0 5px 15px rgba(255,255,255,0.2); }
+    .btn-social-mini:active { transform: scale(0.9); }
+    .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
+    .btn-cta-dark:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 25px rgba(255,255,255,0.25); background: #f2f2f2; }
+    .btn-cta-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
+    .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
+    .btn-secondary-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
+
+    /* Lightbox */
+    
+    
+    
+    
+    .lb-control:hover { background: rgba(255, 255, 255, 0.25); transform: scale(1.1); }
+    .lb-close { top: 20px; right: 20px; position: absolute; }
+    .lb-prev { left: 20px; position: fixed; }
+    .lb-next { right: 20px; position: fixed; }
+
+    /* --- RESPONSIVIDADE (FIXED) --- */
+    @media (max-width: 968px) {
+      body { flex-direction: column; }
+      .project-title { font-size: 2rem; }
+
+      aside { 
+          width: 100%; height: 70px; 
+          position: fixed; top: 0; left: 0; 
+          padding: 0 24px; 
+          border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); 
+          display: flex; flex-direction: row; justify-content: space-between; align-items: center; 
+          z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); 
+          overflow-y: hidden; 
+      }
+      
+      .sidebar-scaler { width: auto; height: auto !important; min-height: auto; padding: 0; flex-direction: row; align-items: center; transform: none !important; }
+      .sidebar-scaler.compact-mode { padding: 0; }
+      .profile-container { margin: 0; text-align: left; }
+      .profile-link { display: flex; align-items: center; gap: 12px; }
+      
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-shrink: 0; }
+      
+      .profile-name { font-size: 1rem; margin: 0; }
+      .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.2s; }
+      .mobile-menu-btn:active { transform: scale(0.9); }
+      
+      main { margin-left: 0; padding: 100px 24px 40px; }
+      .project-hero { padding: 40px 0 20px; }
+      .hero-image-container { padding: 0; width: 100%; max-width: 100%; box-sizing: border-box; }
+      .hero-text-content { padding: 0; }
+      .content-wrapper { padding: 40px 0; }
+      
+      .meta-grid { grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "role year tools"; gap: 10px; padding: 18px 18px; }
+      .meta-item p { font-size: 0.72rem; line-height: 1.2; word-break: break-word; }
+      .meta-item h4 { font-size: 0.6rem; }
+      .role { text-align: left; }
+      .year { text-align: center; }
+      .tools { text-align: right; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      
+      .project-nav { flex-direction: row; gap: 8px; padding: 30px 0; width: 100%; justify-content: space-between; max-width: 100%; }
+      .nav-btn { width: auto; padding: 10px 8px; flex: 1; justify-content: center; font-size: 0.8rem; flex-direction: column; gap: 6px; text-align: center; }
+      .nav-btn.next { flex-direction: column; text-align: center; } 
+      .nav-btn i { font-size: 1.1rem; }
+      .nav-project-name { display: block; font-size: 0.65rem; line-height: 1.1; white-space: normal; max-width: 80px; }
+      .nav-label { font-size: 0.6rem; margin-bottom: 0; }
+      .nav-home-btn { order: 0; flex-shrink: 0; width: 40px; height: 40px; margin: 0 4px; }
+
+      .contact-banner { flex-direction: column; text-align: center; gap: 32px; padding: 32px 24px; margin: 0 0 40px; width: 100%; max-width: 100%; }
+      .contact-text-group { width: 100%; padding-right: 0; }
+      .contact-social { justify-content: center; margin-top: 15px; }
+      .contact-actions { width: 100%; flex-direction: column; gap: 10px; }
+      .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
+    }
+
+    @media (max-width: 968px) and (orientation: landscape) {
+      aside { height: 60px; padding: 0 20px; } 
+      main { padding: 90px 40px 40px; }
+      .project-description { font-size: 0.85rem; line-height: 1.45; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .contact-banner { padding: 40px; }
+      .nav-btn { flex-direction: row; text-align: left; }
+      .nav-btn.next { flex-direction: row-reverse; text-align: right; }
+      .nav-project-name { max-width: none; }
+    }
+  
+    /* ── v14: Sidebar & Nav improvements ── */
+    .nav-group h2 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0,113,227,0.05); }
+    .nav-link.back-link svg { transition: transform 0.3s; }
+    .nav-link.back-link:hover svg { transform: translateX(-6px); }
+    .mobile-close-btn { display: none !important; }
+
+    /* ── v14: Wave & Chat Animations ── */
+    @keyframes wave-hand {
+      0%, 100% { transform: rotate(0deg); }
+      20%, 60% { transform: rotate(15deg); }
+      40%, 80% { transform: rotate(-10deg); }
+    }
+    .about-link:hover svg { animation: wave-hand 0.8s ease-in-out; transform-origin: bottom center; }
+
+    @keyframes chat-hello {
+      0%   { transform: scale(1) rotate(0deg); }
+      15%  { transform: scale(1.1) rotate(-8deg); }
+      30%  { transform: scale(1.1) rotate(8deg); }
+      45%  { transform: scale(1.1) rotate(-6deg); }
+      60%  { transform: scale(1.1) rotate(4deg); }
+      75%  { transform: scale(1.05) rotate(-2deg); }
+      85%  { transform: scale(1.02) rotate(1deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .sidebar-cta:hover svg { animation: chat-hello 0.8s cubic-bezier(0.25,0.8,0.25,1) forwards; transform-origin: bottom center; }
+
+    /* ── v14: Hamburger X animation ── */
+    .hb-line { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .hb-line1 { transform-origin: 12px 8px; }
+    .hb-line2 { transform-origin: 12px 16px; }
+    .mobile-menu-btn.is-open .hb-line1 { transform: translateY(4px) rotate(45deg); }
+    .mobile-menu-btn.is-open .hb-line2 { transform: translateY(-4px) rotate(-45deg); }
+
+    /* ── v14: Aside open-state during menu ── */
+    @media (max-width: 968px) {
+      aside.menu-open-state { z-index: 3005 !important; background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border-bottom: none !important; pointer-events: none; }
+      aside.menu-open-state .mobile-menu-btn { pointer-events: auto; }
+      aside.menu-open-state .sidebar-scaler { opacity: 0; transition: opacity 0.3s ease; }
+    }
+
+    /* ── v14: Active mobile menu link ── */
+    .mobile-link-sub.is-active { color: var(--accent) !important; font-weight: 600; }
+
+    /* ── v14: Accessibility focus rings ── */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    aside a:focus-visible, aside button:focus-visible, aside [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; box-shadow: none; }
+    .mobile-menu-btn:focus { outline: none; }
+    .mobile-menu-btn:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: -2px; border-radius: 14px; }
+    .mobile-menu-overlay a:focus-visible, .mobile-menu-overlay button:focus-visible, .mobile-menu-overlay [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 14px; }
+    .contact-banner a:focus-visible, .sidebar-cta:focus-visible, .mobile-cta:focus-visible, .lang-switcher-container:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; box-shadow: none; }
+
+    /* ── v14: Lightbox overlay ── */
+    .lightbox-overlay { position: fixed; inset: 0; z-index: 4000; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .lightbox-overlay.active { opacity: 1; pointer-events: auto; }
+    .lb-container { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; overflow: visible; touch-action: none; }
+    .lb-img { max-width: 90vw; max-height: 85vh; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1); object-fit: contain; cursor: zoom-in; transform-origin: center; will-change: transform; user-select: none; -webkit-user-drag: none; }
+    .lb-img.zoomed { cursor: grab; max-width: none; max-height: none; transition: transform 0.1s linear; }
+    .lightbox-overlay.active .lb-img { transform: scale(1); }
+    .lb-btn { position: absolute; background: rgba(255,255,255,0.15); border: none; width: 50px; height: 50px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; z-index: 4002; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); }
+    .lb-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+    .lb-btn:active, .lb-btn.is-pressed { transform: scale(0.95); background: rgba(255,255,255,0.4); }
+    .lb-btn svg { filter: drop-shadow(0 0 1.2px rgba(100,100,100,1)) drop-shadow(0 4px 8px rgba(0,0,0,0.9)); stroke-width: 2.5px; }
+    .lb-close { top: 20px; right: 20px; }
+    .lb-prev { left: 20px; z-index: 4001; }
+    .lb-next { right: 20px; z-index: 4001; }
+    .lb-zoom-control { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 15px; padding: 12px 24px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 99px; z-index: 4002; border: 1px solid rgba(128,128,128,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: transform 0.3s cubic-bezier(0.25,0.8,0.25,1); }
+    .lb-zoom-control:hover { transform: translateX(-50%) scale(1.05); }
+    .lb-zoom-btn-trigger { background: transparent; border: none; border-radius: 50%; color: white; width: 30px; height: 30px; box-sizing: content-box; padding: 12px; margin: -12px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; opacity: 0.95; position: relative; }
+    .lb-zoom-btn-trigger svg { overflow: visible; filter: drop-shadow(0 0 1.2px rgba(100,100,100,1)) drop-shadow(0 4px 8px rgba(0,0,0,0.9)); stroke: rgba(255,255,255,0.9); stroke-width: 2.5px; }
+    .lb-zoom-btn-trigger:hover { transform: scale(1.25); opacity: 1; }
+    .lb-zoom-btn-trigger:active, .lb-zoom-btn-trigger.is-pressed { transform: scale(0.95); }
+    input[type=range].lb-zoom-slider { -webkit-appearance: none; width: 180px; height: 30px; background: transparent; outline: none; cursor: pointer; display: flex; align-items: center; }
+    input[type=range].lb-zoom-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #fff; cursor: grab; border: 1px solid rgba(128,128,128,0.3); box-shadow: 0 2px 8px rgba(0,0,0,0.4); transition: transform 0.2s, box-shadow 0.2s, margin 0.2s; margin-top: -7px; position: relative; z-index: 2; }
+    input[type=range].lb-zoom-slider::-webkit-slider-runnable-track { width: 100%; height: 6px; background: rgba(255,255,255,0.4); border-radius: 10px; border: 1px solid rgba(128,128,128,0.3); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    input[type=range].lb-zoom-slider:hover::-webkit-slider-runnable-track { height: 7px; }
+    input[type=range].lb-zoom-slider:hover::-webkit-slider-thumb { transform: scale(1.3); box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin-top: -6px; }
+    input[type=range].lb-zoom-slider:active::-webkit-slider-thumb { cursor: grabbing; }
+    input[type=range].lb-zoom-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 1px solid rgba(128,128,128,0.3); }
+    input[type=range].lb-zoom-slider::-moz-range-track { width: 100%; height: 6px; background: rgba(255,255,255,0.4); border-radius: 10px; }
+    /* ── v14: Skip Link ── */
+    .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s ease; }
+    .skip-link:focus { top: 20px; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+
+  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de Navegação" aria-hidden="true" inert>
+    <div class="mobile-scroll-wrapper">
+        <div class="mobile-nav-container">
+            <div class="lang-switcher-container" id="mobileLangSwitcher" role="button" tabindex="0" aria-label="Mudar idioma" style="margin-bottom:20px;background:rgba(0,0,0,0.05);">
+                <div class="gliding-pill"></div>
+                <span class="lang-item active" data-lang="pt"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
+                <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
+            </div>
+            <div class="mobile-nav-group">
+                <a href="sobre" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
+                <a href="/" class="mobile-link-main js-menu-toggle">Projetos</a>
+            </div>
+            <div class="mobile-projects-wrapper">
+                <div class="mobile-divider"></div>
+                <span class="mobile-label">Cases de Sucesso</span>
+                <div class="mobile-projects-list">
+                    <a href="infra" class="mobile-link-sub js-menu-toggle">Server Infra</a>
+                    <a href="revista-utopia" class="mobile-link-sub js-menu-toggle">Revista Utopia</a>
+                    <a href="neoletters" class="mobile-link-sub js-menu-toggle is-active">Neo Letters</a>
+                    <a href="lo-publicidade" class="mobile-link-sub js-menu-toggle">Lô Publicidade</a>
+                    <a href="personal-branding" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
+                    <a href="podcast-um-minuto" class="mobile-link-sub js-menu-toggle">Um Minuto</a>
+                    <a href="valorada" class="mobile-link-sub js-menu-toggle">Valorada</a>
+                    <a href="thumbnails" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
+                    <a href="videos" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
+                </div>
+            </div>
+            <div class="mobile-footer-group">
+                <div class="mobile-socials">
+                    <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+                    <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+                </div>
+                <a href="contato" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <aside>
+    <div class="sidebar-scaler">
+        <div class="profile-container">
+          <a href="/" class="profile-link">
+            <div class="profile-pic-wrapper">
+              <img src="assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="110" height="110">
+            </div>
+            <div class="profile-text-group">
+              <p class="profile-name">Gabriel Silva</p>
+              <p class="profile-role">Creative Technologist</p>
+            </div>
+          </a>
+        </div>
+
+        <nav>
+          <div class="nav-group">
+            <ul class="nav-list">
+              <li><a href="/" class="nav-link back-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Voltar para Projetos</a></li>
+              <li><a href="sobre" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sobre mim</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column;">
+            <h2>Portfólio</h2>
+            <ul class="nav-list project-scroll-container">
+              <li><a href="infra" class="nav-link">Server Infra &amp; Dashboard</a></li>
+              <li><a href="revista-utopia" class="nav-link">Revista Utopia</a></li>
+              <li><a href="neoletters" class="nav-link active">Neo Letters</a></li>
+              <li><a href="lo-publicidade" class="nav-link">Lô</a></li>
+              <li><a href="personal-branding" class="nav-link">G | Gabriel</a></li>
+              <li><a href="podcast-um-minuto" class="nav-link">Um Minuto</a></li>
+              <li><a href="valorada" class="nav-link">Valorada</a></li>
+              <li><a href="thumbnails" class="nav-link">Thumbnails</a></li>
+              <li><a href="videos" class="nav-link">Produção Audiovisual</a></li>
+            </ul>
+          </div>
+
+          <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Mudar idioma">
+            <div class="gliding-pill"></div>
+            <span class="lang-item active" data-lang="pt"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
+            <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
+          </div>
+
+          <a href="contato" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+            <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+            <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+          </div>
+          <p class="copyright">© 2026 Gabriel Silva</p>
+        </div>
+    </div>
+    <button class="mobile-menu-btn js-menu-toggle" aria-label="Abrir Menu" aria-expanded="false" aria-controls="mobileMenu"><svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="26">
+      <line class="hb-line hb-line1" x1="4" x2="20" y1="8" y2="8"/>
+      <line class="hb-line hb-line2" x1="4" x2="20" y1="16" y2="16"/>
+    </svg></button>
+  </aside>
+
+  <main id="main-content" tabindex="-1">
+    <section class="project-hero">
+      <div class="hero-image-container">
+        <div class="hero-image-wrapper-inner">
+            <img src="assets/img/neoletters-capa.png" alt="Capa Neo Letters" data-src="assets/img/neoletters-capa.png" class="hero-image lightbox-trigger">
+        </div>
+      </div>
+      
+      <div class="hero-text-content">
+        <h1 class="project-title">Neo Letters</h1>
+        <p class="project-subtitle">Branding para Letreiros Neon</p>
+      </div>
+    </section>
+
+    <div class="content-wrapper">
+      <section class="meta-grid">
+        <div class="meta-item role"><h4>Serviço</h4><p>Identidade Visual</p></div>
+        <div class="meta-item year">
+            <h4>Cliente</h4>
+            <p><a href="https://www.instagram.com/neo_letters/" target="_blank" rel="noopener noreferrer" class="client-link" title="Ver Instagram">Neo Letters <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7em;"></i></a></p>
+        </div>
+        <div class="meta-item tools"><h4>Ano</h4><p>2023</p></div>
+      </section>
+
+      <section class="project-description">
+        <p>A <strong>Neo Letters</strong> nasceu com uma missão clara: iluminar ambientes e ideias. Como uma empresa familiar especializada em letreiros de LED neon, o desafio foi criar uma identidade que transmitisse, ao mesmo tempo, a proximidade do trabalho artesanal e a inovação da tecnologia.</p>
+        <p>Fui responsável por desenvolver toda a <strong>identidade visual</strong>, desde o <em>naming</em> até o logotipo e a estética da marca nas redes sociais. O conceito visual reflete modernidade e criatividade, utilizando contrastes fortes e linhas fluidas que remetem aos próprios tubos de neon, criando uma presença digital marcante e iluminada.</p>
+      </section>
+
+      <section class="showcase-section">
+        <div class="section-header">
+          <h2 class="section-title">A Marca</h2>
+          <p class="section-desc">Um logotipo que brilha por conta própria, inspirado nos circuitos e na fluidez da luz.</p>
+        </div>
+        <div class="logo-showcase-wrapper">
+             <img src="assets/img/neoletters-logo-neon.png" alt="Logotipo Neo Letters Neon" data-src="assets/img/neoletters-logo-neon.png" class="logo-showcase-img lightbox-trigger">
+        </div>
+      </section>
+
+      <section class="showcase-section">
+        <div class="section-header">
+          <h2 class="section-title">Social Media</h2>
+          <p class="section-desc">Design para redes sociais focado em destacar o brilho dos produtos.</p>
+        </div>
+        <div class="gallery-grid">
+          <img src="assets/img/neoletters-social-post-1.jpg" alt="Post Instagram Neo Letters 1" data-src="assets/img/neoletters-social-post-1.jpg" class="showcase-img lightbox-trigger">
+          <img src="assets/img/neoletters-social-post-2.jpg" alt="Post Instagram Neo Letters 2" data-src="assets/img/neoletters-social-post-2.jpg" class="showcase-img lightbox-trigger">
+        </div>
+      </section>
+
+      <section class="showcase-section">
+        <div class="section-header">
+          <h2 class="section-title">Produtos Reais</h2>
+          <p class="section-desc">A marca aplicada ao produto final em diversos ambientes.</p>
+        </div>
+        <div class="gallery-grid">
+          <img src="assets/img/neoletters-neon-festivo.jpg" alt="Neon em festa" data-src="assets/img/neoletters-neon-festivo.jpg" class="showcase-img lightbox-trigger">
+          <img src="assets/img/neoletters-neon-gamer.jpg" alt="Neon Gamer Setup" data-src="assets/img/neoletters-neon-gamer.jpg" class="showcase-img lightbox-trigger">
+          <img src="assets/img/neoletters-neon-vitrine.jpg" alt="Neon em vidro" data-src="assets/img/neoletters-neon-vitrine.jpg" class="showcase-img lightbox-trigger">
+          <img src="assets/img/neoletters-neon-sala.jpg" alt="Neon Sala de Estar" data-src="assets/img/neoletters-neon-sala.jpg" class="showcase-img lightbox-trigger">
+        </div>
+      </section>
+
+    </div>
+
+    <div class="project-nav">
+      <a href="revista-utopia.html" class="nav-btn prev">
+        <i class="fa-solid fa-arrow-left"></i>
+        <div><span class="nav-label">Anterior</span><span class="nav-project-name">Revista Utopia</span></div>
+      </a>
+      <a href="index.html" class="nav-home-btn" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+      <a href="lo-publicidade.html" class="nav-btn next">
+        <div><span class="nav-label">Próximo</span><span class="nav-project-name">Lô Publicidade</span></div>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <section class="contact-banner" id="contato">
+        <div class="contact-text-group">
+          <div class="contact-text">
+            <h2>Vamos criar algo incrível?</h2>
+            <p>Se você tem uma ideia, eu tenho as ferramentas certas para realizá-la.</p>
+          </div>
+          <div class="contact-social">
+              <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
+          <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ── v14: Shared Portfolio JS ──────────────────────────────────────────
+
+    function debounce(fn, ms) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), ms); }; }
+
+    // Input mode detection (hides focus rings for mouse/touch users)
+    (function() {
+      const b = document.body;
+      window.addEventListener('mousedown',  () => b.classList.add('using-pointer'), { passive: true });
+      window.addEventListener('touchstart', () => b.classList.add('using-pointer'), { passive: true });
+      window.addEventListener('keydown', e => { if (e.key === 'Tab') b.classList.remove('using-pointer'); }, { passive: true });
+    })();
+
+    // ── Menu ──────────────────────────────────────────────────────────────
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu && !mobileMenu.classList.contains('active')) mobileMenu.setAttribute('inert', '');
+
+    let _lastFocused = null;
+
+    function getFocusables(root) {
+      return Array.from(root.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'))
+        .filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+    }
+
+    function toggleMenu() {
+      if (!mobileMenu) return;
+      const isOpen = mobileMenu.classList.contains('active');
+      const btn  = document.querySelector('.mobile-menu-btn');
+      const aside = document.querySelector('aside');
+
+      if (!isOpen) {
+        _lastFocused = document.activeElement;
+        mobileMenu.classList.add('active');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        mobileMenu.removeAttribute('inert');
+        if (btn)   { btn.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Fechar Menu'); }
+        if (aside) aside.classList.add('menu-open-state');
+        const main = document.getElementById('main-content');
+        if (main)  { main.setAttribute('inert',''); main.setAttribute('aria-hidden','true'); }
+        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.setAttribute('inert',''); sc.setAttribute('aria-hidden','true'); } }
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => { if (btn) btn.focus(); }, 50);
+      } else {
+        mobileMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.setAttribute('inert', '');
+        if (btn)   { btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Abrir Menu'); }
+        if (aside) aside.classList.remove('menu-open-state');
+        const main = document.getElementById('main-content');
+        if (main)  { main.removeAttribute('inert'); main.removeAttribute('aria-hidden'); }
+        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.removeAttribute('inert'); sc.removeAttribute('aria-hidden'); } }
+        document.body.style.overflow = '';
+        if (_lastFocused && _lastFocused.focus) setTimeout(() => _lastFocused.focus(), 0);
+        _lastFocused = null;
+      }
+    }
+
+    if (mobileMenu) mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) toggleMenu(); });
+
+    document.addEventListener('keydown', e => {
+      if (!mobileMenu || !mobileMenu.classList.contains('active')) return;
+      if (e.key === 'Escape') { e.preventDefault(); toggleMenu(); return; }
+      if (e.key !== 'Tab') return;
+      const btn = document.querySelector('.mobile-menu-btn');
+      const items = getFocusables(mobileMenu);
+      const all = btn ? [btn, ...items] : items;
+      if (!all.length) return;
+      const first = all[0], last = all[all.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    document.querySelectorAll('.js-menu-toggle').forEach(el => el.addEventListener('click', toggleMenu));
+
+    // ── Sidebar Scaler ───────────────────────────────────────────────────
+    let _sw = window.innerWidth, _sh = window.innerHeight;
+
+    const fitSidebar = debounce(function() {
+      if (window.matchMedia('(max-width: 968px)').matches) {
+        const sc = document.querySelector('.sidebar-scaler');
+        if (sc) { sc.style.transform = ''; sc.style.width = ''; sc.style.height = ''; sc.classList.remove('compact-mode'); }
+        return;
+      }
+      _sw = window.innerWidth; _sh = window.innerHeight;
+      const sc = document.querySelector('.sidebar-scaler');
+      if (!sc) return;
+      sc.style.transform = 'scale(1)'; sc.style.width = '100%'; sc.style.height = 'auto';
+      sc.classList.remove('compact-mode'); void sc.offsetHeight;
+      const wh = window.innerHeight, ch = sc.scrollHeight;
+      if (ch <= wh) { sc.style.transform = 'none'; return; }
+      let scale = wh / ch;
+      const MIN = 0.85;
+      if (scale < MIN) {
+        sc.classList.add('compact-mode'); void sc.offsetHeight;
+        const nh = Math.max(sc.scrollHeight, 1);
+        scale = Math.max(wh / nh, MIN);
+        sc.style.height = (wh / scale) + 'px';
+      } else {
+        sc.style.height = (wh / scale) + 'px';
+      }
+      sc.style.transform = `scale(${scale})`;
+      sc.style.width = (100 / scale) + '%';
+    }, 50);
+
+    window.addEventListener('load', fitSidebar);
+    window.addEventListener('resize', fitSidebar);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', fitSidebar);
+      window.visualViewport.addEventListener('scroll', fitSidebar);
+    }
+
+    // ── DOM Ready ─────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // Skip link
+      const skip = document.querySelector('.skip-link');
+      if (skip) skip.addEventListener('click', function(e) {
+        e.preventDefault();
+        const main = document.getElementById('main-content');
+        if (!main) return;
+        main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const first = main.querySelector('.lightbox-trigger, h1, [tabindex]') || main;
+        if (first === main) main.setAttribute('tabindex', '-1');
+        setTimeout(() => { try { first.focus({ preventScroll: true }); } catch(_) { first.focus(); } }, 50);
+      });
+
+      // Sync tab order desktop/mobile
+      function disableFocusIn(root) {
+        if (!root) return;
+        root.querySelectorAll('a,button,input,select,textarea,[tabindex]').forEach(el => {
+          if (el.dataset._oti === undefined) el.dataset._oti = el.getAttribute('tabindex') ?? '';
+          el.setAttribute('tabindex', '-1');
+        });
+      }
+      function restoreFocusIn(root) {
+        if (!root) return;
+        root.querySelectorAll('[data-_oti]').forEach(el => {
+          const v = el.dataset._oti;
+          if (v === '') el.removeAttribute('tabindex'); else el.setAttribute('tabindex', v);
+          delete el.dataset._oti;
+        });
+      }
+
+      function syncTabOrder() {
+        const mob = window.matchMedia('(max-width: 968px)').matches;
+        const aside = document.querySelector('aside');
+        const menuEl = document.getElementById('mobileMenu');
+        const btn = document.querySelector('.mobile-menu-btn');
+        if (mob) {
+          if (aside) { disableFocusIn(aside); const pl = aside.querySelector('.profile-link'); if (pl) { if (pl.dataset._oti !== undefined) { const v = pl.dataset._oti; if (v === '') pl.removeAttribute('tabindex'); else pl.setAttribute('tabindex', v); delete pl.dataset._oti; } } }
+          if (btn) btn.removeAttribute('tabindex');
+          if (menuEl) { if (menuEl.getAttribute('aria-hidden') !== 'false') disableFocusIn(menuEl); else restoreFocusIn(menuEl); }
+        } else {
+          if (aside) restoreFocusIn(aside);
+          if (btn) btn.setAttribute('tabindex', '-1');
+          if (menuEl) disableFocusIn(menuEl);
+        }
+      }
+      syncTabOrder();
+      const mq = window.matchMedia('(max-width: 968px)');
+      if (mq.addEventListener) mq.addEventListener('change', syncTabOrder); else mq.addListener(syncTabOrder);
+      window.addEventListener('resize', syncTabOrder);
+      if (mobileMenu) new MutationObserver(syncTabOrder).observe(mobileMenu, { attributes: true, attributeFilter: ['aria-hidden'] });
+
+      // Active mobile link highlight
+      try {
+        const slug = (location.pathname || '').replace(/\/+/g,'/').split('/').filter(Boolean).pop() || '';
+        document.querySelectorAll('.mobile-link-sub').forEach(a => {
+          const h = (a.getAttribute('href') || '').split('/').filter(Boolean).pop() || '';
+          if (h && h === slug) a.classList.add('is-active');
+        });
+      } catch(_) {}
+
+      // Lightbox triggers: keyboard + ARIA
+      document.querySelectorAll('.lightbox-trigger').forEach(el => {
+        const tag = el.tagName.toLowerCase();
+        if (tag !== 'a' && tag !== 'button' && !el.hasAttribute('tabindex')) { el.setAttribute('tabindex', '0'); el.setAttribute('role', 'button'); }
+        const alt = el.getAttribute('alt') || '';
+        if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', alt ? `${alt}. Ampliar imagem.` : 'Ampliar imagem');
+        el.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); el.click(); } });
+      });
+
+      // ── Lang Switcher (physics) ────────────────────────────────────────
+      function initPhysicsSwitcher(container) {
+        if (!container) return;
+        const pill = container.querySelector('.gliding-pill');
+        const ptItem = container.querySelector('.lang-item:nth-child(2)');
+        const enItem = container.querySelector('.lang-item:nth-child(3)');
+        if (!pill || !ptItem || !enItem) return;
+        let isDragging = false, isAuto = false, sel = 'pt', afId = null;
+        let sx = 0, sPillX = 0, lt = 0, vel = 0, lx = 0;
+        let cRect = null, pW = 0, maxT = 0, pCX = 0, rafM = null;
+        let ph = { tx:0, cx:0, tsx:1, csx:1, tsy:1, csy:1, tsk:0, csk:0 };
+        const DF = 0.92, SF = 0.15, EB = 5, RS = 1.05, HS = 1.32;
+        const AL = window.matchMedia('(max-width:968px)').matches ? 0.28 : 0.20;
+        const gx = e => e.touches ? e.touches[0].clientX : e.clientX;
+
+        function uviz(prog, held, csc) {
+          const dpt = Math.abs(prog), den = Math.abs(prog-1);
+          let sm = 0; if (csc) { const s = Math.max(1,csc); sm = (s-1)*0.8; }
+          ptItem.style.transform = `scale(${1 + Math.max(0,1-dpt)*sm})`;
+          enItem.style.transform = `scale(${1 + Math.max(0,1-den)*sm})`;
+          if (prog < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); }
+          else            { enItem.classList.add('active'); ptItem.classList.remove('active'); }
+        }
+        function rst(fx) {
+          pill.style.setProperty('--pill-x', fx+'%'); pill.style.transform = ''; pill.style.transition = '';
+          ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
+        }
+        function loop() {
+          if (!isDragging && !isAuto) return;
+          if (isAuto) {
+            const pX = ph.cx;
+            ph.cx  += (ph.tx - ph.cx)  * AL;
+            ph.csx += (ph.tsx - ph.csx)* AL;
+            ph.csy += (ph.tsy - ph.csy)* AL;
+            vel = ph.cx - pX;
+            ph.tsk = Math.max(-20, Math.min(20, vel * -1.5));
+            ph.csk += (ph.tsk - ph.csk) * AL;
+            if (Math.abs(ph.cx - ph.tx) < (AL > 0.2 ? 0.6 : 1)) { isAuto = false; finish(); return; }
+          } else {
+            const lf = isDragging ? 0.32 : SF;
+            ph.cx  += (ph.tx - ph.cx)  * lf;
+            ph.csx += (ph.tsx - ph.csx)* lf;
+            ph.csy += (ph.tsy - ph.csy)* lf;
+            ph.csk += (ph.tsk - ph.csk)* lf;
+          }
+          pill.style.transform = `translate3d(${ph.cx}px,0,0) scale(${ph.csx},${ph.csy}) skewX(${ph.csk}deg)`;
+          uviz(ph.cx / maxT, true, ph.csx);
+          afId = requestAnimationFrame(loop);
+        }
+        function finish() {
+          cancelAnimationFrame(afId);
+          sel = ph.cx > (maxT/2) ? 'en' : 'pt';
+          const fx = sel === 'en' ? 100 : 0;
+          const tr = 'transform 0.6s cubic-bezier(0.5,1.6,0.4,1.1)';
+          pill.style.transition = tr+',background-color 0.4s ease,box-shadow 0.4s ease';
+          pill.style.transform = `translateX(${fx}%) scale(${RS}) skewX(0deg)`;
+          ptItem.style.transition = tr; enItem.style.transition = tr;
+          ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
+          setTimeout(() => rst(fx), 600);
+          const isEn = location.pathname.includes('/en/');
+          if (sel === 'en' && !isEn) { localStorage.setItem('preferredLang','en'); const h = enItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+          else if (sel === 'pt' && isEn) { localStorage.setItem('preferredLang','pt'); const h = ptItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+        }
+        const startH = e => {
+          if (isAuto) return; isDragging = true;
+          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+          if (e.type === 'mousedown') e.preventDefault();
+          const cx = gx(e);
+          cRect = container.getBoundingClientRect();
+          pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
+          sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
+          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+          ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
+          cancelAnimationFrame(afId); loop();
+        };
+        const moveH = e => {
+          if (!isDragging) return;
+          if (e.cancelable) e.preventDefault(); e.stopPropagation();
+          if (e.type === 'mousemove' && e.buttons === 0) { endH(e); return; }
+          const cx = gx(e); const now = Date.now(); const dt = now - lt;
+          if (dt > 0) vel = vel*0.7 + ((cx-lx)/dt)*0.3;
+          lx = cx; lt = now; pCX = cx;
+          if (!rafM) rafM = requestAnimationFrame(() => {
+            rafM = null;
+            let raw = sPillX + (pCX - sx) * DF;
+            const eMin = EB, eMax = maxT - EB;
+            let cl = raw, wp = 0;
+            if (raw < eMin) { wp = eMin-raw; cl = eMin - 12*(1-Math.pow(2.718,-wp/25)); }
+            else if (raw > eMax) { wp = raw-eMax; cl = eMax + 12*(1-Math.pow(2.718,-wp/25)); }
+            ph.tx = cl;
+            const av = Math.abs(vel);
+            if (wp > 1) { const sq = Math.min(av*0.25,0.25)+Math.min(wp*0.01,0.15); ph.tsx=HS-sq*0.7; ph.tsy=HS+sq*0.8; }
+            else if (av > 0.1) { const st=Math.min(av*0.08,0.2); ph.tsx=HS+st; ph.tsy=HS-st*0.6; }
+            else { ph.tsx=HS; ph.tsy=HS; }
+            ph.tsk = Math.max(-20, Math.min(20, vel*-12));
+          });
+        };
+        const endH = e => { if (!isDragging) return; isDragging = false; if (Math.abs(lx-sx) > 5) finish(); };
+        container.addEventListener('touchstart', startH, { passive: false });
+        window.addEventListener('touchmove', moveH, { passive: false });
+        window.addEventListener('touchend', endH);
+        container.addEventListener('mousedown', startH);
+        window.addEventListener('mousemove', moveH);
+        window.addEventListener('mouseup', endH);
+        container.addEventListener('click', e => {
+          if (isDragging || Math.abs(lx-sx) > 5 || isAuto) return;
+          const tgt = sel === 'pt' ? 'en' : 'pt';
+          if (tgt === sel) return;
+          isAuto = true; sel = tgt;
+          cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
+          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+          ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
+          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+          cancelAnimationFrame(afId); loop();
+        });
+        container.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.click(); } });
+      }
+      document.querySelectorAll('.lang-switcher-container').forEach(initPhysicsSwitcher);
+
+    }); // end DOMContentLoaded
+  </script>
+
+  <script>
+    // ── v14: Lightbox with zoom ───────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      const triggers = document.querySelectorAll('.lightbox-trigger');
+      if (!triggers.length) return;
+      const overlay = document.getElementById('lightboxOverlay');
+      const lbC = document.getElementById('lbContainer');
+      const lbImg = document.getElementById('lbImage');
+      const lbCl  = document.getElementById('lbClose');
+      const lbPrev = document.getElementById('lbPrev');
+      const lbNext = document.getElementById('lbNext');
+      const lbSlider = document.getElementById('lbZoomSlider');
+      const lbZI = document.getElementById('lbZoomIn');
+      const lbZO = document.getElementById('lbZoomOut');
+      if (!overlay || !lbImg) return;
+
+      const imgs = Array.from(triggers).map(t => t.dataset.src || t.getAttribute('src') || t.getAttribute('href') || '');
+      let ci = 0, scale = 1, px = 0, py = 0, dragging = false, animating = false;
+      let sx = 0, sy = 0, scx = 0, scy = 0, zint = null, _prevEl = null;
+
+      function setTabsActive(on) {
+        overlay.querySelectorAll('button,input,[tabindex]').forEach(el => {
+          if (on) { const v = el.dataset._lbt; if (v === '') el.removeAttribute('tabindex'); else if (v !== undefined) el.setAttribute('tabindex', v); }
+          else { if (el.dataset._lbt === undefined) el.dataset._lbt = el.getAttribute('tabindex') ?? ''; el.setAttribute('tabindex', '-1'); }
+        });
+        if (on) lbC.setAttribute('tabindex', '-1');
+        overlay.setAttribute('aria-hidden', on ? 'false' : 'true');
+      }
+      setTabsActive(false);
+
+      function lockPage() {
+        document.querySelectorAll('a,button,input,select,textarea,[tabindex]').forEach(el => {
+          if (overlay.contains(el)) return;
+          if (el.dataset._lbp === undefined) el.dataset._lbp = el.getAttribute('tabindex') ?? '';
+          el.setAttribute('tabindex', '-1');
+        });
+        ['#main-content','aside'].forEach(sel => {
+          const n = document.querySelector(sel);
+          if (!n) return;
+          if (!n.dataset._lbah) n.dataset._lbah = n.getAttribute('aria-hidden') ?? '';
+          n.setAttribute('aria-hidden', 'true');
+        });
+      }
+      function unlockPage() {
+        document.querySelectorAll('[data-_lbp]').forEach(el => {
+          if (overlay.contains(el)) return;
+          const v = el.dataset._lbp; if (v === '') el.removeAttribute('tabindex'); else el.setAttribute('tabindex', v);
+          delete el.dataset._lbp;
+        });
+        ['#main-content','aside'].forEach(sel => {
+          const n = document.querySelector(sel); if (!n) return;
+          const v = n.dataset._lbah ?? ''; if (v === '') n.removeAttribute('aria-hidden'); else n.setAttribute('aria-hidden', v);
+          delete n.dataset._lbah;
+        });
+      }
+
+      function clampT() {
+        const mx = Math.max(0, (lbImg.naturalWidth*scale - window.innerWidth)/2);
+        const my = Math.max(0, (lbImg.naturalHeight*scale - window.innerHeight)/2);
+        px = Math.max(-mx, Math.min(mx, px));
+        py = Math.max(-my, Math.min(my, py));
+        lbImg.style.transform = `translate3d(${px}px,${py}px,0) scale(${scale})`;
+        if (lbSlider) lbSlider.value = scale;
+      }
+      function zoom(v) {
+        scale = Math.max(1, Math.min(5, v));
+        if (scale === 1) { px = 0; py = 0; lbImg.classList.remove('zoomed'); lbImg.style.cursor = 'zoom-in'; }
+        else { lbImg.classList.add('zoomed'); lbImg.style.cursor = dragging ? 'grabbing' : 'grab'; }
+        clampT();
+      }
+      function toggleZoom(e) {
+        if (scale > 1) { zoom(1); } else {
+          const r = lbImg.getBoundingClientRect();
+          px = -(e ? (e.clientX-r.left-r.width/2) : 0)*1.5;
+          py = -(e ? (e.clientY-r.top-r.height/2) : 0)*1.5;
+          zoom(2.5);
+        }
+      }
+
+      function open(i) {
+        ci = i; lbImg.src = imgs[ci]; scale = 1; px = 0; py = 0;
+        if (lbSlider) lbSlider.value = 1;
+        overlay.classList.add('active'); document.body.style.overflow = 'hidden';
+        clampT(); _prevEl = document.activeElement;
+        lockPage(); setTabsActive(true);
+        setTimeout(() => lbC.focus(), 0);
+      }
+      function close() {
+        stopZoom(); activePan.clear(); if (panT) { clearInterval(panT); panT = null; }
+        overlay.classList.remove('active'); setTabsActive(false);
+        document.body.style.overflow = '';
+        setTimeout(() => { lbImg.src = ''; unlockPage(); if (_prevEl && _prevEl.focus) try { _prevEl.focus({ preventScroll: true }); } catch(_) {} }, 300);
+      }
+      function go(d) {
+        if (animating) return; animating = true;
+        activePan.clear(); if (panT) { clearInterval(panT); panT = null; }
+        scale = 1; px = 0; py = 0; clampT();
+        const ox = d > 0 ? -120 : 120;
+        lbImg.style.transition = 'opacity 0.2s ease, transform 0.2s cubic-bezier(0.2,0,0.2,1)';
+        lbImg.style.opacity = '0.4'; lbImg.style.transform = `translate3d(${ox}px,0,0) scale(0.95)`;
+        setTimeout(() => {
+          ci = (ci + d + imgs.length) % imgs.length; lbImg.src = imgs[ci];
+          lbImg.style.transition = 'none';
+          lbImg.style.transform = `translate3d(${d>0?120:-120}px,0,0) scale(0.95)`;
+          void lbImg.offsetWidth;
+          lbImg.style.transition = 'opacity 0.3s cubic-bezier(0.2,0.8,0.2,1), transform 0.3s cubic-bezier(0.2,0.8,0.2,1)';
+          lbImg.style.opacity = '1'; lbImg.style.transform = 'translate3d(0,0,0) scale(1)';
+          setTimeout(() => animating = false, 300);
+        }, 200);
+      }
+
+      function startZoom(d) { stopZoom(); if (d>0) lbZI&&lbZI.classList.add('is-pressed'); else lbZO&&lbZO.classList.add('is-pressed'); zoom(scale+d*0.2); zint = setInterval(()=>zoom(scale+d*0.05),20); }
+      function stopZoom() { if (zint) clearInterval(zint); zint = null; lbZI&&lbZI.classList.remove('is-pressed'); lbZO&&lbZO.classList.remove('is-pressed'); }
+
+      if (lbZI) { lbZI.addEventListener('mousedown',e=>{if(e.button===0)startZoom(1);}); lbZI.addEventListener('touchstart',e=>{e.preventDefault();startZoom(1);}); lbZI.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!zint){e.preventDefault();startZoom(1);}}); lbZI.addEventListener('keyup',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();stopZoom();}}); }
+      if (lbZO) { lbZO.addEventListener('mousedown',e=>{if(e.button===0)startZoom(-1);}); lbZO.addEventListener('touchstart',e=>{e.preventDefault();startZoom(-1);}); lbZO.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!zint){e.preventDefault();startZoom(-1);}}); lbZO.addEventListener('keyup',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();stopZoom();}}); }
+      ['mouseup','mouseleave','touchend'].forEach(ev=>{lbZI&&lbZI.addEventListener(ev,stopZoom);lbZO&&lbZO.addEventListener(ev,stopZoom);});
+
+      triggers.forEach((t,i) => t.addEventListener('click', e => { e.preventDefault(); open(i); }));
+      if (lbCl)  lbCl.addEventListener('click', close);
+      if (lbPrev) lbPrev.addEventListener('click', e=>{ e.stopPropagation(); go(-1); });
+      if (lbNext) lbNext.addEventListener('click', e=>{ e.stopPropagation(); go(1); });
+      if (lbSlider) { lbSlider.addEventListener('input', e=>zoom(parseFloat(e.target.value))); lbSlider.addEventListener('click', e=>e.stopPropagation()); }
+      overlay.addEventListener('click', e => { if (e.target === overlay || e.target === lbC) close(); });
+      overlay.addEventListener('wheel', e => {
+        e.preventDefault();
+        lbImg.style.transition = 'transform 0.4s cubic-bezier(0.1,0.6,0.1,1)';
+        zoom(scale + e.deltaY * -0.002);
+        clearTimeout(overlay._wt);
+        overlay._wt = setTimeout(() => { if (!dragging) lbImg.style.transition = ''; }, 350);
+      }, { passive: false });
+
+      let msx = 0, msy = 0;
+      lbImg.addEventListener('mousedown', e => { msx = e.clientX; msy = e.clientY; if (scale <= 1) return; dragging = true; sx = e.clientX; sy = e.clientY; lbImg.style.cursor = 'grabbing'; e.preventDefault(); });
+      window.addEventListener('mousemove', e => { if (!dragging) return; e.preventDefault(); px += e.clientX-sx; py += e.clientY-sy; sx=e.clientX; sy=e.clientY; clampT(); });
+      window.addEventListener('mouseup', () => { dragging = false; if (scale > 1) lbImg.style.cursor = 'grab'; });
+      lbImg.addEventListener('click', e => { if ('ontouchstart' in window) return; if (Math.abs(e.clientX-msx)>10||Math.abs(e.clientY-msy)>10||dragging) return; toggleZoom(e); });
+
+      // Keyboard
+      const activePan = new Set(); let panT = null;
+      function pan() {
+        const sp = 16;
+        if (activePan.has('ArrowLeft'))  px += sp;
+        if (activePan.has('ArrowRight')) px -= sp;
+        if (activePan.has('ArrowUp'))    py += sp;
+        if (activePan.has('ArrowDown'))  py -= sp;
+        clampT();
+      }
+      document.addEventListener('keydown', e => {
+        if (!overlay.classList.contains('active')) return;
+        if (e.key === 'Tab') {
+          const items = Array.from(overlay.querySelectorAll('button:not([disabled])')).filter(x=>x.offsetParent!==null);
+          if (!items.length) return;
+          if (e.shiftKey && document.activeElement===items[0]) { e.preventDefault(); items[items.length-1].focus(); }
+          else if (!e.shiftKey && document.activeElement===items[items.length-1]) { e.preventDefault(); items[0].focus(); }
+          return;
+        }
+        const k = e.key;
+        if (k==='Escape') { e.preventDefault(); close(); return; }
+        if (k==='+'||k==='=') { e.preventDefault(); if (!zint) startZoom(1); return; }
+        if (k==='-'||k==='_') { e.preventDefault(); if (!zint) startZoom(-1); return; }
+        if (k==='0') { e.preventDefault(); stopZoom(); zoom(1); return; }
+        if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(k)) {
+          e.preventDefault();
+          if (scale > 1.01) { if (!activePan.has(k)) { activePan.add(k); if (!panT) { pan(); panT = setInterval(pan,16); } } }
+          else if (!e.repeat) { if (k==='ArrowLeft') go(-1); if (k==='ArrowRight') go(1); }
+        }
+      });
+      document.addEventListener('keyup', e => {
+        if (!overlay.classList.contains('active')) return;
+        if (e.key==='+'||e.key==='='||e.key==='-'||e.key==='_') stopZoom();
+        if (e.key.startsWith('Arrow')) { activePan.delete(e.key); if (activePan.size===0 && panT) { clearInterval(panT); panT=null; } }
+      });
+
+      // Touch
+      let td = 0, is0 = 1, tsx = 0, tsy = 0, tdx = 0, tdy = 0, ltt = 0, ltx = 0, lty = 0, tdc = false;
+      overlay.addEventListener('touchstart', e => {
+        if (e.target?.closest?.('.lb-zoom-control')) return;
+        if (e.touches.length === 2) {
+          e.preventDefault();
+          td = Math.hypot(e.touches[0].pageX-e.touches[1].pageX, e.touches[0].pageY-e.touches[1].pageY);
+          is0 = scale;
+        } else if (e.touches.length === 1) {
+          tsx = e.touches[0].clientX; tsy = e.touches[0].clientY; tdx = 0; tdy = 0;
+          if (scale > 1) { tdc = true; dragging = false; sx = e.touches[0].clientX; sy = e.touches[0].clientY; }
+          else lbImg.style.transition = 'none';
+        }
+      }, { passive: false });
+      overlay.addEventListener('touchmove', e => {
+        if (e.target?.closest?.('.lb-zoom-control')) return;
+        if (e.touches.length === 2) {
+          e.preventDefault();
+          const d = Math.hypot(e.touches[0].pageX-e.touches[1].pageX, e.touches[0].pageY-e.touches[1].pageY);
+          zoom(is0*(d/td));
+        } else if (e.touches.length === 1) {
+          if (scale > 1) {
+            if (!tdc && !dragging) return; e.preventDefault();
+            const dx = e.touches[0].clientX-sx, dy = e.touches[0].clientY-sy;
+            if (!dragging) { if (Math.abs(dx)+Math.abs(dy)<3) return; dragging=true; }
+            px += dx; py += dy; sx = e.touches[0].clientX; sy = e.touches[0].clientY; clampT();
+          } else {
+            e.preventDefault(); tdx = e.touches[0].clientX-tsx; tdy = e.touches[0].clientY-tsy;
+            lbImg.style.transform = `translate3d(${tdx}px,0,0)`;
+          }
+        }
+      }, { passive: false });
+      overlay.addEventListener('touchend', e => {
+        if (e.target?.closest?.('.lb-zoom-control')) return;
+        if (dragging) { dragging=false; tdc=false; if(scale>1) lbImg.style.cursor='grab'; }
+        else if (e.changedTouches.length === 1) {
+          const now = Date.now(); const tx2 = e.changedTouches[0].clientX, ty2 = e.changedTouches[0].clientY;
+          const tap = Math.abs(tdx)<12 && Math.abs(tdy)<12; tdc = false;
+          if (tap) {
+            const dt = now - ltt; const dist = Math.hypot(tx2-ltx, ty2-lty);
+            ltt=now; ltx=tx2; lty=ty2;
+            if (dt>0 && dt<260 && dist<28) { const tgt=scale>1?1:2.5; lbImg.style.transition='transform 180ms cubic-bezier(0.2,0.8,0.2,1)'; zoom(tgt); setTimeout(()=>lbImg.style.transition='',190); return; }
+            lbImg.style.transition='transform 0.25s cubic-bezier(0.34,1.56,0.64,1)'; lbImg.style.transform='translate3d(0,0,0)'; lbImg.style.opacity='1'; return;
+          }
+          const thr = window.innerWidth * 0.25;
+          if (Math.abs(tdx) > thr) {
+            const dir = tdx > 0 ? -1 : 1; const ex = tdx > 0 ? window.innerWidth : -window.innerWidth;
+            lbImg.style.transition='transform 0.3s cubic-bezier(0.2,0.8,0.2,1), opacity 0.3s ease';
+            lbImg.style.transform=`translate3d(${ex}px,0,0)`; lbImg.style.opacity='0';
+            setTimeout(()=>go(dir), 250);
+          } else {
+            lbImg.style.transition='transform 0.4s cubic-bezier(0.34,1.56,0.64,1)';
+            lbImg.style.transform='translate3d(0,0,0)'; lbImg.style.opacity='1';
+          }
+        }
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#gabriel-silva",
+      "name": "Gabriel Silva",
+      "alternateName": [
+        "Gabriel Silva Dias Moreira",
+        "Gabriel Moreira"
+      ],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist & Full Stack Developer",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
+        "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
+        "caption": "Gabriel Silva"
+      },
+      "description": "Creative Technologist especializado na interseção de design, engenharia de software e infraestrutura de servidores.",
+      "knowsAbout": [
+        "Full Stack Development",
+        "Branding",
+        "Infraestrutura de TI",
+        "Cloudflare & Networking",
+        "Docker",
+        "Linux Server",
+        "Inteligência Artificial",
+        "Produção Audiovisual",
+        "Cibersegurança"
+      ],
+      "alumniOf": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "Liceu de Artes e Ofícios de São Paulo",
+          "url": "https://www.liceuescola.com.br",
+          "sameAs": [
+            "https://www.liceuescola.com.br",
+            "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"
+          ]
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "UNIVESP",
+          "url": "https://univesp.br/",
+          "sameAs": [
+            "https://univesp.br/",
+            "https://pt.wikipedia.org/wiki/Universidade_Virtual_do_Estado_de_S%C3%A3o_Paulo"
+          ]
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/ogabriels/",
+        "https://github.com/ogabriels2/",
+        "https://www.behance.net/ogabriels0",
+        "https://x.com/ogabriels0",
+        "https://www.instagram.com/ogabriels0/",
+        "https://www.youtube.com/@Gabalarca"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://ogabriels.com/neoletters.html#case",
+      "headline": "Neo Letters: Case Study de Branding e Identidade Visual",
+      "description": "Desenvolvimento completo de identidade visual, naming e estratégia digital para marca de letreiros neon.",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/neoletters.html#primaryimage",
+        "url": "https://ogabriels.com/assets/img/neoletters-capa.png"
+      },
+      "datePublished": "2023-05-15T08:00:00-03:00",
+      "author": {
+        "@id": "https://ogabriels.com/#gabriel-silva"
+      },
+      "publisher": {
+        "@id": "https://ogabriels.com/#gabriel-silva"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://ogabriels.com/neoletters.html"
+      },
+      "contributor": [
+        {
+          "@type": "Person",
+          "name": "Edileuza Moreira",
+          "jobTitle": "Gestão de Produção",
+          "sameAs": [
+            "https://www.linkedin.com/in/edileuzaap/",
+            "https://www.instagram.com/aparecida_edileuza/"
+          ]
+        },
+        {
+          "@type": "Person",
+          "name": "Janilson Dias",
+          "jobTitle": "Operações Técnicas",
+          "sameAs": [
+            "https://www.linkedin.com/in/janilson-dias-moreira-80b94428/",
+            "https://www.instagram.com/janilson.son/"
+          ]
+        }
+      ],
+      "dateModified": "2026-06-02T00:00:00-03:00"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ogabriels.com/neoletters.html",
+      "url": "https://ogabriels.com/neoletters.html",
+      "name": "Neo Letters | Branding e Design",
+      "isPartOf": {
+        "@id": "https://ogabriels.com/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://ogabriels.com/neoletters.html#breadcrumb"
+      },
+      "about": {
+        "@id": "https://ogabriels.com/neoletters.html#case"
+      },
+      "inLanguage": "pt-BR",
+      "dateModified": "2026-06-02T00:00:00-03:00",
+      "primaryImageOfPage": {
+        "@id": "https://ogabriels.com/neoletters.html#primaryimage"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ogabriels.com/neoletters.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://ogabriels.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Neo Letters",
+          "item": "https://ogabriels.com/neoletters.html"
+        }
+      ]
+    }
+  ]
+}
+  </script>
+
+</body>
+</html>
