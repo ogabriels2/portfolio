@@ -35,6 +35,7 @@
   <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/infra" />
   <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/server-infrastructure" />
   <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/server-infrastructure" />
+  <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
 
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
@@ -1319,13 +1320,23 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#gabriel-silva",
+      "name": "Gabriel Silva",
+      "alternateName": [
+        "Gabriel Silva Dias Moreira",
+        "Gabriel Moreira"
+      ],
+      "url": "https://ogabriels.com/"
+    },
+    {
       "@type": "TechArticle",
-      "@id": "https://ogabriels.com/infra.html#case",
+      "@id": "https://ogabriels.com/infra#case",
       "headline": "Server Infra & Homelab: Case Study de Infraestrutura",
       "description": "Estudo de caso sobre a implementação da infraestrutura self-hosted do servidor Força Aliada, utilizando Cloudflare Tunnel e monitoramento via API.",
       "image": {
         "@type": "ImageObject",
-        "@id": "https://ogabriels.com/infra.html#primaryimage",
+        "@id": "https://ogabriels.com/infra#primaryimage",
         "url": "https://ogabriels.com/assets/img/forca-aliada-logo.webp"
       },
       "datePublished": "2025-01-01T08:00:00-03:00",
@@ -1345,13 +1356,13 @@
         "API Monitoring"
       ],
       "mainEntity": {
-        "@id": "https://ogabriels.com/infra.html#application"
+        "@id": "https://ogabriels.com/infra#application"
       },
       "dateModified": "2026-06-02T00:00:00-03:00"
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://ogabriels.com/infra.html#application",
+      "@id": "https://ogabriels.com/infra#application",
       "name": "Força Aliada – Server Monitoring Dashboard",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Linux",
@@ -1359,30 +1370,30 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://ogabriels.com/infra.html",
-      "url": "https://ogabriels.com/infra.html",
+      "@id": "https://ogabriels.com/infra",
+      "url": "https://ogabriels.com/infra",
       "name": "Server Infra & Homelab | Case Study Técnico",
       "isPartOf": {
         "@id": "https://ogabriels.com/#website"
       },
       "about": {
-        "@id": "https://ogabriels.com/infra.html#case"
+        "@id": "https://ogabriels.com/infra#case"
       },
       "mainEntity": {
-        "@id": "https://ogabriels.com/infra.html#case"
+        "@id": "https://ogabriels.com/infra#case"
       },
       "breadcrumb": {
-        "@id": "https://ogabriels.com/infra.html#breadcrumb"
+        "@id": "https://ogabriels.com/infra#breadcrumb"
       },
       "primaryImageOfPage": {
-        "@id": "https://ogabriels.com/infra.html#primaryimage"
+        "@id": "https://ogabriels.com/infra#primaryimage"
       },
       "inLanguage": "pt-BR",
       "dateModified": "2026-06-02T00:00:00-03:00"
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/infra.html#breadcrumb",
+      "@id": "https://ogabriels.com/infra#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -1394,7 +1405,7 @@
           "@type": "ListItem",
           "position": 2,
           "name": "Server Infra",
-          "item": "https://ogabriels.com/infra.html"
+          "item": "https://ogabriels.com/infra"
         }
       ]
     }

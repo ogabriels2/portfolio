@@ -29,6 +29,7 @@
   <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/revista-utopia" />
   <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/utopia-magazine" />
   <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/utopia-magazine" />
+  <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
 
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
@@ -1369,13 +1370,23 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#gabriel-silva",
+      "name": "Gabriel Silva",
+      "alternateName": [
+        "Gabriel Silva Dias Moreira",
+        "Gabriel Moreira"
+      ],
+      "url": "https://ogabriels.com/"
+    },
+    {
       "@type": "CreativeWork",
-      "@id": "https://ogabriels.com/revista-utopia.html#case",
+      "@id": "https://ogabriels.com/revista-utopia#case",
       "headline": "Revista Utopia: Projeto de Design Editorial e Diagramação",
       "description": "Estudo de caso do projeto editorial desenvolvido no Liceu de Artes e Ofícios de São Paulo, integrando design gráfico, redação estratégica e desenvolvimento web.",
       "image": {
         "@type": "ImageObject",
-        "@id": "https://ogabriels.com/revista-utopia.html#primaryimage",
+        "@id": "https://ogabriels.com/revista-utopia#primaryimage",
         "url": "https://ogabriels.com/assets/img/revista-utopia-capa.webp",
         "width": 1280,
         "height": 721,
@@ -1400,30 +1411,30 @@
     },
     {
       "@type": "WebPage",
-      "@id": "https://ogabriels.com/revista-utopia.html",
-      "url": "https://ogabriels.com/revista-utopia.html",
+      "@id": "https://ogabriels.com/revista-utopia",
+      "url": "https://ogabriels.com/revista-utopia",
       "name": "Revista Utopia | Design Editorial e Diagramação",
       "isPartOf": {
         "@id": "https://ogabriels.com/#website"
       },
       "about": {
-        "@id": "https://ogabriels.com/revista-utopia.html#case"
+        "@id": "https://ogabriels.com/revista-utopia#case"
       },
       "mainEntity": {
-        "@id": "https://ogabriels.com/revista-utopia.html#case"
+        "@id": "https://ogabriels.com/revista-utopia#case"
       },
       "breadcrumb": {
-        "@id": "https://ogabriels.com/revista-utopia.html#breadcrumb"
+        "@id": "https://ogabriels.com/revista-utopia#breadcrumb"
       },
       "primaryImageOfPage": {
-        "@id": "https://ogabriels.com/revista-utopia.html#primaryimage"
+        "@id": "https://ogabriels.com/revista-utopia#primaryimage"
       },
       "inLanguage": "pt-BR",
       "dateModified": "2026-06-02T00:00:00-03:00"
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/revista-utopia.html#breadcrumb",
+      "@id": "https://ogabriels.com/revista-utopia#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -1435,7 +1446,7 @@
           "@type": "ListItem",
           "position": 2,
           "name": "Revista Utopia",
-          "item": "https://ogabriels.com/revista-utopia.html"
+          "item": "https://ogabriels.com/revista-utopia"
         }
       ]
     }

@@ -35,6 +35,7 @@
   <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/sobre" />
   <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/about" />
   <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/about" />
+  <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
 
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
@@ -564,7 +565,7 @@
       <section class="bento-grid">
         
         <article class="bento-card bio-text">
-          <p>Olá! Me chamo <span class="highlight">Gabriel Silva</span>. Sou um profissional multidisciplinar, formado em Multimídia e atualmente cursando <strong>Tecnologia da Informação (TI)</strong> na UNIVESP.</p>
+          <p>Olá! Me chamo <span class="highlight">Gabriel Silva Dias Moreira</span>. Sou um profissional multidisciplinar, formado em Multimídia e atualmente cursando <strong>Tecnologia da Informação (TI)</strong> na UNIVESP.</p>
           <p>Minha trajetória é definida pela curiosidade. Comecei explorando o universo visual através do design e audiovisual. Hoje, expando esses horizontes integrando <strong>inteligência artificial e infraestrutura</strong> para otimizar processos criativos.</p>
           <p>Não sou apenas um executor; sou um facilitador. Uso ferramentas de IA para acelerar entregas e tenho uma visão sistêmica sobre hardware e servidores, o que me permite entender a tecnologia que sustenta grandes projetos. Meu objetivo é aplicar essa visão híbrida para resolver problemas reais com eficiência.</p>
         </article>
@@ -953,19 +954,43 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@id": "https://ogabriels.com/#gabriel-silva"
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#gabriel-silva",
+      "name": "Gabriel Silva",
+      "alternateName": [
+        "Gabriel Silva Dias Moreira",
+        "Gabriel Moreira"
+      ],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist & Full Stack Developer",
+      "description": "Creative Technologist especializado na intersecção entre design, engenharia de software e infraestrutura de servidores.",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/#personImage",
+        "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
+        "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
+        "caption": "Gabriel Silva"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/ogabriels/",
+        "https://github.com/ogabriels2/",
+        "https://www.behance.net/ogabriels0",
+        "https://x.com/ogabriels0",
+        "https://www.instagram.com/ogabriels0/",
+        "https://www.youtube.com/@Gabalarca"
+      ]
     },
     {
       "@type": "WebPage",
-      "@id": "https://ogabriels.com/sobre.html",
-      "url": "https://ogabriels.com/sobre.html",
+      "@id": "https://ogabriels.com/sobre",
+      "url": "https://ogabriels.com/sobre",
       "name": "Sobre Gabriel Silva | Trajetória e Skills",
       "description": "Conheça a jornada de Gabriel Silva, Creative Technologist. Especialista em TI, Design e infraestrutura de servidores.",
       "isPartOf": {
         "@id": "https://ogabriels.com/#website"
       },
       "breadcrumb": {
-        "@id": "https://ogabriels.com/sobre.html#breadcrumb"
+        "@id": "https://ogabriels.com/sobre#breadcrumb"
       },
       "about": {
         "@id": "https://ogabriels.com/#gabriel-silva"
@@ -981,7 +1006,7 @@
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/sobre.html#breadcrumb",
+      "@id": "https://ogabriels.com/sobre#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -992,7 +1017,7 @@
         {
           "@type": "ListItem",
           "name": "Sobre mim",
-          "item": "https://ogabriels.com/sobre.html",
+          "item": "https://ogabriels.com/sobre",
           "position": 2
         }
       ]

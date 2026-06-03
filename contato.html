@@ -35,6 +35,7 @@
   <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/contato" />
   <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/contact" />
   <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/contact" />
+  <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
 
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
@@ -1216,9 +1217,19 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#gabriel-silva",
+      "name": "Gabriel Silva",
+      "alternateName": [
+        "Gabriel Silva Dias Moreira",
+        "Gabriel Moreira"
+      ],
+      "url": "https://ogabriels.com/"
+    },
+    {
       "@type": "ContactPage",
-      "@id": "https://ogabriels.com/contato.html",
-      "url": "https://ogabriels.com/contato.html",
+      "@id": "https://ogabriels.com/contato",
+      "url": "https://ogabriels.com/contato",
       "name": "Fale Comigo | Orçamentos e Projetos - Gabriel Silva",
       "description": "Entre em contato com Gabriel Silva para consultoria em tecnologia, desenvolvimento web e produção audiovisual.",
       "isPartOf": {
@@ -1235,8 +1246,9 @@
       },
       "inLanguage": "pt-BR",
       "breadcrumb": {
-        "@id": "https://ogabriels.com/contato.html#breadcrumb"
-      }
+        "@id": "https://ogabriels.com/contato#breadcrumb"
+      },
+      "dateModified": "2026-06-03T00:00:00-03:00"
     },
     {
       "@type": "ContactPoint",
@@ -1272,7 +1284,7 @@
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/contato.html#breadcrumb",
+      "@id": "https://ogabriels.com/contato#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -1284,7 +1296,7 @@
           "@type": "ListItem",
           "position": 2,
           "name": "Contato",
-          "item": "https://ogabriels.com/contato.html"
+          "item": "https://ogabriels.com/contato"
         }
       ]
     }
