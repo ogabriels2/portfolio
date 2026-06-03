@@ -27,6 +27,7 @@
   
   <title>Lô Publicidade | Branding e Identidade Visual (TCC) - Gabriel Silva</title>
   <meta name="description" content="Case Study: Projeto de Branding e Identidade Visual para a agência Lô Publicidade. TCC desenvolvido no curso de Multimídia do Liceu de Artes e Ofícios de São Paulo.">
+  <meta name="keywords" content="Lô Publicidade, Branding, Identidade Visual, TCC, Liceu de Artes e Ofícios, Art Nouveau, Art Déco, Gabriel Silva">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Gabriel Silva">
   
@@ -38,14 +39,14 @@
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
 
-  <meta property="og:locale" content="pt_BR">
-  <meta property="og:site_name" content="Gabriel Silva — Portfólio">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ogabriels.com/lo-publicidade">
   <meta property="og:title" content="Lô Publicidade | Projeto de Branding">
   <meta property="og:description" content="Identidade visual inspirada em Art Nouveau e Art Déco. TCC Liceu de Artes e Ofícios.">
   <meta property="og:image" content="https://ogabriels.com/assets/img/lo-publi-capa.png">
   <meta property="og:image:alt" content="Lô Publicidade — Projeto de Branding por Gabriel Silva">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Gabriel Silva — Portfólio">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://ogabriels.com/lo-publicidade">
@@ -69,15 +70,21 @@
       --bg-card: #FFFFFF;
       --text-primary: #1D1D1F;
       --text-secondary: #86868B;
-      --accent: #0071E3;
-      --brand-color: #024B47; /* Cor da Marca Lô */
+      
+      /* Sidebar Accent (Padrão) */
+      --accent: #0071E3; 
+      --accent-hover: #0077ED;
+      
+      /* Project Brand Color */
+      --brand-color: #024B47;
       
       /* Effects */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
       --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.1);
       --glass-blur: blur(20px) saturate(180%);
       
-      /* Page Specific Radius */
+      /* Radius */
       --radius-lg: 24px;
       --radius-md: 12px;
       
@@ -148,9 +155,11 @@
       box-shadow: var(--shadow-md);
       transition: transform 0.4s var(--ease-out); flex-shrink: 0;
       transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); } 
-    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; image-rendering: -webkit-optimize-contrast; }
     .profile-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: #111; transition: color 0.3s ease; }
     .profile-link:hover .profile-name { color: var(--accent); }
     .profile-role { font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -180,21 +189,12 @@
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       white-space: nowrap;
     }
-    /* Hover com Vermelho Valorant */
     .nav-link:hover { color: var(--brand-color); background: rgba(2, 75, 71, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(2, 75, 71, 0.12); transition-duration: 0.1s; }
     .nav-link.active { color: var(--brand-color); font-weight: 600; background: rgba(2, 75, 71, 0.05); }
 
-    .nav-link.back-link i { transition: transform 0.3s; }
-    .nav-link.back-link:hover i { transform: translateX(-6px); } 
-
-    /* ANIMAÇÃO BONEQUINHO */
-    @keyframes head-bob {
-      0%, 100% { transform: translateY(0) rotate(0); }
-      30% { transform: translateY(-2px) rotate(-3deg); }
-      60% { transform: translateY(-1px) rotate(3deg); }
-    }
-    .nav-link:hover i.fa-user { animation: head-bob 0.6s ease infinite; color: var(--brand-color); }
+    .nav-link.back-link svg { transition: transform 0.3s; }
+    .nav-link.back-link:hover svg { transform: translateX(-6px); } 
 
     /* Lang Switcher */
     .lang-switcher-container {
@@ -276,20 +276,27 @@
     .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
     .mobile-cta { width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
-    /* --- PAGE CONTENT (Project Specific) --- */
+    /* --- PAGE CONTENT --- */
     main { margin-left: var(--sidebar-width); flex: 1; padding: 0; display: flex; flex-direction: column; align-items: center; }
 
     .project-hero { width: 100%; padding: 80px 0 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .hero-image-container { width: 100%; max-width: var(--max-width); padding: 0 60px; margin-bottom: 30px; box-sizing: border-box; }
-    .hero-image-wrapper-inner { width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); background: #fff; border: 1px solid rgba(0,0,0,0.05); display: block; }
-    .hero-image { width: 100%; height: auto; display: block; transition: transform 0.5s ease; cursor: zoom-in; }
+    
+    .hero-image-container { 
+        width: 100%; max-width: var(--max-width); padding: 0 60px; margin-bottom: 30px; box-sizing: border-box; 
+    }
+    
+    .hero-image-wrapper-inner {
+        width: 100%; border-radius: var(--radius-lg); overflow: hidden;
+        box-shadow: var(--shadow-md); background: #fff; border: 1px solid rgba(0,0,0,0.05);
+        display: block; cursor: zoom-in;
+    }
+    .hero-image { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
     .hero-image:hover { transform: scale(1.02); }
 
     .hero-text-content { text-align: center; width: 100%; max-width: var(--max-width); padding: 0 60px; box-sizing: border-box; }
-    .project-title { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.03em; }
+    .project-title { font-size: clamp(2rem, 3.2vw, 2.5rem); font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.03em; }
     .project-subtitle { font-size: 1.1rem; color: var(--text-secondary); font-weight: 400; }
 
-    /* CONTENT WRAPPER */
     .content-wrapper { padding: 40px 60px; width: 100%; max-width: var(--max-width); box-sizing: border-box; }
 
     /* Meta Grid */
@@ -303,13 +310,11 @@
     .tools { grid-area: tools; text-align: right; display: flex; flex-direction: column; align-items: flex-end; } 
     .meta-item h4 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
     .meta-item p { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
-    
-    .meta-link { text-decoration: none; color: var(--text-primary); border-bottom: 1px solid transparent; transition: 0.2s; }
-    .meta-link:hover { color: var(--brand-color); border-bottom-color: var(--brand-color); }
 
     .project-description { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 80px; }
     .project-description strong { color: var(--brand-color); font-weight: 600; }
-    .project-description a { color: var(--brand-color); text-decoration: none; }
+    .project-description a { color: var(--brand-color); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .project-description a:hover { text-decoration: underline; }
 
     /* Showcase */
     .showcase-section { margin-bottom: 80px; }
@@ -317,28 +322,23 @@
     .section-title { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
     .section-desc { font-size: 1rem; color: var(--text-secondary); }
 
-    .full-width-img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 32px; transition: transform 0.5s ease; cursor: zoom-in; }
-    .full-width-img:hover { transform: scale(1.02); }
+    .full-width-img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 32px; transition: transform 0.5s ease, box-shadow 0.3s ease; cursor: zoom-in; display: block; }
+    .full-width-img:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
 
-    .showcase-img { width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: transform 0.3s ease; cursor: zoom-in; display: block; margin-bottom: 24px; }
+    .showcase-img { width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: zoom-in; display: block; margin-bottom: 24px; }
     .showcase-img:hover { transform: scale(1.035); box-shadow: var(--shadow-md); }
     .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-    /* Navigation */
-    .project-nav { 
-        width: 100%; max-width: 880px; margin: 0 auto; 
-        padding: 60px 0 80px; 
-        border-top: 1px solid rgba(0,0,0,0.1); 
-        display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; 
-    }
+    /* Project Nav */
+    .project-nav { width: 100%; max-width: 880px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; padding-top: 40px; margin: 60px auto 80px; box-sizing: border-box; }
     .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); text-decoration: none; }
     .nav-btn:hover { color: var(--brand-color); background: rgba(2, 75, 71, 0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .nav-btn.prev:hover { transform: translateX(-4px); } 
+    .nav-btn.prev:hover { transform: translateX(-4px); }
     .nav-btn.next:hover { transform: translateX(4px); }
     .nav-btn:active { transform: scale(0.96); transition-duration: 0.1s; }
     .nav-btn.next { text-align: right; flex-direction: row-reverse; }
     .nav-btn i { transition: transform 0.3s ease; }
-    .nav-btn.prev:hover i { transform: translateX(-4px); } 
+    .nav-btn.prev:hover i { transform: translateX(-4px); }
     .nav-btn.next:hover i { transform: translateX(4px); }
     .nav-label { font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: 0.6; }
     .nav-project-name { font-size: 1rem; color: var(--text-primary); }
@@ -363,22 +363,11 @@
     .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
     .btn-secondary-dark:active { transform: scale(0.96); transition-duration: 0.1s; }
 
-    /* Lightbox */
-    
-    
-    
-    
-    .lb-control:hover { background: rgba(255, 255, 255, 0.25); transform: scale(1.1); }
-    .lb-close { top: 20px; right: 20px; position: absolute; }
-    .lb-prev { left: 20px; position: fixed; }
-    .lb-next { right: 20px; position: fixed; }
-
-    /* --- RESPONSIVIDADE (FIXED FOR GOLD MASTER) --- */
+    /* --- RESPONSIVIDADE (GOLD MASTER) --- */
     @media (max-width: 968px) {
       body { flex-direction: column; }
       .project-title { font-size: 2rem; }
 
-      /* HEADER MOBILE EXATO */
       aside { 
           width: 100%; height: 70px; 
           position: fixed; top: 0; left: 0; 
@@ -393,10 +382,7 @@
       .sidebar-scaler.compact-mode { padding: 0; }
       .profile-container { margin: 0; text-align: left; }
       .profile-link { display: flex; align-items: center; gap: 12px; }
-      
-      /* FOTO 36px FIXA */
       .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-shrink: 0; }
-      
       .profile-name { font-size: 1rem; margin: 0; }
       .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
       .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; transition: transform 0.2s; }
@@ -406,7 +392,7 @@
       .project-hero { padding: 40px 0 20px; }
       .hero-image-container { padding: 0; width: 100%; max-width: 100%; box-sizing: border-box; }
       .hero-text-content { padding: 0; }
-      .content-wrapper { padding: 40px 0; } /* Remove padding lateral no mobile pois a main já tem */
+      .content-wrapper { padding: 40px 0; }
       
       .meta-grid { grid-template-columns: 1fr 1fr 1fr; grid-template-areas: "role year tools"; gap: 10px; padding: 18px 18px; }
       .meta-item p { font-size: 0.72rem; line-height: 1.2; word-break: break-word; }
@@ -415,9 +401,14 @@
       .year { text-align: center; }
       .tools { text-align: right; }
       .gallery-grid { grid-template-columns: 1fr; }
-      
-      /* Navigation Mobile */
-      .project-nav { flex-direction: row; gap: 8px; padding: 30px 0; width: 100%; justify-content: space-between; max-width: 100%; }
+
+      .project-nav { 
+        width: 100%; 
+        max-width: 100%;
+        flex-direction: row; gap: 8px; 
+        padding: 30px 0;
+        justify-content: space-between; 
+      }
       .nav-btn { width: auto; padding: 10px 8px; flex: 1; justify-content: center; font-size: 0.8rem; flex-direction: column; gap: 6px; text-align: center; }
       .nav-btn.next { flex-direction: column; text-align: center; } 
       .nav-btn i { font-size: 1.1rem; }
@@ -425,8 +416,12 @@
       .nav-label { font-size: 0.6rem; margin-bottom: 0; }
       .nav-home-btn { order: 0; flex-shrink: 0; width: 40px; height: 40px; margin: 0 4px; }
 
-      /* Contact Banner Mobile */
-      .contact-banner { flex-direction: column; text-align: center; gap: 32px; padding: 32px 24px; margin: 0 0 40px; width: 100%; max-width: 100%; }
+      .contact-banner { 
+        width: 100%; 
+        max-width: 100%;
+        flex-direction: column; text-align: center; gap: 32px; 
+        padding: 32px 24px; margin: 0 0 40px; 
+      }
       .contact-text-group { width: 100%; padding-right: 0; }
       .contact-social { justify-content: center; margin-top: 15px; }
       .contact-actions { width: 100%; flex-direction: column; gap: 10px; }
@@ -446,7 +441,7 @@
   
     /* ── v14: Sidebar & Nav improvements ── */
     .nav-group h2 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
-    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0,113,227,0.05); }
+    .nav-link.active { color: var(--brand-color); font-weight: 600; background: rgba(2, 75, 71, 0.05); }
     .nav-link.back-link svg { transition: transform 0.3s; }
     .nav-link.back-link:hover svg { transform: translateX(-6px); }
     .mobile-close-btn { display: none !important; }
@@ -543,22 +538,22 @@
                 <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
             </div>
             <div class="mobile-nav-group">
-                <a href="sobre" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
+                <a href="sobre.html" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
                 <a href="/" class="mobile-link-main js-menu-toggle">Projetos</a>
             </div>
             <div class="mobile-projects-wrapper">
                 <div class="mobile-divider"></div>
                 <span class="mobile-label">Cases de Sucesso</span>
                 <div class="mobile-projects-list">
-                    <a href="infra" class="mobile-link-sub js-menu-toggle">Server Infra</a>
-                    <a href="revista-utopia" class="mobile-link-sub js-menu-toggle">Revista Utopia</a>
-                    <a href="neoletters" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
-                    <a href="lo-publicidade" class="mobile-link-sub js-menu-toggle is-active">Lô Publicidade</a>
-                    <a href="personal-branding" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
-                    <a href="podcast-um-minuto" class="mobile-link-sub js-menu-toggle">Um Minuto</a>
-                    <a href="valorada" class="mobile-link-sub js-menu-toggle">Valorada</a>
-                    <a href="thumbnails" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
-                    <a href="videos" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
+                    <a href="infra.html" class="mobile-link-sub js-menu-toggle">Server Infra</a>
+                    <a href="revista-utopia.html" class="mobile-link-sub js-menu-toggle">Revista Utopia</a>
+                    <a href="neoletters.html" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
+                    <a href="lo-publicidade.html" class="mobile-link-sub js-menu-toggle is-active">Lô Publicidade</a>
+                    <a href="personal-branding.html" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
+                    <a href="podcast-um-minuto.html" class="mobile-link-sub js-menu-toggle">Um Minuto</a>
+                    <a href="valorada.html" class="mobile-link-sub js-menu-toggle">Valorada</a>
+                    <a href="thumbnails.html" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
+                    <a href="videos.html" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
                 </div>
             </div>
             <div class="mobile-footer-group">
@@ -567,7 +562,7 @@
                     <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
                     <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
                 </div>
-                <a href="contato" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
+                <a href="contato.html" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
             </div>
         </div>
     </div>
@@ -591,22 +586,22 @@
           <div class="nav-group">
             <ul class="nav-list">
               <li><a href="/" class="nav-link back-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Voltar para Projetos</a></li>
-              <li><a href="sobre" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sobre mim</a></li>
+              <li><a href="sobre.html" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sobre mim</a></li>
             </ul>
           </div>
 
           <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column;">
             <h2>Portfólio</h2>
             <ul class="nav-list project-scroll-container">
-              <li><a href="infra" class="nav-link">Server Infra &amp; Dashboard</a></li>
-              <li><a href="revista-utopia" class="nav-link">Revista Utopia</a></li>
-              <li><a href="neoletters" class="nav-link">Neo Letters</a></li>
-              <li><a href="lo-publicidade" class="nav-link active">Lô</a></li>
-              <li><a href="personal-branding" class="nav-link">G | Gabriel</a></li>
-              <li><a href="podcast-um-minuto" class="nav-link">Um Minuto</a></li>
-              <li><a href="valorada" class="nav-link">Valorada</a></li>
-              <li><a href="thumbnails" class="nav-link">Thumbnails</a></li>
-              <li><a href="videos" class="nav-link">Produção Audiovisual</a></li>
+              <li><a href="infra.html" class="nav-link">Server Infra &amp; Dashboard</a></li>
+              <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
+              <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
+              <li><a href="lo-publicidade.html" class="nav-link active">Lô</a></li>
+              <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
+              <li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li>
+              <li><a href="valorada.html" class="nav-link">Valorada</a></li>
+              <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
+              <li><a href="videos.html" class="nav-link">Produção Audiovisual</a></li>
             </ul>
           </div>
 
@@ -616,7 +611,7 @@
             <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
           </div>
 
-          <a href="contato" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
+          <a href="contato.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
         </nav>
 
         <div class="sidebar-footer">
@@ -639,7 +634,7 @@
     <section class="project-hero">
       <div class="hero-image-container">
         <div class="hero-image-wrapper-inner">
-            <img src="assets/img/lo-publi-capa.png" alt="Capa Lô Publicidade" data-src="assets/img/lo-publi-capa.png" class="hero-image lightbox-trigger">
+            <img src="assets/img/lo-publi-capa.png" alt="Capa Lô Publicidade" data-src="assets/img/lo-publi-capa.png" class="hero-image lightbox-trigger" fetchpriority="high">
         </div>
       </div>
       
@@ -668,8 +663,8 @@
         </div>
         
         <div class="gallery-grid">
-          <img src="assets/img/lo-publi-logo-estrutura.jpg" alt="Estrutura do Logotipo" data-src="assets/img/lo-publi-logo-estrutura.jpg" class="showcase-img lightbox-trigger">
-          <img src="assets/img/lo-publi-logo-principal.png" alt="Logotipo Principal Lô" data-src="assets/img/lo-publi-logo-principal.png" class="showcase-img lightbox-trigger">
+          <img src="assets/img/lo-publi-logo-estrutura.jpg" alt="Estrutura do Logotipo" data-src="assets/img/lo-publi-logo-estrutura.jpg" class="showcase-img lightbox-trigger" loading="lazy" decoding="async">
+          <img src="assets/img/lo-publi-logo-principal.png" alt="Logotipo Principal Lô" data-src="assets/img/lo-publi-logo-principal.png" class="showcase-img lightbox-trigger" loading="lazy" decoding="async">
         </div>
       </section>
 
@@ -680,8 +675,8 @@
         </div>
 
         <div class="gallery-grid">
-          <img src="assets/img/lo-publi-tipografia.jpg" alt="Tipografia" data-src="assets/img/lo-publi-tipografia.jpg" class="showcase-img lightbox-trigger">
-          <img src="assets/img/lo-publi-paleta-cores.jpg" alt="Paleta de Cores" data-src="assets/img/lo-publi-paleta-cores.jpg" class="showcase-img lightbox-trigger">
+          <img src="assets/img/lo-publi-tipografia.jpg" alt="Tipografia" data-src="assets/img/lo-publi-tipografia.jpg" class="showcase-img lightbox-trigger" loading="lazy" decoding="async">
+          <img src="assets/img/lo-publi-paleta-cores.jpg" alt="Paleta de Cores" data-src="assets/img/lo-publi-paleta-cores.jpg" class="showcase-img lightbox-trigger" loading="lazy" decoding="async">
         </div>
       </section>
 
@@ -691,11 +686,11 @@
           <p class="section-desc">O universo da marca aplicado em papelaria e brindes de alto padrão.</p>
         </div>
         
-        <img src="assets/img/lo-publi-kit-premium.jpg" alt="Brindes Premium Lô" data-src="assets/img/lo-publi-kit-premium.jpg" class="full-width-img lightbox-trigger">
+        <img src="assets/img/lo-publi-kit-premium.jpg" alt="Brindes Premium Lô" data-src="assets/img/lo-publi-kit-premium.jpg" class="full-width-img lightbox-trigger" loading="lazy" decoding="async">
 
         <div class="gallery-grid">
-          <img src="assets/img/lo-publi-papelaria-pasta.jpg" alt="Pasta Personalizada" data-src="assets/img/lo-publi-papelaria-pasta.jpg" class="showcase-img lightbox-trigger">
-          <img src="assets/img/lo-publi-brindes-caderno.jpg" alt="Caderno e Marca Página" data-src="assets/img/lo-publi-brindes-caderno.jpg" class="showcase-img lightbox-trigger">
+          <img src="assets/img/lo-publi-papelaria-pasta.jpg" alt="Pasta Personalizada" data-src="assets/img/lo-publi-papelaria-pasta.jpg" class="showcase-img lightbox-trigger" loading="lazy" decoding="async">
+          <img src="assets/img/lo-publi-brindes-caderno.jpg" alt="Caderno e Marca Página" data-src="assets/img/lo-publi-brindes-caderno.jpg" class="showcase-img lightbox-trigger" loading="lazy" decoding="async">
         </div>
       </section>
 
@@ -716,21 +711,21 @@
       </div>
 
       <section class="contact-banner" id="contato">
-        <div class="contact-text-group">
-          <div class="contact-text">
-            <h2>Vamos criar algo incrível?</h2>
-            <p>Se você tem uma ideia, eu tenho as ferramentas certas para realizá-la.</p>
+          <div class="contact-text-group">
+            <div class="contact-text">
+              <h2>Vamos criar algo incrível?</h2>
+              <p>Se você tem uma ideia, eu tenho as ferramentas certas para realizá-la.</p>
+            </div>
+            <div class="contact-social">
+                <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
           </div>
-          <div class="contact-social">
-              <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-              <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-              <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <div class="contact-actions">
+            <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
+            <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
           </div>
-        </div>
-        <div class="contact-actions">
-          <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
-          <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
       </section>
     </div>
   </main>
@@ -1046,6 +1041,14 @@
     document.addEventListener('DOMContentLoaded', () => {
       const triggers = document.querySelectorAll('.lightbox-trigger');
       if (!triggers.length) return;
+
+      // Inject lightbox HTML if not present
+      if (!document.getElementById('lightboxOverlay')) {
+        const _lb = document.createElement('div');
+        _lb.innerHTML = '<div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Visualizar imagem" aria-hidden="true"><div class="lb-container" id="lbContainer" tabindex="-1"><img class="lb-img" id="lbImage" alt=""><button class="lb-btn lb-close" id="lbClose" aria-label="Fechar"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="20"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg></button><button class="lb-btn lb-prev" id="lbPrev" aria-label="Anterior"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="20"><polyline points="15 18 9 12 15 6"/></svg></button><button class="lb-btn lb-next" id="lbNext" aria-label="Próximo"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="20"><polyline points="9 18 15 12 9 6"/></svg></button><div class="lb-zoom-control"><button class="lb-zoom-btn-trigger" id="lbZoomOut" aria-label="Diminuir zoom"><svg fill="none" height="16" viewBox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg></button><input type="range" class="lb-zoom-slider" id="lbZoomSlider" min="1" max="5" step="0.01" value="1" aria-label="Zoom"><button class="lb-zoom-btn-trigger" id="lbZoomIn" aria-label="Aumentar zoom"><svg fill="none" height="16" viewBox="0 0 24 24" width="16"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg></button></div></div></div>';
+        document.body.appendChild(_lb.firstChild);
+      }
+
       const overlay = document.getElementById('lightboxOverlay');
       const lbC = document.getElementById('lbContainer');
       const lbImg = document.getElementById('lbImage');
@@ -1282,51 +1285,17 @@
       "@type": "Person",
       "@id": "https://ogabriels.com/#gabriel-silva",
       "name": "Gabriel Silva",
-      "alternateName": [
-        "Gabriel Silva Dias Moreira",
-        "Gabriel Moreira"
-      ],
+      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
       "url": "https://ogabriels.com/",
       "jobTitle": "Creative Technologist & Full Stack Developer",
       "image": {
         "@type": "ImageObject",
         "@id": "https://ogabriels.com/#personImage",
-        "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
-        "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
+        "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
+        "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
         "caption": "Gabriel Silva"
       },
       "description": "Creative Technologist especializado na interseção de design, engenharia de software e infraestrutura de servidores.",
-      "knowsAbout": [
-        "Full Stack Development",
-        "Branding",
-        "Infraestrutura de TI",
-        "Cloudflare & Networking",
-        "Docker",
-        "Linux Server",
-        "Inteligência Artificial",
-        "Produção Audiovisual",
-        "Cibersegurança"
-      ],
-      "alumniOf": [
-        {
-          "@type": "EducationalOrganization",
-          "name": "Liceu de Artes e Ofícios de São Paulo",
-          "url": "https://www.liceuescola.com.br",
-          "sameAs": [
-            "https://www.liceuescola.com.br",
-            "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"
-          ]
-        },
-        {
-          "@type": "EducationalOrganization",
-          "name": "UNIVESP",
-          "url": "https://univesp.br/",
-          "sameAs": [
-            "https://univesp.br/",
-            "https://pt.wikipedia.org/wiki/Universidade_Virtual_do_Estado_de_S%C3%A3o_Paulo"
-          ]
-        }
-      ],
       "sameAs": [
         "https://www.linkedin.com/in/ogabriels/",
         "https://github.com/ogabriels2/",
@@ -1337,27 +1306,18 @@
       ]
     },
     {
-      "@type": "Article",
+      "@type": "CreativeWork",
       "@id": "https://ogabriels.com/lo-publicidade.html#case",
       "headline": "Lô Publicidade: Case Study de Branding e Identidade Visual (TCC)",
       "description": "Desenvolvimento de identidade visual inspirada em Art Nouveau e Art Déco para o TCC de Multimídia no Liceu de Artes e Ofícios.",
       "image": {
         "@type": "ImageObject",
-        "url": "https://ogabriels.com/assets/img/lo-publi-capa.png",
-        "@id": "https://ogabriels.com/lo-publicidade.html#primaryimage"
+        "@id": "https://ogabriels.com/lo-publicidade.html#primaryimage",
+        "url": "https://ogabriels.com/assets/img/lo-publi-capa.png"
       },
       "datePublished": "2022-12-01T08:00:00-03:00",
       "inLanguage": "pt-BR",
-      "author": {
-        "@id": "https://ogabriels.com/#gabriel-silva"
-      },
-      "publisher": {
-        "@id": "https://ogabriels.com/#gabriel-silva"
-      },
-      "mainEntityOfPage": {
-        "@id": "https://ogabriels.com/lo-publicidade.html"
-      },
-      "educationalLevel": "Trabalho de Conclusão de Curso (TCC)",
+      "creator": { "@id": "https://ogabriels.com/#gabriel-silva" },
       "keywords": "Branding, Identidade Visual, Art Nouveau, Art Déco, Liceu de Artes e Ofícios, Lô Publicidade",
       "dateModified": "2026-06-02T00:00:00-03:00"
     },
@@ -1366,37 +1326,19 @@
       "@id": "https://ogabriels.com/lo-publicidade.html",
       "url": "https://ogabriels.com/lo-publicidade.html",
       "name": "Lô Publicidade | Branding e Identidade Visual (TCC)",
-      "isPartOf": {
-        "@id": "https://ogabriels.com/#website"
-      },
-      "breadcrumb": {
-        "@id": "https://ogabriels.com/lo-publicidade.html#breadcrumb"
-      },
-      "about": {
-        "@id": "https://ogabriels.com/lo-publicidade.html#case"
-      },
-      "primaryImageOfPage": {
-        "@id": "https://ogabriels.com/#personImage"
-      },
+      "isPartOf": { "@id": "https://ogabriels.com/#website" },
+      "about": { "@id": "https://ogabriels.com/lo-publicidade.html#case" },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/lo-publicidade.html#primaryimage" },
       "inLanguage": "pt-BR",
+      "breadcrumb": { "@id": "https://ogabriels.com/lo-publicidade.html#breadcrumb" },
       "dateModified": "2026-06-02T00:00:00-03:00"
     },
     {
       "@type": "BreadcrumbList",
       "@id": "https://ogabriels.com/lo-publicidade.html#breadcrumb",
       "itemListElement": [
-        {
-          "@type": "ListItem",
-          "@position": 1,
-          "name": "Home",
-          "item": "https://ogabriels.com/"
-        },
-        {
-          "@type": "ListItem",
-          "@position": 2,
-          "name": "Lô Publicidade",
-          "item": "https://ogabriels.com/lo-publicidade.html"
-        }
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://ogabriels.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Lô Publicidade", "item": "https://ogabriels.com/lo-publicidade.html" }
       ]
     }
   ]
