@@ -347,11 +347,20 @@
       
     /* Project Nav */
     .project-nav { width: 100%; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; padding-top: 40px; margin: 60px 0 80px 0; }
-    .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: color 0.3s, background-color 0.3s, transform 0.3s var(--ease-out); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); }
-    .nav-btn:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
+    .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 12px 24px; border-radius: 12px; background: rgba(0,0,0,0.02); text-decoration: none; }
+    .nav-btn:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .nav-btn.prev:hover { transform: translateX(-4px); }
+    .nav-btn.next:hover { transform: translateX(4px); }
+    .nav-btn:active { transform: scale(0.96); transition-duration: 0.1s; }
     .nav-btn.next { text-align: right; flex-direction: row-reverse; }
-    .nav-btn svg { transition: transform 0.3s ease; }
+    .nav-btn i, .nav-btn svg { transition: transform 0.3s ease; }
+    .nav-btn.prev:hover i, .nav-btn.prev:hover svg { transform: translateX(-4px); }
+    .nav-btn.next:hover i, .nav-btn.next:hover svg { transform: translateX(4px); }
+    .nav-label { font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 2px; opacity: 0.6; }
     .nav-project-name { font-size: 1rem; color: var(--text-primary); }
+    .nav-home-btn { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--text-secondary); background: rgba(0,0,0,0.02); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); text-decoration: none; }
+    .nav-home-btn:hover { background: rgba(0, 113, 227, 0.08); color: var(--accent); transform: scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .nav-home-btn:active { transform: scale(0.96); }
       
     /* Contact Banner */
     .contact-banner { width: 100%; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin-bottom: 40px; }
@@ -508,11 +517,21 @@
       .lb-prev, .lb-next { display: none; }
       .lb-zoom-control { bottom: 20px; padding: 8px 16px; width: 90%; justify-content: space-between; gap: 10px; }
       input[type=range].lb-zoom-slider { width: 100%; }
+      .project-nav { flex-direction: row; gap: 8px; padding: 30px 0; width: 100%; justify-content: space-between; max-width: 100%; }
+      .nav-btn { width: auto; padding: 10px 8px; flex: 1; justify-content: center; font-size: 0.8rem; flex-direction: column; gap: 6px; text-align: center; }
+      .nav-btn.next { flex-direction: column; text-align: center; }
+      .nav-btn i, .nav-btn svg { font-size: 1.1rem; width: 18px; height: 18px; }
+      .nav-project-name { display: block; font-size: 0.65rem; line-height: 1.1; white-space: normal; max-width: 80px; }
+      .nav-label { font-size: 0.6rem; margin-bottom: 0; }
+      .nav-home-btn { order: 0; flex-shrink: 0; width: 40px; height: 40px; margin: 0 4px; }
     }
   
     @media (max-width: 968px) and (orientation: landscape) {
       aside { height: 60px; padding: 0 20px; }
       main { padding: 90px 40px 40px; }
+      .nav-btn { flex-direction: row; text-align: left; }
+      .nav-btn.next { flex-direction: row-reverse; text-align: right; }
+      .nav-project-name { max-width: none; }
     }
 
     /* ── v14: Sidebar & Nav improvements ── */
@@ -614,22 +633,22 @@
                 <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
             </div>
             <div class="mobile-nav-group">
-                <a href="sobre" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
+                <a href="sobre.html" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
                 <a href="/" class="mobile-link-main js-menu-toggle">Projetos</a>
             </div>
             <div class="mobile-projects-wrapper">
                 <div class="mobile-divider"></div>
                 <span class="mobile-label">Cases de Sucesso</span>
                 <div class="mobile-projects-list">
-                    <a href="infra" class="mobile-link-sub js-menu-toggle">Server Infra</a>
-                    <a href="revista-utopia" class="mobile-link-sub js-menu-toggle is-active">Revista Utopia</a>
-                    <a href="neoletters" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
-                    <a href="lo-publicidade" class="mobile-link-sub js-menu-toggle">Lô Publicidade</a>
-                    <a href="personal-branding" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
-                    <a href="podcast-um-minuto" class="mobile-link-sub js-menu-toggle">Um Minuto</a>
-                    <a href="valorada" class="mobile-link-sub js-menu-toggle">Valorada</a>
-                    <a href="thumbnails" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
-                    <a href="videos" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
+                    <a href="infra.html" class="mobile-link-sub js-menu-toggle">Server Infra</a>
+                    <a href="revista-utopia.html" class="mobile-link-sub js-menu-toggle is-active">Revista Utopia</a>
+                    <a href="neoletters.html" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
+                    <a href="lo-publicidade.html" class="mobile-link-sub js-menu-toggle">Lô Publicidade</a>
+                    <a href="personal-branding.html" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
+                    <a href="podcast-um-minuto.html" class="mobile-link-sub js-menu-toggle">Um Minuto</a>
+                    <a href="valorada.html" class="mobile-link-sub js-menu-toggle">Valorada</a>
+                    <a href="thumbnails.html" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
+                    <a href="videos.html" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
                 </div>
             </div>
             <div class="mobile-footer-group">
@@ -638,7 +657,7 @@
                     <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
                     <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
                 </div>
-                <a href="contato" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
+                <a href="contato.html" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
             </div>
         </div>
     </div>
@@ -662,22 +681,22 @@
           <div class="nav-group">
             <ul class="nav-list">
               <li><a href="/" class="nav-link back-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Voltar para Projetos</a></li>
-              <li><a href="sobre" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sobre mim</a></li>
+              <li><a href="sobre.html" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sobre mim</a></li>
             </ul>
           </div>
 
           <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column;">
             <h2>Portfólio</h2>
             <ul class="nav-list project-scroll-container">
-              <li><a href="infra" class="nav-link">Server Infra &amp; Dashboard</a></li>
-              <li><a href="revista-utopia" class="nav-link active">Revista Utopia</a></li>
-              <li><a href="neoletters" class="nav-link">Neo Letters</a></li>
-              <li><a href="lo-publicidade" class="nav-link">Lô</a></li>
-              <li><a href="personal-branding" class="nav-link">G | Gabriel</a></li>
-              <li><a href="podcast-um-minuto" class="nav-link">Um Minuto</a></li>
-              <li><a href="valorada" class="nav-link">Valorada</a></li>
-              <li><a href="thumbnails" class="nav-link">Thumbnails</a></li>
-              <li><a href="videos" class="nav-link">Produção Audiovisual</a></li>
+              <li><a href="infra.html" class="nav-link">Server Infra &amp; Dashboard</a></li>
+              <li><a href="revista-utopia.html" class="nav-link active">Revista Utopia</a></li>
+              <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
+              <li><a href="lo-publicidade.html" class="nav-link">Lô</a></li>
+              <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
+              <li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li>
+              <li><a href="valorada.html" class="nav-link">Valorada</a></li>
+              <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
+              <li><a href="videos.html" class="nav-link">Produção Audiovisual</a></li>
             </ul>
           </div>
 
@@ -687,7 +706,7 @@
             <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
           </div>
 
-          <a href="contato" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
+          <a href="contato.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
         </nav>
 
         <div class="sidebar-footer">
@@ -756,8 +775,20 @@
       </section>
 
       <div class="project-nav">
-        <a href="infra" class="nav-btn prev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg><div><span class="nav-label" style="font-size: 0.8rem; color: var(--text-secondary); display: block;">Anterior</span><span class="nav-project-name">Server Infra</span></div></a>
-        <a href="/" class="nav-btn next"><div><span class="nav-label" style="font-size: 0.8rem; color: var(--text-secondary); display: block;">Próximo</span><span class="nav-project-name">Neo Letters</span></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        <a href="infra.html" class="nav-btn prev">
+          <i class="fa-solid fa-arrow-left"></i>
+          <div><span class="nav-label">Anterior</span><span class="nav-project-name">Server Infra</span></div>
+        </a>
+
+        <a href="index.html" class="nav-home-btn" aria-label="Home">
+          <i class="fa-solid fa-house"></i>
+        </a>
+
+        <a href="neoletters.html" class="nav-btn next">
+          <div><span class="nav-label">Próximo</span><span class="nav-project-name">Neo Letters</span></div>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
       </div>
 
       <section class="contact-banner" id="contato">
@@ -775,7 +806,7 @@
           </div>
         </div>
         <div class="contact-actions">
-          <a href="contato" class="btn-cta-dark">Enviar Mensagem</a>
+          <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
           <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
         </div>
       </section>
