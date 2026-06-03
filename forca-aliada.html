@@ -47,7 +47,7 @@
   <meta name="twitter:description" content="Ecossistema completo em produção há 5 anos: API REST, rede social, app desktop e site. Full stack do zero ao deploy.">
   <meta name="twitter:image" content="https://ogabriels.com/assets/img/forca-aliada-logo.webp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════
@@ -75,7 +75,7 @@
   --font-display: 'Syne', sans-serif;
   --font-serif: 'Instrument Serif', serif;
   --font-hero: 'Bebas Neue', cursive;
-  --font-body: 'Lato', -apple-system, sans-serif;
+  --font-body: 'Syne', sans-serif;
   --font-mono: 'DM Mono', 'Fira Code', monospace;
   --radius: 16px;
   --radius-sm: 10px;
@@ -234,9 +234,9 @@ main{margin-left:var(--sidebar-width);flex:1;display:flex;flex-direction:column;
   color:var(--ink);margin-bottom:24px;
 }
 .hero-main-title .word-gold{
-  background:linear-gradient(135deg,#f0a500 0%,#f59e0b 45%,#d97706 100%);
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-brand) 55%,#A8862A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 30px rgba(240,165,0,.22));
+  filter:drop-shadow(0 0 30px rgba(201,168,76,.22));
 }
 
 .hero-subtitle{font-size:1.1rem;color:var(--ink-2);line-height:1.8;max-width:580px;font-weight:400;margin-bottom:36px;font-family:var(--font-serif);}
@@ -249,8 +249,8 @@ main{margin-left:var(--sidebar-width);flex:1;display:flex;flex-direction:column;
 .hero-kpi-label{font-size:.7rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.09em}
 
 .hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
-.btn-hero-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;background:linear-gradient(135deg,var(--gold-brand),#d97706);color:#000;font-weight:700;font-size:.9rem;letter-spacing:.02em;box-shadow:0 8px 28px rgba(240,165,0,.28);transition:all .3s}
-.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(240,165,0,.38)}
+.btn-hero-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-brand));color:#000;font-weight:700;font-size:.9rem;letter-spacing:.02em;box-shadow:0 8px 28px rgba(201,168,76,.28);transition:all .3s}
+.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(201,168,76,.38)}
 .btn-hero-ghost{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;border:1px solid var(--line);color:var(--ink-2);font-weight:500;font-size:.88rem;transition:all .3s}
 .btn-hero-ghost:hover{border-color:rgba(79,143,255,.35);color:var(--accent);background:rgba(79,143,255,.06);transform:translateY(-1px)}
 
@@ -518,7 +518,7 @@ main{margin-left:var(--sidebar-width);flex:1;display:flex;flex-direction:column;
 .contact-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.4),transparent)}
 .contact-text-group{flex:1;min-width:0}
 .contact-text h2{font-size:2.2rem;font-weight:700;color:white;margin-bottom:8px;font-family:var(--font-display);letter-spacing:-.02em}
-.contact-text p{font-size:1rem;color:rgba(255,255,255,.6);font-family:'Inter',-apple-system,sans-serif}
+.contact-text p{font-size:1rem;color:rgba(255,255,255,.6);font-family:'Syne',sans-serif}
 .contact-social{display:flex;gap:12px;margin-top:20px}
 .btn-social-mini{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:.9rem;transition:all .2s}
 .btn-social-mini:hover{border-color:rgba(201,168,76,.5);color:var(--gold-brand);background:rgba(201,168,76,.08)}
@@ -641,7 +641,7 @@ main{margin-left:var(--sidebar-width);flex:1;display:flex;flex-direction:column;
 
 /* ════ IMPACT RIBBON ENHANCED ════════════════════ */
 .impact-val{background:linear-gradient(135deg,var(--ink) 50%,var(--ink-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.impact-item:hover .impact-val{background:linear-gradient(135deg,var(--gold-brand),#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:all .3s}
+.impact-item:hover .impact-val{background:linear-gradient(135deg,var(--gold),var(--gold-brand));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:all .3s}
 
 /* ════ PRODUCT CARD TOP ACCENT ════════════════════ */
 .product-card:nth-child(1){border-top:2px solid rgba(201,168,76,.4)}
