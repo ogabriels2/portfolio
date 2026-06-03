@@ -23,8 +23,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050505">
-  <title>Força Aliada — Ecossistema Full Stack | Case Gabriel Silva</title>
-  <meta name="description" content="Case study completo: Ecossistema Força Aliada. API Node.js + PostgreSQL, rede social com moderação de IA, app desktop Electron com auto-updater, e site institucional.">
+  <title>Força Aliada | Ecossistema Full Stack — Gabriel Silva</title>
+  <meta name="description" content="Case study: Ecossistema Força Aliada. API Node.js + PostgreSQL, rede social com moderação por IA, app desktop Electron e site institucional.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Gabriel Silva">
   <meta name="keywords" content="Full Stack Developer, Node.js, Express, PostgreSQL, Electron, JWT, API REST, Minecraft, Gabriel Silva, Case Study, Rede Social, Google Vision, Microsoft OAuth">
@@ -32,7 +32,7 @@
   <link rel="canonical" href="https://ogabriels.com/forca-aliada">
   <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/forca-aliada" />
   <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/forca-aliada" />
-  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/forca-aliada" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/forca-aliada" />
   <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
@@ -44,11 +44,15 @@
   <meta property="og:title" content="Força Aliada — Ecossistema Full Stack | Gabriel Silva">
   <meta property="og:description" content="Ecossistema completo em produção há 5 anos: API REST, rede social com moderação por IA, app desktop Electron e site.">
   <meta property="og:image" content="https://ogabriels.com/assets/img/forca-aliada-logo.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Força Aliada — Ecossistema Full Stack | Gabriel Silva">
   
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Força Aliada — Ecossistema Full Stack | Gabriel Silva">
   <meta name="twitter:description" content="Ecossistema completo em produção há 5 anos: API REST, rede social, app desktop e site.">
   <meta name="twitter:image" content="https://ogabriels.com/assets/img/forca-aliada-logo.webp">
+  <meta name="twitter:image:alt" content="Força Aliada — Ecossistema Full Stack | Gabriel Silva">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -100,7 +104,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
-body { font-family: var(--font-body); color: var(--ink-muted); background: var(--bg-deep); -webkit-font-smoothing: antialiased; display: flex; min-height: 100vh; overflow-x: hidden; }
+body { font-family: var(--font-body); color: var(--ink-muted); background: var(--bg-deep); -webkit-font-smoothing: antialiased; display: flex;
+      flex-direction: column; min-height: 100vh; overflow-x: hidden; }
 a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
 button { font: inherit; border: 0; cursor: pointer; }
 .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--brand-gold); color: #000; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top .3s; }
@@ -131,7 +136,7 @@ nav { flex: 1; display: flex; flex-direction: column; min-height: 0; margin-bott
 .sidebar-scaler.compact-mode nav { margin-bottom: 0; }
 .nav-group { margin-bottom: 20px; flex-shrink: 0; }
 .sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
-.nav-group h2 { font-size: .7rem; color: #86868B; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; opacity: .8; }
+.nav-group h2, .nav-group .nav-group-label { font-size: .7rem; color: #86868B; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; opacity: .8; }
 .nav-list { list-style: none; padding: 0; }
 .nav-list li { margin-bottom: 2px; }
 .project-scroll-container { overflow-y: auto; padding-right: 5px; margin-right: -5px; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,.15) transparent; }
@@ -208,35 +213,202 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   overflow: hidden;
 }
 
-/* Estilos da nova implementação da Logo */
+/* ════ LOGO SCENE (Composição Cinematográfica) ════════════════════════ */
 .hero-visual {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: floatLogo 6s ease-in-out infinite;
 }
-.hero-visual::before {
-  content: '';
+
+/* Wrapper da cena — ponto de ancoragem fixo para todos os layers */
+.logo-scene {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Orb atmosférico — respira suavemente atrás da logo */
+.logo-orb {
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 60%);
-  filter: blur(40px);
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 55%,
+    rgba(212,175,55,0.18) 0%,
+    rgba(212,175,55,0.06) 40%,
+    transparent 70%
+  );
+  filter: blur(28px);
+  animation: orbPulse 4s ease-in-out infinite;
   z-index: 0;
 }
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.9; }
+  50%       { transform: scale(1.1); opacity: 1;   }
+}
+
+/* Raios de luz — saem do centro por detrás da logo */
+.logo-rays {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg, rgba(212,175,55,0.035) 2deg, transparent 4deg,
+    transparent 40deg, rgba(212,175,55,0.025) 42deg, transparent 44deg,
+    transparent 88deg, rgba(212,175,55,0.035) 90deg, transparent 92deg,
+    transparent 130deg, rgba(212,175,55,0.02) 132deg, transparent 134deg,
+    transparent 178deg, rgba(212,175,55,0.03) 180deg, transparent 182deg,
+    transparent 220deg, rgba(212,175,55,0.025) 222deg, transparent 224deg,
+    transparent 268deg, rgba(212,175,55,0.035) 270deg, transparent 272deg,
+    transparent 310deg, rgba(212,175,55,0.02) 312deg, transparent 314deg,
+    transparent 358deg
+  );
+  animation: raysRotate 30s linear infinite;
+  z-index: 1;
+  filter: blur(4px);
+}
+@keyframes raysRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Anel externo — rotação lenta horária */
+.logo-ring-outer {
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,0.12);
+  animation: ringRotateCW 20s linear infinite;
+  z-index: 2;
+}
+/* Marcadores nos eixos do anel externo */
+.logo-ring-outer::before,
+.logo-ring-outer::after {
+  content: '';
+  position: absolute;
+  background: rgba(212,175,55,0.5);
+  border-radius: 2px;
+}
+.logo-ring-outer::before { /* tick horizontal */
+  width: 8px; height: 2px;
+  top: 50%; left: -4px;
+  transform: translateY(-50%);
+}
+.logo-ring-outer::after { /* tick vertical */
+  width: 2px; height: 8px;
+  top: -4px; left: 50%;
+  transform: translateX(-50%);
+}
+@keyframes ringRotateCW  { to { transform: rotate(360deg);  } }
+
+/* Anel interno — rotação anti-horária mais rápida */
+.logo-ring-inner {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  border: 1px dashed rgba(212,175,55,0.07);
+  animation: ringRotateCCW 14s linear infinite;
+  z-index: 2;
+}
+@keyframes ringRotateCCW { to { transform: rotate(-360deg); } }
+
+/* Corner brackets — estilo target/tático nos 4 cantos */
+.logo-brackets {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.logo-brackets::before,
+.logo-brackets::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(212,175,55,0.45);
+  border-style: solid;
+}
+.logo-brackets::before {
+  top: 12px; left: 12px;
+  border-width: 2px 0 0 2px;
+  border-radius: 2px 0 0 0;
+}
+.logo-brackets::after {
+  bottom: 12px; right: 12px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 2px 0;
+}
+/* Dois brackets restantes via pseudo no filho */
+.logo-brackets-extra {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.logo-brackets-extra::before,
+.logo-brackets-extra::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(212,175,55,0.45);
+  border-style: solid;
+}
+.logo-brackets-extra::before {
+  top: 12px; right: 12px;
+  border-width: 2px 2px 0 0;
+  border-radius: 0 2px 0 0;
+}
+.logo-brackets-extra::after {
+  bottom: 12px; left: 12px;
+  border-width: 0 0 2px 2px;
+  border-radius: 0 0 0 2px;
+}
+
+/* Coordenadas táticas — detalhe premium nos cantos */
+.logo-coord {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: rgba(212,175,55,0.3);
+  letter-spacing: 0.08em;
+  z-index: 4;
+  pointer-events: none;
+  line-height: 1;
+}
+.logo-coord.tl { top: 8px;  left: 44px; }
+.logo-coord.br { bottom: 8px; right: 44px; }
+
+/* A própria imagem — flutua e brilha */
 .hero-logo-img {
   position: relative;
-  z-index: 1;
+  z-index: 5;
   width: 100%;
-  max-width: 420px;
+  max-width: 300px;
   height: auto;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+  animation: floatLogo 6s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0  18px rgba(212,175,55,0.35))
+    drop-shadow(0 0  50px rgba(212,175,55,0.12))
+    drop-shadow(0 20px 40px rgba(0,0,0,0.7));
+  transition: filter 0.4s ease;
+}
+.hero-visual:hover .hero-logo-img {
+  filter:
+    drop-shadow(0 0  24px rgba(212,175,55,0.55))
+    drop-shadow(0 0  70px rgba(212,175,55,0.18))
+    drop-shadow(0 24px 48px rgba(0,0,0,0.8));
 }
 @keyframes floatLogo {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
+  0%   { transform: translateY(0px);   }
+  50%  { transform: translateY(-14px); }
+  100% { transform: translateY(0px);   }
 }
 
 /* Fundo com Malha Radial Suave (Apple-like) */
@@ -263,7 +435,9 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
   background: var(--bg-card); border: 1px solid var(--border-light); color: var(--ink-muted);
   backdrop-filter: blur(10px);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
+.hero-tag:hover { border-color: rgba(212,175,55,0.25); color: var(--ink-main); background: rgba(212,175,55,0.04); cursor: default; }
 .hero-tag.live { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.2); color: var(--accent-green); }
 .hero-tag.live::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:var(--accent-green); box-shadow: 0 0 8px var(--accent-green); animation: pulse 2s infinite; }
 
@@ -299,6 +473,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   box-shadow: 0 8px 25px rgba(212,175,55,0.25);
 }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(212,175,55,0.4); }
+.btn-primary:active { transform: scale(0.96) translateY(0); box-shadow: 0 4px 12px rgba(212,175,55,0.3); transition-duration: 0.08s; }
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 16px 32px; border-radius: 12px;
@@ -307,6 +482,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   backdrop-filter: blur(10px); transition: all 0.3s ease;
 }
 .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+.btn-ghost:active { transform: scale(0.96) translateY(0); background: rgba(255,255,255,0.06); transition-duration: 0.08s; }
 
 /* ════ BENTO GRID (Overview & Impact) ═══════════════════════════════════ */
 .content-wrapper { padding: 40px 80px 100px; width: 100%; max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 120px; }
@@ -329,6 +505,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s;
 }
 .bento-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-4px); box-shadow: var(--shadow-float); }
+.bento-card:active { transform: scale(0.99) translateY(-2px); transition-duration: 0.1s; }
 
 /* Card de Introdução */
 .card-intro { grid-column: span 8; grid-row: span 2; justify-content: space-between; }
@@ -361,6 +538,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
 .ecosystem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
 .product-card { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; }
 .product-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-6px); box-shadow: var(--shadow-float); }
+.product-card:active { transform: scale(0.99) translateY(-2px); transition-duration: 0.1s; }
 
 /* Mac/Win Window Mockups */
 .mockup-window { background: #000; border-bottom: 1px solid var(--border-light); position: relative; overflow: hidden; }
@@ -408,6 +586,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
 .engineering-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .eng-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 32px; backdrop-filter: blur(20px); transition: all 0.3s; }
 .eng-card:hover { border-color: var(--brand-gold-glow); background: rgba(212,175,55,0.02); transform: translateY(-4px); }
+.eng-card:active { transform: scale(0.98); transition-duration: 0.1s; }
 .eng-icon { font-size: 2rem; margin-bottom: 24px; display: inline-block; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border-light); }
 .eng-card h4 { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink-main); margin-bottom: 16px; line-height: 1.3; }
 .eng-card p { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.6; }
@@ -451,6 +630,22 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
 .contact-social-row { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
 .social-circle { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--ink-main); transition: all 0.3s; background: rgba(255,255,255,0.02); }
 .social-circle:hover { background: var(--brand-gold); color: #000; border-color: var(--brand-gold); transform: translateY(-4px); }
+.social-circle:active { transform: scale(0.9); transition-duration: 0.08s; }
+
+/* ════ SCROLL PROGRESS BAR ═════════════════════════════════════════════ */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-gold), var(--brand-gold-soft));
+  z-index: 3000;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 8px rgba(212,175,55,0.6);
+  pointer-events: none;
+}
+@media(max-width:968px) { #scroll-progress { left: 0; } }
 
 /* ════ ANIMATIONS & UTILITIES ══════════════════════════════════════════ */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
@@ -472,7 +667,11 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   .hero-ctas { justify-content: center; }
   .hero-title { font-size: clamp(4rem, 15vw, 6rem); }
   .hero-visual { order: -1; margin-bottom: -10px; } /* Joga a logo para cima do texto no celular */
-  .hero-logo-img { max-width: 250px; }
+  .hero-logo-img { max-width: 200px; }
+  .logo-scene { width: 300px; height: 300px; }
+  .logo-ring-outer { width: 280px; height: 280px; }
+  .logo-ring-inner { width: 220px; height: 220px; }
+  .logo-coord { display: none; }
   .bento-grid, .ecosystem-grid, .engineering-grid, .code-showcase { grid-template-columns: 1fr; }
   .card-intro, .card-metric, .card-status { grid-column: span 1; }
   .content-wrapper { padding: 32px 24px 80px; gap: 80px; }
@@ -486,10 +685,298 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   .hero-ctas { flex-direction: column; }
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
 }
+
+/* ════ POPUPS (Detail Modals) ═══════════════════════════════════════════ */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, background 0.25s ease;
+}
+.popup-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+.popup-box {
+  position: relative;
+  width: min(780px, 100%);
+  max-height: 90vh;
+  background: #0c0e15;
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 28px;
+  overflow: hidden;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.3s cubic-bezier(0.25,0.8,0.25,1);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+}
+.popup-overlay.active .popup-box {
+  transform: translateY(0) scale(1);
+}
+.popup-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--ink-2, #c4cedb);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+.popup-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.popup-hero {
+  position: relative;
+  padding: 40px 48px 28px;
+  background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 60%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.popup-hero-icon {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+  display: inline-block;
+  padding: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+.popup-hero h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--ink-main);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+.popup-hero .popup-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--brand-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+  display: block;
+}
+.popup-hero p {
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 620px;
+}
+.popup-body {
+  padding: 36px 48px 40px;
+  overflow-y: auto;
+  flex: 1;
+}
+.popup-body::-webkit-scrollbar { width: 6px; }
+.popup-body::-webkit-scrollbar-track { background: transparent; }
+.popup-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+.popup-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.popup-section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.popup-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 36px;
+}
+.popup-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.popup-feature-item:hover {
+  border-color: rgba(212,175,55,0.15);
+  background: rgba(212,175,55,0.02);
+}
+.popup-feature-icon {
+  font-size: 1.2rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.popup-feature-text strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--ink-main);
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+.popup-feature-text span {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+.popup-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.popup-tech-badge {
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  border: 1px solid;
+}
+.popup-badge-gold  { border-color: rgba(212,175,55,0.3); color: var(--brand-gold); background: rgba(212,175,55,0.06); }
+.popup-badge-blue  { border-color: rgba(59,130,246,0.3);  color: var(--accent-blue); background: rgba(59,130,246,0.06); }
+.popup-badge-green { border-color: rgba(16,185,129,0.3);  color: var(--accent-green); background: rgba(16,185,129,0.06); }
+.popup-badge-purple{ border-color: rgba(139,92,246,0.3);  color: var(--accent-purple); background: rgba(139,92,246,0.06); }
+.popup-badge-gray  { border-color: rgba(255,255,255,0.12); color: var(--ink-muted); background: rgba(255,255,255,0.03); }
+.popup-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: rgba(212,175,55,0.05);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-left: 3px solid var(--brand-gold);
+  border-radius: 12px;
+  margin-top: 8px;
+}
+.popup-callout i { color: var(--brand-gold); font-size: 1rem; margin-top: 2px; }
+.popup-callout p { margin: 0; font-size: 0.9rem; color: var(--ink-muted); line-height: 1.6; }
+.popup-callout strong { color: var(--ink-main); }
+.popup-open-btn {
+  cursor: pointer;
+  position: relative;
+}
+.popup-open-btn::after {
+  content: '↗';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+}
+.popup-open-btn:hover::after { opacity: 1; color: var(--brand-gold); }
+
+/* ════ SITE FOOTER ══════════════════════════════════════════════════════════ */
+.site-footer {
+  margin-left: var(--sidebar-width);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 0 80px;
+  background: transparent;
+}
+.site-footer .footer-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.site-footer .footer-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.site-footer .footer-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--brand-gold, #D4AF37);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(212,175,55,0.5);
+}
+.site-footer .footer-name {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.03em;
+}
+.site-footer .footer-copy {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.2);
+}
+.site-footer .footer-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+.site-footer .footer-links a {
+  font-family: var(--font-mono, 'DM Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: color 0.18s, background 0.18s;
+  letter-spacing: 0.01em;
+}
+.site-footer .footer-links a:hover {
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.05);
+}
+.site-footer .footer-links .footer-link-sitemap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.site-footer .footer-links .footer-link-sitemap::before {
+  content: '';
+  display: inline-block;
+  width: 1px; height: 10px;
+  background: rgba(255,255,255,0.1);
+  margin-right: 4px;
+}
+@media(max-width:968px){
+  .site-footer { margin-left:0; padding: 0 24px; }
+  .site-footer .footer-inner { padding: 18px 0; gap: 10px; }
+  .site-footer .footer-links { gap: 0; }
+}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<div id="scroll-progress" aria-hidden="true"></div>
 
 <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true" inert>
   <div class="mobile-scroll-wrapper">
@@ -535,7 +1022,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
     <div class="profile-container">
       <a href="/" class="profile-link">
         <div class="profile-pic-wrapper">
-          <img src="assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="88" height="88">
+          <img src="assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="88" height="88" loading="lazy">
         </div>
         <div class="profile-text-group">
           <p class="profile-name">Gabriel Silva</p>
@@ -551,7 +1038,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
         </ul>
       </div>
       <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column">
-        <h2>Portfólio</h2>
+        <span class="nav-group-label" aria-hidden="true">Portfólio</span>
         <ul class="nav-list project-scroll-container">
           <li><a href="forca-aliada.html" class="nav-link active">Força Aliada</a></li>
           <li><a href="infra.html" class="nav-link">Server Infra &amp; Dashboard</a></li>
@@ -622,7 +1109,17 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
     </div>
 
     <div class="hero-visual" aria-hidden="true">
-      <img src="assets/img/forca-aliada-logo.webp" alt="Logo Força Aliada Dourada" class="hero-logo-img">
+      <div class="logo-scene">
+        <div class="logo-orb"></div>
+        <div class="logo-rays"></div>
+        <div class="logo-ring-outer"></div>
+        <div class="logo-ring-inner"></div>
+        <div class="logo-brackets"></div>
+        <div class="logo-brackets-extra"></div>
+        <span class="logo-coord tl">23.5°S 46.6°W</span>
+        <span class="logo-coord br">FA — 2021:2026</span>
+        <img src="assets/img/forca-aliada-logo.webp" alt="Logo Força Aliada Dourada" class="hero-logo-img" loading="eager">
+      </div>
     </div>
 
   </section>
@@ -635,20 +1132,20 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
         <div>
           <span class="bento-label">01 // Visão Geral</span>
           <h2>O que é a Força Aliada?</h2>
-          <p>A Força Aliada começou em 2021 como um servidor Minecraft privado entre amigos, rodando via Hamachi. Em 2025, abriu para o público, e em 2026 escalou para um ecossistema digital de ponta.</p>
-          <p>O projeto <span class="text-white">resolve problemas reais de engenharia</span>: detecção de proxy TCPShield com 4 heurísticas em cascata, moderação de imagens em múltiplas camadas usando Google Vision, e comunicação segura IPC em Electron.</p>
+          <p>A Força Aliada começou em 2021 como um servidor Minecraft privado entre amigos, rodando via Hamachi. Em 2025, abriu para o público, e em 2026 escalou para um ecossistema digital de ponta com rede social, mensageria e painel de administração.</p>
+          <p>O projeto <span class="text-white">resolve problemas reais de engenharia</span>: detecção de proxy TCPShield com 4 heurísticas em cascata, moderação de imagens em múltiplas camadas usando Google Vision, comunicação segura IPC em Electron, e <span class="text-white">40 tabelas relacionais</span> com 138+ endpoints de API REST.</p>
         </div>
       </div>
 
       <div class="bento-card card-metric">
         <div>
-          <div class="metric-val" data-count="22">0</div>
+          <div class="metric-val" data-count="40">0</div>
           <div class="metric-label">Tabelas PostgreSQL</div>
         </div>
       </div>
       <div class="bento-card card-metric">
         <div>
-          <div class="metric-val" data-count="60">0<span>+</span></div>
+          <div class="metric-val" data-count="138">0<span>+</span></div>
           <div class="metric-label">Endpoints de API REST</div>
         </div>
       </div>
@@ -736,7 +1233,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
 
       <div class="ecosystem-grid">
         
-        <div class="product-card">
+        <div class="product-card popup-open-btn" data-popup="popup-site" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
           <div class="mockup-window">
             <div class="mockup-header">
               <div class="mac-dots"><div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div></div>
@@ -762,10 +1259,10 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
           <div class="product-details">
             <div class="product-icon" style="color:var(--accent-blue); border-color:rgba(59,130,246,0.3)">🌐</div>
             <h3>Site Web & Rede Social</h3>
-            <p>Plataforma social completa em Vanilla JS. Auth com PIN de e-mail e Microsoft/Xbox OAuth, feed com Google Vision, enquetes, follows e gamificação (Mérito/Capital).</p>
+            <p>Plataforma social completa em Vanilla JS. Auth com PIN de e-mail e Microsoft/Xbox OAuth, feed com Google Vision, DMs, chat em grupo, enquetes, follows e gamificação (Mérito/Capital).</p>
             <ul class="feature-list">
-              <li><i class="fa-solid fa-check"></i> Verificação PIN (Resend API)</li>
-              <li><i class="fa-solid fa-check"></i> Dark mode nativo via API</li>
+              <li><i class="fa-solid fa-check"></i> Verificação PIN via Resend API</li>
+              <li><i class="fa-solid fa-check"></i> DMs + Chat em Grupo nativo</li>
             </ul>
             <div class="tech-stack">
               <span class="tech-chip">HTML5</span><span class="tech-chip">CSS</span><span class="tech-chip">JS Vanilla</span>
@@ -773,35 +1270,35 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card popup-open-btn" data-popup="popup-api" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
           <div class="mockup-window">
             <div class="mockup-header">
               <div class="mac-dots"><div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div></div>
-              <div class="mockup-title">api.forca-aliada.com</div>
+              <div class="mockup-title">forca-aliada-site.onrender.com</div>
             </div>
             <div class="mockup-body terminal-mockup" style="background:#0D1117">
               <div class="t-row"><span class="t-method get">GET</span><span class="t-path">/api/server/status</span><span class="t-status">200</span><span class="t-time">42ms</span></div>
               <div class="t-res">{"online":true,"players":3}</div>
               <div class="t-row"><span class="t-method post">POST</span><span class="t-path">/api/auth/login</span><span class="t-status">200</span><span class="t-time">87ms</span></div>
               <div class="t-res">{"token":"eyJhbGciOiJIUz..."}</div>
-              <div class="t-row"><span class="t-method get">GET</span><span class="t-path">/api/leaderboard</span><span class="t-status">200</span><span class="t-time">21ms</span></div>
+              <div class="t-row"><span class="t-method get">GET</span><span class="t-path">/api/community/feed</span><span class="t-status">200</span><span class="t-time">21ms</span></div>
             </div>
           </div>
           <div class="product-details">
             <div class="product-icon" style="color:var(--accent-green); border-color:rgba(16,185,129,0.3)">⚡</div>
             <h3>API Backend REST</h3>
-            <p>O núcleo orquestrador. Mais de 60 endpoints cobrindo autenticação, lógica social, detecção de proxy TCPShield com máquina de estados, e proteção via rate limits robustos.</p>
+            <p>O núcleo orquestrador. 138+ endpoints cobrindo autenticação multi-conta, lógica social completa, detecção de proxy TCPShield com máquina de estados e proteção via rate limits granulares.</p>
             <ul class="feature-list">
               <li><i class="fa-solid fa-check"></i> JWT HS256 + Hash SHA-256 no BD</li>
-              <li><i class="fa-solid fa-check"></i> bcrypt 12 rounds (OWASP)</li>
+              <li><i class="fa-solid fa-check"></i> bcrypt 10 rounds (OWASP-compliant)</li>
             </ul>
             <div class="tech-stack">
-              <span class="tech-chip">Node.js 18</span><span class="tech-chip">Express</span><span class="tech-chip">PostgreSQL</span>
+              <span class="tech-chip">Node.js</span><span class="tech-chip">Express</span><span class="tech-chip">PostgreSQL</span>
             </div>
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card popup-open-btn" data-popup="popup-app" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
           <div class="mockup-window">
             <div class="mockup-header" style="background:#1a1f2e">
               <div style="font-family:var(--font-display); font-size:0.75rem; font-weight:600; color:var(--accent-purple)">Manager App</div>
@@ -811,25 +1308,25 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
               <div style="color:var(--accent-green); margin-bottom:8px">● Servidor Online - 3 Jogadores</div>
               <div style="color:#A1A1AA">[INFO] Server started in 4.2s</div>
               <div style="color:var(--accent-blue)">[JOIN] JogadorX joined the game</div>
-              <div style="color:#A1A1AA">[INFO] Heartbeat → API OK</div>
+              <div style="color:#A1A1AA">[INFO] Heartbeat → API OK (10s)</div>
               <div style="color:var(--brand-gold)">[WARN] Memory usage: 2.1 GB</div>
             </div>
           </div>
           <div class="product-details">
             <div class="product-icon" style="color:var(--accent-purple); border-color:rgba(139,92,246,0.3)">🖥️</div>
             <h3>App Desktop Windows</h3>
-            <p>Aplicativo instalável. Gerencia o servidor localmente com console ao vivo, sincroniza telemetria com a API a cada 10s via heartbeat, e distribui atualizações OTA.</p>
+            <p>Aplicativo instalável via NSIS. Gerencia o servidor localmente com console ao vivo, auto-restart com backoff, backup automático, webhook local e sincronização dual-canal com a API em nuvem.</p>
             <ul class="feature-list">
-              <li><i class="fa-solid fa-check"></i> Sandboxing com IPC Whitelist</li>
-              <li><i class="fa-solid fa-check"></i> Auto-updater via GitHub Releases</li>
+              <li><i class="fa-solid fa-check"></i> Sandboxing com IPC Whitelist + safeStorage</li>
+              <li><i class="fa-solid fa-check"></i> Auto-updater OTA via GitHub Releases</li>
             </ul>
             <div class="tech-stack">
-              <span class="tech-chip">Electron 42</span><span class="tech-chip">NSIS</span>
+              <span class="tech-chip">Electron</span><span class="tech-chip">NSIS</span><span class="tech-chip">IPC</span>
             </div>
           </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card popup-open-btn" data-popup="popup-landing" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
           <div class="mockup-window" style="display:flex; align-items:center; justify-content:center; background:#111">
             <div class="mockup-body" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%">
               <div style="font-family:var(--font-hero); font-size:2.5rem; letter-spacing:0.1em; color:#FFF; line-height:1">FORÇA<br>ALIADA</div>
@@ -839,7 +1336,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
           <div class="product-details">
             <div class="product-icon" style="color:var(--brand-gold); border-color:rgba(212,175,55,0.3)">🏠</div>
             <h3>Landing Page Institucional</h3>
-            <p>Site satélite focado na distribuição e download do App Desktop. Design premium com tipografia arrojada, Política de Privacidade (LGPD) e fetch da API do GitHub para a última versão.</p>
+            <p>Site satélite focado na distribuição e download do App Desktop. Design premium com tipografia arrojada, Política de Privacidade (LGPD) e fetch dinâmico da API do GitHub para a última versão.</p>
             <ul class="feature-list">
               <li><i class="fa-solid fa-check"></i> Zero cookies, 100% anônimo</li>
               <li><i class="fa-solid fa-check"></i> Custo zero (GitHub Pages)</li>
@@ -861,17 +1358,17 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
       </div>
 
       <div class="engineering-grid">
-        <div class="eng-card">
+        <div class="eng-card popup-open-btn" data-popup="popup-vision" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
           <div class="eng-icon text-gold"><i class="fa-solid fa-brain"></i></div>
           <h4>Google Vision (SafeSearch) em 3 Camadas</h4>
-          <p>O upload de mídia não é cego. Imagens passam pela IA do Google. São classificadas como Aprovadas (liberadas), Suspeitas (vão para fila de moderação admin) ou Rejeitadas (bloqueio imediato + log). Possui fail-open estrutural.</p>
+          <p>O upload de mídia não é cego. Imagens passam pela IA do Google. São classificadas como Aprovadas (liberadas), Suspeitas (fila admin) ou Rejeitadas (bloqueio imediato + log). Possui fail-open estrutural.</p>
         </div>
-        <div class="eng-card">
+        <div class="eng-card popup-open-btn" data-popup="popup-tcpshield" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
           <div class="eng-icon" style="color:var(--accent-blue)"><i class="fa-solid fa-shield-halved"></i></div>
           <h4>Máquina de Estados Anti-TCPShield</h4>
-          <p>Proxies anti-DDoS mentem o status do servidor. A API usa 4 heurísticas em cascata (incluindo UDP Query e detecção de MOTD offline) para calcular com 100% de precisão o real status do container Java na nuvem.</p>
+          <p>Proxies anti-DDoS mentem o status do servidor. A API usa 4 heurísticas em cascata (UDP Query, MOTD offline, mcstatus.io externo e contagem de players) para calcular o real status do container Java na nuvem.</p>
         </div>
-        <div class="eng-card">
+        <div class="eng-card popup-open-btn" data-popup="popup-triggers" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
           <div class="eng-icon" style="color:var(--accent-purple)"><i class="fa-solid fa-database"></i></div>
           <h4>Procedures e Triggers Nativos</h4>
           <p>A afinidade de hashtags do feed social é calculada direto no banco via Triggers PostgreSQL. Curtidas (+1), comentários (+2) disparam a procedure <code>fa_apply_tag_affinity()</code> economizando latência do Node.js.</p>
@@ -1111,5 +1608,617 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
 })();
 </script>
 
+<script>
+/* ── SCROLL PROGRESS BAR ── */
+(function() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  function updateBar() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+  updateBar();
+})();
+</script>
+<!-- ════ POPUPS ═══════════════════════════════════════════════════════════ -->
+
+<!-- POPUP: Site & Rede Social -->
+<div class="popup-overlay" id="popup-site" role="dialog" aria-modal="true" aria-label="Site Web & Rede Social — detalhes">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🌐</div>
+      <span class="popup-subtitle">Artefato 01 // Frontend</span>
+      <h2>Site Web & Rede Social</h2>
+      <p>Plataforma social completa construída em Vanilla JS, sem frameworks. Cada funcionalidade — da autenticação ao feed personalizado — foi implementada do zero, resultando em carregamento instantâneo e controle total sobre o bundle.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Autenticação & Identidade</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📧</div>
+          <div class="popup-feature-text"><strong>PIN por E-mail</strong><span>Código de 6 dígitos via Resend API. Expira em 15 min. Não requer senha na criação inicial.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🎮</div>
+          <div class="popup-feature-text"><strong>Microsoft / Xbox OAuth</strong><span>Login com conta Xbox. Sincroniza XUID Bedrock e UUID Java. Suporte a múltiplas contas vinculadas.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔗</div>
+          <div class="popup-feature-text"><strong>Afiliação de Contas</strong><span>Sistema de delegação: uma conta pode postar em nome de outra mediante autorização explícita com escopos granulares.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🗑️</div>
+          <div class="popup-feature-text"><strong>Exclusão com Verificação</strong><span>Fluxo de delete_account com PIN dedicado por e-mail. Operação irreversível com dupla confirmação.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Rede Social</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📰</div>
+          <div class="popup-feature-text"><strong>Feed Personalizado</strong><span>Feed com afinidade por hashtags. Tags com scores de 0 a 10 calculados via triggers nativos no PostgreSQL.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">💬</div>
+          <div class="popup-feature-text"><strong>DMs + Chat em Grupo</strong><span>Mensagens diretas e grupos com suporte a edição, soft-delete e estado de leitura por conversa.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📊</div>
+          <div class="popup-feature-text"><strong>Enquetes com Expiração</strong><span>Polls com timestamp de encerramento. Voto único por usuário com constraint de unicidade no banco.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🚩</div>
+          <div class="popup-feature-text"><strong>Sistema de Denúncias</strong><span>Categorias: spam, hate speech, assédio, inapropriado, desinformação. Admin revisa com ação auditada.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🖼️</div>
+          <div class="popup-feature-text"><strong>Upload via Cloudinary</strong><span>Até 4 imagens por post (10 MB/cada). Tipos aceitos: PNG, JPEG, WebP, GIF, AVIF, HEIC.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🏆</div>
+          <div class="popup-feature-text"><strong>Gamificação (Mérito/Capital)</strong><span>Dois sistemas econômicos separados. Mérito = reputação intransferível. Capital = moeda do servidor.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Stack Técnica</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-blue">HTML5</span>
+        <span class="popup-tech-badge popup-badge-blue">CSS3 Nativo</span>
+        <span class="popup-tech-badge popup-badge-blue">JavaScript ES Modules</span>
+        <span class="popup-tech-badge popup-badge-green">Cloudinary CDN</span>
+        <span class="popup-tech-badge popup-badge-gold">Resend API</span>
+        <span class="popup-tech-badge popup-badge-gold">Microsoft OAuth 2.0</span>
+        <span class="popup-tech-badge popup-badge-gray">Dark mode via user_preferences</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Zero dependências de frontend.</strong> Nenhum framework, nenhum bundler. O site carrega em uma requisição e roda em qualquer dispositivo. Toda complexidade está na API — o frontend é puro, leve e auditável.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: API REST -->
+<div class="popup-overlay" id="popup-api" role="dialog" aria-modal="true" aria-label="API Backend REST — detalhes">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">⚡</div>
+      <span class="popup-subtitle">Artefato 02 // Backend</span>
+      <h2>API Backend REST</h2>
+      <p>138+ endpoints em Node.js ESM sobre Express. O núcleo que orquestra tudo: autenticação multi-conta, lógica social, telemetria em tempo real do servidor Minecraft e moderação automatizada de conteúdo.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Segurança & Auth</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔐</div>
+          <div class="popup-feature-text"><strong>JWT HS256 + SHA-256 no BD</strong><span>Tokens são assinados com HS256 e seu hash SHA-256 é armazenado na tabela user_sessions. Revogação instantânea via DELETE.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔒</div>
+          <div class="popup-feature-text"><strong>bcrypt 10 rounds</strong><span>Fator de custo 10 para hashing de senhas. OWASP recomenda mínimo de 10 rounds para produção atual.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🛡️</div>
+          <div class="popup-feature-text"><strong>Rate Limiting Granular</strong><span>5 limitadores distintos: auth (20/15min), e-mail (3/15min), Xbox API (3/5min), posts (10/hora), uploads (30/hora).</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🌐</div>
+          <div class="popup-feature-text"><strong>CORS Restrito + Helmet</strong><span>Allowlist de origens explícitas. Helmet com headers de segurança. Proxy reverso via trust proxy 1.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Integração Minecraft</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🎮</div>
+          <div class="popup-feature-text"><strong>Máquina de Estados (3 estados)</strong><span>Estados unknown/offline/online. Sincronizado com o App Desktop via heartbeat. Transições auditadas em log.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📡</div>
+          <div class="popup-feature-text"><strong>4 Heurísticas TCPShield</strong><span>UDP Query, comparação de MOTD offline, consulta mcstatus.io externo, e contagem de players online &gt; 0 como prova positiva.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">⏱️</div>
+          <div class="popup-feature-text"><strong>Heartbeat + Cloud Lockout</strong><span>App pulsa a cada 10s. Após shutdown explícito, Cloud Lockout bloqueia reconexão por 60s para evitar falso "online".</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">💾</div>
+          <div class="popup-feature-text"><strong>Cache de Status (TTL 50s)</strong><span>Status do servidor cacheado em memória por 50s. Menor que o ciclo do dashboard (60s) garante dados sempre frescos.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Stack Técnica</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-green">Node.js ESM</span>
+        <span class="popup-tech-badge popup-badge-green">Express 4</span>
+        <span class="popup-tech-badge popup-badge-blue">PostgreSQL</span>
+        <span class="popup-tech-badge popup-badge-blue">Helmet</span>
+        <span class="popup-tech-badge popup-badge-gold">JWT (jsonwebtoken)</span>
+        <span class="popup-tech-badge popup-badge-gold">bcryptjs</span>
+        <span class="popup-tech-badge popup-badge-purple">Cloudinary v2</span>
+        <span class="popup-tech-badge popup-badge-purple">Google Vision API</span>
+        <span class="popup-tech-badge popup-badge-gray">minecraft-server-util</span>
+        <span class="popup-tech-badge popup-badge-gray">Multer (memória)</span>
+        <span class="popup-tech-badge popup-badge-gray">Resend API</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Schema versionado com migrações idempotentes.</strong> Cada coluna e tabela usa ADD COLUMN IF NOT EXISTS e ON CONFLICT DO NOTHING. O servidor pode ser reiniciado com segurança a qualquer momento sem corromper o banco.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: App Desktop -->
+<div class="popup-overlay" id="popup-app" role="dialog" aria-modal="true" aria-label="App Desktop Windows — detalhes">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🖥️</div>
+      <span class="popup-subtitle">Artefato 03 // Desktop</span>
+      <h2>App Desktop Windows</h2>
+      <p>Aplicativo Electron instalável via NSIS. Opera localmente na máquina do admin com um conjunto de funcionalidades muito além do básico: desde auto-restart com backoff exponencial até renderização nativa de skins do Minecraft para notificações do Windows.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Gerenciamento de Processos</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📟</div>
+          <div class="popup-feature-text"><strong>Console em Tempo Real</strong><span>Logs do servidor Java em streaming direto na UI, com busca nativa via findInPage(). Distingue JOIN, INFO, WARN e ERR com cores distintas por fonte (backend vs proxy).</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔁</div>
+          <div class="popup-feature-text"><strong>Auto-Restart com Backoff</strong><span>Crash detectado = reinício automático com até 5 tentativas configuráveis. Backoff exponencial entre tentativas. Distingue crash de stop intencional via flag <code>intentionalProcessStop</code>.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🌐</div>
+          <div class="popup-feature-text"><strong>Suporte a Velocity Proxy</strong><span>Gerencia dois processos independentes: servidor Minecraft (backend) e proxy Velocity. Startup sequenciado: Velocity sobe 4s após o backend. Parada graceful independente para cada um.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">⚡</div>
+          <div class="popup-feature-text"><strong>Encerramento Limpo + Liberação de Portas</strong><span>Graceful: envia <code>stop</code> / <code>shutdown</code>, aguarda 5–15s. Forçado: taskkill /F /T na árvore de PIDs. PowerShell Get-NetTCPConnection libera portas presas em TIME_WAIT imediatamente.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Sincronização Dual-Canal com a API</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">💓</div>
+          <div class="popup-feature-text"><strong>Heartbeat Leve (10s)</strong><span>POST <code>/api/app/heartbeat</code> sem payload de negócio — apenas prova que o app está vivo. Separado do sync de dados para não bloquear o canal em eventos de alta frequência.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📡</div>
+          <div class="popup-feature-text"><strong>Sync de Dados por Evento</strong><span>POST <code>/api/app/sync</code> disparado <em>imediatamente</em> em join/leave de jogadores, serverStarted e serverStopped. Fallback periódico de consistência a cada 10s. Flag <code>_syncInFlight</code> evita sobreposição de requisições.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔔</div>
+          <div class="popup-feature-text"><strong>Webhook Local (localhost:49152)</strong><span>Servidor HTTP interno que recebe eventos do site (ex: novo cadastro) e aplica whitelist em tempo real — via console do servidor se online, ou diretamente no <code>whitelist.json</code> se offline. Protegido por secret key.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">☁️</div>
+          <div class="popup-feature-text"><strong>Cloud Lockout Inteligente</strong><span>serverStopped enviado ao site antes do heartbeat parar, garantindo transição instantânea para modo nuvem sem aguardar timeout de 30s. Previne status "online fictício" pós-crash.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Segurança & Sandboxing</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🛡️</div>
+          <div class="popup-feature-text"><strong>IPC Whitelist Rígida</strong><span>contextBridge expõe apenas canais explicitamente listados em <code>ALLOWED_INVOKE</code>, <code>ALLOWED_SEND</code> e <code>ALLOWED_ON</code>. Tentativa de acesso a canal não listado loga erro e rejeita a Promise. Zero acesso Node.js no renderer.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔐</div>
+          <div class="popup-feature-text"><strong>safeStorage p/ Secret Key</strong><span>A chave de integração com a API é criptografada via <code>Electron.safeStorage</code> (vinculada ao keychain do SO) antes de ser gravada em disco. Nunca fica em plaintext no <code>fa-config.json</code>.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">💉</div>
+          <div class="popup-feature-text"><strong>Sanitização de Comandos</strong><span>Stdin ao servidor filtra newlines e limita a 512 chars por comando. Flags JVM validadas por regex: só aceita tokens que começam com <code>-</code> e sem caracteres shell perigosos (<code>;&|`$</code>).</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🪟</div>
+          <div class="popup-feature-text"><strong>AUMID + Ícone no Windows Shell</strong><span>AUMID registrado no HKLM/HKCU via <code>reg.exe</code>. PowerShell corrige AUMID nos <code>.lnk</code> do Desktop/Menu Iniciar via IPropertyStore COM. WM_SETICON forçado por HWND nativo para garantir ícone correto na barra de tarefas.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Sistema de Backup</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">💾</div>
+          <div class="popup-feature-text"><strong>Backup Automático Agendado</strong><span>Cópia incremental do diretório do servidor com frequência configurável (horas/dias). Progresso em tempo real via IPC para a UI. Timestamp ISO no nome do arquivo para organização.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🗜️</div>
+          <div class="popup-feature-text"><strong>Compressão ZIP via tar.exe</strong><span>Opção de compressão usa <code>tar.exe</code> nativo do Windows para gerar <code>.zip</code>. Cópia em dois passos: dir → pasta tmp → zip. Cancela com opção de manter arquivos parciais ou excluir.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Extras de Experiência</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🎮</div>
+          <div class="popup-feature-text"><strong>Monitor de RAM por PID</strong><span>PowerShell rastreia a árvore de PIDs filhos do processo Java e soma o Private Working Set real. Não confunde com outros <code>java.exe</code> no sistema. Retorna <code>usedMB</code> e <code>systemTotalMB</code>.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🧑‍💻</div>
+          <div class="popup-feature-text"><strong>Avatar Cache de Jogadores</strong><span>Baixa e renderiza automaticamente a face do skin Minecraft (Java via Crafatar/Minotar; Bedrock via GeyserMC API + extração manual de textura). Cache local de 7 dias. Supersampling 8× para bordas suaves.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🕐</div>
+          <div class="popup-feature-text"><strong>Comandos Agendados</strong><span>Agendador interno executa comandos RCON em horários definidos. Suporta modo único (once) e repetição. Executados via stdin diretamente no processo do servidor.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔔</div>
+          <div class="popup-feature-text"><strong>Notificações Nativas Granulares</strong><span>8 tipos de notificação (crash, restart, join, leave, backup, etc.) com controle granular: in-app, Windows nativo e som independentes. Avatar do jogador renderizado diretamente na notificação do Windows via AUMID.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Stack Técnica</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-purple">Electron</span>
+        <span class="popup-tech-badge popup-badge-purple">NSIS Installer</span>
+        <span class="popup-tech-badge popup-badge-gold">contextBridge / IPC</span>
+        <span class="popup-tech-badge popup-badge-gold">safeStorage (OS keychain)</span>
+        <span class="popup-tech-badge popup-badge-green">electron-updater</span>
+        <span class="popup-tech-badge popup-badge-green">GitHub Releases API</span>
+        <span class="popup-tech-badge popup-badge-blue">PowerShell (Win32 nativo)</span>
+        <span class="popup-tech-badge popup-badge-blue">GeyserMC API</span>
+        <span class="popup-tech-badge popup-badge-gray">Windows x64</span>
+        <span class="popup-tech-badge popup-badge-gray">Node.js child_process</span>
+        <span class="popup-tech-badge popup-badge-gray">tar.exe (ZIP nativo)</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Auto-cura híbrida de dois lados.</strong> Quando o App está conectado, o site entra em modo "repouso" e para de pingar o servidor Minecraft diretamente — confiando inteiramente na telemetria do App. Quando o App desaparece, o site assume o controle automaticamente. O sinal <code>serverStopped: true</code> chega à API <em>antes</em> do heartbeat parar, garantindo transição imediata para modo offline sem gap de estado.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: Landing Page -->
+<div class="popup-overlay" id="popup-landing" role="dialog" aria-modal="true" aria-label="Landing Page — detalhes">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🏠</div>
+      <span class="popup-subtitle">Artefato 04 // Landing</span>
+      <h2>Landing Page Institucional</h2>
+      <p>Site satélite focado exclusivamente na distribuição e download do App Desktop. Design premium com tipografia display arrojada, hospedado gratuitamente no GitHub Pages com custo operacional zero.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Funcionalidades</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📦</div>
+          <div class="popup-feature-text"><strong>Download Dinâmico</strong><span>Fetch da GitHub Releases API na carga da página. Sempre exibe a versão mais recente do instalador NSIS.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">⚖️</div>
+          <div class="popup-feature-text"><strong>Política de Privacidade LGPD</strong><span>Página completa de privacidade em conformidade com a LGPD. Detalha coleta, uso e retenção de dados do app.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🍪</div>
+          <div class="popup-feature-text"><strong>Zero Cookies</strong><span>Nenhum rastreamento, nenhuma análise, nenhum cookie. Página puramente informativa e de distribuição.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">💰</div>
+          <div class="popup-feature-text"><strong>Custo Operacional Zero</strong><span>Hospedagem GitHub Pages. Domínio próprio apontado via CNAME. Sem servidor, sem CDN pago, sem banco.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Stack Técnica</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-blue">HTML5</span>
+        <span class="popup-tech-badge popup-badge-blue">CSS Nativo</span>
+        <span class="popup-tech-badge popup-badge-green">GitHub Pages</span>
+        <span class="popup-tech-badge popup-badge-green">GitHub Releases API</span>
+        <span class="popup-tech-badge popup-badge-gray">CNAME + DNS</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Estratégia de distribuição pensada.</strong> O App é um produto de nicho (admins do servidor). Uma landing separada do site principal evita poluir a plataforma social com links de download — e ainda isola qualquer política de privacidade específica ao app Windows.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: Google Vision -->
+<div class="popup-overlay" id="popup-vision" role="dialog" aria-modal="true" aria-label="Google Vision SafeSearch — detalhes">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🧠</div>
+      <span class="popup-subtitle">Engenharia // Moderação por IA</span>
+      <h2>Google Vision SafeSearch em 3 Camadas</h2>
+      <p>Cada imagem enviada pela rede social passa por uma pipeline de moderação automatizada antes de ser publicada. A IA do Google classifica adulto, violência, sugestivo e médico em 5 níveis de probabilidade.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Pipeline de Moderação</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon" style="color:var(--accent-green)">✅</div>
+          <div class="popup-feature-text"><strong>Camada 1 — Aprovado</strong><span>UNLIKELY / VERY_UNLIKELY / POSSIBLE em todas as categorias. Imagem publicada imediatamente no Cloudinary.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon" style="color:var(--brand-gold)">⚠️</div>
+          <div class="popup-feature-text"><strong>Camada 2 — Suspeito</strong><span>POSSIBLE (score 3) em adult, violence ou racy. Imagem é publicada mas entra na fila de moderação humana do admin.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon" style="color:var(--accent-red, #EF4444)">🚫</div>
+          <div class="popup-feature-text"><strong>Camada 3 — Rejeitado</strong><span>LIKELY ou VERY_LIKELY (score ≥ 4) em adult ou violence. Upload bloqueado antes do Cloudinary. Log imutável em audit_logs.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔓</div>
+          <div class="popup-feature-text"><strong>Fail-open Intencional</strong><span>Se GOOGLE_VISION_API_KEY ausente ou timeout (&gt;10s), a imagem passa sem moderação. Plataforma nunca fica travada por indisponibilidade da API externa.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Categorias Analisadas</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-blue">adult</span>
+        <span class="popup-tech-badge popup-badge-blue">violence</span>
+        <span class="popup-tech-badge popup-badge-gold">racy</span>
+        <span class="popup-tech-badge popup-badge-gray">medical</span>
+        <span class="popup-tech-badge popup-badge-purple">5 níveis: VERY_UNLIKELY → VERY_LIKELY</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Moderação em fila, não em bloco.</strong> O design de "suspeito → fila humana" é intencional: falsos positivos não prejudicam o criador de conteúdo, mas conteúdo realmente duvidoso recebe revisão manual. O admin tem visão clara de tudo pendente no dashboard.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: TCPShield -->
+<div class="popup-overlay" id="popup-tcpshield" role="dialog" aria-modal="true" aria-label="Máquina de Estados TCPShield — detalhes">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🛡️</div>
+      <span class="popup-subtitle">Engenharia // Detecção de Proxy</span>
+      <h2>Máquina de Estados Anti-TCPShield</h2>
+      <p>O TCPShield é um proxy anti-DDoS que intercepta pings de status e devolve dados falsos ("servidor online") mesmo quando o backend real está offline. Quatro heurísticas em cascata resolvem isso definitivamente.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">As 4 Heurísticas em Cascata</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📡</div>
+          <div class="popup-feature-text"><strong>Heurística 1 — UDP Query</strong><span>O TCPShield não proxeia UDP. Se queryFull() responder na porta 25565, é confirmação positiva de servidor real. Requer enable-query=true no server.properties.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📝</div>
+          <div class="popup-feature-text"><strong>Heurística 2 — MOTD Comparison</strong><span>Compara o MOTD retornado com o MOTD offline configurado (MC_OFFLINE_MOTD env var). Match exato = TCPShield respondendo = servidor offline.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🌍</div>
+          <div class="popup-feature-text"><strong>Heurística 3 — mcstatus.io Externo</strong><span>Consulta de datacenter externo diferente. Se ambos veem 0 players com mesmo MOTD, TCPShield provavelmente está em ambos. Possui cache próprio de ~30s.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">👥</div>
+          <div class="popup-feature-text"><strong>Heurística 4 — Players Online &gt; 0</strong><span>Prova positiva definitiva. O Offline MOTD do TCPShield sempre retorna 0 players. Se a contagem for &gt; 0, o servidor definitivamente está rodando.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Máquina de Estados</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">❓</div>
+          <div class="popup-feature-text"><strong>Estado: unknown</strong><span>Estado inicial. Usa detecção de ping com filtro TCPShield para determinar status real.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🔴</div>
+          <div class="popup-feature-text"><strong>Estado: offline</strong><span>App sinalizou shutdown ou ping confirmou offline real. Após 3min sem App conectado, volta para unknown automaticamente.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🟢</div>
+          <div class="popup-feature-text"><strong>Estado: online</strong><span>App sinalizou serverStarted ou ping real respondeu. Invalida cache de status imediatamente na transição.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">⏱️</div>
+          <div class="popup-feature-text"><strong>Cache TTL 50s</strong><span>Ligeiramente menor que o ciclo de polling do dashboard (60s). Garante dados frescos no próximo poll.</span></div>
+        </div>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Problema específico, solução específica.</strong> Esse sistema existe porque o TCPShield evoluiu com a feature "Offline MOTD" que quebra a detecção por latência (&lt;2ms). A abordagem em camadas garante que mesmo com cache de datacenter externo, o status sempre reflete a realidade.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: Triggers PostgreSQL -->
+<div class="popup-overlay" id="popup-triggers" role="dialog" aria-modal="true" aria-label="Procedures e Triggers — detalhes">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Fechar"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🗄️</div>
+      <span class="popup-subtitle">Engenharia // PostgreSQL Avançado</span>
+      <h2>Procedures e Triggers Nativos</h2>
+      <p>A personalização do feed social não acontece no Node.js — ela acontece dentro do banco de dados. Triggers em PL/pgSQL disparam automaticamente a cada interação e mantêm scores de afinidade por hashtag em tempo real.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Sistema de Afinidade</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">❤️</div>
+          <div class="popup-feature-text"><strong>Trigger: post_likes</strong><span>INSERT → +1.0 de afinidade nas tags do post. DELETE (unlike) → -1.0. Nunca vai abaixo de 0.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">💬</div>
+          <div class="popup-feature-text"><strong>Trigger: post_comments</strong><span>INSERT de comentário → +2.0 (sinal mais forte que like). Soft-delete → -2.0. UPDATE de is_deleted monitora ambas direções.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">🏷️</div>
+          <div class="popup-feature-text"><strong>Extração de Hashtags</strong><span>A function fa_apply_tag_affinity() usa regexp_matches(content, '#([[:alnum:]_]{2,32})', 'g') para extrair tags. Processamento 100% dentro do PostgreSQL.</span></div>
+        </div>
+        <div class="popup-feature-item">
+          <div class="popup-feature-icon">📊</div>
+          <div class="popup-feature-text"><strong>Score 0 a 10 por Tag</strong><span>user_tag_affinity com score NUMERIC(5,2) constraint CHECK ≥ 0 AND ≤ 10. UPSERT via ON CONFLICT DO UPDATE com LEAST/GREATEST.</span></div>
+        </div>
+      </div>
+      <p class="popup-section-title">Schema Envolvido</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-purple">user_tag_affinity</span>
+        <span class="popup-tech-badge popup-badge-purple">trg_post_likes_affinity</span>
+        <span class="popup-tech-badge popup-badge-purple">trg_post_comments_affinity</span>
+        <span class="popup-tech-badge popup-badge-blue">fa_apply_tag_affinity()</span>
+        <span class="popup-tech-badge popup-badge-blue">fa_post_likes_affinity_trigger()</span>
+        <span class="popup-tech-badge popup-badge-blue">fa_post_comments_affinity_trigger()</span>
+        <span class="popup-tech-badge popup-badge-gray">PL/pgSQL</span>
+        <span class="popup-tech-badge popup-badge-gray">regexp_matches</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Por que no banco, não no Node.js?</strong> Triggers executam dentro da transação da interação original — atomicamente. Não há risco de inconsistência por crash do servidor Node entre o INSERT do like e a atualização do score. Zero latência adicional de rede.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── LÓGICA DOS POPUPS ── */
+(function() {
+  function openPopup(id) {
+    const overlay = document.getElementById(id);
+    if (!overlay) return;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    const closeBtn = overlay.querySelector('.js-popup-close');
+    if (closeBtn) closeBtn.focus();
+  }
+  function closePopup(overlay) {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeAll() {
+    document.querySelectorAll('.popup-overlay.active').forEach(closePopup);
+  }
+  // Trigger elements
+  document.querySelectorAll('[data-popup]').forEach(el => {
+    el.addEventListener('click', () => openPopup(el.dataset.popup));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPopup(el.dataset.popup); } });
+  });
+  // Close buttons
+  document.querySelectorAll('.js-popup-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const overlay = btn.closest('.popup-overlay');
+      if (overlay) closePopup(overlay);
+    });
+  });
+  // Overlay backdrop click
+  document.querySelectorAll('.popup-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closePopup(overlay);
+    });
+  });
+  // ESC key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeAll();
+  });
+})();
+</script>
+
+
+<script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#gabriel-silva",
+      "name": "Gabriel Silva",
+      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist",
+      "knowsAbout": ["Full Stack Development","Node.js","PostgreSQL","Electron","API REST","Moderação por IA","Google Vision"]
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://ogabriels.com/forca-aliada#case",
+      "headline": "Força Aliada — Ecossistema Full Stack em Produção: API REST, Rede Social com IA e App Desktop",
+      "description": "Case study completo do ecossistema Força Aliada: API Node.js + PostgreSQL com 138+ endpoints, rede social com moderação via Google Vision SafeSearch, app desktop Electron com auto-updater OTA, e site institucional — em produção contínua desde 2021.",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/forca-aliada#primaryimage",
+        "url": "https://ogabriels.com/assets/img/forca-aliada-logo.webp"
+      },
+      "datePublished": "2021-01-01T00:00:00-03:00",
+      "dateModified": "2026-06-01T00:00:00-03:00",
+      "inLanguage": "pt-BR",
+      "author": { "@id": "https://ogabriels.com/#gabriel-silva" },
+      "publisher": { "@id": "https://ogabriels.com/#gabriel-silva" },
+      "proficiencyLevel": "Expert",
+      "keywords": [
+        "Full Stack Development","Node.js","Express","PostgreSQL","Electron","JWT","API REST",
+        "Google Vision SafeSearch","Minecraft","Gabriel Silva","Case Study","Rede Social",
+        "Microsoft OAuth","Engenharia de Software","Moderação por IA","Homelab"
+      ],
+      "mainEntity": { "@id": "https://ogabriels.com/forca-aliada#ecosystem" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ogabriels.com/forca-aliada#ecosystem",
+      "name": "Força Aliada — Ecossistema Digital",
+      "url": "https://forcaaliada.ogabriels.com",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Web, Windows",
+      "description": "Ecossistema digital em produção: rede social com moderação por IA, API REST Node.js + PostgreSQL com 138+ endpoints, app desktop Windows com auto-updater OTA e site institucional. Ativo desde 2021.",
+      "author": { "@id": "https://ogabriels.com/#gabriel-silva" },
+      "screenshot": "https://ogabriels.com/assets/img/forca-aliada-logo.webp",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ogabriels.com/forca-aliada",
+      "url": "https://ogabriels.com/forca-aliada",
+      "name": "Força Aliada — Ecossistema Full Stack | Case Gabriel Silva",
+      "isPartOf": { "@id": "https://ogabriels.com/#website" },
+      "about": { "@id": "https://ogabriels.com/forca-aliada#case" },
+      "mainEntity": { "@id": "https://ogabriels.com/forca-aliada#case" },
+      "breadcrumb": { "@id": "https://ogabriels.com/forca-aliada#breadcrumb" },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/forca-aliada#primaryimage" },
+      "inLanguage": "pt-BR",
+      "dateModified": "2026-06-01T00:00:00-03:00"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ogabriels.com/forca-aliada#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://ogabriels.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Força Aliada", "item": "https://ogabriels.com/forca-aliada" }
+      ]
+    }
+  ]
+}
+  </script>
+<footer class="site-footer" role="contentinfo" aria-label="Rodapé do site">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="footer-dot" aria-hidden="true"></span>
+      <span class="footer-name">Gabriel Silva</span>
+      <span class="footer-copy">© 2026</span>
+    </div>
+    <nav class="footer-links" aria-label="Navegação do rodapé">
+      <a href="/">Portfólio</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="contato.html">Contato</a>
+      <a href="sitemap.xml" class="footer-link-sitemap" type="application/xml">Sitemap</a>
+    </nav>
+  </div>
+</footer>
 </body>
 </html>

@@ -3,12 +3,13 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://ogabriels.com/index</loc>
+    <loc>https://ogabriels.com/</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/index"/>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/index"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/"/>
   </url>
 
   <url>
@@ -18,6 +19,7 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/sobre"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/sobre"/>
   </url>
 
   <url>
@@ -27,6 +29,17 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/contato"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/contato"/>
+  </url>
+
+  <url>
+    <loc>https://ogabriels.com/forca-aliada</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/forca-aliada"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/forca-aliada"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/forca-aliada"/>
   </url>
 
   <url>
@@ -34,6 +47,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/infra"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/server-infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/infra"/>
   </url>
 
   <url>
@@ -43,6 +59,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/revista-utopia"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/utopia-magazine"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/revista-utopia"/>
   </url>
 
   <url>
@@ -52,6 +69,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/revista-utopia"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/utopia-magazine"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/revista-utopia"/>
   </url>
 
   <url>
@@ -59,6 +77,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/neoletters"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/neo-letters-branding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/neoletters"/>
   </url>
 
   <url>
@@ -66,6 +87,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/lo-publicidade"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/lo-advertising"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/lo-publicidade"/>
   </url>
 
   <url>
@@ -73,6 +97,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/personal-branding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/personal-branding"/>
   </url>
 
   <url>
@@ -80,6 +107,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/podcast-um-minuto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/one-minute-reflection"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/podcast-um-minuto"/>
   </url>
 
   <url>
@@ -87,6 +117,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/valorada"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/valorada-gaming"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/valorada"/>
   </url>
 
   <url>
@@ -94,6 +127,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/thumbnails"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/thumbnails-youtube"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/thumbnails"/>
   </url>
 
   <url>
@@ -101,6 +137,9 @@
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/videos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/video-production"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/videos"/>
   </url>
 
 </urlset>
