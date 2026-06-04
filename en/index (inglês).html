@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbfbfd">
+
+  <title>Gabriel Silva | Creative Technologist &amp; Full Stack Developer</title>
+  <meta name="description" content="Gabriel Silva's portfolio — Creative Technologist specializing in design, full stack development, and server infrastructure. Real-world case studies in IT and audiovisual production.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  <meta name="keywords" content="Creative Technologist, Full Stack Developer, Branding, UI Design, Server Infrastructure, Gabriel Silva Portfolio, São Paulo">
+
+  <link rel="canonical" href="https://ogabriels.com/en/">
+  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/" />
+  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/" />
+  <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
+
+  <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="../assets/img/ogabriels-logo.webp">
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Gabriel Silva — Portfolio">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ogabriels.com/en/">
+  <meta property="og:title" content="Gabriel Silva | Creative Technologist">
+  <meta property="og:description" content="Design, Technology, and Infrastructure. Explore my full portfolio of digital solutions.">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/ogabriels-logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Gabriel Silva — Creative Technologist &amp; Full Stack Developer">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ogabriels.com/en/">
+  <meta name="twitter:title" content="Gabriel Silva | Creative Technologist">
+  <meta name="twitter:description" content="Design, Technology, and Infrastructure. Explore the full portfolio.">
+  <meta name="twitter:image" content="https://ogabriels.com/assets/img/ogabriels-logo.png">
+  <meta name="twitter:image:alt" content="Gabriel Silva — Creative Technologist &amp; Full Stack Developer">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sidebar-width: 280px;
+      --max-width: 1100px;
+      --card-radius: 18px;
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.75);
+      --bg-card: #FFFFFF;
+      --text-primary: #1D1D1F;
+      --text-secondary: #86868B;
+      --accent: #0071E3;
+      --accent-hover: #0077ED;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
+      --glass-blur: blur(20px) saturate(180%);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
+      --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
+      --elastic-snap: cubic-bezier(0.25, 1.5, 0.5, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text-primary); background-color: var(--bg-body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; display: flex; min-height: 100vh; margin: 0; }
+    a { text-decoration: none; -webkit-tap-highlight-color: transparent; }
+    .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s ease; }
+    .skip-link:focus { top: 20px; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; border: 2px solid var(--bg-body); }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+
+    aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; background: var(--bg-sidebar); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-right: 1px solid rgba(0,0,0,0.05); display: block; z-index: 2000; overflow: visible; transform: translateZ(0); contain: layout style; }
+    @supports not (backdrop-filter: blur(20px)) { aside { background: rgba(255,255,255,0.95); } }
+    aside::-webkit-scrollbar { display: none; }
+    .sidebar-scaler { width: 100%; display: flex; flex-direction: column; padding: 40px 32px 30px; transform-origin: top left; box-sizing: border-box; transition: padding 0.1s ease; -webkit-font-smoothing: antialiased; backface-visibility: hidden; }
+    .sidebar-scaler.compact-mode { padding-top: 25px; padding-bottom: 5px; }
+    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; transition: margin 0.3s ease; }
+    .sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
+    .profile-link { display: block; transition: transform 0.2s; }
+    .profile-link:active { transform: scale(0.98); }
+    .profile-pic-wrapper { width: 110px; height: 110px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.4s var(--ease-out); flex-shrink: 0; transform: translateZ(0); }
+    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: #111; transition: color 0.3s ease; }
+    .profile-link:hover .profile-name { color: var(--accent); }
+    .profile-role { font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    nav { flex: 1; display: flex; flex-direction: column; min-height: 0; margin-bottom: 10px; }
+    .sidebar-scaler.compact-mode nav { margin-bottom: 0; }
+    .nav-group { margin-bottom: 20px; flex-shrink: 0; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
+    .nav-group h2 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
+    .nav-list { list-style: none; padding: 0; }
+    .nav-list li { margin-bottom: 2px; }
+    .project-scroll-container { overflow-y: auto; padding-right: 5px; margin-right: -5px; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent; }
+    .project-scroll-container::-webkit-scrollbar { width: 4px; }
+    .project-scroll-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.15); border-radius: 4px; }
+    .nav-link { display: flex; align-items: center; gap: 10px; padding: 8px 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); white-space: nowrap; }
+    .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
+    .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0,113,227,0.05); }
+
+    .lang-switcher-container { touch-action: none; position: relative; display: flex; margin: 0 0 20px; background: rgba(118,118,128,0.12); border-radius: 9999px; padding: 4px; width: fit-content; border: 1px solid rgba(0,0,0,0.02); cursor: pointer; flex-shrink: 0; transition: margin 0.2s; padding-right: 6px; overflow: visible; -webkit-user-select: none; user-select: none; contain: layout; transform: translateZ(0); }
+    .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
+    .gliding-pill { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); background: #FFFFFF; border-radius: 9999px; cursor: grab; border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05); z-index: 1; --pill-x: 100%; transform-origin: center center; transform: translateX(var(--pill-x)) scale(1.05); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2), background-color 0.3s ease, box-shadow 0.3s ease; }
+    .gliding-pill:active { cursor: grabbing; }
+    @media (hover: hover) { .lang-switcher-container:hover .gliding-pill { transform: translateX(var(--pill-x)) scale(1.15); } .lang-switcher-container:hover .lang-item.active { transform: scale(1.05); } }
+    .lang-item { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 14px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; width: 75px; transition: color 0.3s ease, transform 0.3s var(--smooth-glide); will-change: transform, color; pointer-events: none !important; }
+    .lang-item.active { color: var(--text-primary); cursor: default; }
+    .lang-flag { width: 20px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); filter: none !important; transform: translateZ(0); pointer-events: none !important; }
+
+    .sidebar-cta { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background: var(--text-primary); color: white; text-align: center; border-radius: 16px; font-size: 0.9rem; font-weight: 600; margin-top: auto; margin-bottom: 20px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; flex-shrink: 0; }
+    .sidebar-scaler.compact-mode .sidebar-cta { margin-bottom: 10px; margin-top: 5px; }
+    .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .sidebar-cta:active { transform: translateY(1px) scale(0.97); box-shadow: none; background: #333; transition-duration: 0.08s; }
+    .sidebar-footer { padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; transition: padding 0.2s; }
+    .sidebar-scaler.compact-mode .sidebar-footer { padding-top: 10px; }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .social-icons { margin-bottom: 4px; }
+    .social-icon { width: 32px; height: 32px; border-radius: 12px; background: rgba(0,0,0,0.04); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: background-color 0.3s, color 0.3s, transform 0.3s var(--ease-out); }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
+    .social-icon:active { transform: translateY(1px) scale(0.93); transition-duration: 0.08s; }
+    .copyright { font-size: 0.65rem; color: #555; text-align: center; font-weight: 500; }
+
+    .mobile-menu-btn { display: none; }
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+    .mobile-scroll-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: 80px; padding-bottom: 100px; display: flex; flex-direction: column; }
+    .mobile-nav-container { width: 100%; max-width: 320px; min-height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px; }
+    .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { opacity: 0; transform: translateY(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .mobile-menu-overlay.active .mobile-nav-group { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; align-items: center; }
+    .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
+    .mobile-projects-wrapper { width: 100%; text-align: center; }
+    .mobile-projects-list { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; width: 100%; align-items: center; }
+    .mobile-link-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; transition: 0.2s; text-decoration: none; }
+    .mobile-link-sub.is-active { color: var(--accent) !important; font-weight: 600; }
+    .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
+    .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
+    .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .mobile-socials { display: flex; gap: 24px; justify-content: center; }
+    .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
+    .mobile-cta { width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .mobile-close-btn { display: none !important; }
+
+    main { margin-left: var(--sidebar-width); flex: 1; padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
+    .container { width: 100%; max-width: var(--max-width); }
+    .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .header-content { max-width: 700px; }
+    .header-content h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; line-height: 1.1; }
+    .header-content p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.5; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 99px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); }
+    .btn-cta:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0, 113, 227, 0.4); background: var(--accent-hover); }
+    .btn-cta:active { transform: translateY(1px) scale(0.97); box-shadow: 0 2px 6px rgba(0, 113, 227, 0.2); transition-duration: 0.08s; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .card { background: var(--bg-card); border-radius: var(--card-radius); overflow: hidden; position: relative; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; isolation: isolate; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-lg); z-index: 2; }
+    .card:active { transform: translateY(1px) scale(0.985); box-shadow: var(--shadow-sm); transition: transform 0.08s, box-shadow 0.08s; }
+    .card-image-wrapper { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; background: #fff; }
+    .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .card:hover .card-image-wrapper img { transform: scale(1.06); }
+    .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%); opacity: 0; transition: opacity 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+    .card:hover .card-overlay { opacity: 1; }
+    .project-meta { color: rgba(255,255,255,0.8); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; transform: translateY(10px); transition: 0.4s; }
+    .project-title { color: white; font-size: 1.5rem; font-weight: 700; transform: translateY(10px); transition: 0.4s 0.1s; }
+    .card:hover .project-meta, .card:hover .project-title { transform: translateY(0); }
+    .card-link::after { content: ''; position: absolute; inset: 0; z-index: 10; }
+    .card-footer { padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(0,0,0,0.03); flex-grow: 1; }
+    .card-footer span { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+    .card-footer i { color: var(--accent); opacity: 0; transform: translateX(-10px); transition: all 0.3s; }
+    .card:hover .card-footer i { opacity: 1; transform: translateX(0); }
+
+    .contact-banner { width: 100%; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin-top: 80px; }
+    .contact-text-group { flex: 1; padding-right: 20px; }
+    .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; }
+    .contact-text p { color: #A1A1A6; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.5; }
+    .contact-social { display: flex; gap: 12px; }
+    .btn-social-mini { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s; font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.05); }
+    .btn-social-mini:hover { background: white; color: black; transform: translateY(-3px) scale(1.1); }
+    .btn-social-mini:active { transform: translateY(1px) scale(0.93); transition-duration: 0.08s; }
+    .contact-actions { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
+    .btn-cta-dark { display: inline-flex; align-items: center; gap: 8px; background: white; color: black; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; transition: all 0.3s; }
+    .btn-cta-dark:hover { transform: translateY(-4px) scale(1.02); background: #f2f2f2; }
+    .btn-cta-dark:active { transform: translateY(1px) scale(0.97); transition-duration: 0.08s; }
+    .btn-secondary-dark { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; padding: 14px 28px; border-radius: 99px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s; }
+    .btn-secondary-dark:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-4px) scale(1.02); }
+    .btn-secondary-dark:active { transform: translateY(1px) scale(0.97); transition-duration: 0.08s; }
+
+    /* ── Animations ── */
+    @keyframes head-bob { 0%, 100% { transform: translateY(0) rotate(0); } 30% { transform: translateY(-2px) rotate(-3deg); } 60% { transform: translateY(-1px) rotate(3deg); } }
+    .nav-link:hover i.fa-user { animation: head-bob 0.6s ease infinite; color: var(--accent); }
+    @keyframes wave-hand { 0%, 100% { transform: rotate(0deg); } 20%, 60% { transform: rotate(15deg); } 40%, 80% { transform: rotate(-10deg); } }
+    .about-link:hover svg { animation: wave-hand 0.8s ease-in-out; transform-origin: bottom center; }
+    @keyframes chat-hello { 0% { transform: scale(1) rotate(0deg); } 15% { transform: scale(1.1) rotate(-8deg); } 30% { transform: scale(1.1) rotate(8deg); } 45% { transform: scale(1.1) rotate(-6deg); } 60% { transform: scale(1.1) rotate(4deg); } 75% { transform: scale(1.05) rotate(-2deg); } 100% { transform: scale(1) rotate(0deg); } }
+    .sidebar-cta:hover svg { animation: chat-hello 0.8s cubic-bezier(0.25,0.8,0.25,1) forwards; transform-origin: bottom center; }
+    @keyframes arrow-slide-right { 0% { transform: translateX(0); opacity: 1; } 45% { transform: translateX(5px); opacity: 0; } 46% { transform: translateX(-5px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+    .btn-cta .fa-arrow-right-long { display: inline-block; transition: transform 0.3s; }
+    .btn-cta:hover .fa-arrow-right-long { animation: arrow-slide-right 0.5s forwards; }
+    .btn-cta span { display: inline-block; transition: transform 0.3s; }
+    .btn-cta:hover span { transform: translateX(2px); }
+    .hb-line { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .hb-line1 { transform-origin: 12px 8px; }
+    .hb-line2 { transform-origin: 12px 16px; }
+    .mobile-menu-btn.is-open .hb-line1 { transform: translateY(4px) rotate(45deg); }
+    .mobile-menu-btn.is-open .hb-line2 { transform: translateY(-4px) rotate(-45deg); }
+
+    /* Accessibility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    aside a:focus-visible, aside button:focus-visible, aside [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; box-shadow: none; }
+    .mobile-menu-btn:focus { outline: none; }
+    .mobile-menu-btn:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: -2px; border-radius: 14px; }
+    .mobile-menu-overlay a:focus-visible, .mobile-menu-overlay button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 14px; }
+    .contact-banner a:focus-visible, .sidebar-cta:focus-visible, .mobile-cta:focus-visible, .lang-switcher-container:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; box-shadow: none; }
+    body.using-pointer *:focus { outline: none !important; box-shadow: none !important; }
+
+    /* ── Responsive ── */
+    @media (max-width: 968px) {
+      body { flex-direction: column; }
+      .header-content h1 { font-size: 2rem; }
+      aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
+      .sidebar-scaler { width: auto; height: auto !important; min-height: auto; padding: 0; flex-direction: row; align-items: center; transform: none !important; }
+      .sidebar-scaler.compact-mode { padding: 0; }
+      .profile-container { margin: 0; text-align: left; }
+      .profile-link { display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+      .profile-name { font-size: 1rem; margin: 0; }
+      .sidebar-scaler nav, .sidebar-scaler .sidebar-footer, .profile-role { display: none; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; }
+      main { margin-left: 0; padding: 100px 24px 40px; }
+      .grid { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .header-content { width: 100%; }
+      .btn-cta { display: none; }
+      .contact-banner { flex-direction: column; text-align: center; gap: 24px; padding: 32px 24px; }
+      .contact-text-group { width: 100%; padding-right: 0; }
+      .contact-social { justify-content: center; margin-top: 15px; }
+      .contact-actions { width: 100%; flex-direction: column; gap: 10px; }
+      .btn-cta-dark, .btn-secondary-dark { width: 100%; justify-content: center; }
+      aside.menu-open-state { z-index: 3005 !important; background: transparent !important; backdrop-filter: none !important; border-bottom: none !important; pointer-events: none; }
+      aside.menu-open-state .mobile-menu-btn { pointer-events: auto; }
+      aside.menu-open-state .sidebar-scaler { opacity: 0; transition: opacity 0.3s ease; }
+    }
+    @media (max-width: 968px) and (orientation: landscape) {
+      aside { height: 60px; padding: 0 20px; }
+      main { padding: 90px 40px 40px; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .contact-banner { padding: 40px; }
+      .header-content p { font-size: 0.85rem; line-height: 1.45; }
+    }
+
+    /* ── Custom Project Thumbnails ── */
+    @keyframes fa-grid-drift { from { background-position: 0 0; } to { background-position: 40px 40px; } }
+    @keyframes infra-pulse { 0%,100%{opacity:1;box-shadow:0 0 6px rgba(16,185,129,.9)} 50%{opacity:.35;box-shadow:none} }
+
+    .thumb-fa { position:absolute;inset:0;background:#050810;overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1) }
+    .card:hover .thumb-fa { transform:scale(1.05) }
+    .thumb-fa-grid { position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:40px 40px;animation:fa-grid-drift 22s linear infinite }
+    .thumb-fa-orb { position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none }
+    .thumb-fa-orb.o1 { width:180px;height:180px;background:rgba(201,168,76,.09);top:-20px;left:-20px }
+    .thumb-fa-orb.o2 { width:140px;height:140px;background:rgba(59,130,246,.06);bottom:-10px;right:20px }
+    .thumb-fa-corner { position:absolute;width:18px;height:18px;border-color:rgba(201,168,76,.35);border-style:solid }
+    .thumb-fa-corner.tl { top:10px;left:10px;border-width:2px 0 0 2px }
+    .thumb-fa-corner.tr { top:10px;right:10px;border-width:2px 2px 0 0 }
+    .thumb-fa-corner.bl { bottom:10px;left:10px;border-width:0 0 2px 2px }
+    .thumb-fa-corner.br { bottom:10px;right:10px;border-width:0 2px 2px 0 }
+    .thumb-fa-chip { position:absolute;display:flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;font-size:.55rem;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase;backdrop-filter:blur(6px) }
+    .thumb-fa-chip i { font-size:.6rem;color:rgba(201,168,76,.7) }
+    .thumb-fa-chip.c1 { top:18px;left:50%;transform:translateX(-50%) }
+    .thumb-fa-chip.c2 { top:50%;right:12px;transform:translateY(-50%) }
+    .thumb-fa-chip.c3 { bottom:18px;left:50%;transform:translateX(-50%) }
+    .thumb-fa-chip.c4 { top:50%;left:12px;transform:translateY(-50%) }
+    .thumb-fa-center { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px }
+    .thumb-fa-glow { position:absolute;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.18) 0%,transparent 70%);filter:blur(12px) }
+    .thumb-fa-logo { width:70px;height:70px;object-fit:contain;position:relative;filter:drop-shadow(0 0 12px rgba(201,168,76,.4)) }
+    .thumb-fa-tag { position:absolute;bottom:10px;right:10px;font-family:'DM Mono',monospace;font-size:.45rem;color:rgba(201,168,76,.4);letter-spacing:.1em }
+
+    .thumb-infra { position:absolute;inset:0;background:#020d08;overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column }
+    .card:hover .thumb-infra { transform:scale(1.05) }
+    .thumb-infra-header { display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(16,185,129,.04);border-bottom:1px solid rgba(16,185,129,.07);flex-shrink:0 }
+    .thumb-infra-dot { width:6px;height:6px;border-radius:50%;background:#10b981;animation:infra-pulse 2s ease infinite;box-shadow:0 0 6px rgba(16,185,129,.9);flex-shrink:0 }
+    .thumb-infra-title { font-family:'DM Mono',monospace;font-size:.55rem;color:rgba(16,185,129,.75);letter-spacing:.08em;text-transform:uppercase;font-weight:500 }
+    .thumb-infra-uptime { margin-left:auto;font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(16,185,129,.4);letter-spacing:.05em }
+    .thumb-infra-body { flex:1;padding:10px 12px;display:flex;flex-direction:column;gap:8px }
+    .thumb-infra-metric { display:flex;flex-direction:column;gap:3px }
+    .thumb-infra-mrow { display:flex;justify-content:space-between;align-items:center;margin-bottom:4px }
+    .thumb-infra-mname { font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(16,185,129,.48);letter-spacing:.07em;text-transform:uppercase }
+    .thumb-infra-mval { font-family:'DM Mono',monospace;font-size:.52rem;color:rgba(16,185,129,.92);font-weight:600 }
+    .thumb-infra-bar { height:3px;background:rgba(16,185,129,.1);border-radius:2px;overflow:hidden }
+    .thumb-infra-bar-fill { height:100%;border-radius:2px;background:linear-gradient(90deg,#10b981,rgba(16,185,129,.45)) }
+    .thumb-infra-divider { height:1px;background:rgba(16,185,129,.07);flex-shrink:0 }
+    .thumb-infra-dns { display:flex;flex-direction:column;gap:3px;padding-top:1px }
+    .thumb-infra-drow { display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(16,185,129,.38) }
+    .thumb-infra-drow .ok { color:rgba(16,185,129,.85) }
+    .thumb-infra-drow .addr { color:rgba(16,185,129,.58) }
+    .thumb-infra-drow .badge { padding:1px 5px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:3px;font-size:.46rem;color:rgba(16,185,129,.65);margin-left:auto }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation Menu" aria-hidden="true" inert>
+    <div class="mobile-scroll-wrapper">
+      <div class="mobile-nav-container">
+        <div class="lang-switcher-container" id="mobileLangSwitcher" role="button" tabindex="0" aria-label="Switch language" style="margin-bottom:20px;background:rgba(0,0,0,0.05);">
+          <div class="gliding-pill"></div>
+          <span class="lang-item" data-lang="pt" data-href="../../index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
+          <span class="lang-item active" data-lang="en" data-href="index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
+        </div>
+        <div class="mobile-nav-group">
+          <a href="index.html#about" class="mobile-link-main js-menu-toggle">About Me</a>
+          <a href="index.html" class="mobile-link-main js-menu-toggle">Projects</a>
+        </div>
+        <div class="mobile-projects-wrapper">
+          <div class="mobile-divider"></div>
+          <span class="mobile-label">Success Cases</span>
+          <div class="mobile-projects-list">
+            <a href="forca-aliada.html" class="mobile-link-sub js-menu-toggle">Força Aliada</a>
+            <a href="server-infrastructure.html" class="mobile-link-sub js-menu-toggle">Server Infra</a>
+            <a href="utopia-magazine.html" class="mobile-link-sub js-menu-toggle">Utopia Magazine</a>
+            <a href="neo-letters-branding.html" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
+            <a href="lo-advertising.html" class="mobile-link-sub js-menu-toggle">Lô Advertising</a>
+            <a href="personal-branding.html" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
+            <a href="one-minute-reflection.html" class="mobile-link-sub js-menu-toggle">One Minute</a>
+            <a href="valorada-gaming.html" class="mobile-link-sub js-menu-toggle">Valorada</a>
+            <a href="thumbnails-youtube.html" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
+            <a href="video-production.html" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
+          </div>
+        </div>
+        <div class="mobile-footer-group">
+          <div class="mobile-socials">
+            <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+            <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+          </div>
+          <a href="contact.html" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="sidebar-scaler">
+      <div class="profile-container">
+        <a href="index.html" class="profile-link">
+          <div class="profile-pic-wrapper">
+            <img src="../assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="110" height="110">
+          </div>
+          <div class="profile-text-group">
+            <p class="profile-name">Gabriel Silva</p>
+            <p class="profile-role">Creative Technologist</p>
+          </div>
+        </a>
+      </div>
+      <nav>
+        <div class="nav-group">
+          <ul class="nav-list">
+            <li><a href="index.html#about" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> About Me</a></li>
+          </ul>
+        </div>
+        <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column;">
+          <h2>Portfolio</h2>
+          <ul class="nav-list project-scroll-container">
+            <li><a href="forca-aliada.html" class="nav-link">Força Aliada</a></li>
+            <li><a href="server-infrastructure.html" class="nav-link">Server Infra &amp; Dashboard</a></li>
+            <li><a href="utopia-magazine.html" class="nav-link">Utopia Magazine</a></li>
+            <li><a href="neo-letters-branding.html" class="nav-link">Neo Letters</a></li>
+            <li><a href="lo-advertising.html" class="nav-link">Lô Advertising</a></li>
+            <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
+            <li><a href="one-minute-reflection.html" class="nav-link">One Minute</a></li>
+            <li><a href="valorada-gaming.html" class="nav-link">Valorada</a></li>
+            <li><a href="thumbnails-youtube.html" class="nav-link">Thumbnails</a></li>
+            <li><a href="video-production.html" class="nav-link">Video Production</a></li>
+          </ul>
+        </div>
+        <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Switch language">
+          <div class="gliding-pill"></div>
+          <span class="lang-item" data-lang="pt" data-href="../../index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
+          <span class="lang-item active" data-lang="en" data-href="index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
+        </div>
+        <a href="contact.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in Touch</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+          <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+        </div>
+        <p class="copyright">© 2026 Gabriel Silva</p>
+      </div>
+    </div>
+    <button class="mobile-menu-btn js-menu-toggle" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="26">
+        <line class="hb-line hb-line1" x1="4" x2="20" y1="8" y2="8"/>
+        <line class="hb-line hb-line2" x1="4" x2="20" y1="16" y2="16"/>
+      </svg>
+    </button>
+  </aside>
+
+  <main id="main-content" tabindex="-1">
+    <div class="container">
+
+      <header class="page-header">
+        <div class="header-content">
+          <h1>Hi, I'm Gabriel.</h1>
+          <p>Design and technology working together to transform ideas into digital solutions that actually work.</p>
+        </div>
+        <a href="contact.html" class="btn-cta">
+          <span>Get in touch</span> <i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+      </header>
+
+      <section class="grid">
+
+        <article class="card">
+          <div class="card-image-wrapper" style="background:#050810">
+            <div class="thumb-fa">
+              <div class="thumb-fa-orb o1"></div>
+              <div class="thumb-fa-orb o2"></div>
+              <div class="thumb-fa-grid"></div>
+              <div class="thumb-fa-corner tl"></div>
+              <div class="thumb-fa-corner tr"></div>
+              <div class="thumb-fa-corner bl"></div>
+              <div class="thumb-fa-corner br"></div>
+              <div class="thumb-fa-chip c1"><i class="fa-solid fa-globe"></i>Web & Social</div>
+              <div class="thumb-fa-chip c2"><i class="fa-solid fa-server"></i>REST API</div>
+              <div class="thumb-fa-chip c3"><i class="fa-brands fa-windows"></i>Desktop App</div>
+              <div class="thumb-fa-chip c4"><i class="fa-solid fa-users"></i>Social Feed</div>
+              <div class="thumb-fa-center">
+                <div class="thumb-fa-glow"></div>
+                <img src="../assets/img/forca-aliada-logo.webp" class="thumb-fa-logo" alt="" loading="lazy">
+              </div>
+              <div class="thumb-fa-tag">4 PRODUCTS · 5 YEARS IN PRODUCTION</div>
+            </div>
+            <div class="card-overlay">
+              <span class="project-meta">Full Stack</span>
+              <h3 class="project-title">Força Aliada</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>API · Social Network · Desktop App</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="forca-aliada.html" class="card-link" aria-label="View Força Aliada project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper" style="background:#020d08">
+            <div class="thumb-infra">
+              <div class="thumb-infra-header">
+                <div class="thumb-infra-dot"></div>
+                <span class="thumb-infra-title">Server Infrastructure</span>
+                <span class="thumb-infra-uptime">uptime 99.8%</span>
+              </div>
+              <div class="thumb-infra-body">
+                <div class="thumb-infra-metric">
+                  <div class="thumb-infra-mrow">
+                    <span class="thumb-infra-mname">CPU</span>
+                    <span class="thumb-infra-mval">43%</span>
+                  </div>
+                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:43%"></div></div>
+                </div>
+                <div class="thumb-infra-metric">
+                  <div class="thumb-infra-mrow">
+                    <span class="thumb-infra-mname">Memory</span>
+                    <span class="thumb-infra-mval">61%</span>
+                  </div>
+                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:61%"></div></div>
+                </div>
+                <div class="thumb-infra-metric">
+                  <div class="thumb-infra-mrow">
+                    <span class="thumb-infra-mname">API Latency</span>
+                    <span class="thumb-infra-mval">127ms</span>
+                  </div>
+                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:34%"></div></div>
+                </div>
+                <div class="thumb-infra-divider"></div>
+                <div class="thumb-infra-dns">
+                  <div class="thumb-infra-drow">
+                    <span class="ok">●</span>
+                    <span class="addr">ns1.ogabriels.com</span>
+                    <span class="badge">A</span>
+                  </div>
+                  <div class="thumb-infra-drow">
+                    <span class="ok">●</span>
+                    <span class="addr">forca-aliada-site.onrender.com</span>
+                    <span class="badge">CNAME</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-overlay">
+              <span class="project-meta">Infrastructure &amp; Networking</span>
+              <h3 class="project-title">Server Dashboard</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Monitoring &amp; DNS</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="server-infrastructure.html" class="card-link" aria-label="View Server Infrastructure project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/revista-utopia-capa.webp" alt="Utopia Magazine Cover — Editorial Design" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Editorial</span>
+              <h3 class="project-title">Utopia Magazine</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Layout &amp; Art Direction</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="utopia-magazine.html" class="card-link" aria-label="View Utopia Magazine project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/neoletters-capa.webp" alt="Neo Letters Cover — Branding" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Branding</span>
+              <h3 class="project-title">Neo Letters</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Visual Identity</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="neo-letters-branding.html" class="card-link" aria-label="View Neo Letters project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/lo-publi-capa.webp" alt="Lô Advertising Cover — Rebranding" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Visual Identity</span>
+              <h3 class="project-title">Lô Advertising</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Complete Rebranding</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="lo-advertising.html" class="card-link" aria-label="View Lô Advertising project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/ogabriels-capa.webp" alt="G Gabriel Cover — Personal Branding" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Personal Branding</span>
+              <h3 class="project-title">G | Gabriel</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Minimalist Identity</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="personal-branding.html" class="card-link" aria-label="View G | Gabriel project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/um-minuto-refletir-capa.webp" alt="One Minute Podcast Cover" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Podcast</span>
+              <h3 class="project-title">One Minute to Reflect</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Cover &amp; Identity</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="one-minute-reflection.html" class="card-link" aria-label="View One Minute project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/valorada-capa.webp" alt="Valorada Cover — YouTube Gaming" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">YouTube Gaming</span>
+              <h3 class="project-title">Valorada</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>High-Impact Identity</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="valorada-gaming.html" class="card-link" aria-label="View Valorada project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/thumbnails-capa.webp" alt="Thumbnails Cover — Social Media Design" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Social Media</span>
+              <h3 class="project-title">Thumbnails</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>CTR Strategy</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="thumbnails-youtube.html" class="card-link" aria-label="View Thumbnails project"></a>
+        </article>
+
+        <article class="card">
+          <div class="card-image-wrapper">
+            <img src="../assets/img/videos-capa.webp" alt="Video Production Cover" loading="lazy">
+            <div class="card-overlay">
+              <span class="project-meta">Video &amp; Editing</span>
+              <h3 class="project-title">Video Production</h3>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>Audiovisual Projects</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+          <a href="video-production.html" class="card-link" aria-label="View Video Production project"></a>
+        </article>
+
+      </section>
+
+      <section class="contact-banner" id="contact">
+        <div class="contact-text-group">
+          <div class="contact-text">
+            <h2>Let's create something incredible?</h2>
+            <p>If you have an idea, I have the right tools to make it happen.</p>
+          </div>
+          <div class="contact-social">
+            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <a href="contact.html" class="btn-cta-dark">Send Message</a>
+          <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // ── v14: Shared Portfolio JS ──────────────────────────────────────────
+    function debounce(fn, ms) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), ms); }; }
+
+    (function() {
+      const b = document.body;
+      window.addEventListener('mousedown',  () => b.classList.add('using-pointer'), { passive: true });
+      window.addEventListener('touchstart', () => b.classList.add('using-pointer'), { passive: true });
+      window.addEventListener('keydown', e => { if (e.key === 'Tab') b.classList.remove('using-pointer'); }, { passive: true });
+    })();
+
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu && !mobileMenu.classList.contains('active')) mobileMenu.setAttribute('inert', '');
+    let _lastFocused = null;
+
+    function getFocusables(root) {
+      return Array.from(root.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'))
+        .filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+    }
+
+    function toggleMenu() {
+      if (!mobileMenu) return;
+      const isOpen = mobileMenu.classList.contains('active');
+      const btn   = document.querySelector('.mobile-menu-btn');
+      const aside = document.querySelector('aside');
+      if (!isOpen) {
+        _lastFocused = document.activeElement;
+        mobileMenu.classList.add('active');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        mobileMenu.removeAttribute('inert');
+        if (btn)   { btn.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Close Menu'); }
+        if (aside) aside.classList.add('menu-open-state');
+        const main = document.getElementById('main-content');
+        if (main)  { main.setAttribute('inert',''); main.setAttribute('aria-hidden','true'); }
+        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.setAttribute('inert',''); sc.setAttribute('aria-hidden','true'); } }
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => { if (btn) btn.focus(); }, 50);
+      } else {
+        mobileMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.setAttribute('inert', '');
+        if (btn)   { btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Open Menu'); }
+        if (aside) aside.classList.remove('menu-open-state');
+        const main = document.getElementById('main-content');
+        if (main)  { main.removeAttribute('inert'); main.removeAttribute('aria-hidden'); }
+        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.removeAttribute('inert'); sc.removeAttribute('aria-hidden'); } }
+        document.body.style.overflow = '';
+        if (_lastFocused && _lastFocused.focus) setTimeout(() => _lastFocused.focus(), 0);
+        _lastFocused = null;
+      }
+    }
+
+    if (mobileMenu) mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) toggleMenu(); });
+    document.addEventListener('keydown', e => {
+      if (!mobileMenu || !mobileMenu.classList.contains('active')) return;
+      if (e.key === 'Escape') { e.preventDefault(); toggleMenu(); return; }
+      if (e.key !== 'Tab') return;
+      const btn = document.querySelector('.mobile-menu-btn');
+      const items = getFocusables(mobileMenu);
+      const all = btn ? [btn, ...items] : items;
+      if (!all.length) return;
+      const first = all[0], last = all[all.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    document.querySelectorAll('.js-menu-toggle').forEach(el => el.addEventListener('click', toggleMenu));
+
+    let _sw = window.innerWidth, _sh = window.innerHeight;
+    const fitSidebar = debounce(function() {
+      if (window.matchMedia('(max-width: 968px)').matches) {
+        const sc = document.querySelector('.sidebar-scaler');
+        if (sc) { sc.style.transform = ''; sc.style.width = ''; sc.style.height = ''; sc.classList.remove('compact-mode'); }
+        return;
+      }
+      _sw = window.innerWidth; _sh = window.innerHeight;
+      const sc = document.querySelector('.sidebar-scaler');
+      if (!sc) return;
+      sc.style.transform = 'scale(1)'; sc.style.width = '100%'; sc.style.height = 'auto';
+      sc.classList.remove('compact-mode'); void sc.offsetHeight;
+      const wh = window.innerHeight, ch = sc.scrollHeight;
+      if (ch <= wh) { sc.style.transform = 'none'; return; }
+      let scale = wh / ch;
+      const MIN = 0.85;
+      if (scale < MIN) {
+        sc.classList.add('compact-mode'); void sc.offsetHeight;
+        const nh = Math.max(sc.scrollHeight, 1);
+        scale = Math.max(wh / nh, MIN);
+        sc.style.height = (wh / scale) + 'px';
+      } else { sc.style.height = (wh / scale) + 'px'; }
+      sc.style.transform = `scale(${scale})`;
+      sc.style.width = (100 / scale) + '%';
+    }, 50);
+
+    window.addEventListener('load', fitSidebar);
+    window.addEventListener('resize', fitSidebar);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', fitSidebar);
+      window.visualViewport.addEventListener('scroll', fitSidebar);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const skip = document.querySelector('.skip-link');
+      if (skip) skip.addEventListener('click', function(e) {
+        e.preventDefault();
+        const main = document.getElementById('main-content');
+        if (!main) return;
+        main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const first = main.querySelector('.lightbox-trigger, h1, [tabindex]') || main;
+        if (first === main) main.setAttribute('tabindex', '-1');
+        setTimeout(() => { try { first.focus({ preventScroll: true }); } catch(_) { first.focus(); } }, 50);
+      });
+
+      function disableFocusIn(root) {
+        if (!root) return;
+        root.querySelectorAll('a,button,input,select,textarea,[tabindex]').forEach(el => {
+          if (el.dataset._oti === undefined) el.dataset._oti = el.getAttribute('tabindex') ?? '';
+          el.setAttribute('tabindex', '-1');
+        });
+      }
+      function restoreFocusIn(root) {
+        if (!root) return;
+        root.querySelectorAll('[data-_oti]').forEach(el => {
+          const v = el.dataset._oti;
+          if (v === '') el.removeAttribute('tabindex'); else el.setAttribute('tabindex', v);
+          delete el.dataset._oti;
+        });
+      }
+      function syncTabOrder() {
+        const mob = window.matchMedia('(max-width: 968px)').matches;
+        const aside = document.querySelector('aside');
+        const menuEl = document.getElementById('mobileMenu');
+        const btn = document.querySelector('.mobile-menu-btn');
+        if (mob) {
+          if (aside) { disableFocusIn(aside); const pl = aside.querySelector('.profile-link'); if (pl) { if (pl.dataset._oti !== undefined) { const v = pl.dataset._oti; if (v === '') pl.removeAttribute('tabindex'); else pl.setAttribute('tabindex', v); delete pl.dataset._oti; } } }
+          if (btn) btn.removeAttribute('tabindex');
+          if (menuEl) { if (menuEl.getAttribute('aria-hidden') !== 'false') disableFocusIn(menuEl); else restoreFocusIn(menuEl); }
+        } else {
+          if (aside) restoreFocusIn(aside);
+          if (btn) btn.setAttribute('tabindex', '-1');
+          if (menuEl) disableFocusIn(menuEl);
+        }
+      }
+      syncTabOrder();
+      const mq = window.matchMedia('(max-width: 968px)');
+      if (mq.addEventListener) mq.addEventListener('change', syncTabOrder); else mq.addListener(syncTabOrder);
+      window.addEventListener('resize', syncTabOrder);
+      if (mobileMenu) new MutationObserver(syncTabOrder).observe(mobileMenu, { attributes: true, attributeFilter: ['aria-hidden'] });
+
+      try {
+        const slug = (location.pathname || '').replace(/\/+/g,'/').split('/').filter(Boolean).pop() || '';
+        document.querySelectorAll('.mobile-link-sub').forEach(a => {
+          const h = (a.getAttribute('href') || '').split('/').filter(Boolean).pop() || '';
+          if (h && h === slug) a.classList.add('is-active');
+        });
+      } catch(_) {}
+
+      // Lang Switcher (physics engine)
+      function initPhysicsSwitcher(container) {
+        if (!container) return;
+        const pill = container.querySelector('.gliding-pill');
+        const ptItem = container.querySelector('.lang-item:nth-child(2)');
+        const enItem = container.querySelector('.lang-item:nth-child(3)');
+        if (!pill || !ptItem || !enItem) return;
+        let isDragging = false, isAuto = false, sel = 'en', afId = null;
+        let sx = 0, sPillX = 0, lt = 0, vel = 0, lx = 0;
+        let cRect = null, pW = 0, maxT = 0, pCX = 0, rafM = null;
+        let ph = { tx:0, cx:0, tsx:1, csx:1, tsy:1, csy:1, tsk:0, csk:0 };
+        const DF = 0.92, SF = 0.15, EB = 5, RS = 1.05, HS = 1.32;
+        const AL = window.matchMedia('(max-width:968px)').matches ? 0.28 : 0.20;
+        const gx = e => e.touches ? e.touches[0].clientX : e.clientX;
+        function uviz(prog, held, csc) {
+          const dpt = Math.abs(prog), den = Math.abs(prog-1);
+          let sm = 0; if (csc) { const s = Math.max(1,csc); sm = (s-1)*0.8; }
+          ptItem.style.transform = `scale(${1 + Math.max(0,1-dpt)*sm})`;
+          enItem.style.transform = `scale(${1 + Math.max(0,1-den)*sm})`;
+          if (prog < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); }
+          else            { enItem.classList.add('active'); ptItem.classList.remove('active'); }
+        }
+        function rst(fx) {
+          pill.style.setProperty('--pill-x', fx+'%'); pill.style.transform = ''; pill.style.transition = '';
+          ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
+        }
+        function loop() {
+          if (!isDragging && !isAuto) return;
+          if (isAuto) {
+            const pX = ph.cx;
+            ph.cx  += (ph.tx - ph.cx)  * AL;
+            ph.csx += (ph.tsx - ph.csx)* AL;
+            ph.csy += (ph.tsy - ph.csy)* AL;
+            vel = ph.cx - pX;
+            ph.tsk = Math.max(-20, Math.min(20, vel * -1.5));
+            ph.csk += (ph.tsk - ph.csk) * AL;
+            if (Math.abs(ph.cx - ph.tx) < (AL > 0.2 ? 0.6 : 1)) { isAuto = false; finish(); return; }
+          } else {
+            const lf = isDragging ? 0.32 : SF;
+            ph.cx  += (ph.tx - ph.cx)  * lf;
+            ph.csx += (ph.tsx - ph.csx)* lf;
+            ph.csy += (ph.tsy - ph.csy)* lf;
+            ph.csk += (ph.tsk - ph.csk)* lf;
+          }
+          pill.style.transform = `translate3d(${ph.cx}px,0,0) scale(${ph.csx},${ph.csy}) skewX(${ph.csk}deg)`;
+          uviz(ph.cx / maxT, true, ph.csx);
+          afId = requestAnimationFrame(loop);
+        }
+        function finish() {
+          cancelAnimationFrame(afId);
+          sel = ph.cx > (maxT/2) ? 'en' : 'pt';
+          const fx = sel === 'en' ? 100 : 0;
+          const tr = 'transform 0.6s cubic-bezier(0.5,1.6,0.4,1.1)';
+          pill.style.transition = tr+',background-color 0.4s ease,box-shadow 0.4s ease';
+          pill.style.transform = `translateX(${fx}%) scale(${RS}) skewX(0deg)`;
+          ptItem.style.transition = tr; enItem.style.transition = tr;
+          ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
+          setTimeout(() => rst(fx), 600);
+          const isEn = location.pathname.includes('/en/');
+          if (sel === 'en' && !isEn) { localStorage.setItem('preferredLang','en'); const h = enItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+          else if (sel === 'pt' && isEn) { localStorage.setItem('preferredLang','pt'); const h = ptItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+        }
+        const startH = e => {
+          if (isAuto) return; isDragging = true;
+          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+          if (e.type === 'mousedown') e.preventDefault();
+          const cx = gx(e);
+          cRect = container.getBoundingClientRect();
+          pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
+          sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
+          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+          ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
+          cancelAnimationFrame(afId); loop();
+        };
+        const moveH = e => {
+          if (!isDragging) return;
+          if (e.cancelable) e.preventDefault(); e.stopPropagation();
+          if (e.type === 'mousemove' && e.buttons === 0) { endH(e); return; }
+          const cx = gx(e); const now = Date.now(); const dt = now - lt;
+          if (dt > 0) vel = vel*0.7 + ((cx-lx)/dt)*0.3;
+          lx = cx; lt = now; pCX = cx;
+          if (!rafM) rafM = requestAnimationFrame(() => {
+            rafM = null;
+            let raw = sPillX + (pCX - sx) * DF;
+            const eMin = EB, eMax = maxT - EB;
+            let cl = raw, wp = 0;
+            if (raw < eMin) { wp = eMin-raw; cl = eMin - 12*(1-Math.pow(2.718,-wp/25)); }
+            else if (raw > eMax) { wp = raw-eMax; cl = eMax + 12*(1-Math.pow(2.718,-wp/25)); }
+            ph.tx = cl;
+            const av = Math.abs(vel);
+            if (wp > 1) { const sq = Math.min(av*0.25,0.25)+Math.min(wp*0.01,0.15); ph.tsx=HS-sq*0.7; ph.tsy=HS+sq*0.8; }
+            else if (av > 0.1) { const st=Math.min(av*0.08,0.2); ph.tsx=HS+st; ph.tsy=HS-st*0.6; }
+            else { ph.tsx=HS; ph.tsy=HS; }
+            ph.tsk = Math.max(-20, Math.min(20, vel*-12));
+          });
+        };
+        const endH = e => { if (!isDragging) return; isDragging = false; if (Math.abs(lx-sx) > 5) finish(); };
+        container.addEventListener('touchstart', startH, { passive: false });
+        window.addEventListener('touchmove', moveH, { passive: false });
+        window.addEventListener('touchend', endH);
+        container.addEventListener('mousedown', startH);
+        window.addEventListener('mousemove', moveH);
+        window.addEventListener('mouseup', endH);
+        container.addEventListener('click', e => {
+          if (isDragging || Math.abs(lx-sx) > 5 || isAuto) return;
+          const tgt = sel === 'pt' ? 'en' : 'pt';
+          if (tgt === sel) return;
+          isAuto = true; sel = tgt;
+          cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
+          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+          ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
+          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+          cancelAnimationFrame(afId); loop();
+        });
+        container.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.click(); } });
+        // Initialize pill at EN position
+        setTimeout(() => {
+          cRect = container.getBoundingClientRect();
+          if (cRect.width > 0) { pW = (cRect.width/2)-4; maxT = cRect.width-pW-8; ph.cx = maxT; ph.tx = maxT; rst(100); }
+        }, 0);
+      }
+      document.querySelectorAll('.lang-switcher-container').forEach(initPhysicsSwitcher);
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://ogabriels.com/#gabriel-silva",
+        "name": "Gabriel Silva",
+        "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
+        "url": "https://ogabriels.com/",
+        "jobTitle": "Creative Technologist & Full Stack Developer",
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https://ogabriels.com/#personImage",
+          "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
+          "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
+          "caption": "Gabriel Silva"
+        },
+        "description": "Creative Technologist specializing in the intersection of design, software engineering, and server infrastructure.",
+        "knowsAbout": [
+          "Full Stack Development",
+          "Branding",
+          "IT Infrastructure",
+          "Cloudflare & Networking",
+          "Docker",
+          "Linux Server",
+          "Artificial Intelligence",
+          "Audiovisual Production",
+          "Cybersecurity"
+        ],
+        "alumniOf": [
+          {
+            "@type": "EducationalOrganization",
+            "name": "Liceu de Artes e Ofícios de São Paulo",
+            "url": "https://www.liceuescola.com.br",
+            "sameAs": ["https://www.liceuescola.com.br"]
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "UNIVESP",
+            "url": "https://univesp.br/",
+            "sameAs": ["https://univesp.br/"]
+          }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/ogabriels/",
+          "https://github.com/ogabriels2/",
+          "https://www.behance.net/ogabriels0",
+          "https://x.com/ogabriels0",
+          "https://www.instagram.com/ogabriels0/",
+          "https://www.youtube.com/@Gabalarca"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ogabriels.com/en/#website",
+        "url": "https://ogabriels.com/en/",
+        "name": "Gabriel Silva — Portfolio",
+        "publisher": { "@id": "https://ogabriels.com/#gabriel-silva" },
+        "inLanguage": "en",
+        "datePublished": "2025-08-14T08:00:00-03:00",
+        "dateModified": "2026-06-03T00:00:00-03:00"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ogabriels.com/en/#homepage",
+        "url": "https://ogabriels.com/en/",
+        "name": "Gabriel Silva | Creative Technologist & Full Stack Developer",
+        "description": "Gabriel Silva's professional portfolio. Explore success cases in IT infrastructure, branding, and full stack web development.",
+        "isPartOf": { "@id": "https://ogabriels.com/en/#website" },
+        "mainEntityOfPage": { "@id": "https://ogabriels.com/#gabriel-silva" },
+        "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
+        "breadcrumb": { "@id": "https://ogabriels.com/en/#breadcrumb" },
+        "inLanguage": "en",
+        "dateModified": "2026-06-03T00:00:00-03:00"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ogabriels.com/en/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/en/" }
+        ]
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

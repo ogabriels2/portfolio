@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
+  <script>
+    var userLang = navigator.language || navigator.userLanguage;
+    if (userLang.startsWith('pt') && !window.location.pathname.includes('/en/') && !localStorage.getItem('preferredLang')) {
+      // window.location.href = '/sobre';
+    }
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fbfbfd">
+
+  <title>About Me | Gabriel Silva - Creative Technologist</title>
+  <meta name="description" content="Meet Gabriel Silva's journey. A multidisciplinary Creative Technologist combining Design, IT Infrastructure, and Artificial Intelligence to build digital solutions.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  <meta name="keywords" content="Gabriel Silva, Creative Technologist, Full Stack Developer São Paulo, Design and Technology, IT Infrastructure, Portfolio Designer, Artificial Intelligence">
+
+  <link rel="canonical" href="https://ogabriels.com/en/about">
+  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/sobre" />
+  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/about" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/sobre" />
+  <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
+
+  <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="../assets/img/ogabriels-logo.webp">
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Gabriel Silva — Portfolio">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://ogabriels.com/en/about">
+  <meta property="og:title" content="About Me | Gabriel Silva">
+  <meta property="og:description" content="Creative Technologist in São Paulo. Discover my journey in Design and IT.">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/gabriel-silva-perfil.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Gabriel Silva — Creative Technologist in São Paulo">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ogabriels.com/en/about">
+  <meta name="twitter:title" content="About Me | Gabriel Silva">
+  <meta name="twitter:description" content="Creative Technologist in São Paulo. Discover my journey in Design and IT.">
+  <meta name="twitter:image" content="https://ogabriels.com/assets/img/gabriel-silva-perfil.webp">
+  <meta name="twitter:image:alt" content="Gabriel Silva — Creative Technologist in São Paulo">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sidebar-width: 280px;
+      --max-width: 1000px;
+      --card-radius: 18px;
+      --bg-body: #F5F5F7;
+      --bg-sidebar: rgba(255, 255, 255, 0.75);
+      --bg-card: #FFFFFF;
+      --text-primary: #1D1D1F;
+      --text-secondary: #86868B;
+      --accent: #0071E3;
+      --accent-hover: #0077ED;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.1);
+      --glass-blur: blur(20px) saturate(180%);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
+      --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text-primary); background-color: var(--bg-body); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; display: flex; flex-direction: column; min-height: 100vh; margin: 0; overflow-x: hidden; }
+    a { text-decoration: none; -webkit-tap-highlight-color: transparent; color: inherit; }
+    .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s ease; }
+    .skip-link:focus { top: 20px; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 10px; border: 2px solid var(--bg-body); }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
+
+    /* --- Sidebar --- */
+    aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; background: var(--bg-sidebar); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); border-right: 1px solid rgba(0,0,0,0.05); display: block; z-index: 2000; overflow: visible; transform: translateZ(0); contain: layout style; }
+    @supports not (backdrop-filter: blur(20px)) { aside { background: rgba(255,255,255,0.95); } }
+    aside::-webkit-scrollbar { display: none; }
+    .sidebar-scaler { width: 100%; display: flex; flex-direction: column; padding: 40px 32px 30px; transform-origin: top left; box-sizing: border-box; transition: padding 0.1s ease; -webkit-font-smoothing: antialiased; backface-visibility: hidden; }
+    .sidebar-scaler.compact-mode { padding-top: 25px; padding-bottom: 5px; }
+    .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; transition: margin 0.3s ease; }
+    .sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
+    .profile-link { display: block; transition: transform 0.2s; }
+    .profile-link:active { transform: scale(0.98); }
+    .profile-pic-wrapper { width: 110px; height: 110px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.4s var(--ease-out); flex-shrink: 0; transform: translateZ(0); }
+    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); }
+    .profile-pic { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: #111; transition: color 0.3s ease; }
+    .profile-link:hover .profile-name { color: var(--accent); }
+    .profile-role { font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    nav { flex: 1; display: flex; flex-direction: column; min-height: 0; margin-bottom: 10px; }
+    .sidebar-scaler.compact-mode nav { margin-bottom: 0; }
+    .nav-group { margin-bottom: 20px; flex-shrink: 0; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
+    .nav-group h2, .nav-group .nav-group-label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
+    .nav-list { list-style: none; padding: 0; }
+    .nav-list li { margin-bottom: 2px; }
+    .project-scroll-container { overflow-y: auto; padding-right: 5px; margin-right: -5px; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent; }
+    .project-scroll-container::-webkit-scrollbar { width: 4px; }
+    .project-scroll-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.15); border-radius: 4px; }
+    .nav-link { display: flex; align-items: center; gap: 10px; padding: 8px 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; border-radius: 8px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); white-space: nowrap; }
+    .nav-link:hover { color: var(--accent); background: rgba(0, 113, 227, 0.08); transform: translateX(4px); }
+    .nav-link.back-link svg { transition: transform 0.3s; }
+    .nav-link.back-link:hover svg { transform: translateX(-6px); }
+    .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0,113,227,0.05); }
+
+    .lang-switcher-container { touch-action: none; position: relative; display: flex; margin: 0 0 20px; background: rgba(118,118,128,0.12); border-radius: 9999px; padding: 4px; width: fit-content; border: 1px solid rgba(0,0,0,0.02); cursor: pointer; flex-shrink: 0; transition: margin 0.2s; padding-right: 6px; overflow: visible; -webkit-user-select: none; user-select: none; contain: layout; transform: translateZ(0); }
+    .sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
+    .gliding-pill { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); background: #FFFFFF; border-radius: 9999px; cursor: grab; border: 1px solid rgba(0,0,0,0.12); box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05); z-index: 1; --pill-x: 100%; transform-origin: center center; transform: translateX(var(--pill-x)) scale(1.05); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2), background-color 0.3s ease, box-shadow 0.3s ease; }
+    .gliding-pill:active { cursor: grabbing; }
+    @media (hover: hover) { .lang-switcher-container:hover .gliding-pill { transform: translateX(var(--pill-x)) scale(1.15); } .lang-switcher-container:hover .lang-item.active { transform: scale(1.05); } }
+    .lang-item { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 14px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; width: 75px; transition: color 0.3s ease, transform 0.3s var(--smooth-glide); will-change: transform, color; pointer-events: none !important; }
+    .lang-item.active { color: var(--text-primary); cursor: default; }
+    .lang-flag { width: 20px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); filter: none !important; transform: translateZ(0); pointer-events: none !important; }
+
+    .sidebar-cta { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background: var(--text-primary); color: white; text-align: center; border-radius: 16px; font-size: 0.9rem; font-weight: 600; margin-top: auto; margin-bottom: 20px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; flex-shrink: 0; }
+    .sidebar-scaler.compact-mode .sidebar-cta { margin-bottom: 10px; margin-top: 5px; }
+    .sidebar-cta:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .sidebar-cta:active { transform: translateY(1px) scale(0.97); box-shadow: none; background: #333; transition-duration: 0.08s; }
+    .sidebar-footer { padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; transition: padding 0.2s; }
+    .sidebar-scaler.compact-mode .sidebar-footer { padding-top: 10px; }
+    .social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; transition: margin 0.2s; }
+    .sidebar-scaler.compact-mode .social-icons { margin-bottom: 4px; }
+    .social-icon { width: 32px; height: 32px; border-radius: 12px; background: rgba(0,0,0,0.04); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: background-color 0.3s, color 0.3s, transform 0.3s var(--ease-out); }
+    .social-icon:hover { background: var(--accent); color: white; transform: translateY(-3px) scale(1.1); }
+    .social-icon:active { transform: translateY(1px) scale(0.92); transition-duration: 0.08s; }
+    .copyright { font-size: 0.65rem; color: #555; text-align: center; font-weight: 500; }
+
+    /* --- Mobile --- */
+    .mobile-menu-btn { display: none; }
+    .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+    .mobile-scroll-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: 80px; padding-bottom: 100px; display: flex; flex-direction: column; }
+    .mobile-nav-container { width: 100%; max-width: 320px; min-height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px; }
+    .mobile-close-btn { display: none !important; }
+    .mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { opacity: 0; transform: translateY(20px); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .mobile-menu-overlay.active .mobile-nav-group { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+    .mobile-menu-overlay.active .mobile-footer-group { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+    .mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; align-items: center; }
+    .mobile-link-main { font-size: 2rem; font-weight: 700; color: var(--text-primary) !important; letter-spacing: -0.03em; display: block; text-decoration: none; }
+    .mobile-projects-wrapper { width: 100%; text-align: center; }
+    .mobile-projects-list { display: flex; flex-direction: column; gap: 12px; margin: 15px 0; width: 100%; align-items: center; }
+    .mobile-link-sub { font-size: 1.1rem; color: var(--text-secondary); font-weight: 500; transition: 0.2s; text-decoration: none; }
+    .mobile-link-sub.is-active { color: var(--accent) !important; font-weight: 600; }
+    .mobile-divider { width: 40px; height: 2px; background: rgba(0,0,0,0.06); border-radius: 2px; margin: 10px auto; }
+    .mobile-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.1em; margin: 10px 0 5px; font-weight: 600; display: block; }
+    .mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .mobile-socials { display: flex; gap: 24px; justify-content: center; }
+    .mobile-social-btn { font-size: 1.5rem; color: var(--text-secondary); transition: 0.2s; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,0.03); text-decoration: none; }
+    .mobile-cta { width: auto; min-width: 200px; padding: 14px 32px; background: var(--text-primary); color: white; border-radius: 50px; font-weight: 600; font-size: 1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+    /* --- Page Content --- */
+    main { margin-left: var(--sidebar-width); flex: 1; padding: 80px 60px; display: flex; flex-direction: column; align-items: center; }
+    .container { width: 100%; max-width: var(--max-width); }
+
+    .hero-about { margin-bottom: 60px; animation: fadeInUp 0.8s ease forwards; text-align: left; width: 100%; }
+    .hero-label { color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem; margin-bottom: 16px; display: block; }
+    .hero-title { font-size: 3.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: #111; max-width: 900px; }
+    .hero-title span { color: var(--text-secondary); }
+
+    .bento-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 32px; margin-bottom: 80px; align-items: stretch; }
+    .bento-card { background: var(--bg-card); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-sm); transition: var(--transition); display: flex; flex-direction: column; position: relative; overflow: hidden; height: 100%; }
+    .bento-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+    .bento-card:active { transform: translateY(1px) scale(0.99); box-shadow: none; transition-duration: 0.1s; }
+    .photo-card { padding: 0; }
+    .about-photo { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; object-position: center 20%; }
+
+    .bio-text p { font-size: 1.15rem; line-height: 1.7; color: #444; margin-bottom: 24px; }
+    .bio-text p:last-child { margin-bottom: 0; }
+    .highlight { color: var(--accent); font-weight: 600; }
+
+    .skills-header { font-size: 1.2rem; font-weight: 600; margin-bottom: 24px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; display: flex; align-items: center; gap: 10px; color: var(--text-primary); }
+    .skills-header i { color: var(--accent); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag { padding: 8px 16px; background: #F5F5F7; border-radius: 8px; font-size: 0.9rem; font-weight: 500; color: #333; display: flex; align-items: center; gap: 8px; transition: 0.2s; border: 1px solid transparent; }
+    .tag:hover { background: white; border-color: rgba(0,0,0,0.1); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+
+    .social-card { justify-content: flex-start !important; }
+    .social-horizontal-list { display: flex; justify-content: flex-start; gap: 16px; width: 100%; margin-top: 10px; }
+    .social-icon-btn { width: 56px; height: 56px; background: #F5F5F7; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--text-primary); font-size: 1.6rem; transition: var(--transition); }
+    .social-icon-btn:hover { background: white; box-shadow: 0 6px 20px rgba(0,0,0,0.08); transform: translateY(-8px) scale(1.1); color: var(--accent); }
+    .social-icon-btn:active { transform: translateY(1px) scale(0.95); box-shadow: none; transition-duration: 0.08s; }
+
+    .timeline-item { margin-bottom: 24px; padding-left: 16px; border-left: 2px solid rgba(0, 113, 227, 0.3); position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -5px; top: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .t-year { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 4px; display: block; }
+    .t-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin: 0 0 2px; }
+    .t-place { font-size: 0.95rem; color: var(--text-secondary); }
+
+    .about-cta { background: #111; color: white; border-radius: 24px; padding: 80px 40px; text-align: center; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); position: relative; overflow: hidden; }
+    .about-cta::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,113,227,0.2) 0%, rgba(0,0,0,0) 65%); pointer-events: none; z-index: 0; }
+    .cta-text { position: relative; z-index: 1; }
+    .cta-text h2 { font-size: 2.8rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .cta-text p { color: #A1A1A6; font-size: 1.2rem; max-width: 600px; line-height: 1.6; }
+    .btn-primary { background: white; color: black; padding: 20px 40px; border-radius: 99px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease; display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 4px 20px rgba(255,255,255,0.1); z-index: 2; position: relative; }
+    .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 28px rgba(255,255,255,0.15); }
+    .btn-primary:active { transform: translateY(1px) scale(0.97); transition-duration: 0.08s; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Site Footer */
+    .site-footer { margin-left: var(--sidebar-width); border-top: 1px solid rgba(0,0,0,0.06); padding: 0 60px; background: transparent; }
+    .site-footer .footer-inner { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 22px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .site-footer .footer-left { display: flex; align-items: center; gap: 6px; }
+    .site-footer .footer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .site-footer .footer-name { font-size: 0.75rem; font-weight: 500; color: var(--text-secondary); }
+    .site-footer .footer-copy { font-size: 0.7rem; color: rgba(0,0,0,0.3); }
+    .site-footer .footer-links { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
+    .site-footer .footer-links a { font-size: 0.75rem; color: var(--text-secondary); text-decoration: none; padding: 5px 10px; border-radius: 6px; transition: color 0.18s, background 0.18s; }
+    .site-footer .footer-links a:hover { color: var(--text-primary); background: rgba(0,0,0,0.05); }
+
+    /* Accessibility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    aside a:focus-visible, aside button:focus-visible, aside [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; box-shadow: none; }
+    .mobile-menu-btn:focus { outline: none; }
+    .mobile-menu-btn:focus-visible { outline: 2px solid var(--accent) !important; outline-offset: -2px; border-radius: 14px; }
+    .mobile-menu-overlay a:focus-visible, .mobile-menu-overlay button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 14px; }
+    .sidebar-cta:focus-visible, .mobile-cta:focus-visible, .lang-switcher-container:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; box-shadow: none; }
+    body.using-pointer *:focus { outline: none !important; box-shadow: none !important; }
+
+    /* Hamburger */
+    .hb-line { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .hb-line1 { transform-origin: 12px 8px; }
+    .hb-line2 { transform-origin: 12px 16px; }
+    .mobile-menu-btn.is-open .hb-line1 { transform: translateY(4px) rotate(45deg); }
+    .mobile-menu-btn.is-open .hb-line2 { transform: translateY(-4px) rotate(-45deg); }
+
+    /* Animations */
+    @keyframes wave-hand { 0%, 100% { transform: rotate(0deg); } 20%, 60% { transform: rotate(15deg); } 40%, 80% { transform: rotate(-10deg); } }
+    .about-link:hover svg { animation: wave-hand 0.8s ease-in-out; transform-origin: bottom center; }
+    @keyframes chat-hello { 0% { transform: scale(1) rotate(0deg); } 15% { transform: scale(1.1) rotate(-8deg); } 30% { transform: scale(1.1) rotate(8deg); } 45% { transform: scale(1.1) rotate(-6deg); } 60% { transform: scale(1.1) rotate(4deg); } 100% { transform: scale(1) rotate(0deg); } }
+    .sidebar-cta:hover svg { animation: chat-hello 0.8s cubic-bezier(0.25,0.8,0.25,1) forwards; transform-origin: bottom center; }
+
+    @media (max-width: 968px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: row; justify-content: space-between; align-items: center; z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); overflow-y: hidden; }
+      .sidebar-scaler { display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; height: 100% !important; padding: 0 !important; transform: none !important; }
+      .profile-container { margin: 0; text-align: left; }
+      .profile-link { display: flex; align-items: center; gap: 12px; }
+      .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+      .profile-name { font-size: 1rem; margin: 0; }
+      .profile-role, nav, .sidebar-footer, .sidebar-cta { display: none; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; }
+      main { margin-left: 0; padding: 100px 20px 40px; }
+      .bento-grid { grid-template-columns: 1fr; gap: 24px; }
+      .photo-card { order: -1; min-height: 400px; }
+      .hero-title { font-size: 2.5rem; }
+      .site-footer { margin-left: 0; padding: 0 20px; }
+      .site-footer .footer-inner { flex-direction: column; text-align: center; gap: 8px; }
+      aside.menu-open-state { z-index: 3005 !important; background: transparent !important; backdrop-filter: none !important; border-bottom: none !important; pointer-events: none; }
+      aside.menu-open-state .mobile-menu-btn { pointer-events: auto; }
+      aside.menu-open-state .sidebar-scaler { opacity: 0; transition: opacity 0.3s ease; }
+    }
+    @media (max-width: 968px) and (orientation: landscape) {
+      aside { height: 60px; padding: 0 20px; }
+      main { padding: 90px 40px 40px; }
+      .bento-grid { gap: 20px; }
+      .hero-title { font-size: 2rem; }
+      .about-cta { padding: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation Menu" aria-hidden="true" inert>
+    <div class="mobile-scroll-wrapper">
+      <div class="mobile-nav-container">
+        <div class="lang-switcher-container" id="mobileLangSwitcher" role="button" tabindex="0" aria-label="Switch language" style="margin-bottom:20px;background:rgba(0,0,0,0.05);">
+          <div class="gliding-pill"></div>
+          <span class="lang-item" data-lang="pt" data-href="../sobre"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
+          <span class="lang-item active" data-lang="en" data-href="about"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
+        </div>
+        <div class="mobile-nav-group">
+          <a href="about.html" class="mobile-link-main js-menu-toggle">About Me</a>
+          <a href="index.html" class="mobile-link-main js-menu-toggle">Projects</a>
+        </div>
+        <div class="mobile-projects-wrapper">
+          <div class="mobile-divider"></div>
+          <span class="mobile-label">Portfolio</span>
+          <div class="mobile-projects-list">
+            <a href="forca-aliada.html" class="mobile-link-sub js-menu-toggle">Força Aliada</a>
+            <a href="server-infrastructure.html" class="mobile-link-sub js-menu-toggle">Server Infra</a>
+            <a href="utopia-magazine.html" class="mobile-link-sub js-menu-toggle">Utopia Magazine</a>
+            <a href="neo-letters-branding.html" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
+            <a href="lo-advertising.html" class="mobile-link-sub js-menu-toggle">Lô Advertising</a>
+            <a href="personal-branding.html" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
+            <a href="one-minute-reflection.html" class="mobile-link-sub js-menu-toggle">One Minute</a>
+            <a href="valorada-gaming.html" class="mobile-link-sub js-menu-toggle">Valorada</a>
+            <a href="thumbnails-youtube.html" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
+            <a href="video-production.html" class="mobile-link-sub js-menu-toggle">Video Production</a>
+          </div>
+        </div>
+        <div class="mobile-footer-group">
+          <div class="mobile-socials">
+            <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+            <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+          </div>
+          <a href="contact.html" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="sidebar-scaler">
+      <div class="profile-container">
+        <a href="index.html" class="profile-link">
+          <div class="profile-pic-wrapper">
+            <img src="../assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="110" height="110" loading="lazy">
+          </div>
+          <div class="profile-text-group">
+            <p class="profile-name">Gabriel Silva</p>
+            <p class="profile-role">Creative Technologist</p>
+          </div>
+        </a>
+      </div>
+
+      <nav>
+        <div class="nav-group">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link back-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Projects</a></li>
+            <li><a href="about.html" class="nav-link about-link active"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> About Me</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column;">
+          <span class="nav-group-label" aria-hidden="true">Portfolio</span>
+          <ul class="nav-list project-scroll-container">
+            <li><a href="forca-aliada.html" class="nav-link">Força Aliada</a></li>
+            <li><a href="server-infrastructure.html" class="nav-link">Server Infra &amp; Dashboard</a></li>
+            <li><a href="utopia-magazine.html" class="nav-link">Utopia Magazine</a></li>
+            <li><a href="neo-letters-branding.html" class="nav-link">Neo Letters</a></li>
+            <li><a href="lo-advertising.html" class="nav-link">Lô Advertising</a></li>
+            <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
+            <li><a href="one-minute-reflection.html" class="nav-link">One Minute</a></li>
+            <li><a href="valorada-gaming.html" class="nav-link">Valorada</a></li>
+            <li><a href="thumbnails-youtube.html" class="nav-link">Thumbnails</a></li>
+            <li><a href="video-production.html" class="nav-link">Video Production</a></li>
+          </ul>
+        </div>
+
+        <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Switch language">
+          <div class="gliding-pill"></div>
+          <span class="lang-item" data-lang="pt" data-href="../sobre"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
+          <span class="lang-item active" data-lang="en" data-href="about"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
+        </div>
+
+        <a href="contact.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in Touch</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+          <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+        </div>
+        <p class="copyright">© 2026 Gabriel Silva</p>
+      </div>
+    </div>
+    <button class="mobile-menu-btn js-menu-toggle" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="26">
+        <line class="hb-line hb-line1" x1="4" x2="20" y1="8" y2="8"/>
+        <line class="hb-line hb-line2" x1="4" x2="20" y1="16" y2="16"/>
+      </svg>
+    </button>
+  </aside>
+
+  <main id="main-content" tabindex="-1">
+    <div class="container">
+
+      <section class="hero-about">
+        <span class="hero-label">My Story</span>
+        <h1 class="hero-title">
+          Design, code and technology —<br>
+          <span>from the visual to the backend.</span>
+        </h1>
+      </section>
+
+      <section class="bento-grid">
+
+        <article class="bento-card bio-text">
+          <p>Hi! My name is <span class="highlight">Gabriel Silva Dias Moreira</span>. I'm a multidisciplinary professional, graduated in Multimedia and currently pursuing a degree in <strong>Information Technology (IT)</strong> at UNIVESP.</p>
+          <p>My path has been defined by curiosity. I started with design and audiovisual production, then dove deep into server infrastructure — and naturally became a <strong>Full Stack developer</strong>. For 5 years I built and maintained in production the <strong>Força Aliada</strong> ecosystem: a REST API in Node.js + Express, a PostgreSQL database, an AI-moderated social network (Google Vision), an Electron desktop app, and an institutional website.</p>
+          <p>I'm not just an executor; I'm a system builder. I understand the full cycle — from visual identity to backend, from infrastructure to deployment. My goal is to apply this hybrid vision across <strong>design, development and technology</strong> to create solutions that genuinely work.</p>
+        </article>
+
+        <article class="bento-card photo-card">
+          <img src="../assets/img/gabriel-silva-perfil.webp" alt="Gabriel Silva - Creative Technologist" class="about-photo" fetchpriority="high" loading="eager">
+        </article>
+
+        <article class="bento-card" style="padding: 30px;">
+          <div class="skills-header"><i class="fa-solid fa-palette"></i> Creative</div>
+          <div class="skill-tags">
+            <div class="tag"><i class="fa-solid fa-film"></i> Premiere Pro</div>
+            <div class="tag"><i class="fa-solid fa-image"></i> Photoshop</div>
+            <div class="tag"><i class="fa-solid fa-pen-nib"></i> Illustrator</div>
+            <div class="tag"><i class="fa-solid fa-wand-magic-sparkles"></i> After Effects</div>
+            <div class="tag"><i class="fa-brands fa-figma"></i> Figma</div>
+            <div class="tag"><i class="fa-solid fa-camera"></i> Lightroom</div>
+            <div class="tag"><i class="fa-solid fa-book-open"></i> InDesign</div>
+            <div class="tag"><i class="fa-solid fa-headphones"></i> Audition</div>
+          </div>
+        </article>
+
+        <article class="bento-card social-card" style="padding: 30px;">
+          <div class="skills-header"><i class="fa-solid fa-share-nodes"></i> Connect</div>
+          <div class="social-horizontal-list">
+            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="LinkedIn" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Instagram" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="GitHub" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="bento-card" style="padding: 30px;">
+          <div class="skills-header"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+          <div class="timeline-item">
+            <span class="t-year">In Progress</span>
+            <h4 class="t-title">Bachelor's in Information Technology (IT)</h4>
+            <span class="t-place">UNIVESP</span>
+          </div>
+          <div class="timeline-item">
+            <span class="t-year">Completed</span>
+            <h4 class="t-title">Technical Degree in Multimedia</h4>
+            <span class="t-place">Liceu de Artes e Ofícios</span>
+          </div>
+        </article>
+
+        <article class="bento-card" style="padding: 30px;">
+          <div class="skills-header"><i class="fa-solid fa-code"></i> Development</div>
+          <div class="skill-tags">
+            <div class="tag"><i class="fa-brands fa-node-js"></i> Node.js & Express</div>
+            <div class="tag"><i class="fa-solid fa-database"></i> PostgreSQL</div>
+            <div class="tag"><i class="fa-solid fa-key"></i> JWT & OAuth</div>
+            <div class="tag"><i class="fa-brands fa-js"></i> JavaScript</div>
+            <div class="tag"><i class="fa-solid fa-desktop"></i> Electron</div>
+            <div class="tag"><i class="fa-solid fa-network-wired"></i> REST API</div>
+          </div>
+        </article>
+
+        <article class="bento-card" style="padding: 30px;">
+          <div class="skills-header"><i class="fa-solid fa-microchip"></i> Infra & Systems</div>
+          <div class="skill-tags">
+            <div class="tag"><i class="fa-solid fa-robot"></i> AI Workflows</div>
+            <div class="tag"><i class="fa-solid fa-server"></i> Infrastructure & Networks</div>
+            <div class="tag"><i class="fa-brands fa-windows"></i> Windows & OS Management</div>
+            <div class="tag"><i class="fa-solid fa-code-branch"></i> Hardware & Maintenance</div>
+          </div>
+        </article>
+
+      </section>
+
+      <section class="about-cta">
+        <div class="cta-text">
+          <h2>Let's create something incredible together?</h2>
+          <p>If you have an idea, I have the tools to make it happen.</p>
+        </div>
+        <a href="contact.html" class="btn-primary">
+          Get in touch <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // ── v14: Shared Portfolio JS ─────────────────────────────────────────
+    function debounce(fn, ms) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), ms); }; }
+
+    (function() {
+      const b = document.body;
+      window.addEventListener('mousedown',  () => b.classList.add('using-pointer'), { passive: true });
+      window.addEventListener('touchstart', () => b.classList.add('using-pointer'), { passive: true });
+      window.addEventListener('keydown', e => { if (e.key === 'Tab') b.classList.remove('using-pointer'); }, { passive: true });
+    })();
+
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu && !mobileMenu.classList.contains('active')) mobileMenu.setAttribute('inert', '');
+    let _lastFocused = null;
+
+    function getFocusables(root) {
+      return Array.from(root.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'))
+        .filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
+    }
+
+    function toggleMenu() {
+      if (!mobileMenu) return;
+      const isOpen = mobileMenu.classList.contains('active');
+      const btn  = document.querySelector('.mobile-menu-btn');
+      const aside = document.querySelector('aside');
+      if (!isOpen) {
+        _lastFocused = document.activeElement;
+        mobileMenu.classList.add('active');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        mobileMenu.removeAttribute('inert');
+        if (btn)   { btn.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Close Menu'); }
+        if (aside) aside.classList.add('menu-open-state');
+        const main = document.getElementById('main-content');
+        if (main)  { main.setAttribute('inert',''); main.setAttribute('aria-hidden','true'); }
+        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.setAttribute('inert',''); sc.setAttribute('aria-hidden','true'); } }
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => { if (btn) btn.focus(); }, 50);
+      } else {
+        mobileMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.setAttribute('inert', '');
+        if (btn)   { btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Open Menu'); }
+        if (aside) aside.classList.remove('menu-open-state');
+        const main = document.getElementById('main-content');
+        if (main)  { main.removeAttribute('inert'); main.removeAttribute('aria-hidden'); }
+        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.removeAttribute('inert'); sc.removeAttribute('aria-hidden'); } }
+        document.body.style.overflow = '';
+        if (_lastFocused && _lastFocused.focus) setTimeout(() => _lastFocused.focus(), 0);
+        _lastFocused = null;
+      }
+    }
+
+    if (mobileMenu) mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) toggleMenu(); });
+    document.addEventListener('keydown', e => {
+      if (!mobileMenu || !mobileMenu.classList.contains('active')) return;
+      if (e.key === 'Escape') { e.preventDefault(); toggleMenu(); return; }
+      if (e.key !== 'Tab') return;
+      const btn = document.querySelector('.mobile-menu-btn');
+      const items = getFocusables(mobileMenu);
+      const all = btn ? [btn, ...items] : items;
+      if (!all.length) return;
+      const first = all[0], last = all[all.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    document.querySelectorAll('.js-menu-toggle').forEach(el => el.addEventListener('click', toggleMenu));
+
+    let _sw = window.innerWidth, _sh = window.innerHeight;
+    const fitSidebar = debounce(function() {
+      if (window.matchMedia('(max-width: 968px)').matches) {
+        const sc = document.querySelector('.sidebar-scaler');
+        if (sc) { sc.style.transform = ''; sc.style.width = ''; sc.style.height = ''; sc.classList.remove('compact-mode'); }
+        return;
+      }
+      _sw = window.innerWidth; _sh = window.innerHeight;
+      const sc = document.querySelector('.sidebar-scaler');
+      if (!sc) return;
+      sc.style.transform = 'scale(1)'; sc.style.width = '100%'; sc.style.height = 'auto';
+      sc.classList.remove('compact-mode'); void sc.offsetHeight;
+      const wh = window.innerHeight, ch = sc.scrollHeight;
+      if (ch <= wh) { sc.style.transform = 'none'; return; }
+      let scale = wh / ch;
+      const MIN = 0.85;
+      if (scale < MIN) {
+        sc.classList.add('compact-mode'); void sc.offsetHeight;
+        const nh = Math.max(sc.scrollHeight, 1);
+        scale = Math.max(wh / nh, MIN);
+        sc.style.height = (wh / scale) + 'px';
+      } else { sc.style.height = (wh / scale) + 'px'; }
+      sc.style.transform = `scale(${scale})`;
+      sc.style.width = (100 / scale) + '%';
+    }, 50);
+
+    window.addEventListener('load', fitSidebar);
+    window.addEventListener('resize', fitSidebar);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', fitSidebar);
+      window.visualViewport.addEventListener('scroll', fitSidebar);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const skip = document.querySelector('.skip-link');
+      if (skip) skip.addEventListener('click', function(e) {
+        e.preventDefault();
+        const main = document.getElementById('main-content');
+        if (!main) return;
+        main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const first = main.querySelector('h1, [tabindex]') || main;
+        if (first === main) main.setAttribute('tabindex', '-1');
+        setTimeout(() => { try { first.focus({ preventScroll: true }); } catch(_) { first.focus(); } }, 50);
+      });
+
+      function disableFocusIn(root) {
+        if (!root) return;
+        root.querySelectorAll('a,button,input,select,textarea,[tabindex]').forEach(el => {
+          if (el.dataset._oti === undefined) el.dataset._oti = el.getAttribute('tabindex') ?? '';
+          el.setAttribute('tabindex', '-1');
+        });
+      }
+      function restoreFocusIn(root) {
+        if (!root) return;
+        root.querySelectorAll('[data-_oti]').forEach(el => {
+          const v = el.dataset._oti;
+          if (v === '') el.removeAttribute('tabindex'); else el.setAttribute('tabindex', v);
+          delete el.dataset._oti;
+        });
+      }
+      function syncTabOrder() {
+        const mob = window.matchMedia('(max-width: 968px)').matches;
+        const aside = document.querySelector('aside');
+        const menuEl = document.getElementById('mobileMenu');
+        const btn = document.querySelector('.mobile-menu-btn');
+        if (mob) {
+          if (aside) { disableFocusIn(aside); const pl = aside.querySelector('.profile-link'); if (pl) { if (pl.dataset._oti !== undefined) { const v = pl.dataset._oti; if (v === '') pl.removeAttribute('tabindex'); else pl.setAttribute('tabindex', v); delete pl.dataset._oti; } } }
+          if (btn) btn.removeAttribute('tabindex');
+          if (menuEl) { if (menuEl.getAttribute('aria-hidden') !== 'false') disableFocusIn(menuEl); else restoreFocusIn(menuEl); }
+        } else {
+          if (aside) restoreFocusIn(aside);
+          if (btn) btn.setAttribute('tabindex', '-1');
+          if (menuEl) disableFocusIn(menuEl);
+        }
+      }
+      syncTabOrder();
+      const mq = window.matchMedia('(max-width: 968px)');
+      if (mq.addEventListener) mq.addEventListener('change', syncTabOrder); else mq.addListener(syncTabOrder);
+      window.addEventListener('resize', syncTabOrder);
+      if (mobileMenu) new MutationObserver(syncTabOrder).observe(mobileMenu, { attributes: true, attributeFilter: ['aria-hidden'] });
+
+      try {
+        const slug = (location.pathname || '').replace(/\/+/g,'/').split('/').filter(Boolean).pop() || '';
+        document.querySelectorAll('.mobile-link-sub').forEach(a => {
+          const h = (a.getAttribute('href') || '').split('/').filter(Boolean).pop() || '';
+          if (h && h === slug) a.classList.add('is-active');
+        });
+      } catch(_) {}
+
+      // Lang Switcher (physics engine)
+      function initPhysicsSwitcher(container) {
+        if (!container) return;
+        const pill = container.querySelector('.gliding-pill');
+        const ptItem = container.querySelector('.lang-item:nth-child(2)');
+        const enItem = container.querySelector('.lang-item:nth-child(3)');
+        if (!pill || !ptItem || !enItem) return;
+        let isDragging = false, isAuto = false, sel = 'en', afId = null;
+        let sx = 0, sPillX = 0, lt = 0, vel = 0, lx = 0;
+        let cRect = null, pW = 0, maxT = 0, pCX = 0, rafM = null;
+        let ph = { tx:0, cx:0, tsx:1, csx:1, tsy:1, csy:1, tsk:0, csk:0 };
+        const DF = 0.92, SF = 0.15, EB = 5, RS = 1.05, HS = 1.32;
+        const AL = window.matchMedia('(max-width:968px)').matches ? 0.28 : 0.20;
+        const gx = e => e.touches ? e.touches[0].clientX : e.clientX;
+        function uviz(prog, held, csc) {
+          const dpt = Math.abs(prog), den = Math.abs(prog-1);
+          let sm = 0; if (csc) { const s = Math.max(1,csc); sm = (s-1)*0.8; }
+          ptItem.style.transform = `scale(${1 + Math.max(0,1-dpt)*sm})`;
+          enItem.style.transform = `scale(${1 + Math.max(0,1-den)*sm})`;
+          if (prog < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); }
+          else            { enItem.classList.add('active'); ptItem.classList.remove('active'); }
+        }
+        function rst(fx) {
+          pill.style.setProperty('--pill-x', fx+'%'); pill.style.transform = ''; pill.style.transition = '';
+          ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
+        }
+        function loop() {
+          if (!isDragging && !isAuto) return;
+          if (isAuto) {
+            const pX = ph.cx;
+            ph.cx  += (ph.tx - ph.cx)  * AL;
+            ph.csx += (ph.tsx - ph.csx)* AL;
+            ph.csy += (ph.tsy - ph.csy)* AL;
+            vel = ph.cx - pX;
+            ph.tsk = Math.max(-20, Math.min(20, vel * -1.5));
+            ph.csk += (ph.tsk - ph.csk) * AL;
+            if (Math.abs(ph.cx - ph.tx) < (AL > 0.2 ? 0.6 : 1)) { isAuto = false; finish(); return; }
+          } else {
+            const lf = isDragging ? 0.32 : SF;
+            ph.cx  += (ph.tx - ph.cx)  * lf;
+            ph.csx += (ph.tsx - ph.csx)* lf;
+            ph.csy += (ph.tsy - ph.csy)* lf;
+            ph.csk += (ph.tsk - ph.csk)* lf;
+          }
+          pill.style.transform = `translate3d(${ph.cx}px,0,0) scale(${ph.csx},${ph.csy}) skewX(${ph.csk}deg)`;
+          uviz(ph.cx / maxT, true, ph.csx);
+          afId = requestAnimationFrame(loop);
+        }
+        function finish() {
+          cancelAnimationFrame(afId);
+          sel = ph.cx > (maxT/2) ? 'en' : 'pt';
+          const fx = sel === 'en' ? 100 : 0;
+          const tr = 'transform 0.6s cubic-bezier(0.5,1.6,0.4,1.1)';
+          pill.style.transition = tr+',background-color 0.4s ease,box-shadow 0.4s ease';
+          pill.style.transform = `translateX(${fx}%) scale(${RS}) skewX(0deg)`;
+          ptItem.style.transition = tr; enItem.style.transition = tr;
+          ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
+          setTimeout(() => rst(fx), 600);
+          const isEn = location.pathname.includes('/en/');
+          if (sel === 'en' && !isEn) { localStorage.setItem('preferredLang','en'); const h = enItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+          else if (sel === 'pt' && isEn) { localStorage.setItem('preferredLang','pt'); const h = ptItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+        }
+        const startH = e => {
+          if (isAuto) return; isDragging = true;
+          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+          if (e.type === 'mousedown') e.preventDefault();
+          const cx = gx(e);
+          cRect = container.getBoundingClientRect();
+          pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
+          sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
+          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+          ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
+          cancelAnimationFrame(afId); loop();
+        };
+        const moveH = e => {
+          if (!isDragging) return;
+          if (e.cancelable) e.preventDefault(); e.stopPropagation();
+          if (e.type === 'mousemove' && e.buttons === 0) { endH(e); return; }
+          const cx = gx(e); const now = Date.now(); const dt = now - lt;
+          if (dt > 0) vel = vel*0.7 + ((cx-lx)/dt)*0.3;
+          lx = cx; lt = now; pCX = cx;
+          if (!rafM) rafM = requestAnimationFrame(() => {
+            rafM = null;
+            let raw = sPillX + (pCX - sx) * DF;
+            const eMin = EB, eMax = maxT - EB;
+            let cl = raw, wp = 0;
+            if (raw < eMin) { wp = eMin-raw; cl = eMin - 12*(1-Math.pow(2.718,-wp/25)); }
+            else if (raw > eMax) { wp = raw-eMax; cl = eMax + 12*(1-Math.pow(2.718,-wp/25)); }
+            ph.tx = cl;
+            const av = Math.abs(vel);
+            if (wp > 1) { const sq = Math.min(av*0.25,0.25)+Math.min(wp*0.01,0.15); ph.tsx=HS-sq*0.7; ph.tsy=HS+sq*0.8; }
+            else if (av > 0.1) { const st=Math.min(av*0.08,0.2); ph.tsx=HS+st; ph.tsy=HS-st*0.6; }
+            else { ph.tsx=HS; ph.tsy=HS; }
+            ph.tsk = Math.max(-20, Math.min(20, vel*-12));
+          });
+        };
+        const endH = e => { if (!isDragging) return; isDragging = false; if (Math.abs(lx-sx) > 5) finish(); };
+        container.addEventListener('touchstart', startH, { passive: false });
+        window.addEventListener('touchmove', moveH, { passive: false });
+        window.addEventListener('touchend', endH);
+        container.addEventListener('mousedown', startH);
+        window.addEventListener('mousemove', moveH);
+        window.addEventListener('mouseup', endH);
+        container.addEventListener('click', e => {
+          if (isDragging || Math.abs(lx-sx) > 5 || isAuto) return;
+          const tgt = sel === 'pt' ? 'en' : 'pt';
+          if (tgt === sel) return;
+          isAuto = true; sel = tgt;
+          cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
+          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+          ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
+          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+          cancelAnimationFrame(afId); loop();
+        });
+        container.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.click(); } });
+        // Init pill to EN position
+        cRect = container.getBoundingClientRect();
+        if (cRect.width > 0) { pW = (cRect.width/2)-4; maxT = cRect.width-pW-8; ph.cx = maxT; ph.tx = maxT; rst(100); }
+      }
+      document.querySelectorAll('.lang-switcher-container').forEach(initPhysicsSwitcher);
+    }); // end DOMContentLoaded
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://ogabriels.com/#gabriel-silva",
+        "name": "Gabriel Silva",
+        "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
+        "url": "https://ogabriels.com/",
+        "jobTitle": "Creative Technologist & Full Stack Developer",
+        "description": "Creative Technologist specialized at the intersection of design, software engineering, and server infrastructure.",
+        "image": {
+          "@type": "ImageObject",
+          "@id": "https://ogabriels.com/#personImage",
+          "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
+          "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
+          "caption": "Gabriel Silva"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/ogabriels/",
+          "https://github.com/ogabriels2/",
+          "https://www.behance.net/ogabriels0",
+          "https://x.com/ogabriels0",
+          "https://www.instagram.com/ogabriels0/",
+          "https://www.youtube.com/@Gabalarca"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ogabriels.com/en/about",
+        "url": "https://ogabriels.com/en/about",
+        "name": "About Gabriel Silva | Journey & Skills",
+        "description": "Discover Gabriel Silva's journey, a Creative Technologist specializing in IT, Design and server infrastructure.",
+        "isPartOf": { "@id": "https://ogabriels.com/en/#website" },
+        "breadcrumb": { "@id": "https://ogabriels.com/en/about#breadcrumb" },
+        "about": { "@id": "https://ogabriels.com/#gabriel-silva" },
+        "mainEntity": { "@id": "https://ogabriels.com/#gabriel-silva" },
+        "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
+        "inLanguage": "en",
+        "dateModified": "2026-06-03T00:00:00-03:00"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ogabriels.com/en/about#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "name": "Home", "item": "https://ogabriels.com/en/", "position": 1 },
+          { "@type": "ListItem", "name": "About Me", "item": "https://ogabriels.com/en/about", "position": 2 }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-dot" aria-hidden="true"></span>
+        <span class="footer-name">Gabriel Silva</span>
+        <span class="footer-copy">© 2026</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

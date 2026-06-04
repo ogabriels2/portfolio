@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8XF4TVBSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L8XF4TVBSL');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <title>Força Aliada | Full Stack Ecosystem — Gabriel Silva</title>
+  <meta name="description" content="Case study: Força Aliada Ecosystem. Node.js + PostgreSQL API, AI-moderated social network, Electron desktop app and institutional website — live in production since 2021.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Gabriel Silva">
+  <meta name="keywords" content="Full Stack Developer, Node.js, Express, PostgreSQL, Electron, JWT, REST API, Minecraft, Gabriel Silva, Case Study, Social Network, Google Vision, Microsoft OAuth">
+
+  <link rel="canonical" href="https://ogabriels.com/en/forca-aliada">
+  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/forca-aliada" />
+  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/forca-aliada" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/forca-aliada" />
+  <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
+  <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="../assets/img/ogabriels-logo.webp">
+
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Gabriel Silva — Portfolio">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ogabriels.com/en/forca-aliada">
+  <meta property="og:title" content="Força Aliada — Full Stack Ecosystem | Gabriel Silva">
+  <meta property="og:description" content="Full ecosystem in production for 5 years: REST API, AI-moderated social network, Electron desktop app and website.">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/forca-aliada-logo.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Força Aliada — Full Stack Ecosystem | Gabriel Silva">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Força Aliada — Full Stack Ecosystem | Gabriel Silva">
+  <meta name="twitter:description" content="Full ecosystem in production for 5 years: REST API, social network, desktop app and website.">
+  <meta name="twitter:image" content="https://ogabriels.com/assets/img/forca-aliada-logo.webp">
+  <meta name="twitter:image:alt" content="Força Aliada — Full Stack Ecosystem | Gabriel Silva">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS & BASE
+   ═══════════════════════════════════════════════════ */
+:root {
+  --sidebar-width: 280px;
+  --bg-deep: #030303;
+  --bg-surface: rgba(15, 15, 15, 0.6);
+  --bg-surface-solid: #0A0A0A;
+  --bg-card: rgba(255, 255, 255, 0.02);
+  --bg-card-hover: rgba(255, 255, 255, 0.04);
+  --border-light: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(201, 168, 76, 0.2);
+  --ink-main: #FFFFFF;
+  --ink-muted: #A1A1AA;
+  --ink-dim: #71717A;
+  --brand-gold: #D4AF37;
+  --brand-gold-soft: #ebd07d;
+  --brand-gold-glow: rgba(212, 175, 55, 0.15);
+  --accent-blue: #3B82F6;
+  --accent-green: #10B981;
+  --accent-purple: #8B5CF6;
+  --accent-red: #EF4444;
+  --font-hero: 'Bebas Neue', sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-editorial: 'Instrument Serif', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
+  --shadow-float: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  --shadow-glow: 0 0 30px var(--brand-gold-glow);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); color: var(--ink-muted); background: var(--bg-deep); -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; border: 0; cursor: pointer; }
+.skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--brand-gold); color: #000; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top .3s; }
+.skip-link:focus { top: 20px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ════ SIDEBAR ══════════════════════════════════════════════════════════════ */
+aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; background: rgba(255,255,255,0.95); border-right: 1px solid rgba(0,0,0,0.05); display: block; z-index: 2000; contain: layout style; transition: background 0.3s ease; }
+@supports (backdrop-filter: blur(20px)) { aside { background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%); } }
+aside::-webkit-scrollbar { display: none; }
+.sidebar-scaler { width: 100%; display: flex; flex-direction: column; padding: 40px 32px 30px; transform-origin: top left; box-sizing: border-box; }
+.sidebar-scaler.compact-mode { padding-top: 25px; padding-bottom: 5px; }
+.profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; }
+.sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
+.profile-link { display: block; transition: transform .2s; }
+.profile-link:active { transform: scale(.98); }
+.profile-pic-wrapper { width: 110px; height: 110px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.06); transition: transform .4s cubic-bezier(.25,.8,.25,1); transform: translateZ(0); }
+.profile-link:hover .profile-pic-wrapper { transform: scale(1.05); }
+.profile-pic { width: 100%; height: 100%; object-fit: cover; }
+.profile-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: #111; transition: color .3s ease; }
+.profile-link:hover .profile-name { color: #0071E3; }
+.profile-role { font-size: .7rem; color: #86868B; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+nav { flex: 1; display: flex; flex-direction: column; min-height: 0; margin-bottom: 10px; }
+.sidebar-scaler.compact-mode nav { margin-bottom: 0; }
+.nav-group { margin-bottom: 20px; flex-shrink: 0; }
+.sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
+.nav-group h2, .nav-group .nav-group-label { font-size: .7rem; color: #86868B; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; opacity: .8; }
+.nav-list { list-style: none; padding: 0; }
+.nav-list li { margin-bottom: 2px; }
+.project-scroll-container { overflow-y: auto; padding-right: 5px; margin-right: -5px; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,.15) transparent; }
+.project-scroll-container::-webkit-scrollbar { width: 4px; }
+.project-scroll-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,.15); border-radius: 4px; }
+.nav-link { display: flex; align-items: center; gap: 10px; padding: 8px 12px; color: #86868B; font-size: .9rem; font-weight: 500; border-radius: 8px; transition: all .3s cubic-bezier(.25,.8,.25,1); white-space: nowrap; }
+.nav-link:hover { color: #0071E3; background: rgba(0,113,227,.08); transform: translateX(4px); }
+.nav-link:active { transform: scale(.98) translateX(4px); background: rgba(0,113,227,.12); transition-duration: .1s; }
+.nav-link.active { color: #0071E3; font-weight: 600; background: rgba(0,113,227,.05); }
+.nav-link.back-link svg { transition: transform .3s; }
+.nav-link.back-link:hover svg { transform: translateX(-6px); }
+.lang-switcher-container { touch-action: none; position: relative; display: flex; margin: 0 0 20px; background: rgba(118,118,128,.12); border-radius: 9999px; padding: 4px; width: fit-content; border: 1px solid rgba(0,0,0,.02); cursor: pointer; flex-shrink: 0; overflow: visible; -webkit-user-select: none; user-select: none; transform: translateZ(0); }
+.sidebar-scaler.compact-mode .lang-switcher-container { margin-bottom: 10px; }
+.gliding-pill { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); background: #FFFFFF; border-radius: 9999px; cursor: grab; border: 1px solid rgba(0,0,0,.12); box-shadow: 0 2px 6px rgba(0,0,0,.1); z-index: 1; --pill-x: 100%; transform-origin: center center; transform: translateX(var(--pill-x)) scale(1.05); transition: transform .5s cubic-bezier(.2,.8,.2,1.2); }
+.lang-item { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 14px; border-radius: 99px; font-size: .8rem; font-weight: 600; color: #86868B; text-decoration: none; width: 75px; transition: color .3s ease; pointer-events: none!important; }
+.lang-item.active { color: #1D1D1F; cursor: default; }
+.lang-flag { width: 20px; height: 15px; border-radius: 3px; object-fit: cover; box-shadow: 0 0 0 1px rgba(0,0,0,.08); transform: translateZ(0); pointer-events: none!important; }
+.sidebar-cta { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background: #1D1D1F; color: white; border-radius: 16px; font-size: .9rem; font-weight: 600; margin-top: auto; margin-bottom: 20px; transition: all .3s; }
+.sidebar-cta:hover { background: #0071E3; transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,.15); }
+.sidebar-footer { padding-top: 20px; border-top: 1px solid rgba(0,0,0,.05); flex-shrink: 0; }
+.sidebar-scaler.compact-mode .sidebar-footer { padding-top: 10px; }
+.social-icons { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; }
+.social-icon { width: 32px; height: 32px; border-radius: 12px; background: rgba(0,0,0,.04); display: flex; align-items: center; justify-content: center; color: #86868B; transition: all .3s; }
+.social-icon:hover { background: #0071E3; color: white; transform: translateY(-3px) scale(1.1); }
+.copyright { font-size: .65rem; color: #555; text-align: center; font-weight: 500; }
+
+/* ════ MOBILE MENU ══════════════════════════════════════════════════════════ */
+.mobile-menu-btn { display: none; }
+.mobile-menu-overlay { position: fixed; inset: 0; background: rgba(255,255,255,.98); backdrop-filter: blur(25px); z-index: 3000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+.mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
+.mobile-scroll-wrapper { position: absolute; inset: 0; overflow-y: auto; padding: 80px 0 100px; display: flex; flex-direction: column; }
+.mobile-nav-container { width: 100%; max-width: 320px; min-height: 100%; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 24px; }
+.mobile-nav-group, .mobile-projects-wrapper, .mobile-footer-group { opacity: 0; transform: translateY(20px); transition: .5s cubic-bezier(.2,.8,.2,1); }
+.mobile-menu-overlay.active .mobile-nav-group { transition-delay: .05s; opacity: 1; transform: translateY(0); }
+.mobile-menu-overlay.active .mobile-projects-wrapper { transition-delay: .1s; opacity: 1; transform: translateY(0); }
+.mobile-menu-overlay.active .mobile-footer-group { transition-delay: .15s; opacity: 1; transform: translateY(0); }
+.mobile-nav-group { display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: center; }
+.mobile-link-main { font-size: 2rem; font-weight: 700; color: #1D1D1F!important; letter-spacing: -.03em; }
+.mobile-projects-list { display: flex; flex-direction: column; gap: 10px; margin: 15px 0; align-items: center; }
+.mobile-link-sub { font-size: 1rem; color: #86868B; transition: .2s; }
+.mobile-link-sub.is-active { color: #0071E3!important; font-weight: 600; }
+.mobile-divider { width: 40px; height: 1px; background: rgba(0,0,0,.08); margin: 10px auto; }
+.mobile-label { font-size: .7rem; text-transform: uppercase; color: #86868B; letter-spacing: .1em; font-weight: 500; }
+.mobile-footer-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.mobile-socials { display: flex; gap: 20px; }
+.mobile-social-btn { font-size: 1.4rem; color: #86868B; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(0,0,0,.05); border: 1px solid rgba(0,0,0,.08); }
+.mobile-cta { padding: 14px 32px; background: #1D1D1F; color: white; border-radius: 50px; font-weight: 600; font-size: .95rem; display: inline-flex; align-items: center; gap: 10px; }
+.hb-line { transition: all .35s cubic-bezier(.22,1,.36,1); }
+.mobile-menu-btn.is-open .hb-line1 { transform: translate(0,4px) rotate(45deg); }
+.mobile-menu-btn.is-open .hb-line2 { transform: translate(0,-4px) rotate(-45deg); }
+
+/* ════ MAIN LAYOUT ══════════════════════════════════════════════════════════ */
+main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
+.text-gold { color: var(--brand-gold); }
+.text-white { color: var(--ink-main); }
+.text-italic { font-family: var(--font-editorial); font-style: italic; font-weight: 400; }
+
+/* ════ HERO ══════════════════════════════════════════════════════════════════ */
+.project-hero { position: relative; width: 100%; min-height: 90vh; padding: 100px 80px 80px; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 40px; overflow: hidden; }
+.hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+.logo-scene { position: relative; width: 420px; height: 420px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+.logo-orb { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 55%, rgba(212,175,55,0.18) 0%, rgba(212,175,55,0.06) 40%, transparent 70%); filter: blur(28px); animation: orbPulse 4s ease-in-out infinite; z-index: 0; }
+@keyframes orbPulse { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.1); opacity: 1; } }
+.logo-rays { position: absolute; inset: -30px; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg, rgba(212,175,55,0.035) 2deg, transparent 4deg, transparent 40deg, rgba(212,175,55,0.025) 42deg, transparent 44deg, transparent 88deg, rgba(212,175,55,0.035) 90deg, transparent 92deg, transparent 130deg, rgba(212,175,55,0.02) 132deg, transparent 134deg, transparent 178deg, rgba(212,175,55,0.03) 180deg, transparent 182deg, transparent 220deg, rgba(212,175,55,0.025) 222deg, transparent 224deg, transparent 268deg, rgba(212,175,55,0.035) 270deg, transparent 272deg, transparent 310deg, rgba(212,175,55,0.02) 312deg, transparent 314deg, transparent 358deg); animation: raysRotate 30s linear infinite; z-index: 1; filter: blur(4px); }
+@keyframes raysRotate { to { transform: rotate(360deg); } }
+.logo-ring-outer { position: absolute; width: 390px; height: 390px; border-radius: 50%; border: 1px solid rgba(212,175,55,0.12); animation: ringRotateCW 20s linear infinite; z-index: 2; }
+.logo-ring-outer::before, .logo-ring-outer::after { content: ''; position: absolute; background: rgba(212,175,55,0.5); border-radius: 2px; }
+.logo-ring-outer::before { width: 8px; height: 2px; top: 50%; left: -4px; transform: translateY(-50%); }
+.logo-ring-outer::after { width: 2px; height: 8px; top: -4px; left: 50%; transform: translateX(-50%); }
+@keyframes ringRotateCW { to { transform: rotate(360deg); } }
+.logo-ring-inner { position: absolute; width: 310px; height: 310px; border-radius: 50%; border: 1px dashed rgba(212,175,55,0.07); animation: ringRotateCCW 14s linear infinite; z-index: 2; }
+@keyframes ringRotateCCW { to { transform: rotate(-360deg); } }
+.logo-brackets { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.logo-brackets::before, .logo-brackets::after { content: ''; position: absolute; width: 28px; height: 28px; border-color: rgba(212,175,55,0.45); border-style: solid; }
+.logo-brackets::before { top: 12px; left: 12px; border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
+.logo-brackets::after { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
+.logo-brackets-extra { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.logo-brackets-extra::before, .logo-brackets-extra::after { content: ''; position: absolute; width: 28px; height: 28px; border-color: rgba(212,175,55,0.45); border-style: solid; }
+.logo-brackets-extra::before { top: 12px; right: 12px; border-width: 2px 2px 0 0; border-radius: 0 2px 0 0; }
+.logo-brackets-extra::after { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
+.logo-coord { position: absolute; font-family: var(--font-mono); font-size: 0.55rem; color: rgba(212,175,55,0.3); letter-spacing: 0.08em; z-index: 4; pointer-events: none; line-height: 1; }
+.logo-coord.tl { top: 8px; left: 44px; }
+.logo-coord.br { bottom: 8px; right: 44px; }
+.hero-logo-img { position: relative; z-index: 5; width: 100%; max-width: 300px; height: auto; animation: floatLogo 6s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(212,175,55,0.35)) drop-shadow(0 0 50px rgba(212,175,55,0.12)) drop-shadow(0 20px 40px rgba(0,0,0,0.7)); transition: filter 0.4s ease; }
+.hero-visual:hover .hero-logo-img { filter: drop-shadow(0 0 24px rgba(212,175,55,0.55)) drop-shadow(0 0 70px rgba(212,175,55,0.18)) drop-shadow(0 24px 48px rgba(0,0,0,0.8)); }
+@keyframes floatLogo { 0% { transform: translateY(0px); } 50% { transform: translateY(-14px); } 100% { transform: translateY(0px); } }
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle at 50% -20%, rgba(212,175,55,0.08) 0%, transparent 60%), radial-gradient(circle at 100% 50%, rgba(59,130,246,0.04) 0%, transparent 40%), radial-gradient(circle at 0% 80%, rgba(139,92,246,0.03) 0%, transparent 40%); }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%); -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%); }
+.hero-content { position: relative; z-index: 10; max-width: 900px; }
+.hero-tags { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 100px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; background: var(--bg-card); border: 1px solid var(--border-light); color: var(--ink-muted); backdrop-filter: blur(10px); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.hero-tag:hover { border-color: rgba(212,175,55,0.25); color: var(--ink-main); background: rgba(212,175,55,0.04); cursor: default; }
+.hero-tag.live { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.2); color: var(--accent-green); }
+.hero-tag.live::before { content:''; display:block; width:6px; height:6px; border-radius:50%; background:var(--accent-green); box-shadow: 0 0 8px var(--accent-green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero-eyebrow { font-family: var(--font-mono); font-size: 0.85rem; color: var(--brand-gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; display: block; opacity: 0.9; }
+.hero-title { font-family: var(--font-hero); font-size: clamp(5rem, 10vw, 10rem); font-weight: 400; line-height: 0.85; letter-spacing: 0.02em; color: var(--ink-main); margin-bottom: 24px; }
+.hero-title span { background: linear-gradient(135deg, #FFF 0%, var(--brand-gold-soft) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 40px rgba(212,175,55,0.15)); }
+.hero-desc { font-size: 1.25rem; line-height: 1.6; font-weight: 400; color: var(--ink-muted); max-width: 700px; margin-bottom: 48px; }
+.hero-desc strong { color: var(--ink-main); font-weight: 500; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 12px; background: linear-gradient(135deg, var(--brand-gold), #b3912a); color: #000; font-family: var(--font-display); font-weight: 700; font-size: 1rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 8px 25px rgba(212,175,55,0.25); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(212,175,55,0.4); }
+.btn-primary:active { transform: scale(0.96) translateY(0); box-shadow: 0 4px 12px rgba(212,175,55,0.3); transition-duration: 0.08s; }
+.btn-ghost { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); color: var(--ink-main); font-family: var(--font-display); font-weight: 600; font-size: 1rem; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
+.btn-ghost:active { transform: scale(0.96) translateY(0); background: rgba(255,255,255,0.06); transition-duration: 0.08s; }
+
+/* ════ BENTO GRID ════════════════════════════════════════════════════════ */
+.content-wrapper { padding: 40px 80px 100px; width: 100%; max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 120px; }
+.bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: minmax(180px, auto); gap: 24px; }
+.bento-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 40px; position: relative; overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(20px); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s; }
+.bento-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-4px); box-shadow: var(--shadow-float); }
+.bento-card:active { transform: scale(0.99) translateY(-2px); transition-duration: 0.1s; }
+.card-intro { grid-column: span 8; grid-row: span 2; justify-content: space-between; }
+.bento-label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-gold); margin-bottom: 24px; display: block; }
+.card-intro h2 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--ink-main); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+.card-intro p { font-size: 1.125rem; line-height: 1.7; color: var(--ink-muted); margin-bottom: 16px; font-weight: 400; }
+.card-metric { grid-column: span 4; display: flex; justify-content: center; align-items: flex-start; }
+.metric-val { font-family: var(--font-hero); font-size: 4.5rem; color: var(--ink-main); line-height: 1; letter-spacing: 0.02em; margin-bottom: 8px; }
+.metric-val span { color: var(--brand-gold); font-size: 2.5rem; vertical-align: top; }
+.metric-label { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.card-status { grid-column: span 4; background: linear-gradient(135deg, rgba(16,185,129,0.05), transparent); border-color: rgba(16,185,129,0.15); }
+.card-status .metric-val { font-family: var(--font-display); font-size: 2rem; font-weight: 700; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.card-status .metric-label { line-height: 1.5; text-transform: none; font-family: var(--font-body); font-size: 1rem; color: var(--ink-muted); }
+
+/* ════ SECTION HEADERS ══════════════════════════════════════════════════ */
+.section-header { margin-bottom: 64px; max-width: 700px; }
+.section-eyebrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--brand-gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 12px; }
+.section-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--brand-gold); }
+.section-title { font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--ink-main); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 24px; }
+.section-desc { font-size: 1.2rem; color: var(--ink-muted); line-height: 1.6; }
+
+/* ════ ARCHITECTURE DIAGRAM ═════════════════════════════════════════════ */
+.arch-diagram-wrapper { width: 100%; padding: 60px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); backdrop-filter: blur(20px); text-align: center; }
+.arch-diagram-wrapper svg { width: 100%; max-width: 800px; height: auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); }
+
+/* ════ ECOSYSTEM GRID ════════════════════════════════════════════════════ */
+.ecosystem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.product-card { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; }
+.product-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-6px); box-shadow: var(--shadow-float); }
+.product-card:active { transform: scale(0.99) translateY(-2px); transition-duration: 0.1s; }
+.mockup-window { background: #000; border-bottom: 1px solid var(--border-light); position: relative; overflow: hidden; }
+.mockup-header { display: flex; align-items: center; padding: 12px 16px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.mac-dots { display: flex; gap: 6px; flex-shrink: 0; }
+.mac-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mac-dot.r { background: #FF5F56; } .mac-dot.y { background: #FFBD2E; } .mac-dot.g { background: #27C93F; }
+.win-controls { display: flex; gap: 8px; margin-left: auto; color: var(--ink-dim); font-size: 0.7rem; }
+.mockup-title { flex: 1; text-align: center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 16px; }
+.mockup-body { height: 260px; padding: 20px; font-family: var(--font-mono); font-size: 0.8rem; overflow: hidden; position: relative; }
+.mockup-body::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to top, #000, transparent); pointer-events: none; }
+.feed-mockup { display: flex; flex-direction: column; gap: 16px; }
+.feed-post { display: flex; gap: 12px; }
+.feed-av { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 1px solid var(--border-light); }
+.feed-content { flex: 1; }
+.feed-name { font-family: var(--font-body); font-weight: 600; color: var(--ink-main); font-size: 0.85rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.feed-badge { font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; background: rgba(16,185,129,0.15); color: var(--accent-green); }
+.feed-text { font-family: var(--font-body); font-size: 0.85rem; color: var(--ink-muted); line-height: 1.5; }
+.terminal-mockup { color: var(--ink-muted); line-height: 1.8; }
+.t-row { display: flex; align-items: baseline; gap: 12px; }
+.t-method { font-weight: 700; font-size: 0.75rem; }
+.t-method.get { color: var(--accent-green); } .t-method.post { color: var(--accent-blue); }
+.t-path { color: var(--ink-main); } .t-status { color: var(--brand-gold); } .t-time { color: var(--ink-dim); font-size: 0.7rem; }
+.t-res { padding-left: 2rem; color: var(--ink-dim); font-size: 0.75rem; margin-bottom: 8px; }
+.product-details { padding: 32px; display: flex; flex-direction: column; flex: 1; }
+.product-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+.product-details h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--ink-main); margin-bottom: 12px; }
+.product-details p { font-size: 1rem; color: var(--ink-muted); line-height: 1.6; margin-bottom: 24px; flex: 1; }
+.feature-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.feature-list li { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--ink-main); }
+.feature-list li i { color: var(--brand-gold); font-size: 0.8rem; }
+.tech-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.tech-chip { padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-muted); }
+
+/* ════ ENGINEERING ════════════════════════════════════════════════════════ */
+.engineering-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.eng-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 32px; backdrop-filter: blur(20px); transition: all 0.3s; }
+.eng-card:hover { border-color: var(--brand-gold-glow); background: rgba(212,175,55,0.02); transform: translateY(-4px); }
+.eng-card:active { transform: scale(0.98); transition-duration: 0.1s; }
+.eng-icon { font-size: 2rem; margin-bottom: 24px; display: inline-block; padding: 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border-light); }
+.eng-card h4 { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink-main); margin-bottom: 16px; line-height: 1.3; }
+.eng-card p { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.6; }
+
+/* ════ CODE SHOWCASE ════════════════════════════════════════════════════ */
+.code-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.code-text h3 { font-family: var(--font-display); font-size: 2rem; color: var(--ink-main); margin-bottom: 20px; }
+.code-text p { font-size: 1.1rem; color: var(--ink-muted); line-height: 1.7; margin-bottom: 24px; }
+.code-block-wrapper { background: #000; border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-float); }
+.code-block-wrapper pre { padding: 24px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7; color: #E2E8F0; margin: 0; }
+.token.comment { color: #64748B; font-style: italic; }
+.token.keyword { color: #C586C0; }
+.token.function { color: #DCDCAA; }
+.token.string { color: #CE9178; }
+.token.number { color: #B5CEA8; }
+.token.operator { color: #D4D4D4; }
+
+/* ════ SCHEMA GRID ════════════════════════════════════════════════════════ */
+.schema-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.schema-item { padding: 20px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-md); transition: all 0.3s; }
+.schema-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.15); }
+.schema-item h5 { font-family: var(--font-mono); font-size: 0.9rem; color: var(--ink-main); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.schema-item h5 i { color: var(--brand-gold); }
+.schema-item p { font-size: 0.85rem; color: var(--ink-dim); line-height: 1.5; }
+
+/* ════ TIMELINE ════════════════════════════════════════════════════════ */
+.timeline-container { position: relative; padding-left: 40px; }
+.timeline-container::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--border-glow), transparent); }
+.timeline-item { position: relative; margin-bottom: 48px; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot { position: absolute; left: -45px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg-deep); border: 2px solid var(--brand-gold); box-shadow: 0 0 10px var(--brand-gold-glow); }
+.timeline-year { font-family: var(--font-hero); font-size: 2rem; color: var(--brand-gold); line-height: 1; margin-bottom: 12px; display: block; letter-spacing: 0.05em; }
+.timeline-content h4 { font-family: var(--font-display); font-size: 1.5rem; color: var(--ink-main); margin-bottom: 12px; }
+.timeline-content p { font-size: 1.1rem; color: var(--ink-muted); line-height: 1.6; max-width: 600px; }
+
+/* ════ CONTACT CTA ════════════════════════════════════════════════════ */
+.contact-cta { background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(0,0,0,0)); border: 1px solid var(--border-glow); border-radius: var(--radius-lg); padding: 80px 60px; text-align: center; position: relative; overflow: hidden; }
+.contact-cta::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 50%; height: 1px; background: linear-gradient(90deg, transparent, var(--brand-gold), transparent); }
+.contact-cta h2 { font-family: var(--font-display); font-size: 3.5rem; color: var(--ink-main); margin-bottom: 24px; letter-spacing: -0.03em; }
+.contact-cta p { font-size: 1.25rem; color: var(--ink-muted); margin-bottom: 40px; font-family: var(--font-editorial); font-style: italic; }
+.contact-social-row { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+.social-circle { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--ink-main); transition: all 0.3s; background: rgba(255,255,255,0.02); }
+.social-circle:hover { background: var(--brand-gold); color: #000; border-color: var(--brand-gold); transform: translateY(-4px); }
+.social-circle:active { transform: scale(0.9); transition-duration: 0.08s; }
+
+/* ════ SCROLL PROGRESS BAR ══════════════════════════════════════════════ */
+#scroll-progress { position: fixed; top: 0; left: var(--sidebar-width); width: 0%; height: 2px; background: linear-gradient(90deg, var(--brand-gold), var(--brand-gold-soft)); z-index: 3000; transition: width 0.05s linear; box-shadow: 0 0 8px rgba(212,175,55,0.6); pointer-events: none; }
+@media(max-width:968px) { #scroll-progress { left: 0; } }
+
+/* ════ ANIMATIONS ════════════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
+
+/* ════ RESPONSIVE ════════════════════════════════════════════════════════ */
+@media(max-width:1200px) { .content-wrapper { padding: 40px 40px 100px; } .schema-grid { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width:968px) {
+  aside { display: none; }
+  .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(255,255,255,.85); border: 1px solid rgba(0,0,0,.08); backdrop-filter: blur(10px); border-radius: 12px; color: #1D1D1F; position: fixed; top: 16px; right: 16px; z-index: 2500; }
+  main { margin-left: 0; }
+  .project-hero { padding: 120px 32px 60px; min-height: 70vh; grid-template-columns: 1fr; text-align: center; gap: 40px; }
+  .hero-content { display: flex; flex-direction: column; align-items: center; }
+  .hero-tags { justify-content: center; } .hero-ctas { justify-content: center; }
+  .hero-title { font-size: clamp(4rem, 15vw, 6rem); }
+  .hero-visual { order: -1; margin-bottom: -10px; }
+  .hero-logo-img { max-width: 200px; }
+  .logo-scene { width: 300px; height: 300px; }
+  .logo-ring-outer { width: 280px; height: 280px; } .logo-ring-inner { width: 220px; height: 220px; }
+  .logo-coord { display: none; }
+  .bento-grid, .ecosystem-grid, .engineering-grid, .code-showcase { grid-template-columns: 1fr; }
+  .card-intro, .card-metric, .card-status { grid-column: span 1; }
+  .content-wrapper { padding: 32px 24px 80px; gap: 80px; }
+  .section-title { font-size: 2.2rem; }
+  .arch-diagram-wrapper { padding: 24px; }
+  .contact-cta { padding: 48px 24px; }
+  .contact-cta h2 { font-size: 2.5rem; }
+}
+@media(max-width:600px) { .schema-grid { grid-template-columns: 1fr; } .hero-ctas { flex-direction: column; } .btn-primary, .btn-ghost { width: 100%; justify-content: center; } }
+
+/* ════ POPUPS ════════════════════════════════════════════════════════════ */
+.popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0); z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease, background 0.25s ease; }
+.popup-overlay.active { opacity: 1; pointer-events: auto; background: rgba(0,0,0,0.72); backdrop-filter: blur(14px) saturate(160%); }
+.popup-box { position: relative; width: min(780px, 100%); max-height: 90vh; background: #0c0e15; border: 1px solid rgba(212,175,55,0.18); border-radius: 28px; overflow: hidden; transform: translateY(30px) scale(0.97); transition: transform 0.3s cubic-bezier(0.25,0.8,0.25,1); box-shadow: 0 40px 100px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06); display: flex; flex-direction: column; }
+.popup-overlay.active .popup-box { transform: translateY(0) scale(1); }
+.popup-close { position: absolute; top: 20px; right: 20px; z-index: 10; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: #c4cedb; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.2s; }
+.popup-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.popup-hero { position: relative; padding: 40px 48px 28px; background: linear-gradient(135deg, rgba(212,175,55,0.06) 0%, rgba(0,0,0,0) 60%); border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0; }
+.popup-hero-icon { font-size: 2.6rem; margin-bottom: 16px; display: inline-block; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
+.popup-hero h2 { font-family: var(--font-display); font-size: 1.8rem; color: var(--ink-main); margin: 0 0 8px; letter-spacing: -0.02em; }
+.popup-hero .popup-subtitle { font-family: var(--font-mono); font-size: 0.8rem; color: var(--brand-gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px; display: block; }
+.popup-hero p { font-size: 1.05rem; color: var(--ink-muted); line-height: 1.65; margin: 0; max-width: 620px; }
+.popup-body { padding: 36px 48px 40px; overflow-y: auto; flex: 1; }
+.popup-body::-webkit-scrollbar { width: 6px; }
+.popup-body::-webkit-scrollbar-track { background: transparent; }
+.popup-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+.popup-section-title { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-dim); margin: 0 0 16px; display: flex; align-items: center; gap: 10px; }
+.popup-section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.popup-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 36px; }
+.popup-feature-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; transition: border-color 0.2s, background 0.2s; }
+.popup-feature-item:hover { border-color: rgba(212,175,55,0.15); background: rgba(212,175,55,0.02); }
+.popup-feature-icon { font-size: 1.2rem; width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.popup-feature-text strong { display: block; font-size: 0.9rem; color: var(--ink-main); margin-bottom: 3px; font-weight: 600; }
+.popup-feature-text span { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.4; }
+.popup-tech-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.popup-tech-badge { padding: 5px 14px; border-radius: 100px; font-family: var(--font-mono); font-size: 0.75rem; border: 1px solid; }
+.popup-badge-gold  { border-color: rgba(212,175,55,0.3); color: var(--brand-gold); background: rgba(212,175,55,0.06); }
+.popup-badge-blue  { border-color: rgba(59,130,246,0.3); color: var(--accent-blue); background: rgba(59,130,246,0.06); }
+.popup-badge-green { border-color: rgba(16,185,129,0.3); color: var(--accent-green); background: rgba(16,185,129,0.06); }
+.popup-badge-purple{ border-color: rgba(139,92,246,0.3); color: var(--accent-purple); background: rgba(139,92,246,0.06); }
+.popup-badge-gray  { border-color: rgba(255,255,255,0.12); color: var(--ink-muted); background: rgba(255,255,255,0.03); }
+.popup-callout { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.15); border-left: 3px solid var(--brand-gold); border-radius: 12px; margin-top: 8px; }
+.popup-callout i { color: var(--brand-gold); font-size: 1rem; margin-top: 2px; }
+.popup-callout p { margin: 0; font-size: 0.9rem; color: var(--ink-muted); line-height: 1.6; }
+.popup-callout strong { color: var(--ink-main); }
+.popup-open-btn { cursor: pointer; position: relative; }
+.popup-open-btn::after { content: '↗'; position: absolute; top: 16px; right: 16px; font-size: 0.75rem; color: var(--ink-dim); opacity: 0; transition: opacity 0.2s, color 0.2s; }
+.popup-open-btn:hover::after { opacity: 1; color: var(--brand-gold); }
+
+/* ════ SITE FOOTER ════════════════════════════════════════════════════════ */
+.site-footer { margin-left: var(--sidebar-width); border-top: 1px solid rgba(255,255,255,0.05); padding: 0 80px; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1280px; margin: 0 auto; padding: 20px 0; }
+.footer-left { display: flex; align-items: center; gap: 10px; }
+.footer-dot { width: 6px; height: 6px; background: var(--brand-gold); border-radius: 50%; display: inline-block; }
+.footer-name { font-size: 0.85rem; font-weight: 600; color: var(--ink-main); }
+.footer-copy { font-size: 0.8rem; color: var(--ink-dim); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 0.8rem; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--brand-gold); }
+.footer-links .footer-link-sitemap { display: flex; align-items: center; gap: 5px; }
+.footer-links .footer-link-sitemap::before { content: ''; display: inline-block; width: 1px; height: 10px; background: rgba(255,255,255,0.1); margin-right: 4px; }
+@media(max-width:968px) { .site-footer { margin-left: 0; padding: 0 24px; } .footer-inner { flex-direction: column; gap: 12px; text-align: center; padding: 20px 0; } }
+</style>
+</head>
+<body>
+<div id="scroll-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation Menu" aria-hidden="true" inert>
+  <div class="mobile-scroll-wrapper">
+    <div class="mobile-nav-container">
+      <div class="mobile-nav-group">
+        <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Switch language" style="margin-bottom:20px;background:rgba(0,0,0,0.05);">
+          <div class="gliding-pill"></div>
+          <span class="lang-item" data-lang="pt" data-href="../forca-aliada"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
+          <span class="lang-item active" data-lang="en" data-href="forca-aliada"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
+        </div>
+        <a href="index.html" class="mobile-link-main js-menu-toggle">Home</a>
+        <a href="index.html#about" class="mobile-link-main js-menu-toggle">About Me</a>
+      </div>
+      <div class="mobile-projects-wrapper">
+        <span class="mobile-label">Portfolio</span>
+        <div class="mobile-projects-list">
+          <a href="forca-aliada.html" class="mobile-link-sub js-menu-toggle">Força Aliada</a>
+          <a href="server-infrastructure.html" class="mobile-link-sub js-menu-toggle">Server Infra &amp; Dashboard</a>
+          <a href="utopia-magazine.html" class="mobile-link-sub js-menu-toggle">Utopia Magazine</a>
+          <a href="neo-letters-branding.html" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
+          <a href="lo-advertising.html" class="mobile-link-sub js-menu-toggle">Lô Advertising</a>
+          <a href="personal-branding.html" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
+          <a href="one-minute-reflection.html" class="mobile-link-sub js-menu-toggle">One Minute</a>
+          <a href="valorada-gaming.html" class="mobile-link-sub js-menu-toggle">Valorada</a>
+          <a href="thumbnails-youtube.html" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
+          <a href="video-production.html" class="mobile-link-sub js-menu-toggle">Video Production</a>
+        </div>
+      </div>
+      <div class="mobile-footer-group">
+        <div class="mobile-socials">
+          <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        </div>
+        <a href="contact.html" class="mobile-cta js-menu-toggle">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<aside>
+  <div class="sidebar-scaler">
+    <div class="profile-container">
+      <a href="index.html" class="profile-link">
+        <div class="profile-pic-wrapper">
+          <img src="../assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="88" height="88" loading="lazy">
+        </div>
+        <p class="profile-name">Gabriel Silva</p>
+        <p class="profile-role">Creative Technologist</p>
+      </a>
+    </div>
+    <nav>
+      <div class="nav-group">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link back-link"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Projects</a></li>
+          <li><a href="index.html#about" class="nav-link"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> About Me</a></li>
+        </ul>
+      </div>
+      <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column">
+        <span class="nav-group-label" aria-hidden="true">Portfolio</span>
+        <ul class="nav-list project-scroll-container">
+          <li><a href="forca-aliada.html" class="nav-link active">Força Aliada</a></li>
+          <li><a href="server-infrastructure.html" class="nav-link">Server Infra &amp; Dashboard</a></li>
+          <li><a href="utopia-magazine.html" class="nav-link">Utopia Magazine</a></li>
+          <li><a href="neo-letters-branding.html" class="nav-link">Neo Letters</a></li>
+          <li><a href="lo-advertising.html" class="nav-link">Lô Advertising</a></li>
+          <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
+          <li><a href="one-minute-reflection.html" class="nav-link">One Minute</a></li>
+          <li><a href="valorada-gaming.html" class="nav-link">Valorada</a></li>
+          <li><a href="thumbnails-youtube.html" class="nav-link">Thumbnails</a></li>
+          <li><a href="video-production.html" class="nav-link">Video Production</a></li>
+        </ul>
+      </div>
+      <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Switch language">
+        <div class="gliding-pill"></div>
+        <span class="lang-item" data-lang="pt" data-href="../forca-aliada"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
+        <span class="lang-item active" data-lang="en" data-href="forca-aliada"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
+      </div>
+      <a href="contact.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in Touch</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg fill="currentColor" height="14" viewBox="0 0 24 24" width="14"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+      </div>
+      <p class="copyright">© 2026 Gabriel Silva</p>
+    </div>
+  </div>
+</aside>
+
+<button class="mobile-menu-btn js-menu-toggle" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
+  <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" aria-hidden="true">
+    <line class="hb-line hb-line1" x1="4" x2="20" y1="8" y2="8"/>
+    <line class="hb-line hb-line2" x1="4" x2="20" y1="16" y2="16"/>
+  </svg>
+</button>
+
+<main id="main-content" tabindex="-1">
+
+  <section class="project-hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-tags">
+        <span class="hero-tag live">Live in Production</span>
+        <span class="hero-tag">Full Stack Ecosystem</span>
+        <span class="hero-tag">2021 – Present</span>
+      </div>
+      <span class="hero-eyebrow">Anchor Project</span>
+      <h1 class="hero-title">Força <span>Aliada</span></h1>
+      <p class="hero-desc">
+        Far more than a website. A complete digital ecosystem featuring an <span class="text-white">AI-moderated social network</span>, a <span class="text-white">robust REST API</span>, and an <span class="text-white">installable Windows desktop app</span>. Modern architecture built from scratch to deployment.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://forcaaliada.ogabriels.com" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Access the Platform <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+        <a href="https://manager.forcaaliada.ogabriels.com" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+          View Manager App <i class="fa-brands fa-windows"></i>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="logo-scene">
+        <div class="logo-orb"></div>
+        <div class="logo-rays"></div>
+        <div class="logo-ring-outer"></div>
+        <div class="logo-ring-inner"></div>
+        <div class="logo-brackets"></div>
+        <div class="logo-brackets-extra"></div>
+        <span class="logo-coord tl">23.5°S 46.6°W</span>
+        <span class="logo-coord br">FA — 2021:2026</span>
+        <img src="../assets/img/forca-aliada-logo.webp" alt="Força Aliada Gold Logo" class="hero-logo-img" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <div class="content-wrapper">
+
+    <section class="bento-grid reveal">
+      <div class="bento-card card-intro">
+        <div>
+          <span class="bento-label">01 // Overview</span>
+          <h2>What is Força Aliada?</h2>
+          <p>Força Aliada started in 2021 as a private Minecraft server among friends, running via Hamachi. In 2025 it opened to the public, and in 2026 it scaled into a cutting-edge digital ecosystem with social networking, messaging, and an admin panel.</p>
+          <p>The project <span class="text-white">solves real engineering challenges</span>: TCPShield proxy detection with 4 cascading heuristics, multi-layer image moderation using Google Vision, secure IPC communication in Electron, and <span class="text-white">40 relational tables</span> with 138+ REST API endpoints.</p>
+        </div>
+      </div>
+      <div class="bento-card card-metric">
+        <div>
+          <div class="metric-val" data-count="40">0</div>
+          <div class="metric-label">PostgreSQL Tables</div>
+        </div>
+      </div>
+      <div class="bento-card card-metric">
+        <div>
+          <div class="metric-val" data-count="138">0<span>+</span></div>
+          <div class="metric-label">REST API Endpoints</div>
+        </div>
+      </div>
+      <div class="bento-card card-metric">
+        <div>
+          <div class="metric-val" data-count="4">0</div>
+          <div class="metric-label">Artifacts Produced</div>
+        </div>
+      </div>
+      <div class="bento-card card-status">
+        <div>
+          <div class="metric-val"><i class="fa-solid fa-satellite-dish" style="color:var(--accent-green)"></i> Live</div>
+          <div class="metric-label">System running and active with a user base live since 2021.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal delay-1">
+      <div class="section-header">
+        <span class="section-eyebrow">02 // Architecture</span>
+        <h2 class="section-title">The <span class="text-italic text-gold">Ecosystem</span> Design</h2>
+        <p class="section-desc">Four independent components operating in sync, orchestrated by the central Node.js API.</p>
+      </div>
+      <div class="arch-diagram-wrapper">
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" aria-label="Força Aliada ecosystem diagram">
+          <defs>
+            <linearGradient id="gradApi" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(16,185,129,0.2)"/><stop offset="100%" stop-color="rgba(16,185,129,0.05)"/></linearGradient>
+            <linearGradient id="gradWeb" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(59,130,246,0.2)"/><stop offset="100%" stop-color="rgba(59,130,246,0.05)"/></linearGradient>
+            <linearGradient id="gradApp" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(139,92,246,0.2)"/><stop offset="100%" stop-color="rgba(139,92,246,0.05)"/></linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="15" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>
+            <style>.flow-line { stroke-dasharray: 8 6; animation: flow 2s linear infinite; } @keyframes flow { to { stroke-dashoffset: -14; } }</style>
+          </defs>
+          <rect x="300" y="150" width="200" height="100" rx="16" fill="url(#gradApi)" stroke="#10B981" stroke-width="2" filter="url(#glow)"/>
+          <text x="400" y="195" font-family="Syne, sans-serif" font-size="20" font-weight="700" fill="#10B981" text-anchor="middle">REST API CORE</text>
+          <text x="400" y="215" font-family="DM Mono, monospace" font-size="12" fill="#A1A1AA" text-anchor="middle">Node.js + PostgreSQL</text>
+          <rect x="50" y="50" width="180" height="80" rx="12" fill="url(#gradWeb)" stroke="#3B82F6" stroke-width="1.5"/>
+          <text x="140" y="90" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#3B82F6" text-anchor="middle">Website / Social</text>
+          <text x="140" y="110" font-family="DM Mono, monospace" font-size="12" fill="#A1A1AA" text-anchor="middle">Client-side Vanilla</text>
+          <rect x="50" y="270" width="180" height="80" rx="12" fill="url(#gradApp)" stroke="#8B5CF6" stroke-width="1.5"/>
+          <text x="140" y="310" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#8B5CF6" text-anchor="middle">Manager App</text>
+          <text x="140" y="330" font-family="DM Mono, monospace" font-size="12" fill="#A1A1AA" text-anchor="middle">Electron (Windows)</text>
+          <rect x="570" y="150" width="180" height="100" rx="12" fill="rgba(239,68,68,0.1)" stroke="#EF4444" stroke-width="1.5"/>
+          <text x="660" y="195" font-family="Syne, sans-serif" font-size="16" font-weight="700" fill="#EF4444" text-anchor="middle">Java Server</text>
+          <text x="660" y="215" font-family="DM Mono, monospace" font-size="12" fill="#A1A1AA" text-anchor="middle">Minecraft Core</text>
+          <path d="M 140 130 L 140 200 L 300 200" fill="none" stroke="#3B82F6" stroke-width="2" class="flow-line"/>
+          <text x="210" y="190" font-family="DM Mono, monospace" font-size="12" fill="#3B82F6">JWT Auth</text>
+          <path d="M 230 310 L 360 310 L 360 250" fill="none" stroke="#8B5CF6" stroke-width="2" class="flow-line"/>
+          <text x="290" y="300" font-family="DM Mono, monospace" font-size="12" fill="#8B5CF6">Heartbeat Sync</text>
+          <path d="M 500 200 L 570 200" fill="none" stroke="#10B981" stroke-width="2" class="flow-line"/>
+          <text x="535" y="190" font-family="DM Mono, monospace" font-size="12" fill="#10B981" text-anchor="middle">Queries</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="reveal delay-2">
+      <div class="section-header">
+        <span class="section-eyebrow">03 // Artifacts</span>
+        <h2 class="section-title">Platform on <span class="text-italic text-gold">4 Pillars</span></h2>
+      </div>
+      <div class="ecosystem-grid">
+
+        <div class="product-card popup-open-btn" data-popup="popup-site" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
+          <div class="mockup-window">
+            <div class="mockup-header">
+              <div class="mac-dots"><div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div></div>
+              <div class="mockup-title">forcaaliada.ogabriels.com</div>
+            </div>
+            <div class="mockup-body feed-mockup">
+              <div class="feed-post">
+                <div class="feed-av">👑</div>
+                <div class="feed-content">
+                  <div class="feed-name">Admin <span class="feed-badge">Netherite</span></div>
+                  <div class="feed-text">Building event this weekend! 🏗️ Join and earn extra Merit on your account.</div>
+                </div>
+              </div>
+              <div class="feed-post" style="opacity:0.6">
+                <div class="feed-av">⚔️</div>
+                <div class="feed-content">
+                  <div class="feed-name">PlayerX <span class="feed-badge" style="color:var(--accent-blue); background:rgba(59,130,246,0.15)">Diamond</span></div>
+                  <div class="feed-text">Day 1,245 on the server! Who would have thought we'd still be here...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-details">
+            <div class="product-icon" style="color:var(--accent-blue); border-color:rgba(59,130,246,0.3)">🌐</div>
+            <h3>Website & Social Network</h3>
+            <p>Full social platform in Vanilla JS. Auth via email PIN and Microsoft/Xbox OAuth, feed with Google Vision, DMs, group chat, polls, follows and gamification (Merit/Capital).</p>
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-check"></i> PIN verification via Resend API</li>
+              <li><i class="fa-solid fa-check"></i> Native DMs + Group Chat</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-chip">HTML5</span><span class="tech-chip">CSS</span><span class="tech-chip">Vanilla JS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card popup-open-btn" data-popup="popup-api" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
+          <div class="mockup-window">
+            <div class="mockup-header">
+              <div class="mac-dots"><div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div></div>
+              <div class="mockup-title">forca-aliada-site.onrender.com</div>
+            </div>
+            <div class="mockup-body terminal-mockup" style="background:#0D1117">
+              <div class="t-row"><span class="t-method get">GET</span><span class="t-path">/api/server/status</span><span class="t-status">200</span><span class="t-time">42ms</span></div>
+              <div class="t-res">{"online":true,"players":3}</div>
+              <div class="t-row"><span class="t-method post">POST</span><span class="t-path">/api/auth/login</span><span class="t-status">200</span><span class="t-time">87ms</span></div>
+              <div class="t-res">{"token":"eyJhbGciOiJIUz..."}</div>
+              <div class="t-row"><span class="t-method get">GET</span><span class="t-path">/api/community/feed</span><span class="t-status">200</span><span class="t-time">21ms</span></div>
+            </div>
+          </div>
+          <div class="product-details">
+            <div class="product-icon" style="color:var(--accent-green); border-color:rgba(16,185,129,0.3)">⚡</div>
+            <h3>REST Backend API</h3>
+            <p>The orchestrating core. 138+ endpoints covering multi-account auth, complete social logic, TCPShield proxy detection with a state machine and protection via granular rate limits.</p>
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-check"></i> JWT HS256 + SHA-256 Hash in DB</li>
+              <li><i class="fa-solid fa-check"></i> bcrypt 10 rounds (OWASP-compliant)</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-chip">Node.js</span><span class="tech-chip">Express</span><span class="tech-chip">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card popup-open-btn" data-popup="popup-app" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
+          <div class="mockup-window">
+            <div class="mockup-header" style="background:#1a1f2e">
+              <div style="font-family:var(--font-display); font-size:0.75rem; font-weight:600; color:var(--accent-purple)">Manager App</div>
+              <div class="win-controls">— □ ✕</div>
+            </div>
+            <div class="mockup-body terminal-mockup" style="background:#0B0F19">
+              <div style="color:var(--accent-green); margin-bottom:8px">● Server Online - 3 Players</div>
+              <div style="color:#A1A1AA">[INFO] Server started in 4.2s</div>
+              <div style="color:var(--accent-blue)">[JOIN] PlayerX joined the game</div>
+              <div style="color:#A1A1AA">[INFO] Heartbeat → API OK (10s)</div>
+              <div style="color:var(--brand-gold)">[WARN] Memory usage: 2.1 GB</div>
+            </div>
+          </div>
+          <div class="product-details">
+            <div class="product-icon" style="color:var(--accent-purple); border-color:rgba(139,92,246,0.3)">🖥️</div>
+            <h3>Windows Desktop App</h3>
+            <p>NSIS-installable application. Manages the server locally with live console, auto-restart with backoff, automatic backup, local webhook and dual-channel sync with the cloud API.</p>
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-check"></i> Sandboxing with IPC Whitelist + safeStorage</li>
+              <li><i class="fa-solid fa-check"></i> OTA Auto-updater via GitHub Releases</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-chip">Electron</span><span class="tech-chip">NSIS</span><span class="tech-chip">IPC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card popup-open-btn" data-popup="popup-landing" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
+          <div class="mockup-window" style="display:flex; align-items:center; justify-content:center; background:#111">
+            <div class="mockup-body" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%">
+              <div style="font-family:var(--font-hero); font-size:2.5rem; letter-spacing:0.1em; color:#FFF; line-height:1">FORÇA<br>ALIADA</div>
+              <div style="font-family:var(--font-mono); font-size:0.65rem; color:var(--brand-gold); margin-top:8px">MANAGER DOWNLOADS</div>
+            </div>
+          </div>
+          <div class="product-details">
+            <div class="product-icon" style="color:var(--brand-gold); border-color:rgba(212,175,55,0.3)">🏠</div>
+            <h3>Institutional Landing Page</h3>
+            <p>Satellite site focused on the distribution and download of the Desktop App. Premium design with bold display typography, Privacy Policy (LGPD) and dynamic GitHub API fetch for the latest version.</p>
+            <ul class="feature-list">
+              <li><i class="fa-solid fa-check"></i> Zero cookies, 100% anonymous</li>
+              <li><i class="fa-solid fa-check"></i> Zero cost (GitHub Pages)</li>
+            </ul>
+            <div class="tech-stack">
+              <span class="tech-chip">HTML5</span><span class="tech-chip">GitHub Pages</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">04 // Engineering</span>
+        <h2 class="section-title">Under the <span class="text-italic text-gold">Hood</span></h2>
+        <p class="section-desc">Advanced technical decisions that separate amateur projects from scalable production platforms.</p>
+      </div>
+      <div class="engineering-grid">
+        <div class="eng-card popup-open-btn" data-popup="popup-vision" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
+          <div class="eng-icon text-gold"><i class="fa-solid fa-brain"></i></div>
+          <h4>Google Vision (SafeSearch) in 3 Layers</h4>
+          <p>Media uploads aren't blind. Images go through Google's AI. They're classified as Approved (released), Suspicious (admin queue), or Rejected (immediate block + log). Has structural fail-open.</p>
+        </div>
+        <div class="eng-card popup-open-btn" data-popup="popup-tcpshield" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
+          <div class="eng-icon" style="color:var(--accent-blue)"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4>Anti-TCPShield State Machine</h4>
+          <p>Anti-DDoS proxies lie about server status. The API uses 4 cascading heuristics (UDP Query, offline MOTD, external mcstatus.io and player count) to compute the real status of the Java container in the cloud.</p>
+        </div>
+        <div class="eng-card popup-open-btn" data-popup="popup-triggers" style="cursor:pointer" role="button" tabindex="0" aria-haspopup="dialog">
+          <div class="eng-icon" style="color:var(--accent-purple)"><i class="fa-solid fa-database"></i></div>
+          <h4>Native Procedures &amp; Triggers</h4>
+          <p>The social feed's hashtag affinity is calculated directly in the database via PostgreSQL Triggers. Likes (+1), comments (+2) fire the <code>fa_apply_tag_affinity()</code> procedure, saving Node.js latency.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="code-showcase reveal">
+      <div class="code-text">
+        <span class="section-eyebrow">05 // Security</span>
+        <h3>Session Revocation via <span class="text-italic text-gold">SHA-256</span></h3>
+        <p>JWTs are stateless, but robust systems need immediate revocation (remote logout). The implemented solution hashes the token in real-time and compares it to the database.</p>
+        <p>We never store the exposed JWT in the database. A simple <code style="color:var(--brand-gold); background:rgba(212,175,55,0.1); padding:2px 6px; border-radius:4px;">DELETE</code> on the database session ends access on the front-end milliseconds later.</p>
+      </div>
+      <div class="code-block-wrapper">
+        <div class="mockup-header">
+          <div class="mac-dots"><div class="mac-dot r"></div><div class="mac-dot y"></div><div class="mac-dot g"></div></div>
+          <div class="mockup-title">src/middleware/auth.mjs</div>
+        </div>
+<pre><span class="token keyword">async function</span> <span class="token function">requireAuth</span>(req, res, next) {
+  <span class="token keyword">const</span> token = req.headers.authorization?.<span class="token function">split</span>(<span class="token string">' '</span>)[<span class="token number">1</span>];
+  <span class="token keyword">if</span> (!token) <span class="token keyword">return</span> res.<span class="token function">status</span>(<span class="token number">401</span>).<span class="token function">json</span>({ error: <span class="token string">'Unauthorized'</span> });
+
+  <span class="token comment">// SHA-256 Hash (Never store plaintext)</span>
+  <span class="token keyword">const</span> tokenHash = crypto
+    .<span class="token function">createHash</span>(<span class="token string">'sha256'</span>)
+    .<span class="token function">update</span>(token)
+    .<span class="token function">digest</span>(<span class="token string">'hex'</span>);
+
+  <span class="token keyword">const</span> { rows } = <span class="token keyword">await</span> pool.<span class="token function">query</span>(
+    <span class="token string">`SELECT u.id, s.revoked
+     FROM users u
+     JOIN user_sessions s ON s.user_id = u.id
+     WHERE s.token_hash = $1`</span>,
+    [tokenHash]
+  );
+
+  <span class="token keyword">if</span> (!rows[<span class="token number">0</span>] || rows[<span class="token number">0</span>].revoked)
+    <span class="token keyword">return</span> res.<span class="token function">status</span>(<span class="token number">401</span>).<span class="token function">json</span>({ error: <span class="token string">'Session revoked'</span> });
+
+  req.user = rows[<span class="token number">0</span>];
+  <span class="token function">next</span>();
+}</pre>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-header" style="margin-bottom:32px">
+        <span class="section-eyebrow">06 // Data Structure</span>
+        <h2 class="section-title"><span class="text-italic text-gold">Relational</span> Schema</h2>
+      </div>
+      <div class="schema-grid">
+        <div class="schema-item">
+          <h5><i class="fa-solid fa-users"></i> users</h5>
+          <p>RBAC roles, verified email, avatar and last_login.</p>
+        </div>
+        <div class="schema-item">
+          <h5><i class="fa-solid fa-laptop"></i> user_sessions</h5>
+          <p>Record with IP, user-agent and boolean revocation flag.</p>
+        </div>
+        <div class="schema-item">
+          <h5><i class="fa-brands fa-microsoft"></i> user_integrations</h5>
+          <p>Multi-account Xbox. Maps Java UUID and Bedrock XUID.</p>
+        </div>
+        <div class="schema-item">
+          <h5><i class="fa-solid fa-file-lines"></i> user_posts</h5>
+          <p>Social network. Text array for media, soft-deletes.</p>
+        </div>
+        <div class="schema-item">
+          <h5><i class="fa-solid fa-chart-pie"></i> post_polls</h5>
+          <p>Polls expired on timestamp with uniqueness constraint.</p>
+        </div>
+        <div class="schema-item">
+          <h5><i class="fa-solid fa-star"></i> player_balances</h5>
+          <p>Gamified economy systems (Merit and Capital).</p>
+        </div>
+        <div class="schema-item">
+          <h5><i class="fa-solid fa-scroll"></i> audit_logs</h5>
+          <p>Immutable. JSONB payload with actor id and IP actions.</p>
+        </div>
+        <div class="schema-item">
+          <h5><i class="fa-solid fa-tag"></i> tag_affinity</h5>
+          <p>Scores from 0 to 10 computed by in-database triggers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-eyebrow">07 // Evolution</span>
+        <h2 class="section-title">Scaling the <span class="text-italic text-gold">Project</span></h2>
+      </div>
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2021 – 2024</span>
+          <div class="timeline-content">
+            <h4>Origins: Local Network</h4>
+            <p>For years the server operated exclusively among friends, running through VPN tunnels (Hamachi). In 2024, the first solid visual identity and branding was established.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2025</span>
+          <div class="timeline-content">
+            <h4>Domain &amp; Crossplay</h4>
+            <p>The server went live publicly on real cloud infrastructure, establishing a custom domain and deploying cross-platform support (Java and Bedrock Edition).</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2026</span>
+          <div class="timeline-content">
+            <h4>Full Stack Ecosystem</h4>
+            <p>Development exploded. The REST API, Windows App, and Website/Social Network were fully coded and placed into continuous production through automated CI/CD.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-cta reveal">
+      <h2>Ready to elevate your next project?</h2>
+      <p>Robust development, cutting-edge design and architecture built to scale.</p>
+      <a href="contact.html" class="btn-primary" style="padding: 20px 48px; font-size:1.1rem">
+        Start a conversation
+      </a>
+      <div class="contact-social-row">
+        <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-circle" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://github.com/ogabriels2" target="_blank" class="social-circle" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://wa.me/5511979686116" target="_blank" class="social-circle" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>
+/* ── INTERSECTION OBSERVER ── */
+(function() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+
+<script>
+/* ── ANIMATED COUNTERS ── */
+(function() {
+  function animateCount(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.querySelector('span')?.outerHTML || '';
+    const dur = 2000;
+    const t0 = performance.now();
+    function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.innerHTML = Math.round(ease * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.metric-val').forEach(animateCount); return;
+  }
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting && e.target.dataset.count) { animateCount(e.target); co.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.metric-val[data-count]').forEach(el => co.observe(el));
+})();
+</script>
+
+<script>
+/* ── MENU & SIDEBAR ── */
+(function() {
+  function debounce(fn, ms) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), ms); }; }
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileMenu && !mobileMenu.classList.contains('active')) mobileMenu.setAttribute('inert', '');
+  let _lastFocused = null;
+
+  function toggleMenu() {
+    if (!mobileMenu) return;
+    const isOpen = mobileMenu.classList.contains('active');
+    const btn = document.querySelector('.mobile-menu-btn');
+    const aside = document.querySelector('aside');
+    if (!isOpen) {
+      _lastFocused = document.activeElement;
+      mobileMenu.classList.add('active'); mobileMenu.setAttribute('aria-hidden','false'); mobileMenu.removeAttribute('inert');
+      if (btn) { btn.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Close Menu'); }
+      if (aside) aside.classList.add('menu-open-state');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu.classList.remove('active'); mobileMenu.setAttribute('aria-hidden','true'); mobileMenu.setAttribute('inert','');
+      if (btn) { btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Open Menu'); }
+      if (aside) aside.classList.remove('menu-open-state');
+      document.body.style.overflow = '';
+      if (_lastFocused && _lastFocused.focus) setTimeout(() => _lastFocused.focus(), 0);
+    }
+  }
+  document.querySelectorAll('.js-menu-toggle').forEach(el => el.addEventListener('click', toggleMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) toggleMenu(); });
+
+  /* SIDEBAR SCALER */
+  const fitSidebar = debounce(function() {
+    if (window.matchMedia('(max-width: 968px)').matches) {
+      const sc = document.querySelector('.sidebar-scaler');
+      if (sc) { sc.style.transform = ''; sc.style.width = ''; sc.style.height = ''; sc.classList.remove('compact-mode'); }
+      return;
+    }
+    const sc = document.querySelector('.sidebar-scaler'); if (!sc) return;
+    sc.style.transform = 'scale(1)'; sc.style.width = '100%'; sc.style.height = 'auto'; sc.classList.remove('compact-mode');
+    void sc.offsetHeight;
+    const wh = window.innerHeight, ch = sc.scrollHeight;
+    if (ch <= wh) { sc.style.transform = 'none'; return; }
+    let scale = wh / ch; const MIN = 0.85;
+    if (scale < MIN) {
+      sc.classList.add('compact-mode'); void sc.offsetHeight;
+      const nh = Math.max(sc.scrollHeight, 1); scale = Math.max(wh / nh, MIN);
+      sc.style.height = (wh / scale) + 'px';
+    } else { sc.style.height = (wh / scale) + 'px'; }
+    sc.style.transform = `scale(${scale})`; sc.style.width = (100 / scale) + '%';
+  }, 50);
+  window.addEventListener('load', fitSidebar);
+  window.addEventListener('resize', fitSidebar);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', fitSidebar);
+    window.visualViewport.addEventListener('scroll', fitSidebar);
+  }
+
+  /* LANG SWITCHER (physics) */
+  document.addEventListener('DOMContentLoaded', function() {
+    function initPhysicsSwitcher(container) {
+      if (!container) return;
+      const pill = container.querySelector('.gliding-pill');
+      const ptItem = container.querySelector('.lang-item:nth-child(2)');
+      const enItem = container.querySelector('.lang-item:nth-child(3)');
+      if (!pill || !ptItem || !enItem) return;
+      let isDragging = false, isAuto = false, sel = 'en', afId = null;
+      let sx = 0, sPillX = 0, lt = 0, vel = 0, lx = 0;
+      let cRect = null, pW = 0, maxT = 0, pCX = 0, rafM = null;
+      let ph = { tx:0, cx:0, tsx:1, csx:1, tsy:1, csy:1, tsk:0, csk:0 };
+      const DF = 0.92, SF = 0.15, EB = 5, RS = 1.05, HS = 1.32;
+      const AL = window.matchMedia('(max-width:968px)').matches ? 0.28 : 0.20;
+      const gx = e => e.touches ? e.touches[0].clientX : e.clientX;
+      function uviz(prog, held, csc) {
+        const dpt = Math.abs(prog), den = Math.abs(prog-1);
+        let sm = 0; if (csc) { const s = Math.max(1,csc); sm = (s-1)*0.8; }
+        ptItem.style.transform = `scale(${1 + Math.max(0,1-dpt)*sm})`;
+        enItem.style.transform = `scale(${1 + Math.max(0,1-den)*sm})`;
+        if (prog < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); }
+        else { enItem.classList.add('active'); ptItem.classList.remove('active'); }
+      }
+      function rst(fx) {
+        pill.style.setProperty('--pill-x', fx+'%'); pill.style.transform = ''; pill.style.transition = '';
+        ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
+      }
+      function loop() {
+        if (!isDragging && !isAuto) return;
+        if (isAuto) {
+          const pX = ph.cx;
+          ph.cx  += (ph.tx - ph.cx)  * AL; ph.csx += (ph.tsx - ph.csx)* AL;
+          ph.csy += (ph.tsy - ph.csy)* AL; vel = ph.cx - pX;
+          ph.tsk = Math.max(-20, Math.min(20, vel * -1.5)); ph.csk += (ph.tsk - ph.csk) * AL;
+          if (Math.abs(ph.cx - ph.tx) < (AL > 0.2 ? 0.6 : 1)) { isAuto = false; finish(); return; }
+        } else {
+          const lf = isDragging ? 0.32 : SF;
+          ph.cx += (ph.tx-ph.cx)*lf; ph.csx += (ph.tsx-ph.csx)*lf;
+          ph.csy += (ph.tsy-ph.csy)*lf; ph.csk += (ph.tsk-ph.csk)*lf;
+        }
+        pill.style.transform = `translate3d(${ph.cx}px,0,0) scale(${ph.csx},${ph.csy}) skewX(${ph.csk}deg)`;
+        uviz(ph.cx / maxT, true, ph.csx);
+        afId = requestAnimationFrame(loop);
+      }
+      function finish() {
+        cancelAnimationFrame(afId);
+        sel = ph.cx > (maxT/2) ? 'en' : 'pt';
+        const fx = sel === 'en' ? 100 : 0;
+        const tr = 'transform 0.6s cubic-bezier(0.5,1.6,0.4,1.1)';
+        pill.style.transition = tr+',background-color 0.4s ease,box-shadow 0.4s ease';
+        pill.style.transform = `translateX(${fx}%) scale(${RS}) skewX(0deg)`;
+        ptItem.style.transition = tr; enItem.style.transition = tr;
+        ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
+        setTimeout(() => rst(fx), 600);
+        const isEn = location.pathname.includes('/en/');
+        if (sel === 'en' && !isEn) { localStorage.setItem('preferredLang','en'); const h = enItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+        else if (sel === 'pt' && isEn) { localStorage.setItem('preferredLang','pt'); const h = ptItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
+      }
+      const startH = e => {
+        if (isAuto) return; isDragging = true;
+        pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+        if (e.type === 'mousedown') e.preventDefault();
+        const cx = gx(e); cRect = container.getBoundingClientRect();
+        pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
+        sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
+        const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+        ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+        ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
+        cancelAnimationFrame(afId); loop();
+      };
+      const moveH = e => {
+        if (!isDragging) return;
+        if (e.cancelable) e.preventDefault(); e.stopPropagation();
+        if (e.type === 'mousemove' && e.buttons === 0) { endH(e); return; }
+        const cx = gx(e); const now = Date.now(); const dt = now - lt;
+        if (dt > 0) vel = vel*0.7 + ((cx-lx)/dt)*0.3;
+        lx = cx; lt = now; pCX = cx;
+        if (!rafM) rafM = requestAnimationFrame(() => {
+          rafM = null;
+          let raw = sPillX + (pCX - sx) * DF;
+          const eMin = EB, eMax = maxT - EB;
+          let cl = raw, wp = 0;
+          if (raw < eMin) { wp = eMin-raw; cl = eMin - 12*(1-Math.pow(2.718,-wp/25)); }
+          else if (raw > eMax) { wp = raw-eMax; cl = eMax + 12*(1-Math.pow(2.718,-wp/25)); }
+          ph.tx = cl;
+          const av = Math.abs(vel);
+          if (wp > 1) { const sq = Math.min(av*0.25,0.25)+Math.min(wp*0.01,0.15); ph.tsx=HS-sq*0.7; ph.tsy=HS+sq*0.8; }
+          else if (av > 0.1) { const st=Math.min(av*0.08,0.2); ph.tsx=HS+st; ph.tsy=HS-st*0.6; }
+          else { ph.tsx=HS; ph.tsy=HS; }
+          ph.tsk = Math.max(-20, Math.min(20, vel*-12));
+        });
+      };
+      const endH = e => { if (!isDragging) return; isDragging = false; if (Math.abs(lx-sx) > 5) finish(); };
+      container.addEventListener('touchstart', startH, { passive: false });
+      window.addEventListener('touchmove', moveH, { passive: false });
+      window.addEventListener('touchend', endH);
+      container.addEventListener('mousedown', startH);
+      window.addEventListener('mousemove', moveH);
+      window.addEventListener('mouseup', endH);
+      container.addEventListener('click', e => {
+        if (isDragging || Math.abs(lx-sx) > 5 || isAuto) return;
+        const tgt = sel === 'pt' ? 'en' : 'pt';
+        if (tgt === sel) return;
+        isAuto = true; sel = tgt;
+        cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
+        const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+        ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
+        ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
+        pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
+        cancelAnimationFrame(afId); loop();
+      });
+      container.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.click(); } });
+      // Initialize EN pill position
+      setTimeout(() => {
+        cRect = container.getBoundingClientRect();
+        if (cRect.width > 0) { pW = (cRect.width/2)-4; maxT = cRect.width-pW-8; ph.cx = maxT; ph.tx = maxT; rst(100); }
+      }, 50);
+    }
+    document.querySelectorAll('.lang-switcher-container').forEach(initPhysicsSwitcher);
+  });
+
+  /* ACTIVE MOBILE LINK */
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      const slug = (location.pathname || '').replace(/\/+/g,'/').split('/').filter(Boolean).pop() || '';
+      document.querySelectorAll('.mobile-link-sub').forEach(a => {
+        const h = (a.getAttribute('href') || '').split('/').filter(Boolean).pop() || '';
+        if (h && h === slug) a.classList.add('is-active');
+      });
+    } catch(_) {}
+  });
+})();
+</script>
+
+<script>
+/* ── SCROLL PROGRESS BAR ── */
+(function() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  function updateBar() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+  updateBar();
+})();
+</script>
+
+<!-- POPUP: Website & Social Network -->
+<div class="popup-overlay" id="popup-site" role="dialog" aria-modal="true" aria-label="Website & Social Network — details">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🌐</div>
+      <span class="popup-subtitle">Artifact 01 // Frontend</span>
+      <h2>Website &amp; Social Network</h2>
+      <p>Complete social platform built in Vanilla JS, no frameworks. Every feature — from authentication to the personalized feed — was implemented from scratch, resulting in instant loading and total bundle control.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Authentication &amp; Identity</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">📧</div><div class="popup-feature-text"><strong>Email PIN</strong><span>6-digit code via Resend API. Expires in 15 min. No password required on initial creation.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🎮</div><div class="popup-feature-text"><strong>Microsoft / Xbox OAuth</strong><span>Login with Xbox account. Syncs Bedrock XUID and Java UUID. Supports multiple linked accounts.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔗</div><div class="popup-feature-text"><strong>Account Affiliation</strong><span>Delegation system: one account can post on behalf of another with explicit authorization and granular scopes.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🗑️</div><div class="popup-feature-text"><strong>Verified Deletion</strong><span>delete_account flow with dedicated email PIN. Irreversible operation with double confirmation.</span></div></div>
+      </div>
+      <p class="popup-section-title">Social Network</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">📰</div><div class="popup-feature-text"><strong>Personalized Feed</strong><span>Feed with hashtag affinity. Tags with scores from 0 to 10 computed via native PostgreSQL triggers.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">💬</div><div class="popup-feature-text"><strong>DMs + Group Chat</strong><span>Direct messages and groups with edit support, soft-delete and per-conversation read state.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">📊</div><div class="popup-feature-text"><strong>Expiring Polls</strong><span>Polls with closing timestamp. Single vote per user with database uniqueness constraint.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🚩</div><div class="popup-feature-text"><strong>Report System</strong><span>Categories: spam, hate speech, harassment, inappropriate, misinformation. Admin reviews with audited action.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🖼️</div><div class="popup-feature-text"><strong>Cloudinary Upload</strong><span>Up to 4 images per post (10 MB each). Accepted types: PNG, JPEG, WebP, GIF, AVIF, HEIC.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🏆</div><div class="popup-feature-text"><strong>Gamification (Merit/Capital)</strong><span>Two separate economic systems. Merit = non-transferable reputation. Capital = server currency.</span></div></div>
+      </div>
+      <p class="popup-section-title">Tech Stack</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-blue">HTML5</span>
+        <span class="popup-tech-badge popup-badge-blue">Native CSS3</span>
+        <span class="popup-tech-badge popup-badge-blue">JavaScript ES Modules</span>
+        <span class="popup-tech-badge popup-badge-green">Cloudinary CDN</span>
+        <span class="popup-tech-badge popup-badge-gold">Resend API</span>
+        <span class="popup-tech-badge popup-badge-gold">Microsoft OAuth 2.0</span>
+        <span class="popup-tech-badge popup-badge-gray">Dark mode via user_preferences</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Zero frontend dependencies.</strong> No framework, no bundler. The site loads in a single request and runs on any device. All complexity lives in the API — the frontend is pure, lightweight and auditable.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: REST API -->
+<div class="popup-overlay" id="popup-api" role="dialog" aria-modal="true" aria-label="REST Backend API — details">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">⚡</div>
+      <span class="popup-subtitle">Artifact 02 // Backend</span>
+      <h2>REST Backend API</h2>
+      <p>138+ endpoints in Node.js ESM on Express. The core that orchestrates everything: multi-account auth, social logic, real-time Minecraft server telemetry and automated content moderation.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Security &amp; Auth</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔐</div><div class="popup-feature-text"><strong>JWT HS256 + SHA-256 in DB</strong><span>Tokens signed with HS256 and their SHA-256 hash stored in user_sessions table. Instant revocation via DELETE.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔒</div><div class="popup-feature-text"><strong>bcrypt 10 rounds</strong><span>Cost factor 10 for password hashing. OWASP recommends minimum 10 rounds for current production.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🛡️</div><div class="popup-feature-text"><strong>Granular Rate Limiting</strong><span>5 distinct limiters: auth (20/15min), email (3/15min), Xbox API (3/5min), posts (10/hr), uploads (30/hr).</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🌐</div><div class="popup-feature-text"><strong>Restricted CORS + Helmet</strong><span>Explicit origin allowlist. Helmet with security headers. Reverse proxy via trust proxy 1.</span></div></div>
+      </div>
+      <p class="popup-section-title">Minecraft Integration</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">🎮</div><div class="popup-feature-text"><strong>State Machine (3 states)</strong><span>States unknown/offline/online. Synced with Desktop App via heartbeat. Audited transitions in log.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">📡</div><div class="popup-feature-text"><strong>4 TCPShield Heuristics</strong><span>UDP Query, offline MOTD comparison, external mcstatus.io query, and player count &gt; 0 as positive proof.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">⏱️</div><div class="popup-feature-text"><strong>Heartbeat + Cloud Lockout</strong><span>App pulses every 10s. After explicit shutdown, Cloud Lockout blocks reconnection for 60s to avoid false "online".</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">💾</div><div class="popup-feature-text"><strong>Status Cache (TTL 50s)</strong><span>Server status cached in memory for 50s. Less than the dashboard cycle (60s) ensures always-fresh data.</span></div></div>
+      </div>
+      <p class="popup-section-title">Tech Stack</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-green">Node.js ESM</span>
+        <span class="popup-tech-badge popup-badge-green">Express 4</span>
+        <span class="popup-tech-badge popup-badge-blue">PostgreSQL</span>
+        <span class="popup-tech-badge popup-badge-blue">Helmet</span>
+        <span class="popup-tech-badge popup-badge-gold">JWT (jsonwebtoken)</span>
+        <span class="popup-tech-badge popup-badge-gold">bcryptjs</span>
+        <span class="popup-tech-badge popup-badge-purple">Cloudinary v2</span>
+        <span class="popup-tech-badge popup-badge-purple">Google Vision API</span>
+        <span class="popup-tech-badge popup-badge-gray">minecraft-server-util</span>
+        <span class="popup-tech-badge popup-badge-gray">Multer (memory)</span>
+        <span class="popup-tech-badge popup-badge-gray">Resend API</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Schema versioned with idempotent migrations.</strong> Each column and table uses ADD COLUMN IF NOT EXISTS and ON CONFLICT DO NOTHING. The server can be safely restarted at any time without corrupting the database.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: Desktop App -->
+<div class="popup-overlay" id="popup-app" role="dialog" aria-modal="true" aria-label="Windows Desktop App — details">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🖥️</div>
+      <span class="popup-subtitle">Artifact 03 // Desktop</span>
+      <h2>Windows Desktop App</h2>
+      <p>NSIS-installable Electron application. Operates locally on the admin's machine with a feature set far beyond the basics: from auto-restart with exponential backoff to native Minecraft skin rendering for Windows notifications.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Process Management</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">📟</div><div class="popup-feature-text"><strong>Real-Time Console</strong><span>Java server logs streaming directly to the UI, with native search via findInPage(). Distinguishes JOIN, INFO, WARN and ERR with distinct colors by source (backend vs proxy).</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔁</div><div class="popup-feature-text"><strong>Auto-Restart with Backoff</strong><span>Crash detected = automatic restart with up to 5 configurable attempts. Exponential backoff between attempts. Distinguishes crash from intentional stop via <code>intentionalProcessStop</code> flag.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🌐</div><div class="popup-feature-text"><strong>Velocity Proxy Support</strong><span>Manages two independent processes: Minecraft server (backend) and Velocity proxy. Sequenced startup: Velocity launches 4s after backend. Independent graceful stop for each.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">⚡</div><div class="popup-feature-text"><strong>Clean Shutdown + Port Release</strong><span>Graceful: sends <code>stop</code> / <code>shutdown</code>, waits 5–15s. Forced: taskkill /F /T on PID tree. PowerShell Get-NetTCPConnection releases ports stuck in TIME_WAIT immediately.</span></div></div>
+      </div>
+      <p class="popup-section-title">Dual-Channel API Sync</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">💓</div><div class="popup-feature-text"><strong>Lightweight Heartbeat (10s)</strong><span>POST <code>/api/app/heartbeat</code> with no business payload — just proof the app is alive. Separate from data sync to avoid blocking the channel on high-frequency events.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">📡</div><div class="popup-feature-text"><strong>Event-Driven Data Sync</strong><span>POST <code>/api/app/sync</code> fired <em>immediately</em> on player join/leave, serverStarted and serverStopped. Periodic consistency fallback every 10s. <code>_syncInFlight</code> flag prevents request overlap.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔔</div><div class="popup-feature-text"><strong>Local Webhook (localhost:49152)</strong><span>Internal HTTP server that receives events from the site (e.g., new registration) and applies whitelist in real time — via server console if online, or directly to <code>whitelist.json</code> if offline. Protected by secret key.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">☁️</div><div class="popup-feature-text"><strong>Smart Cloud Lockout</strong><span>serverStopped sent to the site before heartbeat stops, ensuring instant transition to cloud mode without waiting for 30s timeout. Prevents "phantom online" status post-crash.</span></div></div>
+      </div>
+      <p class="popup-section-title">Security &amp; Sandboxing</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">🛡️</div><div class="popup-feature-text"><strong>Strict IPC Whitelist</strong><span>contextBridge exposes only channels explicitly listed in <code>ALLOWED_INVOKE</code>, <code>ALLOWED_SEND</code> and <code>ALLOWED_ON</code>. Unlisted channel access logs error and rejects the Promise. Zero Node.js access in renderer.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔐</div><div class="popup-feature-text"><strong>safeStorage for Secret Key</strong><span>API integration key encrypted via <code>Electron.safeStorage</code> (bound to OS keychain) before writing to disk. Never stored as plaintext in <code>fa-config.json</code>.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">💉</div><div class="popup-feature-text"><strong>Command Sanitization</strong><span>Stdin to server filters newlines and limits to 512 chars per command. JVM flags validated by regex: only accepts tokens starting with <code>-</code> and without dangerous shell characters (<code>;&|`$</code>).</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🪟</div><div class="popup-feature-text"><strong>AUMID + Windows Shell Icon</strong><span>AUMID registered in HKLM/HKCU via <code>reg.exe</code>. PowerShell fixes AUMID in Desktop/Start Menu <code>.lnk</code> via IPropertyStore COM. WM_SETICON forced by native HWND to guarantee correct taskbar icon.</span></div></div>
+      </div>
+      <p class="popup-section-title">Backup System</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">💾</div><div class="popup-feature-text"><strong>Scheduled Automatic Backup</strong><span>Incremental copy of the server directory with configurable frequency (hours/days). Real-time progress via IPC to UI. ISO timestamp in filename for organization.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🗜️</div><div class="popup-feature-text"><strong>ZIP Compression via tar.exe</strong><span>Compression option uses native Windows <code>tar.exe</code> to generate <code>.zip</code>. Two-step copy: dir → tmp folder → zip. Cancels with option to keep partial files or delete.</span></div></div>
+      </div>
+      <p class="popup-section-title">Experience Extras</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">🎮</div><div class="popup-feature-text"><strong>RAM Monitor by PID</strong><span>PowerShell tracks the Java process child PID tree and sums real Private Working Set. Doesn't confuse with other <code>java.exe</code> in the system. Returns <code>usedMB</code> and <code>systemTotalMB</code>.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🧑‍💻</div><div class="popup-feature-text"><strong>Player Avatar Cache</strong><span>Automatically downloads and renders Minecraft skin face (Java via Crafatar/Minotar; Bedrock via GeyserMC API + manual texture extraction). 7-day local cache. 8× supersampling for smooth edges.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🕐</div><div class="popup-feature-text"><strong>Scheduled Commands</strong><span>Internal scheduler executes RCON commands at defined times. Supports single (once) and recurring mode. Executed via stdin directly to the server process.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔔</div><div class="popup-feature-text"><strong>Granular Native Notifications</strong><span>8 notification types (crash, restart, join, leave, backup, etc.) with granular control: in-app, native Windows and sound independently. Player avatar rendered directly in Windows notification via AUMID.</span></div></div>
+      </div>
+      <p class="popup-section-title">Tech Stack</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-purple">Electron</span>
+        <span class="popup-tech-badge popup-badge-purple">NSIS Installer</span>
+        <span class="popup-tech-badge popup-badge-gold">contextBridge / IPC</span>
+        <span class="popup-tech-badge popup-badge-gold">safeStorage (OS keychain)</span>
+        <span class="popup-tech-badge popup-badge-green">electron-updater</span>
+        <span class="popup-tech-badge popup-badge-green">GitHub Releases API</span>
+        <span class="popup-tech-badge popup-badge-blue">PowerShell (native Win32)</span>
+        <span class="popup-tech-badge popup-badge-blue">GeyserMC API</span>
+        <span class="popup-tech-badge popup-badge-gray">Windows x64</span>
+        <span class="popup-tech-badge popup-badge-gray">Node.js child_process</span>
+        <span class="popup-tech-badge popup-badge-gray">tar.exe (native ZIP)</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Two-sided hybrid self-healing.</strong> When the App is connected, the site enters "rest mode" and stops pinging the Minecraft server directly — trusting entirely on App telemetry. When the App disappears, the site takes control automatically. The <code>serverStopped: true</code> signal reaches the API <em>before</em> the heartbeat stops, ensuring immediate transition to offline mode without a state gap.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: Landing Page -->
+<div class="popup-overlay" id="popup-landing" role="dialog" aria-modal="true" aria-label="Landing Page — details">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🏠</div>
+      <span class="popup-subtitle">Artifact 04 // Landing</span>
+      <h2>Institutional Landing Page</h2>
+      <p>Satellite site focused exclusively on the distribution and download of the Desktop App. Premium design with bold display typography, hosted free on GitHub Pages with zero operational cost.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Features</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">📦</div><div class="popup-feature-text"><strong>Dynamic Download</strong><span>GitHub Releases API fetch on page load. Always shows the latest version of the NSIS installer.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">⚖️</div><div class="popup-feature-text"><strong>Privacy Policy (LGPD)</strong><span>Complete privacy page compliant with Brazil's LGPD. Details app data collection, use and retention.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🍪</div><div class="popup-feature-text"><strong>Zero Cookies</strong><span>No tracking, no analytics, no cookies. Purely informational and distribution page.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">💰</div><div class="popup-feature-text"><strong>Zero Operational Cost</strong><span>GitHub Pages hosting. Custom domain pointed via CNAME. No server, no paid CDN, no database.</span></div></div>
+      </div>
+      <p class="popup-section-title">Tech Stack</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-blue">HTML5</span>
+        <span class="popup-tech-badge popup-badge-blue">Native CSS</span>
+        <span class="popup-tech-badge popup-badge-green">GitHub Pages</span>
+        <span class="popup-tech-badge popup-badge-green">GitHub Releases API</span>
+        <span class="popup-tech-badge popup-badge-gray">CNAME + DNS</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Thoughtful distribution strategy.</strong> The App is a niche product (server admins). A landing separate from the main site avoids polluting the social platform with download links — and also isolates any privacy policy specific to the Windows app.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: Google Vision -->
+<div class="popup-overlay" id="popup-vision" role="dialog" aria-modal="true" aria-label="Google Vision SafeSearch — details">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🧠</div>
+      <span class="popup-subtitle">Engineering // AI Moderation</span>
+      <h2>Google Vision SafeSearch in 3 Layers</h2>
+      <p>Every image uploaded to the social network goes through an automated moderation pipeline before being published. Google's AI classifies adult, violence, suggestive and medical content across 5 probability levels.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Moderation Pipeline</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon" style="color:var(--accent-green)">✅</div><div class="popup-feature-text"><strong>Layer 1 — Approved</strong><span>UNLIKELY / VERY_UNLIKELY / POSSIBLE across all categories. Image published immediately to Cloudinary.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon" style="color:var(--brand-gold)">⚠️</div><div class="popup-feature-text"><strong>Layer 2 — Suspicious</strong><span>POSSIBLE (score 3) in adult, violence or racy. Image is published but enters the admin's human moderation queue.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon" style="color:var(--accent-red)">🚫</div><div class="popup-feature-text"><strong>Layer 3 — Rejected</strong><span>LIKELY or VERY_LIKELY (score ≥ 4) in adult or violence. Upload blocked before Cloudinary. Immutable log in audit_logs.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔓</div><div class="popup-feature-text"><strong>Intentional Fail-Open</strong><span>If GOOGLE_VISION_API_KEY is missing or timeout (&gt;10s), the image passes without moderation. Platform never gets locked by external API unavailability.</span></div></div>
+      </div>
+      <p class="popup-section-title">Analyzed Categories</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-blue">adult</span>
+        <span class="popup-tech-badge popup-badge-blue">violence</span>
+        <span class="popup-tech-badge popup-badge-gold">racy</span>
+        <span class="popup-tech-badge popup-badge-gray">medical</span>
+        <span class="popup-tech-badge popup-badge-purple">5 levels: VERY_UNLIKELY → VERY_LIKELY</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Queue moderation, not block moderation.</strong> The "suspicious → human queue" design is intentional: false positives don't hurt the content creator, but genuinely questionable content gets manual review. The admin has clear visibility of everything pending in the dashboard.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: TCPShield -->
+<div class="popup-overlay" id="popup-tcpshield" role="dialog" aria-modal="true" aria-label="Anti-TCPShield State Machine — details">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🛡️</div>
+      <span class="popup-subtitle">Engineering // Proxy Detection</span>
+      <h2>Anti-TCPShield State Machine</h2>
+      <p>TCPShield is an anti-DDoS proxy that intercepts status pings and returns false data ("server online") even when the real backend is offline. Four cascading heuristics solve this definitively.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">The 4 Cascading Heuristics</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">📡</div><div class="popup-feature-text"><strong>Heuristic 1 — UDP Query</strong><span>TCPShield doesn't proxy UDP. If queryFull() responds on port 25565, it's a positive confirmation of a real server. Requires enable-query=true in server.properties.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">📝</div><div class="popup-feature-text"><strong>Heuristic 2 — MOTD Comparison</strong><span>Compares returned MOTD against the configured offline MOTD (MC_OFFLINE_MOTD env var). Exact match = TCPShield responding = server offline.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🌍</div><div class="popup-feature-text"><strong>Heuristic 3 — External mcstatus.io</strong><span>Query from a different external datacenter. If both see 0 players with same MOTD, TCPShield is likely on both. Has its own ~30s cache.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">👥</div><div class="popup-feature-text"><strong>Heuristic 4 — Players Online &gt; 0</strong><span>Definitive positive proof. TCPShield's Offline MOTD always returns 0 players. If count is &gt; 0, the server is definitely running.</span></div></div>
+      </div>
+      <p class="popup-section-title">State Machine</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">❓</div><div class="popup-feature-text"><strong>State: unknown</strong><span>Initial state. Uses ping detection with TCPShield filter to determine real status.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🔴</div><div class="popup-feature-text"><strong>State: offline</strong><span>App signaled shutdown or ping confirmed real offline. After 3min without App connected, reverts to unknown automatically.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🟢</div><div class="popup-feature-text"><strong>State: online</strong><span>App signaled serverStarted or real ping responded. Immediately invalidates status cache on transition.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">⏱️</div><div class="popup-feature-text"><strong>Cache TTL 50s</strong><span>Slightly less than the dashboard polling cycle (60s). Ensures fresh data on the next poll.</span></div></div>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Specific problem, specific solution.</strong> This system exists because TCPShield evolved with an "Offline MOTD" feature that breaks latency-based detection (&lt;2ms). The layered approach ensures that even with external datacenter cache, status always reflects reality.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP: PostgreSQL Triggers -->
+<div class="popup-overlay" id="popup-triggers" role="dialog" aria-modal="true" aria-label="Procedures &amp; Triggers — details">
+  <div class="popup-box">
+    <button class="popup-close js-popup-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="popup-hero">
+      <div class="popup-hero-icon">🗄️</div>
+      <span class="popup-subtitle">Engineering // Advanced PostgreSQL</span>
+      <h2>Native Procedures &amp; Triggers</h2>
+      <p>The social feed's personalization doesn't happen in Node.js — it happens inside the database. PL/pgSQL triggers fire automatically on every interaction and maintain hashtag affinity scores in real time.</p>
+    </div>
+    <div class="popup-body">
+      <p class="popup-section-title">Affinity System</p>
+      <div class="popup-features-grid">
+        <div class="popup-feature-item"><div class="popup-feature-icon">❤️</div><div class="popup-feature-text"><strong>Trigger: post_likes</strong><span>INSERT → +1.0 affinity in post tags. DELETE (unlike) → -1.0. Never drops below 0.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">💬</div><div class="popup-feature-text"><strong>Trigger: post_comments</strong><span>Comment INSERT → +2.0 (stronger signal than like). Soft-delete → -2.0. UPDATE of is_deleted monitors both directions.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">🏷️</div><div class="popup-feature-text"><strong>Hashtag Extraction</strong><span>fa_apply_tag_affinity() uses regexp_matches(content, '#([[:alnum:]_]{2,32})', 'g') to extract tags. 100% processing inside PostgreSQL.</span></div></div>
+        <div class="popup-feature-item"><div class="popup-feature-icon">📊</div><div class="popup-feature-text"><strong>Score 0 to 10 per Tag</strong><span>user_tag_affinity with NUMERIC(5,2) score, CHECK constraint ≥ 0 AND ≤ 10. UPSERT via ON CONFLICT DO UPDATE with LEAST/GREATEST.</span></div></div>
+      </div>
+      <p class="popup-section-title">Involved Schema</p>
+      <div class="popup-tech-row">
+        <span class="popup-tech-badge popup-badge-purple">user_tag_affinity</span>
+        <span class="popup-tech-badge popup-badge-purple">trg_post_likes_affinity</span>
+        <span class="popup-tech-badge popup-badge-purple">trg_post_comments_affinity</span>
+        <span class="popup-tech-badge popup-badge-blue">fa_apply_tag_affinity()</span>
+        <span class="popup-tech-badge popup-badge-blue">fa_post_likes_affinity_trigger()</span>
+        <span class="popup-tech-badge popup-badge-blue">fa_post_comments_affinity_trigger()</span>
+        <span class="popup-tech-badge popup-badge-gray">PL/pgSQL</span>
+        <span class="popup-tech-badge popup-badge-gray">regexp_matches</span>
+      </div>
+      <div class="popup-callout">
+        <i class="fa-solid fa-lightbulb"></i>
+        <p><strong>Why in the database, not Node.js?</strong> Triggers execute inside the original interaction's transaction — atomically. There's no risk of inconsistency from a Node server crash between the like INSERT and the score update. Zero additional network latency.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── POPUP LOGIC ── */
+(function() {
+  function openPopup(id) {
+    const overlay = document.getElementById(id); if (!overlay) return;
+    overlay.classList.add('active'); document.body.style.overflow = 'hidden';
+    const closeBtn = overlay.querySelector('.js-popup-close'); if (closeBtn) closeBtn.focus();
+  }
+  function closePopup(overlay) { overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  function closeAll() { document.querySelectorAll('.popup-overlay.active').forEach(closePopup); }
+  document.querySelectorAll('[data-popup]').forEach(el => {
+    el.addEventListener('click', () => openPopup(el.dataset.popup));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPopup(el.dataset.popup); } });
+  });
+  document.querySelectorAll('.js-popup-close').forEach(btn => {
+    btn.addEventListener('click', () => { const o = btn.closest('.popup-overlay'); if (o) closePopup(o); });
+  });
+  document.querySelectorAll('.popup-overlay').forEach(o => {
+    o.addEventListener('click', e => { if (e.target === o) closePopup(o); });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ogabriels.com/#gabriel-silva",
+      "name": "Gabriel Silva",
+      "alternateName": ["Gabriel Silva Dias Moreira", "Gabriel Moreira"],
+      "url": "https://ogabriels.com/",
+      "jobTitle": "Creative Technologist",
+      "knowsAbout": ["Full Stack Development","Node.js","PostgreSQL","Electron","REST API","AI Moderation","Google Vision"]
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://ogabriels.com/en/forca-aliada#case",
+      "headline": "Força Aliada — Full Stack Ecosystem in Production: REST API, AI Social Network and Desktop App",
+      "description": "Complete case study of the Força Aliada ecosystem: Node.js + PostgreSQL API with 138+ endpoints, social network with Google Vision SafeSearch moderation, Electron Windows desktop app with OTA auto-updater, and institutional website — in continuous production since 2021.",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ogabriels.com/en/forca-aliada#primaryimage",
+        "url": "https://ogabriels.com/assets/img/forca-aliada-logo.webp"
+      },
+      "datePublished": "2021-01-01T00:00:00-03:00",
+      "dateModified": "2026-06-03T00:00:00-03:00",
+      "inLanguage": "en",
+      "author": { "@id": "https://ogabriels.com/#gabriel-silva" },
+      "publisher": { "@id": "https://ogabriels.com/#gabriel-silva" },
+      "proficiencyLevel": "Expert",
+      "keywords": ["Full Stack Development","Node.js","Express","PostgreSQL","Electron","JWT","REST API","Google Vision SafeSearch","Minecraft","Gabriel Silva","Case Study","Social Network","Microsoft OAuth","Software Engineering","AI Moderation","Homelab"],
+      "mainEntity": { "@id": "https://ogabriels.com/en/forca-aliada#ecosystem" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ogabriels.com/en/forca-aliada#ecosystem",
+      "name": "Força Aliada — Digital Ecosystem",
+      "url": "https://forcaaliada.ogabriels.com",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Web, Windows",
+      "description": "Digital ecosystem in production: social network with AI moderation, Node.js + PostgreSQL REST API with 138+ endpoints, Windows desktop app with OTA auto-updater and institutional website. Active since 2021.",
+      "author": { "@id": "https://ogabriels.com/#gabriel-silva" },
+      "screenshot": "https://ogabriels.com/assets/img/forca-aliada-logo.webp",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ogabriels.com/en/forca-aliada",
+      "url": "https://ogabriels.com/en/forca-aliada",
+      "name": "Força Aliada — Full Stack Ecosystem | Gabriel Silva Case Study",
+      "isPartOf": { "@id": "https://ogabriels.com/en/#website" },
+      "about": { "@id": "https://ogabriels.com/en/forca-aliada#case" },
+      "mainEntity": { "@id": "https://ogabriels.com/en/forca-aliada#case" },
+      "breadcrumb": { "@id": "https://ogabriels.com/en/forca-aliada#breadcrumb" },
+      "primaryImageOfPage": { "@id": "https://ogabriels.com/en/forca-aliada#primaryimage" },
+      "inLanguage": "en",
+      "dateModified": "2026-06-03T00:00:00-03:00"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ogabriels.com/en/forca-aliada#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/en/" },
+        { "@type": "ListItem", "position": 2, "name": "Força Aliada", "item": "https://ogabriels.com/en/forca-aliada" }
+      ]
+    }
+  ]
+}
+</script>
+
+<footer class="site-footer" role="contentinfo" aria-label="Site footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="footer-dot" aria-hidden="true"></span>
+      <span class="footer-name">Gabriel Silva</span>
+      <span class="footer-copy">© 2026</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html">Portfolio</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="../sitemap.xml" class="footer-link-sitemap" type="application/xml">Sitemap</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
