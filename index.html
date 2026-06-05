@@ -608,9 +608,25 @@
     .thumb-infra-drow .ok { color:rgba(16,185,129,.85) }
     .thumb-infra-drow .addr { color:rgba(16,185,129,.58) }
     .thumb-infra-drow .badge { padding:1px 5px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.15);border-radius:3px;font-size:.46rem;color:rgba(16,185,129,.65);margin-left:auto }
+
+    /* ════ PAGE TRANSITION OVERLAY ══════════════════════════════════════ */
+    #page-transition-out {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #page-transition-out.fade-out-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body>
+  <div id="page-transition-out" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
   <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de Navegação" aria-hidden="true" inert>
@@ -1401,5 +1417,48 @@
   ]
 }
   </script>
+
+<script>
+/* ── PAGE TRANSITION (fade-to-black apenas ao navegar, não ao carregar/atualizar) ── */
+(function() {
+  const overlay = document.getElementById('page-transition-out');
+  if (!overlay) return;
+
+  const navType = performance?.getEntriesByType?.('navigation')?.[0]?.type;
+  const isDirectLoad = !navType || navType === 'reload' || navType === 'back_forward';
+
+  if (isDirectLoad) {
+    overlay.style.transition = 'none';
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+  }
+
+  document.addEventListener('click', function(e) {
+    const anchor = e.target.closest('a[href]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (!href) return;
+    if (
+      anchor.target === '_blank' ||
+      anchor.hasAttribute('download') ||
+      href.startsWith('#') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('javascript:') ||
+      (href.startsWith('http') && !href.includes(location.hostname))
+    ) return;
+
+    e.preventDefault();
+    const destination = href;
+
+    overlay.style.transition = '';
+    overlay.classList.add('fade-out-active');
+
+    setTimeout(function() {
+      window.location.href = destination;
+    }, 400);
+  });
+})();
+</script>
 </body>
 </html>
