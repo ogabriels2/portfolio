@@ -245,6 +245,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   filter: blur(28px);
   animation: orbPulse 4s ease-in-out infinite;
   z-index: 0;
+  will-change: transform, opacity;
 }
 @keyframes orbPulse {
   0%, 100% { transform: scale(1);   opacity: 0.9; }
@@ -271,6 +272,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   animation: raysRotate 30s linear infinite;
   z-index: 1;
   filter: blur(4px);
+  will-change: transform;
 }
 @keyframes raysRotate {
   to { transform: rotate(360deg); }
@@ -285,6 +287,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   border: 1px solid rgba(212,175,55,0.12);
   animation: ringRotateCW 20s linear infinite;
   z-index: 2;
+  will-change: transform;
 }
 /* Marcadores nos eixos do anel externo */
 .logo-ring-outer::before,
@@ -315,6 +318,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   border: 1px dashed rgba(212,175,55,0.07);
   animation: ringRotateCCW 14s linear infinite;
   z-index: 2;
+  will-change: transform;
 }
 @keyframes ringRotateCCW { to { transform: rotate(-360deg); } }
 
@@ -398,6 +402,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
     drop-shadow(0 0  50px rgba(212,175,55,0.12))
     drop-shadow(0 20px 40px rgba(0,0,0,0.7));
   transition: filter 0.4s ease;
+  will-change: transform, filter;
 }
 .hero-visual:hover .hero-logo-img {
   filter:
@@ -640,7 +645,7 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   width: 0%;
   height: 2px;
   background: linear-gradient(90deg, var(--brand-gold), var(--brand-gold-soft));
-  z-index: 3000;
+  z-index: 2400; /* Fica abaixo dos 2500 do botão do menu e 3000 da overlay */
   transition: width 0.05s linear;
   box-shadow: 0 0 8px rgba(212,175,55,0.6);
   pointer-events: none;
@@ -886,12 +891,24 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
   position: absolute;
   top: 16px;
   right: 16px;
-  font-size: 0.75rem;
+  font-size: 1rem;
   color: var(--ink-dim);
   opacity: 0;
-  transition: opacity 0.2s, color 0.2s;
+  transition: opacity 0.2s, color 0.2s, transform 0.2s;
 }
-.popup-open-btn:hover::after { opacity: 1; color: var(--brand-gold); }
+.popup-open-btn:hover::after,
+.popup-open-btn:focus-visible::after {
+  opacity: 1;
+  color: var(--brand-gold);
+  transform: translate(2px, -2px);
+}
+
+/* Força a setinha a aparecer no mobile para o usuário saber que é clicável */
+@media (max-width: 968px) {
+  .popup-open-btn::after {
+    opacity: 0.5;
+  }
+}
 
 /* ════ SITE FOOTER ══════════════════════════════════════════════════════════ */
 .site-footer {
@@ -983,8 +1000,8 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
     <div class="mobile-nav-container">
       <div class="lang-switcher-container" id="mobileLangSwitcher" role="button" tabindex="0" aria-label="Mudar idioma" style="margin-bottom:20px">
         <div class="gliding-pill"></div>
-        <span class="lang-item active" data-lang="pt"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
-        <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
+        <span class="lang-item active" data-lang="pt" data-href="forca-aliada.html"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
+        <span class="lang-item" data-lang="en" data-href="en/forca-aliada.html"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
       </div>
       <div class="mobile-nav-group">
         <a href="sobre.html" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
@@ -1054,8 +1071,8 @@ main { margin-left: var(--sidebar-width); flex: 1; display: flex; flex-direction
       </div>
       <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Mudar idioma">
         <div class="gliding-pill"></div>
-        <span class="lang-item active" data-lang="pt"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
-        <span class="lang-item" data-lang="en"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
+        <span class="lang-item active" data-lang="pt" data-href="forca-aliada.html"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
+        <span class="lang-item" data-lang="en" data-href="en/forca-aliada.html"><svg class="lang-flag" viewBox="0 0 640 480"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
       </div>
       <a href="contato.html" class="sidebar-cta">Fale Comigo</a>
     </nav>
