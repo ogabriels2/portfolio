@@ -800,7 +800,7 @@
                 <div class="country-select-wrapper">
                     <div class="country-btn" id="countryBtn">
                       <i class="fa-solid fa-earth-americas" id="globalIcon"></i>
-                      <img loading="lazy" src="" class="flag-img" id="currentFlag" style="display:none;">
+                      <img loading="lazy" class="flag-img" id="currentFlag" alt="" aria-hidden="true" style="display:none;">
                       <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem; color: #ccc;"></i>
                     </div>
                     <div class="country-dropdown" id="countryDropdown">
@@ -1195,7 +1195,7 @@
     function createOption(c, isSelected = false, delay = 0) {
         const div = document.createElement('div'); div.className = 'country-option';
         if(isSelected) div.style.background = "rgba(0,113,227,0.05)"; div.style.animationDelay = `${delay}s`;
-        div.innerHTML = `<div style="display:flex; align-items:center; gap:10px;"><img loading="lazy" src="https://flagcdn.com/w20/${c.iso}.png" style="width:20px; border-radius:2px;"><span>${c.name}</span></div><span class="code">${c.code}</span>`;
+        div.innerHTML = `<div style="display:flex; align-items:center; gap:10px;"><img loading="lazy" src="https://flagcdn.com/w20/${c.iso}.png" alt="" aria-hidden="true" style="width:20px; border-radius:2px;"><span>${c.name}</span></div><span class="code">${c.code}</span>`;
         div.addEventListener('click', () => { selectCountry(c); }); listScroll.appendChild(div);
     }
 
@@ -1280,9 +1280,8 @@
         if (hasError) return;
 
         submitBtn.classList.add('loading'); submitBtn.disabled = true;
-        grecaptcha.ready(function() {
-            grecaptcha.execute(SITE_KEY, {action: 'submit'}).then(async function(token) {
-                const formData = new FormData(form); formData.append('g-recaptcha-response', token);
+        const submitForm = async (token = '') => {
+                const formData = new FormData(form); if (token) formData.append('g-recaptcha-response', token);
                 try {
                     const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
                     if (response.ok) {
@@ -1292,8 +1291,12 @@
                         setTimeout(() => { submitBtn.classList.remove('success'); submitBtn.querySelector('.btn-text').style.display = 'inline'; submitBtn.disabled = false; progressBar.style.transition = 'none'; progressBar.style.width = '0'; }, 6000);
                     } else { throw new Error(); }
                 } catch (error) { alert("Erro no envio. Tente novamente."); submitBtn.classList.remove('loading'); submitBtn.disabled = false; }
-            });
-        });
+        };
+        if (window.grecaptcha?.ready && window.grecaptcha?.execute) {
+            grecaptcha.ready(() => grecaptcha.execute(SITE_KEY, {action: 'submit'}).then(submitForm).catch(() => submitForm()));
+        } else {
+            submitForm();
+        }
     });
   </script>
 
