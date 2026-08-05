@@ -270,6 +270,11 @@
         overflow: hidden; background-color: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.25); aspect-ratio: 16/9;
         user-select: none; outline: none; -webkit-tap-highlight-color: transparent;
     }
+    .video-container.unavailable video { opacity: 0.35; }
+    .video-container.unavailable .center-controls,
+    .video-container.unavailable .controls-wrapper,
+    .video-container.unavailable .volume-feedback { display: none; }
+    .video-fallback { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); color: #fff; text-align: center; font-weight: 600; z-index: 2; }
     video::cue { background-color: rgba(0, 0, 0, 0.75) !important; color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.5); line-height: 1.35; border-radius: 8px; padding-left: 14px; padding-right: 14px; }
     .video-container video::-webkit-media-text-track-display { transform: translateY(-20px); transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important; text-align: center !important; }
     .video-container:not(.user-inactive) video::-webkit-media-text-track-display, .video-container.paused video::-webkit-media-text-track-display { transform: translateY(-80px); }
@@ -850,11 +855,12 @@
           <p>Para o Projeto Integrador da <a href="https://univesp.br/" target="_blank" rel="noopener noreferrer" class="text-link">UNIVESP</a>, o desafio da edição foi a <strong>acessibilidade da informação</strong>. O vídeo precisava traduzir conceitos complexos de Inteligência Artificial para um público leigo. O tom da edição é intencionalmente didático, limpo e direto.</p>
           <p>A montagem foca em destacar as etapas do <strong>Design Thinking</strong>, transformando um relatório técnico em uma história visual sobre solução de problemas reais, com cortes precisos e suporte visual para o texto narrado.</p>
         </div>
-        <div class="video-container paused" id="player-univesp">
-          <video src="assets/video/detector-fraudes-ia.mp4" poster="assets/img/detector-fraudes-ia-escuro.webp" preload="metadata">
+        <div class="video-container paused unavailable" id="player-univesp">
+          <video poster="assets/img/detector-fraudes-ia-escuro.webp" preload="metadata">
             <track kind="subtitles" label="Português" srclang="pt" src="assets/video/detector-fraudes-ia-pt.vtt">
             <track kind="subtitles" label="English" srclang="en" src="assets/video/detector-fraudes-ia-en.vtt">
           </video>
+          <p class="video-fallback">Este vídeo está temporariamente indisponível.</p>
           <div class="center-controls">
             <div class="center-btn skip-btn" data-skip="-10">
               <i class="fa-solid fa-rotate-left"></i>
@@ -1204,7 +1210,7 @@
           cRect = container.getBoundingClientRect();
           pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
           sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
-          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
           ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
           ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
           cancelAnimationFrame(afId); loop();
@@ -1244,7 +1250,7 @@
           if (tgt === sel) return;
           isAuto = true; sel = tgt;
           cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
-          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
           ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
           ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
           pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
@@ -1723,7 +1729,7 @@
       "thumbnailUrl": "https://ogabriels.com/assets/img/detector-fraudes-ia-escuro.webp",
       "uploadDate": "2024-06-15",
       "duration": "PT6M13S",
-      "contentUrl": "https://ogabriels.com/assets/video/detector-fraudes-ia.mp4",
+      "thumbnailUrl": "https://ogabriels.com/assets/img/detector-fraudes-ia-escuro.webp",
       "author": {
         "@id": "https://ogabriels.com/#gabriel-silva"
       }

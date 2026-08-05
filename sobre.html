@@ -992,7 +992,7 @@
           cRect = container.getBoundingClientRect();
           pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
           sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
-          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
           ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
           ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
           cancelAnimationFrame(afId); loop();
@@ -1032,7 +1032,7 @@
           if (tgt === sel) return;
           isAuto = true; sel = tgt;
           cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
-          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
           ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
           ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
           pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';

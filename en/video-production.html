@@ -202,6 +202,11 @@
 
     /* Premium Video Player v8.0 */
     .video-container { width: 100%; max-width: 100%; position: relative; border-radius: var(--radius-lg); overflow: hidden; background-color: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.25); aspect-ratio: 16/9; user-select: none; outline: none; -webkit-tap-highlight-color: transparent; }
+    .video-container.unavailable video { opacity: 0.35; }
+    .video-container.unavailable .center-controls,
+    .video-container.unavailable .controls-wrapper,
+    .video-container.unavailable .volume-feedback { display: none; }
+    .video-fallback { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); color: #fff; text-align: center; font-weight: 600; z-index: 2; }
     video::cue { background-color: rgba(0, 0, 0, 0.75) !important; color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.5); line-height: 1.35; border-radius: 8px; padding-left: 14px; padding-right: 14px; }
     .video-container video::-webkit-media-text-track-display { transform: translateY(-20px); transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important; text-align: center !important; }
     .video-container:not(.user-inactive) video::-webkit-media-text-track-display, .video-container.paused video::-webkit-media-text-track-display { transform: translateY(-80px); }
@@ -374,8 +379,8 @@
       <div class="mobile-nav-container">
         <div class="lang-switcher-container" id="mobileLangSwitcher" role="button" tabindex="0" aria-label="Switch language" style="margin-bottom:20px;background:rgba(0,0,0,0.05);">
           <div class="gliding-pill"></div>
-          <span class="lang-item" data-lang="pt" data-href="../videos"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
-          <span class="lang-item active" data-lang="en" data-href="video-production"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
+          <span class="lang-item" data-lang="pt" data-href="../videos.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
+          <span class="lang-item active" data-lang="en" data-href="video-production.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
         </div>
         <div class="mobile-nav-group">
           <a href="index.html" class="mobile-link-main js-menu-toggle">About</a>
@@ -446,8 +451,8 @@
         </div>
         <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Switch language">
           <div class="gliding-pill"></div>
-          <span class="lang-item" data-lang="pt" data-href="../videos"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
-          <span class="lang-item active" data-lang="en" data-href="video-production"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
+          <span class="lang-item" data-lang="pt" data-href="../videos.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/></svg> PT</span>
+          <span class="lang-item active" data-lang="en" data-href="video-production.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/></svg> EN</span>
         </div>
         <a href="contact.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in Touch</a>
       </nav>
@@ -565,11 +570,12 @@
           <p>The editing focuses on highlighting the stages of <strong>Design Thinking</strong>, transforming a technical report into a visual story about solving real problems, with precise cuts and visual support for the narrated text.</p>
         </div>
 
-        <div class="video-container paused" id="player-univesp">
-          <video src="../assets/video/detector-fraudes-ia.mp4" poster="../assets/img/detector-fraudes-ia-escuro.webp" preload="metadata">
+        <div class="video-container paused unavailable" id="player-univesp">
+          <video poster="../assets/img/detector-fraudes-ia-escuro.webp" preload="metadata">
             <track kind="subtitles" label="Português" srclang="pt" src="../assets/video/detector-fraudes-ia-pt.vtt">
             <track kind="subtitles" label="English" srclang="en" src="../assets/video/detector-fraudes-ia-en.vtt">
           </video>
+          <p class="video-fallback">This video is temporarily unavailable.</p>
           <div class="center-controls">
             <div class="center-btn skip-btn" data-skip="-10"><i class="fa-solid fa-rotate-left"></i><div class="skip-text-popup">-10</div></div>
             <div class="center-btn main-play"><i class="fa-solid fa-play"></i></div>
@@ -883,7 +889,7 @@
           cRect = container.getBoundingClientRect();
           pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
           sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
-          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
           ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
           ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
           cancelAnimationFrame(afId); loop();
@@ -923,7 +929,7 @@
           if (tgt === sel) return;
           isAuto = true; sel = tgt;
           cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
-          const m = new WebKitCSSMatrix(getComputedStyle(pill).transform);
+          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
           ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
           ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
           pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
@@ -1164,7 +1170,7 @@
         "thumbnailUrl": "https://ogabriels.com/assets/img/detector-fraudes-ia-escuro.webp",
         "uploadDate": "2024-06-15",
         "duration": "PT6M13S",
-        "contentUrl": "https://ogabriels.com/assets/video/detector-fraudes-ia.mp4",
+        "thumbnailUrl": "https://ogabriels.com/assets/img/detector-fraudes-ia-escuro.webp",
         "author": { "@id": "https://ogabriels.com/#gabriel-silva" }
       },
       {
