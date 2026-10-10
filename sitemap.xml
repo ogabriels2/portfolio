@@ -142,4 +142,46 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/videos"/>
   </url>
 
+  <url>
+    <loc>https://ogabriels.com/busca-preco</loc>
+    <lastmod>2026-10-10</lastmod><changefreq>yearly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/busca-preco"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/price-finder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/busca-preco"/>
+  </url>
+  <url>
+    <loc>https://ogabriels.com/en/price-finder</loc>
+    <lastmod>2026-10-10</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/busca-preco"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/price-finder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/busca-preco"/>
+  </url>
+  <url>
+    <loc>https://ogabriels.com/hyrochat</loc>
+    <lastmod>2026-10-10</lastmod><changefreq>yearly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/hyrochat"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/hyrochat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/hyrochat"/>
+  </url>
+  <url>
+    <loc>https://ogabriels.com/en/hyrochat</loc>
+    <lastmod>2026-10-10</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/hyrochat"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/hyrochat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/hyrochat"/>
+  </url>
+  <url>
+    <loc>https://ogabriels.com/miguel-downloader</loc>
+    <lastmod>2026-10-10</lastmod><changefreq>yearly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/miguel-downloader"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/miguel-downloader"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/miguel-downloader"/>
+  </url>
+  <url>
+    <loc>https://ogabriels.com/en/miguel-downloader</loc>
+    <lastmod>2026-10-10</lastmod><changefreq>yearly</changefreq><priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/miguel-downloader"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogabriels.com/en/miguel-downloader"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogabriels.com/miguel-downloader"/>
+  </url>
 </urlset>
