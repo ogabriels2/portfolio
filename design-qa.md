@@ -60,4 +60,16 @@ Real contact delivery was not exercised to avoid sending unsolicited test mail. 
 - [x] Verify responsive layouts and primary keyboard interactions.
 - [x] Check public PDFs, local references, scripts and metadata.
 
+## Follow-up: restore the original navigation details
+
+The user requested the old menu icons and language selector. Source assets were read directly from commit `672700392ce58105b2b6217ada57b7d85595a46b`. The original person, return arrow, chat and social SVGs are reused; WhatsApp is restored with the public professional contact. The original Brazil/US flags are copied as SVG assets. No new icon drawings substitute those originals.
+
+Source evidence: `menu-original-detalhe.png`; revised evidence: `menu-restaurado-detalhe.png`, both in the report folder named above. Both were opened together in one comparison input at 280 × 712 pixels, 1:1, without resampling. The desktop browser viewport was 1280 × 716 CSS pixels; the screenshot's drawable width was 1272 pixels. The focused source crop removes only four bottom pixels to match the revised capture. The full revised view is `menu-restaurado-local.png`. The type sizes, navigation groups and 44-pixel interaction targets from the accepted redesign remain intentional; the restored flags, capsule, shadow, person and chat marks visibly match the original visual vocabulary.
+
+The capsule again has the original enlarged hover and elastic return. An optional Pointer Events enhancement adds horizontal drag while preserving native links, vertical touch scrolling and reduced-motion preferences. Clicks are not delayed; each language remains a real anchor, and the current page determines the resting pill position, including hidden mobile menus. The old single-button toggling and global touch interception were not reinstated.
+
+Browser checks confirmed desktop PT→EN with Enter and EN→PT with click; mobile language switching preserves the selected case route. The English pill sits under EN when the mobile menu opens. Escape closes the menu and restores focus to the trigger. Internal pages display the original return icon. Light/dark and 320-pixel mobile states were inspected without horizontal overflow. Eight isolated gesture/native-link scenarios passed, including cancellation and reduced motion. Physical touch/drag was not exercised through the browser control surface; this remains a test limitation, not a claim of on-device gesture validation.
+
+Comparison history: **[P2, fixed]** the first mobile capture showed icons touching their text. A 10-pixel flex gap fixes both main navigation and contact. Final capture `menu-restaurado-mobile-final.png` was opened and inspected after the correction. No actionable P0/P1/P2 findings remain. Final static verification covers 32 pages, 2,100 local references and 53 scripts with zero errors/warnings.
+
 final result: passed

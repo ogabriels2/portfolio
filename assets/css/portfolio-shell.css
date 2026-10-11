@@ -125,6 +125,32 @@ body[data-project] aside .copyright{color:#858d97}
 .mobile-menu-overlay .lang-item.active { color: #18212b; }
 .mobile-menu-overlay .mobile-social-btn { color: #414952; }
 
+/* The original navigation marks and tactile language capsule. */
+.nav-link svg,.sidebar-cta svg,.mobile-link-main svg,.mobile-cta svg{width:18px;height:18px;flex:0 0 18px}
+.mobile-menu-overlay .mobile-link-main,.mobile-menu-overlay .mobile-cta{gap:10px}
+.social-icon svg{width:16px;height:16px;flex:none}
+.portfolio-return-link svg{transition:transform .3s}
+.portfolio-return-link:hover svg{transform:translateX(-4px)}
+.sidebar-cta svg,.mobile-cta svg{transition:transform .3s}
+.sidebar-cta:hover svg,.mobile-cta:hover svg{transform:rotate(-8deg) scale(1.08)}
+.mobile-menu-btn .hb-line{transform-origin:12px 12px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.mobile-menu-btn.is-open .hb-line1{transform:translateY(4px) rotate(45deg)}
+.mobile-menu-btn.is-open .hb-line2{transform:translateY(-4px) rotate(-45deg)}
+.lang-switcher-container{--pill-x:0%;touch-action:pan-y;overflow:visible;cursor:default;padding:4px;width:max-content;user-select:none}
+.lang-switcher-container[data-active="en"]{--pill-x:100%}
+.lang-switcher-container .lang-item{width:75px;min-width:75px;padding:8px 10px;cursor:pointer;transition:color .3s,transform .4s cubic-bezier(.2,.8,.2,1.2)}
+.lang-switcher-container .lang-item.active{cursor:grab}
+.lang-switcher-container .gliding-pill{pointer-events:none;inset:4px auto 4px 4px;width:calc(50% - 4px);transform:translateX(var(--pill-x)) scale(1.05);transform-origin:center;transition:transform .45s cubic-bezier(.2,.8,.2,1.2),background-color .3s,box-shadow .3s;box-shadow:0 2px 6px rgb(0 0 0 / 10%),0 1px 2px rgb(0 0 0 / 5%)}
+.lang-switcher-container .lang-flag{border-radius:3px;pointer-events:none;-webkit-user-drag:none}
+.lang-switcher-container.is-dragging,.lang-switcher-container.is-dragging .lang-item{cursor:grabbing}
+.lang-switcher-container.is-dragging .gliding-pill{transition:none}
+.mobile-menu-overlay .lang-switcher-container{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.02)}
+.mobile-menu-overlay .gliding-pill{background:#fff;border-color:rgba(0,0,0,.12)}
+@media(hover:hover){
+  .lang-switcher-container:not(.is-dragging):hover .gliding-pill{transform:translateX(var(--pill-x)) scale(1.15)}
+  .lang-switcher-container:not(.is-dragging):hover .lang-item.active{transform:scale(1.05)}
+}
+
 /* Dialog close controls remain visible during scrolling and keyboard use. */
 .popup-overlay, .info-modal, .lightbox-overlay { overscroll-behavior: contain; }
 .popup-close, .js-popup-close, .modal-close, .lb-close, .lb-prev, .lb-next {
