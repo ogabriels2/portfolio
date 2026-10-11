@@ -14,23 +14,18 @@
     gtag('config', 'G-L8XF4TVBSL');
   </script>
 
-  <script>
-    var userLang = navigator.language || navigator.userLanguage; 
-    if (userLang.startsWith('en') && !window.location.pathname.includes('/en/') && !localStorage.getItem('preferredLang')) {
-        // window.location.href = '/en/server-infrastructure.html'; 
-    }
-  </script>
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbfbfd">
-  
-  <title>Server Infra & Dashboard | Case Study — Gabriel Silva</title>
-  <meta name="description" content="Case Study: Infraestrutura self-hosted com tunelamento, proteção DDoS via Cloudflare e dashboard de monitoramento em tempo real via API.">
+
+  <title>Infraestrutura e operação | Case Study — Gabriel Moreira</title>
+  <meta name="description" content="Infraestrutura da comunidade Força Aliada: DNS, acesso por Playit.gg, servidor próprio e consulta de status por API.">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="Gabriel Silva">
-  <meta name="keywords" content="Infraestrutura Self-Hosted, Cloudflare Tunnel, Homelab, Dashboard Monitoramento, Self Hosting, Servidor Linux, Gabriel Silva, Full Stack Developer">
-  
+  <meta name="author" content="Gabriel Moreira">
+  <meta name="keywords" content="Infraestrutura Self-Hosted, Cloudflare DNS, Playit.gg, Homelab, Dashboard Monitoramento, Self Hosting, Servidor Linux, Gabriel Moreira, Full Stack Developer">
+
   <link rel="canonical" href="https://ogabriels.com/infra">
   <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/infra" />
   <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/server-infrastructure" />
@@ -41,22 +36,20 @@
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
 
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:site_name" content="Gabriel Silva — Portfólio">
+  <meta property="og:site_name" content="Gabriel Moreira — Portfólio">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ogabriels.com/infra">
-  <meta property="og:title" content="Server Infra & Dashboard | Gabriel Silva">
-  <meta property="og:description" content="Case Study técnico sobre Self-Hosting, Cloudflare Tunnel e Monitoramento via API.">
-  <meta property="og:image" content="https://ogabriels.com/assets/img/infra-dashboard-og.webp">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Server Infra & Dashboard — Case Study por Gabriel Silva">
+  <meta property="og:title" content="Infraestrutura e operação | Gabriel Moreira">
+  <meta property="og:description" content="Infraestrutura da comunidade Força Aliada: DNS, acesso por Playit.gg, servidor próprio e consulta de status por API.">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/forca-aliada-logo.webp">
+  <meta property="og:image:alt" content="Infraestrutura e operação — Case Study por Gabriel Moreira">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://ogabriels.com/infra">
-  <meta name="twitter:title" content="Server Infra & Dashboard | Gabriel Silva">
-  <meta name="twitter:description" content="Case Study técnico sobre Self-Hosting, Cloudflare Tunnel e Monitoramento via API.">
-  <meta name="twitter:image" content="https://ogabriels.com/assets/img/infra-dashboard-og.webp">
-  <meta name="twitter:image:alt" content="Server Infra & Dashboard — Case Study por Gabriel Silva">
+  <meta name="twitter:title" content="Infraestrutura e operação | Gabriel Moreira">
+  <meta name="twitter:description" content="Infraestrutura da comunidade Força Aliada: DNS, acesso por Playit.gg, servidor próprio e consulta de status por API.">
+  <meta name="twitter:image" content="https://ogabriels.com/assets/img/forca-aliada-logo.webp">
+  <meta name="twitter:image:alt" content="Infraestrutura e operação — Case Study por Gabriel Moreira">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -67,19 +60,19 @@
       --sidebar-width: 280px;
       --max-width: 1000px;
       --card-radius: 24px;
-      
+
       --bg-body: #F5F5F7;
       --bg-sidebar: rgba(255, 255, 255, 0.75);
       --bg-card: #FFFFFF;
       --text-primary: #1D1D1F;
       --text-secondary: #86868B;
-      --accent: #0044CC; 
+      --accent: #0044CC;
       --accent-hover: #003399;
-      
+
       --success: #22c55e;
       --error: #ef4444;
       --warning: #f59e0b;
-      
+
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
       --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -138,7 +131,7 @@
     .profile-container { text-align: center; margin-bottom: 30px; flex-shrink: 0; transition: margin 0.3s ease; }
     .sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
     .profile-link { display: block; transition: transform 0.2s; }
-    .profile-link:active { transform: scale(0.98); } 
+    .profile-link:active { transform: scale(0.98); }
     .profile-pic-wrapper {
       width: 110px; height: 110px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden;
       box-shadow: var(--shadow-md);
@@ -147,7 +140,7 @@
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
-    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); } 
+    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); }
     .profile-pic { width: 100%; height: 100%; object-fit: cover; image-rendering: -webkit-optimize-contrast; }
     .profile-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; color: #111; transition: color 0.3s ease; }
     .profile-link:hover .profile-name { color: var(--accent); }
@@ -166,7 +159,7 @@
     .nav-link:hover { color: var(--accent); background: rgba(0, 68, 204, 0.08); transform: translateX(4px); }
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 68, 204, 0.12); transition-duration: 0.1s; }
     .nav-link.back-link i { transition: transform 0.3s; }
-    .nav-link.back-link:hover i { transform: translateX(-6px); } 
+    .nav-link.back-link:hover i { transform: translateX(-6px); }
     .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0, 68, 204, 0.05); }
 
     .lang-switcher-container {
@@ -288,15 +281,15 @@
     .btn-live { display: inline-flex; align-items: center; gap: 10px; background: var(--text-primary); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .btn-live:hover { background: var(--accent); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
     .btn-live:active { transform: translateY(1px) scale(0.97); box-shadow: none; transition-duration: 0.08s; }
-    .info-modal { position: fixed; inset: 0; z-index: 3000; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .info-modal.active { opacity: 1; pointer-events: auto; }
-    .modal-content { background: white; width: 90%; max-width: 500px; padding: 40px; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05); text-align: center; transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+
+
     .info-modal.active .modal-content { transform: scale(1); }
-    .modal-icon { width: 60px; height: 60px; background: rgba(0, 68, 204, 0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 20px; }
-    .modal-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
-    .modal-desc { font-size: 1rem; color: #555; line-height: 1.6; margin-bottom: 30px; }
-    .modal-close { background: var(--text-primary); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-    .modal-close:hover { background: var(--accent); transform: translateY(-2px); }
+
+
+
+
+
     .contact-banner { width: 100%; max-width: 880px; background: #1D1D1F; border-radius: 24px; padding: 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.2); color: white; margin: 0 auto 40px; box-sizing: border-box; }
     .contact-text-group { flex: 1; padding-right: 20px; }
     .contact-text h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; color: white; letter-spacing: -0.02em; }
@@ -333,12 +326,12 @@
     @media (max-width: 968px) {
       body { flex-direction: column; }
       .project-title { font-size: 2rem; }
-      aside { 
-          width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px; 
-          border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); 
-          display: flex; flex-direction: row; justify-content: space-between; align-items: center; 
-          z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); 
-          overflow-y: hidden; 
+      aside {
+          width: 100%; height: 70px; position: fixed; top: 0; left: 0; padding: 0 24px;
+          border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05);
+          display: flex; flex-direction: row; justify-content: space-between; align-items: center;
+          z-index: 2001; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
+          overflow-y: hidden;
       }
       .sidebar-scaler {
         display: flex; flex-direction: row; align-items: center; justify-content: space-between;
@@ -380,7 +373,7 @@
       .nav-btn.next { flex-direction: row-reverse; text-align: right; }
       .nav-project-name { max-width: none; }
     }
-  
+
     /* ── v14: Sidebar & Nav improvements ── */
     .nav-group h2, .nav-group .nav-group-label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
     .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0,113,227,0.05); }
@@ -465,7 +458,7 @@
     /* ── v14: Skip Link ── */
     .skip-link { position: fixed; top: -100px; left: 20px; z-index: 4000; background: var(--accent); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; transition: top 0.3s ease; }
     .skip-link:focus { top: 20px; }
-  
+
 /* ════ SITE FOOTER ══════════════════════════════════════════════════════════ */
 .site-footer {
   margin-left: var(--sidebar-width);
@@ -545,141 +538,70 @@
   .site-footer .footer-inner { padding: 18px 0; gap: 10px; }
   .site-footer .footer-links { gap: 0; }
 }
-</style>
+
+    /* Context and authorship precede the artwork; each project's visual identity is retained. */
+    .project-hero { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:32px; align-items:center; padding:48px 60px 40px; margin:0 auto; max-width:1280px; box-sizing:border-box; }
+    .project-hero .hero-text-content { text-align:left; padding:0; width:100%; }
+    .project-hero .hero-image-container { padding:0; margin:0; width:100%; min-width:0; }
+    .case-context { margin:0 0 12px; font-size:.82rem; font-weight:600; color:var(--text-secondary,#555); line-height:1.5; }
+    .case-summary { max-width:58ch; margin:18px 0 0; font-size:1rem; line-height:1.7; color:var(--text-primary,#1d1d1f); }
+    .project-description .section-title { margin:0 0 20px; font-size:1.35rem; }
+    @media (max-width:1100px) { .project-hero { grid-template-columns:1fr; padding:40px 40px 28px; gap:28px; } .project-hero .hero-image-container { max-width:800px; } }
+    @media (max-width:600px) { .project-hero { padding:28px 24px 24px; gap:24px; } .case-summary { font-size:.98rem; } }
+
+    .flow-chart { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:16px; }
+    details.flow-step { display:block; min-width:0; padding:0; text-align:left; }
+    .flow-step::after { content:none; }
+    .flow-step:hover { transform:none; }
+    .flow-step summary { display:flex; align-items:center; gap:12px; padding:20px; cursor:pointer; list-style:none; }
+    .flow-step summary::-webkit-details-marker { display:none; }
+    .flow-step summary::after { content:'+'; margin-left:auto; font-size:1.3rem; }
+    .flow-step[open] summary::after { content:'−'; }
+    .flow-step summary:focus-visible { outline:3px solid #0e647c; outline-offset:3px; border-radius:12px; }
+    .flow-step .step-icon { flex-shrink:0; }
+    .flow-step p { margin:0; padding:0 20px 20px; line-height:1.6; color:#444; font-size:.95rem; }
+    .architecture-note,.monitor-note { font-size:.95rem; line-height:1.65; margin:0 0 24px; }
+    .monitor-note { color:#cbd5e1; }
+    .api-footer { flex-wrap:wrap; justify-content:space-between; color:#cbd5e1; }
+    .btn-refresh { min-height:44px; }
+    .metric-value { overflow-wrap:anywhere; }
+    @media(max-width:600px) { .flow-chart { grid-template-columns:1fr; } .architecture-section { padding:24px; } }
+  </style>
+<link rel="stylesheet" href="assets/css/portfolio-shell.css?v=964620bee1">
+<script src="assets/js/portfolio-shell.js?v=b4c786c99a" defer></script>
+<script src="assets/js/portfolio-motion.js?v=03e1acf788" defer></script>
 </head>
 <body>
 
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
-  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de Navegação" aria-hidden="true" inert>
-    <div class="mobile-scroll-wrapper">
-        <div class="mobile-nav-container">
-            <div class="lang-switcher-container" id="mobileLangSwitcher" role="button" tabindex="0" aria-label="Mudar idioma" style="margin-bottom:20px;background:rgba(0,0,0,0.05);">
-                <div class="gliding-pill"></div>
-                <span class="lang-item active" data-lang="pt" data-href="infra.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
-                <span class="lang-item" data-lang="en" data-href="en/server-infrastructure.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
-            </div>
-            <div class="mobile-nav-group">
-                <a href="sobre.html" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
-                <a href="/" class="mobile-link-main js-menu-toggle">Projetos</a>
-            </div>
-            <div class="mobile-projects-wrapper">
-                <div class="mobile-divider"></div>
-                <span class="mobile-label">Cases de Sucesso</span>
-                <div class="mobile-projects-list">
-                    <a href="forca-aliada.html" class="mobile-link-sub js-menu-toggle">Força Aliada</a>
-                    <a href="infra.html" class="mobile-link-sub js-menu-toggle is-active">Server Infra</a>
-                    <a href="busca-preco.html" class="mobile-link-sub js-menu-toggle">Busca Preço</a>
-                    <a href="hyrochat.html" class="mobile-link-sub js-menu-toggle">HyroChat</a>
-                    <a href="miguel-downloader.html" class="mobile-link-sub js-menu-toggle">Miguel Downloader</a>
-                    <a href="revista-utopia.html" class="mobile-link-sub js-menu-toggle">Revista Utopia</a>
-                    <a href="neoletters.html" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
-                    <a href="lo-branding.html" class="mobile-link-sub js-menu-toggle">Lô Publicidade</a>
-                    <a href="personal-branding.html" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
-                    <a href="podcast-um-minuto.html" class="mobile-link-sub js-menu-toggle">Um Minuto</a>
-                    <a href="valorada.html" class="mobile-link-sub js-menu-toggle">Valorada</a>
-                    <a href="thumbnails.html" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
-                    <a href="videos.html" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
-                </div>
-            </div>
-            <div class="mobile-footer-group">
-                <div class="mobile-socials">
-                    <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                    <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
-                    <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-                </div>
-                <a href="contato.html" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true" hidden inert><div class="mobile-scroll-wrapper"><div class="mobile-nav-container"><div class="mobile-nav-group"><div class="lang-switcher-container" data-active="pt" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item active" href="infra.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português">PT</a><a class="lang-item" href="en/server-infrastructure.html" lang="en" hreflang="en" aria-label="English">EN</a></div><a href="index.html" class="mobile-link-main">Projetos</a><a href="sobre.html" class="mobile-link-main">Sobre mim</a></div><div class="mobile-projects-wrapper"><nav class="mobile-projects-list" aria-label="Projetos"><div class="mobile-divider"></div><p class="mobile-label">Software e produto</p><a href="forca-aliada.html" class="mobile-link-sub">Força Aliada</a><a href="miguel-downloader.html" class="mobile-link-sub">Miguel Downloader</a><a href="busca-preco.html" class="mobile-link-sub">Busca Preço</a><a href="hyrochat.html" class="mobile-link-sub">HyroChat</a><a href="infra.html" class="mobile-link-sub is-active" aria-current="page">Infraestrutura FA</a><div class="mobile-divider"></div><p class="mobile-label">Design e audiovisual</p><a href="neoletters.html" class="mobile-link-sub">Neo Letters</a><a href="lo-branding.html" class="mobile-link-sub">Lô</a><a href="videos.html" class="mobile-link-sub">Audiovisual</a><a href="revista-utopia.html" class="mobile-link-sub">Revista Utopia</a><a href="personal-branding.html" class="mobile-link-sub">G | Gabriel</a><a href="podcast-um-minuto.html" class="mobile-link-sub">Um Minuto</a><a href="valorada.html" class="mobile-link-sub">Valorada</a><a href="thumbnails.html" class="mobile-link-sub">Thumbnails</a></nav></div><div class="mobile-footer-group"><a class="mobile-cta" href="contato.html">Contato</a><a class="mobile-link-sub" href="assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener">Currículo em PDF</a></div></div></div></div>
 
-  <aside>
-    <div class="sidebar-scaler">
-        <div class="profile-container">
-          <a href="/" class="profile-link">
-            <div class="profile-pic-wrapper">
-              <img src="assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="110" height="110" loading="lazy">
-            </div>
-            <div class="profile-text-group">
-              <p class="profile-name">Gabriel Silva</p>
-              <p class="profile-role">Creative Technologist</p>
-            </div>
-          </a>
-        </div>
+  <aside class="portfolio-sidebar" aria-label="Navegação do portfólio"><div class="sidebar-scaler"><div class="profile-container"><a href="index.html" class="profile-link"><div class="profile-pic-wrapper"><img src="assets/img/gabriel-perfil-220.webp" alt="" class="profile-pic" width="86" height="86"></div><p class="profile-name">Gabriel Moreira</p><p class="profile-role">Software e produto</p></a></div><nav aria-label="Navegação principal"><div class="nav-group"><ul class="nav-list"><li><a href="index.html" class="nav-link">Projetos</a></li><li><a href="sobre.html" class="nav-link">Sobre mim</a></li></ul></div><div class="nav-group portfolio-project-group"><ul class="nav-list project-scroll-container"><li class="portfolio-nav-section"><span class="nav-group-label">Software e produto</span></li><li><a href="forca-aliada.html" class="nav-link">Força Aliada</a></li><li><a href="miguel-downloader.html" class="nav-link">Miguel Downloader</a></li><li><a href="busca-preco.html" class="nav-link">Busca Preço</a></li><li><a href="hyrochat.html" class="nav-link">HyroChat</a></li><li><a href="infra.html" class="nav-link active" aria-current="page">Infraestrutura FA</a></li><li class="portfolio-nav-section"><span class="nav-group-label">Design e audiovisual</span></li><li><a href="neoletters.html" class="nav-link">Neo Letters</a></li><li><a href="lo-branding.html" class="nav-link">Lô</a></li><li><a href="videos.html" class="nav-link">Audiovisual</a></li><li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li><li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li><li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li><li><a href="valorada.html" class="nav-link">Valorada</a></li><li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li></ul></div><div class="lang-switcher-container" data-active="pt" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item active" href="infra.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português">PT</a><a class="lang-item" href="en/server-infrastructure.html" lang="en" hreflang="en" aria-label="English">EN</a></div><a href="contato.html" class="sidebar-cta">Contato <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></nav><div class="sidebar-footer"><div class="social-icons"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a><a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></div><p class="copyright">© 2026 Gabriel Moreira</p></div></div></aside><button class="mobile-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
 
-        <nav>
-          <div class="nav-group">
-            <ul class="nav-list">
-              <li><a href="/" class="nav-link back-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Voltar para Projetos</a></li>
-              <li><a href="sobre.html" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sobre mim</a></li>
-            </ul>
-          </div>
-
-          <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column;">
-            <span class="nav-group-label" aria-hidden="true">Portfólio</span>
-            <ul class="nav-list project-scroll-container">
-              <li><a href="forca-aliada.html" class="nav-link">Força Aliada</a></li>
-              <li><a href="infra.html" class="nav-link active">Server Infra &amp; Dashboard</a></li>
-              <li><a href="busca-preco.html" class="nav-link">Busca Preço</a></li>
-              <li><a href="hyrochat.html" class="nav-link">HyroChat</a></li>
-              <li><a href="miguel-downloader.html" class="nav-link">Miguel Downloader</a></li>
-              <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
-              <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
-              <li><a href="lo-branding.html" class="nav-link">Lô</a></li>
-              <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
-              <li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li>
-              <li><a href="valorada.html" class="nav-link">Valorada</a></li>
-              <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
-              <li><a href="videos.html" class="nav-link">Produção Audiovisual</a></li>
-            </ul>
-          </div>
-
-          <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Mudar idioma">
-            <div class="gliding-pill"></div>
-            <span class="lang-item active" data-lang="pt" data-href="infra.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
-            <span class="lang-item" data-lang="en" data-href="en/server-infrastructure.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
-          </div>
-
-          <a href="contato.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
-        </nav>
-
-        <div class="sidebar-footer">
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-            <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
-            <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-            <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-          </div>
-          <p class="copyright">© 2026 Gabriel Silva</p>
-        </div>
-    </div>
-    <button class="mobile-menu-btn js-menu-toggle" aria-label="Abrir Menu" aria-expanded="false" aria-controls="mobileMenu"><svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="26">
-      <line class="hb-line hb-line1" x1="4" x2="20" y1="8" y2="8"/>
-      <line class="hb-line hb-line2" x1="4" x2="20" y1="16" y2="16"/>
-    </svg></button>
-  </aside>
-
-  <main id="main-content" tabindex="-1">
+  <noscript><nav class="portfolio-noscript-nav" aria-label="Navegação sem JavaScript"><a href="index.html">Projetos</a><a href="sobre.html">Sobre mim</a><a href="contato.html">Contato</a><a href="assets/docs/gabriel-moreira-curriculo.pdf">Currículo</a></nav></noscript>
+<main id="main-content" tabindex="-1">
     <section class="project-hero">
+      <div class="hero-text-content">
+        <p class="case-context">Operação da comunidade Força Aliada · Iniciada em 2021</p>
+        <h1 class="project-title">Infraestrutura e operação</h1>
+        <p class="project-subtitle">Gestão de Redes, DNS e Monitoramento em Tempo Real</p>
+        <p class="case-summary">Configuração de DNS, acesso por túnel e monitoramento de um servidor próprio. Este recorte da Força Aliada mostra como conectar usuários e separar falhas de rede, de consulta e do próprio servidor.</p>
+      </div>
       <div class="hero-image-container">
         <div class="hero-image-wrapper-inner">
-            <img src="assets/img/forca-aliada-logo.webp" alt="Server Dashboard" class="hero-image" loading="eager">
+            <img width="768" height="768" src="assets/img/forca-aliada-logo.webp" alt="Marca da comunidade Força Aliada" class="hero-image" loading="eager">
         </div>
-      </div>
-      <div class="hero-text-content">
-        <h1 class="project-title">Server Infra & Dashboard</h1>
-        <p class="project-subtitle">Gestão de Redes, DNS e Monitoramento em Tempo Real</p>
       </div>
     </section>
 
     <div class="content-wrapper">
-      <section class="meta-grid" role="status" aria-live="polite">
+      <section class="meta-grid" aria-label="Contexto do projeto">
         <div class="meta-item"><h4>Projeto</h4><p><i class="fa-solid fa-server"></i> Self-Hosting</p></div>
         <div class="meta-item"><h4>Tecnologia</h4><p>API & Tunneling</p></div>
         <div class="meta-item">
             <h4>Status</h4>
-            <p id="live-status-text">
+            <p id="live-status-text" role="status" aria-live="polite">
                 <span class="status-pulse warning" id="status-dot"></span> Verificando...
             </p>
         </div>
@@ -687,66 +609,51 @@
       </section>
 
       <section class="project-description">
-        <p>Este projeto nasceu para a comunidade <strong>Força Aliada</strong>, ativa desde 2021. O desafio era otimizar a experiência de conexão, eliminando a dependência de VPNs e configurações complexas para o usuário final, sem comprometer segurança ou estabilidade.</p>
-        <p>Desenvolvi uma infraestrutura de <strong>self-hosting</strong> com tunelamento e proteção via Cloudflare, garantindo mitigação contra ataques DDoS, baixa latência e alta disponibilidade. Como complemento, criei um dashboard público que consome APIs em tempo real para exibir status, uptime e métricas da infraestrutura em produção.</p>
-        <div class="description-highlight">
-            <strong>Em termos simples:</strong> uma infraestrutura local protegida por nível enterprise, exibindo métricas reais em tempo real para qualquer usuário.
-        </div>
+        <h2 class="section-title">Contexto e participação</h2>
+        <p>A comunidade <strong>Força Aliada começou em 2021</strong>. Neste recorte, o problema era oferecer acesso ao servidor próprio sem exigir que cada jogador configurasse uma VPN, como o Hamachi.</p><p>Minha atuação envolve configurar domínios e DNS, integrar o acesso por túnel, acompanhar a operação e investigar falhas. O <strong>Playit.gg</strong> conecta o endereço público ao servidor local; o <strong>Cloudflare</strong> é usado no gerenciamento de DNS e nos serviços web. Esses papéis são diferentes: o proxy HTTP não é o caminho do tráfego de Minecraft.</p><p>O monitor abaixo consulta um serviço externo. Ele ajuda no diagnóstico, mas uma falha de consulta não comprova que o servidor está fora do ar. A evolução da plataforma e dos produtos de software, iniciada em novembro de 2025, está no <a href="forca-aliada.html">case da Força Aliada</a>.</p>
       </section>
 
       <section class="api-section">
         <div class="api-header">
-          <div class="api-title"><h3><i class="fa-solid fa-terminal"></i> Live Server Monitor</h3></div>
+          <div class="api-title"><h3><i class="fa-solid fa-terminal"></i> Monitor do servidor</h3></div>
           <div class="api-badge" style="background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;">API v2</div>
         </div>
+        <p class="monitor-note">Fonte: mcstatus.io. Consulta a cada 30 segundos; o resultado depende do serviço externo e do endereço do servidor.</p>
+        <noscript><p class="monitor-note">Ative JavaScript para consultar o status. A arquitetura e o contexto continuam disponíveis abaixo.</p></noscript>
         <div class="api-grid">
           <div class="api-metric">
             <span class="metric-label">Status</span>
-            <div class="metric-value" id="metric-status" style="color: #f59e0b;">...</div>
-            <div class="metric-sub">Endpoint Check</div>
+            <div class="metric-value" id="metric-status" style="color: #f59e0b;">VERIFICANDO</div>
+            <div class="metric-sub">Consulta externa</div>
           </div>
           <div class="api-metric">
-            <span class="metric-label">Players Online</span>
+            <span class="metric-label">Jogadores online</span>
             <div class="metric-value" id="metric-players">--</div>
-            <div class="metric-sub">Em tempo real</div>
+            <div class="metric-sub">Leitura da API</div>
           </div>
           <div class="api-metric">
-            <span class="metric-label">Uptime Global</span>
-            <div class="metric-value">4 Anos</div>
-            <div class="metric-sub">Desde 2021</div>
+            <span class="metric-label">Origem da comunidade</span>
+            <div class="metric-value">2021</div>
+            <div class="metric-sub">Início do servidor</div>
           </div>
         </div>
         <div class="api-footer">
-            <span id="lastUpdated">Última atualização: --</span>
+            <span id="lastUpdated">Última leitura válida: --</span>
             <button id="refreshBtn" class="btn-refresh" onclick="fetchServerStatus()"><i class="fa-solid fa-rotate"></i> Atualizar</button>
         </div>
       </section>
 
       <section class="architecture-section">
-        <h3 class="arch-title">Arquitetura da Solução</h3>
+        <h2 class="arch-title">Camadas e responsabilidades</h2>
+        <p class="architecture-note">Cada camada resolve uma parte do acesso. Consulte as <a href="https://developers.cloudflare.com/dns/proxy-status/limitations/" target="_blank" rel="noopener noreferrer">limitações do proxy Cloudflare</a> e o <a href="https://playit.gg/" target="_blank" rel="noopener noreferrer">modelo de túnel do Playit.gg</a>.</p>
         <div class="flow-chart">
-          <div class="flow-step" onclick="openModal('user')">
-            <div class="step-icon"><i class="fa-solid fa-users"></i></div>
-            <span class="step-label">Usuários</span>
-          </div>
-          <i class="fa-solid fa-arrow-right flow-arrow"></i>
-          <div class="flow-step" onclick="openModal('cloudflare')">
-            <div class="step-icon"><i class="fa-brands fa-cloudflare" style="color: #F48120;"></i></div>
-            <span class="step-label">Cloudflare DNS</span>
-          </div>
-          <i class="fa-solid fa-arrow-right flow-arrow"></i>
-          <div class="flow-step" onclick="openModal('tunnel')">
-            <div class="step-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <span class="step-label">Tunnel (Playit.gg)</span>
-          </div>
-          <i class="fa-solid fa-arrow-right flow-arrow"></i>
-          <div class="flow-step" onclick="openModal('local')">
-            <div class="step-icon"><i class="fa-solid fa-server"></i></div>
-            <span class="step-label">Localhost (Java)</span>
-          </div>
+          <details class="flow-step"><summary><span class="step-icon"><i class="fa-solid fa-users" aria-hidden="true"></i></span><span class="step-label">Acesso dos jogadores</span></summary><p>Um endereço público para conectar ao servidor, sem instalação de uma VPN pelo jogador.</p></details>
+          <details class="flow-step"><summary><span class="step-icon"><i class="fa-brands fa-cloudflare" aria-hidden="true"></i></span><span class="step-label">DNS e serviços web</span></summary><p>O DNS associa o domínio ao destino. A proteção do proxy HTTP dos serviços web não se aplica automaticamente ao tráfego TCP/UDP do jogo.</p></details>
+          <details class="flow-step"><summary><span class="step-icon"><i class="fa-solid fa-network-wired" aria-hidden="true"></i></span><span class="step-label">Túnel Playit.gg</span></summary><p>O agente encaminha as conexões do endereço público ao serviço local, sem configurar redirecionamento de portas no roteador.</p></details>
+          <details class="flow-step"><summary><span class="step-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></span><span class="step-label">Servidor próprio</span></summary><p>O runtime Java e os plugins executam o servidor local. Configuração e investigação de problemas de rede fazem parte da operação.</p></details>
         </div>
         <div class="live-demo-container">
-          <a href="https://forcaaliada.ogabriels.com" target="_blank" rel="noopener noreferrer" class="btn-live">Ver Dashboard Completo <i class="fa-solid fa-external-link-alt"></i></a>
+          <a href="https://forcaaliada.ogabriels.com" target="_blank" rel="noopener noreferrer" class="btn-live">Conhecer a plataforma atual <i class="fa-solid fa-external-link-alt"></i></a>
         </div>
       </section>
 
@@ -756,10 +663,10 @@
           <p class="section-desc">Tecnologias utilizadas para viabilizar a infraestrutura.</p>
         </div>
         <div class="stack-grid">
-          <div class="stack-item" data-tooltip="Proxy e proteção DDoS"><i class="fa-brands fa-cloudflare"></i> Cloudflare</div>
+          <div class="stack-item" data-tooltip="Domínios e DNS"><i class="fa-brands fa-cloudflare"></i> Cloudflare</div>
           <div class="stack-item" data-tooltip="Hospedagem estática"><i class="fa-brands fa-github"></i> GitHub Pages</div>
           <div class="stack-item" data-tooltip="Comunicação Front-Back"><i class="fa-solid fa-code"></i> API REST</div>
-          <div class="stack-item" data-tooltip="Exposição segura s/ Port Fwd"><i class="fa-solid fa-network-wired"></i> Tunneling</div>
+          <div class="stack-item" data-tooltip="Encaminhamento ao serviço local"><i class="fa-solid fa-network-wired"></i> Tunneling</div>
           <div class="stack-item" data-tooltip="Runtime do Servidor (PaperMC)"><i class="fa-brands fa-java"></i> Java Runtime</div>
           <div class="stack-item" data-tooltip="Lógica do Dashboard"><i class="fa-brands fa-js"></i> JavaScript</div>
         </div>
@@ -775,8 +682,8 @@
           <i class="fa-solid fa-house"></i>
         </a>
 
-        <a href="revista-utopia.html" class="nav-btn next">
-          <div><span class="nav-label">Próximo</span><span class="nav-project-name">Revista Utopia</span></div>
+        <a href="miguel-downloader.html" class="nav-btn next">
+          <div><span class="nav-label">Próximo</span><span class="nav-project-name">Miguel Downloader</span></div>
           <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
@@ -801,311 +708,7 @@
     </div>
   </main>
 
-  <script>
-    // ── v14: Shared Portfolio JS ──────────────────────────────────────────
 
-    function debounce(fn, ms) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), ms); }; }
-
-    // Input mode detection (hides focus rings for mouse/touch users)
-    (function() {
-      const b = document.body;
-      window.addEventListener('mousedown',  () => b.classList.add('using-pointer'), { passive: true });
-      window.addEventListener('touchstart', () => b.classList.add('using-pointer'), { passive: true });
-      window.addEventListener('keydown', e => { if (e.key === 'Tab') b.classList.remove('using-pointer'); }, { passive: true });
-    })();
-
-    // ── Menu ──────────────────────────────────────────────────────────────
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileMenu && !mobileMenu.classList.contains('active')) mobileMenu.setAttribute('inert', '');
-
-    let _lastFocused = null;
-
-    function getFocusables(root) {
-      return Array.from(root.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'))
-        .filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
-    }
-
-    function toggleMenu() {
-      if (!mobileMenu) return;
-      const isOpen = mobileMenu.classList.contains('active');
-      const btn  = document.querySelector('.mobile-menu-btn');
-      const aside = document.querySelector('aside');
-
-      if (!isOpen) {
-        _lastFocused = document.activeElement;
-        mobileMenu.classList.add('active');
-        mobileMenu.setAttribute('aria-hidden', 'false');
-        mobileMenu.removeAttribute('inert');
-        if (btn)   { btn.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Fechar Menu'); }
-        if (aside) aside.classList.add('menu-open-state');
-        const main = document.getElementById('main-content');
-        if (main)  { main.setAttribute('inert',''); main.setAttribute('aria-hidden','true'); }
-        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.setAttribute('inert',''); sc.setAttribute('aria-hidden','true'); } }
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => { if (btn) btn.focus(); }, 50);
-      } else {
-        mobileMenu.classList.remove('active');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        mobileMenu.setAttribute('inert', '');
-        if (btn)   { btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Abrir Menu'); }
-        if (aside) aside.classList.remove('menu-open-state');
-        const main = document.getElementById('main-content');
-        if (main)  { main.removeAttribute('inert'); main.removeAttribute('aria-hidden'); }
-        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.removeAttribute('inert'); sc.removeAttribute('aria-hidden'); } }
-        document.body.style.overflow = '';
-        if (_lastFocused && _lastFocused.focus) setTimeout(() => _lastFocused.focus(), 0);
-        _lastFocused = null;
-      }
-    }
-
-    if (mobileMenu) mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) toggleMenu(); });
-
-    document.addEventListener('keydown', e => {
-      if (!mobileMenu || !mobileMenu.classList.contains('active')) return;
-      if (e.key === 'Escape') { e.preventDefault(); toggleMenu(); return; }
-      if (e.key !== 'Tab') return;
-      const btn = document.querySelector('.mobile-menu-btn');
-      const items = getFocusables(mobileMenu);
-      const all = btn ? [btn, ...items] : items;
-      if (!all.length) return;
-      const first = all[0], last = all[all.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    });
-
-    document.querySelectorAll('.js-menu-toggle').forEach(el => el.addEventListener('click', toggleMenu));
-
-    // ── Sidebar Scaler ───────────────────────────────────────────────────
-    let _sw = window.innerWidth, _sh = window.innerHeight;
-
-    const fitSidebar = debounce(function() {
-      if (window.matchMedia('(max-width: 968px)').matches) {
-        const sc = document.querySelector('.sidebar-scaler');
-        if (sc) { sc.style.transform = ''; sc.style.width = ''; sc.style.height = ''; sc.classList.remove('compact-mode'); }
-        return;
-      }
-      _sw = window.innerWidth; _sh = window.innerHeight;
-      const sc = document.querySelector('.sidebar-scaler');
-      if (!sc) return;
-      sc.style.transform = 'scale(1)'; sc.style.width = '100%'; sc.style.height = 'auto';
-      sc.classList.remove('compact-mode'); void sc.offsetHeight;
-      const wh = window.innerHeight, ch = sc.scrollHeight;
-      if (ch <= wh) { sc.style.transform = 'none'; return; }
-      let scale = wh / ch;
-      const MIN = 0.85;
-      if (scale < MIN) {
-        sc.classList.add('compact-mode'); void sc.offsetHeight;
-        const nh = Math.max(sc.scrollHeight, 1);
-        scale = Math.max(wh / nh, MIN);
-        sc.style.height = (wh / scale) + 'px';
-      } else {
-        sc.style.height = (wh / scale) + 'px';
-      }
-      sc.style.transform = `scale(${scale})`;
-      sc.style.width = (100 / scale) + '%';
-    }, 50);
-
-    window.addEventListener('load', fitSidebar);
-    window.addEventListener('resize', fitSidebar);
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', fitSidebar);
-      window.visualViewport.addEventListener('scroll', fitSidebar);
-    }
-
-    // ── DOM Ready ─────────────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', function() {
-
-      // Skip link
-      const skip = document.querySelector('.skip-link');
-      if (skip) skip.addEventListener('click', function(e) {
-        e.preventDefault();
-        const main = document.getElementById('main-content');
-        if (!main) return;
-        main.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        const first = main.querySelector('.lightbox-trigger, h1, [tabindex]') || main;
-        if (first === main) main.setAttribute('tabindex', '-1');
-        setTimeout(() => { try { first.focus({ preventScroll: true }); } catch(_) { first.focus(); } }, 50);
-      });
-
-      // Sync tab order desktop/mobile
-      function disableFocusIn(root) {
-        if (!root) return;
-        root.querySelectorAll('a,button,input,select,textarea,[tabindex]').forEach(el => {
-          if (el.dataset._oti === undefined) el.dataset._oti = el.getAttribute('tabindex') ?? '';
-          el.setAttribute('tabindex', '-1');
-        });
-      }
-      function restoreFocusIn(root) {
-        if (!root) return;
-        root.querySelectorAll('[data-_oti]').forEach(el => {
-          const v = el.dataset._oti;
-          if (v === '') el.removeAttribute('tabindex'); else el.setAttribute('tabindex', v);
-          delete el.dataset._oti;
-        });
-      }
-
-      function syncTabOrder() {
-        const mob = window.matchMedia('(max-width: 968px)').matches;
-        const aside = document.querySelector('aside');
-        const menuEl = document.getElementById('mobileMenu');
-        const btn = document.querySelector('.mobile-menu-btn');
-        if (mob) {
-          if (aside) { disableFocusIn(aside); const pl = aside.querySelector('.profile-link'); if (pl) { if (pl.dataset._oti !== undefined) { const v = pl.dataset._oti; if (v === '') pl.removeAttribute('tabindex'); else pl.setAttribute('tabindex', v); delete pl.dataset._oti; } } }
-          if (btn) btn.removeAttribute('tabindex');
-          if (menuEl) { if (menuEl.getAttribute('aria-hidden') !== 'false') disableFocusIn(menuEl); else restoreFocusIn(menuEl); }
-        } else {
-          if (aside) restoreFocusIn(aside);
-          if (btn) btn.setAttribute('tabindex', '-1');
-          if (menuEl) disableFocusIn(menuEl);
-        }
-      }
-      syncTabOrder();
-      const mq = window.matchMedia('(max-width: 968px)');
-      if (mq.addEventListener) mq.addEventListener('change', syncTabOrder); else mq.addListener(syncTabOrder);
-      window.addEventListener('resize', syncTabOrder);
-      if (mobileMenu) new MutationObserver(syncTabOrder).observe(mobileMenu, { attributes: true, attributeFilter: ['aria-hidden'] });
-
-      // Active mobile link highlight
-      try {
-        const slug = (location.pathname || '').replace(/\/+/g,'/').split('/').filter(Boolean).pop() || '';
-        document.querySelectorAll('.mobile-link-sub').forEach(a => {
-          const h = (a.getAttribute('href') || '').split('/').filter(Boolean).pop() || '';
-          if (h && h === slug) a.classList.add('is-active');
-        });
-      } catch(_) {}
-
-      // Lightbox triggers: keyboard + ARIA
-      document.querySelectorAll('.lightbox-trigger').forEach(el => {
-        const tag = el.tagName.toLowerCase();
-        if (tag !== 'a' && tag !== 'button' && !el.hasAttribute('tabindex')) { el.setAttribute('tabindex', '0'); el.setAttribute('role', 'button'); }
-        const alt = el.getAttribute('alt') || '';
-        if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', alt ? `${alt}. Ampliar imagem.` : 'Ampliar imagem');
-        el.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); el.click(); } });
-      });
-
-      // ── Lang Switcher (physics) ────────────────────────────────────────
-      function initPhysicsSwitcher(container) {
-        if (!container) return;
-        const pill = container.querySelector('.gliding-pill');
-        const ptItem = container.querySelector('.lang-item:nth-child(2)');
-        const enItem = container.querySelector('.lang-item:nth-child(3)');
-        if (!pill || !ptItem || !enItem) return;
-        let isDragging = false, isAuto = false, sel = 'pt', afId = null;
-        let sx = 0, sPillX = 0, lt = 0, vel = 0, lx = 0;
-        let cRect = null, pW = 0, maxT = 0, pCX = 0, rafM = null;
-        let ph = { tx:0, cx:0, tsx:1, csx:1, tsy:1, csy:1, tsk:0, csk:0 };
-        const DF = 0.92, SF = 0.15, EB = 5, RS = 1.05, HS = 1.32;
-        const AL = window.matchMedia('(max-width:968px)').matches ? 0.28 : 0.20;
-        const gx = e => e.touches ? e.touches[0].clientX : e.clientX;
-
-        function uviz(prog, held, csc) {
-          const dpt = Math.abs(prog), den = Math.abs(prog-1);
-          let sm = 0; if (csc) { const s = Math.max(1,csc); sm = (s-1)*0.8; }
-          ptItem.style.transform = `scale(${1 + Math.max(0,1-dpt)*sm})`;
-          enItem.style.transform = `scale(${1 + Math.max(0,1-den)*sm})`;
-          if (prog < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); }
-          else            { enItem.classList.add('active'); ptItem.classList.remove('active'); }
-        }
-        function rst(fx) {
-          pill.style.setProperty('--pill-x', fx+'%'); pill.style.transform = ''; pill.style.transition = '';
-          ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
-        }
-        function loop() {
-          if (!isDragging && !isAuto) return;
-          if (isAuto) {
-            const pX = ph.cx;
-            ph.cx  += (ph.tx - ph.cx)  * AL;
-            ph.csx += (ph.tsx - ph.csx)* AL;
-            ph.csy += (ph.tsy - ph.csy)* AL;
-            vel = ph.cx - pX;
-            ph.tsk = Math.max(-20, Math.min(20, vel * -1.5));
-            ph.csk += (ph.tsk - ph.csk) * AL;
-            if (Math.abs(ph.cx - ph.tx) < (AL > 0.2 ? 0.6 : 1)) { isAuto = false; finish(); return; }
-          } else {
-            const lf = isDragging ? 0.32 : SF;
-            ph.cx  += (ph.tx - ph.cx)  * lf;
-            ph.csx += (ph.tsx - ph.csx)* lf;
-            ph.csy += (ph.tsy - ph.csy)* lf;
-            ph.csk += (ph.tsk - ph.csk)* lf;
-          }
-          pill.style.transform = `translate3d(${ph.cx}px,0,0) scale(${ph.csx},${ph.csy}) skewX(${ph.csk}deg)`;
-          uviz(ph.cx / maxT, true, ph.csx);
-          afId = requestAnimationFrame(loop);
-        }
-        function finish() {
-          cancelAnimationFrame(afId);
-          sel = ph.cx > (maxT/2) ? 'en' : 'pt';
-          const fx = sel === 'en' ? 100 : 0;
-          const tr = 'transform 0.6s cubic-bezier(0.5,1.6,0.4,1.1)';
-          pill.style.transition = tr+',background-color 0.4s ease,box-shadow 0.4s ease';
-          pill.style.transform = `translateX(${fx}%) scale(${RS}) skewX(0deg)`;
-          ptItem.style.transition = tr; enItem.style.transition = tr;
-          ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
-          setTimeout(() => rst(fx), 600);
-          const isEn = location.pathname.includes('/en/');
-          if (sel === 'en' && !isEn) { localStorage.setItem('preferredLang','en'); const h = enItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
-          else if (sel === 'pt' && isEn) { localStorage.setItem('preferredLang','pt'); const h = ptItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
-        }
-        const startH = e => {
-          if (isAuto) return; isDragging = true;
-          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
-          if (e.type === 'mousedown') e.preventDefault();
-          const cx = gx(e);
-          cRect = container.getBoundingClientRect();
-          pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
-          sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
-          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
-          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
-          ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
-          cancelAnimationFrame(afId); loop();
-        };
-        const moveH = e => {
-          if (!isDragging) return;
-          if (e.cancelable) e.preventDefault(); e.stopPropagation();
-          if (e.type === 'mousemove' && e.buttons === 0) { endH(e); return; }
-          const cx = gx(e); const now = Date.now(); const dt = now - lt;
-          if (dt > 0) vel = vel*0.7 + ((cx-lx)/dt)*0.3;
-          lx = cx; lt = now; pCX = cx;
-          if (!rafM) rafM = requestAnimationFrame(() => {
-            rafM = null;
-            let raw = sPillX + (pCX - sx) * DF;
-            const eMin = EB, eMax = maxT - EB;
-            let cl = raw, wp = 0;
-            if (raw < eMin) { wp = eMin-raw; cl = eMin - 12*(1-Math.pow(2.718,-wp/25)); }
-            else if (raw > eMax) { wp = raw-eMax; cl = eMax + 12*(1-Math.pow(2.718,-wp/25)); }
-            ph.tx = cl;
-            const av = Math.abs(vel);
-            if (wp > 1) { const sq = Math.min(av*0.25,0.25)+Math.min(wp*0.01,0.15); ph.tsx=HS-sq*0.7; ph.tsy=HS+sq*0.8; }
-            else if (av > 0.1) { const st=Math.min(av*0.08,0.2); ph.tsx=HS+st; ph.tsy=HS-st*0.6; }
-            else { ph.tsx=HS; ph.tsy=HS; }
-            ph.tsk = Math.max(-20, Math.min(20, vel*-12));
-          });
-        };
-        const endH = e => { if (!isDragging) return; isDragging = false; if (Math.abs(lx-sx) > 5) finish(); };
-        container.addEventListener('touchstart', startH, { passive: false });
-        window.addEventListener('touchmove', moveH, { passive: false });
-        window.addEventListener('touchend', endH);
-        container.addEventListener('mousedown', startH);
-        window.addEventListener('mousemove', moveH);
-        window.addEventListener('mouseup', endH);
-        container.addEventListener('click', e => {
-          if (isDragging || Math.abs(lx-sx) > 5 || isAuto) return;
-          const tgt = sel === 'pt' ? 'en' : 'pt';
-          if (tgt === sel) return;
-          isAuto = true; sel = tgt;
-          cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
-          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
-          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
-          ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
-          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
-          cancelAnimationFrame(afId); loop();
-        });
-        container.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.click(); } });
-      }
-      document.querySelectorAll('.lang-switcher-container').forEach(initPhysicsSwitcher);
-
-    }); // end DOMContentLoaded
-  </script>
 
   <script>
     // ── v14: Lightbox with zoom ───────────────────────────────────────────
@@ -1358,42 +961,36 @@
       try { const res = await fetch(url, { signal: controller.signal }); clearTimeout(id); return res; } catch (e) { clearTimeout(id); throw e; }
     }
 
+    let lastValidReading = null;
     async function fetchServerStatus() {
-      if(refreshBtn) refreshBtn.classList.add('spinning');
-      if(statusDot) statusDot.className = 'status-pulse warning';
+      if (refreshBtn) { refreshBtn.classList.add('spinning'); refreshBtn.disabled = true; }
       try {
         const response = await fetchWithTimeout(`https://api.mcstatus.io/v2/status/java/${API_HOST}`, 7000);
-        if (!response.ok) throw new Error('Bad response');
+        if (!response.ok) throw new Error('Status service unavailable');
         const data = await response.json();
+        if (typeof data.online !== 'boolean') throw new Error('Invalid status response');
         const now = new Date();
-        if(lastUpdatedEl) lastUpdatedEl.innerText = `Última atualização: ${now.toLocaleTimeString()}`;
-        if (data && data.online) {
-          statusDot.className = 'status-pulse online'; statusText.innerHTML = '<span class="status-pulse online"></span> Online';
-          metricStatus.innerText = "ONLINE"; metricStatus.style.color = "#22c55e"; metricPlayers.innerText = data.players.online;
-        } else { throw new Error("Offline"); }
+        lastValidReading = now;
+        const online = data.online;
+        const state = online ? 'online' : 'offline';
+        if (statusText) statusText.innerHTML = `<span class="status-pulse ${state}"></span> ${online ? 'Online' : 'Offline confirmado'}`;
+        if (metricStatus) { metricStatus.textContent = online ? 'ONLINE' : 'OFFLINE'; metricStatus.style.color = online ? '#22c55e' : '#ef4444'; }
+        if (metricPlayers) metricPlayers.textContent = online && Number.isFinite(data.players?.online) ? String(data.players.online) : '—';
+        if (lastUpdatedEl) lastUpdatedEl.textContent = `Última leitura válida: ${now.toLocaleString('pt-BR')}`;
       } catch (err) {
-        const now = new Date(); if(lastUpdatedEl) lastUpdatedEl.innerText = `Falha às ${now.toLocaleTimeString()}`;
-        statusDot.className = 'status-pulse offline'; statusText.innerHTML = '<span class="status-pulse offline"></span> Offline';
-        metricStatus.innerText = "OFFLINE"; metricStatus.style.color = "#ef4444"; metricPlayers.innerText = "--";
+        if (statusText) statusText.innerHTML = '<span class="status-pulse warning"></span> Consulta indisponível';
+        if (metricStatus) { metricStatus.textContent = 'SEM CONSULTA'; metricStatus.style.color = '#f59e0b'; }
+        if (metricPlayers) metricPlayers.textContent = '—';
+        if (lastUpdatedEl) lastUpdatedEl.textContent = lastValidReading ? `Última leitura válida: ${lastValidReading.toLocaleString('pt-BR')} · consulta atual falhou` : 'Ainda sem leitura válida · consulta indisponível';
       } finally {
-        if(refreshBtn) refreshBtn.classList.remove('spinning');
-        clearTimeout(pollTimer); pollTimer = setTimeout(fetchServerStatus, pollInterval);
+        if (refreshBtn) { refreshBtn.classList.remove('spinning'); refreshBtn.disabled = false; }
+        clearTimeout(pollTimer);
+        pollTimer = setTimeout(fetchServerStatus, pollInterval);
       }
     }
     fetchServerStatus();
 
-    const modalData = {
-      'user': { icon: '<i class="fa-solid fa-users"></i>', title: 'Acesso do Usuário', desc: 'Jogadores de PC (Java) e Celular/Console (Bedrock) conectam através de um único domínio, sem a necessidade de configurar VPNs ou IPs complexos.' },
-      'cloudflare': { icon: '<i class="fa-brands fa-cloudflare"></i>', title: 'Gerenciamento DNS', desc: 'O Cloudflare atua como a camada de entrada, mascarando o IP real do servidor (proxy) e oferecendo proteção contra ataques DDoS básicos.' },
-      'tunnel': { icon: '<i class="fa-solid fa-shield-halved"></i>', title: 'Tunelamento Seguro', desc: 'Utilizo o Playit.gg para criar um túnel UDP reverso. Isso permite expor o servidor local para a internet pública sem a necessidade de Port Forwarding no roteador, aumentando drasticamente a segurança da rede doméstica.' },
-      'local': { icon: '<i class="fa-solid fa-server"></i>', title: 'Infraestrutura Local', desc: 'O servidor roda em hardware próprio (Self-Hosted) com otimização de JVM e plugins de performance (PaperMC/Purpur) para garantir TPS estável mesmo com alta carga.' }
-    };
-    function openModal(key) {
-      const data = modalData[key]; document.getElementById('modalIcon').innerHTML = data.icon; document.getElementById('modalTitle').innerText = data.title; document.getElementById('modalDesc').innerText = data.desc;
-      document.getElementById('infoModal').classList.add('active');
-    }
-    function closeModal() { document.getElementById('infoModal').classList.remove('active'); }
-    document.getElementById('infoModal').addEventListener('click', (e) => { if(e.target.id === 'infoModal') closeModal(); });
+
 
     document.querySelectorAll('.stack-item').forEach(item => {
         item.addEventListener('click', function(e) {
@@ -1406,108 +1003,12 @@
     document.addEventListener('click', function() { document.querySelectorAll('.stack-item.active').forEach(el => { el.classList.remove('active'); }); });
   </script>
 
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://ogabriels.com/#gabriel-silva",
-      "name": "Gabriel Silva",
-      "alternateName": [
-        "Gabriel Silva Dias Moreira",
-        "Gabriel Moreira"
-      ],
-      "url": "https://ogabriels.com/"
-    },
-    {
-      "@type": "TechArticle",
-      "@id": "https://ogabriels.com/infra#case",
-      "headline": "Server Infra & Homelab: Case Study de Infraestrutura",
-      "description": "Estudo de caso sobre a implementação da infraestrutura self-hosted do servidor Força Aliada, utilizando Cloudflare Tunnel e monitoramento via API.",
-      "image": {
-        "@type": "ImageObject",
-        "@id": "https://ogabriels.com/infra#primaryimage",
-        "url": "https://ogabriels.com/assets/img/forca-aliada-logo.webp"
-      },
-      "datePublished": "2025-01-01T08:00:00-03:00",
-      "inLanguage": "pt-BR",
-      "author": {
-        "@id": "https://ogabriels.com/#gabriel-silva"
-      },
-      "publisher": {
-        "@id": "https://ogabriels.com/#gabriel-silva"
-      },
-      "keywords": [
-        "Server Infrastructure",
-        "Homelab",
-        "Cloudflare Tunnel",
-        "Self Hosting",
-        "Minecraft Server",
-        "API Monitoring"
-      ],
-      "mainEntity": {
-        "@id": "https://ogabriels.com/infra#application"
-      },
-      "dateModified": "2026-06-02T00:00:00-03:00"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ogabriels.com/infra#application",
-      "name": "Força Aliada – Server Monitoring Dashboard",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Linux",
-      "description": "Dashboard de monitoramento de status de servidores via API REST utilizado no ecossistema Força Aliada."
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://ogabriels.com/infra",
-      "url": "https://ogabriels.com/infra",
-      "name": "Server Infra & Homelab | Case Study Técnico",
-      "isPartOf": {
-        "@id": "https://ogabriels.com/#website"
-      },
-      "about": {
-        "@id": "https://ogabriels.com/infra#case"
-      },
-      "mainEntity": {
-        "@id": "https://ogabriels.com/infra#case"
-      },
-      "breadcrumb": {
-        "@id": "https://ogabriels.com/infra#breadcrumb"
-      },
-      "primaryImageOfPage": {
-        "@id": "https://ogabriels.com/infra#primaryimage"
-      },
-      "inLanguage": "pt-BR",
-      "dateModified": "2026-06-02T00:00:00-03:00"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/infra#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://ogabriels.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Server Infra",
-          "item": "https://ogabriels.com/infra"
-        }
-      ]
-    }
-  ]
-}
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ogabriels.com/#gabriel", "name": "Gabriel Silva Dias Moreira", "alternateName": "Gabriel Moreira", "url": "https://ogabriels.com/", "image": "https://ogabriels.com/assets/img/gabriel-perfil-512.webp", "sameAs": ["https://www.linkedin.com/in/ogabriels/", "https://github.com/ogabriels2"], "knowsAbout": ["Desenvolvimento de produtos", "APIs REST", "Desenvolvimento de software", "Infraestrutura", "Multimídia"]}, {"@type": "TechArticle", "@id": "https://ogabriels.com/infra#case", "headline": "Infraestrutura e operação da Força Aliada", "description": "Infraestrutura da comunidade Força Aliada: DNS, acesso por Playit.gg, servidor próprio e consulta de status por API.", "image": {"@type": "ImageObject", "@id": "https://ogabriels.com/infra#primaryimage", "url": "https://ogabriels.com/assets/img/forca-aliada-logo.webp"}, "datePublished": "2025-01-01T08:00:00-03:00", "inLanguage": "pt-BR", "author": {"@id": "https://ogabriels.com/#gabriel"}, "publisher": {"@id": "https://ogabriels.com/#gabriel"}, "keywords": ["Server Infrastructure", "Homelab", "Cloudflare DNS, Playit.gg", "Self Hosting", "Minecraft Server", "API Monitoring"], "mainEntity": {"@id": "https://ogabriels.com/infra#application"}, "dateModified": "2026-10-11"}, {"@type": "SoftwareApplication", "@id": "https://ogabriels.com/infra#application", "name": "Força Aliada – Server Monitoring Dashboard", "applicationCategory": "DeveloperApplication", "operatingSystem": "Linux", "description": "Dashboard de monitoramento de status de servidores via API REST utilizado no ecossistema Força Aliada."}, {"@type": "WebPage", "@id": "https://ogabriels.com/infra", "url": "https://ogabriels.com/infra", "name": "Server Infra & Homelab | Case Study Técnico", "isPartOf": {"@id": "https://ogabriels.com/#website"}, "about": {"@id": "https://ogabriels.com/infra#case"}, "mainEntity": {"@id": "https://ogabriels.com/infra#case"}, "breadcrumb": {"@id": "https://ogabriels.com/infra#breadcrumb"}, "primaryImageOfPage": {"@id": "https://ogabriels.com/infra#primaryimage"}, "inLanguage": "pt-BR", "dateModified": "2026-10-11"}, {"@type": "BreadcrumbList", "@id": "https://ogabriels.com/infra#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/"}, {"@type": "ListItem", "position": 2, "name": "Server Infra", "item": "https://ogabriels.com/infra"}]}]}</script>
 <footer class="site-footer" role="contentinfo" aria-label="Rodapé do site">
   <div class="footer-inner">
     <div class="footer-left">
       <span class="footer-dot" aria-hidden="true"></span>
-      <span class="footer-name">Gabriel Silva</span>
+      <span class="footer-name">Gabriel Moreira</span>
       <span class="footer-copy">© 2026</span>
     </div>
     <nav class="footer-links" aria-label="Navegação do rodapé">

@@ -1,50 +1,7 @@
 (() => {
-  const menu = document.getElementById('mobileMenu');
-  const menuButton = document.querySelector('.mobile-menu-btn');
-
-  const closeMenu = () => {
-    if (!menu || !menuButton) return;
-    menu.classList.remove('active');
-    menu.setAttribute('aria-hidden', 'true');
-    menu.inert = true;
-    menuButton.classList.remove('is-open');
-    menuButton.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
-  };
-
-  if (menu && menuButton) {
-    menuButton.addEventListener('click', () => {
-      const open = !menu.classList.contains('active');
-      menu.classList.toggle('active', open);
-      menu.setAttribute('aria-hidden', String(!open));
-      menu.inert = !open;
-      menuButton.classList.toggle('is-open', open);
-      menuButton.setAttribute('aria-expanded', String(open));
-      document.body.classList.toggle('menu-open', open);
-    });
-    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && menu.classList.contains('active')) {
-        closeMenu();
-        menuButton.focus();
-      }
-    });
-  }
-
-  const revealItems = document.querySelectorAll('[data-reveal]');
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealItems.forEach(item => observer.observe(item));
-  } else {
-    revealItems.forEach(item => item.classList.add('is-visible'));
-  }
+  // Navigation, dialogs and sidebar layout are managed by portfolio-shell.js.
+  // Essential case content remains visible even when JavaScript is unavailable.
+  document.querySelectorAll('[data-reveal]').forEach(item => item.classList.add('is-visible'));
 
   document.querySelectorAll('[data-gallery-control]').forEach(button => {
     button.addEventListener('click', () => {
@@ -293,42 +250,4 @@
     feedbackStatus.textContent = isEnglish ? 'This rating is simulated here. In the project, the score and conversation path are stored in PostgreSQL.' : 'Avaliação simulada nesta página. No projeto, a nota e o caminho percorrido são gravados no PostgreSQL.';
   });
   render();
-})();
-
-
-(function fitTechSidebar(){
-  const fit = () => {
-    const scaler = document.querySelector('.sidebar-scaler');
-    if (!scaler) return;
-    if (window.matchMedia('(max-width: 968px)').matches) {
-      scaler.style.transform = '';
-      scaler.style.width = '';
-      scaler.style.height = '';
-      scaler.classList.remove('compact-mode');
-      return;
-    }
-    scaler.style.transform = 'scale(1)';
-    scaler.style.width = '100%';
-    scaler.style.height = 'auto';
-    scaler.classList.remove('compact-mode');
-    void scaler.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    const contentHeight = scaler.scrollHeight;
-    if (contentHeight <= viewportHeight) {
-      scaler.style.transform = 'none';
-      return;
-    }
-    let scale = viewportHeight / contentHeight;
-    if (scale < 0.85) {
-      scaler.classList.add('compact-mode');
-      void scaler.offsetHeight;
-      scale = Math.max(viewportHeight / Math.max(scaler.scrollHeight, 1), 0.85);
-    }
-    scaler.style.height = `${viewportHeight / scale}px`;
-    scaler.style.transform = `scale(${scale})`;
-    scaler.style.width = `${100 / scale}%`;
-  };
-  fit();
-  window.addEventListener('load', fit);
-  window.addEventListener('resize', fit);
 })();

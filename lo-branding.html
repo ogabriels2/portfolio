@@ -9,34 +9,29 @@
     gtag('config', 'G-L8XF4TVBSL');
   </script>
 
-  <script>
-    var userLang = navigator.language || navigator.userLanguage;
-    if (userLang.startsWith('en') && !window.location.pathname.includes('/en/') && !localStorage.getItem('preferredLang')) {
-        // window.location.href = '/en/lo-branding.html';
-    }
-  </script>
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#fbfbfd">
 
-  <title>Lô Publicidade | Branding e Identidade Visual (TCC) - Gabriel Silva</title>
-  <meta name="description" content="Case Study: Projeto de Branding e Identidade Visual para a agência Lô Publicidade. TCC desenvolvido no curso de Multimídia do Liceu de Artes e Ofícios de São Paulo.">
+  <title>Lô Publicidade | Branding e Identidade Visual (TCC) - Gabriel Moreira</title>
+  <meta name="description" content="Identidade visual da agência experimental Lô Publicidade, um TCC de Multimídia. Tipografia, paleta e aplicações da marca.">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="Gabriel Silva">
+  <meta name="author" content="Gabriel Moreira">
 
-  <link rel="canonical" href="https://ogabriels.com/lo-branding.html">
-  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/lo-branding.html" />
-  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/lo-branding.html" />
-  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/en/lo-branding.html" />
+  <link rel="canonical" href="https://ogabriels.com/lo-branding">
+  <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/lo-branding" />
+  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/lo-branding" />
+  <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/lo-branding" />
 
   <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
 
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://ogabriels.com/lo-branding.html">
+  <meta property="og:url" content="https://ogabriels.com/lo-branding">
   <meta property="og:title" content="Lô Publicidade | Projeto de Branding">
-  <meta property="og:description" content="Identidade visual inspirada em Art Nouveau e Art Déco. TCC Liceu de Artes e Ofícios.">
+  <meta property="og:description" content="Identidade visual da agência experimental Lô Publicidade, um TCC de Multimídia. Tipografia, paleta e aplicações da marca.">
   <meta property="og:image" content="https://ogabriels.com/assets/img/lo-branding-capa.webp">
 
   <meta property="twitter:card" content="summary_large_image">
@@ -421,144 +416,40 @@
       .nav-btn.next { flex-direction: row-reverse; text-align: right; }
       .nav-project-name { max-width: none; }
     }
+
+    /* Context and authorship precede the artwork; each project's visual identity is retained. */
+    .project-hero { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:32px; align-items:center; padding:48px 60px 40px; margin:0 auto; max-width:1280px; box-sizing:border-box; }
+    .project-hero .hero-text-content { text-align:left; padding:0; width:100%; }
+    .project-hero .hero-image-container { padding:0; margin:0; width:100%; min-width:0; }
+    .case-context { margin:0 0 12px; font-size:.82rem; font-weight:600; color:var(--text-secondary,#555); line-height:1.5; }
+    .case-summary { max-width:58ch; margin:18px 0 0; font-size:1rem; line-height:1.7; color:var(--text-primary,#1d1d1f); }
+    .project-description .section-title { margin:0 0 20px; font-size:1.35rem; }
+    @media (max-width:1100px) { .project-hero { grid-template-columns:1fr; padding:40px 40px 28px; gap:28px; } .project-hero .hero-image-container { max-width:800px; } }
+    @media (max-width:600px) { .project-hero { padding:28px 24px 24px; gap:24px; } .case-summary { font-size:.98rem; } }
   </style>
+<link rel="stylesheet" href="assets/css/portfolio-shell.css?v=964620bee1">
+<script src="assets/js/portfolio-shell.js?v=b4c786c99a" defer></script>
+<script src="assets/js/portfolio-motion.js?v=03e1acf788" defer></script>
 </head>
 <body>
 
-  <div class="mobile-menu-overlay" id="mobileMenu">
-    <button class="mobile-close-btn" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></button>
-    <div class="mobile-scroll-wrapper">
-        <div class="mobile-nav-container">
-            <div class="lang-switcher-container" id="mobileLangSwitcher" style="margin-bottom: 20px; background: rgba(0,0,0,0.05);">
-                <div class="gliding-pill"></div>
-                <span class="lang-item active" data-lang="pt">
-                    <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#009c3b" d="M0 0h640v480H0z"/><path fill="#ffdf00" d="M320 80l245.4 160L320 400 74.6 240z"/><circle cx="320" cy="240" r="94.2" fill="#002776"/><path fill="#fff" d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg>
-                    PT
-                </span>
-                <span class="lang-item" data-lang="en">
-                    <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0z"/><path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path fill="#192f5d" d="M0 0h256v258H0z"/><path fill="#fff" d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" opacity=".8"/></svg>
-                    EN
-                </span>
-            </div>
+  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true" hidden inert><div class="mobile-scroll-wrapper"><div class="mobile-nav-container"><div class="mobile-nav-group"><div class="lang-switcher-container" data-active="pt" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item active" href="lo-branding.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português">PT</a><a class="lang-item" href="en/lo-branding.html" lang="en" hreflang="en" aria-label="English">EN</a></div><a href="index.html" class="mobile-link-main">Projetos</a><a href="sobre.html" class="mobile-link-main">Sobre mim</a></div><div class="mobile-projects-wrapper"><nav class="mobile-projects-list" aria-label="Projetos"><div class="mobile-divider"></div><p class="mobile-label">Software e produto</p><a href="forca-aliada.html" class="mobile-link-sub">Força Aliada</a><a href="miguel-downloader.html" class="mobile-link-sub">Miguel Downloader</a><a href="busca-preco.html" class="mobile-link-sub">Busca Preço</a><a href="hyrochat.html" class="mobile-link-sub">HyroChat</a><a href="infra.html" class="mobile-link-sub">Infraestrutura FA</a><div class="mobile-divider"></div><p class="mobile-label">Design e audiovisual</p><a href="neoletters.html" class="mobile-link-sub">Neo Letters</a><a href="lo-branding.html" class="mobile-link-sub is-active" aria-current="page">Lô</a><a href="videos.html" class="mobile-link-sub">Audiovisual</a><a href="revista-utopia.html" class="mobile-link-sub">Revista Utopia</a><a href="personal-branding.html" class="mobile-link-sub">G | Gabriel</a><a href="podcast-um-minuto.html" class="mobile-link-sub">Um Minuto</a><a href="valorada.html" class="mobile-link-sub">Valorada</a><a href="thumbnails.html" class="mobile-link-sub">Thumbnails</a></nav></div><div class="mobile-footer-group"><a class="mobile-cta" href="contato.html">Contato</a><a class="mobile-link-sub" href="assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener">Currículo em PDF</a></div></div></div></div>
 
-            <div class="mobile-nav-group">
-                <a href="sobre.html" class="mobile-link-main" onclick="toggleMenu()">Sobre Mim</a>
-                <a href="index.html" class="mobile-link-main" onclick="toggleMenu()">Projetos</a>
-            </div>
-            <div class="mobile-projects-wrapper">
-                <div class="mobile-divider"></div>
-                <span class="mobile-label">Cases de Sucesso</span>
-                <div class="mobile-projects-list">
-                    <a href="infra.html" class="mobile-link-sub" onclick="toggleMenu()">Server Infra</a>
-                    <a href="busca-preco.html" class="mobile-link-sub js-menu-toggle">Busca Preço</a>
-                    <a href="hyrochat.html" class="mobile-link-sub js-menu-toggle">HyroChat</a>
-                    <a href="miguel-downloader.html" class="mobile-link-sub js-menu-toggle">Miguel Downloader</a>
-                    <a href="revista-utopia.html" class="mobile-link-sub" onclick="toggleMenu()">Revista Utopia</a>
-                    <a href="neoletters.html" class="mobile-link-sub" onclick="toggleMenu()">Neo Letters</a>
-                    <a href="lo-branding.html" class="mobile-link-sub" onclick="toggleMenu()">Lô Publicidade</a>
-                    <a href="personal-branding.html" class="mobile-link-sub" onclick="toggleMenu()">G | Gabriel</a>
-                    <a href="podcast-um-minuto.html" class="mobile-link-sub" onclick="toggleMenu()">Um Minuto</a>
-                    <a href="valorada.html" class="mobile-link-sub" onclick="toggleMenu()">Valorada</a>
-                    <a href="thumbnails.html" class="mobile-link-sub" onclick="toggleMenu()">Thumbnails</a>
-                    <a href="videos.html" class="mobile-link-sub" onclick="toggleMenu()">Audiovisual</a>
-                </div>
-            </div>
-            <div class="mobile-footer-group">
-                <div class="mobile-socials">
-                    <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/ogabriels2" class="mobile-social-btn"><i class="fab fa-github"></i></a>
-                </div>
-                <a href="contato.html" class="mobile-cta" onclick="toggleMenu()">
-                    <i class="fa-regular fa-comment-dots"></i> Fale Comigo
-                </a>
-            </div>
-        </div>
-    </div>
-  </div>
+  <aside class="portfolio-sidebar" aria-label="Navegação do portfólio"><div class="sidebar-scaler"><div class="profile-container"><a href="index.html" class="profile-link"><div class="profile-pic-wrapper"><img src="assets/img/gabriel-perfil-220.webp" alt="" class="profile-pic" width="86" height="86"></div><p class="profile-name">Gabriel Moreira</p><p class="profile-role">Software e produto</p></a></div><nav aria-label="Navegação principal"><div class="nav-group"><ul class="nav-list"><li><a href="index.html" class="nav-link">Projetos</a></li><li><a href="sobre.html" class="nav-link">Sobre mim</a></li></ul></div><div class="nav-group portfolio-project-group"><ul class="nav-list project-scroll-container"><li class="portfolio-nav-section"><span class="nav-group-label">Software e produto</span></li><li><a href="forca-aliada.html" class="nav-link">Força Aliada</a></li><li><a href="miguel-downloader.html" class="nav-link">Miguel Downloader</a></li><li><a href="busca-preco.html" class="nav-link">Busca Preço</a></li><li><a href="hyrochat.html" class="nav-link">HyroChat</a></li><li><a href="infra.html" class="nav-link">Infraestrutura FA</a></li><li class="portfolio-nav-section"><span class="nav-group-label">Design e audiovisual</span></li><li><a href="neoletters.html" class="nav-link">Neo Letters</a></li><li><a href="lo-branding.html" class="nav-link active" aria-current="page">Lô</a></li><li><a href="videos.html" class="nav-link">Audiovisual</a></li><li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li><li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li><li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li><li><a href="valorada.html" class="nav-link">Valorada</a></li><li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li></ul></div><div class="lang-switcher-container" data-active="pt" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item active" href="lo-branding.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português">PT</a><a class="lang-item" href="en/lo-branding.html" lang="en" hreflang="en" aria-label="English">EN</a></div><a href="contato.html" class="sidebar-cta">Contato <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></nav><div class="sidebar-footer"><div class="social-icons"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a><a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></div><p class="copyright">© 2026 Gabriel Moreira</p></div></div></aside><button class="mobile-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
 
-  <aside>
-    <div class="sidebar-scaler">
-        <div class="profile-container">
-          <a href="index.html" class="profile-link">
-            <div class="profile-pic-wrapper">
-              <img src="assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic">
-            </div>
-            <div class="profile-text-group">
-              <h1 class="profile-name">Gabriel Silva</h1>
-              <p class="profile-role">Creative Technologist</p>
-            </div>
-          </a>
-        </div>
-
-        <nav>
-          <div class="nav-group">
-            <ul class="nav-list">
-              <li><a href="index.html" class="nav-link back-link"><i class="fa-solid fa-arrow-left"></i> Voltar para Projetos</a></li>
-              <li><a href="sobre.html" class="nav-link about-link"><i class="fa-regular fa-user"></i> Sobre mim</a></li>
-            </ul>
-          </div>
-
-          <div class="nav-group" style="flex: 1; min-height: 0; display: flex; flex-direction: column;">
-            <h3>Portfólio</h3>
-            <ul class="nav-list project-scroll-container">
-              <li><a href="infra.html" class="nav-link">Server Infra & Dashboard</a></li>
-              <li><a href="busca-preco.html" class="nav-link">Busca Preço</a></li>
-              <li><a href="hyrochat.html" class="nav-link">HyroChat</a></li>
-              <li><a href="miguel-downloader.html" class="nav-link">Miguel Downloader</a></li>
-              <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
-              <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
-              <li><a href="lo-branding.html" class="nav-link active">Lô</a></li>
-              <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
-              <li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li>
-              <li><a href="valorada.html" class="nav-link">Valorada</a></li>
-              <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
-              <li><a href="videos.html" class="nav-link">Produção Audiovisual</a></li>
-            </ul>
-          </div>
-
-          <div class="lang-switcher-container">
-              <div class="gliding-pill"></div>
-              <span class="lang-item active" data-lang="pt">
-                  <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#009c3b" d="M0 0h640v480H0z"/><path fill="#ffdf00" d="M320 80l245.4 160L320 400 74.6 240z"/><circle cx="320" cy="240" r="94.2" fill="#002776"/><path fill="#fff" d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg>
-                  PT
-              </span>
-              <span class="lang-item" data-lang="en">
-                  <svg class="lang-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480"><path fill="#bd3d44" d="M0 0h640v480H0z"/><path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/><path fill="#192f5d" d="M0 0h256v258H0z"/><path fill="#fff" d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" opacity=".8"/></svg>
-                  EN
-              </span>
-          </div>
-
-          <a href="contato.html" class="sidebar-cta">
-            <i class="fa-regular fa-comment-dots"></i> Fale Comigo
-          </a>
-        </nav>
-
-        <div class="sidebar-footer">
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/ogabriels0/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="mailto:contato@ogabriels.com" class="social-icon"><i class="far fa-envelope"></i></a>
-            <a href="https://wa.me/5511979686116" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-          </div>
-          <p class="copyright">© 2026 Gabriel Silva</p>
-        </div>
-    </div> <button class="mobile-menu-btn" id="menuBtn" aria-label="Abrir Menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-  </aside>
-
-  <main>
+  <noscript><nav class="portfolio-noscript-nav" aria-label="Navegação sem JavaScript"><a href="index.html">Projetos</a><a href="sobre.html">Sobre mim</a><a href="contato.html">Contato</a><a href="assets/docs/gabriel-moreira-curriculo.pdf">Currículo</a></nav></noscript>
+<main>
     <section class="project-hero">
-      <div class="hero-image-container">
-        <div class="hero-image-wrapper-inner">
-            <img src="assets/img/lo-branding-capa.webp" alt="Capa Lô Publicidade" class="hero-image lightbox-trigger">
-        </div>
-      </div>
-
       <div class="hero-text-content">
+        <p class="case-context">TCC de Multimídia · Identidade visual · 2022</p>
         <h1 class="project-title">Lô Publicidade</h1>
         <p class="project-subtitle">Branding, Identidade Visual e Comunicação</p>
+        <p class="case-summary">Sistema de identidade para uma agência experimental desenvolvida no TCC. O projeto reúne logotipo, tipografia, cor e aplicações com referências à Art Nouveau e à Art Déco.</p>
+      </div>
+      <div class="hero-image-container">
+        <div class="hero-image-wrapper-inner">
+            <img width="1280" height="721" src="assets/img/lo-branding-capa.webp" alt="Capa Lô Publicidade" class="hero-image lightbox-trigger">
+        </div>
       </div>
     </section>
 
@@ -570,8 +461,8 @@
       </section>
 
       <section class="project-description">
-        <p>Desenvolvido como <strong>Trabalho de Conclusão de Curso (TCC)</strong> no renomado <strong>Liceu de Artes e Ofícios de São Paulo</strong>, a <strong>Lô Publicidade</strong> nasceu como um projeto de agência experimental com um propósito claro: comunicar a diversidade cultural brasileira através de uma linguagem acessível e sofisticada.</p>
-        <p>A identidade visual funde a elegância clássica da <strong>Art Nouveau</strong> e <strong>Art Déco</strong> com uma paleta de cores quente e acolhedora. Fui responsável por toda a estruturação da marca, criando um sistema visual que é, ao mesmo tempo, premium e inclusivo, refletindo a pluralidade do Brasil em cada detalhe, da tipografia à papelaria.</p>
+        <h2 class="section-title">Contexto e participação</h2>
+        <p>A <strong>Lô Publicidade</strong> foi uma agência experimental criada no <strong>TCC de Multimídia do Liceu de Artes e Ofícios de São Paulo</strong>. O projeto explorou a diversidade cultural brasileira por meio de um sistema de identidade visual.</p><p>Minha atuação se concentrou na estruturação da marca. Referências à <strong>Art Nouveau e à Art Déco</strong> orientam as formas e a tipografia, enquanto a paleta quente conecta logotipo, papelaria e outras aplicações. A galeria mostra o sistema em uso, além do símbolo isolado.</p>
       </section>
 
       <section class="showcase-section">
@@ -581,8 +472,8 @@
         </div>
 
         <div class="gallery-grid">
-          <img src="assets/img/lo-branding-logo-estrutura.webp" alt="Estrutura do Logotipo" class="showcase-img lightbox-trigger">
-          <img src="assets/img/lo-branding-logo-principal.webp" alt="Logotipo Principal Lô" class="showcase-img lightbox-trigger">
+          <img width="1920" height="1080" src="assets/img/lo-branding-logo-estrutura.webp" alt="Estrutura do Logotipo" class="showcase-img lightbox-trigger">
+          <img width="950" height="950" src="assets/img/lo-branding-logo-principal.webp" alt="Logotipo Principal Lô" class="showcase-img lightbox-trigger">
         </div>
       </section>
 
@@ -593,8 +484,8 @@
         </div>
 
         <div class="gallery-grid">
-          <img src="assets/img/lo-branding-tipografia.webp" alt="Tipografia" class="showcase-img lightbox-trigger">
-          <img src="assets/img/lo-branding-paleta-cores.webp" alt="Paleta de Cores" class="showcase-img lightbox-trigger">
+          <img width="1920" height="1080" src="assets/img/lo-branding-tipografia.webp" alt="Tipografia" class="showcase-img lightbox-trigger">
+          <img width="1920" height="1080" src="assets/img/lo-branding-paleta-cores.webp" alt="Paleta de Cores" class="showcase-img lightbox-trigger">
         </div>
       </section>
 
@@ -604,11 +495,11 @@
           <p class="section-desc">O universo da marca aplicado em papelaria e brindes de alto padrão.</p>
         </div>
 
-        <img src="assets/img/lo-branding-kit-premium.webp" alt="Brindes Premium Lô" class="showcase-img lightbox-trigger">
+        <img width="1920" height="1080" src="assets/img/lo-branding-kit-premium.webp" alt="Brindes Premium Lô" class="showcase-img lightbox-trigger">
 
         <div class="gallery-grid">
-          <img src="assets/img/lo-branding-papelaria-pasta.webp" alt="Pasta Personalizada" class="showcase-img lightbox-trigger">
-          <img src="assets/img/lo-branding-brindes-caderno.webp" alt="Caderno e Marca Página" class="showcase-img lightbox-trigger">
+          <img width="1920" height="1080" src="assets/img/lo-branding-papelaria-pasta.webp" alt="Pasta Personalizada" class="showcase-img lightbox-trigger">
+          <img width="1920" height="1080" src="assets/img/lo-branding-brindes-caderno.webp" alt="Caderno e Marca Página" class="showcase-img lightbox-trigger">
         </div>
       </section>
 
@@ -649,154 +540,16 @@
   </main>
 
   <div id="lightbox" class="lightbox">
-    <button id="lb-close" class="lb-control lb-close"><i class="fa-solid fa-xmark"></i></button>
-    <button id="lb-prev" class="lb-control lb-prev"><i class="fa-solid fa-chevron-left"></i></button>
-    <button id="lb-next" class="lb-control lb-next"><i class="fa-solid fa-chevron-right"></i></button>
+    <button id="lb-close" aria-label="Fechar imagem" class="lb-control lb-close"><i class="fa-solid fa-xmark"></i></button>
+    <button id="lb-prev" aria-label="Imagem anterior" class="lb-control lb-prev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button id="lb-next" aria-label="Próxima imagem" class="lb-control lb-next"><i class="fa-solid fa-chevron-right"></i></button>
     <div class="lb-image-container">
       <img src="" alt="Zoom" id="lb-image" class="lb-image">
     </div>
   </div>
 
   <script>
-    // --- SIDEBAR & MENU LOGIC (GOLD MASTER) ---
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    function toggleMenu() {
-        const isOpen = mobileMenu.classList.contains('active');
-        if (!isOpen) { mobileMenu.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        else { mobileMenu.classList.remove('active'); document.body.style.overflow = ''; }
-    }
-    menuBtn.addEventListener('click', toggleMenu);
-
-    // --- SIDEBAR SCALER ---
-    let lastWidth = 0; let lastHeight = 0;
-    function fitSidebarToScreen() {
-      if (window.innerWidth <= 968) {
-        const scaler = document.querySelector('.sidebar-scaler');
-        if (scaler) { scaler.style.transform = 'none'; scaler.style.width = 'auto'; scaler.style.height = 'auto'; scaler.classList.remove('compact-mode'); }
-        return;
-      }
-      if (window.innerWidth === lastWidth && window.innerHeight === lastHeight) return;
-      lastWidth = window.innerWidth; lastHeight = window.innerHeight;
-      const scaler = document.querySelector('.sidebar-scaler'); if (!scaler) return;
-      scaler.style.transform = 'scale(1)'; scaler.style.width = '100%'; scaler.style.height = 'auto'; scaler.classList.remove('compact-mode');
-      const windowHeight = window.innerHeight; const contentHeight = scaler.scrollHeight;
-      let scale = 1; if (contentHeight > windowHeight) { scale = windowHeight / contentHeight; }
-      const MIN_SCALE = 0.85;
-      if (scale < MIN_SCALE) { scaler.classList.add('compact-mode'); scale = MIN_SCALE; scaler.style.height = (windowHeight / scale) + 'px'; } else if (scale < 0.98) { scaler.style.height = (windowHeight / scale) + 'px'; } else { scaler.style.height = (windowHeight / scale) + 'px'; }
-      scaler.style.transform = `scale(${scale})`; scaler.style.width = (100 / scale) + '%';
-    }
-    window.addEventListener('load', fitSidebarToScreen); window.addEventListener('resize', fitSidebarToScreen); setTimeout(fitSidebarToScreen, 500);
-
-    // --- PHYSICS ENGINE (LANG SWITCHER) ---
-    document.addEventListener('DOMContentLoaded', function() {
-        function initPhysicsSwitcher(container) {
-            if (!container) return;
-            const pill = container.querySelector('.gliding-pill');
-            const ptItem = container.querySelector('.lang-item:nth-child(2)');
-            const enItem = container.querySelector('.lang-item:nth-child(3)');
-            let isDragging = false; let isAutoScrolling = false; let currentSelection = 'pt'; let animationFrameId = null;
-            let startX = 0; let startPillX = 0; let lastTime = 0; let velocity = 0; let lastX = 0;
-            let physics = { targetX: 0, currentX: 0, targetScaleX: 1, currentScaleX: 1, targetScaleY: 1, currentScaleY: 1, targetSkew: 0, currentSkew: 0 };
-            const DRAG_FACTOR = 0.92; const SMOOTH_FACTOR = 0.15; const EDGE_BUFFER = 5; const REST_SCALE = 1.05; const HELD_SCALE = 1.32;
-            const getX = (e) => e.touches ? e.touches[0].clientX : e.clientX;
-
-            function updateVisuals(progress, isHeld, currentScale) {
-                if (isHeld) { pill.style.backdropFilter = 'blur(10px)'; pill.style.webkitBackdropFilter = 'blur(10px)'; pill.style.backgroundColor = 'rgba(255, 255, 255, 0.6)'; pill.style.boxShadow = '0 18px 40px -5px rgba(0,0,0,0.3), 0 0 20px -5px rgba(0,0,0,0.15)'; }
-                const distPT = Math.abs(progress - 0); const distEN = Math.abs(progress - 1);
-                let scaleMultiplier = 0; if (currentScale) { const safeScale = Math.max(1, currentScale); scaleMultiplier = (safeScale - 1.0) * 0.8; }
-                const scalePT = 1.0 + (Math.max(0, 1.0 - distPT) * scaleMultiplier); const scaleEN = 1.0 + (Math.max(0, 1.0 - distEN) * scaleMultiplier);
-                if(progress < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); } else { enItem.classList.add('active'); ptItem.classList.remove('active'); }
-                ptItem.style.transform = `scale(${scalePT})`; enItem.style.transform = `scale(${scaleEN})`;
-            }
-            function resetStyles(finalXValue) {
-                pill.style.setProperty('--pill-x', finalXValue + '%'); pill.style.transform = ''; pill.style.backdropFilter = ''; pill.style.webkitBackdropFilter = ''; pill.style.backgroundColor = ''; pill.style.boxShadow = ''; pill.style.transition = '';
-                ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
-            }
-            function physicsLoop() {
-                if (!isDragging && !isAutoScrolling) return;
-                if(isAutoScrolling) {
-                    const prevX = physics.currentX;
-                    physics.currentX += (physics.targetX - physics.currentX) * 0.20;
-                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * 0.20;
-                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * 0.20;
-                    velocity = (physics.currentX - prevX);
-                    physics.targetSkew = Math.max(-20, Math.min(20, velocity * -1.5));
-                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * 0.20;
-                    if(Math.abs(physics.currentX - physics.targetX) < 1) { isAutoScrolling = false; finishInteraction(); return; }
-                } else {
-                    physics.currentX += (physics.targetX - physics.currentX) * SMOOTH_FACTOR;
-                    physics.currentScaleX += (physics.targetScaleX - physics.currentScaleX) * SMOOTH_FACTOR;
-                    physics.currentScaleY += (physics.targetScaleY - physics.currentScaleY) * SMOOTH_FACTOR;
-                    physics.currentSkew += (physics.targetSkew - physics.currentSkew) * SMOOTH_FACTOR;
-                }
-                pill.style.transform = `translateX(${physics.currentX}px) scale(${physics.currentScaleX}, ${physics.currentScaleY}) skewX(${physics.currentSkew}deg)`;
-                const containerRect = container.getBoundingClientRect(); const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8;
-                const percentage = (physics.currentX / maxTranslate); const progress = Math.max(0, Math.min(1, percentage));
-                updateVisuals(progress, true, physics.currentScaleX);
-                animationFrameId = requestAnimationFrame(physicsLoop);
-            }
-            function finishInteraction() {
-                cancelAnimationFrame(animationFrameId);
-                const containerRect = container.getBoundingClientRect(); const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8; const midPoint = maxTranslate / 2;
-                const finalChoice = physics.currentX > midPoint ? 'en' : 'pt'; currentSelection = finalChoice;
-                const finalX = currentSelection === 'en' ? 100 : 0;
-                const syncTransition = 'transform 0.6s cubic-bezier(0.5, 1.6, 0.4, 1.1)';
-                pill.style.transition = syncTransition + ', background-color 0.4s ease, box-shadow 0.4s ease'; pill.style.transform = `translateX(${finalX}%) scale(${REST_SCALE}) skewX(0deg)`;
-                ptItem.style.transition = syncTransition; enItem.style.transition = syncTransition; ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
-                pill.style.backdropFilter = ''; pill.style.boxShadow = ''; pill.style.backgroundColor = '';
-                setTimeout(() => { resetStyles(finalX); }, 600);
-
-                const isEnPage = window.location.pathname.includes('/en/');
-                if (currentSelection === 'en' && !isEnPage) { localStorage.setItem('preferredLang', 'en'); setTimeout(() => { window.location.href = 'en/lo-branding.html'; }, 650); }
-                else if (currentSelection === 'pt' && isEnPage) { localStorage.setItem('preferredLang', 'pt'); setTimeout(() => { window.location.href = '../lo-branding.html'; }, 650); }
-            }
-            const startHandler = (e) => {
-                if(isAutoScrolling) return; isDragging = true;
-                pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
-                if(e.type === 'mousedown') e.preventDefault();
-                const clientX = getX(e); const containerRect = container.getBoundingClientRect(); const pillRect = pill.getBoundingClientRect();
-                startX = clientX; lastX = clientX; lastTime = Date.now(); startPillX = pillRect.left - containerRect.left;
-                const currentMatrix = new (window.DOMMatrix || window.WebKitCSSMatrix)(window.getComputedStyle(pill).transform); physics.currentX = currentMatrix.m41;
-                physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b); physics.currentScaleY = physics.currentScaleX;
-                physics.targetX = physics.currentX; physics.targetScaleX = HELD_SCALE; physics.targetScaleY = HELD_SCALE;
-                cancelAnimationFrame(animationFrameId); physicsLoop();
-            };
-            const moveHandler = (e) => {
-                if (!isDragging) return; if (e.type === 'mousemove' && e.buttons === 0) { endHandler(e); return; }
-                const clientX = getX(e); const now = Date.now(); const dt = now - lastTime;
-                if(dt > 0) { const newVel = (clientX - lastX) / dt; velocity = (velocity * 0.7) + (newVel * 0.3); } lastX = clientX; lastTime = now;
-                const movementDelta = clientX - startX; let rawTargetX = startPillX + (movementDelta * DRAG_FACTOR);
-                const containerRect = container.getBoundingClientRect(); const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8;
-                const effectiveMin = EDGE_BUFFER; const effectiveMax = maxTranslate - EDGE_BUFFER; let clampedTargetX = rawTargetX; let wallPenetration = 0;
-                if (rawTargetX < effectiveMin) { wallPenetration = effectiveMin - rawTargetX; clampedTargetX = effectiveMin - (12 * (1 - Math.pow(2.718, -wallPenetration / 25))); }
-                else if (rawTargetX > effectiveMax) { wallPenetration = rawTargetX - effectiveMax; clampedTargetX = effectiveMax + (12 * (1 - Math.pow(2.718, -wallPenetration / 25))); }
-                physics.targetX = clampedTargetX; const absVel = Math.abs(velocity); const baseScale = HELD_SCALE;
-                if (wallPenetration > 1) { const totalSquash = Math.min(absVel * 0.25, 0.25) + Math.min(wallPenetration * 0.01, 0.15); physics.targetScaleX = baseScale - (totalSquash * 0.7); physics.targetScaleY = baseScale + (totalSquash * 0.8); }
-                else { if (absVel > 0.1) { const stretchFactor = Math.min(absVel * 0.08, 0.2); physics.targetScaleX = baseScale + stretchFactor; physics.targetScaleY = baseScale - (stretchFactor * 0.6); } else { physics.targetScaleX = baseScale; physics.targetScaleY = baseScale; } }
-                physics.targetSkew = Math.max(-20, Math.min(20, velocity * -12));
-            };
-            const endHandler = (e) => { if(!isDragging) return; isDragging = false; if (Math.abs(lastX - startX) > 5) { finishInteraction(); } };
-            container.addEventListener('touchstart', startHandler, {passive: false}); window.addEventListener('touchmove', moveHandler, {passive: false}); window.addEventListener('touchend', endHandler);
-            container.addEventListener('mousedown', startHandler); window.addEventListener('mousemove', moveHandler); window.addEventListener('mouseup', endHandler);
-            container.addEventListener('mouseleave', function() { if(!isDragging && !isAutoScrolling) { const finalX = currentSelection === 'en' ? 100 : 0; resetStyles(finalX); } });
-            container.addEventListener('click', function(e) {
-                const movementTotal = Math.abs(lastX - startX); if (isDragging || movementTotal > 5) return; if(isAutoScrolling) return;
-                const containerRect = container.getBoundingClientRect(); const clickX = e.clientX - containerRect.left;
-                const isRightSide = clickX > (containerRect.width / 2); const targetLang = isRightSide ? 'en' : 'pt';
-                if(targetLang === currentSelection) return; isAutoScrolling = true; currentSelection = targetLang;
-                const pillWidth = (containerRect.width / 2) - 4; const maxTranslate = containerRect.width - pillWidth - 8;
-                const currentMatrix = new (window.DOMMatrix || window.WebKitCSSMatrix)(window.getComputedStyle(pill).transform); physics.currentX = currentMatrix.m41;
-                physics.currentScaleX = Math.sqrt(currentMatrix.a * currentMatrix.a + currentMatrix.b * currentMatrix.b); physics.currentScaleY = physics.currentScaleX;
-                physics.targetX = targetLang === 'en' ? maxTranslate : 0; physics.targetScaleX = HELD_SCALE; physics.targetScaleY = HELD_SCALE;
-                pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none'; cancelAnimationFrame(animationFrameId); physicsLoop();
-            });
-        }
-        const allSwitchers = document.querySelectorAll('.lang-switcher-container');
-        allSwitchers.forEach(el => initPhysicsSwitcher(el));
-    });
-
-    // --- LIGHTBOX SCRIPT ---
+// --- LIGHTBOX SCRIPT ---
     document.addEventListener('DOMContentLoaded', () => {
       const triggers = document.querySelectorAll('.lightbox-trigger');
       const lightbox = document.getElementById('lightbox');
@@ -812,6 +565,7 @@
       function openLightbox(index) {
         currentIndex = index;
         lbImage.src = imagesList[currentIndex];
+        lbImage.alt = triggers[currentIndex].alt || 'Imagem ampliada';
         lbImage.style.transform = 'translateX(0)';
         lbImage.style.transition = 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)';
         lightbox.classList.add('active');
@@ -832,6 +586,7 @@
         setTimeout(() => {
             currentIndex = (currentIndex + direction + imagesList.length) % imagesList.length;
             lbImage.src = imagesList[currentIndex];
+        lbImage.alt = triggers[currentIndex].alt || 'Imagem ampliada';
             lbImage.style.transition = 'none';
             lbImage.style.transform = direction > 0 ? 'translateX(120%)' : 'translateX(-120%)';
             void lbImage.offsetWidth;
@@ -862,66 +617,7 @@
     });
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://ogabriels.com/",
-        "name": "Gabriel Silva",
-        "jobTitle": "Creative Technologist & Full Stack Developer",
-        "url": "https://ogabriels.com/",
-        "image": "https://ogabriels.com/assets/img/gabriel-silva-perfil.jpg",
-        "knowsAbout": ["Branding", "Identidade Visual", "Full Stack Development", "Infraestrutura de TI"],
-        "alumniOf": [
-          { "@type": "EducationalOrganization", "name": "Liceu de Artes e Ofícios de São Paulo" },
-          { "@type": "EducationalOrganization", "name": "UNIVESP" }
-        ],
-        "sameAs": [
-          "https://www.linkedin.com/in/ogabriels/",
-          "https://github.com/ogabriels2/",
-          "https://www.behance.net/ogabriels0",
-          "https://x.com/ogabriels0",
-          "https://www.instagram.com/ogabriels0/",
-          "https://www.youtube.com/@Gabalarca"
-        ]
-      },
-      {
-        "@type": "Article",
-        "@id": "https://ogabriels.com/lo-branding.html#case",
-        "headline": "Lô Publicidade: Case Study de Branding e Identidade Visual (TCC)",
-        "description": "Desenvolvimento de identidade visual inspirada em Art Nouveau e Art Déco para o TCC de Multimídia no Liceu de Artes e Ofícios.",
-        "image": "https://ogabriels.com/assets/img/lo-branding-capa.webp",
-        "datePublished": "2022-12-01T08:00:00-03:00",
-        "author": { "@id": "https://ogabriels.com/" },
-        "publisher": { "@id": "https://ogabriels.com/" },
-        "mainEntityOfPage": { "@id": "https://ogabriels.com/lo-branding.html" },
-        "educationalLevel": "Trabalho de Conclusão de Curso (TCC)",
-        "keywords": "Branding, Identidade Visual, Art Nouveau, Art Déco, Liceu de Artes e Ofícios, Lô Publicidade"
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://ogabriels.com/lo-branding.html",
-        "url": "https://ogabriels.com/lo-branding.html",
-        "name": "Lô Publicidade | Branding e Identidade Visual (TCC)",
-        "isPartOf": { "@id": "https://ogabriels.com/#website" },
-        "breadcrumb": { "@id": "https://ogabriels.com/lo-branding.html#breadcrumb" },
-        "about": { "@id": "https://ogabriels.com/lo-branding.html#case" },
-        "primaryImageOfPage": { "@id": "https://ogabriels.com/#personImage" },
-        "inLanguage": "pt-BR"
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://ogabriels.com/lo-branding.html#breadcrumb",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Lô Publicidade", "item": "https://ogabriels.com/lo-branding.html" }
-        ]
-      }
-    ]
-  }
-  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ogabriels.com/#gabriel", "name": "Gabriel Silva Dias Moreira", "alternateName": "Gabriel Moreira", "url": "https://ogabriels.com/", "image": "https://ogabriels.com/assets/img/gabriel-perfil-512.webp", "sameAs": ["https://www.linkedin.com/in/ogabriels/", "https://github.com/ogabriels2"], "knowsAbout": ["Desenvolvimento de produtos", "APIs REST", "Desenvolvimento de software", "Infraestrutura", "Multimídia"]}, {"@type": "Article", "@id": "https://ogabriels.com/lo-branding#case", "headline": "Lô Publicidade: Case Study de Branding e Identidade Visual (TCC)", "description": "Identidade visual da agência experimental Lô Publicidade, um TCC de Multimídia. Tipografia, paleta e aplicações da marca.", "image": "https://ogabriels.com/assets/img/lo-branding-capa.webp", "datePublished": "2022-12-01T08:00:00-03:00", "author": {"@id": "https://ogabriels.com/#gabriel"}, "publisher": {"@id": "https://ogabriels.com/#gabriel"}, "mainEntityOfPage": {"@id": "https://ogabriels.com/lo-branding"}, "educationalLevel": "Trabalho de Conclusão de Curso (TCC)", "keywords": "Branding, Identidade Visual, Art Nouveau, Art Déco, Liceu de Artes e Ofícios, Lô Publicidade"}, {"@type": "WebPage", "@id": "https://ogabriels.com/lo-branding", "url": "https://ogabriels.com/lo-branding", "name": "Lô Publicidade | Branding e Identidade Visual (TCC)", "isPartOf": {"@id": "https://ogabriels.com/#website"}, "breadcrumb": {"@id": "https://ogabriels.com/lo-branding#breadcrumb"}, "about": {"@id": "https://ogabriels.com/lo-branding#case"}, "primaryImageOfPage": {"@id": "https://ogabriels.com/#personImage"}, "inLanguage": "pt-BR"}, {"@type": "BreadcrumbList", "@id": "https://ogabriels.com/lo-branding#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/"}, {"@type": "ListItem", "position": 2, "name": "Lô Publicidade", "item": "https://ogabriels.com/lo-branding"}]}]}</script>
 
 </body>
 </html>

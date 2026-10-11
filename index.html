@@ -14,25 +14,20 @@
     gtag('config', 'G-L8XF4TVBSL');
   </script>
 
-  <script>
-    var userLang = navigator.language || navigator.userLanguage; 
-    if (userLang.startsWith('en') && !window.location.pathname.includes('/en/') && !localStorage.getItem('preferredLang')) {
-        // window.location.href = '/en/index.html'; 
-    }
-  </script>
+
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fbfbfd">
-  
-  <title>Gabriel Silva | Creative Technologist & Full Stack Developer</title>
-  <meta name="description" content="Portfólio de Gabriel Silva, Creative Technologist em design, desenvolvimento full stack e infraestrutura de servidores. Cases em tecnologia, software, design gráfico e audiovisual.">
+
+  <title>Gabriel Moreira | Software, produto e integrações</title>
+  <meta name="description" content="Portfólio de Gabriel Moreira: software, produto, APIs e infraestrutura. Força Aliada, Miguel Downloader, projetos acadêmicos e repertório visual.">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="Gabriel Silva">
-  
+  <meta name="author" content="Gabriel Moreira">
+
   <link rel="canonical" href="https://ogabriels.com/">
   <link rel="alternate" hreflang="pt-br" href="https://ogabriels.com/" />
-  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/index" />
+  <link rel="alternate" hreflang="en" href="https://ogabriels.com/en/" />
   <link rel="alternate" hreflang="x-default" href="https://ogabriels.com/" />
   <link rel="sitemap" type="application/xml" href="https://ogabriels.com/sitemap.xml">
 
@@ -40,25 +35,25 @@
   <link rel="apple-touch-icon" href="assets/img/ogabriels-logo.webp">
 
   <meta property="og:locale" content="pt_BR">
-  <meta property="og:site_name" content="Gabriel Silva — Portfólio">
+  <meta property="og:site_name" content="Gabriel Moreira — Portfólio">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ogabriels.com/">
-  <meta property="og:title" content="Gabriel Silva | Creative Technologist">
-  <meta property="og:description" content="Design, Tecnologia e Infraestrutura. Confira meu portfólio completo de soluções digitais.">
-  <meta property="og:image" content="https://ogabriels.com/assets/img/ogabriels-logo.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Gabriel Silva — Creative Technologist & Full Stack Developer">
+  <meta property="og:title" content="Gabriel Moreira | Software, produto e integrações">
+  <meta property="og:description" content="Portfólio de Gabriel Moreira: software, produto, APIs e infraestrutura. Força Aliada, Miguel Downloader, projetos acadêmicos e repertório visual.">
+  <meta property="og:image" content="https://ogabriels.com/assets/img/gabriel-perfil-512.webp">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Gabriel Moreira — Software, produto e interfaces">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://ogabriels.com/">
-  <meta name="twitter:title" content="Gabriel Silva | Creative Technologist">
-  <meta name="twitter:description" content="Design, Tecnologia e Infraestrutura. Confira meu portfólio completo.">
-  <meta name="twitter:image" content="https://ogabriels.com/assets/img/ogabriels-logo.png">
-  <meta name="twitter:image:alt" content="Gabriel Silva — Creative Technologist & Full Stack Developer">
+  <meta name="twitter:title" content="Gabriel Moreira | Software, produto e integrações">
+  <meta name="twitter:description" content="Portfólio de Gabriel Moreira: software, produto, APIs e infraestrutura. Força Aliada, Miguel Downloader, projetos acadêmicos e repertório visual.">
+  <meta name="twitter:image" content="https://ogabriels.com/assets/img/gabriel-perfil-512.webp">
+  <meta name="twitter:image:alt" content="Gabriel Moreira — Software, produto e interfaces">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
   <style>
     /* ---------------- Design Tokens ---------------- */
@@ -66,7 +61,7 @@
       --sidebar-width: 280px;
       --max-width: 1100px;
       --card-radius: 18px;
-      
+
       /* Colors */
       --bg-body: #F5F5F7;
       --bg-sidebar: rgba(255, 255, 255, 0.75);
@@ -75,14 +70,14 @@
       --text-secondary: #86868B;
       --accent: #0071E3;
       --accent-hover: #0077ED;
-      
+
       /* Effects */
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
       --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
       --glass-blur: blur(20px) saturate(180%);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      
+
       /* Physics Animations */
       --ease-out: cubic-bezier(0.25, 0.8, 0.25, 1);
       --smooth-glide: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -90,9 +85,9 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     html { scroll-behavior: smooth; font-size: 16px; }
-    
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--text-primary);
@@ -145,7 +140,7 @@
     .sidebar-scaler.compact-mode .profile-container { margin-bottom: 15px; }
 
     .profile-link { display: block; transition: transform 0.2s; }
-    .profile-link:active { transform: scale(0.98); } 
+    .profile-link:active { transform: scale(0.98); }
 
     .profile-pic-wrapper {
       width: 110px; height: 110px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden;
@@ -153,56 +148,56 @@
       transition: transform 0.4s var(--ease-out); flex-shrink: 0;
       transform: translateZ(0);
     }
-    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); } 
-    
+    .profile-link:hover .profile-pic-wrapper { transform: scale(1.05); }
+
     .profile-pic { width: 100%; height: 100%; object-fit: cover; }
-    
-    .profile-name { 
-      font-size: 1.4rem; font-weight: 700; 
-      margin-bottom: 6px; color: #111; 
-      transition: color 0.3s ease; 
+
+    .profile-name {
+      font-size: 1.4rem; font-weight: 700;
+      margin-bottom: 6px; color: #111;
+      transition: color 0.3s ease;
     }
     .profile-link:hover .profile-name { color: var(--accent); }
-    
-    .profile-role { 
-      font-size: 0.7rem; color: var(--text-secondary); 
-      font-weight: 600; text-transform: uppercase; 
-      letter-spacing: 0.08em; 
+
+    .profile-role {
+      font-size: 0.7rem; color: var(--text-secondary);
+      font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     /* NAVEGAÇÃO */
-    nav { 
-        flex: 1; 
-        display: flex; flex-direction: column; 
-        min-height: 0; 
+    nav {
+        flex: 1;
+        display: flex; flex-direction: column;
+        min-height: 0;
         margin-bottom: 10px;
     }
     .sidebar-scaler.compact-mode nav { margin-bottom: 0px; }
-    
+
     .nav-group { margin-bottom: 20px; flex-shrink: 0; transition: margin 0.2s; }
     .sidebar-scaler.compact-mode .nav-group { margin-bottom: 10px; }
 
     .nav-group h2 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
-    
+
     .nav-list { list-style: none; padding: 0; }
     .nav-list li { margin-bottom: 2px; }
-    
+
     /* --- SCROLLBAR INTERNO --- */
     .project-scroll-container {
-        overflow-y: auto; 
-        padding-right: 5px; 
+        overflow-y: auto;
+        padding-right: 5px;
         margin-right: -5px;
         scrollbar-width: thin;
         scrollbar-color: rgba(0,0,0,0.15) transparent;
     }
     .project-scroll-container::-webkit-scrollbar { width: 4px; }
     .project-scroll-container::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.15); border-radius: 4px; }
-    
-    .nav-link { 
+
+    .nav-link {
       display: flex; align-items: center; gap: 10px;
-      padding: 8px 12px; 
-      color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; 
-      border-radius: 8px; 
+      padding: 8px 12px;
+      color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;
+      border-radius: 8px;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       white-space: nowrap;
     }
@@ -210,7 +205,7 @@
     .nav-link:active { transform: scale(0.98) translateX(4px); background: rgba(0, 113, 227, 0.12); transition-duration: 0.1s; }
 
     /* ---- LANGUAGE SELECTOR (PHYSICS V30 - GOLD MASTER) ---- */
-    
+
     .lang-switcher-container {
       touch-action: none;
       position: relative; display: flex; margin: 0 0 20px;
@@ -226,35 +221,35 @@
     .gliding-pill {
         position: absolute;
         top: 4px; bottom: 4px; left: 4px;
-        width: calc(50% - 4px); 
+        width: calc(50% - 4px);
         background: #FFFFFF;
-        border-radius: 9999px; 
+        border-radius: 9999px;
         cursor: grab;
-        
+
         /* Borda Escurecida para efeito Líquido/Vidro (0.12) */
-        border: 1px solid rgba(0,0,0,0.12); 
-        
+        border: 1px solid rgba(0,0,0,0.12);
+
         /* Sombra Inicial */
         box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
-        z-index: 1; 
-        
-        --pill-x: 0%; 
+        z-index: 1;
+
+        --pill-x: 0%;
         transform-origin: center center;
         transform: translateX(var(--pill-x)) scale(1.05);
-        
+
         /* Transição Suave */
-        transition: 
-            transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2), 
+        transition:
+            transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1.2),
             background-color 0.3s ease,
             box-shadow 0.3s ease,
             backdrop-filter 0.3s ease;
     }
-    
+
     .gliding-pill:active { cursor: grabbing; }
 
     /* HOVER SYNC: AJUSTADO - Pílula grande, texto sutil */
     @media (hover: hover) {
-        .lang-switcher-container:hover .gliding-pill { 
+        .lang-switcher-container:hover .gliding-pill {
             transform: translateX(var(--pill-x)) scale(1.15); /* Pílula mantém o "aumento na bolha" */
         }
         .lang-switcher-container:hover .lang-item.active {
@@ -263,27 +258,27 @@
     }
 
     .lang-item {
-        position: relative; 
-        z-index: 5; 
+        position: relative;
+        z-index: 5;
         display: flex; align-items: center; justify-content: center; gap: 8px;
         padding: 6px 14px;
         border-radius: 99px;
-        font-size: 0.8rem; font-weight: 600; 
-        color: var(--text-secondary); text-decoration: none; 
+        font-size: 0.8rem; font-weight: 600;
+        color: var(--text-secondary); text-decoration: none;
         width: 75px;
-        
+
         /* Transição Suave de Cor e Transform */
         transition: color 0.3s ease, transform 0.3s var(--smooth-glide);
         will-change: transform, color;
-        pointer-events: none !important; 
+        pointer-events: none !important;
     }
     .lang-item.active { color: var(--text-primary); cursor: default; }
-    
-    .lang-flag { 
-        width: 20px; height: 15px; border-radius: 3px; object-fit: cover; 
-        box-shadow: 0 0 0 1px rgba(0,0,0,0.08); 
+
+    .lang-flag {
+        width: 20px; height: 15px; border-radius: 3px; object-fit: cover;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
         filter: none !important;
-        transform: translateZ(0); 
+        transform: translateZ(0);
         pointer-events: none !important;
     }
 
@@ -306,9 +301,9 @@
     .sidebar-cta:active { transform: translateY(1px) scale(0.97); box-shadow: none; background: #333; transition-duration: 0.08s; }
 
     /* Footer */
-    .sidebar-footer { 
-        padding-top: 20px; 
-        border-top: 1px solid rgba(0,0,0,0.05); 
+    .sidebar-footer {
+        padding-top: 20px;
+        border-top: 1px solid rgba(0,0,0,0.05);
         flex-shrink: 0;
         transition: padding 0.2s;
     }
@@ -400,27 +395,27 @@
     @media (max-width: 968px) {
       body { flex-direction: column; }
       .header-content h1 { font-size: 2rem; }
-      
-      aside { 
-          width: 100%; height: 70px; 
-          position: fixed; top: 0; left: 0; 
-          padding: 0 24px; 
-          border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); 
-          display: flex; 
-          flex-direction: row; justify-content: space-between; align-items: center; 
-          z-index: 2001; 
-          background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); 
-          overflow-y: hidden; 
+
+      aside {
+          width: 100%; height: 70px;
+          position: fixed; top: 0; left: 0;
+          padding: 0 24px;
+          border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05);
+          display: flex;
+          flex-direction: row; justify-content: space-between; align-items: center;
+          z-index: 2001;
+          background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
+          overflow-y: hidden;
       }
 
       /* ANULAR O SCALER NO MOBILE */
       .sidebar-scaler {
-        width: auto; height: auto !important; 
+        width: auto; height: auto !important;
         min-height: auto;
         padding: 0;
         flex-direction: row;
         align-items: center;
-        transform: none !important; 
+        transform: none !important;
       }
       .sidebar-scaler.compact-mode { padding: 0; }
 
@@ -428,9 +423,9 @@
       .profile-link { display: flex; align-items: center; gap: 12px; }
       .profile-pic-wrapper { width: 36px; height: 36px; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
       .profile-name { font-size: 1rem; margin: 0; }
-      
-      .sidebar-scaler nav, 
-      .sidebar-scaler .sidebar-footer, 
+
+      .sidebar-scaler nav,
+      .sidebar-scaler .sidebar-footer,
       .profile-role { display: none; }
 
       .mobile-menu-btn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; cursor: pointer; color: var(--text-primary); font-size: 1.4rem; }
@@ -447,14 +442,14 @@
     }
 
     @media (max-width: 968px) and (orientation: landscape) {
-      aside { height: 60px; padding: 0 20px; } 
-      main { padding: 90px 40px 40px; } 
-      .grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } 
-      .card-image-wrapper { aspect-ratio: 16/9; } 
-      .contact-banner { padding: 40px; } 
+      aside { height: 60px; padding: 0 20px; }
+      main { padding: 90px 40px 40px; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .card-image-wrapper { aspect-ratio: 16/9; }
+      .contact-banner { padding: 40px; }
       .header-content p { font-size: 0.85rem; line-height: 1.45; }
     }
-  
+
     /* ── v14: Sidebar & Nav improvements ── */
     .nav-group h2 { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8; }
     .nav-link.active { color: var(--accent); font-weight: 600; background: rgba(0,113,227,0.05); }
@@ -624,871 +619,72 @@
       pointer-events: auto;
     }
   </style>
+<link rel="stylesheet" href="assets/css/portfolio-professional.css?v=94088a7499">
+<link rel="stylesheet" href="assets/css/portfolio-shell.css?v=964620bee1">
+<script src="assets/js/portfolio-shell.js?v=b4c786c99a" defer></script>
+<script src="assets/js/portfolio-motion.js?v=03e1acf788" defer></script>
 </head>
-<body>
+<body data-page="home">
   <div id="page-transition-out" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
-  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de Navegação" aria-hidden="true" inert>
-    <div class="mobile-scroll-wrapper">
-        <div class="mobile-nav-container">
-            <div class="lang-switcher-container" id="mobileLangSwitcher" role="button" tabindex="0" aria-label="Mudar idioma" style="margin-bottom:20px;background:rgba(0,0,0,0.05);">
-                <div class="gliding-pill"></div>
-                <span class="lang-item active" data-lang="pt" data-href="index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
-                <span class="lang-item" data-lang="en" data-href="en/index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
-            </div>
-            <div class="mobile-nav-group">
-                <a href="sobre.html" class="mobile-link-main js-menu-toggle">Sobre Mim</a>
-                <a href="/" class="mobile-link-main js-menu-toggle">Projetos</a>
-            </div>
-            <div class="mobile-projects-wrapper">
-                <div class="mobile-divider"></div>
-                <span class="mobile-label">Cases de Sucesso</span>
-                <div class="mobile-projects-list">
-                    <a href="forca-aliada.html" class="mobile-link-sub js-menu-toggle">Força Aliada</a>
-                    <a href="infra.html" class="mobile-link-sub js-menu-toggle">Server Infra</a>
-                    <a href="busca-preco.html" class="mobile-link-sub js-menu-toggle">Busca Preço</a>
-                    <a href="hyrochat.html" class="mobile-link-sub js-menu-toggle">HyroChat</a>
-                    <a href="miguel-downloader.html" class="mobile-link-sub js-menu-toggle">Miguel Downloader</a>
-                    <a href="revista-utopia.html" class="mobile-link-sub js-menu-toggle">Revista Utopia</a>
-                    <a href="neoletters.html" class="mobile-link-sub js-menu-toggle">Neo Letters</a>
-                    <a href="lo-branding.html" class="mobile-link-sub js-menu-toggle">Lô Publicidade</a>
-                    <a href="personal-branding.html" class="mobile-link-sub js-menu-toggle">G | Gabriel</a>
-                    <a href="podcast-um-minuto.html" class="mobile-link-sub js-menu-toggle">Um Minuto</a>
-                    <a href="valorada.html" class="mobile-link-sub js-menu-toggle">Valorada</a>
-                    <a href="thumbnails.html" class="mobile-link-sub js-menu-toggle">Thumbnails</a>
-                    <a href="videos.html" class="mobile-link-sub js-menu-toggle">Audiovisual</a>
-                </div>
-            </div>
-            <div class="mobile-footer-group">
-                <div class="mobile-socials">
-                    <a href="https://www.linkedin.com/in/ogabriels/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                    <a href="https://www.instagram.com/ogabriels0/" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
-                    <a href="https://github.com/ogabriels2" class="mobile-social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-                </div>
-                <a href="contato.html" class="mobile-cta js-menu-toggle"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
-            </div>
-        </div>
+  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação" aria-hidden="true" hidden inert><div class="mobile-scroll-wrapper"><div class="mobile-nav-container"><div class="mobile-nav-group"><div class="lang-switcher-container" data-active="pt" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item active" href="index.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português">PT</a><a class="lang-item" href="en/index.html" lang="en" hreflang="en" aria-label="English">EN</a></div><a href="index.html" class="mobile-link-main is-active" aria-current="page">Projetos</a><a href="sobre.html" class="mobile-link-main">Sobre mim</a></div><div class="mobile-projects-wrapper"><nav class="mobile-projects-list" aria-label="Projetos"><div class="mobile-divider"></div><p class="mobile-label">Software e produto</p><a href="forca-aliada.html" class="mobile-link-sub">Força Aliada</a><a href="miguel-downloader.html" class="mobile-link-sub">Miguel Downloader</a><a href="busca-preco.html" class="mobile-link-sub">Busca Preço</a><a href="hyrochat.html" class="mobile-link-sub">HyroChat</a><a href="infra.html" class="mobile-link-sub">Infraestrutura FA</a><div class="mobile-divider"></div><p class="mobile-label">Design e audiovisual</p><a href="neoletters.html" class="mobile-link-sub">Neo Letters</a><a href="lo-branding.html" class="mobile-link-sub">Lô</a><a href="videos.html" class="mobile-link-sub">Audiovisual</a><a href="revista-utopia.html" class="mobile-link-sub">Revista Utopia</a><a href="personal-branding.html" class="mobile-link-sub">G | Gabriel</a><a href="podcast-um-minuto.html" class="mobile-link-sub">Um Minuto</a><a href="valorada.html" class="mobile-link-sub">Valorada</a><a href="thumbnails.html" class="mobile-link-sub">Thumbnails</a></nav></div><div class="mobile-footer-group"><a class="mobile-cta" href="contato.html">Contato</a><a class="mobile-link-sub" href="assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener">Currículo em PDF</a></div></div></div></div>
+
+  <aside class="portfolio-sidebar" aria-label="Navegação do portfólio"><div class="sidebar-scaler"><div class="profile-container"><a href="index.html" class="profile-link"><div class="profile-pic-wrapper"><img src="assets/img/gabriel-perfil-220.webp" alt="" class="profile-pic" width="86" height="86"></div><p class="profile-name">Gabriel Moreira</p><p class="profile-role">Software e produto</p></a></div><nav aria-label="Navegação principal"><div class="nav-group"><ul class="nav-list"><li><a href="index.html" class="nav-link active" aria-current="page">Projetos</a></li><li><a href="sobre.html" class="nav-link">Sobre mim</a></li></ul></div><div class="nav-group portfolio-project-group"><ul class="nav-list project-scroll-container"><li class="portfolio-nav-section"><span class="nav-group-label">Software e produto</span></li><li><a href="forca-aliada.html" class="nav-link">Força Aliada</a></li><li><a href="miguel-downloader.html" class="nav-link">Miguel Downloader</a></li><li><a href="busca-preco.html" class="nav-link">Busca Preço</a></li><li><a href="hyrochat.html" class="nav-link">HyroChat</a></li><li><a href="infra.html" class="nav-link">Infraestrutura FA</a></li><li class="portfolio-nav-section"><span class="nav-group-label">Design e audiovisual</span></li><li><a href="neoletters.html" class="nav-link">Neo Letters</a></li><li><a href="lo-branding.html" class="nav-link">Lô</a></li><li><a href="videos.html" class="nav-link">Audiovisual</a></li><li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li><li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li><li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li><li><a href="valorada.html" class="nav-link">Valorada</a></li><li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li></ul></div><div class="lang-switcher-container" data-active="pt" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item active" href="index.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português">PT</a><a class="lang-item" href="en/index.html" lang="en" hreflang="en" aria-label="English">EN</a></div><a href="contato.html" class="sidebar-cta">Contato <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></nav><div class="sidebar-footer"><div class="social-icons"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a><a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></div><p class="copyright">© 2026 Gabriel Moreira</p></div></div></aside><button class="mobile-menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+
+  <noscript><nav class="portfolio-noscript-nav" aria-label="Navegação sem JavaScript"><a href="index.html">Projetos</a><a href="sobre.html">Sobre mim</a><a href="contato.html">Contato</a><a href="assets/docs/gabriel-moreira-curriculo.pdf">Currículo</a></nav></noscript>
+<main id="main-content" tabindex="-1"><div class="portfolio-wrap">
+    <header class="portfolio-intro"><p class="portfolio-eyebrow">Gabriel Moreira · Software e produtos digitais</p>
+    <h1>Desenvolvimento de software,<br><em>com visão de produto.</em></h1>
+    <p class="intro-copy">Conecto decisões de produto, interfaces, APIs e infraestrutura. Minha formação em Multimídia e TI aparece na maneira de construir e validar aplicações web e desktop.</p>
+    <div class="portfolio-actions"><a class="portfolio-button primary" href="#software">Conhecer os projetos <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a><a class="portfolio-button" href="assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener">Currículo em PDF <i class="fa-solid fa-file-pdf" aria-hidden="true"></i></a><a class="portfolio-text-link" href="sobre.html">Sobre mim</a></div>
+    <p class="portfolio-location">São Paulo · Disponível para estágio e posições júnior · TI na UNIVESP, conclusão prevista em dez. 2026</p></header>
+    <section class="portfolio-section" id="software" aria-labelledby="software-title"><div class="portfolio-section-heading"><h2 id="software-title">Software e produtos próprios</h2><p>Dois projetos que conectam concepção, decisões técnicas e operação.</p></div><div class="portfolio-projects"><a class="portfolio-project" data-tone="fa" href="forca-aliada.html">
+    <div class="portfolio-project-image manager product-stage">
+      <div class="product-stage-heading"><img class="product-mark" src="assets/img/forca-aliada-logo.webp" alt="" width="48" height="48"><span>Força Aliada<small>Manager <span class="stage-plus">+</span> Community</small></span></div>
+      <div class="fa-stage-media"><img class="stage-primary" src="assets/img/forca-aliada/manager-interface-operacao-real.png" alt="Força Aliada Manager: interface real de operação de servidores" width="1084" height="373" decoding="async"><img class="stage-secondary" src="assets/img/forca-aliada/community-interface-real.png" alt="Força Aliada Community: feed real da comunidade" width="950" height="500" decoding="async"></div>
     </div>
-</div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Produto próprio · Software desde nov. 2025</p><h3>Força Aliada</h3><p class="portfolio-project-description">Um aplicativo de gestão de servidores, uma rede social e serviços integrados. Conduzo produto, integrações e validação técnica.</p><div class="portfolio-project-bottom"><span>Produto · APIs · Electron · Infraestrutura</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a><a class="portfolio-project" data-tone="miguel" href="miguel-downloader.html">
+    <div class="portfolio-project-image miguel product-stage"><div class="product-stage-heading"><span>Miguel Downloader</span><span class="stage-platform"><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows</span></div><img class="stage-primary" src="assets/img/miguel-downloader/miguel-downloader-interface.png" alt="Miguel Downloader: aplicativo real para Windows" width="1366" height="768" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Produto próprio · Aplicativo Windows publicado</p><h3>Miguel Downloader</h3><p class="portfolio-project-description">Aplicativo nativo que analisa mídias, organiza uma fila persistente e verifica os arquivos antes de concluir cada download.</p><div class="portfolio-project-bottom"><span>C# · .NET · WPF · SQLite</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a></div>
+    <a class="portfolio-infra-link" href="infra.html"><span><strong>Por dentro da infraestrutura da Força Aliada</strong>DNS, conectividade, operação e diagnóstico de servidores — um recorte técnico complementar.</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></section>
+    <section class="portfolio-section" aria-labelledby="academic-title"><div class="portfolio-section-heading"><h2 id="academic-title">Tecnologia em equipe</h2><p>Projetos acadêmicos com contexto real, construção coletiva e uma contribuição definida.</p></div><div class="portfolio-projects"><a class="portfolio-project" data-tone="busca" href="busca-preco.html">
+    <div class="portfolio-project-image busca"><img width="313" height="689" src="assets/img/buscapreco-tela-inicio.png" alt="Busca Preço — interface real do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">UNIVESP · Projeto em equipe · fev.–mai. 2026</p><h3>Busca Preço</h3><p class="portfolio-project-description">Leitura de cupons e histórico de preços. Decisões de produto e interface em equipe, revisão de código e apresentação liderada por mim.</p><div class="portfolio-project-bottom"><span>React Native · Go · PostgreSQL</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a><a class="portfolio-project" data-tone="hyro" href="hyrochat.html">
+    <div class="portfolio-project-image hyro"><img width="1366" height="728" src="assets/img/hyrochat-tela-conversa.png" alt="HyroChat — interface real do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">UNIVESP · Projeto em equipe · fev.–mai. 2026</p><h3>HyroChat</h3><p class="portfolio-project-description">Triagem guiada para o atendimento de uma fintech. Regras de decisão, encaminhamento humano e feedback, construídos coletivamente.</p><div class="portfolio-project-bottom"><span>Python · NiceGUI · PostgreSQL</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a></div></section>
+    <section class="portfolio-section portfolio-archive" id="criativo" aria-labelledby="creative-title"><div class="portfolio-section-heading"><h2 id="creative-title">Design e audiovisual</h2><p>O repertório que acompanha meu trabalho em tecnologia: identidade, edição, comunicação e narrativa.</p></div><div class="portfolio-projects"><a class="portfolio-project" href="neoletters.html">
+    <div class="portfolio-project-image "><img width="1280" height="721" src="assets/img/neoletters-capa.webp" alt="Neo Letters — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Identidade aplicada · Trabalho autônomo</p><h3>Neo Letters</h3><p class="portfolio-project-description">Marca e materiais digitais para letreiros de LED e neon.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a>
+<a class="portfolio-project" href="lo-branding.html">
+    <div class="portfolio-project-image "><img width="1280" height="721" src="assets/img/lo-branding-capa.webp" alt="Lô — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Branding · Projeto acadêmico</p><h3>Lô</h3><p class="portfolio-project-description">Identidade visual, tipografia e aplicações de uma marca.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a>
+<a class="portfolio-project" href="videos.html">
+    <div class="portfolio-project-image "><img width="1518" height="853" src="assets/img/videos-capa.webp" alt="Produção audiovisual — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Vídeo · Edição e narrativa</p><h3>Produção audiovisual</h3><p class="portfolio-project-description">Produção e montagem para contextos culturais e acadêmicos.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a>
+<a class="portfolio-project" href="revista-utopia.html">
+    <div class="portfolio-project-image "><img width="1280" height="721" src="assets/img/revista-utopia-capa.webp" alt="Revista Utopia — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Editorial · Escrita e web</p><h3>Revista Utopia</h3><p class="portfolio-project-description">Redação, colaboração na identidade e experiência editorial.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a>
+<a class="portfolio-project" href="personal-branding.html">
+    <div class="portfolio-project-image "><img width="1280" height="721" src="assets/img/ogabriels-capa.webp" alt="G | Gabriel — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Identidade pessoal</p><h3>G | Gabriel</h3><p class="portfolio-project-description">Um sistema visual próprio e suas aplicações.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a>
+<a class="portfolio-project" href="podcast-um-minuto.html">
+    <div class="portfolio-project-image "><img width="1280" height="720" src="assets/img/um-minuto-refletir-capa.webp" alt="Um Minuto para Refletir — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Podcast · Identidade e áudio</p><h3>Um Minuto para Refletir</h3><p class="portfolio-project-description">Gravação, edição e apresentação de conteúdo em áudio.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a>
+<a class="portfolio-project" href="valorada.html">
+    <div class="portfolio-project-image "><img width="1280" height="722" src="assets/img/valorada-capa.webp" alt="Valorada — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Gaming · Identidade visual</p><h3>Valorada</h3><p class="portfolio-project-description">Composição e adaptação de peças para um canal de jogos.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a>
+<a class="portfolio-project" href="thumbnails.html">
+    <div class="portfolio-project-image "><img width="1280" height="720" src="assets/img/thumbnails-capa.webp" alt="Thumbnails — peça do projeto" loading="lazy" decoding="async"></div>
+    <div class="portfolio-project-copy"><p class="portfolio-project-context">Imagem · Comunicação visual</p><h3>Thumbnails</h3><p class="portfolio-project-description">Hierarquia, tipografia e composição para capas de vídeo.</p><div class="portfolio-project-bottom"><span>Ver o projeto</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div></div></a></div></section>
+    <section class="portfolio-closing"><h2>Vamos conversar sobre uma oportunidade.</h2><p>Busco uma equipe em que possa contribuir com software, produto e integrações, enquanto aprofundo minha formação técnica.</p><div class="portfolio-actions"><a class="portfolio-button primary" href="contato.html">Entrar em contato</a><a class="portfolio-button" href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener">LinkedIn <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div></section>
+    </div></main>
 
-  <aside>
-    <div class="sidebar-scaler">
-        <div class="profile-container">
-          <a href="index.html" class="profile-link">
-            <div class="profile-pic-wrapper">
-              <img src="assets/img/ogabriels-logo.webp" alt="Gabriel Silva" class="profile-pic" width="110" height="110">
-            </div>
-            <div class="profile-text-group">
-              <p class="profile-name">Gabriel Silva</p>
-              <p class="profile-role">Creative Technologist</p>
-            </div>
-          </a>
-        </div>
 
-        <nav>
-          <div class="nav-group">
-            <ul class="nav-list">
-              <li><a href="sobre.html" class="nav-link about-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Sobre mim</a></li>
-            </ul>
-          </div>
 
-          <div class="nav-group" style="flex:1;min-height:0;display:flex;flex-direction:column;">
-            <h2>Portfólio</h2>
-            <ul class="nav-list project-scroll-container">
-              <li><a href="forca-aliada.html" class="nav-link">Força Aliada</a></li>
-              <li><a href="infra.html" class="nav-link">Server Infra &amp; Dashboard</a></li>
-              <li><a href="busca-preco.html" class="nav-link">Busca Preço</a></li>
-              <li><a href="hyrochat.html" class="nav-link">HyroChat</a></li>
-              <li><a href="miguel-downloader.html" class="nav-link">Miguel Downloader</a></li>
-              <li><a href="revista-utopia.html" class="nav-link">Revista Utopia</a></li>
-              <li><a href="neoletters.html" class="nav-link">Neo Letters</a></li>
-              <li><a href="lo-branding.html" class="nav-link">Lô</a></li>
-              <li><a href="personal-branding.html" class="nav-link">G | Gabriel</a></li>
-              <li><a href="podcast-um-minuto.html" class="nav-link">Um Minuto</a></li>
-              <li><a href="valorada.html" class="nav-link">Valorada</a></li>
-              <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
-              <li><a href="videos.html" class="nav-link">Produção Audiovisual</a></li>
-            </ul>
-          </div>
 
-          <div class="lang-switcher-container" role="button" tabindex="0" aria-label="Mudar idioma">
-            <div class="gliding-pill"></div>
-            <span class="lang-item active" data-lang="pt" data-href="index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#009c3b"/><path d="M320 80l245.4 160L320 400 74.6 240z" fill="#ffdf00"/><circle cx="320" cy="240" fill="#002776" r="94.2"/><path d="M165 240a230 230 0 0 1 182 32h-22a230 230 0 0 0-160-32z" fill="#fff" transform="matrix(.42 0 0 .42 165.7 127.2)"/></svg> PT</span>
-            <span class="lang-item" data-lang="en" data-href="en/index.html"><svg class="lang-flag" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h640v480H0z" fill="#bd3d44"/><path d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" stroke="#fff" stroke-width="37"/><path d="M0 0h256v258H0z" fill="#192f5d"/><path d="M10 10l20 20m0-20l-20 20m10-25v30m-15-15h30" fill="#fff" opacity=".8"/></svg> EN</span>
-          </div>
 
-          <a href="contato.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Fale Comigo</a>
-        </nav>
 
-        <div class="sidebar-footer">
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-            <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
-            <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-            <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-          </div>
-          <p class="copyright">© 2026 Gabriel Silva</p>
-        </div>
-    </div>
-    <button class="mobile-menu-btn js-menu-toggle" aria-label="Abrir Menu" aria-expanded="false" aria-controls="mobileMenu"><svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="26">
-      <line class="hb-line hb-line1" x1="4" x2="20" y1="8" y2="8"/>
-      <line class="hb-line hb-line2" x1="4" x2="20" y1="16" y2="16"/>
-    </svg></button>
-  </aside>
-
-  <main id="main-content" tabindex="-1">
-    <div class="container">
-      
-      <header class="page-header">
-        <div class="header-content">
-          <h1>Olá, eu sou o Gabriel.</h1>
-          <p>Design e tecnologia trabalhando juntos para transformar ideias em soluções digitais que funcionam.</p>
-        </div>
-        <a href="contato.html" class="btn-cta">
-          <span>Entrar em contato</span> <i class="fa-solid fa-arrow-right-long"></i>
-        </a>
-      </header>
-
-      <section class="grid">
-
-        <article class="card">
-          <div class="card-image-wrapper" style="background:#050810">
-            <div class="thumb-fa">
-              <div class="thumb-fa-orb o1"></div>
-              <div class="thumb-fa-orb o2"></div>
-              <div class="thumb-fa-grid"></div>
-              <div class="thumb-fa-corner tl"></div>
-              <div class="thumb-fa-corner tr"></div>
-              <div class="thumb-fa-corner bl"></div>
-              <div class="thumb-fa-corner br"></div>
-              <div class="thumb-fa-chip c1"><i class="fa-solid fa-globe"></i>Site Web</div>
-              <div class="thumb-fa-chip c2"><i class="fa-solid fa-server"></i>API REST</div>
-              <div class="thumb-fa-chip c3"><i class="fa-brands fa-windows"></i>App Desktop</div>
-              <div class="thumb-fa-chip c4"><i class="fa-solid fa-users"></i>Rede Social</div>
-              <div class="thumb-fa-center">
-                <div class="thumb-fa-glow"></div>
-                <img src="assets/img/forca-aliada-logo.webp" class="thumb-fa-logo" alt="" loading="lazy">
-              </div>
-              <div class="thumb-fa-tag">4 PRODUTOS · 5 ANOS EM PRODUÇÃO</div>
-            </div>
-            <div class="card-overlay">
-              <span class="project-meta">Full Stack</span>
-              <h3 class="project-title">Força Aliada</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>API · Rede Social · App Desktop</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="forca-aliada.html" class="card-link" aria-label="Ver projeto Força Aliada"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper" style="background:#020d08">
-            <div class="thumb-infra">
-              <div class="thumb-infra-header">
-                <div class="thumb-infra-dot"></div>
-                <span class="thumb-infra-title">Server Infrastructure</span>
-                <span class="thumb-infra-uptime">uptime 99.8%</span>
-              </div>
-              <div class="thumb-infra-body">
-                <div class="thumb-infra-metric">
-                  <div class="thumb-infra-mrow">
-                    <span class="thumb-infra-mname">CPU</span>
-                    <span class="thumb-infra-mval">43%</span>
-                  </div>
-                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:43%"></div></div>
-                </div>
-                <div class="thumb-infra-metric">
-                  <div class="thumb-infra-mrow">
-                    <span class="thumb-infra-mname">Memória</span>
-                    <span class="thumb-infra-mval">61%</span>
-                  </div>
-                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:61%"></div></div>
-                </div>
-                <div class="thumb-infra-metric">
-                  <div class="thumb-infra-mrow">
-                    <span class="thumb-infra-mname">API Latency</span>
-                    <span class="thumb-infra-mval">127ms</span>
-                  </div>
-                  <div class="thumb-infra-bar"><div class="thumb-infra-bar-fill" style="width:34%"></div></div>
-                </div>
-                <div class="thumb-infra-divider"></div>
-                <div class="thumb-infra-dns">
-                  <div class="thumb-infra-drow">
-                    <span class="ok">●</span>
-                    <span class="addr">ns1.ogabriels.com</span>
-                    <span class="badge">A</span>
-                  </div>
-                  <div class="thumb-infra-drow">
-                    <span class="ok">●</span>
-                    <span class="addr">forca-aliada-site.onrender.com</span>
-                    <span class="badge">CNAME</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-overlay">
-              <span class="project-meta">Infraestrutura & Redes</span>
-              <h3 class="project-title">Server Dashboard</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Monitoramento & DNS</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="infra.html" class="card-link" aria-label="Ver projeto Infra"></a>
-        </article>
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/buscapreco-capa.webp" alt="Busca Preço, aplicativo de comparação e histórico de preços" width="1280" height="720" loading="lazy">
-            <div class="card-overlay"><span class="project-meta">Produto digital · Dados de consumo</span><h3 class="project-title">Busca Preço</h3></div>
-          </div>
-          <div class="card-footer"><span>Leitura de cupons · Histórico de preços</span><i class="fa-solid fa-arrow-right"></i></div>
-          <a href="busca-preco.html" class="card-link" aria-label="Ver projeto Busca Preço"></a>
-        </article>
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/hyrochat-capa.webp" alt="HyroChat, chatbot de triagem para atendimento de uma fintech" width="1280" height="720" loading="lazy">
-            <div class="card-overlay"><span class="project-meta">Software · Atendimento digital</span><h3 class="project-title">HyroChat</h3></div>
-          </div>
-          <div class="card-footer"><span>Árvore de decisão · WhatsApp · Feedback</span><i class="fa-solid fa-arrow-right"></i></div>
-          <a href="hyrochat.html" class="card-link" aria-label="Ver projeto HyroChat"></a>
-        </article>
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/miguel-downloader/miguel-downloader-store-home.jpg" alt="Miguel Downloader, aplicativo nativo para Windows" width="1366" height="768" loading="lazy">
-            <div class="card-overlay"><span class="project-meta">Produto próprio · Software para Windows</span><h3 class="project-title">Miguel Downloader</h3></div>
-          </div>
-          <div class="card-footer"><span>Análise de mídia · Fila persistente · Validação</span><i class="fa-solid fa-arrow-right"></i></div>
-          <a href="miguel-downloader.html" class="card-link" aria-label="Ver projeto Miguel Downloader"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/revista-utopia-capa.webp" alt="Capa Revista Utopia - Design Editorial" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">Editorial</span>
-              <h3 class="project-title">Revista Utopia</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Diagramação e direção de arte</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="revista-utopia.html" class="card-link" aria-label="Ver projeto Revista Utopia"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/neoletters-capa.webp" alt="Capa Neo Letters - Branding" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">Branding</span>
-              <h3 class="project-title">Neo Letters</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Identidade Visual</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="neoletters.html" class="card-link" aria-label="Ver projeto Neo Letters"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/lo-branding-capa.webp" alt="Capa Lô Publicidade - Rebranding" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">Identidade Visual</span>
-              <h3 class="project-title">Lô Publicidade</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Rebranding completo</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="lo-branding.html" class="card-link" aria-label="Ver projeto Lô"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/ogabriels-capa.webp" alt="Capa G Gabriel - Personal Branding" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">Personal Branding</span>
-              <h3 class="project-title">G | Gabriel</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Identidade Minimalista</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="personal-branding.html" class="card-link" aria-label="Ver projeto G Gabriel"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/um-minuto-refletir-capa.webp" alt="Capa Um Minuto Podcast" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">Podcast</span>
-              <h3 class="project-title">Um Minuto para Refletir</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Capa e Identidade</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="podcast-um-minuto.html" class="card-link" aria-label="Ver projeto Um Minuto"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/valorada-capa.webp" alt="Capa Valorada - YouTube Gaming" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">YouTube Gaming</span>
-              <h3 class="project-title">Valorada</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Identidade de Alto Impacto</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="valorada.html" class="card-link" aria-label="Ver projeto Valorada"></a>
-        </article>
-        
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/thumbnails-capa.webp" alt="Capa Thumbnails - Design para Social Media" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">Social Media</span>
-              <h3 class="project-title">Thumbnails</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Estratégia para CTR</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="thumbnails.html" class="card-link" aria-label="Ver projeto Thumbnails"></a>
-        </article>
-
-        <article class="card">
-          <div class="card-image-wrapper">
-            <img src="assets/img/videos-capa.webp" alt="Capa Produção Audiovisual" loading="lazy">
-            <div class="card-overlay">
-              <span class="project-meta">Vídeo & Edição</span>
-              <h3 class="project-title">Produção Audiovisual</h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span>Projetos Audiovisuais</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </div>
-          <a href="videos.html" class="card-link" aria-label="Ver projeto Produção Audiovisual"></a>
-        </article>
-
-      </section>
-
-      <section class="contact-banner" id="contato">
-        <div class="contact-text-group">
-          <div class="contact-text">
-            <h2>Vamos criar algo incrível?</h2>
-            <p>Se você tem uma ideia, eu tenho as ferramentas certas para realizá-la.</p>
-          </div>
-          <div class="contact-social">
-              <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-              <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-              <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          </div>
-        </div>
-        <div class="contact-actions">
-          <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
-          <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-          </a>
-        </div>
-      </section>
-
-    </div>
-  </main>
-
-  <script>
-    // ── v14: Shared Portfolio JS ──────────────────────────────────────────
-
-    function debounce(fn, ms) { let t; return function(...a) { clearTimeout(t); t = setTimeout(() => fn.apply(this, a), ms); }; }
-
-    // Input mode detection (hides focus rings for mouse/touch users)
-    (function() {
-      const b = document.body;
-      window.addEventListener('mousedown',  () => b.classList.add('using-pointer'), { passive: true });
-      window.addEventListener('touchstart', () => b.classList.add('using-pointer'), { passive: true });
-      window.addEventListener('keydown', e => { if (e.key === 'Tab') b.classList.remove('using-pointer'); }, { passive: true });
-    })();
-
-    // ── Menu ──────────────────────────────────────────────────────────────
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileMenu && !mobileMenu.classList.contains('active')) mobileMenu.setAttribute('inert', '');
-
-    let _lastFocused = null;
-
-    function getFocusables(root) {
-      return Array.from(root.querySelectorAll('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])'))
-        .filter(el => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true');
-    }
-
-    function toggleMenu() {
-      if (!mobileMenu) return;
-      const isOpen = mobileMenu.classList.contains('active');
-      const btn  = document.querySelector('.mobile-menu-btn');
-      const aside = document.querySelector('aside');
-
-      if (!isOpen) {
-        _lastFocused = document.activeElement;
-        mobileMenu.classList.add('active');
-        mobileMenu.setAttribute('aria-hidden', 'false');
-        mobileMenu.removeAttribute('inert');
-        if (btn)   { btn.classList.add('is-open'); btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-label','Fechar Menu'); }
-        if (aside) aside.classList.add('menu-open-state');
-        const main = document.getElementById('main-content');
-        if (main)  { main.setAttribute('inert',''); main.setAttribute('aria-hidden','true'); }
-        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.setAttribute('inert',''); sc.setAttribute('aria-hidden','true'); } }
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => { if (btn) btn.focus(); }, 50);
-      } else {
-        mobileMenu.classList.remove('active');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        mobileMenu.setAttribute('inert', '');
-        if (btn)   { btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Abrir Menu'); }
-        if (aside) aside.classList.remove('menu-open-state');
-        const main = document.getElementById('main-content');
-        if (main)  { main.removeAttribute('inert'); main.removeAttribute('aria-hidden'); }
-        if (aside) { const sc = aside.querySelector('.sidebar-scaler'); if (sc) { sc.removeAttribute('inert'); sc.removeAttribute('aria-hidden'); } }
-        document.body.style.overflow = '';
-        if (_lastFocused && _lastFocused.focus) setTimeout(() => _lastFocused.focus(), 0);
-        _lastFocused = null;
-      }
-    }
-
-    if (mobileMenu) mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) toggleMenu(); });
-
-    document.addEventListener('keydown', e => {
-      if (!mobileMenu || !mobileMenu.classList.contains('active')) return;
-      if (e.key === 'Escape') { e.preventDefault(); toggleMenu(); return; }
-      if (e.key !== 'Tab') return;
-      const btn = document.querySelector('.mobile-menu-btn');
-      const items = getFocusables(mobileMenu);
-      const all = btn ? [btn, ...items] : items;
-      if (!all.length) return;
-      const first = all[0], last = all[all.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    });
-
-    document.querySelectorAll('.js-menu-toggle').forEach(el => el.addEventListener('click', toggleMenu));
-
-    // ── Sidebar Scaler ───────────────────────────────────────────────────
-    let _sw = window.innerWidth, _sh = window.innerHeight;
-
-    const fitSidebar = debounce(function() {
-      if (window.matchMedia('(max-width: 968px)').matches) {
-        const sc = document.querySelector('.sidebar-scaler');
-        if (sc) { sc.style.transform = ''; sc.style.width = ''; sc.style.height = ''; sc.classList.remove('compact-mode'); }
-        return;
-      }
-      _sw = window.innerWidth; _sh = window.innerHeight;
-      const sc = document.querySelector('.sidebar-scaler');
-      if (!sc) return;
-      sc.style.transform = 'scale(1)'; sc.style.width = '100%'; sc.style.height = 'auto';
-      sc.classList.remove('compact-mode'); void sc.offsetHeight;
-      const wh = window.innerHeight, ch = sc.scrollHeight;
-      if (ch <= wh) { sc.style.transform = 'none'; return; }
-      let scale = wh / ch;
-      const MIN = 0.85;
-      if (scale < MIN) {
-        sc.classList.add('compact-mode'); void sc.offsetHeight;
-        const nh = Math.max(sc.scrollHeight, 1);
-        scale = Math.max(wh / nh, MIN);
-        sc.style.height = (wh / scale) + 'px';
-      } else {
-        sc.style.height = (wh / scale) + 'px';
-      }
-      sc.style.transform = `scale(${scale})`;
-      sc.style.width = (100 / scale) + '%';
-    }, 50);
-
-    window.addEventListener('load', fitSidebar);
-    window.addEventListener('resize', fitSidebar);
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', fitSidebar);
-      window.visualViewport.addEventListener('scroll', fitSidebar);
-    }
-
-    // ── DOM Ready ─────────────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', function() {
-
-      // Skip link
-      const skip = document.querySelector('.skip-link');
-      if (skip) skip.addEventListener('click', function(e) {
-        e.preventDefault();
-        const main = document.getElementById('main-content');
-        if (!main) return;
-        main.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        const first = main.querySelector('.lightbox-trigger, h1, [tabindex]') || main;
-        if (first === main) main.setAttribute('tabindex', '-1');
-        setTimeout(() => { try { first.focus({ preventScroll: true }); } catch(_) { first.focus(); } }, 50);
-      });
-
-      // Sync tab order desktop/mobile
-      function disableFocusIn(root) {
-        if (!root) return;
-        root.querySelectorAll('a,button,input,select,textarea,[tabindex]').forEach(el => {
-          if (el.dataset._oti === undefined) el.dataset._oti = el.getAttribute('tabindex') ?? '';
-          el.setAttribute('tabindex', '-1');
-        });
-      }
-      function restoreFocusIn(root) {
-        if (!root) return;
-        root.querySelectorAll('[data-_oti]').forEach(el => {
-          const v = el.dataset._oti;
-          if (v === '') el.removeAttribute('tabindex'); else el.setAttribute('tabindex', v);
-          delete el.dataset._oti;
-        });
-      }
-
-      function syncTabOrder() {
-        const mob = window.matchMedia('(max-width: 968px)').matches;
-        const aside = document.querySelector('aside');
-        const menuEl = document.getElementById('mobileMenu');
-        const btn = document.querySelector('.mobile-menu-btn');
-        if (mob) {
-          if (aside) { disableFocusIn(aside); const pl = aside.querySelector('.profile-link'); if (pl) { if (pl.dataset._oti !== undefined) { const v = pl.dataset._oti; if (v === '') pl.removeAttribute('tabindex'); else pl.setAttribute('tabindex', v); delete pl.dataset._oti; } } }
-          if (btn) btn.removeAttribute('tabindex');
-          if (menuEl) { if (menuEl.getAttribute('aria-hidden') !== 'false') disableFocusIn(menuEl); else restoreFocusIn(menuEl); }
-        } else {
-          if (aside) restoreFocusIn(aside);
-          if (btn) btn.setAttribute('tabindex', '-1');
-          if (menuEl) disableFocusIn(menuEl);
-        }
-      }
-      syncTabOrder();
-      const mq = window.matchMedia('(max-width: 968px)');
-      if (mq.addEventListener) mq.addEventListener('change', syncTabOrder); else mq.addListener(syncTabOrder);
-      window.addEventListener('resize', syncTabOrder);
-      if (mobileMenu) new MutationObserver(syncTabOrder).observe(mobileMenu, { attributes: true, attributeFilter: ['aria-hidden'] });
-
-      // Active mobile link highlight
-      try {
-        const slug = (location.pathname || '').replace(/\/+/g,'/').split('/').filter(Boolean).pop() || '';
-        document.querySelectorAll('.mobile-link-sub').forEach(a => {
-          const h = (a.getAttribute('href') || '').split('/').filter(Boolean).pop() || '';
-          if (h && h === slug) a.classList.add('is-active');
-        });
-      } catch(_) {}
-
-      // Lightbox triggers: keyboard + ARIA
-      document.querySelectorAll('.lightbox-trigger').forEach(el => {
-        const tag = el.tagName.toLowerCase();
-        if (tag !== 'a' && tag !== 'button' && !el.hasAttribute('tabindex')) { el.setAttribute('tabindex', '0'); el.setAttribute('role', 'button'); }
-        const alt = el.getAttribute('alt') || '';
-        if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', alt ? `${alt}. Ampliar imagem.` : 'Ampliar imagem');
-        el.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); el.click(); } });
-      });
-
-      // ── Lang Switcher (physics) ────────────────────────────────────────
-      function initPhysicsSwitcher(container) {
-        if (!container) return;
-        const pill = container.querySelector('.gliding-pill');
-        const ptItem = container.querySelector('.lang-item:nth-child(2)');
-        const enItem = container.querySelector('.lang-item:nth-child(3)');
-        if (!pill || !ptItem || !enItem) return;
-        let isDragging = false, isAuto = false, sel = 'pt', afId = null;
-        let sx = 0, sPillX = 0, lt = 0, vel = 0, lx = 0;
-        let cRect = null, pW = 0, maxT = 0, pCX = 0, rafM = null;
-        let ph = { tx:0, cx:0, tsx:1, csx:1, tsy:1, csy:1, tsk:0, csk:0 };
-        const DF = 0.92, SF = 0.15, EB = 5, RS = 1.05, HS = 1.32;
-        const AL = window.matchMedia('(max-width:968px)').matches ? 0.28 : 0.20;
-        const gx = e => e.touches ? e.touches[0].clientX : e.clientX;
-
-        function uviz(prog, held, csc) {
-          const dpt = Math.abs(prog), den = Math.abs(prog-1);
-          let sm = 0; if (csc) { const s = Math.max(1,csc); sm = (s-1)*0.8; }
-          ptItem.style.transform = `scale(${1 + Math.max(0,1-dpt)*sm})`;
-          enItem.style.transform = `scale(${1 + Math.max(0,1-den)*sm})`;
-          if (prog < 0.5) { ptItem.classList.add('active'); enItem.classList.remove('active'); }
-          else            { enItem.classList.add('active'); ptItem.classList.remove('active'); }
-        }
-        function rst(fx) {
-          pill.style.setProperty('--pill-x', fx+'%'); pill.style.transform = ''; pill.style.transition = '';
-          ptItem.style.transform = ''; enItem.style.transform = ''; ptItem.style.transition = ''; enItem.style.transition = '';
-        }
-        function loop() {
-          if (!isDragging && !isAuto) return;
-          if (isAuto) {
-            const pX = ph.cx;
-            ph.cx  += (ph.tx - ph.cx)  * AL;
-            ph.csx += (ph.tsx - ph.csx)* AL;
-            ph.csy += (ph.tsy - ph.csy)* AL;
-            vel = ph.cx - pX;
-            ph.tsk = Math.max(-20, Math.min(20, vel * -1.5));
-            ph.csk += (ph.tsk - ph.csk) * AL;
-            if (Math.abs(ph.cx - ph.tx) < (AL > 0.2 ? 0.6 : 1)) { isAuto = false; finish(); return; }
-          } else {
-            const lf = isDragging ? 0.32 : SF;
-            ph.cx  += (ph.tx - ph.cx)  * lf;
-            ph.csx += (ph.tsx - ph.csx)* lf;
-            ph.csy += (ph.tsy - ph.csy)* lf;
-            ph.csk += (ph.tsk - ph.csk)* lf;
-          }
-          pill.style.transform = `translate3d(${ph.cx}px,0,0) scale(${ph.csx},${ph.csy}) skewX(${ph.csk}deg)`;
-          uviz(ph.cx / maxT, true, ph.csx);
-          afId = requestAnimationFrame(loop);
-        }
-        function finish() {
-          cancelAnimationFrame(afId);
-          sel = ph.cx > (maxT/2) ? 'en' : 'pt';
-          const fx = sel === 'en' ? 100 : 0;
-          const tr = 'transform 0.6s cubic-bezier(0.5,1.6,0.4,1.1)';
-          pill.style.transition = tr+',background-color 0.4s ease,box-shadow 0.4s ease';
-          pill.style.transform = `translateX(${fx}%) scale(${RS}) skewX(0deg)`;
-          ptItem.style.transition = tr; enItem.style.transition = tr;
-          ptItem.style.transform = 'scale(1)'; enItem.style.transform = 'scale(1)';
-          setTimeout(() => rst(fx), 600);
-          const isEn = location.pathname.includes('/en/');
-          if (sel === 'en' && !isEn) { localStorage.setItem('preferredLang','en'); const h = enItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
-          else if (sel === 'pt' && isEn) { localStorage.setItem('preferredLang','pt'); const h = ptItem.dataset?.href; if (h) setTimeout(() => location.href = h, 650); }
-        }
-        const startH = e => {
-          if (isAuto) return; isDragging = true;
-          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
-          if (e.type === 'mousedown') e.preventDefault();
-          const cx = gx(e);
-          cRect = container.getBoundingClientRect();
-          pW = (cRect.width/2)-4; maxT = cRect.width - pW - 8;
-          sx = cx; lx = cx; lt = Date.now(); sPillX = pill.getBoundingClientRect().left - cRect.left;
-          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
-          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
-          ph.tx = ph.cx; ph.tsx = HS; ph.tsy = HS;
-          cancelAnimationFrame(afId); loop();
-        };
-        const moveH = e => {
-          if (!isDragging) return;
-          if (e.cancelable) e.preventDefault(); e.stopPropagation();
-          if (e.type === 'mousemove' && e.buttons === 0) { endH(e); return; }
-          const cx = gx(e); const now = Date.now(); const dt = now - lt;
-          if (dt > 0) vel = vel*0.7 + ((cx-lx)/dt)*0.3;
-          lx = cx; lt = now; pCX = cx;
-          if (!rafM) rafM = requestAnimationFrame(() => {
-            rafM = null;
-            let raw = sPillX + (pCX - sx) * DF;
-            const eMin = EB, eMax = maxT - EB;
-            let cl = raw, wp = 0;
-            if (raw < eMin) { wp = eMin-raw; cl = eMin - 12*(1-Math.pow(2.718,-wp/25)); }
-            else if (raw > eMax) { wp = raw-eMax; cl = eMax + 12*(1-Math.pow(2.718,-wp/25)); }
-            ph.tx = cl;
-            const av = Math.abs(vel);
-            if (wp > 1) { const sq = Math.min(av*0.25,0.25)+Math.min(wp*0.01,0.15); ph.tsx=HS-sq*0.7; ph.tsy=HS+sq*0.8; }
-            else if (av > 0.1) { const st=Math.min(av*0.08,0.2); ph.tsx=HS+st; ph.tsy=HS-st*0.6; }
-            else { ph.tsx=HS; ph.tsy=HS; }
-            ph.tsk = Math.max(-20, Math.min(20, vel*-12));
-          });
-        };
-        const endH = e => { if (!isDragging) return; isDragging = false; if (Math.abs(lx-sx) > 5) finish(); };
-        container.addEventListener('touchstart', startH, { passive: false });
-        window.addEventListener('touchmove', moveH, { passive: false });
-        window.addEventListener('touchend', endH);
-        container.addEventListener('mousedown', startH);
-        window.addEventListener('mousemove', moveH);
-        window.addEventListener('mouseup', endH);
-        container.addEventListener('click', e => {
-          if (isDragging || Math.abs(lx-sx) > 5 || isAuto) return;
-          const tgt = sel === 'pt' ? 'en' : 'pt';
-          if (tgt === sel) return;
-          isAuto = true; sel = tgt;
-          cRect = container.getBoundingClientRect(); pW = (cRect.width/2)-4; maxT = cRect.width-pW-8;
-          const m = new (window.DOMMatrix || window.WebKitCSSMatrix)(getComputedStyle(pill).transform);
-          ph.cx = m.m41; ph.csx = Math.sqrt(m.a*m.a+m.b*m.b); ph.csy = ph.csx;
-          ph.tx = tgt === 'en' ? maxT : 0; ph.tsx = HS; ph.tsy = HS;
-          pill.style.transition = 'none'; ptItem.style.transition = 'none'; enItem.style.transition = 'none';
-          cancelAnimationFrame(afId); loop();
-        });
-        container.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.click(); } });
-      }
-      document.querySelectorAll('.lang-switcher-container').forEach(initPhysicsSwitcher);
-
-    }); // end DOMContentLoaded
-  </script>
-
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "https://ogabriels.com/#gabriel-silva",
-      "name": "Gabriel Silva",
-      "alternateName": [
-        "Gabriel Silva Dias Moreira",
-        "Gabriel Moreira"
-      ],
-      "url": "https://ogabriels.com/",
-      "jobTitle": "Creative Technologist & Full Stack Developer",
-      "image": {
-        "@type": "ImageObject",
-        "@id": "https://ogabriels.com/#personImage",
-        "url": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
-        "contentUrl": "https://ogabriels.com/assets/img/gabriel-silva-perfil.webp",
-        "caption": "Gabriel Silva"
-      },
-      "description": "Creative Technologist especializado na intersecção entre design, engenharia de software e infraestrutura de servidores.",
-      "knowsAbout": [
-        "Full Stack Development",
-        "Branding",
-        "Infraestrutura de TI",
-        "Cloudflare & Networking",
-        "Docker",
-        "Linux Server",
-        "Inteligência Artificial",
-        "Produção Audiovisual",
-        "Cybersecurity"
-      ],
-      "alumniOf": [
-        {
-          "@type": "EducationalOrganization",
-          "name": "Liceu de Artes e Ofícios de São Paulo",
-          "url": "https://www.liceuescola.com.br",
-          "sameAs": [
-            "https://www.liceuescola.com.br",
-            "https://pt.wikipedia.org/wiki/Liceu_de_Artes_e_Of%C3%ADcios_de_S%C3%A3o_Paulo"
-          ]
-        },
-        {
-          "@type": "EducationalOrganization",
-          "name": "UNIVESP",
-          "url": "https://univesp.br/",
-          "sameAs": [
-            "https://univesp.br/",
-            "https://pt.wikipedia.org/wiki/Universidade_Virtual_do_Estado_de_S%C3%A3o_Paulo",
-            "https://www.sp.gov.br/sp/institucional/estrutura/fundacoes/univesp"
-          ]
-        }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/in/ogabriels/",
-        "https://github.com/ogabriels2/",
-        "https://www.behance.net/ogabriels0",
-        "https://x.com/ogabriels0",
-        "https://www.instagram.com/ogabriels0/",
-        "https://www.youtube.com/@Gabalarca"
-      ],
-      "subjectOf": [
-        {
-          "@id": "https://ogabriels.com/infra#case"
-        },
-        {
-          "@id": "https://ogabriels.com/neoletters#case"
-        },
-        {
-          "@id": "https://ogabriels.com/revista-utopia#case"
-        },
-        {
-          "@id": "https://ogabriels.com/podcast-um-minuto#series"
-        },
-        {
-          "@id": "https://ogabriels.com/valorada#case"
-        },
-        {
-          "@id": "https://ogabriels.com/videos#portfolio"
-        }
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://ogabriels.com/#website",
-      "url": "https://ogabriels.com/",
-      "name": "Gabriel Silva — Portfólio",
-      "publisher": {
-        "@id": "https://ogabriels.com/#gabriel-silva"
-      },
-      "inLanguage": "pt-BR",
-      "datePublished": "2025-08-14T08:00:00-03:00",
-      "dateModified": "2026-06-02T00:00:00-03:00"
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://ogabriels.com/#homepage",
-      "url": "https://ogabriels.com/",
-      "name": "Gabriel Silva | Creative Technologist & Full Stack Developer",
-      "description": "Portfólio profissional de Gabriel Silva. Explore cases de sucesso em infraestrutura de TI, branding e desenvolvimento web full stack.",
-      "isPartOf": {
-        "@id": "https://ogabriels.com/#website"
-      },
-      "mainEntityOfPage": {
-        "@id": "https://ogabriels.com/#gabriel-silva"
-      },
-      "primaryImageOfPage": {
-        "@id": "https://ogabriels.com/#personImage"
-      },
-      "breadcrumb": {
-        "@id": "https://ogabriels.com/#breadcrumb"
-      },
-      "inLanguage": "pt-BR",
-      "dateModified": "2026-06-02T00:00:00-03:00"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://ogabriels.com/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Início",
-          "item": "https://ogabriels.com/"
-        }
-      ]
-    }
-  ]
-}
-  </script>
-
-<script>
-/* ── PAGE TRANSITION (fade-to-black apenas ao navegar, não ao carregar/atualizar) ── */
-(function() {
-  const overlay = document.getElementById('page-transition-out');
-  if (!overlay) return;
-
-  const navType = performance?.getEntriesByType?.('navigation')?.[0]?.type;
-  const isDirectLoad = !navType || navType === 'reload' || navType === 'back_forward';
-
-  if (isDirectLoad) {
-    overlay.style.transition = 'none';
-    overlay.style.opacity = '0';
-    overlay.style.pointerEvents = 'none';
-  }
-
-  document.addEventListener('click', function(e) {
-    const anchor = e.target.closest('a[href]');
-    if (!anchor) return;
-    const href = anchor.getAttribute('href');
-    if (!href) return;
-    if (
-      anchor.target === '_blank' ||
-      anchor.hasAttribute('download') ||
-      href.startsWith('#') ||
-      href.startsWith('mailto:') ||
-      href.startsWith('tel:') ||
-      href.startsWith('javascript:') ||
-      (href.startsWith('http') && !href.includes(location.hostname))
-    ) return;
-
-    e.preventDefault();
-    const destination = href;
-
-    overlay.style.transition = '';
-    overlay.classList.add('fade-out-active');
-
-    setTimeout(function() {
-      window.location.href = destination;
-    }, 400);
-  });
-})();
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ogabriels.com/#gabriel", "name": "Gabriel Silva Dias Moreira", "alternateName": "Gabriel Moreira", "url": "https://ogabriels.com/", "image": "https://ogabriels.com/assets/img/gabriel-perfil-512.webp", "sameAs": ["https://www.linkedin.com/in/ogabriels/", "https://github.com/ogabriels2"], "knowsAbout": ["Desenvolvimento de produtos", "APIs REST", "Desenvolvimento de software", "Infraestrutura", "Multimídia"]}, {"@type": "CollectionPage", "name": "Gabriel Moreira | Software, produto e integrações", "description": "Portfólio de Gabriel Moreira: software, produto, APIs e infraestrutura. Força Aliada, Miguel Downloader, projetos acadêmicos e repertório visual.", "url": "https://ogabriels.com/", "inLanguage": "pt-BR", "dateModified": "2026-10-11", "about": {"@id": "https://ogabriels.com/#gabriel"}}]}</script>
 </body>
 </html>
