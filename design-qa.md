@@ -118,3 +118,41 @@ Sources: [MDN video codec guide](https://developer.mozilla.org/en-US/docs/Web/Me
 Residual limits: only the active review-browser engine was used for physical interaction/video playback; no claim of testing every browser or physical device. Screenshot capture gutters are recorded above. No actionable P0/P1/P2 findings remain.
 
 final result: passed
+
+
+## Revisão de trajetória, contato e movimento — 11/10/2026
+
+Fonte visual: C:\Users\gabal\OneDrive\Documentos\Buscador de emprego\ai-job-search-br\reports\portfolio-trajetoria-contato-2026-10-11\03-contato-original.jpg e C:\Users\gabal\OneDrive\Documentos\Buscador de emprego\ai-job-search-br\reports\portfolio-trajetoria-contato-2026-10-11\01-sobre-antes.jpg; original6727003 aberto no navegador nesta rodada, versão pré-ajuste dc86133. Alvo: recuperar presença visual, recursos do contato e movimento do original, com a organização aprovada e caminhos para clientes e recrutadores. Diferenças de conteúdo/layout são intencionais; não é um clone.
+
+Implementação: C:\Users\gabal\OneDrive\Documentos\Buscador de emprego\ai-job-search-br\reports\portfolio-trajetoria-contato-2026-10-11\05-contato-revisao-2.jpg, C:\Users\gabal\OneDrive\Documentos\Buscador de emprego\ai-job-search-br\reports\portfolio-trajetoria-contato-2026-10-11\06-sobre-revisao-1.jpg, C:\Users\gabal\OneDrive\Documentos\Buscador de emprego\ai-job-search-br\reports\portfolio-trajetoria-contato-2026-10-11\09-formacao-final.jpg, C:\Users\gabal\OneDrive\Documentos\Buscador de emprego\ai-job-search-br\reports\portfolio-trajetoria-contato-2026-10-11\16-encerramento-fa-final.jpg.
+Dimensões dos arquivos: {'01-sobre-antes.jpg': (1105, 878), '03-contato-original.jpg': (1105, 878), '05-contato-revisao-2.jpg': (1105, 878), '06-sobre-revisao-1.jpg': (1105, 878), '12-sobre-mobile.jpg': (382, 844), '14-menu-mobile-final.jpg': (390, 844), '15-contato-mobile-final.jpg': (382, 827), '16-encerramento-fa-final.jpg': (1098, 872), '17-encerramento-en-final.jpg': (1105, 878)}. Default viewport desktop IAB~1113×884CSS, capturas1105×878 (normalização uniforme do backend); celular390×844CSS, captura382×844. Comparação feita com os pares original/implementação no mesmo input de imagens, com as mesmas dimensões desktop. Regiões de rótulos, campos, ícones e sidebar são legíveis na comparação inteira; captura específica de formação e experiência usada para detalhes das marcas/atribuição. Não houve comparação falsa entre densidades diferentes.
+
+### Histórico das correções
+- P1: Contato perdeu visual/cópia. Cartões restabelecidos, título com Instrument Serif, links sociais reais e botão de copiar com feedback. Estado anterior02-contato-antes, comparação03-original/05-pós-ajuste.
+- P1: Encerramento apenas para emprego. Nova assinatura G e caminhos de projeto/orçamento e oportunidade, pré-selecionando o assunto no formulário. Pós-ajuste11 e16/17.
+- P2: Sobre sem experiência de produto atual/apoio informal. Força Aliada em destaque (nov2025 software,2021comunidade), autônomo sob demanda separado de emprego formal; screenshot08.
+- P2: Reconhecimento/atalhos. Marcas oficiais de UNIVESP/Liceu/Fábricas de Cultura, sem recoloração; ícones Font Awesome+nomes;12/09.
+- P2: Redes do Contato herdavam nav em coluna. Explicitado row/flex:none; antes04, depois05/15.
+- P2: Menu móvel longo. Grade de duas colunas por grupo, mesmas rotas, toque≥44px;13 antes/14 depois. Não substituído por um segundo menu.
+- P2: Aparente piscada ao rolar. Removida queda de opacidade de elementos já pintados, animação uma vez por bloco, sem pais/filhos simultâneos. Três rolagens repetidas registradas em scroll-stability.json: wrappers/imagens opacidade1, console sem erros. Limite: não é teste físico em todos os dispositivos/GPU.
+
+### Superfícies avaliadas
+- Tipografia: Inter existente e Instrument Serif400, sem serif sintética em negrito; hierarquia/tamanhos/quebras conferidos em PT/EN.
+- Layout: duas colunas contato, atalhos5/3, timeline e marcas; 34 navegações a320px representam 32 rotas renderizadas (aliases redirecionam); superfícies críticas também768 e969. Sem overflow, controles fora do viewport ou imagens visíveis sem arquivo.
+- Cor: azul original e navy da assinatura, contraste perceptivo de rótulos/foco, estados verde/vermelho apenas para feedback. Não se afirma WCAG completa.
+- Imagem: logoG e retrato originais, logos institucionais baixados das fontes oficiais (FONTES.md), captura/interfaces dos projetos preservadas. Nada de métricas/atividade fictícias.
+- Conteúdo: atuação real, suporte eventual sem experiência corporativa inventada, fechas corretas, idiomas/CNH preservados, perfil serve trajetória/projetos e oportunidades. Nenhuma negociação privada incluída.
+- Interação: blank-submit destaca campos e foca Nome; rádio muda dica sem apagar texto; link CTA escolhe assunto; cópia exibe feedback; menu Tab/Escape e restauração de foco/inert conferidos. Galerias e demos anteriores preservados.
+- Formulário: respostas mock locais de sucesso/falha, sem enviar e-mail. Sucesso limpa campos e restaura ícone; erro preserva mensagem e libera tentativa. Não se afirma teste de entrega por Formspree. A chave existente de reCAPTCHA continua carregando no domínio de produção; hostnames de preview/local não usam a chave de outro domínio. Clipboard virtual do agente é distinto do clipboard nativo da página: feedback confirmado, colagem no Windows não certificada.
+- Redução de movimento: CSS/JS respeitam prefers-reduced-motion, não escondem conteúdo quando JS/observer falha. Identidade da cápsula de idioma mantida.
+
+### Checklist de implementação
+- [x] Experiências atuais e autônomas + formação com logos
+- [x] Contato/cópia/assuntos + sucesso/falha
+- [x] Encerramentos para clientes e recrutadores
+- [x] Movimento sem queda de opacidade + detalhes de hover/foco/pressão
+- [x] Menu móvel, responsividade e referências locais
+
+Sem P0/P1/P2 acionável nas superfícies testadas. Resta validação empírica com visitantes e teste de entrega real, fora do escopo de disparos nesta rodada.
+
+final result: passed
