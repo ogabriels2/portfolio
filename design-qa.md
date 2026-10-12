@@ -156,3 +156,9 @@ Dimensões dos arquivos: {'01-sobre-antes.jpg': (1105, 878), '03-contato-origina
 Sem P0/P1/P2 acionável nas superfícies testadas. Resta validação empírica com visitantes e teste de entrega real, fora do escopo de disparos nesta rodada.
 
 final result: passed
+
+
+### Última iteração de pintura do menu
+A conferência pública teve capturas intermitentes com a camada fixa do menu incompleta, apesar dos elementos visíveis no DOM. A22-contato-sem-camada.jpg mostra a correção local: no desktop, removidos backdrop-filter, transform/contain forçados e backface:hidden do rail. Não há conteúdo rolando atrás dele; a composição e as cores foram preservadas. Mobile mantém seu tratamento original, e hover do retrato/cápsula de idioma permanece. Evidência anterior20/21, pós-ajuste22, mesmo viewport; captura anterior incompleta rejeitada para handoff. Fonte exata do erro de composição do backend não foi presumida. Remoção de camadas redundantes reduz essa dependência e a nova pintura foi conferida visualmente.
+
+final result: passed

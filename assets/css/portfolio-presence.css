@@ -1,5 +1,7 @@
 /* Real identity and tactile detail: Gabriel's mark, blue accent and existing artwork. */
 :root{--presence-ease:cubic-bezier(.2,.8,.2,1);--presence-spring:cubic-bezier(.22,1,.36,1)}
+/* Desktop content never passes behind this rail; blur and forced GPU layers add no detail. */
+@media(min-width:969px){.portfolio-sidebar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:none!important;contain:none!important;backface-visibility:visible!important}.portfolio-sidebar .sidebar-scaler{backface-visibility:visible!important}.portfolio-sidebar .profile-pic-wrapper{transform:none;backface-visibility:visible}}
 .portfolio-button{transition:transform .32s var(--presence-spring),box-shadow .32s,border-color .2s,background .2s}
 .portfolio-button:is(:hover,:focus-visible){transform:translateY(-3px);box-shadow:0 7px 16px rgb(16 50 85 / 12%)}
 .portfolio-button:active{transform:translateY(1px) scale(.97);box-shadow:none;transition-duration:.1s}
