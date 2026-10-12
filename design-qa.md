@@ -162,3 +162,22 @@ final result: passed
 A conferência pública teve capturas intermitentes com a camada fixa do menu incompleta, apesar dos elementos visíveis no DOM. A22-contato-sem-camada.jpg mostra a correção local: no desktop, removidos backdrop-filter, transform/contain forçados e backface:hidden do rail. Não há conteúdo rolando atrás dele; a composição e as cores foram preservadas. Mobile mantém seu tratamento original, e hover do retrato/cápsula de idioma permanece. Evidência anterior20/21, pós-ajuste22, mesmo viewport; captura anterior incompleta rejeitada para handoff. Fonte exata do erro de composição do backend não foi presumida. Remoção de camadas redundantes reduz essa dependência e a nova pintura foi conferida visualmente.
 
 final result: passed
+
+
+## Vídeos de tecnologia e capas — 12/10/2026
+
+Fonte visual: as capas fornecidas em Downloads/maxresdefault(1).jpg (HyroChat) e maxresdefault.jpg (Busca Preço), ambas1280×720, copiadas sem edição/recompressão e verificadas por SHA256. Layout de base:01-videos-antes.jpg e02-thumbnails-antes.jpg, capturados nesta rodada. Implementação: C:\Users\gabal\OneDrive\Documentos\Buscador de emprego\ai-job-search-br\reports\portfolio-videos-capas-2026-10-12\11-capas-local-final.jpg; as duas imagens originais e o render da galeria foram abertos no mesmo input para comparar sujeito, recorte, proporção e legibilidade. Captura desktop1105×878pixels, viewport1113×884CSS; o backend normaliza a captura uniformemente. Nova seção adicionada à composição existente, sem intenção de clonar o screenshot anterior.
+
+### Superfícies
+Inter e pesos existentes; títulos/legendas/rótulos coerentes, com texto humano e atribuição coletiva dos projetos. Cores/raios/ritmo acompanham as páginas anteriores; imagens inteiras16:9, sem esticar nem reinterpretar a arte. Fonte/resolução original preservadas. Vídeos públicos confirmados no oEmbed oficial do YouTube, mesmo canal Tips Tutoriais: zP2FtC3UwZY, mcEqvz35Fjw, BpA8mLzkT_E. O último substitui o aviso antigo de indisponibilidade do Detector de Fraudes; suas capas já estavam na galeria, sem duplicação.
+
+### Histórico e teste
+P1: o HTML PT de Vídeos terminava sem a tag body final, e a inclusão de script não ocorria. Corrigido fechamento/inclusão, botão abre iframe; playback real confirmado em todos os3, com contador temporal e Pausar visíveis no player.
+P2: a tentativa inicial de pausa por postMessage não foi confirmada. Substituída por um único iframe ativo, restaurando a capa anterior. DOM após troca:1iframe, capaHyro restaurada. Essa troca reinicia o player anterior; não se promete retenção da posição de reprodução.
+Atalhos do filme local limitados ao player visível e não interceptam links/controles das apresentações, em PT eEN. Link da capa funciona como linkYouTube sem JS. Player carrega somente na ativação; iframe de privacidade YouTube, sem falso player pintado. Abertura por Enter conferida; ampliação da capa carregou arquivo original e Escape fechou com restauração do foco. Layouts4rotas×320/969CSS: sem overflow e sem imagens visíveis quebradas. Console da galeria sem erro. Original documentário e seus controles preservados.
+
+Capturas03–06 foram preliminares ou de página em cache e não usadas como prova da seção concluída.09-mobile mostrava contexto, não toda a capa; avaliação responsiva também usou geometria e estados do DOM.11 mostra galeria completa em estado de foco por teclado. Vídeos são conteúdo externo do YouTube, sujeito à disponibilidade do provedor; nenhuma data de upload ou métrica foi inventada.
+
+Checklist: vídeosHyro/Busca, Detector recuperado, capasoriginais, links correspondentes, inglês, zoom/teclado, dimensões responsivas.
+
+final result: passed
