@@ -54,7 +54,7 @@
   <meta name="twitter:image:alt" content="G | Gabriel — Personal Branding by Gabriel Moreira">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
   <style>
     /* ---------------- Design Tokens ---------------- */
@@ -531,9 +531,11 @@
 <link rel="stylesheet" href="../assets/css/portfolio-shell.css?v=5a2f075024">
 <script src="../assets/js/portfolio-shell.js?v=56a1b0bac3" defer></script>
 <script src="../assets/js/portfolio-motion.js?v=adb47b7394" defer></script>
-<script src="../assets/js/portfolio-language.js?v=9ff17d0fea" defer></script>
+<script src="../assets/js/portfolio-language.js?v=ba22101004" defer></script>
+  <link rel="stylesheet" href="../assets/css/portfolio-case-ending.css?v=3f96624d9a">
+<link rel="stylesheet" href="../assets/css/portfolio-case-art.css?v=9163ce51c8">
 </head>
-<body>
+<body data-art="personal">
 
   <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -572,7 +574,7 @@
         <p>I developed <strong>G | Gabriel</strong> as my visual signature. The initial structures the symbol; the curve at its base suggests a smile and adds a human element to the design.</p><p>The versions below explore use on light and dark backgrounds and different colour combinations. The aim is to keep the brand recognisable without relying on effects or small details.</p>
       </section>
 
-      <section class="showcase-section">
+      <section class="case-art-demo" data-brand-study><h3>The same signature in different contexts.</h3><p>Compare the original mark variants on light and dark surfaces.</p><div class="art-switches" role="group" aria-label="Choose a mark variant"><button type="button" data-brand-source="../assets/img/ogabriels-logo-vermelho.webp" data-brand-surface="light" data-brand-alt="Color on light" aria-pressed="true">Color on light</button><button type="button" data-brand-source="../assets/img/ogabriels-logo-vermelho-negativo.webp" data-brand-surface="dark" data-brand-alt="Color on dark" aria-pressed="false">Color on dark</button><button type="button" data-brand-source="../assets/img/ogabriels-logo-mono.webp" data-brand-surface="light" data-brand-alt="Light monochrome" aria-pressed="false">Light monochrome</button><button type="button" data-brand-source="../assets/img/ogabriels-logo-mono-negativo.webp" data-brand-surface="dark" data-brand-alt="Dark monochrome" aria-pressed="false">Dark monochrome</button></div><div class="brand-study-stage" data-brand-stage data-brand-surface="light"><img src="../assets/img/ogabriels-logo-vermelho.webp" alt="Red G Gabriel mark on a light surface" width="1920" height="1920" loading="lazy" decoding="async" data-brand-image></div></section><section class="showcase-section">
         <div class="section-header">
           <h2 class="section-title">Variations & Application</h2>
           <p class="section-desc">Brand variations on light and dark backgrounds, with different colour combinations.</p>
@@ -595,39 +597,22 @@
       </section>
     </div>
 
-    <div class="project-nav">
-      <a href="lo-branding.html" class="nav-btn prev">
-        <i class="fa-solid fa-arrow-left"></i>
-        <div><span class="nav-label">Previous</span><span class="nav-project-name">Lô Advertising</span></div>
-      </a>
-
-      <a href="index.html" class="nav-home-btn" aria-label="Home">
-        <i class="fa-solid fa-house"></i>
-      </a>
-
-      <a href="one-minute-reflection.html" class="nav-btn next">
-        <div><span class="nav-label">Next</span><span class="nav-project-name">One Minute</span></div>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-
-    <section class="contact-banner" id="contact">
-      <div class="contact-text-group">
-        <div class="contact-text">
-          <h2>Let's create something incredible?</h2>
-          <p>If you have an idea, I have the right tools to make it happen.</p>
+    <footer class="case-ending" data-ending-theme="light" aria-label="Project navigation and contact">
+      <div class="case-ending-inner">
+        <p class="case-ending-kicker">Continue exploring</p>
+        <a class="case-next" href="one-minute-reflection.html">
+          <span class="case-next-media case-next-media--creative" aria-hidden="true"><img src="../assets/img/um-minuto-refletir-capa.webp" alt="" width="1280" height="720" loading="lazy"></span>
+          <span class="case-next-copy"><span class="case-next-label">Next project</span><span class="case-next-title">Um Minuto para Refletir</span><span class="case-next-description">Identity, recording and audio production for a reflection podcast.</span></span>
+          <span class="case-next-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <div class="case-ending-actions">
+          <a href="contact.html">Talk about an opportunity <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          <a href="../assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener noreferrer">CV in PDF · Portuguese <i class="fa-regular fa-file-lines" aria-hidden="true"></i></a>
+          <a class="case-ending-return" href="index.html#criativo"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All projects</a>
         </div>
-        <div class="contact-social">
-          <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        </div>
+        <div class="case-ending-signoff"><p class="case-ending-author">Gabriel Moreira · Software, product & multimedia</p><div class="case-ending-socials" aria-label="Professional profiles and contact"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div>
       </div>
-      <div class="contact-actions">
-        <a href="contact.html" class="btn-cta-dark">Send Message</a>
-        <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-      </div>
-    </section>
+    </footer>
   </main>
 
 
@@ -862,20 +847,7 @@
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ogabriels.com/#gabriel", "name": "Gabriel Silva Dias Moreira", "alternateName": "Gabriel Moreira", "url": "https://ogabriels.com/", "image": "https://ogabriels.com/assets/img/gabriel-perfil-512.webp", "sameAs": ["https://www.linkedin.com/in/ogabriels/", "https://github.com/ogabriels2"], "knowsAbout": ["Desenvolvimento de produtos", "APIs REST", "Desenvolvimento de software", "Infraestrutura", "Multimídia"]}, {"@type": "CreativeWork", "@id": "https://ogabriels.com/en/personal-branding#brand-case", "headline": "G | Gabriel: Personal Branding Case Study", "description": "G | Gabriel: my personal brand, built around the initial G and a smile. Colour, contrast and application variations.", "image": {"@type": "ImageObject", "@id": "https://ogabriels.com/en/personal-branding#primaryimage", "url": "https://ogabriels.com/assets/img/ogabriels-capa.webp"}, "datePublished": "2025-01-20T08:00:00-03:00", "creator": {"@id": "https://ogabriels.com/#gabriel"}, "genre": "Personal Branding", "keywords": "Personal Branding, Visual Identity, Minimalism, Strategic Design, G Gabriel", "dateModified": "2026-10-11"}, {"@type": "WebPage", "@id": "https://ogabriels.com/en/personal-branding", "url": "https://ogabriels.com/en/personal-branding", "name": "G | Gabriel — Personal Branding & Graphic Design", "description": "Visual identity and personal branding portfolio of Gabriel Moreira.", "isPartOf": {"@id": "https://ogabriels.com/en/#website"}, "about": {"@id": "https://ogabriels.com/#gabriel"}, "primaryImageOfPage": {"@id": "https://ogabriels.com/en/personal-branding#primaryimage"}, "inLanguage": "en", "breadcrumb": {"@id": "https://ogabriels.com/en/personal-branding#breadcrumb"}, "mainEntity": {"@id": "https://ogabriels.com/en/personal-branding#brand-case"}, "dateModified": "2026-10-11"}, {"@type": "BreadcrumbList", "@id": "https://ogabriels.com/en/personal-branding#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/en/"}, {"@type": "ListItem", "position": 2, "name": "G | Gabriel", "item": "https://ogabriels.com/en/personal-branding"}]}]}</script>
 
-<footer class="site-footer" role="contentinfo" aria-label="Site footer">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <span class="footer-dot" aria-hidden="true"></span>
-      <span class="footer-name">Gabriel Moreira</span>
-      <span class="footer-copy">© 2026</span>
-    </div>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html">Portfolio</a>
-      <a href="index.html#about">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="../sitemap.xml" class="footer-link-sitemap" type="application/xml">Sitemap</a>
-    </nav>
-  </div>
-</footer>
+
+<script src="../assets/js/portfolio-case-art.js?v=956e60074b" defer></script>
 </body>
 </html>

@@ -73,3 +73,48 @@ Browser checks confirmed desktop PT→EN with Enter and EN→PT with click; mobi
 Comparison history: **[P2, fixed]** the first mobile capture showed icons touching their text. A 10-pixel flex gap fixes both main navigation and contact. Final capture `menu-restaurado-mobile-final.png` was opened and inspected after the correction. No actionable P0/P1/P2 findings remain. Final static verification covers 32 pages, 2,100 local references and 53 scripts with zero errors/warnings.
 
 final result: passed
+
+
+## Art direction and case depth — 2026-10-11
+
+Source visual truth: the previously published631c504 site, existing original artwork and authentic product captures. This is an intentional redesign, not a pixel clone. Larger cover stages, product chapters and case-specific typography/materials are approved scope.
+
+Evidence directory: `C:/Users/gabal/OneDrive/Documentos/Buscador de emprego/ai-job-search-br/reports/implementacao-portfolio-2026-10-11`.
+
+Full comparisons opened together in one comparison input:
+- `capas-arte-antes.png` / `capas-arte-local-final.png`: both1105×878px, same home software anchor, desktop viewport1113×884CSSpx. The8px gutter and bottom capture crop are identical. No rescaling.
+- `community-caso-antes.jpg` / `community-caso-depois-final.jpg`: both1265×889px, viewport1280×900CSSpx, same Community anchor. Screenshot gutters/crop are identical. Full-width evidence and the shorter heading are intended changes.
+- `sobre-arte-antes.png` / `sobre-arte-local-1.png` / `sobre-arte-local-2.png`: same1105×878px desktop frames, including the actual navigation-overlay bug and corrected chapter row.
+- `sobre-arte-mobile.png` / `sobre-arte-mobile-2.png`: same312×780px captures of the320×800CSSpx viewport; no density rescaling. The legacy grid-row problem is visibly resolved.
+
+Focused surfaces: cover screenshots, About portrait/chapter navigation, FA real image layers and Lô typography were additionally inspected. Original graphic files were opened directly; logos and UI assets are retained rather than reconstructed. `lo-caso-arte-final.jpg` records the original green/cream palette with Instrument Serif400. Browser font-loading checks passed.
+
+Findings and repairs:
+- P1 About: internal fixed aside overlaid navigation. Replaced it with a normal-flow div. Sidebar is visible; notes remain in the document flow.
+- P2 About: global nav flex-direction made chapter links a long column. Explicit row direction fixes it; desktop comparison repeated.
+- P2 About mobile: legacy image grid-row placed caption above the portrait. Reset grid-row; matched mobile captures confirm repair.
+- P2 new mobile case hero: eyebrow was behind the fixed header. Restored108px plus safe-area clearance. DOM and mobile captures confirm the opening is clear.
+- P2 narrow technology covers: Miguel heading collided with the window; Hyro footer caption collided with the screenshot. Compact labels, container-specific spacing and removal of redundant tiny labels repaired them. Layered artwork adapts to card width, not only viewport width.
+- P2 old video controls: caption/fullscreen controls extended beyond320px. Wrapped control groups without removing functions and kept44px buttons.
+- P2 motion: generic old image zoom competed with the new art and parent cards still animated with reduced motion. Excluded art-cover and added final motion overrides.
+- P2 player duration: original controller updated duration only during timeupdate. Added metadata/duration listeners and initialization. It now shows0:00/16:28 before playback.
+- Media compatibility: HEVC has conditional browser support. Added a full-length960×540VP9/Opus web version,24,576,371bytes, within Pages25MiB asset limit. Original MP4 remains available. The new version played to2:04 in the review browser with audio muted, then paused successfully.
+
+Required surfaces:
+- Typography: Inter, Syne and DM Mono retained where appropriate; Instrument Serif400 used for Lô/podcast and About accents. No synthetic bold on that face. Labels and body copy wrap without truncation in tested sizes.
+- Rhythm: per-case material and spacing, readable product chapters, consistent case endings. Larger evidence is deliberate. New interactive studies keep stable stages; changes follow visitor action.
+- Tokens: authentic artwork palettes; neutral/blue portfolio shell preserved, FA black/gold. Light text and descriptive copy contrast improved. Selected/focus states are visible.
+- Asset fidelity: all logos and native interface images are original. New Community capture is anonymous/public and excludes unverified trending totals. New film still is extracted from the existing published documentary at02:10. No fictional online-player counts, queued downloads, user messages or metrics.
+- Copy: accurate ownership, contribution, academic dates and product stages preserved. Architecture and crop demonstrations are labeled as explanations/illustrative views, not operational sessions or platform performance results.
+
+Interactions verified in the browser: actual FA pointer hover, keyboard focus on layered covers; gallery History selection; shared-services→Community architecture selection; G mark dark variant (correct file/surface/pressed state); Valorada central crop; thumbnail Compact160px; Miguel smaller-size preset and resulting priority order; image viewer open, Escape close (hidden/display:none) and focus return; video metadata, muted playback and pause. Reduced-motion CSS and handler paths inspected; no automatic activity simulations.
+
+Responsive evidence:30 changed routes at320px and969px without document overflow, broken loaded images or off-screen main controls. After final control changes,15 relevant routes rechecked at320px and7 at768px; no issues. JSON files `casos-arte-qa-320.json`, `casos-arte-qa-969.json`, `casos-arte-qa-320-final.json`, `casos-arte-qa-768-final.json` contain the observations.
+
+Static verification:32 pages,2206 local references,54 scripts parsed,0 errors/warnings. Git whitespace check passes. No runtime error logs in the final reviewed case. Contact behavior was not modified. All public assets satisfy the25MiB limit; media conversion tools and rejected trial encodes are outside the repository.
+
+Sources: [MDN video codec guide](https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Video_codecs), [Cloudflare Pages limits](https://developers.cloudflare.com/pages/platform/limits/).
+
+Residual limits: only the active review-browser engine was used for physical interaction/video playback; no claim of testing every browser or physical device. Screenshot capture gutters are recorded above. No actionable P0/P1/P2 findings remain.
+
+final result: passed

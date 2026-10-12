@@ -1,0 +1,73 @@
+/* Actual product interfaces are layered as editorial artwork, never recreated. */
+.portfolio-project[data-tone]{container-type:inline-size}
+.portfolio-project[data-tone] .portfolio-project-image.art-cover{--art-ease:cubic-bezier(.22,.8,.2,1);display:block;position:relative;aspect-ratio:1.45;padding:0;overflow:hidden;isolation:isolate;border:0;color:var(--art-ink);background:var(--art-bg)}
+.art-cover .art-caption{position:absolute;inset:8% 8% auto;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.art-caption strong{font-size:clamp(.98rem,1.6vw,1.5rem);font-weight:600;line-height:1.05;letter-spacing:-.035em}
+.art-caption small{display:block;margin-top:7px;font-size:.65rem;font-weight:400;letter-spacing:.015em;line-height:1.4;color:var(--art-muted)}
+.art-caption>span{font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;color:var(--art-muted)}
+.art-cover .art-interface{position:absolute;display:block;height:auto;max-width:none;object-fit:contain;border:1px solid var(--art-edge);border-radius:6px;box-shadow:0 20px 30px rgb(0 0 0 / 26%);transition:transform .85s var(--art-ease),box-shadow .85s var(--art-ease)}
+.art-cover .art-folio{position:absolute;bottom:7%;left:8%;z-index:4;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--art-muted)}
+.art-cover:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,transparent 10%,rgb(255 255 255 / 5%) 48%,transparent 76%);transform:translateX(-25%);transition:transform 1s var(--art-ease);pointer-events:none}
+.portfolio-project:is(:hover,:focus-visible) .art-cover:after{transform:translateX(12%)}
+/* FA: two product surfaces, united by the original community mark. */
+.art-cover.art-fa{--art-bg:#11130d;--art-ink:#f2e5be;--art-muted:#b7ab83;--art-edge:#424632;background:radial-gradient(ellipse at 75% 40%,#383920 0,transparent 64%),#11130d}
+.art-fa .art-caption{justify-content:flex-start;gap:12px}
+.art-fa .art-caption .art-logo{width:23px;height:31px;object-fit:contain;flex:none}
+.art-fa .art-watermark{position:absolute;right:-7%;top:-7%;width:48%;height:95%;object-fit:contain;opacity:.045;transform:rotate(-12deg);pointer-events:none}
+.art-fa .art-manager{width:89%;left:4%;top:37%;transform:rotate(-4deg)}
+.art-fa .art-community{width:58%;right:4%;top:56%;transform:rotate(5deg)}
+.art-fa .art-folio{bottom:6%;max-width:30%;line-height:1.55}
+.portfolio-project:is(:hover,:focus-visible) .art-fa .art-manager{transform:translate(-3px,-8px) rotate(-2deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-fa .art-community{transform:translate(4px,-15px) rotate(1deg)}
+/* Miguel: a native window, plus a magnified crop of its actual controls. */
+.art-cover.art-miguel{--art-bg:#efe9dc;--art-ink:#34372f;--art-muted:#68695b;--art-edge:#c7c8bb;background:linear-gradient(150deg,#f4efe5,#dfdfd2)}
+.art-miguel:before{content:'';position:absolute;right:-25%;top:30%;width:100%;height:1px;background:#c0a56d;transform:rotate(-32deg);opacity:.7}
+.art-miguel .art-caption strong{font-size:clamp(1rem,1.8vw,1.5rem)}
+.art-miguel .art-app{width:91%;left:10%;top:32%;transform:rotate(-5deg)}
+.art-miguel .art-detail{position:absolute;z-index:3;left:6%;top:66%;width:72%;height:23%;overflow:hidden;border:1px solid #d5c69d;border-radius:7px;background:#fff;box-shadow:0 10px 25px rgb(63 62 41 / 17%);transform:rotate(3deg);transition:transform .85s var(--art-ease)}
+.art-miguel .art-detail img{position:absolute;left:-2%;top:-15%;width:148%;height:auto;max-width:none;object-fit:contain}
+.art-miguel .art-folio{bottom:4%;left:auto;right:7%;font-size:.5rem}
+.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-app{transform:translate(-5px,-7px) rotate(-2deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-detail{transform:translate(3px,-8px) rotate(0)}
+/* Busca Preço: two documented mobile screens, with the history in front. */
+.art-cover.art-busca{--art-bg:#e5ebd9;--art-ink:#2c441a;--art-muted:#5e7050;--art-edge:#c4d0b3;background:linear-gradient(130deg,#f0f3e7,#d6e2c5)}
+.art-busca .art-caption{right:43%;display:block}
+.art-busca .art-caption strong{font-size:clamp(1.1rem,2.3vw,2rem);line-height:1.04;display:block;max-width:100px}
+.art-busca .art-caption small{max-width:110px}
+.art-busca .art-phone{width:28%;border:4px solid #fff;border-radius:13px;box-shadow:0 15px 25px rgb(46 65 26 / 15%)}
+.art-busca .art-reading{top:17%;left:41%;transform:rotate(-12deg)}
+.art-busca .art-history{top:9%;right:7%;transform:rotate(8deg)}
+.art-busca .art-folio{max-width:30%;line-height:1.65}
+.portfolio-project:is(:hover,:focus-visible) .art-busca .art-reading{transform:translate(-9px,-3px) rotate(-15deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-busca .art-history{transform:translate(3px,-7px) rotate(3deg)}
+/* HyroChat: closer to the conversation than to the empty browser margins. */
+.art-cover.art-hyro{--art-bg:#0d2836;--art-ink:#e0f5fe;--art-muted:#9dbfce;--art-edge:#6995b4;background:radial-gradient(ellipse at 100% 0,#214d64,transparent 70%),#0d2836}
+.art-hyro .art-caption strong{font-size:clamp(1.12rem,2.3vw,1.9rem)}
+.art-hyro .art-chat-window{position:absolute;left:10%;top:39%;width:86%;height:55%;overflow:hidden;border:1px solid #6995b4;border-radius:8px;background:#fff;box-shadow:0 15px 30px rgb(0 0 0 / 30%);transform:rotate(-4deg);transition:transform .85s var(--art-ease)}
+.art-hyro .art-chat-window img{position:absolute;width:165%;max-width:none;height:auto;left:-33%;top:-16%;object-fit:contain}
+.art-hyro .art-folio{top:31%;bottom:auto;left:8%;font-size:.49rem}
+.portfolio-project:is(:hover,:focus-visible) .art-hyro .art-chat-window{transform:translate(-3px,-9px) rotate(-1deg)}
+/* The cases echo their cover materials without turning every section into a card. */
+body[data-project] .project-hero{padding-block:76px 58px}
+body[data-project] .hero-title{font-weight:650;letter-spacing:-.065em}
+body[data-project] .section-kicker{letter-spacing:.08em}
+body[data-project] .section-heading{position:relative}
+body[data-project] .section-heading>div:before{content:'';display:block;width:48px;height:2px;margin-bottom:18px;background:var(--accent);opacity:.65}
+body[data-project] .section-heading h2{font-weight:600;letter-spacing:-.048em}
+body[data-project] .visual-shell{border-radius:16px;border-color:rgba(var(--accent-rgb),.22)}
+body[data-project] .visual-topbar{letter-spacing:.035em;color:#cad2da;background:rgba(var(--accent-rgb),.045)}
+body[data-project="busca"] .visual-shell{background:linear-gradient(130deg,#1e2b15,#10160e)}
+body[data-project="hyro"] .visual-shell{background:linear-gradient(135deg,#142e3d,#0a151f)}
+body[data-project="miguel"] .visual-shell{background:linear-gradient(130deg,#29251c,#11120f)}
+body[data-project="fa"] .fa-brand-visual{background:radial-gradient(ellipse at 90% 30%,#303421,transparent 65%),#11130d;border-color:#41452f}
+body[data-project] .case-role-summary{background:transparent;border-radius:0;border-top:0;border-right:0;border-left-width:2px}
+body[data-project] .case-section:nth-of-type(even){background:linear-gradient(100deg,rgba(var(--accent-rgb),.018),transparent 80%)}
+body[data-project] .info-card{background:transparent;border-radius:10px;border-top:2px solid rgba(var(--accent-rgb),.28)}
+body[data-project] .video-frame{border-radius:12px}
+@media(min-width:969px) and (max-width:1150px){.art-caption strong{font-size:1.12rem}.art-caption small{font-size:.59rem}.art-caption>span{font-size:.49rem}.art-fa .art-caption .art-logo{width:19px;height:26px}.art-busca .art-caption strong,.art-hyro .art-caption strong{font-size:1.4rem}}
+@media(max-width:600px){.portfolio-project[data-tone] .portfolio-project-image.art-cover{aspect-ratio:1.42}.art-caption strong{font-size:1.22rem}.art-caption small{font-size:.62rem}.art-busca .art-caption strong{font-size:1.75rem}.art-hyro .art-caption strong{font-size:1.7rem}.art-miguel .art-caption>span{font-size:.5rem}.art-fa .art-caption .art-logo{width:20px;height:28px}body[data-project] .project-hero{padding-block:42px 35px}body[data-project] .section-heading>div:before{margin-bottom:15px;width:34px}}
+@media(max-width:968px){body[data-project] .project-hero{padding-top:calc(108px + env(safe-area-inset-top,0px))}}
+@media(max-width:600px){.art-miguel .art-caption strong{font-size:1rem}.art-hyro .art-caption strong{font-size:1.4rem}.art-hyro .art-caption small{margin-top:4px}.art-hyro .art-folio{top:33%}.art-hyro .art-chat-window{top:43%;height:53%}}
+@container(max-width:320px){.art-miguel .art-caption strong{font-size:1rem}.art-miguel .art-app{top:36%}.art-fa .art-manager{top:45%}.art-hyro .art-caption strong{font-size:1.4rem}.art-hyro .art-caption small{margin-top:4px}.art-hyro .art-chat-window{top:43%;height:53%}}
+@media(prefers-reduced-motion:reduce){.portfolio-project{transition:none!important}.portfolio-project:is(:hover,:focus-visible){transform:none}}
+@media(prefers-reduced-motion:reduce){.art-cover:after,.art-cover .art-interface,.art-cover .art-detail,.art-cover .art-chat-window{transition:none!important}.portfolio-project:is(:hover,:focus-visible) .art-fa .art-manager{transform:rotate(-4deg)}.portfolio-project:is(:hover,:focus-visible) .art-fa .art-community{transform:rotate(5deg)}.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-app{transform:rotate(-5deg)}.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-detail{transform:rotate(3deg)}.portfolio-project:is(:hover,:focus-visible) .art-busca .art-reading{transform:rotate(-12deg)}.portfolio-project:is(:hover,:focus-visible) .art-busca .art-history{transform:rotate(8deg)}.portfolio-project:is(:hover,:focus-visible) .art-hyro .art-chat-window{transform:rotate(-4deg)}.portfolio-project:is(:hover,:focus-visible) .art-cover:after{transform:translateX(-25%)}}

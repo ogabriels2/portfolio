@@ -56,7 +56,7 @@
   <meta name="twitter:image:alt" content="Produção Audiovisual — Portfólio de Vídeo de Gabriel Moreira">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -639,13 +639,28 @@
     .project-description .section-title { margin:0 0 20px; font-size:1.35rem; }
     @media (max-width:1100px) { .project-hero { grid-template-columns:1fr; padding:40px 40px 28px; gap:28px; } .project-hero .hero-image-container { max-width:800px; } }
     @media (max-width:600px) { .project-hero { padding:28px 24px 24px; gap:24px; } .case-summary { font-size:.98rem; } }
+
+    /* Keep all player controls reachable at narrow phone widths. */
+    @media(max-width:480px){
+      .controls-wrapper{padding:0 12px 12px;gap:5px}
+      .controls-row{flex-wrap:wrap;gap:3px;width:100%}
+      .controls-left,.controls-right{width:100%;min-width:0;gap:8px}
+      .controls-right{justify-content:flex-end}
+      .control-btn{width:44px;height:44px;flex:none}
+      .time-display{margin-left:auto;min-width:80px;font-size:.75rem}
+      .volume-container{position:relative;gap:0}
+      .volume-slider-container{position:absolute;bottom:48px;left:0;width:80px;opacity:0;pointer-events:none}
+      .volume-container:hover .volume-slider-container,.volume-container.dragging .volume-slider-container{width:80px;opacity:1;pointer-events:auto}
+    }
   </style>
 <link rel="stylesheet" href="assets/css/portfolio-shell.css?v=5a2f075024">
 <script src="assets/js/portfolio-shell.js?v=56a1b0bac3" defer></script>
 <script src="assets/js/portfolio-motion.js?v=adb47b7394" defer></script>
-<script src="assets/js/portfolio-language.js?v=9ff17d0fea" defer></script>
+<script src="assets/js/portfolio-language.js?v=ba22101004" defer></script>
+  <link rel="stylesheet" href="assets/css/portfolio-case-ending.css?v=3f96624d9a">
+<link rel="stylesheet" href="assets/css/portfolio-case-art.css?v=9163ce51c8">
 </head>
-<body>
+<body data-art="video">
 
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
@@ -689,8 +704,8 @@
           <p>Trabalhei o ritmo da edição para criar uma conexão emocional com o espectador, alternando entre planos abertos para mostrar a grandiosidade da performance e detalhes sutis que capturam a expressão dos artistas.</p>
         </div>
 
-        <div class="video-container paused" id="player-ballet">
-          <video src="assets/video/ballet-processos-multimeios.mp4" poster="assets/img/videos-capa.webp" preload="metadata">
+        <div class="film-art-strip"><figure><img src="assets/img/audiovisual/ballet-quadro-130.jpg" alt="Quadro real do documentário: entrevistada no ambiente da Fábrica de Cultura" width="960" height="540" loading="lazy" decoding="async" ><figcaption>Contexto e ambiente · quadro do vídeo publicado, 02:10.</figcaption></figure><figure><img src="assets/img/videos-capa.webp" alt="Plano próximo da entrevistada, imagem original do projeto" width="1518" height="853" loading="lazy" decoding="async" ><figcaption>Proximidade e expressão · imagem original do projeto.</figcaption></figure></div><div class="video-container paused" id="player-ballet">
+          <video src="assets/video/ballet-processos-web.webm" poster="assets/img/videos-capa.webp" preload="metadata" playsinline>
             <track kind="subtitles" label="Português" srclang="pt" src="assets/video/ballet-processos-multimeios-pt.vtt">
           </video>
           <div class="center-controls">
@@ -716,9 +731,9 @@
             </div>
             <div class="controls-row">
               <div class="controls-left">
-                <button class="control-btn play-pause-btn"><i class="fa-solid fa-play"></i></button>
+                <button class="control-btn play-pause-btn" aria-label="Reproduzir ou pausar"><i class="fa-solid fa-play"></i></button>
                 <div class="volume-container">
-                  <button class="control-btn mute-btn"><i class="fa-solid fa-volume-high"></i></button>
+                  <button class="control-btn mute-btn" aria-label="Ativar ou desativar áudio"><i class="fa-solid fa-volume-high"></i></button>
                   <div class="volume-slider-container">
                     <div class="volume-tooltip">100</div>
                     <div class="volume-bg">
@@ -741,18 +756,18 @@
                   </div>
                 </div>
                 <div class="captions-container">
-                  <button class="control-btn captions-btn"><i class="fa-regular fa-closed-captioning"></i></button>
+                  <button class="control-btn captions-btn" aria-label="Configurar legendas"><i class="fa-regular fa-closed-captioning"></i></button>
                   <div class="captions-menu">
                     <button class="caption-option active" data-lang="off">Desativado</button>
                     <button class="caption-option" data-lang="pt">Português</button>
                   </div>
                 </div>
-                <button class="control-btn fullscreen-btn"><i class="fa-solid fa-expand"></i></button>
+                <button class="control-btn fullscreen-btn" aria-label="Tela cheia"><i class="fa-solid fa-expand"></i></button>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      <p class="video-original-link"><a href="assets/video/ballet-processos-multimeios.mp4" download>Baixar o arquivo original</a></p></section>
 
       <div class="divider"></div>
 
@@ -774,38 +789,23 @@
         <figure class="showcase-figure"><img width="1280" height="720" src="assets/img/detector-fraudes-ia-escuro.webp" alt="Capa da apresentação acadêmica do Analisador de Fraude da UNIVESP" loading="lazy" style="display:block;width:100%;height:auto;border-radius:16px"><figcaption style="font-size:.9rem;line-height:1.6;color:var(--text-secondary,#555);margin-top:12px">Capa da apresentação acadêmica do Analisador de Fraude. O arquivo do vídeo ainda não está disponível neste portfólio.</figcaption></figure>
       </section>
 
-      <div class="project-nav">
-        <a href="thumbnails.html" class="nav-btn prev">
-          <i class="fa-solid fa-arrow-left"></i>
-          <div><span class="nav-label">Anterior</span><span class="nav-project-name">Thumbnails</span></div>
-        </a>
-        <a href="index.html" class="nav-home-btn" aria-label="Home">
-          <i class="fa-solid fa-house"></i>
-        </a>
-        <a href="contato.html" class="nav-btn next">
-          <div><span class="nav-label">Finalizar</span><span class="nav-project-name">Vamos Conversar?</span></div>
-          <i class="fa-regular fa-comment-dots"></i>
-        </a>
       </div>
-
-      <section class="contact-banner" id="contato">
-        <div class="contact-text-group">
-          <div class="contact-text">
-            <h2>Vamos criar algo incrível?</h2>
-            <p>Se você tem uma ideia, eu tenho as ferramentas certas para realizá-la.</p>
-          </div>
-          <div class="contact-social">
-              <a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-              <a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-              <a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="btn-social-mini" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          </div>
+    <footer class="case-ending" data-ending-theme="light" aria-label="Continuidade do projeto e contato">
+      <div class="case-ending-inner">
+        <p class="case-ending-kicker">Continue explorando</p>
+        <a class="case-next" href="revista-utopia.html">
+          <span class="case-next-media case-next-media--creative" aria-hidden="true"><img src="assets/img/revista-utopia-capa.webp" alt="" width="1280" height="721" loading="lazy"></span>
+          <span class="case-next-copy"><span class="case-next-label">Próximo projeto</span><span class="case-next-title">Revista Utopia</span><span class="case-next-description">Conteúdo editorial, identidade visual e web design em um projeto coletivo.</span></span>
+          <span class="case-next-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+        </a>
+        <div class="case-ending-actions">
+          <a href="contato.html">Conversar sobre uma oportunidade <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          <a href="assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener noreferrer">Currículo em PDF <i class="fa-regular fa-file-lines" aria-hidden="true"></i></a>
+          <a class="case-ending-return" href="index.html#criativo"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Todos os projetos</a>
         </div>
-        <div class="contact-actions">
-          <a href="contato.html" class="btn-cta-dark">Enviar Mensagem</a>
-          <a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="btn-secondary-dark"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
-      </section>
-    </div>
+        <div class="case-ending-signoff"><p class="case-ending-author">Gabriel Moreira · Software, produto e multimídia</p><div class="case-ending-socials" aria-label="Perfis profissionais e contato"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div>
+      </div>
+    </footer>
   </main>
 
 
@@ -1132,6 +1132,9 @@
       if (captionBtn) { captionBtn.addEventListener('click', (e) => { e.stopPropagation(); speedMenu?.classList.remove('show'); captionMenu.classList.toggle('show'); }); captionOptions.forEach(opt => { opt.addEventListener('click', (e) => { e.stopPropagation(); const lang = opt.dataset.lang; captionOptions.forEach(o => o.classList.remove('active')); opt.classList.add('active'); captionMenu.classList.remove('show'); captionBtn.classList.toggle('active', lang !== 'off'); for (let i = 0; i < video.textTracks.length; i++) video.textTracks[i].mode = 'disabled'; if (lang !== 'off') { for (let i = 0; i < video.textTracks.length; i++) { if (video.textTracks[i].language === lang) video.textTracks[i].mode = 'showing'; } } }); }); }
       if (speedBtn) { speedOptions.forEach(opt => { if(opt.dataset.speed === "1") opt.classList.add('active'); }); speedBtn.addEventListener('click', (e) => { e.stopPropagation(); captionMenu?.classList.remove('show'); speedMenu.classList.toggle('show'); }); speedOptions.forEach(opt => { opt.addEventListener('click', (e) => { e.stopPropagation(); video.playbackRate = parseFloat(opt.dataset.speed); speedOptions.forEach(o => o.classList.remove('active')); opt.classList.add('active'); speedMenu.classList.remove('show'); speedBtn.classList.toggle('active', opt.dataset.speed !== "1"); }); }); }
       function updateTimeDisplay() { if (isNaN(video.duration)) return; const cur = video.currentTime; const tot = video.duration; const rem = tot - cur; let text = ''; if (timeDisplayMode === 0) text = `${formatTime(cur)} / ${formatTime(tot)}`; else if (timeDisplayMode === 1) text = `-${formatTime(rem)} / ${formatTime(tot)}`; else text = `${formatTime(cur)} / -${formatTime(rem)}`; timeDisplay.textContent = text; }
+      video.addEventListener('loadedmetadata', updateTimeDisplay);
+      video.addEventListener('durationchange', updateTimeDisplay);
+      updateTimeDisplay();
       video.addEventListener('timeupdate', () => { if (!isScrubbing) { const percent = (video.currentTime / video.duration) * 100; progressBar.style.width = `${percent}%`; updateTimeDisplay(); } });
       timeDisplay.addEventListener('click', (e) => { e.stopPropagation(); timeDisplayMode = (timeDisplayMode + 1) % 3; updateTimeDisplay(); });
       if(mainPlayBtn) mainPlayBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
@@ -1172,19 +1175,4 @@
     });
   </script>
 
-  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ogabriels.com/#gabriel", "name": "Gabriel Silva Dias Moreira", "alternateName": "Gabriel Moreira", "url": "https://ogabriels.com/", "image": "https://ogabriels.com/assets/img/gabriel-perfil-512.webp", "sameAs": ["https://www.linkedin.com/in/ogabriels/", "https://github.com/ogabriels2"], "knowsAbout": ["Desenvolvimento de produtos", "APIs REST", "Desenvolvimento de software", "Infraestrutura", "Multimídia"]}, {"@type": "WebPage", "@id": "https://ogabriels.com/videos", "url": "https://ogabriels.com/videos", "name": "Produção Audiovisual e Edição de Vídeo | Gabriel Moreira", "description": "Portfólio de edição de vídeo, motion graphics e narrativa audiovisual.", "isPartOf": {"@id": "https://ogabriels.com/#website"}, "primaryImageOfPage": {"@id": "https://ogabriels.com/assets/img/videos-capa.webp"}, "breadcrumb": {"@id": "https://ogabriels.com/videos#breadcrumb"}, "inLanguage": "pt-BR", "about": {"@id": "https://ogabriels.com/videos#video-ballet"}, "dateModified": "2026-10-11"}, {"@type": "VideoObject", "@id": "https://ogabriels.com/videos#video-ballet", "name": "Documentário Ballet: Mostra de Processos", "description": "Documentário sobre processos criativos de ballet na Fábrica de Cultura.", "thumbnailUrl": "https://ogabriels.com/assets/img/videos-capa.webp", "uploadDate": "2023-11-01", "duration": "PT16M28S", "contentUrl": "https://ogabriels.com/assets/video/ballet-processos-multimeios.mp4", "author": {"@id": "https://ogabriels.com/#gabriel"}}, {"@type": "BreadcrumbList", "@id": "https://ogabriels.com/videos#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/"}, {"@type": "ListItem", "position": 2, "name": "Audiovisual", "item": "https://ogabriels.com/videos"}]}]}</script>
-<footer class="site-footer" role="contentinfo" aria-label="Rodapé do site">
-  <div class="footer-inner">
-    <div class="footer-left">
-      <span class="footer-dot" aria-hidden="true"></span>
-      <span class="footer-name">Gabriel Moreira</span>
-      <span class="footer-copy">© 2026</span>
-    </div>
-    <nav class="footer-links" aria-label="Navegação do rodapé">
-      <a href="/">Portfólio</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="contato.html">Contato</a>
-      <a href="sitemap.xml" class="footer-link-sitemap" type="application/xml">Sitemap</a>
-    </nav>
-  </div>
-</footer>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ogabriels.com/#gabriel", "name": "Gabriel Silva Dias Moreira", "alternateName": "Gabriel Moreira", "url": "https://ogabriels.com/", "image": "https://ogabriels.com/assets/img/gabriel-perfil-512.webp", "sameAs": ["https://www.linkedin.com/in/ogabriels/", "https://github.com/ogabriels2"], "knowsAbout": ["Desenvolvimento de produtos", "APIs REST", "Desenvolvimento de software", "Infraestrutura", "Multimídia"]}, {"@type": "WebPage", "@id": "https://ogabriels.com/videos", "url": "https://ogabriels.com/videos", "name": "Produção Audiovisual e Edição de Vídeo | Gabriel Moreira", "description": "Portfólio de edição de vídeo, motion graphics e narrativa audiovisual.", "isPartOf": {"@id": "https://ogabriels.com/#website"}, "primaryImageOfPage": {"@id": "https://ogabriels.com/assets/img/videos-capa.webp"}, "breadcrumb": {"@id": "https://ogabriels.com/videos#breadcrumb"}, "inLanguage": "pt-BR", "about": {"@id": "https://ogabriels.com/videos#video-ballet"}, "dateModified": "2026-10-11"}, {"@type": "VideoObject", "@id": "https://ogabriels.com/videos#video-ballet", "name": "Documentário Ballet: Mostra de Processos", "description": "Documentário sobre processos criativos de ballet na Fábrica de Cultura.", "thumbnailUrl": "https://ogabriels.com/assets/img/videos-capa.webp", "uploadDate": "2023-11-01", "duration": "PT16M28S", "contentUrl": "https://ogabriels.com/assets/video/ballet-processos-web.webm", "author": {"@id": "https://ogabriels.com/#gabriel"}}, {"@type": "BreadcrumbList", "@id": "https://ogabriels.com/videos#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/"}, {"@type": "ListItem", "position": 2, "name": "Audiovisual", "item": "https://ogabriels.com/videos"}]}]}</script>

@@ -167,7 +167,7 @@ body[data-page="home"] main{padding-top:44px}
 .portfolio-project:hover .portfolio-project-bottom i{transform:translate(3px,-3px)}
 .portfolio-project-image{position:relative;isolation:isolate}
 .portfolio-project-image>img{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.portfolio-project:hover .portfolio-project-image:not(.product-stage)>img{transform:scale(1.035)}
+.portfolio-project:hover .portfolio-project-image:not(.product-stage):not(.art-cover)>img{transform:scale(1.035)}
 .product-stage{height:auto;aspect-ratio:1.72;display:block;padding:23px 25px 0;overflow:hidden}
 .product-stage-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:2;font-size:.79rem;font-weight:500;letter-spacing:-.01em;line-height:1.4}
 .product-stage.manager{background:linear-gradient(130deg,#171811,#0b0d0a);padding:18px 23px 0;border-bottom-color:#25271d}
