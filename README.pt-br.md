@@ -1,96 +1,54 @@
-> [🇺🇸 Read in English](README.md)
+[Read in English](README.md)
 
-# 🌐 ogabriels – Portfólio Profissional
+# Gabriel Moreira — portfólio
 
-![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fogabriels.com&label=Status&style=flat-square)
-![Maintained](https://img.shields.io/badge/Maintained-Yes-blue?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+Código-fonte de [ogabriels.com](https://ogabriels.com/), meu portfólio pessoal e profissional. Reúne projetos de software, infraestrutura, design e audiovisual, com contexto e descrição da minha contribuição em cada trabalho.
 
-> **"Transformando ideias complexas em experiências digitais funcionais."**
+## Comece pelos projetos
 
-Este repositório hospeda o código-fonte do meu portfólio pessoal e profissional, acessível em **[ogabriels.com](https://ogabriels.com)**.
-O projeto funciona como um **hub central dos meus trabalhos** em **Desenvolvimento Web**, **Design Gráfico**, **Audiovisual** e **Infraestrutura de TI**.
+- [Miguel Downloader](https://ogabriels.com/miguel-downloader): aplicativo Windows em C#/.NET e WPF, com código, testes e documentação públicos.
+- [Força Aliada](https://ogabriels.com/forca-aliada): Manager, Community e operação de servidores; contexto do produto, interfaces reais e minha atuação como fundador.
+- [HyroChat](https://ogabriels.com/hyrochat) e [Busca Preço](https://ogabriels.com/busca-preco): projetos coletivos da UNIVESP, com as apresentações e minha participação identificada.
+- [Sobre mim](https://ogabriels.com/sobre): formação, credenciais e trajetória profissional.
 
-Este repositório é público para fins de **portfólio, estudo e referência técnica**.
-Não se trata de um template genérico nem de um projeto pensado para execução local por terceiros, embora seja possível visualizá-lo.
+## Implementação e minha participação
 
----
+O site usa HTML, CSS e JavaScript, com páginas em português e inglês. Inclui navegação responsiva, estilos e interações próprios para cada projeto, galerias audiovisuais, metadados, dados estruturados e sitemap. A publicação em produção usa Cloudflare Pages.
 
-## 🎯 Objetivos do Projeto
+Conduzo a organização do conteúdo e a direção visual e reviso as interfaces e interações. A implementação recebe apoio de IA, incluindo Codex e Claude Code, com revisão humana e validação do resultado publicado.
 
-- Demonstrar domínio de **HTML semântico**, **CSS moderno** e **JavaScript puro**
-- Aplicar **SEO técnico avançado** (Schema.org, Open Graph, Sitemap XML)
-- Implementar **Internacionalização (i18n)** com estrutura de subdiretórios
-- Priorizar **performance**, simplicidade e baixo custo operacional (Hospedagem Estática)
+O [registro de revisão](design-qa.md) documenta verificações visuais, responsividade, links e interações, incluindo o escopo de cada revisão.
 
----
-
-## 🚀 Tecnologias e Ferramentas
-
-O projeto **evita intencionalmente** frameworks pesados para manter o carregamento rápido, previsível e fácil de manter.
-
-| Categoria | Tecnologias |
-| :--- | :--- |
-| **Front-end** | HTML5 Semântico, CSS3 (Responsivo / Flexbox / Grid), JavaScript (ES6+) |
-| **SEO & Dados** | JSON-LD (Schema.org), Open Graph Protocol, Meta Tags Avançadas |
-| **Multimídia** | Otimização de Imagens (WebP/JPG), Vídeo HTML5 com Legendas (VTT) |
-| **Infraestrutura** | Hospedagem Estática, Gerenciamento de DNS, Versionamento com Git |
-
----
-
-## 📂 Arquitetura do Projeto
-
-O repositório passou por uma refatoração completa em **Janeiro de 2026**, visando melhor organização de assets, suporte à internacionalização e URLs amigáveis para SEO.
+## Mapa do repositório
 
 ```text
-ogabriels/
-├── assets/                 # Centralização de recursos estáticos
-│   ├── img/                # Imagens otimizadas (prefixadas por projeto)
-│   └── video/              # Arquivos de vídeo e legendas (.vtt)
-├── en/                     # Versão internacional (English - EN-US)
-├── index.html              # Home (Português - PT-BR)
-├── lo-publicidade.html     # Case Study: Branding & Identidade
-├── personal-branding.html  # Case Study: Marca Pessoal
-├── videos.html             # Portfólio Audiovisual
-├── sitemap.xml             # Mapa do site para indexação
-└── robots.txt              # Diretrizes para crawlers
-
+assets/css/       estilos compartilhados e apresentação dos projetos
+assets/js/        navegação, interações e players de mídia
+assets/img/       capas, capturas reais e trabalhos visuais
+assets/docs/      currículo e credenciais
+en/              páginas em inglês
+*.html           páginas em português
+sitemap.xml      endereços das páginas publicadas
+design-qa.md     registro de revisão e verificação
 ```
 
----
+## Visualizar localmente
 
-## 🛠️ Como visualizar
-
-Como se trata de um site estático (Vanilla HTML/CSS/JS), não é necessária instalação de pacotes (NPM/Yarn).
-
-1. **Clone o repositório:**
+Não há instalação de pacotes ou compilação. Sirva a pasta com um servidor HTTP estático. Por exemplo, com Python instalado:
 
 ```bash
 git clone https://github.com/ogabriels2/portfolio.git
-
+cd portfolio
+python -m http.server 4173
 ```
 
-2. **Abra o projeto:**
-Basta abrir o arquivo `index.html` em qualquer navegador moderno.
+Abra `http://localhost:4173/`. Nas páginas internas, use localmente o nome do arquivo com `.html`; as URLs sem extensão em produção dependem da hospedagem.
 
----
+## Contato
 
-## 📬 Contato
+[Site](https://ogabriels.com/) · [LinkedIn](https://www.linkedin.com/in/ogabriels/) · [E-mail](mailto:contato@ogabriels.com)
 
-Gostou da organização do código ou do design? Vamos conversar.
-
-* **Website:** [ogabriels.com](https://ogabriels.com)
-* **LinkedIn:** [Gabriel Silva](https://www.linkedin.com/in/ogabriels/)
-* **GitHub:** [@ogabriels2](https://github.com/ogabriels2)
-* **Email:** [contato@ogabriels.com](mailto:contato@ogabriels.com)
-
----
-
-## 📄 Licença
+## Licença
 
 O código-fonte está licenciado sob a **MIT License**.
 Os **conteúdos autorais**, incluindo textos, imagens, vídeos e identidade visual, **não devem ser reutilizados** sem autorização prévia.
-
----
-
-*Desenvolvido por Gabriel Silva.*

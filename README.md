@@ -1,96 +1,54 @@
-> [🇧🇷 Leia em Português](README.pt-br.md)
+[Leia em português](README.pt-br.md)
 
-# 🌐 ogabriels – Professional Portfolio
+# Gabriel Moreira — portfolio
 
-![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fogabriels.com&label=Status&style=flat-square)
-![Maintained](https://img.shields.io/badge/Maintained-Yes-blue?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+Source code for [ogabriels.com](https://ogabriels.com/), my personal and professional portfolio. It brings together software projects, infrastructure, design and audiovisual work, with context and an account of my contribution to each project.
 
-> **"Transforming complex ideas into functional digital experiences."**
+## Start with the projects
 
-This repository hosts the source code for my personal and professional portfolio, available at **[ogabriels.com](https://ogabriels.com)**.
-The project serves as a **central hub for my work** in **Web Development**, **Graphic Design**, **Audiovisual Production**, and **IT Infrastructure**.
+- [Miguel Downloader](https://ogabriels.com/miguel-downloader): a Windows application in C#/.NET and WPF, with public code, tests and documentation.
+- [Força Aliada](https://ogabriels.com/forca-aliada): Manager, Community and server operations; product context, real interfaces and my role as founder.
+- [HyroChat](https://ogabriels.com/hyrochat) and [Busca Preço](https://ogabriels.com/busca-preco): UNIVESP team projects, with our presentations and my contribution identified.
+- [About me](https://ogabriels.com/sobre): education, credentials and professional background.
 
-This repository is public for **portfolio, study, and technical reference purposes**.
-It is not a generic template nor intended for third-party deployment, although it can be viewed locally.
+## Implementation and my role
 
----
+The site uses HTML, CSS and JavaScript, with Portuguese and English pages. It includes responsive navigation, project-specific styles and interactions, audiovisual galleries, metadata, structured data and a sitemap. Production hosting uses Cloudflare Pages.
 
-## 🎯 Project Goals
+I lead the content organization and visual direction, and review interfaces and interactions. Implementation is assisted by AI, including Codex and Claude Code, with human review and validation of the published result.
 
-- Demonstrate mastery of **Semantic HTML**, **Modern CSS**, and **Vanilla JavaScript**
-- Apply **Advanced Technical SEO** (Schema.org, Open Graph, XML Sitemap)
-- Implement **Internationalization (i18n)** with subdirectory structure
-- Prioritize **performance**, simplicity, and low operational cost (Static Hosting)
+The [review log](design-qa.md) records visual checks, responsiveness, links and interactions, including the scope of each review.
 
----
-
-## 🚀 Tech Stack & Tools
-
-The project was built without heavy frameworks to ensure instant loading and predictability.
-
-| Category | Technologies |
-| :--- | :--- |
-| **Front-end** | Semantic HTML5, CSS3 (Responsive / Flexbox / Grid), JavaScript (ES6+) |
-| **SEO & Data** | JSON-LD (Schema.org), Open Graph Protocol, Advanced Meta Tags |
-| **Multimedia** | Image Optimization (WebP/JPG), HTML5 Video with Captions (VTT) |
-| **Infrastructure** | Static Hosting, DNS Management, Git Versioning |
-
----
-
-## 📂 Project Architecture
-
-The repository underwent a complete refactoring in **January 2026**, aiming for better asset organization, internationalization support, and SEO-friendly URLs.
+## Repository map
 
 ```text
-ogabriels/
-├── assets/                 # Centralized static resources
-│   ├── img/                # Optimized images (project-prefixed)
-│   └── video/              # Video files and captions (.vtt)
-├── en/                     # International version (English - EN-US)
-├── index.html              # Home (Portuguese - PT-BR)
-├── lo-publicidade.html     # Case Study: Branding & Identity
-├── personal-branding.html  # Case Study: Personal Branding
-├── videos.html             # Audiovisual Portfolio
-├── sitemap.xml             # Sitemap for indexing
-└── robots.txt              # Guidelines for crawlers
-
+assets/css/       shared styles and project-specific presentation
+assets/js/        navigation, interactions and media players
+assets/img/       covers, real screenshots and visual work
+assets/docs/      resume and credentials
+en/              English pages
+*.html           Portuguese pages
+sitemap.xml      published page URLs
+design-qa.md     review and verification record
 ```
 
----
+## View locally
 
-## 🛠️ How to View
-
-Since this is a static website (Vanilla HTML/CSS/JS), no package installation (NPM/Yarn) is required.
-
-1. **Clone the repository:**
+No package installation or compilation is needed. Serve the repository with a static HTTP server. For example, with Python installed:
 
 ```bash
 git clone https://github.com/ogabriels2/portfolio.git
-
+cd portfolio
+python -m http.server 4173
 ```
 
-2. **Open the project:**
-Simply open the `index.html` file in any modern browser.
+Open `http://localhost:4173/`. Locally, use the `.html` filename for inner pages; extensionless production URLs depend on the hosting platform.
 
----
+## Contact
 
-## 📬 Contact
+[Website](https://ogabriels.com/) · [LinkedIn](https://www.linkedin.com/in/ogabriels/) · [Email](mailto:contato@ogabriels.com)
 
-Liked the code organization or the design? Let's talk.
-
-* **Website:** [ogabriels.com](https://ogabriels.com)
-* **LinkedIn:** [Gabriel Silva](https://www.linkedin.com/in/ogabriels/)
-* **GitHub:** [@ogabriels2](https://github.com/ogabriels2)
-* **Email:** [contato@ogabriels.com](mailto:contato@ogabriels.com)
-
----
-
-## 📄 License
+## License
 
 The source code is licensed under the **MIT License**.
 The **proprietary content**, including texts, images, videos, and visual identity, **must not be reused** without prior authorization.
-
----
-
-*Developed by Gabriel Silva.*
