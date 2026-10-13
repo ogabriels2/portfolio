@@ -1,0 +1,989 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.674
+Olá, [música]
+
+2
+00:00:05.720 --> 00:00:07.919
+eu sou o Gabriel Silva e eu vou falar
+
+3
+00:00:07.919 --> 00:00:10.679
+sobre o nosso protótipo Herhat, uma
+
+4
+00:00:10.679 --> 00:00:12.880
+ferramenta de facilitação de atendimento
+
+5
+00:00:12.880 --> 00:00:16.080
+ao cliente.
+
+6
+00:00:16.119 --> 00:00:18.320
+Hoje em dia, demorar dois dias para dar
+
+7
+00:00:18.320 --> 00:00:20.439
+uma resposta pode significar perder um
+
+8
+00:00:20.439 --> 00:00:22.480
+cliente. E quando o nosso grupo entrou
+
+9
+00:00:22.480 --> 00:00:24.599
+em contato com a Saniro, que é a Fintec
+
+10
+00:00:24.599 --> 00:00:26.960
+parceira do nosso projeto, a realidade
+
+11
+00:00:26.960 --> 00:00:29.519
+era exatamente essa. Euro atendimento
+
+12
+00:00:29.519 --> 00:00:31.720
+dependia exclusivamente de uma pequena
+
+13
+00:00:31.720 --> 00:00:34.040
+equipe humana no WhatsApp. Foi aí que
+
+14
+00:00:34.040 --> 00:00:36.559
+surgiu a pergunta: Como transformar um
+
+15
+00:00:36.559 --> 00:00:39.239
+suporte manual, lento e sobrecarregado
+
+16
+00:00:39.239 --> 00:00:41.640
+em um sistema inteligente, automatizável
+
+17
+00:00:41.640 --> 00:00:44.640
+e escalável? E para responder a isso,
+
+18
+00:00:44.640 --> 00:00:47.960
+nós do grupo 19 da UNIVESP desenvolvemos
+
+19
+00:00:47.960 --> 00:00:50.760
+o Horchet. A Saniro atua no setor
+
+20
+00:00:50.760 --> 00:00:52.920
+financeiro, oferecendo soluções como
+
+21
+00:00:52.920 --> 00:00:55.920
+pagamentos digitais, banking e serviços
+
+22
+00:00:55.920 --> 00:00:58.120
+e adquirência. Mas conforme a empresa
+
+23
+00:00:58.120 --> 00:01:00.800
+crescia, surgia também um gargalo
+
+24
+00:01:00.800 --> 00:01:02.840
+operacional muito importante, o
+
+25
+00:01:02.840 --> 00:01:05.000
+atendimento. E toda dúvida, desde
+
+26
+00:01:05.000 --> 00:01:07.360
+perguntas simples até solicitações mais
+
+27
+00:01:07.360 --> 00:01:09.400
+complexas, precisava passar para um
+
+28
+00:01:09.400 --> 00:01:11.720
+atendente humano necessariamente, sem
+
+29
+00:01:11.720 --> 00:01:14.479
+triagem, sem automação ou sem histórico
+
+30
+00:01:14.479 --> 00:01:16.439
+estrutural algum. E isso gera um
+
+31
+00:01:16.439 --> 00:01:18.240
+problema muito maior do que apenas
+
+32
+00:01:18.240 --> 00:01:20.680
+demora no atendimento. O cliente muitas
+
+33
+00:01:20.680 --> 00:01:24.000
+vezes fica sem resposta, sem clareza e
+
+34
+00:01:24.000 --> 00:01:26.840
+muitas vezes nem volta. Então, aplicando
+
+35
+00:01:26.840 --> 00:01:28.799
+os princípios de engenharia de software,
+
+36
+00:01:28.799 --> 00:01:30.920
+nós conduzimos uma escutativa junto a
+
+37
+00:01:30.920 --> 00:01:33.040
+Saniro. Formulários estruturados,
+
+38
+00:01:33.040 --> 00:01:35.759
+entrevistas direto com sean e Anderson
+
+39
+00:01:35.759 --> 00:01:38.000
+foram feitos e eles nos permitiram ir
+
+40
+00:01:38.000 --> 00:01:40.840
+muito além de suposições e mapear a dor
+
+41
+00:01:40.840 --> 00:01:43.200
+deles com precisão. E os dois problemas
+
+42
+00:01:43.200 --> 00:01:45.240
+mais recorrentes identificados foram
+
+43
+00:01:45.240 --> 00:01:47.719
+justamente a demora no atendimento e a
+
+44
+00:01:47.719 --> 00:01:49.399
+dificuldade no gerenciamento de
+
+45
+00:01:49.399 --> 00:01:52.719
+chamados. Ambos apareciam com frequência
+
+46
+00:01:52.719 --> 00:01:55.360
+máxima nas respostas. E para validar
+
+47
+00:01:55.360 --> 00:01:57.600
+isso, nós mesmos testamos o canal
+
+48
+00:01:57.600 --> 00:02:00.000
+oficial da empresa e o primeiro retorno
+
+49
+00:02:00.000 --> 00:02:02.399
+humano demorou aproximadamente dois dias
+
+50
+00:02:02.399 --> 00:02:05.000
+úteis. No contexto financeiro, isso
+
+51
+00:02:05.000 --> 00:02:07.039
+impacta diretamente a experiência do
+
+52
+00:02:07.039 --> 00:02:09.399
+usuário, a retenção e até a conversão
+
+53
+00:02:09.399 --> 00:02:11.560
+comercial, que é muito importante. E na
+
+54
+00:02:11.560 --> 00:02:13.640
+ponta do processo significa um cliente
+
+55
+00:02:13.640 --> 00:02:15.800
+frustrado esperando uma resposta que
+
+56
+00:02:15.800 --> 00:02:17.599
+deveria ter chegado em segundos.
+
+57
+00:02:17.599 --> 00:02:19.879
+Pensando nisso, na arquitetura de
+
+58
+00:02:19.879 --> 00:02:22.440
+aplicação, utilizamos Python como base
+
+59
+00:02:22.440 --> 00:02:24.760
+do sistema. Foi uma escolha fundamentada
+
+60
+00:02:24.760 --> 00:02:27.000
+tanto na maturidade do sistema quanto no
+
+61
+00:02:27.000 --> 00:02:29.080
+que conduzimos ao longo do curso,
+
+62
+00:02:29.080 --> 00:02:31.319
+especialmente engenharia de software,
+
+63
+00:02:31.319 --> 00:02:33.400
+onde trabalhamos o ciclo completo de
+
+64
+00:02:33.400 --> 00:02:36.000
+desenvolvimento ágil com Scre e entrega
+
+65
+00:02:36.000 --> 00:02:39.000
+de MVPs, produtos mínimos viáveis.
+
+66
+00:02:39.000 --> 00:02:41.040
+>> Já a interface, ela foi construída
+
+67
+00:02:41.040 --> 00:02:43.760
+utilizando Neg, que é um framework web
+
+68
+00:02:43.760 --> 00:02:46.200
+reativo que nos permitiu integrar front
+
+69
+00:02:46.200 --> 00:02:48.680
+end e backend de forma unificada. Essa
+
+70
+00:02:48.680 --> 00:02:51.159
+decisão, ela foi ancorada nos princípios
+
+71
+00:02:51.159 --> 00:02:53.560
+de desenvolvimento web e de interface
+
+72
+00:02:53.560 --> 00:02:56.239
+humano computador, porque afinal reduzir
+
+73
+00:02:56.239 --> 00:02:58.360
+a fricção do desenvolvimento reflete
+
+74
+00:02:58.360 --> 00:03:00.480
+diretamente na qualidade do produto
+
+75
+00:03:00.480 --> 00:03:02.680
+entregue ao usuário. Além disso, essa
+
+76
+00:03:02.680 --> 00:03:04.799
+escolha também reduziu a complexidade
+
+77
+00:03:04.799 --> 00:03:07.959
+estrutural e acelerou a entrega do MVP.
+
+78
+00:03:07.959 --> 00:03:10.120
+E o núcleo lógico do Hiret funciona
+
+79
+00:03:10.120 --> 00:03:12.799
+através de árvores e decisão. Ou seja,
+
+80
+00:03:12.799 --> 00:03:14.879
+em vez de depender imediatamente de
+
+81
+00:03:14.879 --> 00:03:17.360
+inteligência artificial generativa, nós
+
+82
+00:03:17.360 --> 00:03:18.720
+optamos por estruturar
+
+83
+00:03:18.720 --> 00:03:21.680
+deterministicamente fluxos previsíveis e
+
+84
+00:03:21.680 --> 00:03:24.040
+controlulados. Isso foi importante por
+
+85
+00:03:24.040 --> 00:03:26.982
+três motivos principais. Um,
+
+86
+00:03:26.982 --> 00:03:27.879
+[limpando a garganta] reduzir o custo
+
+87
+00:03:27.879 --> 00:03:30.159
+computacional. Dois, aumentar a
+
+88
+00:03:30.159 --> 00:03:32.799
+confiabilidade das expostas. e três,
+
+89
+00:03:32.799 --> 00:03:35.560
+garantir o controle operacional total da
+
+90
+00:03:35.560 --> 00:03:37.560
+empresa. Isso é muito importante para
+
+91
+00:03:37.560 --> 00:03:39.360
+que eles possam tomar decisões e
+
+92
+00:03:39.360 --> 00:03:42.080
+negócios com base em requisitos reais
+
+93
+00:03:42.080 --> 00:03:44.480
+dos usuários e não em suposições. E além
+
+94
+00:03:44.480 --> 00:03:46.599
+disso, os dados foram implementados e
+
+95
+00:03:46.599 --> 00:03:49.680
+persistidos em Protscrey SQL. Com base
+
+96
+00:03:49.680 --> 00:03:52.000
+no que aprendemos em banco de dados,
+
+97
+00:03:52.000 --> 00:03:54.200
+estruturamos a modelagem relacional para
+
+98
+00:03:54.200 --> 00:03:55.959
+garantir a consistência e
+
+99
+00:03:55.959 --> 00:03:58.120
+rastreabilidade completa dos logos e
+
+100
+00:03:58.120 --> 00:04:01.000
+feedback. Cada conversa, avaliação e
+
+101
+00:04:01.000 --> 00:04:03.280
+timestep são armazenados de forma
+
+102
+00:04:03.280 --> 00:04:05.239
+organizada para análise futura da
+
+103
+00:04:05.239 --> 00:04:07.159
+empresa. E a arquitetura também foi
+
+104
+00:04:07.159 --> 00:04:09.040
+projetada e estruturada para garantir a
+
+105
+00:04:09.040 --> 00:04:11.680
+prontidão de contêinerização com doc, o
+
+106
+00:04:11.680 --> 00:04:14.360
+que garante potabilidade e permite que o
+
+107
+00:04:14.360 --> 00:04:16.400
+sistema seja implementado de forma
+
+108
+00:04:16.400 --> 00:04:19.199
+padronizada em diferentes ambientes com
+
+109
+00:04:19.199 --> 00:04:21.600
+baixo custo operacional. Vale dizer
+
+110
+00:04:21.600 --> 00:04:23.479
+também que essa engenharia toda não
+
+111
+00:04:23.479 --> 00:04:26.000
+chegou dessa forma no primeiro dia. Ela
+
+112
+00:04:26.000 --> 00:04:27.960
+foi refinada a partir do diagnóstico
+
+113
+00:04:27.960 --> 00:04:30.039
+inicial com Saniro e nos testes
+
+114
+00:04:30.039 --> 00:04:32.400
+conduzidos ao longo do desenvolvimento,
+
+115
+00:04:32.400 --> 00:04:34.720
+inclusive com uma fase de homologação
+
+116
+00:04:34.720 --> 00:04:37.120
+planejada dentro dos fundamentos de
+
+117
+00:04:37.120 --> 00:04:39.080
+gerência e qualidade de software, que
+
+118
+00:04:39.080 --> 00:04:40.960
+nos orientou na execução dos testes de
+
+119
+00:04:40.960 --> 00:04:44.080
+integração e funcionais. Bom, agora nós
+
+120
+00:04:44.080 --> 00:04:45.880
+vamos ver tudo isso na prática,
+
+121
+00:04:45.880 --> 00:04:48.520
+funcionando no ambiente de produção real
+
+122
+00:04:48.520 --> 00:04:51.800
+com a Beatriz. Olá pessoal, tudo bem? Eu
+
+123
+00:04:51.800 --> 00:04:53.960
+sou a Beatriz do Santos Teixeira, faço
+
+124
+00:04:53.960 --> 00:04:56.560
+parte desse grupo do projeto integrador
+
+125
+00:04:56.560 --> 00:04:58.560
+e hoje eu vou mostrar para vocês o nosso
+
+126
+00:04:58.560 --> 00:05:00.720
+Hero Chat, que é o chatbot que criamos
+
+127
+00:05:00.720 --> 00:05:02.720
+para a empresa Saniro. Bom, então vamos
+
+128
+00:05:02.720 --> 00:05:06.199
+lá. Quando a pessoa ela entrar no nosso
+
+129
+00:05:06.199 --> 00:05:09.320
+site vai aparecer essa tela, né, do Hero
+
+130
+00:05:09.320 --> 00:05:12.680
+Chat falando o que que ele é. Então, ao
+
+131
+00:05:12.680 --> 00:05:14.600
+clicar iniciar conversa, ele vai te
+
+132
+00:05:14.600 --> 00:05:16.960
+levar para essa tela de mensagem, tá?
+
+133
+00:05:16.960 --> 00:05:18.440
+Ele vai aparecer com essa mensagem
+
+134
+00:05:18.440 --> 00:05:21.479
+inicial. Olá que posso ajudá-lo hoje,
+
+135
+00:05:21.479 --> 00:05:22.919
+ele tem algumas opções, tá, que você
+
+136
+00:05:22.919 --> 00:05:25.479
+pode estar escolhendo. Então, vamos
+
+137
+00:05:25.479 --> 00:05:27.479
+supor que eu escolhi aqui empréstimo e
+
+138
+00:05:27.479 --> 00:05:30.199
+crédito. Aí ele vai perguntar: "Ótimo, o
+
+139
+00:05:30.199 --> 00:05:31.919
+que você quer fazer? Simular o
+
+140
+00:05:31.919 --> 00:05:34.479
+empréstimo ou solicitar o empréstimo?"
+
+141
+00:05:34.479 --> 00:05:36.080
+Bom, eu quero simular o empréstimo. Você
+
+142
+00:05:36.080 --> 00:05:37.800
+vai digitar o número um e aí ele vai
+
+143
+00:05:37.800 --> 00:05:39.840
+aparecer essa mensagem: "Vou transferir
+
+144
+00:05:39.840 --> 00:05:41.800
+você para um atendente que pode simular
+
+145
+00:05:41.800 --> 00:05:44.160
+as melhores opções de empréstimo. Ir
+
+146
+00:05:44.160 --> 00:05:46.360
+para o WhatsApp. Você vai clicar no
+
+147
+00:05:46.360 --> 00:05:48.720
+botão ir para o WhatsApp
+
+148
+00:05:48.720 --> 00:05:51.120
+e ele vai te mandar aqui: "Obrigado por
+
+149
+00:05:51.120 --> 00:05:52.880
+entrar em contato se precisar de mais
+
+150
+00:05:52.880 --> 00:05:55.639
+algo, é só chamar". E embaixo vai estar
+
+151
+00:05:55.639 --> 00:05:57.680
+aqui o botão de WhatsApp, tá? Falar com
+
+152
+00:05:57.680 --> 00:05:59.520
+o consultor via WhatsApp. Logo em
+
+153
+00:05:59.520 --> 00:06:01.800
+seguida, ele vai ter aqui a opção de
+
+154
+00:06:01.800 --> 00:06:04.360
+avaliação, tá? Que você pode avaliar de
+
+155
+00:06:04.360 --> 00:06:07.240
+zero a 10. Então, vamos supor aqui que
+
+156
+00:06:07.240 --> 00:06:10.720
+eu vou dar nota oito.
+
+157
+00:06:10.720 --> 00:06:14.520
+Adorei o atendimento.
+
+158
+00:06:14.520 --> 00:06:17.560
+E eu vou enviar a avaliação.
+
+159
+00:06:17.560 --> 00:06:20.120
+Para onde vai a minha avaliação? A
+
+160
+00:06:20.120 --> 00:06:23.000
+avaliação ela vai estar registrada no
+
+161
+00:06:23.000 --> 00:06:25.319
+banco de dados, né, que a nossa escolha
+
+162
+00:06:25.319 --> 00:06:28.880
+foi o Pushg SQL. Então, estará lá.
+
+163
+00:06:28.880 --> 00:06:30.560
+Obrigada pela sua avaliação. Seu
+
+164
+00:06:30.560 --> 00:06:33.280
+feedback é muito importante para nós. Se
+
+165
+00:06:33.280 --> 00:06:35.720
+você quiser reiniciar, você tem dois
+
+166
+00:06:35.720 --> 00:06:37.960
+botõ clicar para reiniciar a conversa,
+
+167
+00:06:37.960 --> 00:06:40.479
+tá? Agora, se você quer reiniciar o
+
+168
+00:06:40.479 --> 00:06:42.759
+atendimento, você também pode clicar
+
+169
+00:06:42.759 --> 00:06:45.720
+nesse botão, tá bom? Também tem esse
+
+170
+00:06:45.720 --> 00:06:47.520
+outro diver mais opções que ao clicar
+
+171
+00:06:47.520 --> 00:06:51.120
+nele você pode mudar o tema, tá? Para o
+
+172
+00:06:51.120 --> 00:06:54.599
+modo escuro. E sobre o back end. Bom, o
+
+173
+00:06:54.599 --> 00:06:57.919
+nosso back end, tá? Ele foi feito com
+
+174
+00:06:57.919 --> 00:07:00.440
+Python, com flask, tá bom? E o banco de
+
+175
+00:07:00.440 --> 00:07:03.960
+dado foi progre SQL, tá? E aqui está o
+
+176
+00:07:03.960 --> 00:07:06.240
+nosso backend, como vocês podem ver,
+
+177
+00:07:06.240 --> 00:07:08.720
+fizemos a parte ali de ademin service,
+
+178
+00:07:08.720 --> 00:07:11.360
+né, que é onde vai ficar o banco de
+
+179
+00:07:11.360 --> 00:07:13.960
+dados das avaliações, tem a parte de
+
+180
+00:07:13.960 --> 00:07:16.280
+decisão ali da engenharia, eh o
+
+181
+00:07:16.280 --> 00:07:19.000
+redirecionamento do WhatsApp e entre
+
+182
+00:07:19.000 --> 00:07:20.639
+outras coisas que vocês podem estar
+
+183
+00:07:20.639 --> 00:07:23.560
+olhando no nosso diretório, tá bom? lá
+
+184
+00:07:23.560 --> 00:07:26.879
+no Git Hub. É isso, muito obrigada a
+
+185
+00:07:26.879 --> 00:07:28.599
+todos. Espero que vocês tenham gostado
+
+186
+00:07:28.599 --> 00:07:30.160
+do nosso projeto.
+
+187
+00:07:30.160 --> 00:07:32.840
+>> O Horat não foi pensado apenas como
+
+188
+00:07:32.840 --> 00:07:34.599
+exercício acadêmico, ele foi
+
+189
+00:07:34.599 --> 00:07:37.160
+desenvolvido como um MVP funcional de
+
+190
+00:07:37.160 --> 00:07:38.759
+verdade para resolver um problema
+
+191
+00:07:38.759 --> 00:07:41.199
+operacional real constituído a partir do
+
+192
+00:07:41.199 --> 00:07:43.680
+diagnóstico inicial junto a Saniro,
+
+193
+00:07:43.680 --> 00:07:46.240
+entregue em ambiente de produção. O
+
+194
+00:07:46.240 --> 00:07:48.520
+cliente que antes esperava dois dias
+
+195
+00:07:48.520 --> 00:07:50.759
+agora recebe uma resposta clara em
+
+196
+00:07:50.759 --> 00:07:53.440
+segundos. E isso não é só eficiência
+
+197
+00:07:53.440 --> 00:07:56.080
+operacional, é redução de fricção real
+
+198
+00:07:56.080 --> 00:07:58.479
+na experiência de quem usa o serviço.
+
+199
+00:07:58.479 --> 00:08:00.400
+Enquanto isso, os atendentes humanos
+
+200
+00:08:00.400 --> 00:08:02.800
+ficam concentrados apenas em casos que
+
+201
+00:08:02.800 --> 00:08:04.919
+realmente precisam deles. Por exemplo,
+
+202
+00:08:04.919 --> 00:08:06.919
+os que podem ser complexos e mais pro
+
+203
+00:08:06.919 --> 00:08:09.560
+chat automatizado ou que exigem algum
+
+204
+00:08:09.560 --> 00:08:12.240
+julgamento humano. Com isso, o tempo de
+
+205
+00:08:12.240 --> 00:08:14.520
+resposta para demandas mapeadas pelo
+
+206
+00:08:14.520 --> 00:08:17.120
+sistema deixa de ser medido em dias e
+
+207
+00:08:17.120 --> 00:08:19.479
+passa a ser instantâneo. E a empresa
+
+208
+00:08:19.479 --> 00:08:21.280
+também passa a contar com o histórico
+
+209
+00:08:21.280 --> 00:08:23.400
+estruturado de atendimento, que é algo
+
+210
+00:08:23.400 --> 00:08:25.919
+que eles simplesmente não tinham, e que
+
+211
+00:08:25.919 --> 00:08:28.240
+agora alimenta decisões e produto,
+
+212
+00:08:28.240 --> 00:08:30.199
+treinamento de equipe e evolução
+
+213
+00:08:30.199 --> 00:08:32.880
+contínua dos fluxos. Além disso, a
+
+214
+00:08:32.880 --> 00:08:35.399
+arquitetura do Harrochet foi projetada
+
+215
+00:08:35.399 --> 00:08:38.080
+com escalabilidade em mente. O projeto
+
+216
+00:08:38.080 --> 00:08:40.120
+deixa uma base sólida e pronta para
+
+217
+00:08:40.120 --> 00:08:42.080
+futuras integrações com modelos IA
+
+218
+00:08:42.080 --> 00:08:45.200
+generativo, análise avançada de padrões
+
+219
+00:08:45.200 --> 00:08:48.320
+e automações ainda mais robustas. Ao
+
+220
+00:08:48.320 --> 00:08:50.360
+longo desse projeto, nós percebemos que
+
+221
+00:08:50.360 --> 00:08:52.640
+a engenharia de software vai muito além
+
+222
+00:08:52.640 --> 00:08:54.640
+de só escrever código. Ela é sobre
+
+223
+00:08:54.640 --> 00:08:57.120
+entender pessoas, resolver problemas
+
+224
+00:08:57.120 --> 00:08:59.519
+reais, tomar decisões técnicas
+
+225
+00:08:59.519 --> 00:09:02.120
+responsáveis e construir soluções que
+
+226
+00:09:02.120 --> 00:09:05.040
+resistam ao contato com a realidade. E
+
+227
+00:09:05.040 --> 00:09:07.959
+combinando Python, Nic e Prodg Scell,
+
+228
+00:09:07.959 --> 00:09:09.760
+além do que desenvolvemos em disciplinas
+
+229
+00:09:09.760 --> 00:09:11.800
+como engenharia de software, banco de
+
+230
+00:09:11.800 --> 00:09:13.880
+dados, interface no computador,
+
+231
+00:09:13.880 --> 00:09:15.800
+desenvolvimento web, gerência e
+
+232
+00:09:15.800 --> 00:09:17.959
+qualidade de software, nós conseguimos
+
+233
+00:09:17.959 --> 00:09:20.680
+transformar um processo manual e moroso
+
+234
+00:09:20.680 --> 00:09:23.839
+e um fluxo automatizado, rastreável e
+
+235
+00:09:23.839 --> 00:09:27.079
+escalável e publicado em produção real.
+
+236
+00:09:27.079 --> 00:09:30.360
+Nós somos do grupo 19 da UNIVESP e esse
+
+237
+00:09:30.360 --> 00:09:32.720
+foi o Herchet. Muito obrigado.
+
+238
+00:09:32.720 --> 00:09:35.040
+>> Então, quero parabenizar a todos. Gostei
+
+239
+00:09:35.040 --> 00:09:37.000
+muito, muito, muito. Estou extremamente
+
+240
+00:09:37.000 --> 00:09:39.640
+agradecida por vocês terem escolhido a
+
+241
+00:09:39.640 --> 00:09:42.360
+Semirro para participar e ser o foco
+
+242
+00:09:42.360 --> 00:09:44.720
+desse projeto, tá bom? Sucesso para
+
+243
+00:09:44.720 --> 00:09:47.279
+vocês. Parabéns ao corpo docente também,
+
+244
+00:09:47.279 --> 00:09:49.360
+que inspirou, que ensinou, que está
+
+245
+00:09:49.360 --> 00:09:51.920
+junto com vocês aí, tá bom? Um abraço e
+
+246
+00:09:51.920 --> 00:09:54.091
+tudo de bom.
+
+247
+00:09:54.091 --> 00:09:56.111
+[música]

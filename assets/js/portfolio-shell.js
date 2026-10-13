@@ -116,7 +116,79 @@
     close(controller, restoreFocus);
   }
 
+  function enhanceLegacyLightbox(element) {
+    if (element.dataset.glassGalleryControls === 'true') return;
+    const image = element.querySelector('.lb-img,#lbImage');
+    const container = element.querySelector('.lb-container,#lbContainer');
+    const previous = element.querySelector('.lb-prev,#lbPrev');
+    const next = element.querySelector('.lb-next,#lbNext');
+    if (!image || !container || !previous || !next) return;
+    element.dataset.glassGalleryControls = 'true';
+
+    const sources = [...document.querySelectorAll('.lightbox-trigger')];
+    const counter = document.createElement('span');
+    counter.className = 'lb-gallery-counter';
+    counter.setAttribute('role', 'status');
+    counter.setAttribute('aria-live', 'polite');
+    counter.setAttribute('aria-atomic', 'true');
+    const zoomControl = element.querySelector('.lb-zoom-control');
+    if (zoomControl) zoomControl.prepend(counter);
+    else { counter.classList.add('lb-gallery-counter--floating'); container.append(counter); }
+
+    if (sources.length < 2) {
+      previous.hidden = true;
+      next.hidden = true;
+      counter.hidden = true;
+      return;
+    }
+
+    const keyFor = value => {
+      try { return new URL(value, document.baseURI).href; }
+      catch { return value; }
+    };
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const imageKey = keyFor(image.currentSrc || image.src);
+      const index = sources.findIndex(source => keyFor(source.dataset.src || source.currentSrc || source.src) === imageKey);
+      counter.textContent = `${String(Math.max(0, index) + 1).padStart(2, '0')} / ${String(sources.length).padStart(2, '0')}`;
+
+      if (!element.classList.contains('active')) return;
+      const bounds = container.getBoundingClientRect();
+      const imageBounds = image.getBoundingClientRect();
+      const buttonWidth = previous.getBoundingClientRect().width || 50;
+      const buttonHeight = previous.getBoundingClientRect().height || 50;
+      const maxX = Math.max(8, bounds.width - buttonWidth - 8);
+      const maxY = Math.max(buttonHeight / 2 + 8, bounds.height - buttonHeight / 2 - 8);
+      const left = Math.min(maxX, Math.max(8, imageBounds.left - bounds.left + 8));
+      const right = Math.min(maxX, Math.max(8, bounds.right - imageBounds.right + 8));
+      const top = Math.min(maxY, Math.max(buttonHeight / 2 + 8, imageBounds.top - bounds.top + imageBounds.height / 2));
+      previous.style.setProperty('left', `${left}px`, 'important');
+      previous.style.setProperty('right', 'auto', 'important');
+      previous.style.setProperty('top', `${top}px`, 'important');
+      next.style.setProperty('left', 'auto', 'important');
+      next.style.setProperty('right', `${right}px`, 'important');
+      next.style.setProperty('top', `${top}px`, 'important');
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    image.addEventListener('load', schedule);
+    window.addEventListener('resize', schedule, { passive: true });
+    const mutations = [new MutationObserver(schedule), new MutationObserver(schedule)];
+    mutations[0].observe(image, { attributes: true, attributeFilter: ['src', 'class', 'style'] });
+    mutations[1].observe(element, { attributes: true, attributeFilter: ['class'] });
+    element._portfolioGalleryMutations = mutations;
+    if ('ResizeObserver' in window) {
+      element._portfolioGalleryResize = new ResizeObserver(schedule);
+      element._portfolioGalleryResize.observe(image);
+    }
+    schedule();
+  }
+
   function registerDialog(element, options = {}) {
+    if (element.matches('.lightbox-overlay,#lightboxOverlay')) enhanceLegacyLightbox(element);
     if (dialogs.has(element)) return dialogs.get(element);
     const initiallyOpen = element.classList.contains('active');
     const controller = { element, open: false, external: options.external || false, blocked: [] };

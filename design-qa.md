@@ -74,7 +74,6 @@ Comparison history: **[P2, fixed]** the first mobile capture showed icons touchi
 
 final result: passed
 
-
 ## Art direction and case depth — 2026-10-11
 
 Source visual truth: the previously published631c504 site, existing original artwork and authentic product captures. This is an intentional redesign, not a pixel clone. Larger cover stages, product chapters and case-specific typography/materials are approved scope.
@@ -181,3 +180,138 @@ Capturas03–06 foram preliminares ou de página em cache e não usadas como pro
 Checklist: vídeosHyro/Busca, Detector recuperado, capasoriginais, links correspondentes, inglês, zoom/teclado, dimensões responsivas.
 
 final result: passed
+
+## Inventário de microinterações — 12/10/2026
+
+### Mapa por superfície
+
+- **Navegação compartilhada:** links laterais e menu móvel indicam foco, hover e página atual; setas acompanham a direção do destino; abrir e fechar o menu mantém a transição curta. A cápsula PT/EN conserva arraste e clique, com menos deformação e resposta instantânea quando o sistema pede movimento reduzido. Redes sociais recebem um realce discreto, sem chamar mais atenção que o contato.
+- **Home:** CTAs movem apenas o ícone associado à ação. Cartões inteiros são links, por isso recebem elevação curta, pequena aproximação da imagem e retorno ao pressionar. As capas em camadas se deslocam pouco e sem brilho varrendo; a composição também responde ao foco de teclado.
+- **Sobre:** capítulos são links de navegação e destacam a seção atual durante a rolagem. Cartões de competência e retrato são conteúdo editorial, então ficam imóveis; só os links dentro dos cartões recebem cor e sublinhado de foco/hover. Formação e experiência continuam com links identificáveis.
+- **Contato:** caminhos, canais e redes realçam a ação; o botão de copiar muda de cópia para confirmação e anuncia o resultado, depois retorna ao estado inicial. Campos distinguem foco e erro, escolhas de assunto mostram seleção, e envio informa estado ocupado, sucesso ou falha sem apagar texto em caso de erro.
+- **Casos de software:** chamadas, links externos, etapas de arquitetura, botões de galeria e prioridades têm estados visuais de foco/seleção/pressão. A galeria atualiza imagem, descrição e legenda anunciada; o detalhe do fluxo já era uma região anunciada. No HyroChat, escolhas criam mensagens, status acompanha o percurso e voltar/reiniciar refletem sua disponibilidade. Detalhes técnicos usam o controle nativo de expandir/recolher.
+- **Imagens e estudos visuais:** capturas ampliáveis mantêm cursor de zoom e abrem o visualizador; o botão sincroniza texto, nome acessível e sinal de mais/menos com o nível atual. Controles de marca, escala e recorte destacam a escolha ativa e alteram a demonstração correspondente. Imagens meramente decorativas não simulam botões.
+- **Vídeo:** a capa indica reprodução, ativa o player somente por ação e agora oferece “Voltar à capa”, com restauração do foco ao fechar. Os links relacionados deixam explícito quando abrem o YouTube.
+- **Encerramento e rodapé:** o próximo projeto e os links de contato/redes têm foco visível e um retorno leve à pressão. A seta se desloca no mesmo sentido em que o visitante seguirá.
+
+### Critérios aplicados
+
+Uma resposta é associada ao tipo de ação: deslocamento para navegação, escala mínima para pressão, cor/contorno para seleção, e texto/ícone/estado acessível sincronizados para confirmação. Hover não substitui foco de teclado; movimento não é aplicado a cartões editoriais estáticos; setas e ícones não sugerem ações opostas ao rótulo. A entrada por rolagem foi encurtada para 480 ms e 12 px, com intervalo de até 108 ms entre itens. O `prefers-reduced-motion` elimina deslocamentos ornamentais e a deformação do seletor sem impedir seu uso.
+
+### Alterações desta rodada
+
+- Refinados a intensidade e o tempo dos movimentos da navegação, capas, contatos, controles de estudo e chamadas finais.
+- Removido o brilho genérico que varria as capas e a movimentação de cartões de competência que não são clicáveis.
+- Alinhados estados de foco/pressão e desativação nos controles de software.
+- Adicionado retorno acessível para copiar e fechar apresentações embutidas; o zoom agora mantém ícone e rótulo coerentes.
+- Atualizadas as referências cacheadas das folhas de estilo e scripts modificados nas páginas PT/EN.
+
+Não foi feita publicação.
+
+## Revisão dedicada de botões e alvos clicáveis — 12/10/2026
+
+### Cobertura e achados
+
+O inventário encontrou 217 elementos <button> nas 32 páginas publicadas em português e inglês, além de links de navegação, cartões acionáveis, imagens ampliáveis, detalhes expansíveis, campos e controles do player. Os estados de hover, foco, pressão e seleção variavam entre componentes. O player tinha um estado permanente de escala excessiva nos controles de velocidade e legenda. O seletor de tempo era uma área clicável que não recebia foco nem ativação nativa pelo teclado.
+
+### Ajustes
+
+- Uniformizado o retorno momentâneo ao pressionar links e controles, respeitando ações e estilos próprios.
+- Completado o paralelo entre hover e foco de teclado na navegação, botões do menu, redes, links de contato, capítulos, detalhes, galerias e controles dos estudos de projeto.
+- Mantida a aparência selecionada separada do hover. Velocidade diferente do normal e legendas ligadas ficam identificáveis sem aumentar permanentemente os ícones.
+- Os menus de velocidade e legenda agora anunciam quando abrem, qual opção está selecionada e qual configuração está ativa. Escape fecha o menu e devolve o foco ao botão acionador.
+- Convertido o seletor do tempo do player em botão nativo com dica da ação, mantendo a aparência visual da barra de controles.
+- Mantidos estados de espera/desativação e o contorno de foco visível. Movimento decorativo continua respeitando prefers-reduced-motion; o efeito de pressão é discreto.
+
+### Conferência
+
+Na prévia local, conferi em português e inglês a abertura dos menus, a opção de velocidade escolhida, o estado de legendas e o fechamento por Escape com retorno do foco. Também confirmei no player o botão de alternar o tempo e seu foco visível. Revisão manual no Edge; sem testes automatizados e sem publicação.
+### Estados dos controles de reprodução
+
+O player também sincroniza o estado de reprodução, áudio silenciado e tela cheia com `aria-pressed`. Os nomes acessíveis permanecem estáveis nos controles de alternância; títulos contextuais indicam a ação seguinte. O estado de áudio e tela cheia tem uma marca visual persistente sutil, coerente com os demais estados ativos, sem ampliar os ícones. A página PT e a EN mantêm as mesmas interações e rótulos naturais em cada idioma. Conferido manualmente no Edge na prévia local; o player inicia parado, sem som e fora de tela cheia.
+## Recuperação de intensidade e física das animações — 12/10/2026
+
+Depois do retorno do Gabriel, reverti os cortes que deixaram os movimentos da home discretos demais. Os cartões voltam a subir 5 px e as imagens fotográficas ampliam 5% no hover/foco. Nas capas de Busca Preço, HyroChat, Miguel Downloader e Força Aliada, reativei o brilho diagonal e aumentei o deslocamento das interfaces em camadas, mantendo os recortes dentro da arte. O movimento de entrada retorna de 12 px/480 ms para 18 px/720 ms, com o escalonamento original entre elementos.
+
+O seletor de idioma conserva a dimensão compacta escolhida, mas recupera a resposta elástica: expansão de hover, deformação pela velocidade do arraste, efeito de borracha nas extremidades e mola com mais ressalto no retorno. Os botões de produto, galerias, fluxo e escolhas ganham elevação, escala e ícones direcionais mais expressivos. A preferência explícita por movimento reduzido continua respeitada.
+
+Conferido no Edge na prévia local; sem publicação.
+
+## Refinamento da navegação lateral — 12/10/2026
+
+O menu lateral ganhou um pouco mais de resposta sem alterar sua estrutura nem sua densidade. Links avançam 5 px ao receber hover ou foco; ícones acompanham com uma elevação e rotação curtas; o item atual recebe uma marca interna discreta. O avatar, contato e atalhos sociais respondem com leve escala ou elevação, enquanto a pressão confirma o clique sem competir com a navegação. No menu móvel, a entrada dos grupos tem um pouco mais de curso e os links recebem retorno tátil. O seletor de idioma mantém sua física líquida e seu tamanho compacto.
+
+As interações de navegação continuam distinguindo hover, foco de teclado, estado atual e pressão. A configuração `prefers-reduced-motion` remove os deslocamentos e as transições adicionados. Conferido na prévia local; sem publicação.
+
+## Precisão dos ícones e resposta tátil — 13/10/2026
+
+O movimento existente de botões, navegação, capas e ícones foi preservado e restaurado. Ajustes de renderização vetorial ajudam a manter os traços nítidos durante as transições sem reduzir a intensidade das animações. A marca de Instagram da lateral usa o ícone oficial da família Font Awesome já carregada no site, e as redes ficam brancas sobre o fundo azul no hover.
+
+O contato recebe dois pequenos traços animados de boas-vindas, e o ícone de Sobre mim responde com arcos curtos. Eles só se movimentam enquanto o item está em hover ou foco. Os botões da home e do rodapé ganham estados mais claros de passagem, foco e pressão, sem mexer nas animações das capas dos projetos.
+
+No seletor compacto de idiomas, o clique faz a cápsula percorrer uma única vez o caminho até o idioma escolhido; a navegação ocorre ao final, sem um recuo intermediário. Pressionar e segurar comprime a cápsula e intensifica seu brilho; o arraste conserva a mola e a elasticidade existentes. Rótulos e bandeiras ficam parados e nítidos. Movimento reduzido continua respeitado.
+
+Revisão manual na prévia local; sem testes automatizados e sem publicação.
+
+
+## Pressão dos controles e estado ativo — 13/10/2026
+
+Botões e itens de menu afundam brevemente durante a pressão, com deslocamento curto e leve escala. Retirei as sombras internas e os halos de afundamento; o seletor de idioma mantém sua física própria. Removi a faixa vertical dos itens de navegação ativos; o foco por teclado continua visível por um contorno externo.
+
+Ajustei a sequência de ponteiro do seletor para iniciar a mola no pointer-up e consumir o clique nativo, evitando que a cápsula volte ao estado anterior antes de seguir ao destino. A posição final é aplicada sem transição CSS concorrente.
+
+Conferido manualmente na prévia local; sem publicação.
+
+## Afundamento consistente nos controles — 13/10/2026
+
+Ampliei o retorno de pressão para todos os botões, links de navegação e ações clicáveis das páginas: um deslocamento curto para baixo, uma compressão leve e transição rápida. O estado acontece enquanto o botão do mouse ou o toque está pressionado e volta ao normal ao soltar. Não há sombra interna no afundamento. Os cartões de projeto mantêm seu movimento próprio, e o seletor de idioma preserva a animação líquida. Movimento reduzido continua respeitado.
+
+## Navegação das galerias em liquid glass — 13/10/2026
+
+No visualizador das páginas de projeto, as setas ficam sobre a própria imagem, com contador e miniaturas para saltar diretamente entre telas. A navegação também responde às setas do teclado e ao gesto horizontal no celular. Os controles usam transparência, desfoque, reflexo e contorno de vidro, com estados próprios de foco e pressão. Apliquei o mesmo acabamento às setas e ao zoom das galerias antigas; movimento reduzido continua respeitado.
+
+## Audiovisual e proporções de imagens — 13/10/2026
+
+Reorganizei as versões em português e inglês em duas frentes: apresentações de tecnologia e documentário da Fábrica de Cultura. Os atalhos iniciais levam diretamente às seções. As apresentações carregam o YouTube sob demanda e usam a API oficial com controles do portfólio fora da imagem: reprodução, pausa, retrocesso/avanço, progresso, volume, velocidade e tela cheia. Fechar restaura a capa; trocar de vídeo encerra a reprodução anterior. A identificação e os avisos do YouTube não são ocultados. Se a API não carregar, o iframe usa os controles originais.
+
+Corrigi altura automática das artes de Um Minuto e Valorada nas duas línguas, além da imagem de Lô em inglês. Conferência no Edge: arte quadrada 400×400; identidade Valorada 880×494,78; banner 880×145,38, preservando as proporções dos arquivos. Conferi visualmente a abertura, a grade e o documentário, e o layout de 390 px sem rolagem horizontal. Pausa, volume, velocidade, fechamento e troca de apresentação funcionaram na prévia. Conferência de sintaxe e diff sem erros. Alterações locais, sem publicação.
+
+## UNIVESP alinhada à Fábrica de Cultura — 13/10/2026
+
+Retirei a grade de cartões e a barra de controles anterior. Cada apresentação segue as mesmas colunas da seção documental, com contexto à esquerda e painel branco à direita. A interface dos controles é clonada do componente da Fábrica de Cultura, reutilizando ícones, menus de velocidade e legenda, linha de progresso, volume expansível e acabamento de vidro. Os controles ficam sobre a capa antes de assistir e junto à imagem do iframe durante a reprodução, preservando a área do player do YouTube. Mantive o documentário como referência. Alterações aplicadas em português e inglês, apenas localmente.
+
+## Player original também no YouTube — 13/10/2026
+
+Apliquei a mesma classe e as camadas do player nativo aos três vídeos do YouTube. Retirei a barra inferior separada: progresso e controles ficam sobre a imagem com o gradiente original. O botão central, os saltos de dez segundos, o feedback de volume, os menus e o desaparecimento após 2,5 segundos usam o desenho do documentário. O iframe continua responsável pela reprodução; não houve publicação. Conferência visual no Edge dos estados de capa e pausa.
+
+
+## Preparação para hospedagem gratuita — 13/10/2026
+
+Escolhido o plano Free do Cloudinary, sem cartão e sem prazo de expiração. Limites consultados: 100 MB por vídeo e 25 créditos compartilhados entre armazenamento, processamento e tráfego. A conta existente foi conferida no painel como Free. Os arquivos serão otimizados localmente, entregues diretamente em MP4 e carregados somente ao iniciar a reprodução.
+
+Removida a implementação com controles sobre iframe do YouTube. As apresentações agora recebem vídeos nativos e reutilizam os próprios controles e o inicializador do documentário, preservando desenho, animações e atalhos. As URLs públicas ficam em portfolio-video-sources.js, sem credenciais. Enquanto um arquivo não estiver configurado, a capa mantém um link funcional para a apresentação original.
+
+Convertidas as legendas fornecidas de HyroChat e Busca Preço para WebVTT; Detector de Fraudes conserva as legendas existentes em português e inglês. Cópia anterior preservada em backup-player-before-cloudinary-20261013, fora do repositório.
+
+Os três originais foram recebidos e preservados em Downloads/Miguel Downloader. Detector de Fraudes foi enviado em MP4 Full HD (52.328.868 bytes), com vídeo H.264 preservado e áudio convertido para AAC. HyroChat e Busca Preço estão em preparação para upload. As seis páginas PT/EN compartilham o player nativo em arquivos próprios de estilo e comportamento. Sem publicação do site e sem execução de testes automatizados.
+
+## Vídeos nativos hospedados no Cloudinary — 13/10/2026
+
+Concluído o envio dos três vídeos em MP4 H.264, 1920×1080, para a conta Free existente. As URLs apontam para arquivos completos independentes; a reprodução não depende dos trechos temporários de processamento. Total dos arquivos finais: 213.153.250 bytes.
+
+| Apresentação | Original | Versão para o site | Duração |
+| --- | ---: | ---: | ---: |
+| HyroChat | 743.157.521 bytes | 82.322.668 bytes | 600,073 s |
+| Busca Preço | 786.021.822 bytes | 78.501.714 bytes | 599,445 s |
+| Detector de Fraudes | 52.370.141 bytes | 52.328.868 bytes | 373,141 s |
+
+HyroChat preserva o áudio AAC original. Busca Preço recebe um único áudio contínuo convertido para AAC, sem concatenar o áudio dos trechos. Detector preserva o vídeo H.264 original, com áudio convertido para AAC. Os originais em Downloads/Miguel Downloader não foram alterados.
+
+As versões PT/EN de audiovisual, HyroChat e Busca Preço utilizam os próprios controles do documentário da Fábrica de Cultura. O player compartilhado conserva vidro, gradiente, botões centrais, saltos de dez segundos, volume expansível, menus e animações. Legendas são servidas em WebVTT; há reprodução por toque e teclado, ajuste de velocidade, tela cheia e pausa dos outros vídeos ao iniciar uma apresentação. Os arquivos carregam somente quando a reprodução é iniciada. O YouTube fica como link externo alternativo, sem iframe ou API de reprodução.
+
+Conferidos os metadados dos arquivos locais e dos uploads. Inspecionados visualmente quadros do Busca Preço em 120, 300 e 500 segundos e do HyroChat em 120 e 400 segundos, comparando texto e interface com a versão anterior à compressão. A conexão com o Edge permaneceu indisponível nesta etapa; não houve nova conferência visual completa das seis páginas após a extração do player compartilhado. A prévia local foi preparada com o tipo correto de WebVTT e suporte a solicitações parciais para navegar pelo vídeo do documentário.
+
+Fontes e vídeos finais preservados localmente. Sem testes automatizados e sem publicação do site.
+
+Limpeza concluída: removidos somente os 62 recursos temporários criados para esta preparação. Os três recursos finais permanecem independentes. Ponte local de transferência e túnel temporário encerrados; lista de arquivos permitidos esvaziada. Cópia completa do site em backup-native-cloudinary-final-20261013 e arquivos finais organizados em portfolio-videos-final-20261013, fora do repositório.
+

@@ -1,0 +1,921 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.619
+Olá,
+
+2
+00:00:02.619 --> 00:00:04.639
+[música]
+
+3
+00:00:05.560 --> 00:00:07.680
+eu sou Gabriel Silva e esse é o projeto
+
+4
+00:00:07.680 --> 00:00:10.880
+integrador 3 da UNIVESP. E hoje eu vou
+
+5
+00:00:10.880 --> 00:00:13.480
+apresentar o Busca Preço, um aplicativo
+
+6
+00:00:13.480 --> 00:00:15.519
+desenvolvido para ajudar famílias a
+
+7
+00:00:15.519 --> 00:00:18.480
+economizarem nas compras do dia a dia.
+
+8
+00:00:18.480 --> 00:00:20.480
+Você já chegou no caixa do supermercado
+
+9
+00:00:20.480 --> 00:00:22.760
+e levou um susto com o valor final das
+
+10
+00:00:22.760 --> 00:00:25.960
+compras? Isso não é coincidência. Em
+
+11
+00:00:25.960 --> 00:00:30.320
+2025, o café moído subiu 35% no ano. A
+
+12
+00:00:30.320 --> 00:00:33.399
+cebola subiu 12% só em dezembro, a
+
+13
+00:00:33.399 --> 00:00:36.040
+batata inglesa 7,6%
+
+14
+00:00:36.040 --> 00:00:38.640
+e as carnes continuaram pressionadas.
+
+15
+00:00:38.640 --> 00:00:41.160
+Esses números fazem parte do IPCA, o
+
+16
+00:00:41.160 --> 00:00:43.640
+índice oficial de inflação no Brasil.
+
+17
+00:00:43.640 --> 00:00:46.039
+Mas para muitas famílias da periferia,
+
+18
+00:00:46.039 --> 00:00:48.680
+eles não são só estatísticas, eles
+
+19
+00:00:48.680 --> 00:00:50.760
+aparecem toda semana na conta do
+
+20
+00:00:50.760 --> 00:00:54.359
+mercado. A inflação afeta a todos, mas
+
+21
+00:00:54.359 --> 00:00:56.440
+ela é especialmente cruel com quem tem
+
+22
+00:00:56.440 --> 00:00:58.920
+menos. Famílias de baixa renda destinam
+
+23
+00:00:58.920 --> 00:01:01.480
+uma parcela muito maior do orçamento ao
+
+24
+00:01:01.480 --> 00:01:03.840
+alimento. E o sistema tributário agrava
+
+25
+00:01:03.840 --> 00:01:07.080
+isso. As famílias mais pobres pagam 21%
+
+26
+00:01:07.080 --> 00:01:08.880
+de impostos indiretos sobre o que
+
+27
+00:01:08.880 --> 00:01:11.320
+consomem, enquanto as mais ricas pagam
+
+28
+00:01:11.320 --> 00:01:14.400
+menos de 8%. Soma-se a isso um problema
+
+29
+00:01:14.400 --> 00:01:17.759
+invisível, a assimetria de informação. O
+
+30
+00:01:17.759 --> 00:01:19.759
+consumidor não sabe onde está mais
+
+31
+00:01:19.759 --> 00:01:22.200
+barato. Ele não consegue comparar
+
+32
+00:01:22.200 --> 00:01:24.720
+facilmente preços entre mercados e forma
+
+33
+00:01:24.720 --> 00:01:27.680
+prática, rápida ou no momento da compra.
+
+34
+00:01:27.680 --> 00:01:29.920
+E foi exatamente esse problema que o
+
+35
+00:01:29.920 --> 00:01:32.280
+nosso grupo resolveu atacar. O tema
+
+36
+00:01:32.280 --> 00:01:34.759
+noroteador desse projeto integrador pede
+
+37
+00:01:34.759 --> 00:01:36.759
+o desenvolvimento de um software que
+
+38
+00:01:36.759 --> 00:01:39.840
+utilize banco de dados, API, aplicativo
+
+39
+00:01:39.840 --> 00:01:42.040
+mobile e boas práticas engenharia de
+
+40
+00:01:42.040 --> 00:01:44.240
+software. Nosso projeto atende
+
+41
+00:01:44.240 --> 00:01:46.719
+exatamente esses requisitos e vai além
+
+42
+00:01:46.719 --> 00:01:49.240
+ao propor uma solução com impacto social
+
+43
+00:01:49.240 --> 00:01:51.759
+real na comunidade da zona leste de São
+
+44
+00:01:51.759 --> 00:01:54.040
+Paulo. Para entender a real necessidade
+
+45
+00:01:54.040 --> 00:01:56.759
+das pessoas, o nosso grupo foi a campo.
+
+46
+00:01:56.759 --> 00:01:58.759
+Nós visitamos mercados e centros
+
+47
+00:01:58.759 --> 00:02:01.240
+comerciais na zona leste de São Paulo e
+
+48
+00:02:01.240 --> 00:02:03.119
+conversamos com gerentes, unidades
+
+49
+00:02:03.119 --> 00:02:05.799
+varegistas e moradores locais. Nós
+
+50
+00:02:05.799 --> 00:02:09.160
+entrevistamos cerca de 48 pessoas e o
+
+51
+00:02:09.160 --> 00:02:11.319
+que elas nos disseram ajudou diretamente
+
+52
+00:02:11.319 --> 00:02:14.160
+a mudar cada decisão do nosso projeto. A
+
+53
+00:02:14.160 --> 00:02:18.160
+maioria, 32 das 48 pessoas faz compras
+
+54
+00:02:18.160 --> 00:02:21.680
+picadas, ou seja, vai ao mercado várias
+
+55
+00:02:21.680 --> 00:02:23.480
+vezes ao mês buscando aproveitar
+
+56
+00:02:23.480 --> 00:02:25.760
+promoções. E o que mais irrita esses
+
+57
+00:02:25.760 --> 00:02:29.000
+consumidores? o preço errado, aquele que
+
+58
+00:02:29.000 --> 00:02:31.040
+está na prateleira, mas não bate com o
+
+59
+00:02:31.040 --> 00:02:33.280
+que aparece no caixa. E quando
+
+60
+00:02:33.280 --> 00:02:35.400
+perguntamos se eles usariam scanner de
+
+61
+00:02:35.400 --> 00:02:39.080
+código de barras, 43 das 48 pessoas
+
+62
+00:02:39.080 --> 00:02:41.800
+disseram que acharia difícil. Esse dado
+
+63
+00:02:41.800 --> 00:02:43.920
+foi fundamental pra nossa tomada de
+
+64
+00:02:43.920 --> 00:02:46.720
+decisão e é exatamente o tipo de insite
+
+65
+00:02:46.720 --> 00:02:48.879
+que a disciplina de interface humano
+
+66
+00:02:48.879 --> 00:02:51.680
+computador nos ensina a buscar. projetar
+
+67
+00:02:51.680 --> 00:02:53.760
+com base no comportamento real do
+
+68
+00:02:53.760 --> 00:02:56.360
+usuário, não no que imaginamos que ele
+
+69
+00:02:56.360 --> 00:02:59.400
+consegue fazer. A conclusão foi clara, o
+
+70
+00:02:59.400 --> 00:03:02.159
+aplicativo precisava ser simples, direto
+
+71
+00:03:02.159 --> 00:03:04.840
+e focado em mostrar ofertas do dia, sem
+
+72
+00:03:04.840 --> 00:03:07.560
+complexidade técnica pro usuário final.
+
+73
+00:03:07.560 --> 00:03:09.720
+Nasceu assim o Busca Preço, um
+
+74
+00:03:09.720 --> 00:03:11.879
+aplicativo mobile desenvolvido para
+
+75
+00:03:11.879 --> 00:03:14.120
+Android, aplicando os conceitos de
+
+76
+00:03:14.120 --> 00:03:16.360
+desenvolvimento para dispositivos móveis
+
+77
+00:03:16.360 --> 00:03:19.040
+com backend em Bulog e banco de dados em
+
+78
+00:03:19.040 --> 00:03:21.840
+Protsgreen SQL. Vale destacar que a
+
+79
+00:03:21.840 --> 00:03:24.080
+demonstração que vocês vão ver a seguir
+
+80
+00:03:24.080 --> 00:03:26.720
+foi gravada em ambiente local. Isso foi
+
+81
+00:03:26.720 --> 00:03:28.360
+necessário porque em ambiente de
+
+82
+00:03:28.360 --> 00:03:30.959
+servidor remoto não é possível capturar
+
+83
+00:03:30.959 --> 00:03:33.360
+os logos de aplicação em tempo real. E
+
+84
+00:03:33.360 --> 00:03:35.439
+eles são parte essencial para entender o
+
+85
+00:03:35.439 --> 00:03:37.640
+fluxo técnico do sistema. O
+
+86
+00:03:37.640 --> 00:03:40.640
+comportamento é idêntico ao do servidor.
+
+87
+00:03:40.640 --> 00:03:43.680
+Apenas o contexto de gravação é local.
+
+88
+00:03:43.680 --> 00:03:45.560
+Para mostrar como o aplicativo funciona
+
+89
+00:03:45.560 --> 00:03:47.920
+na prática, eu passo a palavra pro
+
+90
+00:03:47.920 --> 00:03:50.560
+Diego, responsável pelo desenvolvimento
+
+91
+00:03:50.560 --> 00:03:52.360
+técnico do projeto.
+
+92
+00:03:52.360 --> 00:03:55.280
+>> Olá, pessoal. Eu sou o Diego e eu vou
+
+93
+00:03:55.280 --> 00:03:57.959
+mostrar para vocês a nossa aplicação,
+
+94
+00:03:57.959 --> 00:04:00.599
+como ela funciona. Então, como base, nós
+
+95
+00:04:00.599 --> 00:04:03.400
+utilizamos uma aplicação utilizando a
+
+96
+00:04:03.400 --> 00:04:06.200
+linguagem Golang. Ela empacota tudo que
+
+97
+00:04:06.200 --> 00:04:09.239
+você tem dentro da aplicação, todas as
+
+98
+00:04:09.239 --> 00:04:12.280
+bibliotecas que nós utilizamos dentro de
+
+99
+00:04:12.280 --> 00:04:14.640
+um pacote só, um único arquivo e depois
+
+100
+00:04:14.640 --> 00:04:16.720
+de lá pode ser subida para um servidor.
+
+101
+00:04:16.720 --> 00:04:20.560
+E para apoiar, nós instalamos um banco
+
+102
+00:04:20.560 --> 00:04:24.360
+de dados Postgreis e também um painel
+
+103
+00:04:24.360 --> 00:04:27.243
+administrativo baseado em Postgre admin
+
+104
+00:04:27.243 --> 00:04:28.520
+[limpando a garganta] para nos auxiliar
+
+105
+00:04:28.520 --> 00:04:31.560
+a fazer a gestão ou a gerência do banco
+
+106
+00:04:31.560 --> 00:04:33.560
+de dados. Temos uma estrutura simples de
+
+107
+00:04:33.560 --> 00:04:36.080
+banco de dados, né, e a ferramenta de
+
+108
+00:04:36.080 --> 00:04:39.440
+captura simples de código de barra que
+
+109
+00:04:39.440 --> 00:04:41.759
+interage com as nossas APIs, né, tanto
+
+110
+00:04:41.759 --> 00:04:44.440
+para escanear como para exibir o
+
+111
+00:04:44.440 --> 00:04:47.440
+dashboard. Eu vou tentar fazer uma
+
+112
+00:04:47.440 --> 00:04:49.720
+simulação, tá aqui. Primeiro subir o
+
+113
+00:04:49.720 --> 00:04:52.600
+Docker. Utilizamos Docker junto com
+
+114
+00:04:52.600 --> 00:04:55.639
+Docker Compose.
+
+115
+00:04:55.639 --> 00:04:58.680
+Bom, está funcionando na porta 80 e
+
+116
+00:04:58.680 --> 00:05:02.639
+banco unidade 5432. Agora é vamos é
+
+117
+00:05:02.639 --> 00:05:05.560
+rodar nossa aplicação.
+
+118
+00:05:05.560 --> 00:05:07.280
+Um momento,
+
+119
+00:05:07.280 --> 00:05:10.440
+ele tá compilando. Compilou, iniciou.
+
+120
+00:05:10.440 --> 00:05:13.120
+Rodando na porta 8080. Banco de dados
+
+121
+00:05:13.120 --> 00:05:16.400
+conectado também. OK. Funcionando. Nosso
+
+122
+00:05:16.400 --> 00:05:18.199
+plugin, ó. Olha eu aqui, ó. Eu vou
+
+123
+00:05:18.199 --> 00:05:22.280
+tentar fazer essa captura aqui.
+
+124
+00:05:23.600 --> 00:05:27.720
+Opa, funcionou. Então, podemos ver aqui
+
+125
+00:05:27.720 --> 00:05:31.240
+que é, já pagou, mas identificou o
+
+126
+00:05:31.240 --> 00:05:34.440
+estabelecimento, o atacadão e listou os
+
+127
+00:05:34.440 --> 00:05:37.479
+preços, a data, tem o código interno,
+
+128
+00:05:37.479 --> 00:05:40.039
+então tá tudo capturado dentro do banco
+
+129
+00:05:40.039 --> 00:05:41.560
+de dados. Deixa eu ver se eu consigo
+
+130
+00:05:41.560 --> 00:05:43.080
+mostrar também o banco de dados, só para
+
+131
+00:05:43.080 --> 00:05:47.120
+mostrar os dados lá dentro.
+
+132
+00:05:47.840 --> 00:05:50.919
+Então, o atacadão ele pegou os produtos
+
+133
+00:05:50.919 --> 00:05:52.600
+aqui, ó, já exibiu também, ó. Aqui
+
+134
+00:05:52.600 --> 00:05:54.720
+também nós temos o histórico de preços
+
+135
+00:05:54.720 --> 00:05:56.520
+que ele vai sendo atualizado conforme
+
+136
+00:05:56.520 --> 00:06:00.680
+nós vamos alimentando o nosso banco de
+
+137
+00:06:00.680 --> 00:06:02.600
+dados. Então foi assim que nós
+
+138
+00:06:02.600 --> 00:06:05.479
+conseguimos eh fazer essa aplicação
+
+139
+00:06:05.479 --> 00:06:07.479
+utilizando um web viw dentro de um
+
+140
+00:06:07.479 --> 00:06:10.639
+celular e capturar esses preços e depois
+
+141
+00:06:10.639 --> 00:06:14.599
+fazer um uma análise nesses dados.
+
+142
+00:06:14.599 --> 00:06:17.240
+>> Obrigado, Diego. E como vocês viram, o
+
+143
+00:06:17.240 --> 00:06:19.880
+fluxo tá tudo automatizado do QR code
+
+144
+00:06:19.880 --> 00:06:22.160
+até o banco de dados. O usuário não
+
+145
+00:06:22.160 --> 00:06:24.800
+precisa digitar nada e com o tempo o
+
+146
+00:06:24.800 --> 00:06:27.000
+sistema vai construindo um histórico.
+
+147
+00:06:27.000 --> 00:06:28.720
+Quanto custou o arroz no Atacadão na
+
+148
+00:06:28.720 --> 00:06:31.280
+segunda-feira? Quanto custou na quarta?
+
+149
+00:06:31.280 --> 00:06:33.960
+Quanto custa no concorrente. E com isso
+
+150
+00:06:33.960 --> 00:06:36.000
+o consumidor passa a ter o que nunca
+
+151
+00:06:36.000 --> 00:06:38.840
+teve antes. Informação de verdade na
+
+152
+00:06:38.840 --> 00:06:42.039
+hora de decidir onde e quando comprar. E
+
+153
+00:06:42.039 --> 00:06:44.400
+foi aqui que chegamos no resultado mais
+
+154
+00:06:44.400 --> 00:06:47.160
+surpreendente do projeto e talvez o mais
+
+155
+00:06:47.160 --> 00:06:49.319
+valioso pro consumidor. A gente
+
+156
+00:06:49.319 --> 00:06:51.560
+imaginava que a principal descoberta
+
+157
+00:06:51.560 --> 00:06:54.599
+seria onde comprar mais barato, mas os
+
+158
+00:06:54.599 --> 00:06:57.479
+dados revelam algo diferente. A maior
+
+159
+00:06:57.479 --> 00:07:00.000
+variação dos preços não é entre lojas
+
+160
+00:07:00.000 --> 00:07:02.840
+concorrentes do mesmo dia, é dentro da
+
+161
+00:07:02.840 --> 00:07:06.520
+mesma loja, dependendo do dia da semana.
+
+162
+00:07:06.520 --> 00:07:09.199
+Sexta-feira, sábado e domingo são dias
+
+163
+00:07:09.199 --> 00:07:11.319
+de maior movimento. São os dias com
+
+164
+00:07:11.319 --> 00:07:14.919
+preços até 15% mais altos. O varegista
+
+165
+00:07:14.919 --> 00:07:17.960
+sabe que haverá mais gente e cobra mais.
+
+166
+00:07:17.960 --> 00:07:20.160
+Já terça e quarta-feira são os dias de
+
+167
+00:07:20.160 --> 00:07:22.720
+ouro, porque as promoções começam, o
+
+168
+00:07:22.720 --> 00:07:25.199
+estoque foi reposto e o sortimento é
+
+169
+00:07:25.199 --> 00:07:27.319
+maior. É o melhor momento para fazer
+
+170
+00:07:27.319 --> 00:07:29.919
+compras. Na segunda-feira os preços até
+
+171
+00:07:29.919 --> 00:07:32.639
+caem, mas as prateleiras estão vazias
+
+172
+00:07:32.639 --> 00:07:34.960
+depois do fim de semana. O consumidor
+
+173
+00:07:34.960 --> 00:07:37.240
+encontra o preço bom, mas não encontra o
+
+174
+00:07:37.240 --> 00:07:39.720
+produto que quer, da forma que quer. O
+
+175
+00:07:39.720 --> 00:07:42.000
+busca preço mostra exatamente isso pro
+
+176
+00:07:42.000 --> 00:07:44.960
+usuário, não apenas onde comprar, mas
+
+177
+00:07:44.960 --> 00:07:47.159
+quando comprar. Do ponto de vista
+
+178
+00:07:47.159 --> 00:07:48.960
+técnico, as escolhas refletem
+
+179
+00:07:48.960 --> 00:07:50.879
+diretamente o que estudamos ao longo do
+
+180
+00:07:50.879 --> 00:07:53.360
+curso. Escolhemos Gulang para fazer o
+
+181
+00:07:53.360 --> 00:07:55.360
+backend por causa da sua alta
+
+182
+00:07:55.360 --> 00:07:57.319
+performance e suporte nativa
+
+183
+00:07:57.319 --> 00:07:59.599
+concorrência, conceitos centrais de
+
+184
+00:07:59.599 --> 00:08:01.960
+computação escalável, o que é essencial
+
+185
+00:08:01.960 --> 00:08:04.080
+para construir múltiplas notas fiscais
+
+186
+00:08:04.080 --> 00:08:06.599
+ao mesmo tempo, sem travar o sistema. O
+
+187
+00:08:06.599 --> 00:08:09.960
+banco de dados é progql trabalhado na
+
+188
+00:08:09.960 --> 00:08:12.159
+disciplina de banco de dados, garantindo
+
+189
+00:08:12.159 --> 00:08:14.000
+integridade e escalabilidade pro
+
+190
+00:08:14.000 --> 00:08:15.639
+histórico de preços. E toda
+
+191
+00:08:15.639 --> 00:08:18.599
+infraestrutura de execução e comunicação
+
+192
+00:08:18.599 --> 00:08:20.680
+entre os componentes do sistema foi
+
+193
+00:08:20.680 --> 00:08:22.639
+pensada com base nos princípios de
+
+194
+00:08:22.639 --> 00:08:25.280
+infraestrutura para sistemas e software.
+
+195
+00:08:25.280 --> 00:08:27.759
+Na metodologia trabalhamos com design
+
+196
+00:08:27.759 --> 00:08:30.120
+thinking, as etapas ouvir, criar,
+
+197
+00:08:30.120 --> 00:08:32.640
+implementar, combinado com STROM, com
+
+198
+00:08:32.640 --> 00:08:35.560
+reuniões quinzenais e sprints. Essa
+
+199
+00:08:35.560 --> 00:08:37.880
+abordagem vem diretamente das práticas
+
+200
+00:08:37.880 --> 00:08:40.560
+de gerência e qualidade de software, nos
+
+201
+00:08:40.560 --> 00:08:43.360
+permitindo entregar de forma incremental
+
+202
+00:08:43.360 --> 00:08:45.800
+e ajustar o produto com base no feedback
+
+203
+00:08:45.800 --> 00:08:48.760
+da comunidade. O busca preço não é só um
+
+204
+00:08:48.760 --> 00:08:50.839
+aplicativo, ele é uma resposta
+
+205
+00:08:50.839 --> 00:08:52.959
+tecnológica a um problema real
+
+206
+00:08:52.959 --> 00:08:54.800
+enfrentado por milhões de famílias
+
+207
+00:08:54.800 --> 00:08:57.040
+brasileiras todos os dias. Em uma
+
+208
+00:08:57.040 --> 00:09:00.440
+economia que o café subiu 35%,
+
+209
+00:09:00.440 --> 00:09:01.880
+onde os mais pobres pagam
+
+210
+00:09:01.880 --> 00:09:04.560
+proporcionalmente muito mais imposto,
+
+211
+00:09:04.560 --> 00:09:07.200
+ter acesso à informação concreta pode
+
+212
+00:09:07.200 --> 00:09:09.240
+significar a diferença entre fechar o
+
+213
+00:09:09.240 --> 00:09:11.720
+mês no azul ou no vermelho. Nossa
+
+214
+00:09:11.720 --> 00:09:14.279
+pesquisa mostrou que todos os 48
+
+215
+00:09:14.279 --> 00:09:16.959
+entrevistados aceitaria usar uma solução
+
+216
+00:09:16.959 --> 00:09:19.839
+como essa. A receptividade foi total,
+
+217
+00:09:19.839 --> 00:09:21.839
+tanto dos consumidores quanto de
+
+218
+00:09:21.839 --> 00:09:24.040
+comerciantes locais, que enxergaram na
+
+219
+00:09:24.040 --> 00:09:26.040
+transparência de preços uma forma de
+
+220
+00:09:26.040 --> 00:09:28.680
+atrair mais clientes nos dias menos
+
+221
+00:09:28.680 --> 00:09:31.160
+movimentados. Com busca preço, o
+
+222
+00:09:31.160 --> 00:09:33.600
+consumidor vulnerável da periferia ganha
+
+223
+00:09:33.600 --> 00:09:36.480
+algo que nunca teve antes, autonomia
+
+224
+00:09:36.480 --> 00:09:38.360
+informacional na hora de fazer suas
+
+225
+00:09:38.360 --> 00:09:41.440
+compras. Isso é tecnologia com impacto
+
+226
+00:09:41.440 --> 00:09:44.320
+social real, exatamente o que o projeto
+
+227
+00:09:44.320 --> 00:09:47.120
+integrador da UNIVP propõe. Esse é o
+
+228
+00:09:47.120 --> 00:09:49.560
+busca preço desenvolvido para o projeto
+
+229
+00:09:49.560 --> 00:09:53.720
+integrador da UNIVESP no ano de 2026.
+
+230
+00:09:53.720 --> 00:09:56.720
+Obrigado.

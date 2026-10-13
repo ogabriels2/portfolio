@@ -2,6 +2,10 @@
   // Navigation, dialogs and sidebar layout are managed by portfolio-shell.js.
   // Essential case content remains visible even when JavaScript is unavailable.
   document.querySelectorAll('[data-reveal]').forEach(item => item.classList.add('is-visible'));
+  document.querySelectorAll('[data-gallery-caption]').forEach(caption => {
+    caption.setAttribute('aria-live', 'polite');
+    caption.setAttribute('aria-atomic', 'true');
+  });
 
   document.querySelectorAll('[data-gallery-control]').forEach(button => {
     button.addEventListener('click', () => {

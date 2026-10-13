@@ -200,82 +200,6 @@
     .tech-tag { padding: 6px 14px; background: rgba(0, 113, 227, 0.08); color: var(--accent); border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
     .divider { height: 1px; background: rgba(0,0,0,0.08); margin: 80px 0; border: none; }
 
-    /* Premium Video Player v8.0 */
-    .video-container { width: 100%; max-width: 100%; position: relative; border-radius: var(--radius-lg); overflow: hidden; background-color: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.25); aspect-ratio: 16/9; user-select: none; outline: none; -webkit-tap-highlight-color: transparent; }
-    .video-container.unavailable video { opacity: 0.35; }
-    .video-container.unavailable .center-controls,
-    .video-container.unavailable .controls-wrapper,
-    .video-container.unavailable .volume-feedback { display: none; }
-    .video-fallback { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); color: #fff; text-align: center; font-weight: 600; z-index: 2; }
-    video::cue { background-color: rgba(0, 0, 0, 0.75) !important; color: white; font-family: 'Inter', sans-serif; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.5); line-height: 1.35; border-radius: 8px; padding-left: 14px; padding-right: 14px; }
-    .video-container video::-webkit-media-text-track-display { transform: translateY(-20px); transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important; text-align: center !important; }
-    .video-container:not(.user-inactive) video::-webkit-media-text-track-display, .video-container.paused video::-webkit-media-text-track-display { transform: translateY(-80px); }
-    .video-container:fullscreen video::cue { font-size: 2.5rem; line-height: 100%; }
-    .video-container:fullscreen video::-webkit-media-text-track-display { transform: translateY(0) !important; top: auto !important; bottom: 10% !important; margin-bottom: 10px; }
-    .video-container.user-inactive:fullscreen video::-webkit-media-text-track-display { bottom: 5% !important; }
-    .captions-menu, .speed-menu { position: absolute; bottom: 60px; right: 24px; background: rgba(28, 28, 30, 0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-radius: 12px; padding: 6px; min-width: 130px; display: flex; flex-direction: column; gap: 2px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); z-index: 100; opacity: 0; pointer-events: none; transform: translateY(15px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    .captions-menu.show, .speed-menu.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .caption-option { background: none; border: none; color: #ccc; text-align: left; padding: 10px 14px; font-size: 0.85rem; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
-    .caption-option:hover { background: rgba(255,255,255,0.1); color: white; }
-    .caption-option.active { background: rgba(0, 113, 227, 0.2); color: var(--accent); font-weight: 600; }
-    .control-btn.active { background-color: transparent !important; color: #FFFFFF !important; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9)); transform: scale(1.15); }
-    .video-container.user-inactive { cursor: none; }
-    .video-container.user-inactive .controls-wrapper, .video-container.user-inactive .center-controls { opacity: 0 !important; pointer-events: none !important; }
-    .video-container.mobile-controls-active .controls-wrapper, .video-container.mobile-controls-active .center-controls { opacity: 1 !important; pointer-events: auto !important; }
-    .video-container.show-controls-briefly .controls-wrapper { opacity: 1 !important; pointer-events: auto !important; }
-    video { width: 100%; height: 100%; display: block; }
-    .center-controls { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; z-index: 10; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .video-container.paused .center-controls, .video-container:hover:not(.user-inactive) .center-controls { opacity: 1; }
-    .center-btn { width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 1px 3px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; cursor: pointer; transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: auto; position: relative; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
-    .center-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.1); box-shadow: 0 8px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.4); }
-    .center-btn:active { transform: scale(0.95); }
-    .center-btn.main-play { width: 90px; height: 90px; font-size: 2.2rem; }
-    .video-container:not(.has-played) .center-btn.skip-btn { display: none; }
-    @keyframes btnPulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-    .btn-pulse { animation: btnPulse 0.2s ease-out; }
-    @keyframes iconPulse { 0% { transform: scale(1); } 50% { transform: scale(0.9); } 100% { transform: scale(1); } }
-    .icon-pulse { animation: iconPulse 0.15s ease-out; }
-    .volume-feedback { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); font-size: 1.5rem; font-weight: 700; color: white; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.25); padding: 12px 24px; border-radius: 50px; opacity: 0; pointer-events: none; transition: all 0.2s ease-out, opacity 0.3s ease; z-index: 20; }
-    .video-container.changing-volume .volume-feedback { opacity: 1; transform: translateX(-50%) scale(1.05); }
-    .skip-text-popup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem; font-weight: 700; color: white; opacity: 0; pointer-events: none; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-    @keyframes spinRight { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes spinLeft { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-    .anim-rotate-right i { animation: spinRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .anim-rotate-left i { animation: spinLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    @keyframes skipForward { 0% { opacity: 0; transform: translate(0%, -50%) scale(0.8); } 20% { opacity: 1; transform: translate(60%, -50%) scale(1.1); } 100% { opacity: 0; transform: translate(120%, -50%) scale(1); } }
-    @keyframes skipBackward { 0% { opacity: 0; transform: translate(-100%, -50%) scale(0.8); } 20% { opacity: 1; transform: translate(-160%, -50%) scale(1.1); } 100% { opacity: 0; transform: translate(-220%, -50%) scale(1); } }
-    .animate-forward { animation: skipForward 0.6s ease-out forwards; }
-    .animate-backward { animation: skipBackward 0.6s ease-out forwards; }
-    .controls-wrapper { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%); padding: 0 24px 20px; opacity: 0; transition: opacity 0.3s ease; display: flex; flex-direction: column; gap: 10px; z-index: 20; pointer-events: none; }
-    .video-container:hover:not(.user-inactive) .controls-wrapper, .video-container.paused .controls-wrapper, .video-container.scrubbing .controls-wrapper { opacity: 1; pointer-events: auto; }
-    .timeline-container { height: 16px; display: flex; align-items: flex-end; cursor: pointer; position: relative; }
-    .timeline { width: 100%; height: 4px; background: var(--ui-track); border-radius: 4px; position: relative; transition: height 0.2s ease; }
-    .timeline-container:hover .timeline, .video-container.scrubbing .timeline { height: 6px; }
-    .buffer-bar, .hover-bar, .progress-bar { position: absolute; top: 0; left: 0; bottom: 0; border-radius: 4px; pointer-events: none; }
-    .buffer-bar { background: var(--ui-buffer); width: 0%; }
-    .hover-bar { background: var(--ui-hover); width: 0%; opacity: 0; transition: opacity 0.1s; }
-    .timeline-container:hover .hover-bar { opacity: 1; }
-    .progress-bar { background: var(--accent); width: 0%; }
-    .scrubber-knob { position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; background: white; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.4); transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .timeline-container:hover .scrubber-knob, .video-container.scrubbing .scrubber-knob { transform: translateY(-50%) scale(1.3); }
-    .time-tooltip, .volume-tooltip { position: absolute; top: -35px; background: rgba(20,20,20,0.9); color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; pointer-events: none; opacity: 0; transform: translateX(-50%); transition: opacity 0.2s; white-space: nowrap; border: 1px solid rgba(255,255,255,0.1); }
-    .timeline-container:hover .time-tooltip, .video-container.scrubbing .time-tooltip { opacity: 1; }
-    .controls-row { display: flex; justify-content: space-between; align-items: center; color: white; margin-top: 4px; }
-    .controls-left, .controls-right { display: flex; align-items: center; gap: 18px; }
-    .control-btn { background: none; border: none; color: rgba(255,255,255,0.9); cursor: pointer; padding: 0; font-size: 1.1rem; transition: transform 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; text-shadow: 0 1px 2px rgba(0,0,0,0.5); border-radius: 6px; }
-    .control-btn:hover { opacity: 1; transform: scale(1.15); color: #fff; }
-    .control-btn:active { transform: scale(0.95); }
-    .volume-container { display: flex; align-items: center; gap: 10px; }
-    .volume-slider-container { width: 0; overflow: visible; height: 24px; display: flex; align-items: center; transition: width 0.3s ease; position: relative; cursor: pointer; }
-    .volume-container:hover .volume-slider-container, .volume-container.dragging .volume-slider-container { width: 80px; }
-    .volume-bg { width: 100%; height: 4px; background: var(--ui-track); border-radius: 2px; position: relative; }
-    .volume-fill { height: 100%; background: white; width: 100%; border-radius: 2px; position: absolute; top: 0; left: 0; pointer-events: none; }
-    .volume-knob { position: absolute; right: 0; top: 50%; transform: translate(50%, -50%) scale(0); width: 12px; height: 12px; background: white; border-radius: 50%; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform 0.1s ease; }
-    .volume-container:hover .volume-knob, .volume-container.dragging .volume-knob { transform: translate(50%, -50%) scale(1); }
-    .volume-tooltip { opacity: 0; top: -30px; }
-    .volume-slider-container:hover .volume-tooltip, .volume-container.dragging .volume-tooltip { opacity: 1; }
-    .time-display { font-size: 0.85rem; font-weight: 500; font-variant-numeric: tabular-nums; opacity: 0.9; cursor: pointer; user-select: none; transition: opacity 0.2s; min-width: 90px; text-align: center; }
-    .time-display:hover { opacity: 1; transform: scale(1.04); }
 
     .project-nav { width: 100%; max-width: 880px; margin: 0 auto; padding: 60px 0 80px; border-top: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
     .nav-btn { display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-weight: 600; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); padding: 14px 24px; border-radius: 14px; background: #fff; border: 1px solid rgba(0,0,0,.08); box-shadow: 0 1px 4px rgba(0,0,0,.04); text-decoration: none; }
@@ -393,152 +317,305 @@
       .volume-container:hover .volume-slider-container,.volume-container.dragging .volume-slider-container{width:80px;opacity:1;pointer-events:auto}
     }
   </style>
-<link rel="stylesheet" href="../assets/css/portfolio-shell.css?v=5a2f075024">
-<script src="../assets/js/portfolio-shell.js?v=56a1b0bac3" defer></script>
-<script src="../assets/js/portfolio-motion.js?v=5785cfd7ef" defer></script>
-<script src="../assets/js/portfolio-language.js?v=ba22101004" defer></script>
+<link rel="stylesheet" href="../assets/css/portfolio-shell.css?v=portfolio-nav-20261012j">
+<script src="../assets/js/portfolio-shell.js?v=shell-20261013b" defer></script>
+<script src="../assets/js/portfolio-motion.js?v=motion-20261012b" defer></script>
+<script src="../assets/js/portfolio-language.js?v=elastic-nav-20261013b" defer></script>
   <link rel="stylesheet" href="../assets/css/portfolio-case-ending.css?v=80bf1cbf25">
 <link rel="stylesheet" href="../assets/css/portfolio-case-art.css?v=9163ce51c8">
-<link rel="stylesheet" href="../assets/css/portfolio-presence.css?v=5c01f814ec">
-<link rel="stylesheet" href="../assets/css/portfolio-media.css?v=dc487d43db">
+<link rel="stylesheet" href="../assets/css/portfolio-presence.css?v=presence-20261013k">
+<link rel="stylesheet" href="../assets/css/portfolio-media.css?v=media-20261013h">
+<link rel="stylesheet" href="../assets/css/portfolio-native-player.css?v=media-20261013h">
 </head>
 <body data-art="video">
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true" hidden inert><div class="mobile-scroll-wrapper"><div class="mobile-nav-container"><div class="mobile-nav-group"><div class="lang-switcher-container" data-active="en" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item" href="../videos.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português"><img class="lang-flag" src="../assets/img/flags/br.svg" width="20" height="15" alt="" aria-hidden="true"> PT</a><a class="lang-item active" href="video-production.html" lang="en" hreflang="en" aria-label="English"><img class="lang-flag" src="../assets/img/flags/us.svg" width="20" height="15" alt="" aria-hidden="true"> EN</a></div><a href="index.html" class="portfolio-return-link mobile-link-main"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Projects</a><a href="about.html" class="portfolio-about-link mobile-link-main"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> About me</a></div><div class="mobile-projects-wrapper"><nav class="mobile-projects-list" aria-label="Projects"><div class="mobile-divider"></div><p class="mobile-label">Software & product</p><a href="forca-aliada.html" class="mobile-link-sub"><i class="fa-solid fa-layer-group nav-project-icon" aria-hidden="true"></i>Força Aliada</a><a href="miguel-downloader.html" class="mobile-link-sub"><i class="fa-solid fa-download nav-project-icon" aria-hidden="true"></i>Miguel Downloader</a><a href="price-finder.html" class="mobile-link-sub"><i class="fa-solid fa-receipt nav-project-icon" aria-hidden="true"></i>Busca Preço</a><a href="hyrochat.html" class="mobile-link-sub"><i class="fa-solid fa-comments nav-project-icon" aria-hidden="true"></i>HyroChat</a><a href="server-infrastructure.html" class="mobile-link-sub"><i class="fa-solid fa-server nav-project-icon" aria-hidden="true"></i>FA Infrastructure</a><div class="mobile-divider"></div><p class="mobile-label">Design & audiovisual</p><a href="neo-letters-branding.html" class="mobile-link-sub"><i class="fa-solid fa-lightbulb nav-project-icon" aria-hidden="true"></i>Neo Letters</a><a href="lo-branding.html" class="mobile-link-sub"><i class="fa-solid fa-pen-nib nav-project-icon" aria-hidden="true"></i>Lô</a><a href="video-production.html" class="mobile-link-sub is-active" aria-current="page"><i class="fa-solid fa-film nav-project-icon" aria-hidden="true"></i>Audiovisual</a><a href="utopia-magazine.html" class="mobile-link-sub"><i class="fa-solid fa-book-open nav-project-icon" aria-hidden="true"></i>Revista Utopia</a><a href="personal-branding.html" class="mobile-link-sub"><i class="fa-solid fa-fingerprint nav-project-icon" aria-hidden="true"></i>G | Gabriel</a><a href="one-minute-reflection.html" class="mobile-link-sub"><i class="fa-solid fa-microphone nav-project-icon" aria-hidden="true"></i>Um Minuto</a><a href="valorada-gaming.html" class="mobile-link-sub"><i class="fa-solid fa-gamepad nav-project-icon" aria-hidden="true"></i>Valorada</a><a href="thumbnails-youtube.html" class="mobile-link-sub"><i class="fa-solid fa-image nav-project-icon" aria-hidden="true"></i>Thumbnails</a></nav></div><div class="mobile-footer-group"><a class="mobile-cta" href="contact.html"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in touch</a><a class="mobile-link-sub" href="../assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener">Résumé (Portuguese PDF)</a></div></div></div></div>
+  <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true" hidden inert><div class="mobile-scroll-wrapper"><div class="mobile-nav-container"><div class="mobile-nav-group"><div class="lang-switcher-container" data-active="en" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item" href="../videos.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português"><img class="lang-flag" src="../assets/img/flags/br.svg" width="20" height="15" alt="" aria-hidden="true"> PT</a><a class="lang-item active" href="video-production.html" lang="en" hreflang="en" aria-label="English"><img class="lang-flag" src="../assets/img/flags/us.svg" width="20" height="15" alt="" aria-hidden="true"> EN</a></div><a href="index.html" class="portfolio-return-link mobile-link-main"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Projects</a><a href="about.html" class="portfolio-about-link mobile-link-main"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path class="about-greeting-wave about-greeting-wave--one" d="M17.2 4.5c1.3.6 2.2 1.8 2.4 3.2" stroke-width="1.5"/><path class="about-greeting-wave about-greeting-wave--two" d="M19 3.4c1.8.9 3 2.6 3.3 4.7" stroke-width="1.5"/></svg> About me</a></div><div class="mobile-projects-wrapper"><nav class="mobile-projects-list" aria-label="Projects"><div class="mobile-divider"></div><p class="mobile-label">Software & product</p><a href="forca-aliada.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>Força Aliada</a><a href="miguel-downloader.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>Miguel Downloader</a><a href="price-finder.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 2 1.5L8 2l2 1.5L12 2l2 1.5L16 2l2 1.5L20 2v20l-2-1.5-2 1.5-2-1.5L12 22l-2-1.5L8 22l-2-1.5L4 22V2Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Busca Preço</a><a href="hyrochat.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H5l-3 2 .9-4.2A7.5 7.5 0 1 1 21 11.5Z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>HyroChat</a><a href="server-infrastructure.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M11 6.5h6M11 17.5h6"/></svg>FA Infrastructure</a><div class="mobile-divider"></div><p class="mobile-label">Design & audiovisual</p><a href="neo-letters-branding.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M8 14c-1.2-1-2-2.6-2-4.3a6 6 0 1 1 12 0c0 1.7-.8 3.3-2 4.3-.7.6-1 1.4-1 2H9c0-.6-.3-1.4-1-2Z"/></svg>Neo Letters</a><a href="lo-branding.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7-7-9-7 9 7 7Z"/><path d="m5 12 7 3 7-3M12 15v4"/></svg>Lô</a><a href="video-production.html" class="mobile-link-sub is-active" aria-current="page"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4"/></svg>Audiovisual</a><a href="utopia-magazine.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 4.5C6 3 9 3 12 5v16c-3-2-6-2-9-.5v-16Z"/><path d="M21 4.5C18 3 15 3 12 5v16c3-2 6-2 9-.5v-16Z"/></svg>Revista Utopia</a><a href="personal-branding.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 1 1 16 0c0 1.6-.1 3.2-.4 4.8"/><path d="M6 13a6 6 0 0 1 12 0c0 2.2-.2 4.2-.7 6.2"/><path d="M8 13a4 4 0 0 1 8 0c0 2.6-.3 5-.9 7"/><path d="M10 13a2 2 0 0 1 4 0c0 3-.3 5.5-1 8"/></svg>G | Gabriel</a><a href="one-minute-reflection.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>Um Minuto</a><a href="valorada-gaming.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 3.5a2 2 0 0 1-3.2 1l-2.1-1.7h-6.8l-2.1 1.7a2 2 0 0 1-3.2-1l-1.1-3.5A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg>Valorada</a><a href="thumbnails-youtube.html" class="mobile-link-sub"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Thumbnails</a></nav></div><div class="mobile-footer-group"><a class="mobile-cta" href="contact.html"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><path class="contact-greeting-wave contact-greeting-wave--one" d="M15.6 7.2c.8.2 1.3.8 1.4 1.6" stroke-width="1.4"/><path class="contact-greeting-wave contact-greeting-wave--two" d="M17.8 6c1.2.4 1.9 1.3 2.1 2.5" stroke-width="1.4"/></svg> Get in touch</a><a class="mobile-link-sub" href="../assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener">Résumé (Portuguese PDF)</a></div></div></div></div>
 
-  <aside class="portfolio-sidebar" aria-label="Portfolio navigation"><div class="sidebar-scaler"><div class="profile-container"><a href="index.html" class="profile-link"><div class="profile-pic-wrapper"><img src="../assets/img/gabriel-perfil-220.webp" alt="" class="profile-pic" width="86" height="86"></div><p class="profile-name">Gabriel Moreira</p><p class="profile-role">Software & product</p></a></div><nav aria-label="Main navigation"><div class="nav-group"><ul class="nav-list"><li><a href="index.html" class="portfolio-return-link nav-link"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Projects</a></li><li><a href="about.html" class="portfolio-about-link nav-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> About me</a></li></ul></div><div class="nav-group portfolio-project-group"><ul class="nav-list project-scroll-container"><li class="portfolio-nav-section"><span class="nav-group-label">Software & product</span></li><li><a href="forca-aliada.html" class="nav-link"><i class="fa-solid fa-layer-group nav-project-icon" aria-hidden="true"></i>Força Aliada</a></li><li><a href="miguel-downloader.html" class="nav-link"><i class="fa-solid fa-download nav-project-icon" aria-hidden="true"></i>Miguel Downloader</a></li><li><a href="price-finder.html" class="nav-link"><i class="fa-solid fa-receipt nav-project-icon" aria-hidden="true"></i>Busca Preço</a></li><li><a href="hyrochat.html" class="nav-link"><i class="fa-solid fa-comments nav-project-icon" aria-hidden="true"></i>HyroChat</a></li><li><a href="server-infrastructure.html" class="nav-link"><i class="fa-solid fa-server nav-project-icon" aria-hidden="true"></i>FA Infrastructure</a></li><li class="portfolio-nav-section"><span class="nav-group-label">Design & audiovisual</span></li><li><a href="neo-letters-branding.html" class="nav-link"><i class="fa-solid fa-lightbulb nav-project-icon" aria-hidden="true"></i>Neo Letters</a></li><li><a href="lo-branding.html" class="nav-link"><i class="fa-solid fa-pen-nib nav-project-icon" aria-hidden="true"></i>Lô</a></li><li><a href="video-production.html" class="nav-link active" aria-current="page"><i class="fa-solid fa-film nav-project-icon" aria-hidden="true"></i>Audiovisual</a></li><li><a href="utopia-magazine.html" class="nav-link"><i class="fa-solid fa-book-open nav-project-icon" aria-hidden="true"></i>Revista Utopia</a></li><li><a href="personal-branding.html" class="nav-link"><i class="fa-solid fa-fingerprint nav-project-icon" aria-hidden="true"></i>G | Gabriel</a></li><li><a href="one-minute-reflection.html" class="nav-link"><i class="fa-solid fa-microphone nav-project-icon" aria-hidden="true"></i>Um Minuto</a></li><li><a href="valorada-gaming.html" class="nav-link"><i class="fa-solid fa-gamepad nav-project-icon" aria-hidden="true"></i>Valorada</a></li><li><a href="thumbnails-youtube.html" class="nav-link"><i class="fa-solid fa-image nav-project-icon" aria-hidden="true"></i>Thumbnails</a></li></ul></div><div class="lang-switcher-container" data-active="en" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item" href="../videos.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português"><img class="lang-flag" src="../assets/img/flags/br.svg" width="20" height="15" alt="" aria-hidden="true"> PT</a><a class="lang-item active" href="video-production.html" lang="en" hreflang="en" aria-label="English"><img class="lang-flag" src="../assets/img/flags/us.svg" width="20" height="15" alt="" aria-hidden="true"> EN</a></div><a href="contact.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> Get in touch</a></nav><div class="sidebar-footer"><div class="social-icons"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a><a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a><a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div><p class="copyright">© 2026 Gabriel Moreira</p></div></div></aside><button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="26">
+  <aside class="portfolio-sidebar" aria-label="Portfolio navigation"><div class="sidebar-scaler"><div class="profile-container"><a href="index.html" class="profile-link"><div class="profile-pic-wrapper"><img src="../assets/img/gabriel-perfil-220.webp" alt="" class="profile-pic" width="86" height="86"></div><p class="profile-name">Gabriel Moreira</p><p class="profile-role">Software & product</p></a></div><nav aria-label="Main navigation"><div class="nav-group"><ul class="nav-list"><li><a href="index.html" class="portfolio-return-link nav-link"><svg aria-hidden="true" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16"><line x1="19" x2="5" y1="12" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Projects</a></li><li><a href="about.html" class="portfolio-about-link nav-link"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path class="about-greeting-wave about-greeting-wave--one" d="M17.2 4.5c1.3.6 2.2 1.8 2.4 3.2" stroke-width="1.5"/><path class="about-greeting-wave about-greeting-wave--two" d="M19 3.4c1.8.9 3 2.6 3.3 4.7" stroke-width="1.5"/></svg> About me</a></li></ul></div><div class="nav-group portfolio-project-group"><ul class="nav-list project-scroll-container"><li class="portfolio-nav-section"><span class="nav-group-label">Software & product</span></li><li><a href="forca-aliada.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>Força Aliada</a></li><li><a href="miguel-downloader.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></svg>Miguel Downloader</a></li><li><a href="price-finder.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 2 1.5L8 2l2 1.5L12 2l2 1.5L16 2l2 1.5L20 2v20l-2-1.5-2 1.5-2-1.5L12 22l-2-1.5L8 22l-2-1.5L4 22V2Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Busca Preço</a></li><li><a href="hyrochat.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a7.5 7.5 0 0 1-7.5 7.5H5l-3 2 .9-4.2A7.5 7.5 0 1 1 21 11.5Z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>HyroChat</a></li><li><a href="server-infrastructure.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01M11 6.5h6M11 17.5h6"/></svg>FA Infrastructure</a></li><li class="portfolio-nav-section"><span class="nav-group-label">Design & audiovisual</span></li><li><a href="neo-letters-branding.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M8 14c-1.2-1-2-2.6-2-4.3a6 6 0 1 1 12 0c0 1.7-.8 3.3-2 4.3-.7.6-1 1.4-1 2H9c0-.6-.3-1.4-1-2Z"/></svg>Neo Letters</a></li><li><a href="lo-branding.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7-7-9-7 9 7 7Z"/><path d="m5 12 7 3 7-3M12 15v4"/></svg>Lô</a></li><li><a href="video-production.html" class="nav-link active" aria-current="page"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4M3 16h4M17 8h4M17 16h4"/></svg>Audiovisual</a></li><li><a href="utopia-magazine.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 4.5C6 3 9 3 12 5v16c-3-2-6-2-9-.5v-16Z"/><path d="M21 4.5C18 3 15 3 12 5v16c3-2 6-2 9-.5v-16Z"/></svg>Revista Utopia</a></li><li><a href="personal-branding.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 1 1 16 0c0 1.6-.1 3.2-.4 4.8"/><path d="M6 13a6 6 0 0 1 12 0c0 2.2-.2 4.2-.7 6.2"/><path d="M8 13a4 4 0 0 1 8 0c0 2.6-.3 5-.9 7"/><path d="M10 13a2 2 0 0 1 4 0c0 3-.3 5.5-1 8"/></svg>G | Gabriel</a></li><li><a href="one-minute-reflection.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8"/></svg>Um Minuto</a></li><li><a href="valorada-gaming.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12a4 4 0 0 1 3.8 5.2l-1.1 3.5a2 2 0 0 1-3.2 1l-2.1-1.7h-6.8l-2.1 1.7a2 2 0 0 1-3.2-1l-1.1-3.5A4 4 0 0 1 6 8Z"/><path d="M8 11v4M6 13h4M16 12h.01M18 14h.01"/></svg>Valorada</a></li><li><a href="thumbnails-youtube.html" class="nav-link"><svg class="nav-project-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Thumbnails</a></li></ul></div><div class="lang-switcher-container" data-active="en" aria-label="Language / Idioma"><div class="gliding-pill" aria-hidden="true"></div><a class="lang-item" href="../videos.html" lang="pt-BR" hreflang="pt-BR" aria-label="Português"><img class="lang-flag" src="../assets/img/flags/br.svg" width="20" height="15" alt="" aria-hidden="true"> PT</a><a class="lang-item active" href="video-production.html" lang="en" hreflang="en" aria-label="English"><img class="lang-flag" src="../assets/img/flags/us.svg" width="20" height="15" alt="" aria-hidden="true"> EN</a></div><a href="contact.html" class="sidebar-cta"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/><path class="contact-greeting-wave contact-greeting-wave--one" d="M15.6 7.2c.8.2 1.3.8 1.4 1.6" stroke-width="1.4"/><path class="contact-greeting-wave contact-greeting-wave--two" d="M17.8 6c1.2.4 1.9 1.3 2.1 2.5" stroke-width="1.4"/></svg> Get in touch</a></nav><div class="sidebar-footer"><div class="social-icons"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a><a href="https://www.instagram.com/ogabriels0/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a><a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp"><svg aria-hidden="true" fill="currentColor" height="16" viewBox="0 0 24 24" width="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div><p class="copyright">© 2026 Gabriel Moreira</p></div></div></aside><button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="26">
       <line class="hb-line hb-line1" x1="4" x2="20" y1="8" y2="8"/>
       <line class="hb-line hb-line2" x1="4" x2="20" y1="16" y2="16"/>
     </svg></button>
 
   <noscript><nav class="portfolio-noscript-nav" aria-label="Navigation without JavaScript"><a href="index.html">Projects</a><a href="about.html">About me</a><a href="contact.html">Get in touch</a><a href="../assets/docs/gabriel-moreira-curriculo.pdf">Résumé</a></nav></noscript>
+
 <main id="main-content" tabindex="-1">
-    <section class="project-hero">
-      <div class="hero-text-content">
-        <p class="case-context">Audiovisual editing · Culture and technical communication</p>
-        <h1 class="project-title">Video Production</h1>
-        <p class="project-subtitle">Editing, Narrative and Sensitivity</p>
-        <p class="case-summary">Editing of cultural recordings and technology project presentations at UNIVESP. The selection highlights pacing, editing and visual organisation of information for different audiences.</p>
+  <section class="project-hero video-portfolio-hero">
+    <div class="hero-text-content">
+      <p class="case-context">VIDEO PRODUCTION · CULTURE AND TECHNOLOGY · 2023–2026</p>
+      <h1 class="project-title">Video production</h1>
+      <p class="project-subtitle">Editing with rhythm. Stories that connect.</p>
+      <p class="case-summary">From cultural work to software, I shape image, sound, and information so each project reaches its audience with clarity and intent.</p>
+      <nav class="video-hero-actions" aria-label="Explore audiovisual work">
+        <a class="video-hero-action" href="#technology-presentations">
+          <span class="video-hero-action-icon" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+          <span class="video-hero-action-copy"><strong>Presentations</strong><small>3 UNIVESP projects</small></span>
+          <i class="video-hero-action-arrow fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a class="video-hero-action" href="#fabrica-de-cultura">
+          <span class="video-hero-action-icon" aria-hidden="true"><i class="fa-solid fa-film"></i></span>
+          <span class="video-hero-action-copy"><strong>Documentary</strong><small>Fábrica de Cultura</small></span>
+          <i class="video-hero-action-arrow fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </nav>
+    </div>
+    <div class="hero-image-container">
+      <div class="hero-image-wrapper-inner">
+        <img width="1518" height="853" src="../assets/img/videos-capa.webp" alt="Close-up shot of an interviewee in a Fábrica de Cultura documentary" data-src="../assets/img/videos-capa.webp" class="hero-image lightbox-trigger" fetchpriority="high" loading="eager">
       </div>
-      <div class="hero-image-container">
-        <div class="hero-image-wrapper-inner">
-          <img width="1518" height="853" src="../assets/img/videos-capa.webp" alt="Ballet performance at Fábrica de Cultura" data-src="../assets/img/videos-capa.webp" class="hero-image lightbox-trigger" fetchpriority="high" loading="eager">
+    </div>
+  </section>
+
+  <div class="content-wrapper video-page-content">
+    <section class="project-section technology-presentations" id="technology-presentations">
+      <div class="video-section-heading">
+        <div>
+          <p class="video-section-kicker"><i class="fa-solid fa-display" aria-hidden="true"></i> Technical communication · UNIVESP</p>
+          <h2>Technology presentations</h2>
         </div>
+        <p class="video-section-summary">Three projects explained in practice. Videos play right here with portfolio playback controls.</p>
+      </div>
+
+      <div class="video-project-grid">
+        <article class="presentation-card">
+          <div class="presentation-frame">
+            <a class="presentation-preview" href="https://youtu.be/zP2FtC3UwZY" target="_blank" rel="noopener noreferrer" data-presentation-load data-video-id="zP2FtC3UwZY" data-video-title="UNIVESP project presentation: HyroChat" aria-label="Play the HyroChat presentation on this page">
+              <img src="../assets/img/thumbnails/hyrochat-apresentacao.jpg" alt="Original cover of the HyroChat presentation" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="presentation-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+              <span class="presentation-preview-label">Watch on this page</span>
+            </a>
+          </div>
+          <div class="presentation-copy">
+            <p class="presentation-context"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> UNIVESP · Team project · 2026</p>
+            <h3>HyroChat</h3>
+            <p>Guided service for a fintech: context, user choices, human handoff, and evaluation. I led and delivered the full project presentation.</p>
+            <div class="presentation-actions" aria-label="HyroChat project actions">
+              <a href="hyrochat.html">Explore the project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              <a class="presentation-source" href="https://youtu.be/zP2FtC3UwZY" target="_blank" rel="noopener noreferrer">YouTube <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <button class="presentation-stop" type="button" data-presentation-close hidden>Close video <i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="presentation-card">
+          <div class="presentation-frame">
+            <a class="presentation-preview" href="https://youtu.be/mcEqvz35Fjw" target="_blank" rel="noopener noreferrer" data-presentation-load data-video-id="mcEqvz35Fjw" data-video-title="UNIVESP project presentation: Busca Preço" aria-label="Play the Busca Preço presentation on this page">
+              <img src="../assets/img/thumbnails/busca-preco-apresentacao.jpg" alt="Original cover of the Busca Preço presentation" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="presentation-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+              <span class="presentation-preview-label">Watch on this page</span>
+            </a>
+          </div>
+          <div class="presentation-copy">
+            <p class="presentation-context"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> UNIVESP · Team project · 2026</p>
+            <h3>Busca Preço</h3>
+            <p>From receipt capture to price history: the problem, the app flow, and how families compare purchases. I led and delivered the full project presentation.</p>
+            <div class="presentation-actions" aria-label="Busca Preço project actions">
+              <a href="price-finder.html">Explore the project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              <a class="presentation-source" href="https://youtu.be/mcEqvz35Fjw" target="_blank" rel="noopener noreferrer">YouTube <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <button class="presentation-stop" type="button" data-presentation-close hidden>Close video <i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="presentation-card">
+          <div class="presentation-frame">
+            <a class="presentation-preview" href="https://youtu.be/BpA8mLzkT_E" target="_blank" rel="noopener noreferrer" data-presentation-load data-video-id="BpA8mLzkT_E" data-video-title="UNIVESP presentation: AI Fraud Detector" aria-label="Play the AI Fraud Detector presentation on this page">
+              <img src="../assets/img/detector-fraudes-ia-escuro.webp" alt="Original cover of the AI Fraud Detector presentation" width="1280" height="720" loading="lazy" decoding="async">
+              <span class="presentation-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+              <span class="presentation-preview-label">Watch on this page</span>
+            </a>
+          </div>
+          <div class="presentation-copy">
+            <p class="presentation-context"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> UNIVESP · Integrative Project II</p>
+            <h3>AI Fraud Detector</h3>
+            <p>A fraud-detection concept presented through a clear diagnosis, Design Thinking process, and accessible explanation of the proposed solution.</p>
+            <div class="presentation-actions" aria-label="AI Fraud Detector project actions">
+              <a class="presentation-source" href="https://youtu.be/BpA8mLzkT_E" target="_blank" rel="noopener noreferrer">YouTube <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+              <button class="presentation-stop" type="button" data-presentation-close hidden>Close video <i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <div class="content-wrapper">
-      <section class="meta-grid">
-        <div class="meta-item role"><h4>Areas</h4><p>Culture & Tech</p></div>
-        <div class="meta-item year"><h4>Focus</h4><p>Editing & Rhythm</p></div>
-        <div class="meta-item tools"><h4>Year</h4><p>2023 – 2026</p></div>
-      </section>
-
-<section class="project-section technology-presentations" id="apresentacoes-tecnologia"><div class="section-header"><h2 class="section-title">Technology presentations</h2><p class="section-subtitle">Explaining the problem, demonstrating the product</p></div><article class="presentation-card"><div class="presentation-frame"><a class="presentation-preview" href="https://youtu.be/zP2FtC3UwZY" target="_blank" rel="noopener" data-presentation-load data-video-id="zP2FtC3UwZY" data-video-title="UNIVESP project presentation: HyroChat" aria-label="UNIVESP project presentation: HyroChat"><img src="../assets/img/thumbnails/hyrochat-apresentacao.jpg" alt="Original cover of the HyroChat" width="1280" height="720" loading="lazy" decoding="async"><span class="presentation-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span><span class="presentation-preview-label">Watch the presentation</span></a></div><div class="presentation-copy"><h3>HyroChat</h3><p class="presentation-context">UNIVESP · Team project · 2026</p><p>Guided service for a fintech: context, user choices, human handoff and feedback. A team project whose presentation I led and delivered.</p><nav class="presentation-links" aria-label="Related links"><a href="https://youtu.be/zP2FtC3UwZY" target="_blank" rel="noopener">Watch on YouTube <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a href="hyrochat.html">Explore the project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></nav></div></article><article class="presentation-card"><div class="presentation-frame"><a class="presentation-preview" href="https://youtu.be/mcEqvz35Fjw" target="_blank" rel="noopener" data-presentation-load data-video-id="mcEqvz35Fjw" data-video-title="UNIVESP project presentation: Busca Preço" aria-label="UNIVESP project presentation: Busca Preço"><img src="../assets/img/thumbnails/busca-preco-apresentacao.jpg" alt="Original cover of the Busca Preço" width="1280" height="720" loading="lazy" decoding="async"><span class="presentation-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span><span class="presentation-preview-label">Watch the presentation</span></a></div><div class="presentation-copy"><h3>Busca Preço</h3><p class="presentation-context">UNIVESP · Team project · 2026</p><p>From receipts to price history: the problem, the app workflow and the comparison of purchases. A team project whose presentation I led and delivered.</p><nav class="presentation-links" aria-label="Related links"><a href="https://youtu.be/mcEqvz35Fjw" target="_blank" rel="noopener">Watch on YouTube <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a><a href="price-finder.html">Explore the project <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></nav></div></article></section>
-      <section class="project-section">
-        <div class="section-header">
-          <h2 class="section-title">Fábrica de Cultura</h2>
-          <p class="section-subtitle">Rhythm and Sensitivity in Editing</p>
+    <section class="project-section culture-work" id="fabrica-de-cultura">
+      <div class="video-section-heading">
+        <div>
+          <p class="video-section-kicker"><i class="fa-solid fa-clapperboard" aria-hidden="true"></i> Documentary · Post-production</p>
+          <h2>Fábrica de Cultura</h2>
         </div>
-        <div class="project-description">
-          <p>At the <a href="https://www.fabricasdecultura.org.br/jacana/" target="_blank" rel="noopener noreferrer" class="text-link">Fábrica de Cultura do Jaçanã</a>, my primary focus was <strong>post-production and editing</strong>. On projects like the ballet documentary and the guitar ensemble performance, the challenge wasn't just cutting clips together, but building a <strong>fluid narrative</strong> that respected the music's timing and the delicacy of the movements.</p>
-          <p>I worked the editing rhythm to create an emotional connection with the viewer, alternating between wide shots to convey the grandeur of the performance and subtle details that capture the artists' expressions.</p>
-        </div>
-
-        <div class="film-art-strip"><figure><img src="../assets/img/audiovisual/ballet-quadro-130.jpg" alt="Actual documentary frame: an interviewee in the Fábrica de Cultura setting" width="960" height="540" loading="lazy" decoding="async" ><figcaption>Context and setting · a frame from the published video, 02:10.</figcaption></figure><figure><img src="../assets/img/videos-capa.webp" alt="Close view of the interviewee, original project image" width="1518" height="853" loading="lazy" decoding="async" ><figcaption>Closeness and expression · original project image.</figcaption></figure></div><div class="video-container paused" id="player-ballet">
-          <video src="../assets/video/ballet-processos-web.webm" poster="../assets/img/videos-capa.webp" preload="metadata" playsinline>
-            <track kind="subtitles" label="Português" srclang="pt" src="../assets/video/ballet-processos-multimeios-pt.vtt">
-          </video>
-          <div class="center-controls">
-            <div class="center-btn skip-btn" data-skip="-10"><i class="fa-solid fa-rotate-left"></i><div class="skip-text-popup">-10</div></div>
-            <div class="center-btn main-play"><i class="fa-solid fa-play"></i></div>
-            <div class="center-btn skip-btn" data-skip="10"><i class="fa-solid fa-rotate-right"></i><div class="skip-text-popup">+10</div></div>
-          </div>
-          <div class="volume-feedback">50%</div>
-          <div class="controls-wrapper">
-            <div class="timeline-container">
-              <div class="time-tooltip">00:00</div>
-              <div class="timeline"><div class="buffer-bar"></div><div class="hover-bar"></div><div class="progress-bar"><div class="scrubber-knob"></div></div></div>
-            </div>
-            <div class="controls-row">
-              <div class="controls-left">
-                <button class="control-btn play-pause-btn" aria-label="Play or pause"><i class="fa-solid fa-play"></i></button>
-                <div class="volume-container">
-                  <button class="control-btn mute-btn" aria-label="Toggle audio"><i class="fa-solid fa-volume-high"></i></button>
-                  <div class="volume-slider-container"><div class="volume-tooltip">100</div><div class="volume-bg"><div class="volume-fill"><div class="volume-knob"></div></div></div></div>
-                </div>
-                <div class="time-display">0:00 / 0:00</div>
-              </div>
-              <div class="controls-right">
-                <div class="speed-container">
-                  <button class="control-btn speed-btn" title="Speed"><i class="fa-solid fa-gauge-high"></i></button>
-                  <div class="speed-menu">
-                    <button class="caption-option" data-speed="0.5">0.5x</button>
-                    <button class="caption-option" data-speed="0.75">0.75x</button>
-                    <button class="caption-option active" data-speed="1">Normal</button>
-                    <button class="caption-option" data-speed="1.25">1.25x</button>
-                    <button class="caption-option" data-speed="1.5">1.5x</button>
-                    <button class="caption-option" data-speed="2">2x</button>
-                  </div>
-                </div>
-                <div class="captions-container">
-                  <button class="control-btn captions-btn" aria-label="Caption settings"><i class="fa-regular fa-closed-captioning"></i></button>
-                  <div class="captions-menu">
-                    <button class="caption-option active" data-lang="off">Off</button>
-                    <button class="caption-option" data-lang="pt">Português</button>
-                  </div>
-                </div>
-                <button class="control-btn fullscreen-btn" aria-label="Fullscreen"><i class="fa-solid fa-expand"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      <p class="video-original-link"><a href="../assets/video/ballet-processos-multimeios.mp4" download>Download the original file</a></p></section>
-
-      <div class="divider"></div>
-
-      <section class="project-section">
-        <div class="section-header">
-          <h2 class="section-title">Fraud Detector</h2>
-          <p class="section-subtitle">Didactic Clarity and Technology</p>
-        </div>
-        <ul class="tech-list">
-          <li class="tech-tag">Didactic Editing</li>
-          <li class="tech-tag">Motion Graphics</li>
-          <li class="tech-tag">Design Thinking</li>
-          <li class="tech-tag">Accessibility</li>
-        </ul>
-        <div class="project-description">
-          <p>For the Integrative Project at <a href="https://univesp.br/" target="_blank" rel="noopener noreferrer" class="text-link">UNIVESP</a>, the editing challenge was <strong>information accessibility</strong>. The video needed to translate complex Artificial Intelligence concepts for a general audience. The editing tone is intentionally didactic, clean, and direct.</p>
-          <p>The editing focuses on highlighting the stages of <strong>Design Thinking</strong>, transforming a technical report into a visual story about solving real problems, with precise cuts and visual support for the narrated text.</p>
-        </div>
-
-        <div class="presentation-frame"><a class="presentation-preview" href="https://youtu.be/BpA8mLzkT_E" target="_blank" rel="noopener" data-presentation-load data-video-id="BpA8mLzkT_E" data-video-title="UNIVESP project presentation: AI Fraud Detector" aria-label="UNIVESP project presentation: AI Fraud Detector"><img src="../assets/img/detector-fraudes-ia-escuro.webp" alt="Original AI Fraud Detector presentation cover" width="1280" height="720" loading="lazy" decoding="async"><span class="presentation-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span><span class="presentation-preview-label">Watch the presentation</span></a></div><nav class="presentation-links" aria-label="Presentation link"><a href="https://youtu.be/BpA8mLzkT_E" target="_blank" rel="noopener">Watch on YouTube <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></nav>
-      </section>
-
+        <p class="video-section-summary">A cultural record shaped by the rhythm of music, movement, and people.</p>
       </div>
-    <footer class="case-ending" data-ending-theme="light" aria-label="Project navigation and contact">
+
+      <div class="culture-work-grid">
+        <div class="culture-work-copy">
+          <p>At <a href="https://www.fabricasdecultura.org.br/jacana/" target="_blank" rel="noopener noreferrer" class="text-link">Fábrica de Cultura do Jaçanã</a>, I focused mainly on <strong>post-production and editing</strong>. For the ballet documentary and a recording of the guitar group, I arranged the shots to respect the music and the delicacy of each performance.</p>
+          <p>The edit alternates wide shots that establish the space with closer moments that reveal the expression of the people taking part.</p>
+          <ul class="film-focus-list" aria-label="Editing focus">
+            <li><i class="fa-solid fa-scissors" aria-hidden="true"></i> Editing and post-production</li>
+            <li><i class="fa-solid fa-music" aria-hidden="true"></i> Rhythm and visual storytelling</li>
+            <li><i class="fa-solid fa-closed-captioning" aria-hidden="true"></i> Portuguese captions</li>
+          </ul>
+        </div>
+
+        <div class="film-player-panel">
+          <div class="film-player-heading"><span>Ballet documentary</span><span>16:28 · Portfolio player</span></div>
+          <div class="video-container paused" id="player-ballet">
+
+          <video src="../assets/video/ballet-processos-web.webm" poster="../assets/img/videos-capa.webp" preload="metadata" playsinline>
+
+            <track kind="subtitles" label="Português" srclang="pt" src="../assets/video/ballet-processos-multimeios-pt.vtt">
+
+          </video>
+
+          <div class="center-controls">
+
+            <div class="center-btn skip-btn" data-skip="-10"><i class="fa-solid fa-rotate-left"></i><div class="skip-text-popup">-10</div></div>
+
+            <div class="center-btn main-play"><i class="fa-solid fa-play"></i></div>
+
+            <div class="center-btn skip-btn" data-skip="10"><i class="fa-solid fa-rotate-right"></i><div class="skip-text-popup">+10</div></div>
+
+          </div>
+
+          <div class="volume-feedback">50%</div>
+
+          <div class="controls-wrapper">
+
+            <div class="timeline-container">
+
+              <div class="time-tooltip">00:00</div>
+
+              <div class="timeline"><div class="buffer-bar"></div><div class="hover-bar"></div><div class="progress-bar"><div class="scrubber-knob"></div></div></div>
+
+            </div>
+
+            <div class="controls-row">
+
+              <div class="controls-left">
+
+                <button type="button" class="control-btn play-pause-btn" aria-label="Video playback" aria-pressed="false"><i class="fa-solid fa-play"></i></button>
+
+                <div class="volume-container">
+
+                  <button type="button" class="control-btn mute-btn" aria-label="Video audio" aria-pressed="false"><i class="fa-solid fa-volume-high"></i></button>
+
+                  <div class="volume-slider-container"><div class="volume-tooltip">100</div><div class="volume-bg"><div class="volume-fill"><div class="volume-knob"></div></div></div></div>
+
+                </div>
+
+                <button type="button" class="time-display" title="Click to switch the time display">0:00 / 0:00</button>
+
+              </div>
+
+              <div class="controls-right">
+
+                <div class="speed-container">
+
+                  <button type="button" class="control-btn speed-btn" title="Speed" aria-label="Playback speed: normal" aria-expanded="false" aria-controls="speedMenuOptions"><i class="fa-solid fa-gauge-high"></i></button>
+
+                  <div class="speed-menu" id="speedMenuOptions" role="group" aria-label="Playback speed options">
+
+                    <button class="caption-option" data-speed="0.5">0.5x</button>
+
+                    <button class="caption-option" data-speed="0.75">0.75x</button>
+
+                    <button class="caption-option active" data-speed="1">Normal</button>
+
+                    <button class="caption-option" data-speed="1.25">1.25x</button>
+
+                    <button class="caption-option" data-speed="1.5">1.5x</button>
+
+                    <button class="caption-option" data-speed="2">2x</button>
+
+                  </div>
+
+                </div>
+
+                <div class="captions-container">
+
+                  <button type="button" class="control-btn captions-btn" aria-label="Captions off" aria-pressed="false" aria-expanded="false" aria-controls="captionMenuOptions"><i class="fa-regular fa-closed-captioning"></i></button>
+
+                  <div class="captions-menu" id="captionMenuOptions" role="group" aria-label="Caption options">
+
+                    <button class="caption-option active" data-lang="off">Off</button>
+
+                    <button class="caption-option" data-lang="pt">Português</button>
+
+                  </div>
+
+                </div>
+
+                <button type="button" class="control-btn fullscreen-btn" aria-label="Fullscreen" aria-pressed="false"><i class="fa-solid fa-expand"></i></button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+          <div class="film-player-source">
+            <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Fábrica de Cultura do Jaçanã</span>
+            <a class="film-download" href="../assets/video/ballet-processos-multimeios.mp4" download><i class="fa-solid fa-download" aria-hidden="true"></i> Download original</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="film-still-grid">
+        <figure>
+          <img src="../assets/img/audiovisual/ballet-quadro-130.jpg" alt="Wide shot of the interviewee at Fábrica de Cultura" width="960" height="540" loading="lazy" decoding="async">
+          <figcaption>Wide shot · setting and context.</figcaption>
+        </figure>
+        <figure>
+          <img src="../assets/img/videos-capa.webp" alt="Close-up of the interviewee during the documentary" width="1518" height="853" loading="lazy" decoding="async">
+          <figcaption>Close-up · expression and speech.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+
+  <footer class="case-ending" data-ending-theme="light" aria-label="Project navigation and contact">
+
       <div class="case-ending-inner">
+
         <p class="case-ending-kicker">Continue exploring</p>
+
         <a class="case-next" href="utopia-magazine.html">
+
           <span class="case-next-media case-next-media--creative" aria-hidden="true"><img src="../assets/img/revista-utopia-capa.webp" alt="" width="1280" height="721" loading="lazy"></span>
+
           <span class="case-next-copy"><span class="case-next-label">Next project</span><span class="case-next-title">Revista Utopia</span><span class="case-next-description">Editorial content, visual identity and web design in a collaborative project.</span></span>
+
           <span class="case-next-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></span>
+
         </a>
-        <section class="contact-invitation" aria-label="Projects, partnerships and opportunities">
+
+        <section class="contact-invitation" aria-label="Projects and opportunities">
+
       <img class="invitation-mark" src="../assets/img/ogabriels-logo-mono-negativo.webp" alt="" width="1920" height="1920" loading="lazy">
-      <p class="invitation-kicker"><i class="fa-solid fa-comments " aria-hidden="true"></i> Projects, partnerships and opportunities</p><h2>Different paths.<br><em>A good conversation to start.</em></h2><p>Software, interfaces, visual identity or audiovisual work. Tell me what you have in mind — or where we could work together.</p>
-      <div class="invitation-paths"><a class="invitation-path" href="contact.html?assunto=projeto"><i class="fa-solid fa-pen-ruler " aria-hidden="true"></i><span><strong>Discuss a project</strong><small>Scope, possibilities and a quote</small></span><i class="fa-solid fa-arrow-up-right-from-square " aria-hidden="true"></i></a><a class="invitation-path" href="contact.html?assunto=oportunidade"><i class="fa-solid fa-people-group " aria-hidden="true"></i><span><strong>Discuss an opportunity</strong><small>My experience and your team</small></span><i class="fa-solid fa-arrow-up-right-from-square " aria-hidden="true"></i></a></div></section>
+
+      <p class="invitation-kicker"><i class="fa-solid fa-comments " aria-hidden="true"></i> Projects and opportunities</p><h2>Have a project in mind?<br><em>Or an opportunity?</em></h2><p>I work across software, digital products, design and audiovisual. Choose a path and tell me what you have in mind.</p>
+
+      <div class="invitation-paths"><a class="invitation-path" href="contact.html?assunto=projeto"><i class="fa-solid fa-pen-ruler " aria-hidden="true"></i><span><strong>Discuss a project</strong><small>Scope, timeline and budget</small></span><i class="fa-solid fa-arrow-right " aria-hidden="true"></i></a><a class="invitation-path" href="contact.html?assunto=oportunidade"><i class="fa-solid fa-people-group " aria-hidden="true"></i><span><strong>Discuss an opportunity</strong><small>My experience and your team</small></span><i class="fa-solid fa-arrow-right " aria-hidden="true"></i></a></div></section>
+
 <div class="case-ending-actions">
 
+
+
           <a href="../assets/docs/gabriel-moreira-curriculo.pdf" target="_blank" rel="noopener noreferrer">CV in PDF · Portuguese <i class="fa-regular fa-file-lines" aria-hidden="true"></i></a>
+
           <a class="case-ending-return" href="index.html#criativo"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> All projects</a>
+
         </div>
+
         <div class="case-ending-signoff"><p class="case-ending-author">Gabriel Moreira · Software, product & multimedia</p><div class="case-ending-socials" aria-label="Professional profiles and contact"><a href="https://www.linkedin.com/in/ogabriels/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/ogabriels2" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://wa.me/5511979686116" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div>
+
       </div>
+
     </footer>
-  </main>
+</main>
+
 
 
 
@@ -612,114 +689,13 @@
     });
   </script>
 
-  <script>
-    // --- VIDEO PLAYER LOGIC (GOLD MASTER) ---
-    let activePlayerContainer = null;
-    document.querySelectorAll('.video-container').forEach(container => {
-      const video = container.querySelector('video');
-      const centerControls = container.querySelector('.center-controls');
-      const mainPlayBtn = centerControls?.querySelector('.main-play');
-      const skipBtns = centerControls?.querySelectorAll('.skip-btn');
-      const playBtn = container.querySelector('.play-pause-btn');
-      const icon = playBtn?.querySelector('i');
-      const timelineContainer = container.querySelector('.timeline-container');
-      const progressBar = container.querySelector('.progress-bar');
-      const timeTooltip = container.querySelector('.time-tooltip');
-      const timeDisplay = container.querySelector('.time-display');
-      const muteBtn = container.querySelector('.mute-btn');
-      const volumeSlider = container.querySelector('.volume-slider-container');
-      const volumeFill = container.querySelector('.volume-fill');
-      const volumeTooltip = container.querySelector('.volume-tooltip');
-      const volumeFeedback = container.querySelector('.volume-feedback');
-      const fullscreenBtn = container.querySelector('.fullscreen-btn');
-      const captionBtn = container.querySelector('.captions-btn');
-      const captionMenu = container.querySelector('.captions-menu');
-      const captionOptions = container.querySelectorAll('.captions-menu .caption-option');
-      const speedBtn = container.querySelector('.speed-btn');
-      const speedMenu = container.querySelector('.speed-menu');
-      const speedOptions = container.querySelectorAll('.speed-menu .caption-option');
-
-      let isScrubbing=false,isDraggingVolume=false,wasPausedBeforeScrubbing=true;
-      let inactivityTimeout,briefControlsTimeout,volumeFeedbackTimeout;
-      let timeDisplayMode=0,lastTapTime=0;
-
-      container.addEventListener('mouseenter',()=>activePlayerContainer=container);
-      container.addEventListener('click',(e)=>{if(e.target.closest('.controls-wrapper')||e.target.closest('.center-btn'))return;const isMobile=window.matchMedia('(pointer: coarse)').matches;const now=new Date().getTime();const timeSinceLastTap=now-lastTapTime;if(isMobile){if(timeSinceLastTap<300&&timeSinceLastTap>0){const rect=container.getBoundingClientRect();const x=e.clientX-rect.left;const width=rect.width;if(x<width*0.35)container.skip(-10);else if(x>width*0.65)container.skip(10);else{container.classList.toggle('mobile-controls-active');if(container.classList.contains('mobile-controls-active'))resetInactivityTimer();}lastTapTime=0;}else{container.classList.toggle('mobile-controls-active');if(container.classList.contains('mobile-controls-active'))resetInactivityTimer();lastTapTime=now;}}else{activePlayerContainer=container;togglePlay();}});
-
-      container.addEventListener('dblclick',(e)=>{if(!window.matchMedia('(pointer: coarse)').matches){if(e.target.closest('.controls-wrapper')||e.target.closest('.center-btn'))return;toggleFS();}});
-
-      function resetInactivityTimer(){if(container.classList.contains('show-controls-briefly'))return;container.classList.remove('user-inactive');clearTimeout(inactivityTimeout);if(!video.paused){inactivityTimeout=setTimeout(()=>{if(!container.matches(':hover')||!container.querySelector('.controls-wrapper:hover')){container.classList.add('user-inactive');container.classList.remove('mobile-controls-active');}},2500);}}
-      container.addEventListener('mousemove',resetInactivityTimer);container.addEventListener('mousedown',resetInactivityTimer);container.addEventListener('touchstart',resetInactivityTimer);
-
-      function showControlsBriefly(){clearTimeout(inactivityTimeout);clearTimeout(briefControlsTimeout);container.classList.remove('user-inactive');container.classList.add('show-controls-briefly');briefControlsTimeout=setTimeout(()=>{container.classList.remove('show-controls-briefly');resetInactivityTimer();},2000);}
-
-      function togglePlay(){if(video.paused){document.querySelectorAll('video').forEach(v=>{if(v!==video)v.pause()});video.play();container.classList.remove('paused');container.classList.add('playing','has-played');if(icon)icon.className='fa-solid fa-pause';if(mainPlayBtn)mainPlayBtn.innerHTML='<i class="fa-solid fa-pause"></i>';resetInactivityTimer();}else{video.pause();container.classList.add('paused');container.classList.remove('playing');container.classList.remove('user-inactive');container.classList.add('mobile-controls-active');if(icon)icon.className='fa-solid fa-play';if(mainPlayBtn)mainPlayBtn.innerHTML='<i class="fa-solid fa-play"></i>';clearTimeout(inactivityTimeout);}}
-
-      function handleTimelineUpdate(e){const rect=timelineContainer.getBoundingClientRect();const percent=Math.min(Math.max(0,e.clientX-rect.left),rect.width)/rect.width;const hoverTime=percent*video.duration;if(isScrubbing){e.preventDefault();progressBar.style.width=`${percent*100}%`;video.currentTime=hoverTime;}const hoverBar=container.querySelector('.hover-bar');if(hoverBar)hoverBar.style.width=`${percent*100}%`;if(timeTooltip){timeTooltip.style.left=`${percent*100}%`;timeTooltip.textContent=formatTime(hoverTime);}}
-      timelineContainer.addEventListener('mousedown',(e)=>{isScrubbing=true;wasPausedBeforeScrubbing=video.paused;video.pause();container.classList.add('scrubbing');handleTimelineUpdate(e);});
-      timelineContainer.addEventListener('mousemove',handleTimelineUpdate);
-
-      function updateVolume(e){const rect=volumeSlider.getBoundingClientRect();const percent=Math.min(Math.max(0,e.clientX-rect.left),rect.width)/rect.width;if(isDraggingVolume){video.volume=percent;video.muted=percent===0;}const displayVol=isDraggingVolume?percent:video.volume;volumeFill.style.width=`${displayVol*100}%`;if(volumeTooltip){volumeTooltip.textContent=Math.round(displayVol*100);volumeTooltip.style.left=`${displayVol*100}%`;}const vIcon=muteBtn.querySelector('i');vIcon.className=video.muted||displayVol===0?'fa-solid fa-volume-xmark':(displayVol<0.5?'fa-solid fa-volume-low':'fa-solid fa-volume-high');}
-      volumeSlider.addEventListener('mousemove',(e)=>{if(!isDraggingVolume){const rect=volumeSlider.getBoundingClientRect();const percent=Math.min(Math.max(0,e.clientX-rect.left),rect.width)/rect.width;if(volumeTooltip){volumeTooltip.textContent=Math.round(percent*100);volumeTooltip.style.left=`${percent*100}%`;}}});
-      volumeSlider.addEventListener('mousedown',(e)=>{isDraggingVolume=true;container.querySelector('.volume-container').classList.add('dragging');updateVolume(e);triggerVolumeVisualFeedback();});
-      document.addEventListener('mousemove',(e)=>{if(isScrubbing)handleTimelineUpdate(e);if(isDraggingVolume)updateVolume(e);});
-      document.addEventListener('mouseup',()=>{if(isScrubbing){isScrubbing=false;container.classList.remove('scrubbing');if(!wasPausedBeforeScrubbing)togglePlay();}if(isDraggingVolume){isDraggingVolume=false;container.querySelector('.volume-container').classList.remove('dragging');}});
-      muteBtn?.addEventListener('click',(e)=>{e.stopPropagation();video.muted=!video.muted;const currentVol=video.muted?0:video.volume;volumeFill.style.width=`${currentVol*100}%`;muteBtn.querySelector('i').className=video.muted?'fa-solid fa-volume-xmark':'fa-solid fa-volume-high';triggerVolumeVisualFeedback();});
-
-      function triggerVolumeVisualFeedback(){if(!volumeFeedback)return;const volPercent=video.muted?0:Math.round(video.volume*100);volumeFeedback.textContent=`${volPercent}%`;container.classList.add('changing-volume');clearTimeout(volumeFeedbackTimeout);volumeFeedbackTimeout=setTimeout(()=>{container.classList.remove('changing-volume');},1000);}
-      if(captionBtn){captionBtn.addEventListener('click',(e)=>{e.stopPropagation();speedMenu?.classList.remove('show');captionMenu.classList.toggle('show');});captionOptions.forEach(opt=>{opt.addEventListener('click',(e)=>{e.stopPropagation();const lang=opt.dataset.lang;captionOptions.forEach(o=>o.classList.remove('active'));opt.classList.add('active');captionMenu.classList.remove('show');captionBtn.classList.toggle('active',lang!=='off');for(let i=0;i<video.textTracks.length;i++)video.textTracks[i].mode='disabled';if(lang!=='off'){for(let i=0;i<video.textTracks.length;i++){if(video.textTracks[i].language===lang)video.textTracks[i].mode='showing';}}});});}
-      if(speedBtn){speedOptions.forEach(opt=>{if(opt.dataset.speed==="1")opt.classList.add('active');});speedBtn.addEventListener('click',(e)=>{e.stopPropagation();captionMenu?.classList.remove('show');speedMenu.classList.toggle('show');});speedOptions.forEach(opt=>{opt.addEventListener('click',(e)=>{e.stopPropagation();video.playbackRate=parseFloat(opt.dataset.speed);speedOptions.forEach(o=>o.classList.remove('active'));opt.classList.add('active');speedMenu.classList.remove('show');speedBtn.classList.toggle('active',opt.dataset.speed!=="1");});});}
-      function updateTimeDisplay(){if(isNaN(video.duration))return;const cur=video.currentTime;const tot=video.duration;const rem=tot-cur;let text='';if(timeDisplayMode===0)text=`${formatTime(cur)} / ${formatTime(tot)}`;else if(timeDisplayMode===1)text=`-${formatTime(rem)} / ${formatTime(tot)}`;else text=`${formatTime(cur)} / -${formatTime(rem)}`;timeDisplay.textContent=text;}
-      video.addEventListener('loadedmetadata', updateTimeDisplay);
-      video.addEventListener('durationchange', updateTimeDisplay);
-      updateTimeDisplay();
-      video.addEventListener('timeupdate',()=>{if(!isScrubbing){const percent=(video.currentTime/video.duration)*100;progressBar.style.width=`${percent}%`;updateTimeDisplay();}});
-      timeDisplay.addEventListener('click',(e)=>{e.stopPropagation();timeDisplayMode=(timeDisplayMode+1)%3;updateTimeDisplay();});
-      if(mainPlayBtn)mainPlayBtn.addEventListener('click',(e)=>{e.stopPropagation();togglePlay();});
-      if(playBtn)playBtn.addEventListener('click',(e)=>{e.stopPropagation();togglePlay();});
-      skipBtns?.forEach(btn=>{btn.addEventListener('click',(e)=>{e.stopPropagation();const amount=parseFloat(btn.dataset.skip);skip(amount);triggerSkipVisuals(btn,amount>0);});});
-
-      function skip(amount){video.currentTime+=amount;resetInactivityTimer();}
-      function triggerSkipVisuals(btnElement,isForward){if(!btnElement)return;const textPopup=btnElement.querySelector('.skip-text-popup');const animClass=isForward?'animate-forward':'animate-backward';textPopup.classList.remove('animate-forward','animate-backward');void textPopup.offsetWidth;textPopup.classList.add(animClass);const rotClass=isForward?'anim-rotate-right':'anim-rotate-left';btnElement.classList.remove('anim-rotate-right','anim-rotate-left');void btnElement.offsetWidth;btnElement.classList.add(rotClass);}
-      if(fullscreenBtn)fullscreenBtn.addEventListener('click',toggleFS);
-      function toggleFS(){if(document.fullscreenElement)document.exitFullscreen();else container.requestFullscreen();}
-      document.addEventListener('fullscreenchange',()=>{if(document.fullscreenElement===container||document.fullscreenElement===null){const activeLang=Array.from(video.textTracks).find(t=>t.mode==='showing')?.language;if(activeLang){for(let t of video.textTracks)t.mode='disabled';setTimeout(()=>{const track=Array.from(video.textTracks).find(t=>t.language===activeLang);if(track)track.mode='showing';},50);}}});
-      document.addEventListener('click',()=>{speedMenu?.classList.remove('show');captionMenu?.classList.remove('show');});
-      function formatTime(s){if(isNaN(s)||!isFinite(s))return"0:00";const m=Math.floor(s/60);const sec=Math.floor(s%60);return`${m}:${sec<10?'0':''}${sec}`;}
-
-      container.togglePlay=(fromShortcut)=>{togglePlay();if(fromShortcut){const i=centerControls.querySelector('.main-play i');i.classList.remove('icon-pulse');void i.offsetWidth;i.classList.add('icon-pulse');}};
-      container.skip=(amount)=>{skip(amount);const btn=amount>0?container.querySelector('.skip-btn[data-skip="10"]'):container.querySelector('.skip-btn[data-skip="-10"]');triggerSkipVisuals(btn,amount>0);};
-      container.jumpTo=(percent)=>{video.currentTime=video.duration*(percent/100);showControlsBriefly();};
-      container.toggleMute=()=>{muteBtn.click();};
-      container.toggleFS=toggleFS;
-      container.changeVolume=(delta)=>{let newVol=video.volume+delta;if(newVol>1)newVol=1;if(newVol<0)newVol=0;video.volume=newVol;video.muted=false;volumeFill.style.width=`${newVol*100}%`;triggerVolumeVisualFeedback();showControlsBriefly();};
-    });
-
-    document.addEventListener('keydown',(e)=>{
-      if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
-      if(e.target.closest('a,button,summary,[role="button"]')&&!e.target.closest('.video-container'))return;
-      if(!activePlayerContainer)activePlayerContainer=document.querySelector('.video-container');
-      if(!activePlayerContainer)return;
-      const playerBounds=activePlayerContainer.getBoundingClientRect();
-      if(playerBounds.bottom<=0||playerBounds.top>=window.innerHeight)return;
-      const key=e.key.toLowerCase();
-      if(key>='1'&&key<='9'){activePlayerContainer.jumpTo(parseInt(key)*10);return;}
-      switch(key){
-        case ' ':case 'k':e.preventDefault();activePlayerContainer.togglePlay(true);break;
-        case 'f':e.preventDefault();activePlayerContainer.toggleFS();break;
-        case 'm':e.preventDefault();activePlayerContainer.toggleMute(true);break;
-        case 'arrowright':case 'l':e.preventDefault();activePlayerContainer.skip(10);break;
-        case 'arrowleft':case 'j':e.preventDefault();activePlayerContainer.skip(-10);break;
-        case 'arrowup':e.preventDefault();activePlayerContainer.changeVolume(0.1);break;
-        case 'arrowdown':e.preventDefault();activePlayerContainer.changeVolume(-0.1);break;
-      }
-    });
-  </script>
 
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ogabriels.com/#gabriel", "name": "Gabriel Silva Dias Moreira", "alternateName": "Gabriel Moreira", "url": "https://ogabriels.com/", "image": "https://ogabriels.com/assets/img/gabriel-perfil-512.webp", "sameAs": ["https://www.linkedin.com/in/ogabriels/", "https://github.com/ogabriels2"], "knowsAbout": ["Desenvolvimento de produtos", "APIs REST", "Desenvolvimento de software", "Infraestrutura", "Multimídia"]}, {"@type": "WebPage", "@id": "https://ogabriels.com/en/video-production", "url": "https://ogabriels.com/en/video-production", "name": "Video Production & Editing | Documentary & Motion - Gabriel Moreira", "description": "Cultural recordings and UNIVESP technology project presentations: HyroChat, Busca Preço and AI Fraud Detector.", "isPartOf": {"@id": "https://ogabriels.com/en/#website"}, "primaryImageOfPage": {"@id": "https://ogabriels.com/assets/img/videos-capa.webp"}, "breadcrumb": {"@id": "https://ogabriels.com/en/video-production#breadcrumb"}, "inLanguage": "en", "about": {"@id": "https://ogabriels.com/en/video-production#video-ballet"}, "dateModified": "2026-10-12"}, {"@type": "VideoObject", "@id": "https://ogabriels.com/en/video-production#video-ballet", "name": "Ballet Documentary: Multimeios Process Showcase", "description": "Documentary about ballet creative processes at Fábrica de Cultura.", "thumbnailUrl": "https://ogabriels.com/assets/img/videos-capa.webp", "uploadDate": "2023-11-01", "duration": "PT16M28S", "contentUrl": "https://ogabriels.com/assets/video/ballet-processos-web.webm", "author": {"@id": "https://ogabriels.com/#gabriel"}}, {"@type": "BreadcrumbList", "@id": "https://ogabriels.com/en/video-production#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ogabriels.com/en/"}, {"@type": "ListItem", "position": 2, "name": "Video Production", "item": "https://ogabriels.com/en/video-production"}]}]}</script>
 
 
 <script src="../assets/js/portfolio-case-art.js?v=3bb81c8fb6" defer></script>
-<script src="../assets/js/portfolio-media.js?v=b745264d70" defer></script>
+<script src="../assets/js/portfolio-native-player.js?v=media-20261013h" defer></script>
+<script src="../assets/js/portfolio-video-sources.js?v=media-20261013h" defer></script>
+<script src="../assets/js/portfolio-native-media.js?v=media-20261013h" defer></script>
 </body>
 </html>

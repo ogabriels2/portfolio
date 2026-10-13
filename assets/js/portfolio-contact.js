@@ -10,13 +10,31 @@
   const fields = [...form.querySelectorAll('[data-contact-field]')];
   const copyButton = document.querySelector('[data-copy-email]');
   const copyStatus = document.querySelector('[data-copy-status]');
+  const copyIdleMarkup = copyButton?.innerHTML;
+  const copyIdleLabel = copyButton?.getAttribute('aria-label');
+  const copyIdleTitle = copyButton?.getAttribute('title');
+  let copyResetTimer;
+  function resetCopyFeedback() {
+    window.clearTimeout(copyResetTimer);
+    if (!copyButton) return;
+    delete copyButton.dataset.copied;
+    copyButton.innerHTML = copyIdleMarkup;
+    if (copyIdleLabel) copyButton.setAttribute('aria-label', copyIdleLabel);
+    if (copyIdleTitle) copyButton.setAttribute('title', copyIdleTitle);
+  }
   copyButton?.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText('contato@ogabriels.com');
       copyButton.dataset.copied = 'true';
       copyButton.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
-      copyStatus.textContent = english ? 'E-mail copied.' : 'E-mail copiado.';
+      const copiedLabel = english ? 'E-mail copied' : 'E-mail copiado';
+      copyButton.setAttribute('aria-label', copiedLabel);
+      copyButton.setAttribute('title', copiedLabel);
+      copyStatus.textContent = copiedLabel + '.';
+      window.clearTimeout(copyResetTimer);
+      copyResetTimer = window.setTimeout(resetCopyFeedback, 1800);
     } catch (_) {
+      resetCopyFeedback();
       copyStatus.textContent = english ? 'Copy the address above, or click it to open your e-mail app.' : 'Selecione o endereço acima para copiar, ou clique nele para abrir seu e-mail.';
     }
   });

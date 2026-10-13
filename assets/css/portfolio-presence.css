@@ -1,4 +1,4 @@
-/* Real identity and tactile detail: Gabriel's mark, blue accent and existing artwork. */
+﻿/* Real identity and tactile detail: Gabriel's mark, blue accent and existing artwork. */
 :root{--presence-ease:cubic-bezier(.2,.8,.2,1);--presence-spring:cubic-bezier(.22,1,.36,1)}
 /* Desktop content never passes behind this rail; blur and forced GPU layers add no detail. */
 @media(min-width:969px){.portfolio-sidebar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:none!important;contain:none!important;backface-visibility:visible!important}.portfolio-sidebar .sidebar-scaler{backface-visibility:visible!important}.portfolio-sidebar .profile-pic-wrapper{transform:none;backface-visibility:visible}}
@@ -18,51 +18,60 @@
 .portfolio-project:is(:hover,:focus-visible) .portfolio-project-copy{translate:0 -2px}
 .portfolio-project:is(:hover,:focus-visible) .portfolio-project-bottom i{transform:translateX(5px)}
 .portfolio-location i{margin-right:7px;color:var(--accent)}
-.home-paths{display:flex;flex-direction:row;flex:none;gap:22px;flex-wrap:wrap;margin-top:21px}
-.home-paths a{display:inline-flex;align-items:center;gap:9px;min-height:44px;color:#4c5868;font-size:.82rem;font-weight:500}
-.home-paths a i{color:#0868c8;transition:transform .4s var(--presence-spring)}
-.home-paths a:is(:hover,:focus-visible) i{transform:translateY(-3px) rotate(-5deg)}
-.home-paths a:hover{color:#075cae}
-.contact-invitation{position:relative;isolation:isolate;overflow:hidden;margin-top:52px;padding:clamp(28px,4vw,48px);border-radius:24px;background:#15202d;color:#fff;font-family:Inter,sans-serif}
+.home-paths{display:flex;flex-direction:row;flex:none;gap:8px;flex-wrap:wrap;margin-top:18px}
+.home-paths a{display:inline-flex;align-items:center;gap:9px;min-height:40px;padding:0 13px;border:1px solid #e1e6ec;border-radius:999px;background:rgb(255 255 255 / 72%);color:#435263;font-size:.8rem;font-weight:500;transition:background .2s,border-color .2s,color .2s,transform .3s var(--presence-spring)}
+.home-paths a i{width:15px;text-align:center;color:#0868c8;transition:transform .4s var(--presence-spring)}
+.home-paths a:is(:hover,:focus-visible) i{transform:translateY(-2px) rotate(-3deg)}
+.home-paths a:is(:hover,:focus-visible){color:#075cae;border-color:#b9cfe3;background:#f7fbff;transform:translateY(-1px)}
+.home-paths a:focus-visible{outline:3px solid #0868c8;outline-offset:3px}
+.contact-invitation{position:relative;isolation:isolate;overflow:hidden;margin-top:52px;padding:clamp(28px,4vw,48px);border:1px solid rgb(126 177 220 / 17%);border-radius:24px;background:linear-gradient(135deg,#15202d 0%,#172638 100%);box-shadow:0 16px 40px rgb(15 34 54 / 9%);color:#fff;font-family:Inter,sans-serif}
 .contact-invitation .invitation-mark{position:absolute;right:-36px;top:50%;width:300px;max-width:40%;height:300px;object-fit:contain;transform:translateY(-50%) rotate(-8deg);opacity:.07;z-index:-1;pointer-events:none}
 .contact-invitation .invitation-kicker{display:flex;align-items:center;gap:9px;margin:0 0 18px;color:#99b8d5;font-size:.72rem;line-height:1.6;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.contact-invitation h2{max-width:730px;margin:0;color:#fff;font:600 clamp(1.8rem,3.5vw,2.75rem)/1.16 Inter,sans-serif;letter-spacing:-.035em}
-.contact-invitation h2 em{font:400 1.22em/1 'Instrument Serif',Georgia,serif;color:#b9d8f5;letter-spacing:-.025em}
-.contact-invitation>p:not(.invitation-kicker){max-width:580px;margin:19px 0 0;color:#bec9d5;font-size:.9rem;line-height:1.8}
-.invitation-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:29px;border-top:1px solid #ffffff26;padding-top:24px;position:relative}
-.invitation-path{display:grid;grid-template-columns:38px minmax(0,1fr) 20px;align-items:center;gap:12px;min-height:76px;padding:14px 17px;background:#ffffff08;border:1px solid #ffffff2b;border-radius:12px;color:#fff!important;text-decoration:none!important;transition:background .3s,border-color .3s,transform .4s var(--presence-spring)}
+.contact-invitation h2{max-width:730px;margin:0;color:#fff;font:600 clamp(1.8rem,3.5vw,2.75rem)/1.14 Inter,sans-serif;letter-spacing:-.035em;text-wrap:balance}
+.contact-invitation h2 em{font:400 1.16em/1 'Instrument Serif',Georgia,serif;color:#b9d8f5;letter-spacing:-.025em}
+.contact-invitation>p:not(.invitation-kicker){max-width:610px;margin:17px 0 0;color:#c6d0dc;font-size:.88rem;line-height:1.7}
+.invitation-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:26px;border-top:1px solid #ffffff26;padding-top:22px;position:relative}
+.invitation-path{display:grid;grid-template-columns:38px minmax(0,1fr) 20px;align-items:center;gap:12px;min-height:74px;padding:13px 17px;background:#ffffff08;border:1px solid #ffffff2b;border-radius:14px;color:#fff!important;text-decoration:none!important;transition:background .3s,border-color .3s,transform .4s var(--presence-spring),box-shadow .3s}
 .invitation-path>i:first-child{font-size:22px;color:#b9d8f5;transition:transform .5s var(--presence-spring)}
 .invitation-path>i:last-child{color:#b9d8f5;transition:transform .4s var(--presence-spring)}
 .invitation-path strong{display:block;font-size:.9rem;line-height:1.5;font-weight:600}
 .invitation-path small{display:block;margin-top:4px;color:#acbac9;font-size:.74rem;line-height:1.5}
-.invitation-path:is(:hover,:focus-visible){background:#ffffff12;border-color:#96c7f4;transform:translateY(-3px)}
-.invitation-path:is(:hover,:focus-visible)>i:first-child{transform:rotate(-7deg) scale(1.1)}
-.invitation-path:is(:hover,:focus-visible)>i:last-child{transform:translate(3px,-3px)}
+.invitation-path:is(:hover,:focus-visible){background:#ffffff12;border-color:#96c7f4;transform:translateY(-2px);box-shadow:0 6px 16px rgb(0 0 0 / 10%)}
+.invitation-path:is(:hover,:focus-visible)>i:first-child{transform:rotate(-3deg) scale(1.04)}
+.invitation-path:is(:hover,:focus-visible)>i:last-child{transform:translate(2px,-2px)}
 .invitation-path:active{transform:translateY(1px) scale(.985);transition-duration:.1s}
 .case-ending .contact-invitation{margin-top:34px}
 .case-ending-actions{margin-top:15px}
-.nav-link .nav-project-icon{width:18px;flex:0 0 18px;text-align:center;font-size:.85rem;opacity:.65;transition:transform .4s var(--presence-spring),opacity .2s}
-.nav-link:is(:hover,:focus-visible,.active) .nav-project-icon{opacity:1;transform:translateY(-1px)}
-.nav-link:active{transform:translateX(2px) scale(.985);transition-duration:.1s}
+.nav-link{position:relative;transition:color .22s,background-color .22s,transform .42s var(--presence-spring),box-shadow .28s}
+.nav-link> :is(i,svg){transition:transform .42s var(--presence-spring),color .22s,opacity .22s}
+.nav-link .nav-project-icon{display:block;width:18px;height:18px;flex:0 0 18px;color:#6d7f90;opacity:.82}
+.nav-link.active{box-shadow:none}
+.nav-link:not(.active):is(:hover,:focus-visible){transform:translateX(5px)}
+.nav-link:is(:hover,:focus-visible)> :is(i,svg){color:var(--accent);opacity:1;transform:translateY(-2px) rotate(-3deg) scale(1.05)}
+.nav-link.active> :is(i,svg){color:var(--accent);opacity:1;transform:scale(1.035)}
+.nav-link:active{transform:scale(.985);transition-duration:.1s}
 .mobile-menu-overlay .mobile-projects-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 8px;align-items:stretch}
 .mobile-menu-overlay .mobile-projects-list :is(.mobile-divider,.mobile-label){grid-column:1/-1}
 .mobile-menu-overlay .mobile-projects-list .mobile-label{width:100%;text-align:left;margin:13px 0 7px;font-size:.67rem}
 .mobile-menu-overlay .mobile-projects-list .mobile-divider{margin:9px auto 0}
-.mobile-menu-overlay .mobile-link-sub{justify-content:flex-start;text-align:left;gap:9px;font-size:.82rem;padding:10px 8px;min-height:50px;border-bottom:1px solid #e8ecf0;border-radius:7px 7px 0 0}
+.mobile-menu-overlay .mobile-link-sub{justify-content:flex-start;text-align:left;gap:9px;font-size:.82rem;padding:10px 8px;min-height:50px;border-bottom:1px solid #e8ecf0;border-radius:7px 7px 0 0;transition:color .2s,background-color .2s,transform .32s var(--presence-spring),box-shadow .25s}
+.mobile-menu-overlay .mobile-link-sub:active,.mobile-menu-overlay .mobile-link-main:active{transform:scale(.985);transition-duration:.1s}
 .mobile-menu-overlay .mobile-link-sub i{flex:0 0 16px;color:#6d7f90;font-size:.84rem;transition:transform .3s var(--presence-spring)}
 .mobile-menu-overlay .mobile-link-sub:is(:hover,:focus-visible) i{transform:translateY(-2px);color:#2476bf}
-.sidebar-cta:is(:hover,:focus-visible) svg{animation:presence-chat .7s var(--presence-spring)}
-@keyframes presence-chat{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg) scale(1.12)}55%{transform:rotate(7deg) scale(1.06)}}
-.mobile-menu-overlay.active .mobile-nav-group{animation:presence-menu .4s var(--presence-ease) both}
-.mobile-menu-overlay.active .mobile-projects-wrapper{animation:presence-menu .5s .05s var(--presence-ease) both}
-.mobile-menu-overlay.active .mobile-footer-group{animation:presence-menu .5s .1s var(--presence-ease) both}
-@keyframes presence-menu{from{translate:0 14px}to{translate:0 0}}
+.mobile-menu-overlay .mobile-link-sub .nav-project-icon{display:block;width:17px;height:17px;flex:0 0 17px;color:#6d7f90;transition:transform .3s var(--presence-spring),color .2s}
+.mobile-menu-overlay .mobile-link-sub:is(:hover,:focus-visible) .nav-project-icon{transform:translateY(-2px);color:#2476bf}
+.sidebar-cta:is(:hover,:focus-visible) svg{animation:presence-chat .48s var(--presence-spring)}
+@keyframes presence-chat{0%,100%{transform:rotate(0) scale(1)}45%{transform:rotate(-3deg) scale(1.04)}70%{transform:rotate(2deg) scale(1.02)}}
+.mobile-menu-overlay.active .mobile-nav-group{animation:presence-menu .46s var(--presence-ease) both}
+.mobile-menu-overlay.active .mobile-projects-wrapper{animation:presence-menu .54s .05s var(--presence-ease) both}
+.mobile-menu-overlay.active .mobile-footer-group{animation:presence-menu .54s .1s var(--presence-ease) both}
+@keyframes presence-menu{from{translate:0 17px}to{translate:0 0}}
 body[data-page="about"] .about-chapters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:22px 0}
 body[data-page="about"] .about-chapters a{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:16px 14px;border:1px solid #dfe5ed;border-radius:12px;background:#fff;color:#344356;min-height:100px;text-decoration:none;transition:background .25s,border-color .25s,transform .4s var(--presence-spring),box-shadow .4s}
 body[data-page="about"] .about-chapters a i{font-size:21px;color:#2476bf;transition:transform .4s var(--presence-spring)}
 body[data-page="about"] .about-chapters a:is(:hover,:focus-visible,[aria-current="location"]){border-color:#77a9d7;background:#edf5fd;box-shadow:0 6px 14px #1747770a}
-body[data-page="about"] .about-chapters a:is(:hover,:focus-visible){transform:translateY(-3px)}
-body[data-page="about"] .about-chapters a:is(:hover,:focus-visible) i{transform:rotate(-7deg) scale(1.1)}
+body[data-page="about"] .about-chapters a:is(:hover,:focus-visible){transform:translateY(-2px)}
+body[data-page="about"] .about-chapters a:is(:hover,:focus-visible) i{transform:rotate(-3deg) scale(1.04)}
 body[data-page="about"] .about-portrait{transition:transform .6s var(--presence-spring),box-shadow .6s}
 body[data-page="about"] .about-portrait:hover{transform:translateY(-4px) rotate(.5deg);box-shadow:0 14px 30px #1e41610d}
 body[data-page="about"] .capability{position:relative;border-left:0;padding:24px;background:#fff;border:1px solid #e0e5eb;border-radius:16px;transition:transform .4s var(--presence-spring),border-color .3s}
@@ -154,3 +163,359 @@ body[data-page="contact"] main{padding-top:56px}
 @media(max-width:700px){.invitation-paths{grid-template-columns:1fr;gap:11px}.contact-invitation{border-radius:18px;padding:27px;margin-top:36px}.contact-invitation .invitation-mark{max-width:none;width:230px;right:-55px}.contact-invitation h2{font-size:2rem}.contact-invitation>p:not(.invitation-kicker){font-size:.84rem}.invitation-path{padding:13px;grid-template-columns:32px minmax(0,1fr) 18px}.invitation-path strong{font-size:.85rem}.invitation-path small{font-size:.7rem}body[data-page="about"] .about-chapters{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}body[data-page="about"] .about-chapters a{min-height:90px;padding:13px 10px;font-size:.72rem}body[data-page="about"] .about-chapters a i{font-size:19px}.contact-composition{grid-template-columns:1fr;gap:28px}.contact-lead h1{font-size:clamp(2.4rem,9vw,3.4rem);max-width:530px}.contact-channels{margin-top:25px}.contact-channel strong{font-size:.9rem}.contact-recruiter-note{margin-top:17px;padding-bottom:0}.contact-social-row{margin-top:13px;padding-top:20px}.contact-composition .portfolio-contact-form{padding:25px}.contact-lead .intro-copy{max-width:580px}.home-paths{gap:8px 18px}.home-paths a{font-size:.78rem}}
 @media(max-width:430px){body[data-page="about"] .education-list li{grid-template-columns:75px minmax(0,1fr);gap:14px}.education-mark{width:75px;height:64px;padding:9px}body[data-page="about"] .education-list h3{font-size:.89rem}body[data-page="about"] .education-list p{font-size:.78rem}body[data-page="about"] .experience-list li{grid-template-columns:1fr;gap:8px}.experience-list .experience-featured{grid-template-columns:1fr!important;padding:23px!important}.experience-mark{width:58px;height:58px;padding:9px}.contact-composition .portfolio-contact-form{padding:21px}.contact-channel{padding:16px}.contact-channel strong{font-size:.83rem}.contact-channel>a{gap:10px}.contact-channel .channel-icon{flex-basis:21px;font-size:21px}.contact-social-row a{padding:10px;gap:6px;font-size:.7rem}.contact-invitation h2{font-size:1.8rem}}
 @media(prefers-reduced-motion:reduce){.portfolio-button,.portfolio-project,.portfolio-project-copy,.portfolio-project-image img,.contact-invitation *,.contact-channel,.contact-channel i,.copy-contact,.home-paths i,.about-portrait,.capability,.capability-icon,.about-chapters a,.about-chapters i,.nav-link i{transition:none!important;animation:none!important}.portfolio-button:is(:hover,:focus-visible),.portfolio-project:is(:hover,:focus-visible,:active),.portfolio-project:is(:hover,:focus-visible) .portfolio-project-copy,.invitation-path:is(:hover,:focus-visible),.invitation-path:is(:hover,:focus-visible)>i,.contact-channel:hover,.contact-channel:hover .channel-icon,.copy-contact:hover,.home-paths a:hover i,body[data-page="about"] .about-portrait:hover,body[data-page="about"] .capability:hover,body[data-page="about"] .about-chapters a:hover,body[data-page="about"] .about-chapters a:hover i{transform:none;translate:none}.portfolio-project:is(:hover,:focus-visible) .portfolio-project-image:not(.art-cover) img{transform:none}.sidebar-cta svg,.mobile-menu-overlay.active .mobile-nav-group,.mobile-menu-overlay.active .mobile-projects-wrapper,.mobile-menu-overlay.active .mobile-footer-group{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.nav-project-icon{transition:none!important;animation:none!important}.nav-link:is(:hover,:focus-visible,.active) .nav-project-icon,.mobile-menu-overlay .mobile-link-sub:is(:hover,:focus-visible) .nav-project-icon,.home-paths a:is(:hover,:focus-visible){transform:none!important}}
+
+/* A concise site footer closes the main pages with a clear next action. */
+body[data-page="home"]{flex-direction:column}
+body[data-page="home"] main{padding-bottom:40px}
+body[data-page="home"] .site-footer,
+body[data-page="about"] .site-footer,
+body[data-page="contact"] .site-footer{margin-left:var(--sidebar-width,280px);border-top:1px solid #dfe4ea;padding:0 clamp(24px,4vw,48px);background:transparent;color:#52606d}
+body[data-page="home"] .site-footer .footer-inner,
+body[data-page="about"] .site-footer .footer-inner,
+body[data-page="contact"] .site-footer .footer-inner{width:100%;max-width:1160px;margin:0 auto;padding:15px 0 19px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+body[data-page="home"] .site-footer .footer-left,
+body[data-page="about"] .site-footer .footer-left,
+body[data-page="contact"] .site-footer .footer-left{display:flex;align-items:center;gap:8px}
+body[data-page="home"] .site-footer .footer-dot,
+body[data-page="about"] .site-footer .footer-dot,
+body[data-page="contact"] .site-footer .footer-dot{width:6px;height:6px;border-radius:50%;background:#0868c8;box-shadow:0 0 0 3px #0868c81a;flex:none}
+body[data-page="home"] .site-footer .footer-name,
+body[data-page="about"] .site-footer .footer-name,
+body[data-page="contact"] .site-footer .footer-name{color:#344454;font:600 .76rem/1.4 Inter,sans-serif;letter-spacing:0}
+body[data-page="home"] .site-footer .footer-copy,
+body[data-page="about"] .site-footer .footer-copy,
+body[data-page="contact"] .site-footer .footer-copy{color:#7b8794;font:400 .72rem/1.4 Inter,sans-serif}
+body[data-page="home"] .site-footer .footer-links,
+body[data-page="about"] .site-footer .footer-links,
+body[data-page="contact"] .site-footer .footer-links{display:flex;width:auto;flex-direction:row;align-items:center;justify-content:flex-end;gap:5px;flex-wrap:wrap}
+body[data-page="home"] .site-footer .footer-links a,
+body[data-page="about"] .site-footer .footer-links a,
+body[data-page="contact"] .site-footer .footer-links a{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:0 12px;border:1px solid transparent;border-radius:999px;background:#f2f5f8;color:#455565;font:500 .77rem/1.2 Inter,sans-serif;text-decoration:none;transition:background .2s,border-color .2s,color .2s,transform .25s var(--presence-spring)}
+body[data-page="home"] .site-footer .footer-links a:hover,
+body[data-page="about"] .site-footer .footer-links a:hover,
+body[data-page="contact"] .site-footer .footer-links a:hover{border-color:#c8d9e8;background:#edf5fc;color:#075cae;transform:translateY(-1px)}
+body[data-page="home"] .site-footer .footer-links a:focus-visible,
+body[data-page="about"] .site-footer .footer-links a:focus-visible,
+body[data-page="contact"] .site-footer .footer-links a:focus-visible{outline:3px solid #0868c8;outline-offset:2px}
+body[data-page="home"] .site-footer .footer-links .footer-contact-link,
+body[data-page="about"] .site-footer .footer-links .footer-contact-link,
+body[data-page="contact"] .site-footer .footer-links .footer-contact-link{background:#0868c8;color:#fff;border-color:#0868c8}
+body[data-page="home"] .site-footer .footer-links .footer-contact-link:hover,
+body[data-page="about"] .site-footer .footer-links .footer-contact-link:hover,
+body[data-page="contact"] .site-footer .footer-links .footer-contact-link:hover{background:#075ba9;border-color:#075ba9;color:#fff}
+@media(max-width:968px){
+  body[data-page="home"] .site-footer,
+  body[data-page="about"] .site-footer,
+  body[data-page="contact"] .site-footer{margin-left:0;padding-inline:24px}
+  body[data-page="home"] .site-footer .footer-inner,
+  body[data-page="about"] .site-footer .footer-inner,
+  body[data-page="contact"] .site-footer .footer-inner{align-items:flex-start;gap:12px;padding-block:16px}
+  body[data-page="home"] .site-footer .footer-links,
+  body[data-page="about"] .site-footer .footer-links,
+  body[data-page="contact"] .site-footer .footer-links{justify-content:flex-start}
+}
+
+/* Give controls a little spring and let the layered project art do its full move. */
+.portfolio-button{transition:transform .34s var(--presence-spring),box-shadow .32s,border-color .2s,background .2s}
+.portfolio-button:is(:hover,:focus-visible){transform:translateY(-3px) scale(1.01);box-shadow:0 8px 20px rgb(16 50 85 / 13%)}
+.portfolio-button:active{transform:translateY(1px) scale(.965);box-shadow:none;transition-duration:.1s}
+.portfolio-project{transition:transform .5s var(--presence-spring),box-shadow .5s,border-color .28s}
+.portfolio-project:is(:hover,:focus-visible){transform:translateY(-5px);box-shadow:0 16px 32px rgb(22 37 58 / 10%)}
+.portfolio-project:is(:hover,:focus-visible) h3{color:var(--project-ink)}
+.portfolio-project-image:not(.art-cover):not(.product-stage) img{transition:transform .65s var(--presence-ease)}
+.portfolio-project:is(:hover,:focus-visible) .portfolio-project-image:not(.art-cover):not(.product-stage) img{transform:scale(1.05)}
+.portfolio-project-copy{transition:translate .42s var(--presence-ease)}
+.portfolio-project:is(:hover,:focus-visible) .portfolio-project-copy{translate:0 -2px}
+.portfolio-project:is(:hover,:focus-visible) .portfolio-project-bottom i{transform:translate(4px,-3px)}
+.portfolio-project:active{transform:translateY(-1px) scale(.985);transition-duration:.1s}
+
+/* Restore the cover's moving sheen, then add a little more depth to each real interface. */
+.art-cover:after{content:''!important;transition:transform .95s var(--art-ease)}
+.portfolio-project:is(:hover,:focus-visible) .art-cover:after{transform:translateX(22%)}
+.portfolio-project:is(:hover,:focus-visible) .art-fa .art-manager{transform:translate(-4px,-10px) rotate(-1deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-fa .art-community{transform:translate(5px,-19px) rotate(0)}
+.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-app{transform:translate(-6px,-9px) rotate(-1deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-detail{transform:translate(4px,-10px) rotate(-1deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-busca .art-reading{transform:translate(-12px,-4px) rotate(-16deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-busca .art-history{transform:translate(4px,-9px) rotate(2deg)}
+.portfolio-project:is(:hover,:focus-visible) .art-hyro .art-chat-window{transform:translate(-4px,-12px) rotate(0)}
+.portfolio-project:is(:hover,:focus-visible) .product-stage.manager img.stage-primary{transform:translate(-5%,-7px)}
+.portfolio-project:is(:hover,:focus-visible) .product-stage.manager img.stage-secondary{transform:translateY(-12px)}
+.portfolio-project:is(:hover,:focus-visible) .product-stage.miguel img.stage-primary{transform:translate(-5%,-7px)}
+
+/* These are editorial cards, not whole-card controls. Let their links carry the cue. */
+body[data-page="about"] .about-portrait{transition:none}
+body[data-page="about"] .about-portrait:hover{transform:none;box-shadow:none}
+body[data-page="about"] .capability{transition:none}
+body[data-page="about"] .capability:hover{transform:none;border-color:#e0e5eb}
+.capability-icon{transition:none}
+.capability:hover .capability-icon{transform:none}
+.capability a{transition:color .18s,text-decoration-color .18s}
+.capability a:is(:hover,:focus-visible){color:#075cae;text-decoration:underline;text-underline-offset:4px}
+.contact-channel{transition:transform .24s var(--presence-spring),border-color .2s,box-shadow .24s}
+.contact-channel:hover,.contact-channel:focus-within{transform:none;border-color:#b0c6dc;box-shadow:0 5px 15px #182f4b08}
+.contact-channel:hover .channel-icon,.contact-channel:focus-within .channel-icon{transform:none}
+.copy-contact:hover{transform:scale(1.04)}
+.copy-contact:active{transform:scale(.97)}
+.contact-social-row a:hover{transform:translateY(-2px)}
+
+/* Decorative evidence stays still. Gallery and art controls remain responsive. */
+.community-art-stage img,.case-screen-sheet img{transition:none!important}
+.community-art-stage:hover img,.case-screen-sheet figure:hover img{transform:none!important}
+.brand-study-stage,.thumbnail-study-stage img,.banner-study-window,.banner-study-window img{transition-duration:.28s}
+.art-switches button:active,.gallery-controls button:active,.preset-buttons button:active{transform:scale(.98)}
+
+/* Keep the compact capsule, with the elastic hover the language switch is known for. */
+@media(hover:hover){
+  .lang-switcher-container:not(.is-dragging):hover .gliding-pill{transform:translateX(var(--pill-x)) scale(1.15)}
+  .lang-switcher-container:not(.is-dragging):hover .lang-item.active{transform:scale(1.05)}
+}
+
+/* Case controls expose the same response to a pointer and a keyboard. */
+body[data-project] :is(.button-primary,.button-quiet,.button-link,.flow-node,.chat-choice,.chat-tools button,.gallery-controls button,.feedback-demo button,.preset-buttons button,.resource-links a){transition-property:transform,border-color,background-color,color,box-shadow;transition-duration:.18s;transition-timing-function:var(--presence-ease)}
+body[data-project] :is(.button-primary,.button-quiet,.button-link,.flow-node,.chat-choice,.chat-tools button,.gallery-controls button,.feedback-demo button,.preset-buttons button,.resource-links a):active{transform:scale(.985)}
+body[data-project] :is(.button-primary,.button-quiet,.button-link,.flow-node,.chat-choice,.chat-tools button,.gallery-controls button,.feedback-demo button,.preset-buttons button,.resource-links a):focus-visible{outline-offset:3px}
+body[data-project] .button-primary:is(:hover,:focus-visible){transform:translateY(-1px);box-shadow:0 5px 16px var(--accent-glow)}
+body[data-project] .button-quiet:is(:hover,:focus-visible){transform:translateY(-1px)}
+body[data-project] .button-link:is(:hover,:focus-visible){gap:10px}
+body[data-project] .button-link:is(:hover,:focus-visible) i.fa-arrow-right{transform:translateX(3px)}
+body[data-project] .flow-node:is(:hover,:focus-visible,[aria-pressed="true"]){transform:translateY(-1px)}
+body[data-project] .chat-choice:is(:hover,:focus-visible){transform:translateY(-1px)}
+body[data-project] .chat-tools button:is(:hover,:focus-visible):not(:disabled){color:var(--accent)}
+body[data-project] .gallery-controls button:is(:hover,:focus-visible){border-color:rgba(var(--accent-rgb),.5)}
+body[data-project] .feedback-demo button:is(:hover,:focus-visible){border-color:rgba(var(--accent-rgb),.45);color:var(--accent)}
+body[data-project] .preset-buttons button:is(:hover,:focus-visible){border-color:rgba(var(--accent-rgb),.5)}
+body[data-project] .resource-links a:is(:hover,:focus-visible){transform:translateY(-1px)}
+body[data-project] .image-viewer-toolbar button:is(:hover,:focus-visible){border-color:var(--accent)}
+body[data-project] :is(.chat-tools button,.feedback-demo button):disabled{cursor:not-allowed;opacity:.48}
+
+/* Follow links as one action, and carry the hover cue into keyboard focus. */
+.case-next:focus-visible .case-next-arrow{transform:translateX(3px);border-color:var(--accent,#0868c8)}
+.case-next:focus-visible .case-next-media--miguel img,.case-next:focus-visible .case-next-media--hyro img{transform:translateY(-2px)}
+.case-next:focus-visible .case-next-media--busca img{transform:translateY(16px) rotate(-4deg)}
+.case-next:focus-visible .case-next-media--infra img{transform:translateY(-2px)}
+.case-next:focus-visible .case-next-media--fa img:first-child{transform:translate(-2px,-6px)}
+.case-next:focus-visible .case-next-media--fa img+img{transform:translate(2px,1px)}
+.case-next:focus-visible .case-next-media--creative img{transform:scale(1.02)}
+.case-ending-actions a:active,.case-ending-socials a:active,.site-footer .footer-links a:active{transform:scale(.985)}
+
+@media(hover:none){
+  body[data-page="about"] .capability:hover{border-color:#e0e5eb}
+  .case-next:hover .case-next-arrow{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .portfolio-project,.portfolio-project-copy,.portfolio-project-image img,.contact-channel,.contact-channel i,.copy-contact,.contact-social-row a,.about-chapters a,.about-chapters i,.case-next-media img,.case-next-arrow,.art-cover:after,.art-cover .art-interface,.art-cover .art-detail,.art-cover .art-chat-window,.brand-study-stage,.thumbnail-study-stage img,.banner-study-window,.banner-study-window img{transition:none!important;animation:none!important}
+  .portfolio-button:is(:hover,:focus-visible,:active),.portfolio-project:is(:hover,:focus-visible,:active),.portfolio-project-copy,.portfolio-project-image:not(.art-cover):not(.product-stage) img,.home-paths a:is(:hover,:focus-visible),.about-chapters a:is(:hover,:focus-visible),.contact-channel:hover,.copy-contact:hover,.contact-social-row a:hover,.case-next:is(:hover,:focus-visible) :is(.case-next-arrow,.case-next-media img),body[data-project] :is(.button-primary,.button-quiet,.button-link,.flow-node,.chat-choice,.chat-tools button,.gallery-controls button,.feedback-demo button,.preset-buttons button,.resource-links a):is(:hover,:focus-visible,:active){transform:none!important;translate:none!important;box-shadow:none}
+  .portfolio-project:is(:hover,:focus-visible) .art-cover:after,.portfolio-project:is(:hover,:focus-visible) .art-fa .art-manager,.portfolio-project:is(:hover,:focus-visible) .art-fa .art-community,.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-app,.portfolio-project:is(:hover,:focus-visible) .art-miguel .art-detail,.portfolio-project:is(:hover,:focus-visible) .art-busca .art-reading,.portfolio-project:is(:hover,:focus-visible) .art-busca .art-history,.portfolio-project:is(:hover,:focus-visible) .art-hyro .art-chat-window{transform:none!important}
+  .case-next:is(:hover,:focus-visible) .case-next-media img{transform:none!important}
+  .lang-switcher-container:not(.is-dragging):hover .gliding-pill{transform:translateX(var(--pill-x)) scale(1)}
+  .lang-switcher-container:not(.is-dragging):hover .lang-item.active{transform:none}
+}
+
+/* Complete the action feedback across links, buttons, disclosures, and custom controls. */
+:where(a[href],button,summary,[role="button"]){-webkit-tap-highlight-color:transparent}
+:where(summary){cursor:pointer}
+:where(button:disabled,[role="button"][aria-disabled="true"]){cursor:not-allowed}
+:where(a[href],button:not(:disabled),summary,[role="button"]):active:not([aria-disabled="true"]){filter:brightness(.96)}
+
+/* Keyboard focus should carry the same cue as pointer hover in the shared navigation. */
+.nav-link:not(.active):focus-visible{color:var(--accent);background:var(--accent-soft);transform:translateX(5px)}
+.profile-link:focus-visible .profile-pic-wrapper{transform:scale(1.025);box-shadow:0 8px 24px #162f4a18,0 0 0 2px var(--accent,#0868c8)}
+.portfolio-return-link:focus-visible svg{transform:translateX(-3px)}
+.mobile-menu-btn:focus-visible,.portfolio-menu-close:focus-visible{border-color:#9ab8d8!important;box-shadow:0 4px 14px #16487516}
+.mobile-menu-overlay .mobile-link-sub:focus-visible,.mobile-menu-overlay .mobile-link-main:focus-visible{color:#18212b!important;background:#e9edf2;box-shadow:0 0 0 2px rgb(8 104 200 / 22%)}
+.mobile-menu-overlay .mobile-social-btn:focus-visible{color:#075ba9;border-color:#b8cde2;background:#edf5fc}
+.social-icon:focus-visible{color:var(--accent,#0868c8);transform:translateY(-2px) scale(1.04)}
+.sidebar-cta:focus-visible,.mobile-cta:focus-visible{filter:brightness(.96)}
+.sidebar-cta:active,.mobile-cta:active{transform:translateY(1px) scale(.97);transition-duration:.1s}
+.mobile-menu-btn:active,.portfolio-menu-close:active,.mobile-menu-overlay .mobile-social-btn:active{transform:scale(.94);transition-duration:.1s}
+
+/* Underlined and disclosure links remain obvious without relying on movement. */
+.portfolio-text-link:focus-visible,.portfolio-infra-link:focus-visible{color:#075ba9;text-decoration-color:currentColor}
+.portfolio-infra-link:focus-visible>i{transform:translateX(3px)}
+.about-prose a:is(:hover,:focus-visible),.about-section a:is(:hover,:focus-visible){color:#075ba9;text-decoration-thickness:2px}
+.credential-list li:focus-within,.experience-list li:focus-within{background:#edf2f7}
+.fa-technical-details summary:is(:hover,:focus-visible),.fa-technical-details[open] summary{color:var(--accent)}
+[data-enlarge]:focus-visible{filter:brightness(1.05);cursor:zoom-in}
+.contact-channel:focus-within{border-color:#8eafd2;box-shadow:0 0 0 3px #0868c812}
+.contact-channel>a:is(:hover,:focus-visible){color:#075ba9}
+.contact-channel>a:is(:hover,:focus-visible)>i:last-child{transform:translate(2px,-2px)}
+.copy-contact:focus-visible{background:#e7eff8;box-shadow:0 0 0 2px #0868c825}
+.contact-social-row a:focus-visible{transform:translateY(-2px);border-color:#9bb9d7}
+.intent-option input:focus-visible+span,.intent-option:hover span{border-color:#8eafd2;box-shadow:0 0 0 2px #0868c812}
+
+/* Case-study tabs and choices show selection separately from hover and press. */
+body[data-project] .art-switches button:is(:hover,:focus-visible){color:var(--accent);border-bottom-color:var(--accent)}
+body[data-project] .gallery-controls button:is(:hover,:focus-visible),body[data-project] .preset-buttons button:is(:hover,:focus-visible),body[data-project] .feedback-demo button:is(:hover,:focus-visible){background:var(--accent-soft)}
+body[data-project] .chat-tools button:is(:hover,:focus-visible):not(:disabled){background:var(--accent-soft)}
+body[data-project] :is(.button-primary,.button-quiet,.button-link,.flow-node,.chat-choice,.gallery-controls button,.feedback-demo button,.preset-buttons button,.resource-links a):disabled{filter:none;cursor:not-allowed;opacity:.52}
+
+/* Each case control lifts into the action; the icon reinforces its direction. */
+body[data-project] :is(.button-primary,.button-quiet,.flow-node,.chat-choice,.gallery-controls button,.feedback-demo button,.preset-buttons button):is(:hover,:focus-visible){transform:translateY(-2px) scale(1.015)}
+body[data-project] :is(.button-primary,.button-quiet,.flow-node,.chat-choice,.gallery-controls button,.feedback-demo button,.preset-buttons button):active:not(:disabled){transform:translateY(1px) scale(.96);transition-duration:.1s}
+body[data-project] .button-primary:is(:hover,:focus-visible){box-shadow:0 8px 22px var(--accent-glow)}
+body[data-project] .button-primary:is(:hover,:focus-visible) i.fa-arrow-right{transform:translateX(5px)}
+body[data-project] .button-link:is(:hover,:focus-visible){gap:11px}
+body[data-project] .button-link:is(:hover,:focus-visible) i.fa-arrow-right{transform:translateX(5px)}
+body[data-project] .flow-node:is(:hover,:focus-visible,[aria-pressed="true"]){box-shadow:0 8px 18px rgba(var(--accent-rgb),.14)}
+body[data-project] .chat-choice:is(:hover,:focus-visible) i{transform:translateX(3px)}
+body[data-project] :is(.gallery-controls button,.feedback-demo button,.preset-buttons button):is(:hover,:focus-visible) i{transform:scale(1.1)}
+
+/* The media player's persistent active state means captions or a non-default speed is set. */
+body[data-art="video"] .control-btn:focus-visible{opacity:1;color:#fff;background:rgba(255,255,255,.1)}
+body[data-art="video"] .control-btn.active,body[data-art="video"] .control-btn[aria-expanded="true"]{background-color:rgba(0,113,227,.18)!important;color:#fff!important;box-shadow:inset 0 -2px var(--accent,#0071e3);filter:none;transform:none}
+body[data-art="video"] .control-btn:active{background-color:rgba(255,255,255,.2);transform:scale(.96)}
+body[data-art="video"] .control-btn.active:active,body[data-art="video"] .control-btn[aria-expanded="true"]:active{background-color:rgba(0,113,227,.28)!important;transform:scale(.96)}
+body[data-art="video"] .caption-option:focus-visible{background:rgba(255,255,255,.12);color:#fff}
+body[data-art="video"] .caption-option.active{background:rgba(0,113,227,.22);color:#fff;box-shadow:inset 2px 0 var(--accent,#0071e3)}
+body[data-art="video"] .lb-btn:focus-visible,body[data-art="video"] .lb-zoom-btn-trigger:focus-visible{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.26)}
+body[data-art="video"] .lb-btn:active,body[data-art="video"] .lb-zoom-btn-trigger:active{transform:scale(.96)}
+body[data-art="video"] .time-display{appearance:none;min-height:40px;padding:0;border:0;border-radius:5px;background:transparent;color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px}
+body[data-art="video"] .time-display:is(:hover,:focus-visible){opacity:1;color:#fff;text-decoration-color:rgba(255,255,255,.7);transform:none}
+body[data-art="video"] .time-display:active{transform:scale(.98)}
+
+@media(hover:hover){
+  .profile-link:hover .profile-pic-wrapper{transform:scale(1.035);box-shadow:0 10px 26px #162f4a20,0 0 0 2px #0868c81a}
+  .nav-link:not(.active):hover{color:var(--accent);background:var(--accent-soft)}
+  .mobile-menu-overlay .mobile-link-sub:hover,.mobile-menu-overlay .mobile-link-main:hover{color:#18212b!important;background:#e9edf2;transform:translateX(2px)}
+  .mobile-menu-overlay .mobile-social-btn:hover{color:#075ba9;border-color:#b8cde2;background:#edf5fc}
+  .social-icon:hover{color:var(--accent,#0868c8);transform:translateY(-3px) scale(1.08);box-shadow:0 5px 14px #0868c81a}
+  .mobile-menu-btn:hover,.portfolio-menu-close:hover{border-color:#9ab8d8!important;box-shadow:0 4px 14px #16487516;transform:translateY(-1px)}
+  .mobile-menu-overlay .mobile-social-btn:hover{color:#075ba9;border-color:#b8cde2;background:#edf5fc}
+  body[data-art="video"] .control-btn:hover{opacity:1;color:#fff;background:rgba(255,255,255,.1);transform:scale(1.06)}
+  body[data-art="video"] .control-btn.active:hover,body[data-art="video"] .control-btn[aria-expanded="true"]:hover{transform:scale(1.035)}
+  body[data-art="video"] .caption-option:hover{background:rgba(255,255,255,.12);color:#fff}
+  body[data-art="video"] .lb-btn:hover,body[data-art="video"] .lb-zoom-btn-trigger:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.26);transform:scale(1.04)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .nav-link:focus-visible,.nav-link:hover,.nav-link> :is(i,svg),.profile-link:focus-visible .profile-pic-wrapper,.profile-link:hover .profile-pic-wrapper,.portfolio-return-link:focus-visible svg,.portfolio-infra-link:focus-visible>i,.social-icon:is(:hover,:focus-visible),.contact-social-row a:focus-visible,.mobile-menu-btn:hover,.portfolio-menu-close:hover,body[data-art="video"] :is(.control-btn,.lb-btn,.lb-zoom-btn-trigger,.time-display):is(:hover,:focus-visible,:active){transform:none!important;box-shadow:none!important}
+  body[data-art="video"] :is(.control-btn,.lb-btn,.lb-zoom-btn-trigger,.time-display):is(:hover,:focus-visible,:active){transition:none!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .nav-link,.nav-link> :is(i,svg),.profile-link .profile-pic-wrapper,.social-icon,.sidebar-cta,.mobile-cta,.mobile-menu-btn,.portfolio-menu-close,.mobile-menu-overlay .mobile-link-sub,.mobile-menu-overlay .mobile-link-main,.mobile-menu-overlay .mobile-social-btn{transition:none!important}
+  .nav-link:active,.sidebar-cta:active,.mobile-cta:active,.mobile-menu-btn:active,.portfolio-menu-close:active,.mobile-menu-overlay .mobile-link-sub:is(:hover,:focus-visible,:active),.mobile-menu-overlay .mobile-link-main:is(:hover,:focus-visible,:active),.mobile-menu-overlay .mobile-social-btn:active{transform:none!important}
+}
+
+/* Active player toggles expose persistent state without growing the controls. */
+body[data-art="video"] .mute-btn[aria-pressed="true"],body[data-art="video"] .fullscreen-btn[aria-pressed="true"]{background-color:rgba(0,113,227,.18)!important;box-shadow:inset 0 -2px var(--accent,#0071e3)}
+
+/* Ask vector icons to keep their curves and stroke weight through transforms. */
+:where(.portfolio-button,.home-paths,.invitation-path,.nav-link,.mobile-menu-overlay .mobile-link-sub,.social-icon,.sidebar-cta,.mobile-cta,.about-chapters,body[data-project]) svg{shape-rendering:geometricPrecision;text-rendering:geometricPrecision}
+:where(.portfolio-button,.home-paths,.invitation-path,.nav-link,.mobile-menu-overlay .mobile-link-sub,.social-icon,.sidebar-cta,.mobile-cta,.about-chapters,body[data-project]) svg :is(path,line,circle,rect,polyline){vector-effect:non-scaling-stroke}
+:where(.portfolio-button,.home-paths,.invitation-path,.nav-link,.mobile-menu-overlay .mobile-link-sub,.social-icon,.sidebar-cta,.mobile-cta,.about-chapters,body[data-project]) :is(i,svg){transform-origin:center}
+
+/* The chat and About icons draw a restrained greeting while hovered or focused. */
+.contact-greeting-wave,.about-greeting-wave{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:0;stroke-dasharray:8;stroke-dashoffset:8}
+.sidebar-cta:is(:hover,:focus-visible) .contact-greeting-wave--one,.mobile-cta:is(:hover,:focus-visible) .contact-greeting-wave--one{animation:greeting-stroke 1.75s .04s ease-in-out infinite}
+.sidebar-cta:is(:hover,:focus-visible) .contact-greeting-wave--two,.mobile-cta:is(:hover,:focus-visible) .contact-greeting-wave--two{animation:greeting-stroke 1.75s .34s ease-in-out infinite}
+.portfolio-about-link:is(:hover,:focus-visible) .about-greeting-wave--one{animation:greeting-stroke 1.8s ease-in-out infinite}
+.portfolio-about-link:is(:hover,:focus-visible) .about-greeting-wave--two{animation:greeting-stroke 1.8s .3s ease-in-out infinite}
+@keyframes greeting-stroke{0%,100%{opacity:.42;stroke-dashoffset:0}50%{opacity:1;stroke-dashoffset:-3}}
+
+/* Keep every social mark white over the existing blue hover surface. */
+.social-icon:is(:hover,:focus-visible){color:#fff!important;background:var(--accent,#0868c8)!important;border-color:var(--accent,#0868c8)!important}
+.social-icon:is(:hover,:focus-visible) :is(svg,i),.social-icon:is(:hover,:focus-visible) svg *{color:#fff!important;fill:#fff!important;stroke:#fff!important}
+.social-icon svg{shape-rendering:geometricPrecision}
+.social-icon i{font-size:16px;line-height:1;-webkit-font-smoothing:antialiased}
+
+/* Add a clear pressed state without replacing controls existing movement. */
+:where(a[href],button:not(:disabled),summary,[role="button"]):active:not([aria-disabled="true"]):not(.portfolio-project):not(.nav-link):not(.mobile-link-main):not(.mobile-link-sub):not(.mobile-menu-btn):not(.portfolio-menu-close):not(.portfolio-button):not(.home-paths a):not(.invitation-path):not(.social-icon):not(.site-footer a):not(.lang-item){filter:brightness(.96);transition-duration:.1s!important}
+.about-chapters a:is(:hover,:focus-visible){box-shadow:0 5px 15px rgb(23 71 119 / 9%)}
+.about-chapters a:is(:hover,:focus-visible) i{color:#075cae;filter:drop-shadow(0 2px 3px rgb(8 104 200 / 18%))}
+
+/* The compact liquid capsule carries the press; text and flags stay at native size. */
+.lang-switcher-container{cursor:pointer;touch-action:pan-y}
+.lang-switcher-container .lang-item,.lang-switcher-container .lang-flag{transform:none!important}
+.lang-switcher-container .gliding-pill{border:1px solid rgb(255 255 255 / 88%);background:linear-gradient(145deg,rgb(255 255 255 / 98%),rgb(245 248 252 / 90%));box-shadow:0 3px 8px rgb(16 42 69 / 12%),0 1px 2px rgb(16 42 69 / 8%),inset 0 1px 1px #fff,inset 0 -1px rgb(180 198 215 / 23%);transition:transform .45s cubic-bezier(.2,.8,.2,1.2),background .25s,box-shadow .25s!important}
+.lang-switcher-container .gliding-pill::after{content:"";position:absolute;inset:1px;border-radius:inherit;background:linear-gradient(115deg,transparent 12%,rgb(255 255 255 / 76%) 48%,transparent 78%);opacity:0;transition:opacity .2s;pointer-events:none}
+@media(hover:hover){.lang-switcher-container:not(.is-dragging):not(.is-pressed):hover .gliding-pill{transform:translateX(var(--pill-x)) scale(1.15)}.lang-switcher-container:not(.is-dragging):not(.is-pressed):hover .lang-item.active{transform:none}.lang-switcher-container:not(.is-dragging):not(.is-pressed):hover .gliding-pill::after{opacity:.7}}
+.lang-switcher-container.is-pressed .gliding-pill{transform:translateX(var(--pill-x)) scale(.93,.84)!important;transition:transform .14s cubic-bezier(.2,.7,.3,1)!important}
+.lang-switcher-container[data-pointer-type="touch"].is-pressed .gliding-pill{transform:translateX(var(--pill-x)) scale(.88,.8)!important}
+.lang-switcher-container.is-pressed .gliding-pill::after{opacity:1}
+.lang-switcher-container.is-dragging .gliding-pill{transition:none!important;filter:saturate(1.08)}
+.lang-switcher-container.is-settling .gliding-pill{will-change:transform;box-shadow:0 5px 14px rgb(16 42 69 / 18%),0 1px 3px rgb(16 42 69 / 10%),inset 0 1px 1px #fff}
+body[data-project] .portfolio-sidebar .lang-switcher-container .gliding-pill{border-color:rgb(255 255 255 / 26%);background:linear-gradient(145deg,rgb(255 255 255 / 24%),rgb(255 255 255 / 12%));box-shadow:0 3px 8px rgb(0 0 0 / 30%),inset 0 1px 1px rgb(255 255 255 / 23%),inset 0 -1px rgb(0 0 0 / 10%)}
+body[data-project] .portfolio-sidebar .lang-switcher-container .lang-item{color:rgb(255 255 255 / 58%)}
+body[data-project] .portfolio-sidebar .lang-switcher-container .lang-item.active{color:#fff}
+@media(prefers-reduced-motion:reduce){.contact-greeting-wave,.about-greeting-wave{animation:none!important;opacity:0!important}.lang-switcher-container .gliding-pill,.lang-switcher-container .gliding-pill::after{transition:none!important;animation:none!important}.lang-switcher-container.is-pressed .gliding-pill,.lang-switcher-container[data-pointer-type="touch"].is-pressed .gliding-pill{transform:translateX(var(--pill-x)) scale(1)!important}.lang-switcher-container:not(.is-dragging):hover .gliding-pill{transform:translateX(var(--pill-x)) scale(1)!important}.lang-switcher-container.is-settling .gliding-pill{will-change:auto}}
+
+/* Press feedback should read as a short, cushioned depression on every control. */
+:where(a[href]:not(.portfolio-project):not(.lang-item):not(.nav-link):not(.mobile-link-main):not(.mobile-link-sub):not(.mobile-menu-btn):not(.portfolio-menu-close):not(.portfolio-button):not(.home-paths a):not(.invitation-path):not(.social-icon):not(.site-footer a):not(.sidebar-cta):not(.mobile-cta):not(.case-ending-actions a):not(.case-ending-socials a),button:not(:disabled):not(.mobile-menu-btn):not(.portfolio-menu-close):not(.lang-item),summary,[role="button"]):active:not([aria-disabled="true"]){transform:translateY(1.5px) scale(.985);filter:brightness(.96);transition-duration:.1s!important}
+body[data-project] :is(.button-link,.chat-tools button,.resource-links a):active:not(:disabled){transform:translateY(1.5px) scale(.985);transition-duration:.1s}
+
+/* Keep active navigation clean; keyboard focus remains visible as an outer ring. */
+.nav-link.active,.mobile-menu-overlay .mobile-link-sub.is-active,.mobile-menu-overlay .mobile-link-sub[aria-current="page"],.mobile-menu-overlay .mobile-link-main[aria-current="page"]{box-shadow:none!important}
+.mobile-menu-overlay :is(.mobile-link-sub,.mobile-link-main):focus-visible{outline:2px solid rgb(8 104 200 / 35%);outline-offset:2px;box-shadow:none!important}
+
+/* Liquid-glass navigation for the full-size project image viewer. */
+.portfolio-image-viewer{background:rgb(7 10 14 / 82%);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%)}
+.image-viewer-toolbar{position:relative;z-index:2;width:100%;box-sizing:border-box;flex:0 0 auto;min-height:70px;padding:12px 20px;border-bottom:1px solid rgb(255 255 255 / 14%);background:linear-gradient(180deg,rgb(255 255 255 / 10%),rgb(255 255 255 / 3%));color:#f4f7fb;backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%)}
+.image-viewer-toolbar p{flex:1 1 auto;min-width:0;margin:0 auto 0 0;overflow:hidden;color:rgb(255 255 255 / 84%);text-overflow:ellipsis;white-space:nowrap}
+.image-viewer-toolbar button,.image-viewer-arrow,.image-viewer-thumb{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgb(255 255 255 / 37%);background:linear-gradient(145deg,rgb(255 255 255 / 28%),rgb(255 255 255 / 9%));color:#fff;box-shadow:0 8px 24px rgb(0 0 0 / 20%);backdrop-filter:blur(20px) saturate(175%);-webkit-backdrop-filter:blur(20px) saturate(175%);transition:transform .24s cubic-bezier(.2,.8,.2,1),background .24s,border-color .24s,filter .2s}
+.image-viewer-toolbar button{min-height:44px;min-width:44px;border-radius:999px;padding:10px 15px}
+.image-viewer-toolbar button::before,.image-viewer-arrow::before,.image-viewer-thumb::before{content:"";position:absolute;z-index:0;inset:1px 1px auto;height:48%;border-radius:inherit;background:linear-gradient(180deg,rgb(255 255 255 / 32%),rgb(255 255 255 / 0%));opacity:.8;pointer-events:none}
+.image-viewer-toolbar button>*,.image-viewer-arrow>*,.image-viewer-thumb img{position:relative;z-index:1}
+.image-viewer-toolbar button:is(:hover,:focus-visible),.image-viewer-arrow:is(:hover,:focus-visible){border-color:rgb(255 255 255 / 72%);background:linear-gradient(145deg,rgb(255 255 255 / 39%),rgb(255 255 255 / 15%))}
+.image-viewer-toolbar button:is(:hover,:focus-visible){transform:scale(1.045)}
+.image-viewer-arrow:is(:hover,:focus-visible){transform:translateY(calc(-50% - 1px)) scale(1.045)}
+.image-viewer-toolbar button:active{transform:translateY(2px) scale(.95);filter:brightness(1.08)}
+.image-viewer-arrow:active{transform:translateY(calc(-50% + 2px)) scale(.95);filter:brightness(1.08)}
+.image-viewer-toolbar button:focus-visible,.image-viewer-arrow:focus-visible,.image-viewer-thumb:focus-visible{outline:2px solid rgb(255 255 255 / 90%);outline-offset:3px}
+.image-viewer-media{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:18px 20px 14px;overflow:auto;overscroll-behavior:contain}
+.image-viewer-stage{position:relative;isolation:isolate;display:grid;place-items:center;flex:1 0 auto;width:fit-content;max-width:100%;min-width:0;min-height:0;margin:auto;touch-action:pan-y}
+.image-viewer-stage>img{display:block;width:auto;height:auto;max-width:min(90vw,1500px);max-height:calc(100dvh - 224px);border-radius:12px;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.image-viewer-arrow{position:absolute;z-index:2;top:50%;display:grid;place-items:center;width:40px;height:40px;padding:0;border-radius:50%;font-size:13px;cursor:pointer;background:linear-gradient(145deg,rgb(255 255 255 / 25%),rgb(18 28 40 / 38%));transform:translateY(-50%)}
+.image-viewer-arrow::before{height:58%}
+.image-viewer-previous{left:8px}
+.image-viewer-next{right:8px}
+.image-viewer-rail{display:flex;align-items:center;justify-content:center;gap:12px;flex:0 0 auto;max-width:min(92vw,840px);min-height:54px;padding:7px 10px;border:1px solid rgb(255 255 255 / 25%);border-radius:999px;background:linear-gradient(145deg,rgb(255 255 255 / 19%),rgb(255 255 255 / 7%));backdrop-filter:blur(22px) saturate(175%);-webkit-backdrop-filter:blur(22px) saturate(175%);box-shadow:0 8px 24px rgb(0 0 0 / 18%)}
+.image-viewer-rail[hidden],.image-viewer-arrow[hidden]{display:none}
+.image-viewer-counter{flex:0 0 auto;padding:0 8px;color:rgb(255 255 255 / 92%);font:600 .7rem/1 Inter,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.image-viewer-thumbnails{display:flex;align-items:center;gap:6px;max-width:calc(92vw - 100px);overflow-x:auto;scrollbar-width:none;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory}
+.image-viewer-thumbnails::-webkit-scrollbar{display:none}
+.image-viewer-thumb{flex:0 0 46px;width:46px;height:36px;padding:0;border-radius:8px;opacity:.68;cursor:pointer;scroll-snap-align:center}
+.image-viewer-thumb img{display:block;width:100%;height:100%;border-radius:inherit;object-fit:cover}
+.image-viewer-thumb[aria-current="true"]{width:56px;height:40px;flex-basis:56px;opacity:1;border-color:#fff;transform:translateY(-1px)}
+.image-viewer-thumb:hover{opacity:.95;transform:translateY(-1px)}
+.image-viewer-thumb:active{transform:translateY(2px) scale(.94)}
+.original-size .image-viewer-stage{flex:0 0 auto;max-width:none;min-width:0;margin:0}
+.original-size .image-viewer-stage>img{max-width:none;max-height:none;margin:0;border-radius:7px}
+@media(max-width:600px){.image-viewer-toolbar{min-height:62px;padding:9px 12px;gap:8px}.image-viewer-toolbar p{width:auto;flex:1 1 auto;font-size:.7rem}.image-viewer-toolbar button{min-height:42px;min-width:42px;padding:9px 12px}.image-viewer-media{justify-content:center;gap:10px;padding:12px 8px 10px}.image-viewer-stage{min-width:0}.image-viewer-stage>img{max-width:calc(100vw - 48px);max-height:calc(100dvh - 206px);border-radius:9px}.image-viewer-arrow{width:36px;height:36px;font-size:12px}.image-viewer-previous{left:6px}.image-viewer-next{right:6px}.image-viewer-rail{max-width:calc(100vw - 28px);min-height:48px;padding:6px 8px;gap:7px}.image-viewer-thumbnails{max-width:calc(100vw - 116px);gap:5px}.image-viewer-thumb{flex-basis:40px;width:40px;height:32px}.image-viewer-thumb[aria-current="true"]{flex-basis:48px;width:48px;height:36px}.original-size .image-viewer-stage>img{max-width:none;max-height:none}}
+
+/* Bring the older lightbox controls into the same translucent glass family. */
+.lightbox-overlay .lb-btn,.lightbox-overlay .lb-zoom-control{border:1px solid rgb(255 255 255 / 43%);background:linear-gradient(145deg,rgb(255 255 255 / 26%),rgb(255 255 255 / 8%));color:#fff;backdrop-filter:blur(22px) saturate(175%);-webkit-backdrop-filter:blur(22px) saturate(175%);box-shadow:0 8px 24px rgb(0 0 0 / 22%)}
+.lightbox-overlay .lb-btn{isolation:isolate;overflow:hidden}
+.lightbox-overlay .lb-prev,.lightbox-overlay .lb-next{top:50%;transform:translateY(-50%);transition:transform .24s cubic-bezier(.2,.8,.2,1),background .24s,border-color .24s}
+.lightbox-overlay :is(.lb-prev,.lb-next):is(:hover,:focus-visible){transform:translateY(calc(-50% - 1px)) scale(1.06)}
+.lightbox-overlay :is(.lb-prev,.lb-next):active{transform:translateY(calc(-50% + 2px)) scale(.94)}
+.lightbox-overlay :is(.lb-prev,.lb-next)[hidden],.lightbox-overlay .lb-gallery-counter[hidden]{display:none!important}
+.lightbox-overlay .lb-gallery-counter{position:static;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:50px;padding:0 10px;border-right:1px solid rgb(255 255 255 / 26%);border-radius:0;background:transparent;color:#fff;text-align:center;font:600 .66rem/1 Inter,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.06em;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.lightbox-overlay .lb-gallery-counter--floating{position:absolute;z-index:4002;left:50%;bottom:88px;transform:translateX(-50%);padding:8px 13px;border:1px solid rgb(255 255 255 / 36%);border-right:1px solid rgb(255 255 255 / 36%);border-radius:999px;background:linear-gradient(145deg,rgb(255 255 255 / 25%),rgb(20 29 40 / 38%));box-shadow:0 8px 24px rgb(0 0 0 / 20%);backdrop-filter:blur(20px) saturate(175%);-webkit-backdrop-filter:blur(20px) saturate(175%)}
+.lightbox-overlay .lb-btn::before,.lightbox-overlay .lb-zoom-control::before{content:"";position:absolute;z-index:0;inset:1px 1px auto;height:48%;border-radius:inherit;background:linear-gradient(180deg,rgb(255 255 255 / 35%),rgb(255 255 255 / 0%));pointer-events:none}
+.lightbox-overlay .lb-btn:is(:hover,:focus-visible){border-color:rgb(255 255 255 / 78%);background:linear-gradient(145deg,rgb(255 255 255 / 39%),rgb(255 255 255 / 14%));transform:scale(1.06)}
+.lightbox-overlay .lb-btn:active,.lightbox-overlay .lb-zoom-btn-trigger:active{transform:translateY(2px) scale(.94);filter:brightness(1.08)}
+.lightbox-overlay .lb-btn:focus-visible,.lightbox-overlay .lb-zoom-btn-trigger:focus-visible{outline:2px solid rgb(255 255 255 / 90%);outline-offset:3px}
+.lightbox-overlay .lb-btn svg,.lightbox-overlay .lb-zoom-btn-trigger svg{position:relative;z-index:1;filter:drop-shadow(0 1px 2px rgb(0 0 0 / 32%))}
+.lightbox-overlay .lb-zoom-control{isolation:isolate;overflow:hidden;gap:12px;padding:9px 17px}
+.lightbox-overlay .lb-zoom-control::before{height:55%}
+.lightbox-overlay .lb-zoom-btn-trigger{z-index:1;min-width:42px;min-height:42px;border-radius:50%;transition:transform .22s cubic-bezier(.2,.8,.2,1),background .22s}
+.lightbox-overlay .lb-zoom-btn-trigger:hover{transform:scale(1.12);background:rgb(255 255 255 / 13%)}
+.lightbox-overlay .lb-zoom-slider::-webkit-slider-thumb{background:linear-gradient(145deg,#fff,#dcecff);border-color:rgb(255 255 255 / 85%)}
+.lightbox-overlay .lb-zoom-slider::-webkit-slider-runnable-track{background:rgb(255 255 255 / 38%);border-color:rgb(255 255 255 / 22%)}
+.lightbox-overlay .lb-zoom-slider::-moz-range-thumb{background:linear-gradient(145deg,#fff,#dcecff);border-color:rgb(255 255 255 / 85%)}
+.lightbox-overlay .lb-zoom-slider::-moz-range-track{background:rgb(255 255 255 / 38%);border-color:rgb(255 255 255 / 22%)}
+@media(prefers-reduced-motion:reduce){.image-viewer-toolbar button,.image-viewer-arrow,.image-viewer-thumb,.lightbox-overlay .lb-btn,.lightbox-overlay .lb-zoom-btn-trigger{transition:none!important}.image-viewer-toolbar button:active,.image-viewer-arrow:active,.image-viewer-thumb:active,.lightbox-overlay .lb-btn:active,.lightbox-overlay .lb-zoom-btn-trigger:active{transform:none!important}}
+
+/* The spring animates every frame itself; CSS transitions must not interpolate those frames. */
+.lang-switcher-container.is-settling .gliding-pill{transition:none!important}
+
+/* Give every actionable control the same short press response, without inset shadows.
+   Project cards and the liquid language capsule keep their distinct interactions. */
+:is(button:not(:disabled),input:is([type="button"],[type="submit"],[type="reset"]):not(:disabled),a[href],summary,[role="button"]):active:not([aria-disabled="true"]):not(.portfolio-project):not(.lang-item):not(.lang-switcher-container):not(.image-viewer-arrow):not(.image-viewer-thumb):not(.lb-prev):not(.lb-next){transform:translateY(2px) scale(.97)!important;filter:brightness(.97);transition-duration:.11s!important}
+
+@media(prefers-reduced-motion:reduce){
+  :is(button:not(:disabled),input:is([type="button"],[type="submit"],[type="reset"]):not(:disabled),a[href],summary,[role="button"]):active:not([aria-disabled="true"]):not(.portfolio-project):not(.lang-item):not(.lang-switcher-container):not(.image-viewer-arrow):not(.image-viewer-thumb):not(.lb-prev):not(.lb-next){transform:none!important;transition:none!important}
+}
