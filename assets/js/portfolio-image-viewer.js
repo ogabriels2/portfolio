@@ -147,10 +147,10 @@
   });
 
   stage.addEventListener('pointerdown', event => {
-    if (event.pointerType === 'touch') touchStart = [event.clientX, event.clientY];
+    if (event.pointerType === 'touch' && !viewer.classList.contains('original-size') && event.isPrimary) touchStart = [event.clientX, event.clientY];
   });
   stage.addEventListener('pointerup', event => {
-    if (!touchStart || event.pointerType !== 'touch') return;
+    if (!touchStart || event.pointerType !== 'touch' || viewer.classList.contains('original-size')) return;
     const [startX, startY] = touchStart;
     touchStart = null;
     const dx = event.clientX - startX;

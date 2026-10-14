@@ -78,10 +78,36 @@
     element.setAttribute('aria-hidden', 'false');
     element.classList.add('active');
     activeDialog = controller;
-    if (element === menu) syncMenuButton(true);
+    if (element === menu) {
+      syncMenuButton(true);
+      const projects = element.querySelector('.mobile-projects-wrapper');
+      try {
+        const raw = sessionStorage.getItem('portfolio.mobileMenu.scroll.v1');
+        const saved = raw === null ? NaN : Number(raw);
+        if (projects && Number.isFinite(saved) && saved >= 0) projects.scrollTop = saved;
+        else if (projects) {
+          const current = projects.querySelector('[aria-current="page"],.is-active');
+          if (current) {
+            const box = projects.getBoundingClientRect(), item = current.getBoundingClientRect();
+            if (item.bottom > box.bottom) projects.scrollTop += item.bottom - box.bottom + 8;
+          }
+        }
+      } catch {}
+    }
     document.body.classList.add('portfolio-dialog-open');
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
+    if (mobileQuery.matches) {
+      controller.mobileScrollLock = {
+        y: window.scrollY,
+        position: document.body.style.position,
+        top: document.body.style.top,
+        width: document.body.style.width
+      };
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${controller.mobileScrollLock.y}px`;
+      document.body.style.width = '100%';
+    }
     // Move focus before making the opener's subtree inert.
     firstFocus(controller);
     controller.blocked = blockBackground(element);
@@ -105,6 +131,17 @@
     document.body.classList.remove('portfolio-dialog-open');
     document.body.style.overflow = controller.overflow?.body || '';
     document.documentElement.style.overflow = controller.overflow?.root || '';
+    if (controller.mobileScrollLock) {
+      const lock = controller.mobileScrollLock;
+      document.body.style.position = lock.position;
+      document.body.style.top = lock.top;
+      document.body.style.width = lock.width;
+      const behavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(0, lock.y);
+      document.documentElement.style.scrollBehavior = behavior;
+      controller.mobileScrollLock = null;
+    }
     if (restoreFocus) focus(controller.origin);
     controller.origin = null;
   }
@@ -245,6 +282,16 @@
       element.prepend(closeButton);
     }
     const controller = registerDialog(element);
+    const projects = element.querySelector('.mobile-projects-wrapper');
+    if (projects) {
+      const persistMenu = () => {
+        if (element.hidden) return;
+        try { sessionStorage.setItem('portfolio.mobileMenu.scroll.v1', String(projects.scrollTop)); } catch {}
+      };
+      projects.addEventListener('scroll', persistMenu, { passive: true });
+      element.addEventListener('click', persistMenu, true);
+      window.addEventListener('pagehide', persistMenu);
+    }
     if (!boundTriggers.has(button)) {
       boundTriggers.add(button);
       button.addEventListener('click', () => controller.open ? close(controller) : open(controller, button));
@@ -252,7 +299,7 @@
     element.querySelectorAll('a[href]').forEach(link => {
       if (boundTriggers.has(link)) return;
       boundTriggers.add(link);
-      link.addEventListener('click', () => close(controller, false));
+      link.addEventListener('click', () => { if (!link.closest('.lang-switcher-container')) close(controller, false); });
     });
     syncMenuButton(controller.open);
   }
