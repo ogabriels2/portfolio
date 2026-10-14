@@ -141,3 +141,8 @@
   .video-container .volume-container:is(:hover,:focus-within) .volume-slider-container, .video-container .volume-container.dragging .volume-slider-container { width: 80px; opacity: 1; pointer-events: auto; }
 }
 @media(prefers-reduced-motion:reduce) { .video-container *, .video-layout .presentation-play i { animation: none!important; transition: none!important; } }
+
+.video-container .player-loading-status { position: absolute; left: 50%; top: calc(50% + 62px); transform: translateX(-50%); color: #fff; font-size: .75rem; font-weight: 600; text-shadow: 0 1px 4px #000; pointer-events: none; white-space: nowrap; }
+.video-container.is-buffering .center-controls { opacity: 1; pointer-events: auto; }
+.video-container.is-buffering .controls-wrapper { opacity: 1; transform: none; pointer-events: auto; }
+.video-container:not(.is-buffering) .player-loading-status { display: none; }

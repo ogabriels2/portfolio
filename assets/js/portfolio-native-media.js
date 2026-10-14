@@ -15,14 +15,7 @@
     const card = frame.closest('.presentation-card');
     const panel = document.createElement('div');
     panel.className = 'film-player-panel presentation-panel';
-    const heading = document.createElement('div');
-    heading.className = 'film-player-heading';
-    const title = document.createElement('span');
-    title.textContent = label('Apresentação do projeto', 'Project presentation');
-    const duration = document.createElement('span');
-    duration.textContent = source?.duration ? formatTime(source.duration) : 'UNIVESP';
-    heading.append(title, duration);
-    if (card) { frame.before(panel); panel.append(heading, frame); }
+    if (card) { frame.before(panel); panel.append(frame); }
 
     // Until a delivery URL is configured, the original source remains a working link.
     if (!source?.src && !source?.sources?.length) {
@@ -86,11 +79,26 @@
     });
     frame.replaceWith(media);
     window.initializePortfolioVideo(media);
+    // Prepare only nearby media, without downloading every presentation on entry.
+    const connection = navigator.connection;
+    const constrained = connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || '');
+    let prepared = false;
+    const prepare = () => {
+      if (prepared || !video.paused || video.readyState > 0) return;
+      prepared = true; video.preload = 'metadata'; video.load();
+    };
+    if (!constrained) {
+      media.addEventListener('pointerenter', prepare, { once: true });
+      media.addEventListener('focusin', prepare, { once: true });
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          if (entries.some(entry => entry.isIntersecting)) { prepare(); observer.disconnect(); }
+        }, { rootMargin: '300px 0px' });
+        observer.observe(media);
+      }
+    }
     const stop = card?.querySelector('[data-presentation-close]');
     video.addEventListener('play', () => { if (stop) stop.hidden = false; });
-    video.addEventListener('loadedmetadata', () => {
-      if (Number.isFinite(video.duration)) duration.textContent = formatTime(video.duration);
-    });
     video.addEventListener('progress', () => {
       if (video.buffered.length && video.duration) media.querySelector('.buffer-bar').style.width = `${video.buffered.end(video.buffered.length - 1) / video.duration * 100}%`;
     });

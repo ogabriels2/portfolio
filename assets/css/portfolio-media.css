@@ -197,3 +197,18 @@ body[data-art="video"]:not([data-project]) .video-portfolio-hero .project-title 
 
 .presentation-media video { width: 100%; height: 100%; object-fit: contain; }
 .presentation-error { position: absolute; inset: 0; display: grid; place-content: center; padding: 30px; margin: 0; color: #fff; font-size: .9rem; line-height: 1.7; text-align: center; background: #0009; }
+
+/* One video surface, with context beside it and no surrounding card. */
+body[data-art="video"]:not([data-project]) .film-player-panel { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+body[data-art="video"]:not([data-project]) .film-player-panel .video-container { border-radius: 17px; box-shadow: 0 9px 24px #14223016; }
+body[data-art="video"]:not([data-project]) .presentation-card,
+body[data-art="video"]:not([data-project]) .presentation-card:nth-child(3),
+body[data-art="video"]:not([data-project]) .culture-work-grid { grid-template-columns: minmax(0,.62fr) minmax(0,1.38fr); gap: 30px; }
+body[data-art="video"]:not([data-project]) .presentation-copy,
+body[data-art="video"]:not([data-project]) .presentation-card:nth-child(3) .presentation-copy,
+body[data-art="video"]:not([data-project]) .culture-work-copy { padding-left: 0; }
+body[data-art="video"]:not([data-project]) .film-player-heading { padding: 0 0 12px; }
+body[data-art="video"]:not([data-project]) .film-player-source { padding: 12px 0 0; }
+@media(max-width:760px) {
+ body[data-art="video"]:not([data-project]) .culture-work-grid { grid-template-columns: 1fr; }
+}

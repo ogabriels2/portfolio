@@ -23,18 +23,29 @@
       const playBtn = container.querySelector('.play-pause-btn');
       playBtn?.setAttribute('aria-label', label('Reprodução do vídeo', 'Video playback'));
       const icon = playBtn?.querySelector('i');
+      let buffering = false;
+      const loadingStatus = document.createElement('span');
+      loadingStatus.className = 'player-loading-status'; loadingStatus.setAttribute('role', 'status');
+      loadingStatus.setAttribute('aria-live', 'polite'); container.append(loadingStatus);
       function syncPlaybackButton() {
         const playing = !video.paused && !video.ended;
         container.classList.toggle('paused', !playing); container.classList.toggle('playing', playing);
         if (playing) container.classList.add('has-played');
         else container.classList.remove('user-inactive');
         if (icon) icon.className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
-        if (mainPlayBtn) mainPlayBtn.querySelector('i').className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+        const loading = playing && buffering;
+        container.classList.toggle('is-buffering', loading);
+        container.setAttribute('aria-busy', String(loading));
+        loadingStatus.textContent = loading ? label('Carregando vídeo…', 'Loading video…') : '';
+        if (mainPlayBtn) mainPlayBtn.querySelector('i').className = loading ? 'fa-solid fa-circle-notch fa-spin' : playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
         mainPlayBtn?.setAttribute('aria-label', playing ? label("Pausar vídeo", "Pause video") : label("Reproduzir vídeo", "Play video"));
         playBtn?.setAttribute('aria-pressed', String(playing));
         if (playBtn) playBtn.title = playing ? label("Pausar vídeo", "Pause video") : label("Reproduzir vídeo", "Play video");
       }
       video.addEventListener('play', syncPlaybackButton); video.addEventListener('pause', syncPlaybackButton); video.addEventListener('ended', syncPlaybackButton); syncPlaybackButton();
+      video.addEventListener('waiting', () => { buffering = true; syncPlaybackButton(); resetInactivityTimer(); });
+      video.addEventListener('playing', () => { buffering = false; syncPlaybackButton(); resetInactivityTimer(); });
+      ['pause', 'ended', 'error', 'emptied'].forEach(event => video.addEventListener(event, () => { buffering = false; syncPlaybackButton(); }));
       const timelineContainer = container.querySelector('.timeline-container');
       const progressBar = container.querySelector('.progress-bar');
       const timeTooltip = container.querySelector('.time-tooltip');
@@ -86,7 +97,7 @@
       function resetInactivityTimer() {
         if (container.classList.contains('show-controls-briefly')) return;
         container.classList.remove('user-inactive'); clearTimeout(inactivityTimeout);
-        if (!video.paused) { inactivityTimeout = setTimeout(() => { if (!container.matches(':hover') || !container.querySelector('.controls-wrapper:hover')) { container.classList.add('user-inactive'); container.classList.remove('mobile-controls-active'); } }, 2500); }
+        if (!video.paused && !buffering) { inactivityTimeout = setTimeout(() => { if (!container.matches(':hover') || !container.querySelector('.controls-wrapper:hover')) { container.classList.add('user-inactive'); container.classList.remove('mobile-controls-active'); } }, 2500); }
       }
       container.addEventListener('mousemove', resetInactivityTimer); container.addEventListener('mousedown', resetInactivityTimer); container.addEventListener('touchstart', resetInactivityTimer);
 
