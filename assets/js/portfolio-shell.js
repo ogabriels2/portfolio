@@ -82,7 +82,7 @@
       syncMenuButton(true);
       const projects = element.querySelector('.mobile-projects-wrapper');
       try {
-        const raw = sessionStorage.getItem('portfolio.mobileMenu.scroll.v1');
+        const raw = sessionStorage.getItem(`portfolio.mobileMenu.scroll.v2.${element.dataset.mobileCategoryActive || 'software'}`);
         const saved = raw === null ? NaN : Number(raw);
         if (projects && Number.isFinite(saved) && saved >= 0) projects.scrollTop = saved;
         else if (projects) {
@@ -263,12 +263,57 @@
     return controller;
   }
 
+  function prepareMenuCategories(element) {
+    const tabs = [...element.querySelectorAll('[data-mobile-category]')];
+    const panels = [...element.querySelectorAll('[data-mobile-panel]')];
+    const projects = element.querySelector('.mobile-projects-wrapper');
+    if (tabs.length !== 2 || !projects) return;
+    const scrollKey = category => `portfolio.mobileMenu.scroll.v2.${category}`;
+    const activate = (category, remember = true) => {
+      if (remember && !element.hidden) {
+        try { sessionStorage.setItem(scrollKey(element.dataset.mobileCategoryActive), String(projects.scrollTop)); } catch {}
+      }
+      element.dataset.mobileCategoryActive = category;
+      tabs.forEach(tab => {
+        const selected = tab.dataset.mobileCategory === category;
+        tab.setAttribute('aria-selected', String(selected)); tab.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach(panel => { panel.hidden = panel.dataset.mobilePanel !== category; });
+      let position = 0;
+      try {
+        const saved = Number(sessionStorage.getItem(scrollKey(category)));
+        if (Number.isFinite(saved) && saved >= 0) position = saved;
+        if (remember) sessionStorage.setItem('portfolio.mobileMenu.category.v1', category);
+      } catch {}
+      if (!element.hidden) projects.scrollTop = position;
+    };
+    const current = panels.find(panel => panel.querySelector('[aria-current="page"],.is-active'));
+    let initial = current?.dataset.mobilePanel || element.dataset.mobileCategoryActive;
+    if (!current) {
+      try {
+        const saved = sessionStorage.getItem('portfolio.mobileMenu.category.v1');
+        if (tabs.some(tab => tab.dataset.mobileCategory === saved)) initial = saved;
+      } catch {}
+    }
+    activate(initial, false);
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab.dataset.mobileCategory));
+      tab.addEventListener('keydown', event => {
+        if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        activate(tabs[next].dataset.mobileCategory); tabs[next].focus();
+      });
+    });
+  }
+
   function prepareMenu() {
     const element = document.getElementById('mobileMenu');
     const button = document.querySelector('.mobile-menu-btn');
     if (!element || !button || menu === element) return;
     menu = element;
     menuButton = button;
+    prepareMenuCategories(element);
     if (button.tagName === 'BUTTON') button.type = 'button';
     button.setAttribute('aria-controls', element.id);
     let closeButton = element.querySelector('.portfolio-menu-close');
@@ -286,7 +331,7 @@
     if (projects) {
       const persistMenu = () => {
         if (element.hidden) return;
-        try { sessionStorage.setItem('portfolio.mobileMenu.scroll.v1', String(projects.scrollTop)); } catch {}
+        try { sessionStorage.setItem(`portfolio.mobileMenu.scroll.v2.${element.dataset.mobileCategoryActive || 'software'}`, String(projects.scrollTop)); } catch {}
       };
       projects.addEventListener('scroll', persistMenu, { passive: true });
       element.addEventListener('click', persistMenu, true);
